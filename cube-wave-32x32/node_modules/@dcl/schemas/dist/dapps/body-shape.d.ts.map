@@ -1,0 +1,1 @@
+{"version":3,"file":"body-shape.d.ts","sourceRoot":"","sources":["../../src/dapps/body-shape.ts"],"names":[],"mappings":"AAAA,OAAO,EAAqB,UAAU,EAAE,gBAAgB,EAAE,MAAM,eAAe,CAAA;AAE/E,oBAAY,SAAS;IACnB,IAAI,aAAa;IACjB,MAAM,eAAe;CACtB;AAED,yBAAiB,SAAS,CAAC;IAClB,MAAM,MAAM,EAAE,UAAU,CAAC,SAAS,CAGxC,CAAA;IAEM,MAAM,QAAQ,EAAE,gBAAgB,CAAC,SAAS,CAA6B,CAAA;CAC/E"}

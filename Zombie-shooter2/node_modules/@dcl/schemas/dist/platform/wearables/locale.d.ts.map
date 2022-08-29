@@ -1,0 +1,1 @@
+{"version":3,"file":"locale.d.ts","sourceRoot":"","sources":["../../../src/platform/wearables/locale.ts"],"names":[],"mappings":"AAAA,OAAO,EAEL,UAAU,EACV,gBAAgB,EACjB,MAAM,kBAAkB,CAAA;AAEzB,aAAa;AACb,oBAAY,MAAM;IAChB,EAAE,OAAO;IACT,EAAE,OAAO;CACV;AAED,aAAa;AACb,yBAAiB,MAAM,CAAC;IACf,MAAM,MAAM,EAAE,UAAU,CAAC,MAAM,CAGrC,CAAA;IAEM,MAAM,QAAQ,EAAE,gBAAgB,CAAC,MAAM,CAA6B,CAAA;CAC5E"}

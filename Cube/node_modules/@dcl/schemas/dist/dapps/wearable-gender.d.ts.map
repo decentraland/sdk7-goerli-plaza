@@ -1,0 +1,1 @@
+{"version":3,"file":"wearable-gender.d.ts","sourceRoot":"","sources":["../../src/dapps/wearable-gender.ts"],"names":[],"mappings":"AAAA,OAAO,EAAqB,UAAU,EAAE,gBAAgB,EAAE,MAAM,eAAe,CAAA;AAE/E,oBAAY,cAAc;IACxB,IAAI,SAAS;IACb,MAAM,WAAW;CAClB;AAED,yBAAiB,cAAc,CAAC;IACvB,MAAM,MAAM,EAAE,UAAU,CAAC,cAAc,CAG7C,CAAA;IAEM,MAAM,QAAQ,EAAE,gBAAgB,CAAC,cAAc,CAC3B,CAAA;CAC5B"}

@@ -1,0 +1,59 @@
+{
+  "name": "@dcl/eslint-config",
+  "version": "1.0.6",
+  "description": "Decentraland ESLint config",
+  "main": "index.js",
+  "scripts": {
+    "test": "eslint -c test/.eslintrc.js test/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/decentraland/eslint-config-decentraland.git"
+  },
+  "keywords": [
+    "eslint",
+    "config",
+    "typescript",
+    "ts",
+    "sort",
+    "import"
+  ],
+  "author": "",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/decentraland/eslint-config-decentraland/issues"
+  },
+  "homepage": "https://github.com/decentraland/eslint-config-decentraland#readme",
+  "dependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.3.1",
+    "@typescript-eslint/parser": "^5.3.1",
+    "eslint": "^8.2.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-import-resolver-babel-module": "^5.3.1",
+    "eslint-import-resolver-jest": "^3.0.2",
+    "eslint-import-resolver-typescript": "^3.1.1",
+    "eslint-plugin-autofix": "^1.1.0",
+    "eslint-plugin-css-import-order": "^1.1.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "prettier": "^2.4.1"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.3.1",
+    "@typescript-eslint/parser": "^5.3.1",
+    "eslint": "^8.2.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "prettier": "^2.4.1"
+  },
+  "files": [
+    "index.js",
+    "prettier.js",
+    ".eslintrc.js",
+    "README.md",
+    "LICENSE",
+    "sdk.js",
+    "gatsby.js"
+  ],
+  "commit": "44f87f02667a75ce01754e8d186a9fe7051f84b3"
+}

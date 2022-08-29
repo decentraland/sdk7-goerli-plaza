@@ -1,0 +1,1 @@
+{"version":3,"file":"displayable.js","sourceRoot":"","sources":["../../../src/platform/shared/displayable.ts"],"names":[],"mappings":";;;AAUA,YAAY;AACC,QAAA,qBAAqB,GAAG;IACnC,WAAW,EAAE;QACX,WAAW,EAAE,+CAA+C;QAC5D,IAAI,EAAE,QAAQ;QACd,QAAQ,EAAE,IAAI;KACf;CACO,CAAA"}
