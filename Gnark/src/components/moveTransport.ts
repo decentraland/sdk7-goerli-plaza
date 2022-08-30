@@ -4,12 +4,17 @@ import { InterpolationType } from "../helper/interpolation"
 
 const COMPONENT_ID = 2046
 
+const Vector3EcsSchema = Schemas.Map({
+	x: Schemas.Float,
+	y: Schemas.Float,
+	z: Schemas.Float
+  })
 
 const MoveTransportData = {
   hasFinished: Schemas.Boolean,
   duration: Schemas.Float,
-  start: Vector3EcsType,
-  end: Vector3EcsType,
+  start: Vector3EcsSchema,
+  end: Vector3EcsSchema,
   normalizedTime: Schemas.Float,
   lerpTime: Schemas.Float,
   speed: Schemas.Float,

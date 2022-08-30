@@ -75,7 +75,7 @@ export function birdSystem(dt: number){
 					z: Math.random() * 12 + 2
 				}
 
-				dcl.log("New pos", nextPos)
+				// dcl.log("New pos", nextPos)
 
 				MoveTransformComponent.create(bird, {
 					hasFinished: false,

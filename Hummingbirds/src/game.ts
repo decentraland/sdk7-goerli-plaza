@@ -37,9 +37,10 @@ Animator.create(tree, {
 	]
 })
 OnPointerDown.create(tree, {
-	button: 0,
-	maxDistance: 15,
+	button: ActionButton.PRIMARY,
+	maxDistance: 15,	
 	hoverText: "Shake",
+	showFeedback: true
 })
 
 
@@ -55,25 +56,25 @@ engine.addSystem(clickTree)
 
 
 
-function createCube(x: number, y: number, z: number, spawner = false): Entity {
-	const entity = engine.addEntity()
+// function createCube(x: number, y: number, z: number, spawner = false): Entity {
+// 	const entity = engine.addEntity()
   
-	Transform.create(entity, {
-	  position: { x, y, z },
-	  scale: { x: 1, y: 1, z: 1 },
-	  rotation: { x: 0, y: 0, z: 0, w: 1 }
-	})
+// 	Transform.create(entity, {
+// 	  position: { x, y, z },
+// 	  scale: { x: 1, y: 1, z: 1 },
+// 	  rotation: { x: 0, y: 0, z: 0, w: 1 }
+// 	})
   
-	BoxShape.create(entity)
+// 	BoxShape.create(entity)
   
-	if (spawner) {
-	  OnPointerDown.create(entity, {
-		button: ActionButton.PRIMARY,
-		hoverText: 'Press E to spawn'
-	  })
-	}
+// 	if (spawner) {
+// 	  OnPointerDown.create(entity, {
+// 		button: ActionButton.PRIMARY,
+// 		hoverText: 'Press E to spawn'
+// 	  })
+// 	}
   
-	return entity
-  }
+// 	return entity
+//   }
 
-  createCube(8, 1, 8, true)
+//   createCube(8, 1, 8, true)

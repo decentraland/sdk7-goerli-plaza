@@ -1,28 +1,31 @@
 {
-  "folders": [
-    {
-      "path": "Block-dog"
-    },
-    {
-      "path": "Cube"
-    },
-    {
-      "path": "Gnark"
-    },
-    {
-      "path": "Hummingbirds"
-    },
-    {
-      "path": "Zombie-shooter"
-    },
-    {
-      "path": "Zombie-shooter2"
-    },
-    {
-      "path": "cube-wave-16x16"
-    },
-    {
-      "path": "cube-wave-32x32"
-    }
-  ]
+	"folders": [
+		{
+			"path": "Block-dog"
+		},
+		{
+			"path": "Cube"
+		},
+		{
+			"path": "Gnark"
+		},
+		{
+			"path": "Hummingbirds"
+		},
+		{
+			"path": "Zombie-shooter"
+		},
+		{
+			"path": "Zombie-shooter2"
+		},
+		{
+			"path": "cube-wave-16x16"
+		},
+		{
+			"path": "cube-wave-32x32"
+		},
+		{
+			"path": "Swimming-Shark"
+		}
+	]
 }

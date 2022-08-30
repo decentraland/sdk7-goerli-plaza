@@ -1,11 +1,5 @@
-import { circularSystem } from './systems/circular'
-import { playSounds } from './systems/sound'
-import { addStateSystem } from './helper/systemWithState'
-import { createCube } from './cube'
-import { createCone } from './cone'
-import { createNft } from './nft'
-import { createText } from './text'
-import { createZombie } from './zombie'
+
+
 import { moveSystem, onMoveFinish } from './systems/moveSystem'
 import { createGLTF } from './gltf'
 import { createGnark } from './gnark'
@@ -28,12 +22,6 @@ const gnark=  createGnark()
 
 const gnark2=  createGnark()
 
-// const zombie = createZombie()
-
-
-
-// addStateSystem(circularSystem, { t: 0 })
-// addStateSystem(playSounds, { t: 0 })
 //  engine.addSystem(moveSystem)
 
 //  engine.addSystem(timerSystem)

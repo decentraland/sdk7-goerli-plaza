@@ -5,17 +5,14 @@ import { TimeOutComponent } from "../components/timeOut"
 import { Interpolate } from "../helper/interpolation"
 
 
-export type Vector3Type = {
-	x: number,
-	y: number,
-	z: number
-  }
 
 export function distanceSystem(dt: number) {
 	const playerTransform = engine.baseComponents.Transform.getOrNull(1 as Entity)
 
 	 if(playerTransform){
-		for (const [entity, transform, npcData] of engine.getEntitiesWith(engine.baseComponents.Transform, NPComponent)) {
+		for (const [entity, transform] of engine.getEntitiesWith(engine.baseComponents.Transform, NPComponent)) {
+
+			const npcData = NPComponent.getMutable(entity)
 			const dist = getDistance(playerTransform.position, transform.position)
 
 			if(dist < 5 && npcData.state !== gnarkStates.YELLING){
@@ -32,7 +29,7 @@ export function distanceSystem(dt: number) {
 
 
  
-function getDistance(playerPos: Vector3Type, NPCPos:Vector3Type){
+function getDistance(playerPos: Vector3.ReadonlyVector3, NPCPos:Vector3.ReadonlyVector3){
 	const gap = Vector3.subtract(playerPos, NPCPos)
 
 	return Vector3.length(gap)
@@ -43,8 +40,11 @@ function getDistance(playerPos: Vector3Type, NPCPos:Vector3Type){
 
 
 export function walkAround(dt: number) {
-	for (const [entity,  npcData] of engine.getEntitiesWith( NPComponent)) {
+	for (const [entity] of engine.getEntitiesWith( NPComponent)) {
   
+	const npcData = NPComponent.getMutable(entity)
+
+
 	switch(npcData.state) {
 		case gnarkStates.WALKING:
 
