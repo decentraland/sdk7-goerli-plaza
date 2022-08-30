@@ -1,5 +1,5 @@
-export const Vector3EcsType = MapType({
-	x: Float32,
-	y: Float32,
-	z: Float32
+const Vector3EcsType = Schemas.Map({
+	x: Schemas.Float,
+	y: Schemas.Float,
+	z: Schemas.Float
   })

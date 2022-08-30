@@ -8,9 +8,9 @@ export enum gnarkStates {
 }
 
 
-const NPCData = MapType({
-	state: Enum<gnarkStates>(Int8),
-	previousState: Enum<gnarkStates>(Int8)
-  })
+const NPCData = {
+	state: Schemas.Enum<gnarkStates>(Schemas.Int),
+	previousState: Schemas.Enum<gnarkStates>(Schemas.Int)
+  }
 
-export const NPComponent = engine.defineComponent(COMPONENT_ID, NPCData )
+export const NPComponent = engine.defineComponent(NPCData, COMPONENT_ID )

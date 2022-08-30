@@ -16,16 +16,16 @@
 const COMPONENT_ID = 2048
 
 
-const TimeOut = MapType({
+const TimeOut = {
  
-  timeLeft: Float32,
-  hasFinished: EcsBoolean,
-  paused: EcsBoolean
+  timeLeft: Schemas.Float,
+  hasFinished: Schemas.Boolean,
+  paused: Schemas.Boolean
   
-})
+}
 
 
 
 
 
-export const TimeOutComponent = engine.defineComponent(COMPONENT_ID, TimeOut)
+export const TimeOutComponent = engine.defineComponent(TimeOut, COMPONENT_ID)

@@ -10,7 +10,7 @@ import { moveSystem, onMoveFinish } from './systems/moveSystem'
 import { createGLTF } from './gltf'
 import { createDog } from './dog'
 import { timerSystem } from './systems/timeOutSystem'
-import { distanceSystem, walkAround } from './systems/dogAI'
+// import { distanceSystem, walkAround } from './systems/dogAI'
 
 
 // const _cubeEntity = createCube(8, 2, 8)
@@ -41,5 +41,5 @@ const dog=  createDog()
 const dog2=  createDog()
 
 
-engine.addSystem(walkAround)
-engine.addSystem(distanceSystem)
+// engine.addSystem(walkAround)
+// engine.addSystem(distanceSystem)

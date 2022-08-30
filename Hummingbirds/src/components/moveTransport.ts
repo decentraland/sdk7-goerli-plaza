@@ -16,7 +16,7 @@ const MoveTransportData = {
   normalizedTime: Schemas.Float,
   lerpTime: Schemas.Float,
   speed: Schemas.Float,
-//   interpolationType:  Schemas.Enum<InterpolationType>(Schemas.Int)
+   interpolationType:  Schemas.Enum<InterpolationType>(Schemas.Int)
 }
 
 export const MoveTransformComponent = engine.defineComponent(MoveTransportData, COMPONENT_ID)

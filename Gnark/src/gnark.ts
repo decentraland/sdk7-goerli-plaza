@@ -1,5 +1,4 @@
 // Coordinates of path to patrol
-import {  Vector3EcsType } from "components/VectorType"
 
 const point1 = {x:8, y:0, z:8}
 const point2 = {x:8, y:0, z:24}

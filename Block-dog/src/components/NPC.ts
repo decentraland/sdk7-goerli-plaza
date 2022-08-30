@@ -10,9 +10,9 @@ export enum dogStates {
 }
 
 
-const NPCData = MapType({
-	state: Enum<dogStates>(Int8),
-	previousState: Enum<dogStates>(Int8)
-  })
+const NPCData = {
+	state: Schemas.Enum<dogStates>(Schemas.Int),
+	previousState: Schemas.Enum<dogStates>(Schemas.Int)
+  }
 
-export const NPComponent = engine.defineComponent(COMPONENT_ID, NPCData )
+export const NPComponent = engine.defineComponent(NPCData, COMPONENT_ID )

@@ -1,17 +1,20 @@
-import { Vector3EcsType } from "./VectorType"
 
 
 const COMPONENT_ID = 2047
 
-
-
-const PathData = MapType({
-	path: ArrayType(Vector3EcsType),
-	origin: Float32,
-	target: Float32,
-	paused: EcsBoolean
+const Vector3EcsType = Schemas.Map({
+	x: Schemas.Float,
+	y: Schemas.Float,
+	z: Schemas.Float
   })
 
+const PathData = {
+	path: Schemas.Array(Vector3EcsType),
+	origin: Schemas.Int,
+	target: Schemas.Int,
+	paused: Schemas.Boolean
+  }
 
 
-export const PathDataComponent = engine.defineComponent(COMPONENT_ID, PathData)
+
+export const PathDataComponent = engine.defineComponent(PathData, COMPONENT_ID)

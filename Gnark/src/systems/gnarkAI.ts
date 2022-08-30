@@ -116,7 +116,7 @@ export function enterState(entity:Entity, newState: gnarkStates){
 			if(!walkAnim) return
 			walkAnim.playing = true
 
-			const move = MoveTransformComponent.getFrom(entity)
+			const move = MoveTransformComponent.get(entity)
 			if(move.hasFinished){
 				nextSegment(entity)
 			}
