@@ -1,4 +1,4 @@
-import { MoveTransformComponent, RotateTransformComponent } from "./components/moveTransport"
+
 import { PathDataComponent } from "./components/path"
 import { SpeedComponent } from "./components/swimSpeed"
 import { cpoints } from "./sharkPath"
@@ -45,26 +45,28 @@ export function createShark(){
 		speed: 0.5
 	})
 
-	MoveTransformComponent.create(shark, {
-		hasFinished: false,
-		start: cpoints[0],
-		end: cpoints[1],
-		fraction: 0
-	})
+	// MoveTransformComponent.create(shark, {
+	// 	hasFinished: false,
+	// 	start: cpoints[0],
+	// 	end: cpoints[1],
+	// 	fraction: 0
+	// })
 
-	RotateTransformComponent.create(shark, {
-		hasFinished: false,
-		start: Quaternion.Zero(),
-		end: Quaternion.Zero(),
-		fraction: 1,
-		interpolationType: 0
-	})
+	// RotateTransformComponent.create(shark, {
+	// 	hasFinished: false,
+	// 	start: Quaternion.Zero(),
+	// 	end: Quaternion.Zero(),
+	// 	fraction: 1,
+	// 	interpolationType: 0
+	// })
 
 	PathDataComponent.create(shark,
 		{
 			path: cpoints,
 			origin: 0,
 			target: 1,
+			startRot: Quaternion.Zero(),
+			endRot: Quaternion.Zero(),
 			fraction: 0,
 			paused: false	
 		})
