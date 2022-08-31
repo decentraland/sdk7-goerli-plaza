@@ -71,9 +71,8 @@ export function walkAround(dt: number) {
 			timer.timeLeft = timer.timeLeft - dt
 		
 			// has finished
-			timer.hasFinished = timer.timeLeft >= 0
-		
-			if (timer.hasFinished) {
+			if (timer.timeLeft <= 0) {
+				timer.hasFinished = true
 				changeState(entity, gnarkStates.WALKING)	
 			}
 		break
@@ -122,15 +121,16 @@ export function enterState(entity:Entity, newState: gnarkStates){
 			}
 			break
 		case gnarkStates.TURNING:
+			nextSegment(entity)
 			const turnAnim = animator.states.find( (anim) =>{return anim.name=="turnRight"})
 			if(!turnAnim) return
 			turnAnim.playing = true
 
 			const timer = TimeOutComponent.getMutable(entity)
-			if(timer.hasFinished){
-				timer.timeLeft = 0.9
-				timer.hasFinished = false
-			}
+			// if(timer.hasFinished){
+			timer.timeLeft = 0.9
+			timer.hasFinished = false
+			// }
 			
 			break
 		case gnarkStates.YELLING:
@@ -165,10 +165,18 @@ export function leaveState(entity:Entity, oldState: gnarkStates){
 	}
 }
 
+export function turn(gnark:Entity){
+	let path = PathDataComponent.getMutable(gnark)
+	const difference = Vector3.subtract( path.path[path.target], path.path[path.origin])
+	const normalizedDifference = Vector3.normalize(difference)
+	
+
+	engine.baseComponents.Transform.getMutable(gnark).rotation = Quaternion.lookRotation(normalizedDifference)
+}
 
 
 export  function nextSegment(gnark:Entity){
-
+	
 	let path = PathDataComponent.getMutable(gnark)
 	path.origin += 1
 	path.target += 1
@@ -187,8 +195,7 @@ export  function nextSegment(gnark:Entity){
 	move.lerpTime = 0
 	move.speed = 0.1
 	move.hasFinished = false
-	move.interpolationType = 1
 		
-
-	engine.baseComponents.Transform.getMutable(gnark).rotation.y += 90
+	turn(gnark)
+	
 }

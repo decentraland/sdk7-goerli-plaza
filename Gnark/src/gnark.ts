@@ -65,7 +65,7 @@ export function createGnark(): Entity {
 		}
 	]})
 
-	NPComponent.create(gnark, {state: gnarkStates.WALKING, previousState: gnarkStates.WALKING})
+	NPComponent.create(gnark, {state: gnarkStates.TURNING, previousState: gnarkStates.WALKING})
 
 	const randomPathStart = Math.floor(Math.random()*3)
 
@@ -77,14 +77,14 @@ export function createGnark(): Entity {
 	})
   
 	MoveTransformComponent.create(gnark, {
-	  start: point1,
-	  end: point2,
+	  start: pathArray[randomPathStart],
+	  end: pathArray[randomPathStart + 1],
 	  duration: 5,
 	  normalizedTime: 0,
 	  lerpTime: 0,
 	  speed: 0.1,
 	  hasFinished: false,
-	  interpolationType: 1
+	  interpolationType: 0
 	})
 
 	TimeOutComponent.create(gnark, {
