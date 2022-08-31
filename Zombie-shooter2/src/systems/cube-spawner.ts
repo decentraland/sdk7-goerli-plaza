@@ -1,5 +1,5 @@
 import { CubeIdentifierComponent } from '../components/cube'
-import { createCube } from '../cube'
+import { createCube } from '../factory/cube'
 
 const { OnPointerDownResult } = engine.baseComponents
 

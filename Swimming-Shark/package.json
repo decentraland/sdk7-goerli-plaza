@@ -12,7 +12,7 @@
 	},
 	"devDependencies": {
 		"@dcl/eslint-config": "^1.0.1",
-		"@dcl/sdk": "7.0.0-2890287498.commit-2c52590"
+		"@dcl/sdk": "https://sdk-team-cdn.decentraland.org/@dcl/js-sdk-toolchain/branch/fix/deep-readonly/dcl-sdk-7.0.0-2964312248.commit-4e5ef72.tgz"
 	},
 	"engines": {
 		"node": ">=14.0.0",

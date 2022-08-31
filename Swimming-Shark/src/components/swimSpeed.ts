@@ -1,11 +1,7 @@
-
-
-
 const COMPONENT_ID = 1111
 
-const SwimSpeed = {
-	speed: Schemas.Float
-  }
 
 
-export const SpeedComponent = engine.defineComponent(SwimSpeed, COMPONENT_ID)
+
+export const SpeedComponent = engine.defineComponent({speed:Schemas.Float}
+, COMPONENT_ID)

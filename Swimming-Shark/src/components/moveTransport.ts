@@ -20,8 +20,7 @@ const MoveTransportData = {
   hasFinished: Schemas.Boolean,
   start: Vector3EcsType,
   end: Vector3EcsType,
-  lerpTime: Schemas.Float,
-  speed: Schemas.Float,
+  fraction: Schemas.Float,
    interpolationType:  Schemas.Enum<InterpolationType>(Schemas.Int)
 }
 
@@ -30,8 +29,7 @@ const RotateTransportData = {
 	hasFinished: Schemas.Boolean,
 	start: QuaternionEcsType,
 	end: QuaternionEcsType,
-	lerpTime: Schemas.Float,
-	speed: Schemas.Float,
+	fraction: Schemas.Float,
 	 interpolationType:  Schemas.Enum<InterpolationType>(Schemas.Int)
   }
 

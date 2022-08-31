@@ -11,6 +11,7 @@ const PathData = {
 	path: Schemas.Array(Vector3EcsSchema),
 	origin: Schemas.Float,
 	target: Schemas.Float,
+	fraction: Schemas.Float,
 	paused: Schemas.Boolean
   }
 

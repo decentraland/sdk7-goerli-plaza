@@ -28,11 +28,6 @@ export enum InterpolationType {
 /**
  * @public
  */
-export declare const EcsInterpolation: EcsType<InterpolationType>
-
-/**
- * @public
- */
 export function Interpolate(type: InterpolationType, t: number): number {
   switch (type) {
     case InterpolationType.LINEAR:

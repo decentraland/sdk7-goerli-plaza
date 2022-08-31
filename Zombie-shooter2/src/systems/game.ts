@@ -62,7 +62,6 @@ function triggerGameStart() {
       loop: true,
       playing: true,
       pitch: 1,
-      playedAtTimestamp: Date.now(),
       volume: 1
     })
   }

@@ -1,13 +1,13 @@
 import { getNextComponentId } from './customComponentIds'
 
-const GameControlleType = MapType({
-  spawnActive: EcsBoolean,
-  spawnInterval: Int32,
-  spawnCountDown: Int32,
-  livesLeft: Int32,
-  score: Int32,
-  winningScore: Int32,
-  maxZombies: Int32
-})
+const GameControlleType = {
+  spawnActive: Schemas.Boolean,
+  spawnInterval: Schemas.Int,
+  spawnCountDown: Schemas.Int,
+  livesLeft: Schemas.Int,
+  score: Schemas.Int,
+  winningScore: Schemas.Int,
+  maxZombies: Schemas.Int
+}
 
-export const GameControllerComponent = engine.defineComponent(getNextComponentId(), GameControlleType)
+export const GameControllerComponent = engine.defineComponent( GameControlleType, getNextComponentId())
