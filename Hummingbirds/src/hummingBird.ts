@@ -103,7 +103,7 @@ export function birdSystem(dt: number){
 engine.addSystem(birdSystem)
 
 export function turn(entity:Entity, target: ReadOnlyVector3){
-	let transform = Transform.getMutable(entity)
+	const transform = Transform.getMutable(entity)
 	const difference = Vector3.subtract( target, transform.position)
 	const normalizedDifference = Vector3.normalize(difference)
 	transform.rotation = Quaternion.lookRotation(normalizedDifference)

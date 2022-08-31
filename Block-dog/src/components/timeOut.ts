@@ -24,8 +24,4 @@ const TimeOut = {
   
 }
 
-
-
-
-
 export const TimeOutComponent = engine.defineComponent(TimeOut, COMPONENT_ID)
