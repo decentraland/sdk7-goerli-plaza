@@ -79,7 +79,6 @@ export function createGnark(): Entity {
 	MoveTransformComponent.create(gnark, {
 	  start: pathArray[randomPathStart],
 	  end: pathArray[randomPathStart + 1],
-	  duration: 5,
 	  normalizedTime: 0,
 	  lerpTime: 0,
 	  speed: 0.1,

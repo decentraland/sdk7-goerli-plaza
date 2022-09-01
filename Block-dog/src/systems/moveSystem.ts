@@ -1,5 +1,5 @@
 import { MoveTransformComponent } from '../components/moveTransport'
-import { PathDataComponent } from '../components/pathData'
+
 import { Interpolate } from '../helper/interpolation'
 
 const { Transform } = engine.baseComponents
@@ -11,7 +11,7 @@ export function onMoveFinish(entity: Entity, callback: () => void) {
 }
 
 export function moveSystem(dt: number) {
-  for (const [entity,  path] of engine.getEntitiesWith( PathDataComponent)) {
+  for (const [entity,  path] of engine.getEntitiesWith( MoveTransformComponent)) {
 
 	if(path.paused) return
 

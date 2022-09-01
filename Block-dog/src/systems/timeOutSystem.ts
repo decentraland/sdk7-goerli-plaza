@@ -1,5 +1,4 @@
 import { TimeOutComponent } from '../components/timeOut'
-import { Interpolate } from '../helper/interpolation'
 
 
 const callbackMap = new Map<Entity, () => void>()

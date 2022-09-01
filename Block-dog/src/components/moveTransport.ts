@@ -11,7 +11,6 @@ const Vector3EcsType = Schemas.Map({
 
 const MoveTransportData = {
   hasFinished: Schemas.Boolean,
-  duration: Schemas.Float,
   start: Vector3EcsType,
   end: Vector3EcsType,
   normalizedTime: Schemas.Float,

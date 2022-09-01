@@ -1,86 +1,67 @@
-import { MoveTransformComponent } from "../components/moveTransport"
+
 import { dogStates, NPComponent } from "../components/NPC"
-import { PathDataComponent } from "../components/pathData"
-import { TimeOutComponent } from "../components/timeOut"
-import { Interpolate } from "../helper/interpolation"
-
-
-export type Vector3Type = {
-	x: number,
-	y: number,
-	z: number
-  }
-
-export function distanceSystem(dt: number) {
-	const playerTransform = engine.baseComponents.Transform.getOrNull(1 as Entity)
-
-	 if(playerTransform){
-		for (const [entity, transform, npcData] of engine.getEntitiesWith(engine.baseComponents.Transform, NPComponent)) {
-			const dist = getDistance(playerTransform.position, transform.position)
-
-			if(dist < 5 && npcData.state !== dogStates.YELLING){
-			
-				changeState(entity, dogStates.YELLING)
-		
-			} else if(dist > 5 && npcData.state == dogStates.YELLING){
-
-				previousState(entity)
-			}
-		}
-	}
-}
-
-
- 
-function getDistance(playerPos: Vector3Type, NPCPos:Vector3Type){
-	const gap = Vector3.subtract(playerPos, NPCPos)
-
-	return Vector3.length(gap)
-}
 
 
 
 
 
-export function walkAround(dt: number) {
-	for (const [entity,  npcData] of engine.getEntitiesWith( NPComponent)) {
+
+
+export function dogBehavior(dt: number) {
+	for (const [entity] of engine.getEntitiesWith( NPComponent)) {
   
+	const npcData = NPComponent.getMutable(entity)
+
 	switch(npcData.state) {
-		case dogStates.WALKING:
+		case dogStates.Idle:
+			break
+		
+		case dogStates.Sit:
+			break
 
-			const move = MoveTransformComponent.getMutable(entity)
-			const transform = engine.baseComponents.Transform.getMutable(entity)
-		
-			move.normalizedTime = Math.min(Math.max(move.normalizedTime + dt * move.speed, 0), 1)
-			move.lerpTime = Interpolate(move.interpolationType, move.normalizedTime)
-		
-			// assign value to transform
-			transform.position = Vector3.lerp(move.start, move.end, move.lerpTime)
-		
-			// has finished
-			move.hasFinished = move.normalizedTime >= 1
-		
-			if (move.hasFinished) {
-				changeState(entity, dogStates.TURNING)
-			}
-		break
-		case dogStates.TURNING:
+		case dogStates.Follow:
+			break
 
-			const timer = TimeOutComponent.getMutable(entity)
+		case dogStates.GoDrink:
+			break
 
-			timer.timeLeft = timer.timeLeft - dt
+		case dogStates.Drinking:
+			break
+
+
+		// 	const move = MoveTransformComponent.getMutable(entity)
+		// 	const transform = engine.baseComponents.Transform.getMutable(entity)
 		
-			// has finished
-			timer.hasFinished = timer.timeLeft >= 0
+		// 	move.normalizedTime = Math.min(Math.max(move.normalizedTime + dt * move.speed, 0), 1)
+		// 	move.lerpTime = Interpolate(move.interpolationType, move.normalizedTime)
 		
-			if (timer.hasFinished) {
-				changeState(entity, dogStates.WALKING)	
-			}
-		break
+		// 	// assign value to transform
+		// 	transform.position = Vector3.lerp(move.start, move.end, move.lerpTime)
+		
+		// 	// has finished
+		// 	move.hasFinished = move.normalizedTime >= 1
+		
+		// 	if (move.hasFinished) {
+		// 		changeState(entity, dogStates.TURNING)
+		// 	}
+		// break
+		// case dogStates.TURNING:
+
+		// 	const timer = TimeOutComponent.getMutable(entity)
+
+		// 	timer.timeLeft = timer.timeLeft - dt
+		
+		// 	// has finished
+		// 	timer.hasFinished = timer.timeLeft >= 0
+		
+		// 	if (timer.hasFinished) {
+		// 		changeState(entity, dogStates.WALKING)	
+		// 	}
+		// break
 	
 	}	
 	}
-  }
+}
 
 
 
@@ -97,47 +78,75 @@ export function changeState(entity:Entity, newState: dogStates){
 }
 
 
-export function previousState(entity:Entity){
+// export function previousState(entity:Entity){
 
-	const npcDataMutable = NPComponent.getMutable(entity)
+// 	const npcDataMutable = NPComponent.getMutable(entity)
 
-	leaveState(entity, npcDataMutable.state)
-	npcDataMutable.state = npcDataMutable.previousState
+// 	leaveState(entity, npcDataMutable.state)
+// 	npcDataMutable.state = npcDataMutable.previousState
 
-	enterState(entity, npcDataMutable.state)
+// 	enterState(entity, npcDataMutable.state)
 
-}
+// }
 
 export function enterState(entity:Entity, newState: dogStates){
 	const animator = engine.baseComponents.Animator.getMutable(entity)
 	switch(newState) {
-		case dogStates.WALKING:
-			const walkAnim = animator.states.find( (anim) =>{return anim.name=="walk"})
-			if(!walkAnim) return
-			walkAnim.playing = true
-
-			const move = MoveTransformComponent.getFrom(entity)
-			if(move.hasFinished){
-				nextSegment(entity)
-			}
+		case dogStates.Idle:
+			const IdleAnim = animator.states.find((anim)=>{return anim.name == "Idle"})
+			if(IdleAnim) IdleAnim.playing = true
 			break
-		case dogStates.TURNING:
-			const turnAnim = animator.states.find( (anim) =>{return anim.name=="turnRight"})
-			if(!turnAnim) return
-			turnAnim.playing = true
+		
+		case dogStates.Sit:
+			const SitAnim = animator.states.find((anim)=>{return anim.name == "Sitting"})
+			if(SitAnim) SitAnim.playing = true
+			OnPointerDown.getMutable(entity).hoverText = "Stand"
+			break
 
-			const timer = TimeOutComponent.getMutable(entity)
-			if(timer.hasFinished){
-				timer.timeLeft = 0.9
-				timer.hasFinished = false
-			}
+		case dogStates.Follow:
+			const walkAnim = animator.states.find((anim)=>{return anim.name == "Walking"})
+			if(walkAnim) walkAnim.playing = true
+			break
+
+		case dogStates.GoDrink:
+			const walkAnim2 = animator.states.find((anim)=>{return anim.name == "Walking"})
+			if(walkAnim2) walkAnim2.playing = true
+			break
+
+		case dogStates.Drinking:
+			const drinkAnim = animator.states.find((anim)=>{return anim.name == "Drinking"})
+			if(drinkAnim) drinkAnim.playing = true
+			break
+	
+
+
+// 		case dogStates.WALKING:
+// 			const walkAnim = animator.states.find( (anim) =>{return anim.name=="walk"})
+// 			if(!walkAnim) return
+// 			walkAnim.playing = true
+
+// 			const move = MoveTransformComponent.getFrom(entity)
+// 			if(move.hasFinished){
+// 				nextSegment(entity)
+// 			}
+// 			break
+// 		case dogStates.TURNING:
+// 			const turnAnim = animator.states.find( (anim) =>{return anim.name=="turnRight"})
+// 			if(!turnAnim) return
+// 			turnAnim.playing = true
+
+// 			const timer = TimeOutComponent.getMutable(entity)
+// 			if(timer.hasFinished){
+// 				timer.timeLeft = 0.9
+// 				timer.hasFinished = false
+// 			}
 			
-			break
-		case dogStates.YELLING:
-			const raiseDeadAnim = animator.states.find( (anim) =>{return anim.name=="raiseDead"})
-			if(!raiseDeadAnim) return
-			raiseDeadAnim.playing = true
-			break	
+// 			break
+// 		case dogStates.YELLING:
+// 			const raiseDeadAnim = animator.states.find( (anim) =>{return anim.name=="raiseDead"})
+// 			if(!raiseDeadAnim) return
+// 			raiseDeadAnim.playing = true
+// 			break	
 	}
 }
 
@@ -145,61 +154,60 @@ export function enterState(entity:Entity, newState: dogStates){
 export function leaveState(entity:Entity, oldState: dogStates){
 	const animator = engine.baseComponents.Animator.getMutable(entity)
 	switch(oldState) {
-		case dogStates.WALKING:
-			const walkAnim = animator.states.find( (anim) =>{return anim.name=="walk"})
-			if(!walkAnim) return
-			walkAnim.playing = false
-
-			break
-		case dogStates.TURNING:
-			const turnAnim = animator.states.find( (anim) =>{return anim.name=="turnRight"})
-			if(!turnAnim) return
-			turnAnim.playing = false
-			
-			break
-		case dogStates.YELLING:
-			const raiseDeadAnim = animator.states.find( (anim) =>{return anim.name=="raiseDead"})
-			if(!raiseDeadAnim) return
-			raiseDeadAnim.playing = false
-			break	
-	}
-}
-
-
-
-export  function nextSegment(gnark:Entity){
-
-	let path = PathDataComponent.getMutable(gnark)
-	path.origin += 1
-	path.target += 1
-	if (path.target >= path.path.length) {
-		path.target = 0
-	} else if (path.origin >= path.path.length) {
-		path.origin = 0
-	}
-
-	const move = MoveTransformComponent.getMutable(gnark)
+		case dogStates.Idle:
+			const IdleAnim = animator.states.find((anim)=>{return anim.name == "Idle"})
+			if(IdleAnim) IdleAnim.playing = false
+		break
 	
-	move.start = path.path[path.origin],
-	move.end = path.path[path.target],
-	move.duration = 10
-	move.normalizedTime = 0
-	move.lerpTime = 0
-	move.speed = 0.1
-	move.hasFinished = false
-	move.interpolationType = 1
-		
+		case dogStates.Sit:
+			const SitAnim = animator.states.find((anim)=>{return anim.name == "Sitting"})
+			if(SitAnim) SitAnim.playing = false
 
-	engine.baseComponents.Transform.getMutable(gnark).rotation.y += 90
+			OnPointerDown.getMutable(entity).hoverText = "Sit"
+			break
+
+		case dogStates.Follow:
+			const walkAnim = animator.states.find((anim)=>{return anim.name == "Walking"})
+			if(walkAnim) walkAnim.playing = false
+			break
+
+		case dogStates.GoDrink:
+			const walkAnim2 = animator.states.find((anim)=>{return anim.name == "Walking"})
+			if(walkAnim2) walkAnim2.playing = false
+			break
+
+		case dogStates.Drinking:
+			const drinkAnim = animator.states.find((anim)=>{return anim.name == "Drinking"})
+			if(drinkAnim) drinkAnim.playing = false
+			break
+
+// 		case dogStates.WALKING:
+// 			const walkAnim = animator.states.find( (anim) =>{return anim.name=="walk"})
+// 			if(!walkAnim) return
+// 			walkAnim.playing = false
+
+// 			break
+// 		case dogStates.TURNING:
+// 			const turnAnim = animator.states.find( (anim) =>{return anim.name=="turnRight"})
+// 			if(!turnAnim) return
+// 			turnAnim.playing = false
+			
+// 			break
+// 		case dogStates.YELLING:
+// 			const raiseDeadAnim = animator.states.find( (anim) =>{return anim.name=="raiseDead"})
+// 			if(!raiseDeadAnim) return
+// 			raiseDeadAnim.playing = false
+// 			break	
+	}
 }
 
 
-export function turn(entity:Entity){
-	let path = PathDataComponent.getMutable(entity)
-	const difference = Vector3.subtract( path.path[path.target], path.path[path.origin])
+
+export function turn(entity:Entity, target:ReadOnlyVector3){
+	let transform = Transform.getMutable(entity)
+	const difference = Vector3.subtract( transform.position, target)
 	const normalizedDifference = Vector3.normalize(difference)
 	
-
 	engine.baseComponents.Transform.getMutable(entity).rotation = Quaternion.lookRotation(normalizedDifference)
 }
 

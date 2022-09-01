@@ -1,5 +1,4 @@
 // Coordinates of path to patrol
-import {  Vector3EcsType } from "components/VectorType"
 
 const point1 = {x:8, y:0, z:8}
 const point2 = {x:8, y:0, z:24}
@@ -14,7 +13,7 @@ const TURN_TIME = 0.9
 const { Transform, GLTFShape } = engine.baseComponents
 import { MoveTransformComponent } from './components/moveTransport'
 import {  dogStates, NPComponent } from "./components/NPC"
-import { PathDataComponent } from './components/pathData'
+
 import { TimeOutComponent } from "./components/timeOut"
 
 
@@ -41,7 +40,7 @@ export function createDog(): Entity {
 	engine.baseComponents.Animator.create(dog, {states:[{
 			name: "Walking",
 			clip: "Walking",
-			playing: true,
+			playing: false,
 			weight: 1,
 			speed: 1,
 			loop: true,
@@ -86,12 +85,6 @@ export function createDog(): Entity {
 
 	const randomPathStart = Math.floor(Math.random()*3)
 
-	PathDataComponent.create(dog,{
-		path: pathArray,
-		paused: false,
-		origin: randomPathStart,
-		target: randomPathStart + 1
-	})
   
 	MoveTransformComponent.create(dog, {
 	  start: point1,
@@ -108,6 +101,10 @@ export function createDog(): Entity {
 		timeLeft:0.9,
 		hasFinished: false,
 		paused: false
+	})
+
+	OnPointerDown.create(dog, {
+		hoverText: "Sit"
 	})
   
 	return dog
