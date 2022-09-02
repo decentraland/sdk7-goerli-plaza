@@ -18,7 +18,11 @@ export class CameraWrapper {
   static getPositionOrNull(){
     return Camera.instance.position
   }*/
-  
+  //END SDK6 SYNTAX//END SDK6 SYNTAX//END SDK6 SYNTAX//END SDK6 SYNTAX
+  //END SDK6 SYNTAX//END SDK6 SYNTAX//END SDK6 SYNTAX//END SDK6 SYNTAX
+
+  //START SDK7 SYNTAX//START SDK7 SYNTAX//START SDK7 SYNTAX//START SDK7 SYNTAX
+  //START SDK7 SYNTAX//START SDK7 SYNTAX//START SDK7 SYNTAX//START SDK7 SYNTAX
   static getPosition(){
     return Transform.get((PlayerEnts.PLAYER as Entity)).position
   }

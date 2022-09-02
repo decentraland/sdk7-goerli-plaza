@@ -33,6 +33,13 @@ export class QuaternionWrapper {
     return Quaternion.Slerp(rotation,lookRot,amount)
   }
   */
+
+  //END SDK6 SYNTAX//END SDK6 SYNTAX//END SDK6 SYNTAX//END SDK6 SYNTAX
+  //END SDK6 SYNTAX//END SDK6 SYNTAX//END SDK6 SYNTAX//END SDK6 SYNTAX
+
+  //START SDK7 SYNTAX//START SDK7 SYNTAX//START SDK7 SYNTAX//START SDK7 SYNTAX
+  //START SDK7 SYNTAX//START SDK7 SYNTAX//START SDK7 SYNTAX//START SDK7 SYNTAX
+  
   static LookRotation(direction: Vector3.MutableVector3,up?: Vector3.MutableVector3) {
     return Quaternion.lookRotation(direction,up)
   }

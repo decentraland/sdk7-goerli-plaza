@@ -7,6 +7,11 @@ export class EngineWrapper {
     engine.addSystem(system,priority)
   }
   */
+  //END SDK6 SYNTAX//END SDK6 SYNTAX//END SDK6 SYNTAX//END SDK6 SYNTAX
+  //END SDK6 SYNTAX//END SDK6 SYNTAX//END SDK6 SYNTAX//END SDK6 SYNTAX
+
+  //START SDK7 SYNTAX//START SDK7 SYNTAX//START SDK7 SYNTAX//START SDK7 SYNTAX
+  //START SDK7 SYNTAX//START SDK7 SYNTAX//START SDK7 SYNTAX//START SDK7 SYNTAX
   static addSystem(system: Update, priority?: number, name?: string){
     engine.addSystem(system,priority)
   }
