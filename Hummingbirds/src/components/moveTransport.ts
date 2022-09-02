@@ -9,14 +9,12 @@ const Vector3EcsType =  Schemas.Map({
 })
 
 const MoveTransportData = {
-  hasFinished: Schemas.Boolean,
-  duration: Schemas.Float,
+  speed: Schemas.Float,
   start: Vector3EcsType,
   end: Vector3EcsType,
   normalizedTime: Schemas.Float,
   lerpTime: Schemas.Float,
-  speed: Schemas.Float,
-   interpolationType:  Schemas.Enum<InterpolationType>(Schemas.Int)
+  interpolationType:  Schemas.Enum<InterpolationType>(Schemas.Int)
 }
 
 export const MoveTransformComponent = engine.defineComponent(MoveTransportData, COMPONENT_ID)

@@ -1,4 +1,5 @@
 import { MoveTransformComponent } from "./components/moveTransport"
+import { InterpolationType } from "./helper/interpolation"
 
 
 const BirdData = {
@@ -78,14 +79,12 @@ export function birdSystem(dt: number){
 				// dcl.log("New pos", nextPos)
 
 				MoveTransformComponent.create(bird, {
-					hasFinished: false,
-					duration: 2,
+					speed: 1,
 					start:currentPos,
 					end: nextPos,
 					normalizedTime: 0,
 					lerpTime: 0,
-					speed: 1,
-					interpolationType: 0
+					interpolationType:  InterpolationType.EASESINE
 				
 				})
 
