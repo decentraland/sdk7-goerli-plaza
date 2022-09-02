@@ -21,7 +21,7 @@ const subGrids = 4 //large grid count makes all fish operating the same get redu
 700 - 3 subgrid*
 */
 //SETUP INITIALIZATION OF BOIDS
-const flockEntityCount = 700
+const flockEntityCount = 80
 //will randomly place these
 const obstacleEntityCount = 0
 const predatorCount = 0
