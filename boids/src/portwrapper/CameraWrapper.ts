@@ -11,9 +11,16 @@ enum PlayerEnts{
   CAMERA = 2
 }
 export class CameraWrapper {
+  /*
+  static getPosition(){
+    return Camera.instance.position
+  }
+  static getPositionOrNull(){
+    return Camera.instance.position
+  }*/
+  
   static getPosition(){
     return Transform.get((PlayerEnts.PLAYER as Entity)).position
-  
   }
   static getPositionOrNull(){
     const v = Transform.getOrNull((PlayerEnts.PLAYER as Entity))
@@ -22,6 +29,5 @@ export class CameraWrapper {
     }else{
       return null
     }
-  }
-  
+  } 
 }

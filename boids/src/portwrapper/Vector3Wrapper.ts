@@ -23,9 +23,6 @@ export class Vector3Wrapper {
  }
 
 
- static create(x:number,y:number,z:number){
-   return Vector3.create(x,y,z)
- }
  static copyFrom(src: Vector3Type, dest: Vector3.MutableVector3) {
    src.x = dest.x
    src.y = dest.y
@@ -41,6 +38,31 @@ export class Vector3Wrapper {
  static One(){
    return Vector3.One()
  }
+
+/*
+ static create(x:number,y:number,z:number){
+  return new Vector3(x,y,z)
+}
+ subtract(v:Vector3):Vector3{
+   return this.delegate.subtract(v)
+ }
+ add(v:Vector3):Vector3{
+   return this.delegate.add(v)
+ }
+ static scaleInPlace(vec:Vector3,v:number,dest:Vector3){
+   vec.scaleInPlace(v)
+ }
+ static scaleToRef(vec:Vector3,v:number,dest:Vector3,){
+  vec.scaleInPlace(v)
+ }
+ 
+ scale(v:number):Vector3{
+   return this.delegate.scale(v)
+ }
+*/
+ static create(x:number,y:number,z:number){
+  return Vector3.create(x,y,z)
+}
  subtract(v:Vector3.ReadonlyVector3):Vector3.MutableVector3{
    return Vector3.subtract(this.delegate,v)
  }
@@ -57,4 +79,5 @@ export class Vector3Wrapper {
  scale(v:number):Vector3.MutableVector3{
    return Vector3.scale(this.delegate,v)
  }
+ 
 }
