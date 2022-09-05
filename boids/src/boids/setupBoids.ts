@@ -1,8 +1,5 @@
 import { CONFIG } from "src/config"
 import { REGISTRY } from "src/registry"
-import { EntityWrapper } from "../portwrapper/EntityWrapper"
-import { QuaternionWrapper } from "../portwrapper/Quaternion3Wrapper"
-import { Vector3Wrapper } from "../portwrapper/Vector3Wrapper"
 import BoidsController from "./BoidsController"
 import { BOID_CONFIG } from "./Constants"
 import ControlHelper from "./ControlHelper"
@@ -41,22 +38,22 @@ export function createBoundaryPlanes(){
     return
   }
   
-  const boundaryTopEnt = new EntityWrapper()
-  boundaryTopEnt.addComponent(boundaryEdgeShape)
-  boundaryTopEnt.addComponent(Transform, 
-    {position: new Vector3Wrapper(width/2,height+heightBottomOffset,depth/2)
-    ,scale:new Vector3Wrapper(width,depth,1)
-    ,rotation:QuaternionWrapper.Euler(90,0,0)}
+  const boundaryTopEnt = engine.addEntity()
+  boundaryEdgeShape.create(boundaryTopEnt)
+  Transform.create(boundaryTopEnt, 
+    {position: {x: width/2, y:height+heightBottomOffset, z:depth/2}
+    ,scale: {x: width, y: depth,z:1}
+    ,rotation: Quaternion.euler(90,0,0)}
     
     )
   //engine.addEntity(boundaryTopEnt)
 
-  const boundaryBottomEnt = new EntityWrapper()
-  boundaryBottomEnt.addComponent(boundaryEdgeShape)
-  boundaryBottomEnt.addComponent( Transform,
-    {position: new Vector3Wrapper(width/2,heightBottomOffset,depth/2)
-    ,scale:new Vector3Wrapper(width,depth,1)
-    ,rotation:QuaternionWrapper.Euler(90,0,0)}
+  const boundaryBottomEnt = engine.addEntity()
+  boundaryEdgeShape.create(boundaryBottomEnt)
+  Transform.create(boundaryBottomEnt,
+    {position: {x:width/2, y:heightBottomOffset, z:depth/2}
+    ,scale: {x:width,y:depth,z:1}
+    ,rotation: Quaternion.euler(90,0,0)}
     
     )
   //engine.addEntity(boundaryBottomEnt)
@@ -91,12 +88,13 @@ export function createBoundaryMarkers(){
   
   for(let x=0;x<=cellRowCount;x+=1){
     for(let z=0;z<=cellRowCount;z+=1){
-        const boundaryEnt = new EntityWrapper()
-        boundaryEnt.addComponent(boundarMarkerShape)
-        boundaryEnt.addComponent(Transform, 
-          {position: new Vector3Wrapper((x*cellSize)+offset,height/2 + heightBottomOffset,(cellSize*z)+offset)
-          ,scale:new Vector3Wrapper(.1,height/2,.1)
-          ,rotation:QuaternionWrapper.Zero()
+        const boundaryEnt = engine.addEntity()
+		boundarMarkerShape.create(boundaryEnt)
+		Transform.create(boundaryEnt, 
+          {
+			position: { x: (x*cellSize)+offset, y: height/2 + heightBottomOffset,z:(cellSize*z)+offset}
+          ,scale: {x: .1, y: height/2, z:.1}
+          ,rotation:Quaternion.Zero()
         } )
 
         //engine.addEntity(boundaryEnt)
@@ -130,18 +128,18 @@ export function initBoidController() {
     controlHelper.addObstacles(obstacleEntityCount);
  
     //for(let x=0;x<depth/16;x++){
-      controlHelper.addObstacle("big-trunk.1",new Vector3Wrapper(12.5,0,4.5),1.2)
-      controlHelper.addObstacle("big-trunk.2",new Vector3Wrapper(12,2,4.5),1)
-      controlHelper.addObstacle("big-trunk.3",new Vector3Wrapper(11,3.5,5),1)
-      controlHelper.addObstacle("big-trunk.35",new Vector3Wrapper(9.5,4.5,6.5),.75)
-      controlHelper.addObstacle("big-trunk.4",new Vector3Wrapper(8,4,7),.5)
+      controlHelper.addObstacle("big-trunk.1",{x:12.5, y:0 ,z: 4.5},1.2)
+      controlHelper.addObstacle("big-trunk.2",{x:12, y:2, z:4.5},1)
+      controlHelper.addObstacle("big-trunk.3",{x:11, y:3.5,z:5},1)
+      controlHelper.addObstacle("big-trunk.35",{x:9.5, y:4.5, z:6.5},.75)
+      controlHelper.addObstacle("big-trunk.4", {x: 8, y: 4, z: 7},.5)
 
-      controlHelper.addObstacle("rock.gray.big",new Vector3Wrapper(2.2,0,2.2),1.5)
-      controlHelper.addObstacle("rock.gray.small",new Vector3Wrapper(8.5,-.5,3.5),1)
-      controlHelper.addObstacle("rock.gray.med",new Vector3Wrapper(14,0,8),1)
-      controlHelper.addObstacle("rock.red.1",new Vector3Wrapper(12.5,1,13.5),2)
-      controlHelper.addObstacle("rock.red.2",new Vector3Wrapper(12,4,13.5),2)
-      controlHelper.addObstacle("rock.purple",new Vector3Wrapper(3,1,13),2)
+      controlHelper.addObstacle("rock.gray.big",{x:2.2, y: 0, z:2.2 },1.5)
+      controlHelper.addObstacle("rock.gray.small",{x:8.5, y: -.5, z: 3.5},1)
+      controlHelper.addObstacle("rock.gray.med",{x:14, y: 0,z: 8},1)
+      controlHelper.addObstacle("rock.red.1",{x:12.5, y: 1, z: 13.5} ,2)
+      controlHelper.addObstacle("rock.red.2",{x:12, y: 4, z: 13.5 } ,2)
+      controlHelper.addObstacle("rock.purple",{x:3, y: 1, z: 13} ,2)
     //controlHelper.addObstacle("big",new Vector3Wrapper(7,4,7),1)
     //}
 

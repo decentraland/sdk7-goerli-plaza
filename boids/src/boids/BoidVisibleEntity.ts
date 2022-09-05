@@ -1,8 +1,6 @@
-import { EntityWrapper } from 'src/portwrapper/EntityWrapper.js';
+
 import { CommonResources } from 'src/resources/common.js';
-import { QuaternionWrapper } from '../portwrapper/Quaternion3Wrapper.js';
-import { TransformWrapper } from '../portwrapper/TransformWrapper.js';
-import { Vector3Wrapper } from '../portwrapper/Vector3Wrapper.js';
+
 //import BoidEntity from './BoidEntity.js';
 import { BOID_CONFIG } from './Constants.js';
 import Grid from "./Grid";
@@ -37,8 +35,8 @@ export const fishShapes:string[] =
  */
 export default class BoidVisibleEntity implements IBoidVisibleEntity {
     boid:IBoidEntity
-    entity!:EntityWrapper
-    modelEntity!:EntityWrapper
+    entity!:Entity
+    modelEntity!:Entity
     //maxEntitySpeed?:number
     /**
      * Constructor for the Entity class
@@ -60,27 +58,27 @@ export default class BoidVisibleEntity implements IBoidVisibleEntity {
 
     initEntity(){
         const type = this.boid.type
-        const parent = new EntityWrapper()//"fish-p-"+this.boid.id)
+        const parent = engine.addEntity()//"fish-p-"+this.boid.id)
         //parent.addComponent(fishShape)
-        parent.addComponent(Transform,
+        Transform.create(parent, 
             {
-                position:new Vector3Wrapper(1,1,1)
-                ,scale: Vector3Wrapper.One()
-                ,rotation: QuaternionWrapper.Zero()
+                position: {x:1, y:1,z: 1}
+                ,scale:   {x:1, y:1,z: 1}
+                ,rotation: Quaternion.Zero()
             }
         )
         
         this.entity = parent;//new EntityWrapper(parent)
 
         
-        const child = new EntityWrapper()//new Entity("fish-"+this.boid.id)
+        const child = engine.addEntity()//new Entity("fish-"+this.boid.id)
             
-        child.addComponent(Transform,
+        const childTransform = Transform.create(child,
             {
-                position:Vector3Wrapper.Zero()
-                ,scale: Vector3Wrapper.One()
-                ,rotation: QuaternionWrapper.Zero()
-                ,parent: parent.entity
+                position: {x:0, y:0,z: 0}
+                ,scale:  {x:1, y:1,z: 1}
+                ,rotation: Quaternion.Zero()
+                ,parent: parent
             }
         )
         
@@ -88,13 +86,13 @@ export default class BoidVisibleEntity implements IBoidVisibleEntity {
         if(type == BoidTypeEnum.FLOCK_ENTITY){
             //FIXME NEED THIS
             //Vector3.rotate()
-            child.getComponent(Transform).rotation = QuaternionWrapper.Euler(90,-90,0)
+            Transform.getMutable(child).rotation = Quaternion.euler(90,-90,0)
             //child.getComponent(Transform).rotate(new Vector3(0,1,0),-90)
             //child.getComponent(Transform).rotate(new Vector3(1,0,0),90)
 
             //as fish
             //child.addComponent(fishShapes[ Math.floor(Math.random()*fishShapes.length) ])
-            GLTFShape.create(child.entity,{
+            GLTFShape.create(child,{
                 src:fishShapes[ Math.floor(Math.random()*fishShapes.length) ]
             })
             
@@ -111,29 +109,29 @@ export default class BoidVisibleEntity implements IBoidVisibleEntity {
         }else if(type == BoidTypeEnum.PREDATOR_ENTITY){
             if(BOID_CONFIG.VISIBLE_PREDATOR) {
                 //child.addComponent(fishConeShape)
-                fishConeShape.create(child.entity,{
+                fishConeShape.create(child,{
                     radiusTop:0 //new way to make cone
                 })
 
                 //child.getComponent(Transform).rotate(new Vector3(1,1,1),90)
-                Vector3Wrapper.scaleInPlace( child.getComponent(Transform).scale,.3,child.getComponent(Transform).scale)
+                Vector3.scale( childTransform.scale,.3 )
 
                 //child.addComponent(CommonResources.RESOURCES.materials.transparent)
             }
         }else if(type == BoidTypeEnum.SEEK_ENTITY){
             if(BOID_CONFIG.VISIBLE_SEEK) {
                 //child.addComponent(new BoxShape())
-                BoxShape.create(child.entity)
+                BoxShape.create(child)
 
                 
                 
                 //child.getComponent(Transform).rotate(new Vector3(1,1,1),90)
-                Vector3Wrapper.scaleInPlace( child.getComponent(Transform).scale,.2,child.getComponent(Transform).scale)
+                Vector3.scale( childTransform.scale,.2)
                 //child.addComponent(CommonResources.RESOURCES.materials.transparent)
             }
         }else if(type == BoidTypeEnum.OBSTACLE_ENTITY){
             if(BOID_CONFIG.VISIBLE_OBSTACLES) {
-                objsSphere.createOrReplace(child.entity)
+                objsSphere.createOrReplace(child)
                 //child.addComponentOrReplace(objsSphere)
                 //child.addComponent(CommonResources.RESOURCES.materials.transparent)
             }
@@ -142,9 +140,11 @@ export default class BoidVisibleEntity implements IBoidVisibleEntity {
             log("unknown type",type)
         }
         
-        
-        child.setParent(parent.entity) //HOW DO WE DO PARENTING
-        
+        const mutablechildTransform = Transform.getMutable(child)
+		if(mutablechildTransform){
+			mutablechildTransform.parent= parent
+		}
+       
         this.modelEntity = child//new EntityWrapper(child)
 
         //engine.addEntity(parent) 

@@ -6,26 +6,23 @@ import BoidEntity from "./boids/BoidEntity"
 import { REGISTRY } from "./registry"
 import { CommonResources } from "./resources/common"
 import { IntervalUtil } from "./utils/interval-util"
-import { EntityWrapper } from "./portwrapper/EntityWrapper"
+
 import IBoidEntity from "./boids/IBoidEntity"
-import { QuaternionWrapper } from "./portwrapper/Quaternion3Wrapper"
-import { Vector3Wrapper } from "./portwrapper/Vector3Wrapper"
-import { EngineWrapper } from "./portwrapper/EngineWrapper"
-import { CameraWrapper } from "./portwrapper/CameraWrapper"
-import { TransformWrapper } from "./portwrapper/TransformWrapper"
 
 type ExtPredatorEntity={
   boid:BoidEntity
   entity:Entity
 }
 
-function setShapeCollisions(entity:EntityWrapper,val:boolean){
-  entity.withCollisions(val)
+function setShapeCollisions(entity:Entity,val:boolean){
+  //entity.withCollisions(val)
   
 }
-function scaleInPlace(entity:EntityWrapper,val:number){
-  if(entity.hasComponent(Transform)){
-    Vector3Wrapper.scaleInPlace(entity.getComponent(Transform).scale,val,entity.getComponent(Transform).scale)
+function scaleInPlace(entity:Entity,val:number){
+
+  if(Transform.has(entity) ){
+	Vector3.scale(Transform.get(entity).scale, val )
+    //Vector3Wrapper.scaleInPlace(entity.getComponent(Transform).scale,val,entity.getComponent(Transform).scale)
   }
 }
 
@@ -179,14 +176,16 @@ export class BoidSystem  {
   
         const feet = - 1.3
         const head = 0
-        const cameraPos = CameraWrapper.getPositionOrNull()
+		const hasCameraPos =  Transform.getOrNull((1 as Entity))
+		if(!hasCameraPos) return
+        const cameraPos =hasCameraPos.position
         if(cameraPos !== undefined && cameraPos !== null ){
           for( let playerEnt of this.playerEntities){
             if(playerEnt && playerEnt.enabled){
               this.controller.grid?.moveEntity(playerEnt, cameraPos.x, cameraPos.y-head , cameraPos.z);
               
               //const flocation = new Vector3(this.playerFish.x,this.playerFish.y,this.playerFish.z)
-              const transform = playerEnt.visibleEntity.entity.getComponent(Transform)
+              const transform = Transform.getMutable(playerEnt.visibleEntity.entity) 
               transform.position.x = playerEnt.x
               transform.position.y = playerEnt.y // + REGISTRY.boidController!.boundaryYOffset
               transform.position.z = playerEnt.z
@@ -198,13 +197,13 @@ export class BoidSystem  {
         for( let extEnt of this.externalEntities){
           if(extEnt && extEnt.boid.enabled){
              
-            const sdkEnttransform = TransformWrapper.get(extEnt.entity)//.getComponent(Transform)
+            const sdkEnttransform = Transform.get(extEnt.entity)//.getComponent(Transform)
             
             this.controller.grid?.moveEntity(extEnt.boid, sdkEnttransform.position.x, sdkEnttransform.position.y , sdkEnttransform.position.z);
               
 
             //const flocation = new Vector3(this.playerFish.x,this.playerFish.y,this.playerFish.z)
-            const transform = extEnt.boid.visibleEntity.entity.getComponent(Transform)
+            const transform = Transform.getMutable(extEnt.boid.visibleEntity.entity)
             //log("externalEntities sdkEnttransform",extEnt.boid.canMove,extEnt.boid.enabled,sdkEnttransform.position,extEnt.boid.x,extEnt.boid.y,extEnt.boid.z )
             
             //grid move handled above, this is syncing visible representation
@@ -231,27 +230,27 @@ export class BoidSystem  {
     
   }
   draw(boid:BoidEntity,dt?:number){
-    if(!boid.visibleEntity.entity.isAlive()){
+    if(!boid.visibleEntity.entity){
       log("not alive skipping",boid.id)
       return
     } 
     const moveDt = dt !== undefined ? dt*2 : 1
 
-    const transform = boid.visibleEntity.entity.getComponent(Transform)
+    const transform = Transform.getMutable(boid.visibleEntity.entity) //boid.visibleEntity.entity.getComponent(Transform)
     
     //log("moving ",boid.id)
 
-    const flocation = new Vector3Wrapper(boid.x,boid.y+ REGISTRY.boidController!.boundaryYOffset,boid.z)
-    const direction = flocation.subtract(transform.position )
-    const lookRot = QuaternionWrapper.LookRotation(direction)
+    const flocation = {x: boid.x, y: boid.y+ REGISTRY.boidController!.boundaryYOffset, z: boid.z}
+    const direction =  Vector3.subtract(flocation, transform.position )
+    const lookRot = Quaternion.lookRotation(direction)
 
     
-    const moveVec = Vector3Wrapper.Lerp( transform.position, flocation, moveDt)
+    const moveVec = Vector3.lerp( transform.position, flocation, moveDt)
     //const rotQ = Quaternion.Slerp( fish.entity.getComponent(Transform).rotation, fish., dt)
     
-    Vector3Wrapper.copyFrom(transform.position,moveVec)
+    //Vector3Wrapper.copyFrom(transform.position,moveVec)
 
-    transform.rotation = QuaternionWrapper.Slerp( transform.rotation, lookRot, 1 )
+    transform.rotation = Quaternion.slerp( transform.rotation, lookRot, 1 )
     //transform.lookAt( new Vector3().copyFrom(fish.location) )//.rotate( new Vector3(1,1,1),90 )
     //fish.entity.getComponent(Transform).rotation.copyFrom(rotQ)
   }
@@ -288,5 +287,5 @@ export function initBoidSystem(){
   
 export function startBoidSystem(){
   if(!REGISTRY.boidSystem) throw new Error("REGISTRY.boidSystem must be initalized!!!")
-  EngineWrapper.addSystem(REGISTRY.boidSystem.createUpdateFn())
+  engine.addSystem(REGISTRY.boidSystem.createUpdateFn())
 }
