@@ -1,4 +1,10 @@
-import { isPreviewMode } from '@decentraland/EnvironmentAPI'
+import { isPreviewMode, PreviewModeResponse } from '~system/EnvironmentAPI'
+
+
+//set in preview mode from env, local == preview
+isPreviewMode( {} ).then(function(val:PreviewModeResponse){
+  setInPreview(val.isPreview);
+})
 
 //using search service 
 //https://github.com/decentraland/decentrally-service
@@ -17,10 +23,6 @@ export class Config{
 
 export const CONFIG = new Config()
 
-//set in preview mode from env, local == preview
-isPreviewMode().then(function(val:boolean){
-  setInPreview(val);
-})
 
 export function setInPreview(val: boolean) {
   log("setInPreview " + val)

@@ -1,5 +1,6 @@
 import { CONFIG } from "src/config"
 import { REGISTRY } from "src/registry"
+
 import BoidsController from "./BoidsController"
 import { BOID_CONFIG } from "./Constants"
 import ControlHelper from "./ControlHelper"
@@ -40,10 +41,10 @@ export function createBoundaryPlanes(){
   
   const boundaryTopEnt = engine.addEntity()
   boundaryEdgeShape.create(boundaryTopEnt)
-  Transform.create(boundaryTopEnt, 
-    {position: {x: width/2, y:height+heightBottomOffset, z:depth/2}
-    ,scale: {x: width, y: depth,z:1}
-    ,rotation: Quaternion.euler(90,0,0)}
+  Transform.create(boundaryTopEnt,
+    {position: Vector3.create(width/2,height+heightBottomOffset,depth/2)
+    ,scale:Vector3.create(width,depth,1)
+    ,rotation:Quaternion.euler(90,0,0)}
     
     )
   //engine.addEntity(boundaryTopEnt)
@@ -51,10 +52,9 @@ export function createBoundaryPlanes(){
   const boundaryBottomEnt = engine.addEntity()
   boundaryEdgeShape.create(boundaryBottomEnt)
   Transform.create(boundaryBottomEnt,
-    {position: {x:width/2, y:heightBottomOffset, z:depth/2}
-    ,scale: {x:width,y:depth,z:1}
-    ,rotation: Quaternion.euler(90,0,0)}
-    
+    {position: Vector3.create(width/2,heightBottomOffset,depth/2)
+    ,scale:Vector3.create(width,depth,1)
+    ,rotation:Quaternion.euler(90,0,0)}
     )
   //engine.addEntity(boundaryBottomEnt)
 }
@@ -69,9 +69,9 @@ export function createBoundaryMarkers(){
   
   for(let x=0;x<=width;x+=parcelSize){
     for(let z=0;z<=depth;z+=parcelSize){
-        const boundaryEnt = new EntityWrapper()
+        const boundaryEnt = new Entity()
         boundaryEnt.addComponent(new CylinderShape())
-        boundaryEnt.addComponent(new Transform( {position: new Vector3Wrapper(x+offset,1,z+offset),scale:new Vector3Wrapper(.3,1,.3)} ))
+        boundaryEnt.addComponent(new Transform( {position: Vector3.create(x+offset,1,z+offset),scale:Vector3.create(.3,1,.3)} ))
 
         engine.addEntity(boundaryEnt)
     }
@@ -89,11 +89,10 @@ export function createBoundaryMarkers(){
   for(let x=0;x<=cellRowCount;x+=1){
     for(let z=0;z<=cellRowCount;z+=1){
         const boundaryEnt = engine.addEntity()
-		boundarMarkerShape.create(boundaryEnt)
-		Transform.create(boundaryEnt, 
-          {
-			position: { x: (x*cellSize)+offset, y: height/2 + heightBottomOffset,z:(cellSize*z)+offset}
-          ,scale: {x: .1, y: height/2, z:.1}
+        boundarMarkerShape.create(boundaryEnt)
+        Transform.create(boundaryEnt,
+          {position: Vector3.create((x*cellSize)+offset,height/2 + heightBottomOffset,(cellSize*z)+offset)
+          ,scale:Vector3.create(.1,height/2,.1)
           ,rotation:Quaternion.Zero()
         } )
 
@@ -101,9 +100,9 @@ export function createBoundaryMarkers(){
     }
   }
 /*
-  const floorEnt = new EntityWrapper()
+  const floorEnt = new Entity()
   boundaryEnt.addComponent(boundarMarkerShape)
-  boundaryEnt.addComponent(new Transform( {position: new Vector3Wrapper((x*cellSize)+offset,1,(cellSize*z)+offset),scale:new Vector3Wrapper(.1,1,.1)} ))
+  boundaryEnt.addComponent(new Transform( {position: Vector3.create((x*cellSize)+offset,1,(cellSize*z)+offset),scale:Vector3.create(.1,1,.1)} ))
 
   engine.addEntity(boundaryEnt)*/
 
@@ -128,19 +127,19 @@ export function initBoidController() {
     controlHelper.addObstacles(obstacleEntityCount);
  
     //for(let x=0;x<depth/16;x++){
-      controlHelper.addObstacle("big-trunk.1",{x:12.5, y:0 ,z: 4.5},1.2)
-      controlHelper.addObstacle("big-trunk.2",{x:12, y:2, z:4.5},1)
-      controlHelper.addObstacle("big-trunk.3",{x:11, y:3.5,z:5},1)
-      controlHelper.addObstacle("big-trunk.35",{x:9.5, y:4.5, z:6.5},.75)
-      controlHelper.addObstacle("big-trunk.4", {x: 8, y: 4, z: 7},.5)
+      controlHelper.addObstacle("big-trunk.1",Vector3.create(12.5,0,4.5),1.2)
+      controlHelper.addObstacle("big-trunk.2",Vector3.create(12,2,4.5),1)
+      controlHelper.addObstacle("big-trunk.3",Vector3.create(11,3.5,5),1)
+      controlHelper.addObstacle("big-trunk.35",Vector3.create(9.5,4.5,6.5),.75)
+      controlHelper.addObstacle("big-trunk.4",Vector3.create(8,4,7),.5)
 
-      controlHelper.addObstacle("rock.gray.big",{x:2.2, y: 0, z:2.2 },1.5)
-      controlHelper.addObstacle("rock.gray.small",{x:8.5, y: -.5, z: 3.5},1)
-      controlHelper.addObstacle("rock.gray.med",{x:14, y: 0,z: 8},1)
-      controlHelper.addObstacle("rock.red.1",{x:12.5, y: 1, z: 13.5} ,2)
-      controlHelper.addObstacle("rock.red.2",{x:12, y: 4, z: 13.5 } ,2)
-      controlHelper.addObstacle("rock.purple",{x:3, y: 1, z: 13} ,2)
-    //controlHelper.addObstacle("big",new Vector3Wrapper(7,4,7),1)
+      controlHelper.addObstacle("rock.gray.big",Vector3.create(2.2,0,2.2),1.5)
+      controlHelper.addObstacle("rock.gray.small",Vector3.create(8.5,-.5,3.5),1)
+      controlHelper.addObstacle("rock.gray.med",Vector3.create(14,0,8),1)
+      controlHelper.addObstacle("rock.red.1",Vector3.create(12.5,1,13.5),2)
+      controlHelper.addObstacle("rock.red.2",Vector3.create(12,4,13.5),2)
+      controlHelper.addObstacle("rock.purple",Vector3.create(3,1,13),2)
+    //controlHelper.addObstacle("big",Vector3.create(7,4,7),1)
     //}
 
     controlHelper.addPredators(predatorCount)
@@ -151,10 +150,10 @@ export function initBoidController() {
     //seaTest.start(64)
 
     /*
-    const seaCube = new EntityWrapper()
+    const seaCube = new Entity()
     seaCube.addComponent(new Transform({
-        position: new Vector3Wrapper(width, 2, depth),
-        scale: new Vector3Wrapper(width, height, depth)
+        position: Vector3.create(width, 2, depth),
+        scale: Vector3.create(width, height, depth)
     }))
     const boxShape = new BoxShape()
     boxShape.withCollisions = false

@@ -6,8 +6,8 @@ import BoidEntity from "./boids/BoidEntity"
 import { REGISTRY } from "./registry"
 import { CommonResources } from "./resources/common"
 import { IntervalUtil } from "./utils/interval-util"
-
 import IBoidEntity from "./boids/IBoidEntity"
+import { Vector3Wrapper } from "./portwrapper/Vector3Wrapper"
 
 type ExtPredatorEntity={
   boid:BoidEntity
@@ -19,10 +19,9 @@ function setShapeCollisions(entity:Entity,val:boolean){
   
 }
 function scaleInPlace(entity:Entity,val:number){
-
-  if(Transform.has(entity) ){
-	Vector3.scale(Transform.get(entity).scale, val )
-    //Vector3Wrapper.scaleInPlace(entity.getComponent(Transform).scale,val,entity.getComponent(Transform).scale)
+  if(Transform.has(entity)){
+    const tf = Transform.getMutable(entity)
+    Vector3.scaleToRef(tf.scale,val,tf.scale)
   }
 }
 
@@ -41,7 +40,7 @@ export class BoidSystem  {
   externalEntities:ExtPredatorEntity[] = []
   
   boidInterval:IntervalUtil
-
+  
   systemFnCache!:(dt:number)=>void
 
   constructor (controller:BoidsController,interval:number){
@@ -156,6 +155,7 @@ export class BoidSystem  {
       //this.playerFish.enabled = false
     }
   }
+
   
   createUpdateFn(){
     if(this.systemFnCache === undefined){
@@ -169,30 +169,31 @@ export class BoidSystem  {
   }
 
   update(dt: number) {
-    //log("system update",dt,this.controller)
     if(this.controller ){//&& this.controller.enabled){
       if(this.boidInterval.update(dt)){
-        //log("system update",dt) 
+
   
         const feet = - 1.3
         const head = 0
-		const hasCameraPos =  Transform.getOrNull((1 as Entity))
-		if(!hasCameraPos) return
-        const cameraPos =hasCameraPos.position
+        let cameraPos = null
+        let cameraTransform = Transform.getOrNull((1 as Entity))
+        if(cameraTransform !== null){
+          cameraPos =  cameraTransform.position
+        }
         if(cameraPos !== undefined && cameraPos !== null ){
           for( let playerEnt of this.playerEntities){
             if(playerEnt && playerEnt.enabled){
               this.controller.grid?.moveEntity(playerEnt, cameraPos.x, cameraPos.y-head , cameraPos.z);
               
-              //const flocation = new Vector3(this.playerFish.x,this.playerFish.y,this.playerFish.z)
-              const transform = Transform.getMutable(playerEnt.visibleEntity.entity) 
+              //const flocation = Vector3.create(this.playerFish.x,this.playerFish.y,this.playerFish.z)
+              const transform = Transform.getMutable(playerEnt.visibleEntity.entity)//.getComponent(Transform)
               transform.position.x = playerEnt.x
               transform.position.y = playerEnt.y // + REGISTRY.boidController!.boundaryYOffset
               transform.position.z = playerEnt.z
             }
           }
         }else{
-          //log("WARN missing camera data",cameraPos)
+          log("WARN missing camera data",cameraPos)
         }
         for( let extEnt of this.externalEntities){
           if(extEnt && extEnt.boid.enabled){
@@ -202,8 +203,8 @@ export class BoidSystem  {
             this.controller.grid?.moveEntity(extEnt.boid, sdkEnttransform.position.x, sdkEnttransform.position.y , sdkEnttransform.position.z);
               
 
-            //const flocation = new Vector3(this.playerFish.x,this.playerFish.y,this.playerFish.z)
-            const transform = Transform.getMutable(extEnt.boid.visibleEntity.entity)
+            //const flocation = Vector3.create(this.playerFish.x,this.playerFish.y,this.playerFish.z)
+            const transform = Transform.getMutable(extEnt.boid.visibleEntity.entity)//.getComponent(Transform)
             //log("externalEntities sdkEnttransform",extEnt.boid.canMove,extEnt.boid.enabled,sdkEnttransform.position,extEnt.boid.x,extEnt.boid.y,extEnt.boid.z )
             
             //grid move handled above, this is syncing visible representation
@@ -230,28 +231,25 @@ export class BoidSystem  {
     
   }
   draw(boid:BoidEntity,dt?:number){
-    if(!boid.visibleEntity.entity){
-      log("not alive skipping",boid.id)
-      return
-    } 
+    //if(!boid.visibleEntity.entity.isAlive()){
+    //  log("not alive skipping",boid.id)
+    //  return
+    //} 
     const moveDt = dt !== undefined ? dt*2 : 1
-
-    const transform = Transform.getMutable(boid.visibleEntity.entity) //boid.visibleEntity.entity.getComponent(Transform)
+    const transform = Transform.getMutable(boid.visibleEntity.entity)//.getComponent(Transform)
     
-    //log("moving ",boid.id)
-
-    const flocation = {x: boid.x, y: boid.y+ REGISTRY.boidController!.boundaryYOffset, z: boid.z}
-    const direction =  Vector3.subtract(flocation, transform.position )
+    const flocation = Vector3.create(boid.x,boid.y+ REGISTRY.boidController!.boundaryYOffset,boid.z)
+    const direction = Vector3.subtract(flocation,transform.position )//flocation.subtract(transform.position )
     const lookRot = Quaternion.lookRotation(direction)
 
     
     const moveVec = Vector3.lerp( transform.position, flocation, moveDt)
     //const rotQ = Quaternion.Slerp( fish.entity.getComponent(Transform).rotation, fish., dt)
     
-    //Vector3Wrapper.copyFrom(transform.position,moveVec)
+    Vector3Wrapper.copyFrom(transform.position,moveVec)
 
     transform.rotation = Quaternion.slerp( transform.rotation, lookRot, 1 )
-    //transform.lookAt( new Vector3().copyFrom(fish.location) )//.rotate( new Vector3(1,1,1),90 )
+    //transform.lookAt( Vector3.create().copyFrom(fish.location) )//.rotate( Vector3.create(1,1,1),90 )
     //fish.entity.getComponent(Transform).rotation.copyFrom(rotQ)
   }
   drawStaticObstacles(){
