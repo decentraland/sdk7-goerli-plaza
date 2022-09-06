@@ -12,7 +12,7 @@ class BoidConfig{
     VISIBLE_PREDATOR:boolean = true
 
     // see boundary grid markers
-    SHOW_DEBUG_BOUNDARY_MARKERS:boolean = false
+    SHOW_DEBUG_BOUNDARY_MARKERS:boolean = true
     // see boundary planes (top,bottom)
     SHOW_DEBUG_BOUNDARY_PLANES:boolean = false
 
