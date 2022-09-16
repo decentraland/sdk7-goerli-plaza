@@ -6,9 +6,9 @@ export type CircularSystemState = {
 export function circularSystem(dt: number, state: CircularSystemState) {
   state.t += 2 * Math.PI * dt
 
-  const entitiesWithBoxShapes = engine.getEntitiesWith(engine.baseComponents.BoxShape)
+  const entitiesWithBoxShapes = engine.getEntitiesWith(BoxShape)
   for (const [entity] of entitiesWithBoxShapes) {
-    const transform = engine.baseComponents.Transform.getMutable(entity)
+    const transform = Transform.getMutable(entity)
     if (transform) {
       transform.position.x = 8 + 2 * Math.cos(state.t)
       transform.position.z = 8 + 2 * Math.sin(state.t)
@@ -18,18 +18,16 @@ export function circularSystem(dt: number, state: CircularSystemState) {
 
 
 
-
-
 export function CircleHoverSystem (dt: number, state: CircularSystemState){
 
 	state.t +=  Math.PI * dt * 0.5
 
-	const entitiesWithBoxShapes = engine.getEntitiesWith(engine.baseComponents.BoxShape)
+	const entitiesWithBoxShapes = engine.getEntitiesWith(BoxShape)
  
     // iterate over the entities of the group
 	for (const [entity] of entitiesWithBoxShapes) {
 
-		const transform = engine.baseComponents.Transform.getMutable(entity)
+		const transform = Transform.getMutable(entity)
 
 
       // mutate the rotation

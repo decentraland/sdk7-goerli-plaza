@@ -9,6 +9,7 @@ function createCube(x: number, y: number, z: number, spawner = false): Entity {
 
   BoxShape.create(entity)
 
+
   if (spawner) {
     OnPointerDown.create(entity, {
       button: ActionButton.PRIMARY,

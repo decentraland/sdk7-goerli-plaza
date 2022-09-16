@@ -4,22 +4,18 @@ import { addSystem } from './helper/systems'
 
 // My cube generator
 function createCube(x: number, y: number, z: number) {
-  const sdk = engine.baseComponents
+//   const sdk = engine.baseComponents
   // Dynamic entity because we aren't loading static entities out of this scene code
   const myEntity = engine.addEntity(true)
 
-  sdk.Transform.create(myEntity, {
+  Transform.create(myEntity, {
     position: { x, y, z },
     scale: { x: 1, y: 1, z: 1},
     rotation: { x: 0, y: 0, z: 0, w: 1 }
   })
 
-  sdk.BoxShape.create(myEntity, {
-    withCollisions: true,
-    isPointerBlocker: true,
-    visible: true,
-    uvs: []
-  })
+
+  BoxShape.create(myEntity)
 
   return myEntity
 }
@@ -36,14 +32,14 @@ engine.addSystem(CircleHoverSystem)
 
 
 const sign = engine.addEntity(true)
-engine.baseComponents.Transform.create(sign,{
+Transform.create(sign,{
     position: { x:8, y:5, z:8 },
     scale: { x: 1.2, y: 1.2, z: 1.2},
     rotation: { x: 0, y: 0, z: 0, w: 0 }
   })
 
 
-engine.baseComponents.TextShape.create(sign,{
+TextShape.create(sign,{
     text: 'Stress test SDK v7.0-EA\n16x16 cubes',
     font: 'SansSerif',
     fontAutoSize: false,

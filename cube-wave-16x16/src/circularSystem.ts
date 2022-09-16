@@ -5,9 +5,9 @@ var circularState: number = 0
 export function circularSystem(dt: number) {
 	circularState += 2 * Math.PI * dt
 
-  const entitiesWithBoxShapes = engine.getEntitiesWith(engine.baseComponents.BoxShape)
+  const entitiesWithBoxShapes = engine.getEntitiesWith(BoxShape)
   for (const [entity] of entitiesWithBoxShapes) {
-    const transform = engine.baseComponents.Transform.getMutable(entity)
+    const transform = Transform.getMutable(entity)
     if (transform) {
       transform.position.x = 8 + 2 * Math.cos(circularState)
       transform.position.z = 8 + 2 * Math.sin(circularState)
@@ -24,12 +24,12 @@ export function CircleHoverSystem (dt: number){
 
 	hoverState +=  Math.PI * dt * 0.5
 
-	const entitiesWithBoxShapes = engine.getEntitiesWith(engine.baseComponents.BoxShape)
+	const entitiesWithBoxShapes = engine.getEntitiesWith(BoxShape)
  
     // iterate over the entities of the group
 	for (const [entity] of entitiesWithBoxShapes) {
 
-		const transform = engine.baseComponents.Transform.getMutable(entity)
+		const transform = Transform.getMutable(entity)
 
 
       // mutate the position
