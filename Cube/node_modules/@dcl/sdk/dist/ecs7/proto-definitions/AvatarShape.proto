@@ -24,4 +24,8 @@ message PBAvatarShape {
    *  "urn:decentraland:off-chain:base-avatars:bun_shoes"]
    */
   repeated string wearables = 10;
+  /**
+   * default = []
+   */
+  repeated string emotes = 11;
 }

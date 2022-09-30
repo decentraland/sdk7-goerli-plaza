@@ -2,9 +2,7 @@ function createCube(x: number, y: number, z: number, spawner = false): Entity {
   const entity = engine.addEntity()
 
   Transform.create(entity, {
-    position: { x, y, z },
-    scale: { x: 1, y: 1, z: 1 },
-    rotation: { x: 0, y: 0, z: 0, w: 1 }
+    position: { x, y, z }
   })
 
   BoxShape.create(entity)
@@ -27,6 +25,7 @@ function circularSystem(dt: number) {
   }
 }
 
+
 function spawnerSystem() {
   const clickedCubes = engine.getEntitiesWith(BoxShape, OnPointerDownResult)
   for (const [] of clickedCubes) {
@@ -34,6 +33,21 @@ function spawnerSystem() {
   }
 }
 
-createCube(8, 1, 8, true)
+const cube = createCube(8, 1, 8, true)
 engine.addSystem(circularSystem)
 engine.addSystem(spawnerSystem)
+
+
+import { getUserData } from "@decentraland/Identity"
+
+async () => {
+  let data = await getUserData()
+  log(data.userId)
+
+  AvatarAttach.create(cube, {
+	anchorPointId: AvatarAnchorPoint.LEFT_HAND,
+	avatarId: data.userId
+})
+}
+
+

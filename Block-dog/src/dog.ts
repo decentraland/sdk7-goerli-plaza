@@ -24,11 +24,10 @@ export function createDog(): Entity {
 	Transform.create(dog, {
 	  position: point1,
 	  scale: { x: 1, y: 1, z: 1 },
-	  rotation: { x: 0, y: 0, z: 0, w: 1 }
+	  rotation: { x: 0, y: 0, z: 0, w: 1 },
+
 	})
 
-
-	
   
 	GLTFShape.create(dog, {
 	  withCollisions: true,

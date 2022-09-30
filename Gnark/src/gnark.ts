@@ -7,6 +7,7 @@ const point4 = {x:24,y: 0,z: 8}
 const pathArray= [point1, point2, point3, point4]
 
 
+
 const TURN_TIME = 0.9
 
 
@@ -31,13 +32,10 @@ export function createGnark(): Entity {
 	
   
 	GLTFShape.create(gnark, {
-	  withCollisions: true,
-	  isPointerBlocker: true,
-	  visible: true,
 	  src: 'models/gnark.glb'
 	})
 
-	engine.baseComponents.Animator.create(gnark, {states:[{
+	Animator.create(gnark, {states:[{
 			name: "walk",
 			clip: "walk",
 			playing: true,
