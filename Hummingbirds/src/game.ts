@@ -10,7 +10,7 @@ Transform.create(ground, {
 	rotation: {x:0, y:0, z:0, w: 0},
 	scale:  {x:1.6, y:1.6, z:1.6}
 })
-GLTFShape.create(ground, {
+GltfContainer.create(ground, {
 	src:'models/Ground.gltf',
 })
 
@@ -20,9 +20,9 @@ const tree = engine.addEntity()
 Transform.create(tree, {
 	position: {x:8, y:0, z:8},
 	rotation: {x:0, y:0, z:0, w: 0},
-	scale:  {x:1.6, y:1.6, z:1.6}
+	scale:  {x:1.6, y:1.6, z:1.6},
 })
-GLTFShape.create(tree, {
+GltfContainer.create(tree, {
 	src:'models/Tree.gltf'
 })
 Animator.create(tree, {
@@ -64,9 +64,7 @@ engine.addSystem(clickTree)
 // 	  scale: { x: 1, y: 1, z: 1 },
 // 	  rotation: { x: 0, y: 0, z: 0, w: 1 }
 // 	})
-  
-// 	BoxShape.create(entity)
-  
+
 // 	if (spawner) {
 // 	  OnPointerDown.create(entity, {
 // 		button: ActionButton.PRIMARY,
@@ -78,3 +76,5 @@ engine.addSystem(clickTree)
 //   }
 
 //   createCube(8, 1, 8, true)
+
+

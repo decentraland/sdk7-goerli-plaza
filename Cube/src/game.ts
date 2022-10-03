@@ -1,25 +1,34 @@
 function createCube(x: number, y: number, z: number, spawner = false): Entity {
-  const entity = engine.addEntity()
+  const meshEntity = engine.addEntity()
 
-  Transform.create(entity, {
+  Transform.create(meshEntity, {
     position: { x, y, z }
   })
 
-  BoxShape.create(entity)
-
+  MeshRenderer.create(meshEntity, { box: { uvs: [] } })
+  MeshCollider.create(meshEntity, { box: {} })
 
   if (spawner) {
-    OnPointerDown.create(entity, {
-      button: ActionButton.PRIMARY,
-      hoverText: 'Press E to spawn'
+    PointerEvents.create(meshEntity, {
+		pointerEvents: [
+			{
+			  eventType: PointerEventType.DOWN,
+			  eventInfo: {
+				button: ActionButton.PRIMARY,
+				hoverText: 'Press E to spawn',
+				maxDistance: 100,
+				showFeedback: true
+			  }
+			}
+		  ]
     })
   }
 
-  return entity
+  return meshEntity
 }
 
 function circularSystem(dt: number) {
-  for (const [entity] of engine.getEntitiesWith(BoxShape, Transform)) {
+  for (const [entity] of engine.getEntitiesWith(MeshRenderer, Transform)) {
     const transform = Transform.getMutable(entity)
     transform.rotation = Quaternion.multiply(transform.rotation, Quaternion.angleAxis(dt * 10, Vector3.Up()))
   }
@@ -27,9 +36,16 @@ function circularSystem(dt: number) {
 
 
 function spawnerSystem() {
-  const clickedCubes = engine.getEntitiesWith(BoxShape, OnPointerDownResult)
-  for (const [] of clickedCubes) {
-    createCube(Math.random() * 8 + 1, Math.random() * 8, Math.random() * 8 + 1)
+  const clickedCubes = engine.getEntitiesWith(PointerEvents)
+  for (const [entity] of clickedCubes) {
+    if (wasEntityClicked(entity, ActionButton.PRIMARY)) {
+      createCube(
+        1 + Math.random() * 8,
+        Math.random() * 8,
+        1 + Math.random() * 8,
+        false
+      )
+    }
   }
 }
 
@@ -38,16 +54,6 @@ engine.addSystem(circularSystem)
 engine.addSystem(spawnerSystem)
 
 
-import { getUserData } from "@decentraland/Identity"
 
-async () => {
-  let data = await getUserData()
-  log(data.userId)
-
-  AvatarAttach.create(cube, {
-	anchorPointId: AvatarAnchorPoint.LEFT_HAND,
-	avatarId: data.userId
-})
-}
 
 

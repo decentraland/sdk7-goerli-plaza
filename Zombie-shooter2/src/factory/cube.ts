@@ -1,24 +1,19 @@
 import { CubeIdentifierComponent } from "../components/cube"
 
-const { Transform: TransformC, BoxShape, AudioSource, OnPointerDown } = engine.baseComponents
 
 export function createCube(x: number, y: number, z: number, spawner = true): Entity {
   const entity = engine.addEntity()
 
   CubeIdentifierComponent.create(entity, { id: entity })
 
-  TransformC.create(entity, {
+  Transform.create(entity, {
     position: { x, y, z },
     scale: { x: 1, y: 1, z: 1 },
     rotation: { x: 0, y: 0, z: 0, w: 1 }
   })
 
-  BoxShape.create(entity, {
-    withCollisions: true,
-    isPointerBlocker: true,
-    visible: true,
-    uvs: []
-  })
+  MeshRenderer.create(entity, { box: { uvs: [] }})
+  
 
   if (spawner) {
     OnPointerDown.create(entity, {

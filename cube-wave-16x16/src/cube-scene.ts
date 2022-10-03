@@ -1,21 +1,19 @@
-import { CircleHoverSystem, circularSystem } from './circularSystem'
+import { CircleHoverSystem } from './circularSystem'
 import { timeOutUpdate } from './helper/setTimeout'
 import { addSystem } from './helper/systems'
 
 // My cube generator
 function createCube(x: number, y: number, z: number) {
-//   const sdk = engine.baseComponents
+
   // Dynamic entity because we aren't loading static entities out of this scene code
   const myEntity = engine.addEntity(true)
 
   Transform.create(myEntity, {
     position: { x, y, z },
-    scale: { x: 1, y: 1, z: 1},
-    rotation: { x: 0, y: 0, z: 0, w: 1 }
   })
 
 
-  BoxShape.create(myEntity)
+  MeshRenderer.create(myEntity, { box: { uvs: [] } })
 
   return myEntity
 }
@@ -41,7 +39,7 @@ Transform.create(sign,{
 
 TextShape.create(sign,{
     text: 'Stress test SDK v7.0-EA\n16x16 cubes',
-    font: 'SansSerif',
+    font:  'SansSerif',
     fontAutoSize: false,
     fontSize: 5,
     height: 2,

@@ -1,4 +1,4 @@
-import { CircleHoverSystem, circularSystem } from './circularSystem'
+import { CircleHoverSystem } from './circularSystem'
 import { addSystem } from './helper/systems'
 
 // My cube generator
@@ -9,11 +9,10 @@ function createCube(x: number, y: number, z: number) {
 
   Transform.create(myEntity, {
     position: { x, y, z },
-    scale: { x: 0.5, y: 0.5, z: 0.5},
-    rotation: { x: 0, y: 0, z: 0, w: 1 }
+    scale: { x: 0.5, y: 0.5, z: 0.5}
   })
 
-  BoxShape.create(myEntity)
+  MeshRenderer.create(myEntity, { box: { uvs: [] } })
 
   return myEntity
 }
