@@ -6,6 +6,6 @@ Transform.create(seaBed, {
 	rotation: Quaternion.euler(0,90,0),
 	scale:  {x:0.8, y:0.8, z:0.8}
 })
-GLTFShape.create(seaBed, {
+GltfContainer.create(seaBed, {
 	src:'models/Underwater.gltf',
 })

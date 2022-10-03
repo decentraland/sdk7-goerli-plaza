@@ -30,7 +30,7 @@ export function dogBehavior(dt: number) {
 
 
 		// 	const move = MoveTransformComponent.getMutable(entity)
-		// 	const transform = engine.baseComponents.Transform.getMutable(entity)
+		// 	const transform = Transform.getMutable(entity)
 		
 		// 	move.normalizedTime = Math.min(Math.max(move.normalizedTime + dt * move.speed, 0), 1)
 		// 	move.lerpTime = Interpolate(move.interpolationType, move.normalizedTime)
@@ -90,7 +90,7 @@ export function changeState(entity:Entity, newState: dogStates){
 // }
 
 export function enterState(entity:Entity, newState: dogStates){
-	const animator = engine.baseComponents.Animator.getMutable(entity)
+	const animator = Animator.getMutable(entity)
 	switch(newState) {
 		case dogStates.Idle:
 			const IdleAnim = animator.states.find((anim)=>{return anim.name == "Idle"})
@@ -100,7 +100,12 @@ export function enterState(entity:Entity, newState: dogStates){
 		case dogStates.Sit:
 			const SitAnim = animator.states.find((anim)=>{return anim.name == "Sitting"})
 			if(SitAnim) SitAnim.playing = true
-			OnPointerDown.getMutable(entity).hoverText = "Stand"
+			const MutablePointerEvent = PointerEvents.getMutable(entity).pointerEvents[0]
+			if(MutablePointerEvent.eventInfo){
+				MutablePointerEvent.eventInfo.hoverText =  "Stand"
+			}
+			
+			
 			break
 
 		case dogStates.Follow:
@@ -152,7 +157,7 @@ export function enterState(entity:Entity, newState: dogStates){
 
 
 export function leaveState(entity:Entity, oldState: dogStates){
-	const animator = engine.baseComponents.Animator.getMutable(entity)
+	const animator = Animator.getMutable(entity)
 	switch(oldState) {
 		case dogStates.Idle:
 			const IdleAnim = animator.states.find((anim)=>{return anim.name == "Idle"})
@@ -163,7 +168,10 @@ export function leaveState(entity:Entity, oldState: dogStates){
 			const SitAnim = animator.states.find((anim)=>{return anim.name == "Sitting"})
 			if(SitAnim) SitAnim.playing = false
 
-			OnPointerDown.getMutable(entity).hoverText = "Sit"
+			const MutablePointerEvent = PointerEvents.getMutable(entity).pointerEvents[0]
+			if(MutablePointerEvent.eventInfo){
+				MutablePointerEvent.eventInfo.hoverText =  "Sit"
+			}
 			break
 
 		case dogStates.Follow:
@@ -208,7 +216,7 @@ export function turn(entity:Entity, target:ReadOnlyVector3){
 	const difference = Vector3.subtract( transform.position, target)
 	const normalizedDifference = Vector3.normalize(difference)
 	
-	engine.baseComponents.Transform.getMutable(entity).rotation = Quaternion.lookRotation(normalizedDifference)
+	Transform.getMutable(entity).rotation = Quaternion.lookRotation(normalizedDifference)
 }
 
 // check if the target is inside the scene's bounds

@@ -26,16 +26,16 @@ export function playSound(entity: Entity, soundPath: string, rndPitch?: boolean)
 
 
 	if(
-		engine.baseComponents.AudioSource.has(entity)
+		AudioSource.has(entity)
 	){
-		let source = engine.baseComponents.AudioSource.getMutable(entity)
+		let source = AudioSource.getMutable(entity)
 		source.audioClipUrl = soundPath,
 		source.loop = false
 		source.playing = true
 		source.pitch = pitch
 
 	} else {
-		engine.baseComponents.AudioSource.create(entity, {
+		AudioSource.create(entity, {
 			audioClipUrl: soundPath,
 			loop: false,
 			pitch: pitch,

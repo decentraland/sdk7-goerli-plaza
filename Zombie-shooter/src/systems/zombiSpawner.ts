@@ -66,7 +66,7 @@ function endGame(){
 		GameControllerComponent.getMutable(coneEntity).spawnActive = false
 	  }
 
-	  if( engine.baseComponents.AudioSource.has(coneEntity)){
-		engine.baseComponents.AudioSource.getMutable(coneEntity).playing = false
+	  if( AudioSource.has(coneEntity)){
+		AudioSource.getMutable(coneEntity).playing = false
 	  }
 }

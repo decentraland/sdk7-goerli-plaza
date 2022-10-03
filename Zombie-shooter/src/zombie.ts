@@ -7,8 +7,6 @@ import { onMoveZombieFinish } from './systems/moveZombie'
 
 import { playSound } from './systems/sound'
 
-const { Transform, GLTFShape } = engine.baseComponents
-
 export function createZombie(xPos:number): Entity {
   const zombie = engine.addEntity()
 
@@ -19,10 +17,7 @@ export function createZombie(xPos:number): Entity {
     rotation: { x: 0, y: 0, z: 0, w: 1 }
   })
 
-  GLTFShape.create(zombie, {
-    withCollisions: true,
-    isPointerBlocker: true,
-    visible: true,
+  GltfContainer.create(zombie, {
     src: 'models/zombie.glb'
   })
 
@@ -38,7 +33,7 @@ export function createZombie(xPos:number): Entity {
     interpolationType: 1
   })
 
-  engine.baseComponents.Animator.create(zombie, {states: [
+  Animator.create(zombie, {states: [
 	{
 		clip: "Walking",
 		loop:true,
@@ -66,7 +61,7 @@ export function createZombie(xPos:number): Entity {
 			GameControllerComponent.getMutable(coneEntity).livesLeft -=1
 		}
 
-		let animator = engine.baseComponents.Animator.getMutable(zombie)
+		let animator = Animator.getMutable(zombie)
 		const walkAnim = animator.states[0] // animator.states.find( (anim) =>{return anim.clip=="Walking"})
 		const attackAnim = animator.states[1]//animator.states.find( (anim) =>{ return anim.clip=="Attacking"})
 		if(walkAnim && attackAnim){
@@ -76,7 +71,7 @@ export function createZombie(xPos:number): Entity {
 			attackAnim.loop = true
 		}
 
-		const nfts = engine.getEntitiesWith(engine.baseComponents.NFTShape)
+		const nfts = engine.getEntitiesWith(NFTShape)
 		
 		//only remove first
 		for (const [entity, nftShape] of nfts){

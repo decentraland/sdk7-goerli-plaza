@@ -2,8 +2,6 @@ import { MoveTransformComponent } from '../components/moveTransport'
 
 import { Interpolate } from '../helper/interpolation'
 
-const { Transform } = engine.baseComponents
-
 const callbackMap = new Map<Entity, () => void>()
 
 export function onMoveFinish(entity: Entity, callback: () => void) {
@@ -11,12 +9,10 @@ export function onMoveFinish(entity: Entity, callback: () => void) {
 }
 
 export function moveSystem(dt: number) {
-  for (const [entity,  path] of engine.getEntitiesWith( MoveTransformComponent)) {
-
-	if(path.paused) return
+  for (const [entity] of engine.getEntitiesWith( MoveTransformComponent)) {
 
 	const move = MoveTransformComponent.getMutable(entity)
-	const transform = engine.baseComponents.Transform.getMutable(entity)
+	const transform = Transform.getMutable(entity)
 
 
     move.normalizedTime = Math.min(Math.max(move.normalizedTime + dt * move.speed, 0), 1)

@@ -54,12 +54,18 @@ export function createZombie(xPos: number): Entity {
     ]
   })
 
-  OnPointerDown.create(zombie, {
-    button: 0,
-    maxDistance: 100,
-    hoverText: 'click',
-    showFeedback: true
-  })
+   PointerEvents.create(zombie, {
+		pointerEvents: [
+			{
+			  eventType: PointerEventType.DOWN,
+			  eventInfo: {
+				button: ActionButton.PRIMARY,
+				hoverText: 'Shoot',
+				showFeedback: true
+			  }
+			}
+		  ]
+    })
 
   return zombie
 }

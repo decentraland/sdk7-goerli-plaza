@@ -1,14 +1,10 @@
-import { circularSystem } from './systems/circular'
-import { playSounds } from './systems/sound'
-import { addStateSystem } from './helper/systemWithState'
+
 //import { createCube } from './cube'
 import { createCone } from './cone'
 import { createNft } from './nft'
 import { createText } from './text'
-import { createZombie } from './zombie'
-import { moveSystem, onMoveZombieFinish } from './systems/moveZombie'
+import { moveSystem } from './systems/moveZombie'
 import { addClickBehavior } from './systems/clickable'
-import { MoveTransformComponent } from './components/moveTransport'
 import { GameControllerComponent } from './components/gameController'
 
 
@@ -39,7 +35,7 @@ addClickBehavior(coneEntity, ()=>{
 
 
 			// clear NFTs
-			const nfts = engine.getEntitiesWith(engine.baseComponents.NFTShape)
+			const nfts = engine.getEntitiesWith(NFTShape)
 			for (const [entity, nftShape] of nfts){
 				engine.removeEntity(entity)
 			}
@@ -65,11 +61,11 @@ addClickBehavior(coneEntity, ()=>{
 
 	}
 
-	if(engine.baseComponents.AudioSource.has(coneEntity)){
-		const source = engine.baseComponents.AudioSource.getMutable(coneEntity)
+	if(AudioSource.has(coneEntity)){
+		const source = AudioSource.getMutable(coneEntity)
 		source.playing = true
 	} else {
-		engine.baseComponents.AudioSource.create(coneEntity,
+		AudioSource.create(coneEntity,
 			{
 				audioClipUrl: "/sounds/ambient.mp3",
 				loop: true,
@@ -84,18 +80,4 @@ addClickBehavior(coneEntity, ()=>{
 })
 
 const textEntity = createText("Click Cone to Play")
-
-//  engine.baseComponents.Transform.getMutable(textEntity).parent = coneEntity
-
-// engine.baseComponents.Billboard.create(textEntity, {x: true, y: true, z: true})
-
-// const simpleCube = createCube(8, 2, 8)
-// engine.baseComponents.Transform.getMutable(simpleCube).parent = coneEntity
-
-// engine.baseComponents.Billboard.create(simpleCube, {x: true, y: true, z: true})
-// engine.baseComponents.CameraModeArea.create(coneEntity, {mode: CameraModeValue.THIRD_PERSON, area: {x:6, y: 6, z: 6}})
-
-// engine.baseComponents.AvatarModifierArea.create(coneEntity, {  modifiers: [2]	 , area: {x:10, y: 10, z: 10}, excludeIds: [] })
-
-// engine.baseComponents.AvatarModifierArea.create(coneEntity, {  modifiers: [PBAvatarModifierArea_Modifier.HIDE_AVATARS] , area: {x:10, y: 10, z: 10}, excludeIds: [] })
 

@@ -7,10 +7,10 @@ import { Interpolate } from "../helper/interpolation"
 
 
 export function distanceSystem(dt: number) {
-	const playerTransform = engine.baseComponents.Transform.getOrNull(1 as Entity)
+	const playerTransform = Transform.getOrNull(1 as Entity)
 
 	 if(playerTransform){
-		for (const [entity, transform] of engine.getEntitiesWith(engine.baseComponents.Transform, NPComponent)) {
+		for (const [entity, transform] of engine.getEntitiesWith(Transform, NPComponent)) {
 
 			const npcData = NPComponent.getMutable(entity)
 			const dist = getDistance(playerTransform.position, transform.position)
@@ -38,7 +38,6 @@ function getDistance(playerPos: Vector3.ReadonlyVector3, NPCPos:Vector3.Readonly
 
 
 
-
 export function walkAround(dt: number) {
 	for (const [entity] of engine.getEntitiesWith( NPComponent)) {
   
@@ -49,7 +48,7 @@ export function walkAround(dt: number) {
 		case gnarkStates.WALKING:
 
 			const move = MoveTransformComponent.getMutable(entity)
-			const transform = engine.baseComponents.Transform.getMutable(entity)
+			const transform = Transform.getMutable(entity)
 		
 			move.normalizedTime = Math.min(Math.max(move.normalizedTime + dt * move.speed, 0), 1)
 			move.lerpTime = Interpolate(move.interpolationType, move.normalizedTime)
@@ -108,7 +107,7 @@ export function previousState(entity:Entity){
 }
 
 export function enterState(entity:Entity, newState: gnarkStates){
-	const animator = engine.baseComponents.Animator.getMutable(entity)
+	const animator = Animator.getMutable(entity)
 	switch(newState) {
 		case gnarkStates.WALKING:
 			const walkAnim = animator.states.find( (anim) =>{return anim.name=="walk"})
@@ -143,7 +142,7 @@ export function enterState(entity:Entity, newState: gnarkStates){
 
 
 export function leaveState(entity:Entity, oldState: gnarkStates){
-	const animator = engine.baseComponents.Animator.getMutable(entity)
+	const animator = Animator.getMutable(entity)
 	switch(oldState) {
 		case gnarkStates.WALKING:
 			const walkAnim = animator.states.find( (anim) =>{return anim.name=="walk"})
@@ -171,7 +170,7 @@ export function turn(gnark:Entity){
 	const normalizedDifference = Vector3.normalize(difference)
 	
 
-	engine.baseComponents.Transform.getMutable(gnark).rotation = Quaternion.lookRotation(normalizedDifference)
+	Transform.getMutable(gnark).rotation = Quaternion.lookRotation(normalizedDifference)
 }
 
 
@@ -190,7 +189,6 @@ export  function nextSegment(gnark:Entity){
 	
 	move.start = path.path[path.origin],
 	move.end = path.path[path.target],
-	move.duration = 10
 	move.normalizedTime = 0
 	move.lerpTime = 0
 	move.speed = 0.1

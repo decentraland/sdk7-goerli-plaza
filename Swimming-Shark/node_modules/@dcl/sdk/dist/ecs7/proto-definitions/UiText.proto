@@ -5,7 +5,21 @@ option (ecs_component_id) = 1052;
 
 import "common/Color3.proto";
 
+enum TextAlign {
+  Center = 0;
+  Left = 1;
+  Right = 2;
+}
+
+enum Font {
+  LiberationSans = 0;
+  SansSerif = 1;
+}
+
 message PBUiText {
-  string text = 1;
-  Color3 text_color = 2;
+  string value = 1;
+  optional Color3 color = 2; // default=(1.0,1.0,1.0)
+  optional TextAlign text_align = 3; // default='center'
+  optional Font font = 4; // default=0
+  optional int32 font_size = 5;  // default=10
 }

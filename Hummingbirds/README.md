@@ -54,16 +54,12 @@ Base components already come packed as part of the SDK. Most of them interact di
 - AvatarAttach
 - AvatarModifierArea
 - Billboard
-- BoxShape
 - CameraModeArea
-- CylinderShape
-- GLTFShape
+- GLTFContainer
+- MeshRenderer
+- MeshCollider
 - NFTShape
-- OnPointerDown
-- OnPointerDownResult
-- OnPointerUp
-- OnPointerUpResult
-- PlaneShape
+- PointerEvents
 - SphereShape
 - TextShape
 - Transform
@@ -72,17 +68,14 @@ Base components already come packed as part of the SDK. Most of them interact di
 
 
 ```ts
-const { Transform, GLFTShape } = engine.baseComponents
+
 const entity = engine.addEntity()
 Transfrom.create(entity, {
   position: { x: 12, y: 1, z: 12 },
   scale: { x: 1, y: 1, z: 1 },
   rotation: { x: 0, y: 0, z: 0, w: 1 }
 })
-GLTFShape.create(zombie, {
-  withCollisions: true,
-  isPointerBlocker: true,
-  visible: true,
+GLTFContainer.create(zombie, {
   src: 'models/zombie.glb'
 })
 ```

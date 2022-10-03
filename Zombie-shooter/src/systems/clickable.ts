@@ -1,29 +1,34 @@
 
-const { OnPointerDownResult } = engine.baseComponents
-
-
 const callbackMap = new Map<Entity, (entity:Entity) => void>()
 
 
 export function clickedSystem(dt: number) {
-  const clickedBoshapes = engine.getEntitiesWith(OnPointerDownResult)
 
-  for (const [entity, pointerDownResult] of clickedBoshapes) {
+	for (const [entity] of engine.getEntitiesWith(PointerEvents)) {
+	  if (wasEntityClicked(entity, ActionButton.PRIMARY)) {
 		const fn = callbackMap.get(entity)
 		if (fn) fn(entity)
-  }
+	  }
+	}
 }
 
 engine.addSystem(clickedSystem)
 
 export function addClickBehavior (entity:Entity, fn:(entity:Entity) => void ) {
 
-	engine.baseComponents.OnPointerDown.create(entity, {
-		button: 0,
-		maxDistance: 100,
-		hoverText: "click",
-		showFeedback: true
-	})
+	PointerEvents.create(entity, {
+		pointerEvents: [
+			{
+			  eventType: PointerEventType.DOWN,
+			  eventInfo: {
+				button: ActionButton.PRIMARY,
+				hoverText: 'Click',
+				maxDistance: 100,
+				showFeedback: true
+			  }
+			}
+		  ]
+    })
 	callbackMap.set(entity, fn)
 	
 

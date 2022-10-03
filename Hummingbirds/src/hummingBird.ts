@@ -18,7 +18,7 @@ export function createHummingBird(){
 		rotation: {x:0, y:0, z:0, w: 1},
 		scale:  {x:0.2, y:0.2, z:0.2}
 	})
-	GLTFShape.create(bird, {
+	GltfContainer.create(bird, {
 		src:'models/hummingbird.glb'
 	})
 	Animator.create(bird, {
@@ -65,7 +65,7 @@ export function birdSystem(dt: number){
 			birdData.waitingTime -=dt
 			if(birdData.waitingTime<= 0){
 
-				let currentPos =  engine.baseComponents.Transform.get(bird).position
+				let currentPos =  Transform.get(bird).position
 			
 				birdData.waitingTime = 2
 

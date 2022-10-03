@@ -34,17 +34,13 @@ Each component may reference an Entity.
 Base components already come packed as part of the SDK, they include common functionalities like Transform or GLTFShape.
 
 ```ts
-const { Transform, GLFTShape } = engine.baseComponents
 const entity = engine.addEntity()
 Transfrom.create(entity, {
   position: { x: 12, y: 1, z: 12 },
   scale: { x: 1, y: 1, z: 1 },
   rotation: { x: 0, y: 0, z: 0, w: 1 }
 })
-GLTFShape.create(zombie, {
-  withCollisions: true,
-  isPointerBlocker: true,
-  visible: true,
+GltfContainer.create(zombie, {
   src: 'models/zombie.glb'
 })
 ```

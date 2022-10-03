@@ -1,7 +1,6 @@
 import { MoveTransformComponent } from '../components/moveTransport'
 import { Interpolate } from '../helper/interpolation'
 
-const { Transform } = engine.baseComponents
 
 const callbackMap = new Map<Entity, () => void>()
 

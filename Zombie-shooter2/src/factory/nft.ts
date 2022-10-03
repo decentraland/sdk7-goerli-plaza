@@ -1,4 +1,3 @@
-const { Transform, NFTShape } = engine.baseComponents
 
 export function createNft(xPos: number): Entity {
   const nft = engine.addEntity()
@@ -15,9 +14,3 @@ export function createNft(xPos: number): Entity {
 
   return nft
 }
-
-engine.baseComponents.AvatarModifierArea.create(entity, {
-	area: {x: 4, y:3, z:4},
-	modifiers: [AvatarModifier.HIDE_AVATARS],
-	excludeIds: [""]
-})

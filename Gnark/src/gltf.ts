@@ -1,5 +1,4 @@
 
-const { Transform, GLTFShape } = engine.baseComponents
 
 export function createGLTF(
 	transform:{
@@ -12,10 +11,7 @@ export function createGLTF(
 
   Transform.create(gltf, transform)
 
-  GLTFShape.create(gltf, {
-    withCollisions: true,
-    isPointerBlocker: true,
-    visible: true,
+  GltfContainer.create(gltf, {
     src: model
   })
 

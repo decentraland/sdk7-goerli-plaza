@@ -4,8 +4,6 @@ import { playSound } from '../factory/sound'
 import { Interpolate } from '../helper/interpolation'
 import { ensureGameController } from './game'
 
-const { Transform } = engine.baseComponents
-
 export function moveSystem(dt: number) {
   for (const [entity, , transform] of engine.getEntitiesWith(MoveTransformComponent, Transform, ZombieComponent)) {
 	const move =MoveTransformComponent.getMutable(entity)
@@ -28,7 +26,7 @@ export function moveSystem(dt: number) {
     dcl.log('finished zombie', zombieEntity)
     ensureGameController().livesLeft -= 1
 
-    const animator = engine.baseComponents.Animator.getMutable(zombieEntity)
+    const animator = Animator.getMutable(zombieEntity)
     const walkAnim = animator.states[0] // animator.states.find( (anim) =>{anim.clip=="Walking"})
     const attackAnim = animator.states[1] //animator.states.find( (anim) =>{anim.clip=="Attacking"})
     if (walkAnim && attackAnim) {
@@ -38,7 +36,7 @@ export function moveSystem(dt: number) {
       attackAnim.loop = true
     }
 
-    const nfts = engine.getEntitiesWith(engine.baseComponents.NFTShape)
+    const nfts = engine.getEntitiesWith(NFTShape)
 
     //only remove first
     for (const [entity] of nfts) {

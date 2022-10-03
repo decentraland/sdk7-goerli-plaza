@@ -1,4 +1,3 @@
-const { Transform, TextShape } = engine.baseComponents
 
 export function createText(value: string): Entity {
   const text = engine.addEntity()

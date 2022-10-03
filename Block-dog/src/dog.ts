@@ -10,7 +10,6 @@ const pathArray= [point1, point2, point3, point4]
 const TURN_TIME = 0.9
 
 
-const { Transform, GLTFShape } = engine.baseComponents
 import { MoveTransformComponent } from './components/moveTransport'
 import {  dogStates, NPComponent } from "./components/NPC"
 
@@ -29,14 +28,11 @@ export function createDog(): Entity {
 	})
 
   
-	GLTFShape.create(dog, {
-	  withCollisions: true,
-	  isPointerBlocker: true,
-	  visible: true,
+	GltfContainer.create(dog, {
 	  src: 'models/BlockDog.glb'
 	})
 
-	engine.baseComponents.Animator.create(dog, {states:[{
+	Animator.create(dog, {states:[{
 			name: "Walking",
 			clip: "Walking",
 			playing: false,
@@ -88,7 +84,6 @@ export function createDog(): Entity {
 	MoveTransformComponent.create(dog, {
 	  start: point1,
 	  end: point2,
-	  duration: 5,
 	  normalizedTime: 0,
 	  lerpTime: 0,
 	  speed: 0.1,
@@ -102,10 +97,18 @@ export function createDog(): Entity {
 		paused: false
 	})
 
-	OnPointerDown.create(dog, {
-		hoverText: "Sit"
-	})
-  
+	PointerEvents.create(dog, {
+		pointerEvents: [
+			{
+			  eventType: PointerEventType.DOWN,
+			  eventInfo: {
+				button: ActionButton.PRIMARY,
+				hoverText: 'Sit'
+			  }
+			}
+		  ]
+    })
+
 	return dog
   }
 

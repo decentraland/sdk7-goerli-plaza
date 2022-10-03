@@ -50,7 +50,7 @@ Base components already come packed as part of the SDK. Most of them interact di
 - AvatarAttach
 - BoxShape
 - CylinderShape
-- GLTFShape
+- GltfContainer
 - NFTShape
 - OnPointerDown
 - OnPointerDownResult
@@ -71,7 +71,7 @@ Transfrom.create(entity, {
   scale: { x: 1, y: 1, z: 1 },
   rotation: { x: 0, y: 0, z: 0, w: 1 }
 })
-GLTFShape.create(zombie, {
+GltfContainer.create(zombie, {
   withCollisions: true,
   isPointerBlocker: true,
   visible: true,

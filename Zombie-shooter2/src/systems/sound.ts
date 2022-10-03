@@ -9,7 +9,7 @@ export function playSounds(dt: number, state: State) {
   }
   state.t = 0
 
-  const entitiesWSound = engine.getEntitiesWith(engine.baseComponents.AudioSource)
+  const entitiesWSound = engine.getEntitiesWith(AudioSource)
   for (const [entity] of entitiesWSound) {
 	const audioSource = AudioSource.getMutable(entity)
     audioSource.volume = 1
@@ -17,4 +17,6 @@ export function playSounds(dt: number, state: State) {
     audioSource.playing = true
   }
 }
+
+
 

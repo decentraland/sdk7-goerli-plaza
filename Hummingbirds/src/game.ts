@@ -25,6 +25,7 @@ Transform.create(tree, {
 GltfContainer.create(tree, {
 	src:'models/Tree.gltf'
 })
+
 Animator.create(tree, {
 	states:[
 		{
@@ -36,45 +37,28 @@ Animator.create(tree, {
 		}
 	]
 })
-OnPointerDown.create(tree, {
-	button: ActionButton.PRIMARY,
-	maxDistance: 15,	
-	hoverText: "Shake",
-	showFeedback: true
+
+PointerEvents.create(tree, {
+	pointerEvents: [
+		{
+		  eventType: PointerEventType.DOWN,
+		  eventInfo: {
+			button: ActionButton.PRIMARY,
+			hoverText: 'Shake'
+		  }
+		}
+	  ]
 })
 
 
+
 export function clickTree(){
-	if(OnPointerDownResult.has(tree)){
-		createHummingBird()
-		let anim = Animator.getMutable(tree)
-		anim.states[0].playing = true
+	 if (wasEntityClicked(tree, ActionButton.PRIMARY)) {
+	 	createHummingBird()
+	 	let anim = Animator.getMutable(tree)
+	 	anim.states[0].playing = true
 	}
 }
 
 engine.addSystem(clickTree)
-
-
-
-// function createCube(x: number, y: number, z: number, spawner = false): Entity {
-// 	const entity = engine.addEntity()
-  
-// 	Transform.create(entity, {
-// 	  position: { x, y, z },
-// 	  scale: { x: 1, y: 1, z: 1 },
-// 	  rotation: { x: 0, y: 0, z: 0, w: 1 }
-// 	})
-
-// 	if (spawner) {
-// 	  OnPointerDown.create(entity, {
-// 		button: ActionButton.PRIMARY,
-// 		hoverText: 'Press E to spawn'
-// 	  })
-// 	}
-  
-// 	return entity
-//   }
-
-//   createCube(8, 1, 8, true)
-
 

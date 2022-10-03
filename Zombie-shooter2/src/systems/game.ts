@@ -28,7 +28,7 @@ function triggerGameStart() {
     gameController.score = 0
 
     // clear NFTs
-    const nfts = engine.getEntitiesWith(engine.baseComponents.NFTShape)
+    const nfts = engine.getEntitiesWith(NFTShape)
     for (const [entity, _nftShape] of nfts) {
       engine.removeEntity(entity)
     }
@@ -53,11 +53,11 @@ function triggerGameStart() {
     createNft(i)
   }
 
-  if (engine.baseComponents.AudioSource.has(gameEntity)) {
-    const source = engine.baseComponents.AudioSource.getMutable(gameEntity)
+  if (AudioSource.has(gameEntity)) {
+    const source = AudioSource.getMutable(gameEntity)
     source.playing = true
   } else {
-    engine.baseComponents.AudioSource.create(gameEntity, {
+    AudioSource.create(gameEntity, {
       audioClipUrl: '/sounds/ambient.mp3',
       loop: true,
       playing: true,
@@ -70,7 +70,7 @@ function triggerGameStart() {
 export function gameLogicSystem(dt: number) {
   const gameController = ensureGameController()
 
-  if (engine.baseComponents.OnPointerDownResult.has(coneStarterEntity)) {
+  if (wasEntityClicked(coneStarterEntity, ActionButton.PRIMARY)) {
     triggerGameStart()
   }
 
@@ -110,7 +110,7 @@ function win() {
 function endGame() {
   ensureGameController().spawnActive = false
 
-  if (engine.baseComponents.AudioSource.has(gameEntity)) {
-    engine.baseComponents.AudioSource.getMutable(gameEntity).playing = false
+  if (AudioSource.has(gameEntity)) {
+    AudioSource.getMutable(gameEntity).playing = false
   }
 }

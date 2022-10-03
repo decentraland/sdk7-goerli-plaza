@@ -11,7 +11,6 @@ const pathArray= [point1, point2, point3, point4]
 const TURN_TIME = 0.9
 
 
-const { Transform, GLTFShape } = engine.baseComponents
 import { MoveTransformComponent } from './components/moveTransport'
 import { gnarkStates, NPComponent } from "./components/NPC"
 import { PathDataComponent } from './components/pathData'
@@ -23,15 +22,12 @@ export function createGnark(): Entity {
 	const gnark = engine.addEntity()
   
 	Transform.create(gnark, {
-	  position: point1,
-	  scale: { x: 1, y: 1, z: 1 },
-	  rotation: { x: 0, y: 0, z: 0, w: 1 }
+	  position: point1
 	})
 
 
 	
-  
-	GLTFShape.create(gnark, {
+	GltfContainer.create(gnark, {
 	  src: 'models/gnark.glb'
 	})
 

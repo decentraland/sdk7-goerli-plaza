@@ -24,16 +24,17 @@ let garden = createGLTF({
 	rotation: {x:0, y:180, z:0, w:1}
   }, "models/BlockDogBowl.gltf")
 
-  engine.baseComponents.OnPointerDown.create(bowl,{
-	button: ActionButton.PRIMARY,
-	hoverText: "Drink",
-	showFeedback: true
-  })
+  PointerEvents.create(bowl, {
+	pointerEvents: [
+		{
+		  eventType: PointerEventType.DOWN,
+		  eventInfo: {
+			button: ActionButton.PRIMARY,
+			hoverText: 'Drink'
+		  }
+		}
+	  ]
+})
+
 
 const dog=  createDog()
-
-//const dog2=  createDog()
-
-
-// engine.addSystem(walkAround)
-// engine.addSystem(distanceSystem)
