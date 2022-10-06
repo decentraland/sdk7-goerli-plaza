@@ -26,6 +26,9 @@
 		},
 		{
 			"path": "Swimming-Shark"
+		},
+		{
+			"path": "BasicInteractions"
 		}
 	]
 }
