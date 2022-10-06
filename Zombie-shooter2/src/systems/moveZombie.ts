@@ -1,8 +1,8 @@
 import { MoveTransformComponent, MoveTransformFinishedComponent } from '../components/moveTransport'
 import { ZombieComponent } from '../components/zombie'
 import { playSound } from '../factory/sound'
+import { ensureGameController } from '../game'
 import { Interpolate } from '../helper/interpolation'
-import { ensureGameController } from './game'
 
 export function moveSystem(dt: number) {
   for (const [entity, , transform] of engine.getEntitiesWith(MoveTransformComponent, Transform, ZombieComponent)) {

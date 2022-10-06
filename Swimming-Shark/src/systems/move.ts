@@ -41,13 +41,13 @@ export function PatrolPath(dt:number) {
 		  const normalizedDifference = Vector3.normalize(difference)
 		  path.endRot = Quaternion.lookRotation(normalizedDifference)
 
-		  UpdateSpeed()
+		  //UpdateSpeed()
 		}
 	  }
 	
   }
   
-  engine.addSystem(PatrolPath)
+
 
 
 

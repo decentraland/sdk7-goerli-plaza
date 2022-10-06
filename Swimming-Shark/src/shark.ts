@@ -6,9 +6,6 @@ import { cpoints } from "./sharkPath"
 
 
 
-
-createShark()
-
 export function createShark(){
 
 
@@ -41,6 +38,18 @@ export function createShark(){
 		]
 	})
 
+
+	PathDataComponent.create(shark,
+		{
+			path: cpoints,
+			origin: 0,
+			target: 1,
+			startRot: Quaternion.Zero(),
+			endRot: Quaternion.Zero(),
+			fraction: 0,
+			paused: false	
+		})
+
 	SpeedComponent.create(shark, {
 		speed: 0.5
 	})
@@ -60,16 +69,6 @@ export function createShark(){
 	// 	interpolationType: 0
 	// })
 
-	PathDataComponent.create(shark,
-		{
-			path: cpoints,
-			origin: 0,
-			target: 1,
-			startRot: Quaternion.Zero(),
-			endRot: Quaternion.Zero(),
-			fraction: 0,
-			paused: false	
-		})
 
 
 }

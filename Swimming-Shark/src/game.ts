@@ -1,3 +1,5 @@
+import { createShark } from "./shark"
+import { PatrolPath, UpdateSpeed } from "./systems/move"
 
 
 const seaBed = engine.addEntity()
@@ -9,3 +11,10 @@ Transform.create(seaBed, {
 GltfContainer.create(seaBed, {
 	src:'models/Underwater.gltf',
 })
+
+createShark()
+
+
+engine.addSystem(PatrolPath)
+
+engine.addSystem(UpdateSpeed)

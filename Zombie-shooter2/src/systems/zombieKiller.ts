@@ -1,6 +1,7 @@
 import { ZombieComponent } from '../components/zombie'
 import { playSound } from '../factory/sound'
-import { ensureGameController } from './game'
+import { ensureGameController } from '../game'
+
 
 
 export function zombieKiller() {

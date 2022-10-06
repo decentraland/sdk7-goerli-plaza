@@ -79,5 +79,5 @@ addClickBehavior(coneEntity, ()=>{
 
 })
 
-const textEntity = createText("Click Cone to Play")
+const textEntity = createText(coneEntity, "Click Cone to Play")
 

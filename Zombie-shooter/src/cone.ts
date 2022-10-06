@@ -11,5 +11,10 @@ export function createCone() {
     radiusBottom: 1
   }})
 
+  MeshCollider.create(cone, { cylinder: {    
+	radiusTop: 0,
+    radiusBottom: 1
+  }})
+
   return cone
 }
