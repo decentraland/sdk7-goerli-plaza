@@ -1,3 +1,4 @@
+
 function createCube(x: number, y: number, z: number, spawner = false): Entity {
   const meshEntity = engine.addEntity()
 
@@ -36,8 +37,7 @@ function circularSystem(dt: number) {
 
 
 function spawnerSystem() {
-  const clickedCubes = engine.getEntitiesWith(PointerEvents)
-  for (const [entity] of clickedCubes) {
+  for (const [entity] of engine.getEntitiesWith(PointerEvents)) {
     if (wasEntityClicked(entity, ActionButton.PRIMARY)) {
       createCube(
         1 + Math.random() * 8,
@@ -47,13 +47,14 @@ function spawnerSystem() {
       )
     }
   }
+
+  if (wasEntityClicked(engine.RootEntity, ActionButton.SECONDARY)) {
+	const cubeTransform = Transform.getMutable(cube)
+	cubeTransform.scale.y += 0.3
+  }
 }
 
 const cube = createCube(8, 1, 8, true)
 engine.addSystem(circularSystem)
 engine.addSystem(spawnerSystem)
-
-
-
-
 

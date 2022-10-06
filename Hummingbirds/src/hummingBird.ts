@@ -1,3 +1,4 @@
+
 import { MoveTransformComponent } from "./components/moveTransport"
 import { InterpolationType } from "./helper/interpolation"
 
@@ -51,6 +52,11 @@ export function createHummingBird(){
 	isBird.create(bird, {
 		waitingTime:0
 	})
+
+	let cameraEntity = CameraMode.getMutable(engine.CameraEntity)
+	log("CAMERA MODE: ", cameraEntity.mode)
+	cameraEntity.mode = 0
+
 }
 
 export function birdSystem(dt: number){
@@ -88,6 +94,8 @@ export function birdSystem(dt: number){
 				
 				})
 
+				
+
 				const mutableTransform = Transform.getMutable(bird)
 
 				
@@ -99,6 +107,7 @@ export function birdSystem(dt: number){
 	  }
 }
 
+
 engine.addSystem(birdSystem)
 
 export function turn(entity:Entity, target: ReadOnlyVector3){
@@ -107,3 +116,6 @@ export function turn(entity:Entity, target: ReadOnlyVector3){
 	const normalizedDifference = Vector3.normalize(difference)
 	transform.rotation = Quaternion.lookRotation(normalizedDifference)
 }
+
+
+
