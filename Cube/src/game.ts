@@ -13,9 +13,9 @@ function createCube(x: number, y: number, z: number, spawner = false): Entity {
     PointerEvents.create(meshEntity, {
 		pointerEvents: [
 			{
-			  eventType: PointerEventType.DOWN,
+			  eventType: PointerEventType.PET_DOWN,
 			  eventInfo: {
-				button: ActionButton.PRIMARY,
+				button: InputAction.IA_PRIMARY,
 				hoverText: 'Press E to spawn',
 				maxDistance: 100,
 				showFeedback: true
@@ -38,7 +38,7 @@ function circularSystem(dt: number) {
 
 function spawnerSystem() {
   for (const [entity] of engine.getEntitiesWith(PointerEvents)) {
-    if (wasEntityClicked(entity, ActionButton.PRIMARY)) {
+    if (wasEntityClicked(entity, InputAction.IA_PRIMARY)) {
       createCube(
         1 + Math.random() * 8,
         Math.random() * 8,
@@ -48,7 +48,7 @@ function spawnerSystem() {
     }
   }
 
-  if (wasEntityClicked(engine.RootEntity, ActionButton.SECONDARY)) {
+  if (wasEntityClicked(engine.RootEntity, InputAction.IA_SECONDARY)) {
 	const cubeTransform = Transform.getMutable(cube)
 	cubeTransform.scale.y += 0.3
   }

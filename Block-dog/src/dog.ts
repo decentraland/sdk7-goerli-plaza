@@ -100,9 +100,9 @@ export function createDog(): Entity {
 	PointerEvents.create(dog, {
 		pointerEvents: [
 			{
-			  eventType: PointerEventType.DOWN,
+			  eventType: PointerEventType.PET_DOWN,
 			  eventInfo: {
-				button: ActionButton.PRIMARY,
+				button: InputAction.IA_PRIMARY,
 				hoverText: 'Sit'
 			  }
 			}

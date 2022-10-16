@@ -19,9 +19,9 @@ export function createCone() {
 	PointerEvents.create(cone, {
 		pointerEvents: [
 			{
-			  eventType: PointerEventType.DOWN,
+			  eventType: PointerEventType.PET_DOWN,
 			  eventInfo: {
-				button: ActionButton.PRIMARY,
+				button: InputAction.IA_PRIMARY,
 				hoverText: 'Click',
 				showFeedback: true
 			  }

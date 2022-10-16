@@ -36,7 +36,7 @@ function triggerGameStart() {
     gameController.score = 0
 
     // clear NFTs
-    const nfts = engine.getEntitiesWith(NFTShape)
+    const nfts = engine.getEntitiesWith(NftShape)
     for (const [entity, _nftShape] of nfts) {
       engine.removeEntity(entity)
     }
@@ -78,7 +78,7 @@ function triggerGameStart() {
 export function gameLogicSystem(dt: number) {
   const gameController = ensureGameController()
 
-  if (coneStarterEntity && wasEntityClicked(coneStarterEntity, ActionButton.PRIMARY)) {
+  if (coneStarterEntity && wasEntityClicked(coneStarterEntity, InputAction.IA_PRIMARY)) {
     triggerGameStart()
   }
 

@@ -1,3 +1,5 @@
+
+
 export function createMesh(
   position: Vector3.ReadonlyVector3,
   text: string = '',
@@ -33,6 +35,9 @@ export function addLabel(text: string, parent: Entity) {
   TextShape.create(label, {
     text,
     fontSize: 2,
-    font: 'SansSerif'
+    font: Font.F_SANS_SERIF
   })
 }
+
+
+

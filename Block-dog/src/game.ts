@@ -27,9 +27,9 @@ let garden = createGLTF({
   PointerEvents.create(bowl, {
 	pointerEvents: [
 		{
-		  eventType: PointerEventType.DOWN,
+		  eventType: PointerEventType.PET_DOWN,
 		  eventInfo: {
-			button: ActionButton.PRIMARY,
+			button: InputAction.IA_PRIMARY,
 			hoverText: 'Drink'
 		  }
 		}

@@ -35,7 +35,7 @@ addClickBehavior(coneEntity, ()=>{
 
 
 			// clear NFTs
-			const nfts = engine.getEntitiesWith(NFTShape)
+			const nfts = engine.getEntitiesWith(NftShape)
 			for (const [entity, nftShape] of nfts){
 				engine.removeEntity(entity)
 			}
@@ -75,7 +75,6 @@ addClickBehavior(coneEntity, ()=>{
 			})
 	}
 
-	
 
 })
 

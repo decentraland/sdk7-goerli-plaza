@@ -1,9 +1,9 @@
 
 
-import { moveSystem, onMoveFinish } from './systems/moveSystem'
+
 import { createGLTF } from './gltf'
 import { createGnark } from './gnark'
-import { timerSystem } from './systems/timeOutSystem'
+
 import { distanceSystem, walkAround } from './systems/gnarkAI'
 
 // const _cubeEntity = createCube(8, 2, 8)

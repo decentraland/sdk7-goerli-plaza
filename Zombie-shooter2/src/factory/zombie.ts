@@ -57,9 +57,9 @@ export function createZombie(xPos: number): Entity {
    PointerEvents.create(zombie, {
 		pointerEvents: [
 			{
-			  eventType: PointerEventType.DOWN,
+			  eventType: PointerEventType.PET_DOWN,
 			  eventInfo: {
-				button: ActionButton.PRIMARY,
+				button: InputAction.IA_PRIMARY,
 				hoverText: 'Shoot',
 				showFeedback: true
 			  }

@@ -1,6 +1,6 @@
 // Pointer Down Cube
 
-import { EventDataType } from '~system/EngineAPI'
+
 import { PainterComponent } from './painter'
 import { createMesh } from './utils'
 
@@ -9,9 +9,9 @@ export function setupEventOnEntities() {
   PointerEvents.create(pointerDownCube, {
     pointerEvents: [
       {
-        eventType: PointerEventType.DOWN,
+        eventType: PointerEventType.PET_DOWN,
         eventInfo: {
-          button: ActionButton.POINTER,
+          button: InputAction.IA_POINTER,
           hoverText: 'Activate'
         }
       }
@@ -24,9 +24,9 @@ export function setupEventOnEntities() {
   PointerEvents.create(pointerUpCube, {
     pointerEvents: [
       {
-        eventType: PointerEventType.UP,
+        eventType: PointerEventType.PET_UP,
         eventInfo: {
-          button: ActionButton.POINTER,
+          button: InputAction.IA_PRIMARY,
           hoverText: 'Activate'
         }
       }
@@ -38,9 +38,9 @@ export function setupEventOnEntities() {
   PointerEvents.create(primaryDownCube, {
     pointerEvents: [
       {
-        eventType: PointerEventType.DOWN,
+        eventType: PointerEventType.PET_DOWN,
         eventInfo: {
-          button: ActionButton.PRIMARY,
+          button: InputAction.IA_PRIMARY,
           hoverText: 'Activate'
         }
       }
@@ -51,9 +51,9 @@ export function setupEventOnEntities() {
   PointerEvents.create(primaryUpCube, {
     pointerEvents: [
       {
-        eventType: PointerEventType.UP,
+        eventType: PointerEventType.PET_UP,
         eventInfo: {
-          button: ActionButton.PRIMARY,
+          button: InputAction.IA_PRIMARY,
           hoverText: 'Activate'
         }
       }
@@ -65,9 +65,9 @@ export function setupEventOnEntities() {
   PointerEvents.create(secondaryDownCube, {
     pointerEvents: [
       {
-        eventType: PointerEventType.DOWN,
+        eventType: PointerEventType.PET_DOWN,
         eventInfo: {
-          button: ActionButton.SECONDARY,
+          button: InputAction.IA_SECONDARY,
           hoverText: 'Activate'
         }
       }
@@ -79,9 +79,9 @@ export function setupEventOnEntities() {
   PointerEvents.create(secondaryUpCube, {
     pointerEvents: [
       {
-        eventType: PointerEventType.UP,
+        eventType: PointerEventType.PET_UP,
         eventInfo: {
-          button: ActionButton.SECONDARY,
+          button: InputAction.IA_SECONDARY,
           hoverText: 'Activate'
         }
       }
@@ -89,22 +89,22 @@ export function setupEventOnEntities() {
   })
 
   engine.addSystem(() => {
-    if (isPointerEventActive(pointerDownCube, ActionButton.POINTER, PointerEventType.DOWN)) {
+    if (isPointerEventActive(pointerDownCube, InputAction.IA_POINTER, PointerEventType.PET_DOWN)) {
       PainterComponent.createOrReplace(pointerDownCube)
     }
-    if (isPointerEventActive(pointerUpCube, ActionButton.POINTER, PointerEventType.UP)) {
+    if (isPointerEventActive(pointerUpCube, InputAction.IA_POINTER, PointerEventType.PET_UP)) {
       PainterComponent.createOrReplace(pointerUpCube)
     }
-    if (isPointerEventActive(primaryDownCube, ActionButton.PRIMARY, PointerEventType.DOWN)) {
+    if (isPointerEventActive(primaryDownCube, InputAction.IA_PRIMARY, PointerEventType.PET_DOWN)) {
       PainterComponent.createOrReplace(primaryDownCube)
     }
-    if (isPointerEventActive(primaryUpCube, ActionButton.PRIMARY, PointerEventType.UP)) {
+    if (isPointerEventActive(primaryUpCube, InputAction.IA_PRIMARY, PointerEventType.PET_UP)) {
       PainterComponent.createOrReplace(primaryUpCube)
     }
-    if (isPointerEventActive(secondaryDownCube, ActionButton.SECONDARY, PointerEventType.DOWN)) {
+    if (isPointerEventActive(secondaryDownCube, InputAction.IA_SECONDARY, PointerEventType.PET_DOWN)) {
       PainterComponent.createOrReplace(secondaryDownCube)
     }
-    if (isPointerEventActive(secondaryUpCube, ActionButton.SECONDARY, PointerEventType.UP)) {
+    if (isPointerEventActive(secondaryUpCube, InputAction.IA_SECONDARY, PointerEventType.PET_UP)) {
       PainterComponent.createOrReplace(secondaryUpCube)
     }
   })
