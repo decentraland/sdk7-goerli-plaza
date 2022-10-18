@@ -36,7 +36,7 @@ export function moveSystem(dt: number) {
       attackAnim.loop = true
     }
 
-    const nfts = engine.getEntitiesWith(NFTShape)
+    const nfts = engine.getEntitiesWith(NftShape)
 
     //only remove first
     for (const [entity] of nfts) {

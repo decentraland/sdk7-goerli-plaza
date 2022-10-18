@@ -41,7 +41,7 @@ export function PatrolPath(dt:number) {
 		  const normalizedDifference = Vector3.normalize(difference)
 		  path.endRot = Quaternion.lookRotation(normalizedDifference)
 
-		  //UpdateSpeed()
+		  UpdateSpeed()
 		}
 	  }
 	
@@ -76,33 +76,3 @@ export function PatrolPath(dt:number) {
   }
 
 
-
-
-    // // Rotate gradually with a spherical lerp
-	// export function RotateSystem(dt:number) {
-	
-	// 	for (const[entity] of engine.getEntitiesWith(RotateTransformComponent)) {
-	// 	 const transform = Transform.getMutable(entity)
-	// 	 const path = PathDataComponent.get(entity)
-	// 	 const speed = SpeedComponent.get(entity)
-	// 	 const rotate = RotateTransformComponent.getMutable(entity)
-	// 	 rotate.fraction += speed.speed / 10
-	
-	// 	 if (rotate.fraction > 1) {
-	// 	   rotate.fraction = 0
-	// 	   rotate.start = transform.rotation
-	
-	// 	   const difference = Vector3.subtract( path.path[path.target], path.path[path.origin])
-	// 	   const normalizedDifference = Vector3.normalize(difference)
-	// 	   rotate.end = Quaternion.lookRotation(normalizedDifference)
-	// 	  }
-	// 	 transform.rotation = Quaternion.slerp(
-	// 	   rotate.start,
-	// 	   rotate.end,
-	// 	   rotate.fraction
-	// 	 )
-	//  }
-	 
-	// }
-	
-	// engine.addSystem(RotateSystem)
