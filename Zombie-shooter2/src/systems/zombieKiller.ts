@@ -9,15 +9,15 @@ export function zombieKiller() {
 	if (wasEntityClicked(zombieEntity, InputAction.IA_PRIMARY)) {
       dcl.log('BOOM!!! ', zombieEntity)
 
-      const zombieTransform = Transform.getOrNull(zombieEntity)
+       const zombieTransform = Transform.getOrNull(zombieEntity)
       if (zombieTransform) {
         const soundEntity = engine.addEntity()
         Transform.create(soundEntity).position = zombieTransform.position
         playSound(soundEntity, 'sounds/explosion.mp3', true)
       }
 
-      engine.removeEntity(zombieEntity)
-      ensureGameController().score += 1
-    }
+     engine.removeEntity(zombieEntity)
+     ensureGameController().score += 1
+     }
   }
 }

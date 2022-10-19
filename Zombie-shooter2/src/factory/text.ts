@@ -11,7 +11,6 @@ export function createText(parent: Entity, value: string): Entity {
 
   TextShape.create(text, {
     text: value,
-    font: Font.F_SANS_SERIF,
     fontAutoSize: false,
     fontSize: 5,
     height: 2,

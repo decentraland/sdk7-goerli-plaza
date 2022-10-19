@@ -71,7 +71,7 @@ export function createZombie(xPos:number): Entity {
 			attackAnim.loop = true
 		}
 
-		const nfts = engine.getEntitiesWith(NFTShape)
+		const nfts = engine.getEntitiesWith(NftShape)
 		
 		//only remove first
 		for (const [entity, nftShape] of nfts){

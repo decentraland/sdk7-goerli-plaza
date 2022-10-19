@@ -125,5 +125,8 @@ function endGame() {
 
 engine.addSystem(zombieKiller)
 
-engine.addSystem(moveSystem)
+
 engine.addSystem(gameLogicSystem)
+
+
+engine.addSystem(moveSystem)
