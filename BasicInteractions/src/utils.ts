@@ -1,5 +1,3 @@
-
-
 export function createMesh(
   position: Vector3.ReadonlyVector3,
   text: string = '',
@@ -10,11 +8,11 @@ export function createMesh(
   Transform.create(meshEntity, { position, scale: Vector3.scale(Vector3.One(), scale) })
 
   if (sphere) {
-    MeshRenderer.create(meshEntity, { sphere: {} })
-    MeshCollider.create(meshEntity, { sphere: {} })
+    MeshRenderer.create(meshEntity, { mesh: { $case: 'sphere', sphere: {} } })
+    MeshCollider.create(meshEntity, { mesh: { $case: 'sphere', sphere: {} } })
   } else {
-    MeshRenderer.create(meshEntity, { box: { uvs: [] } })
-    MeshCollider.create(meshEntity, { box: {} })
+    MeshRenderer.create(meshEntity, { mesh: { $case: 'box', box: { uvs: [] } } })
+    MeshCollider.create(meshEntity, { mesh: { $case: 'box', box: {} } })
   }
 
   if (text) {
@@ -30,7 +28,9 @@ export function addLabel(text: string, parent: Entity) {
     position: Vector3.create(0, 1.5, 0),
     parent
   })
-  Billboard.create(label)
+  Billboard.create(label, {
+    oppositeDirection: true
+  })
 
   TextShape.create(label, {
     text,
@@ -39,5 +39,16 @@ export function addLabel(text: string, parent: Entity) {
   })
 }
 
-
-
+export function buildPointerHoverFeedback(pet: PointerEventType, button: InputAction, text: string) {
+  return {
+    pointerEvents: [
+      {
+        eventType: pet,
+        eventInfo: {
+          button: button,
+          hoverText: text
+        }
+      }
+    ]
+  }
+}

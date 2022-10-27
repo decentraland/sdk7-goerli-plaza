@@ -21,7 +21,7 @@ export function setupQueryMeshes() {
       //   log({ results })
     }
 
-    if (wasEntityClicked(r2, InputAction.IA_POINTER)) {
+    if (Input.wasJustClicked(InputAction.IA_POINTER, r2)) {
       PainterComponent.createOrReplace(r2)
     }
   })
