@@ -11,6 +11,6 @@
   },
   "devDependencies": {
     "@dcl/eslint-config": "^1.0.1",
-    "@dcl/sdk": "^7.0.0-3349175623.commit-522e724"
+    "@dcl/sdk": "https://sdk-team-cdn.decentraland.org/@dcl/js-sdk-toolchain/branch/feat/expose-add-transport-as-internal/dcl-sdk-7.0.0-3368486449.commit-9088c29.tgz"
   }
 }
