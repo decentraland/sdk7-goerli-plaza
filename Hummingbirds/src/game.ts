@@ -1,8 +1,3 @@
-
-// import { createHummingBird } from "./hummingBird"
-
-
-
 import { createHummingBird } from "./hummingBird"
 
 
@@ -40,28 +35,16 @@ Animator.create(tree, {
 	]
 })
 
-PointerEvents.create(tree, {
-	pointerEvents: [
-		{
-		  eventType: PointerEventType.PET_DOWN,
-		  eventInfo: {
-			button: InputAction.IA_PRIMARY,
-			hoverText: 'Shake'
-		  }
-		}
-	  ]
-})
-
-
-
-export function clickTree(){
-	 if (wasEntityClicked(tree, InputAction.IA_PRIMARY)) {
-	 	createHummingBird()
-	 	let anim = Animator.getMutable(tree)
-	 	anim.states[0].playing = true
+EventsSystem.onPointerDown(
+	tree,
+	function () {
+		createHummingBird()
+		let anim = Animator.getMutable(tree)
+		anim.states[0].playing = true
+	},
+	{
+	  button: InputAction.IA_PRIMARY,
+	  hoverText: 'Shake'
 	}
-}
-
-engine.addSystem(clickTree)
-
+  )
 

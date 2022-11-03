@@ -78,7 +78,7 @@ function triggerGameStart() {
 export function gameLogicSystem(dt: number) {
   const gameController = ensureGameController()
 
-  if (coneStarterEntity && wasEntityClicked(coneStarterEntity, InputAction.IA_PRIMARY)) {
+  if (coneStarterEntity && Input.isTriggered(InputAction.IA_PRIMARY, PointerEventType.PET_DOWN,  coneStarterEntity)) {
     triggerGameStart()
   }
 

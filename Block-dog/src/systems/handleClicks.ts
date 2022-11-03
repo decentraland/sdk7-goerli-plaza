@@ -3,9 +3,9 @@ import { changeState } from "./dogAI"
 
 
 export function handleClicks() {
-	const clickedEntities = engine.getEntitiesWith(PointerEvents)
+	const clickedEntities = engine.getEntitiesWith(PointerHoverFeedback)
 	for (const [entity] of clickedEntities) {
-		if(wasEntityClicked(entity, InputAction.IA_PRIMARY)){
+		if(Input.isTriggered(InputAction.IA_PRIMARY, PointerEventType.PET_DOWN, entity)){
 			if(NPComponent.has(entity)){
 				const currentState = NPComponent.getMutable(entity)
 				if(currentState.state === dogStates.Sit){ 

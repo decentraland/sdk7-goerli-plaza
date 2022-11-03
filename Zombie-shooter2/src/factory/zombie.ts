@@ -18,7 +18,7 @@ export function createZombie(xPos: number): Entity {
       src: 'models/zombie.glb'
     })
   } else {
-	MeshRenderer.create(zombie, { box: { uvs: [] } })
+	MeshRenderer.create(zombie, { mesh: {$case:"box", box: { uvs:[]}}  })
   }
 
   MoveTransformComponent.create(zombie, {
@@ -54,7 +54,7 @@ export function createZombie(xPos: number): Entity {
     ]
   })
 
-   PointerEvents.create(zombie, {
+   PointerHoverFeedback.create(zombie, {
 		pointerEvents: [
 			{
 			  eventType: PointerEventType.PET_DOWN,

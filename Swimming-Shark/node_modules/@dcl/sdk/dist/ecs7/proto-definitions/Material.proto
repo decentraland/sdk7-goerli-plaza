@@ -3,22 +3,10 @@ syntax = "proto3";
 package decentraland.sdk.components;
 
 import "decentraland/common/colors.proto";
+import "decentraland/common/texture.proto";
 import "decentraland/sdk/components/common/id.proto";
 
 option (common.ecs_component_id) = 1017;
-
-enum TextureWrapMode {
-  TWM_REPEAT = 0;
-  TWM_CLAMP = 1;
-  TWM_MIRROR = 2;
-  TWM_MIRROR_ONCE = 3;
-}
-
-enum TextureFilterMode {
-  TFM_POINT = 0;
-  TFM_BILINEAR = 1;
-  TFM_TRILINEAR = 2;
-}
 
 enum MaterialTransparencyMode {
   MTM_OPAQUE = 0;
@@ -29,19 +17,14 @@ enum MaterialTransparencyMode {
 }
 
 message PBMaterial {
-  message Texture {
-    string src = 1;
-    optional TextureWrapMode wrap_mode = 2; // default = TextureWrapMode.Clamp
-    optional TextureFilterMode filter_mode = 3; // default = FilterMode.Bilinear
-  }
-
-  optional Texture texture = 1; // default = null
+  optional decentraland.common.TextureUnion texture = 1; // default = null
+  
   optional float alpha_test = 2; // default = 0.5. range value: from 0 to 1
   optional bool cast_shadows = 3; // default =  true
 
-  optional Texture alpha_texture = 4; // default = null
-  optional Texture emissive_texture = 5; // default = null
-  optional Texture bump_texture = 6; // default = null
+  optional decentraland.common.TextureUnion alpha_texture = 4; // default = null
+  optional decentraland.common.TextureUnion emissive_texture = 5; // default = null
+  optional decentraland.common.TextureUnion bump_texture = 6; // default = null
 
   optional decentraland.common.Color3 albedo_color = 7; // default = white;
   optional decentraland.common.Color3 emissive_color = 8; // default = black;

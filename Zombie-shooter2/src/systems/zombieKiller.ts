@@ -6,7 +6,7 @@ import { ensureGameController } from '../game'
 
 export function zombieKiller() {
   for (const [zombieEntity] of engine.getEntitiesWith(ZombieComponent)) {
-	if (wasEntityClicked(zombieEntity, InputAction.IA_PRIMARY)) {
+	if (Input.isTriggered(InputAction.IA_PRIMARY, PointerEventType.PET_DOWN, zombieEntity)) {
       dcl.log('BOOM!!! ', zombieEntity)
 
        const zombieTransform = Transform.getOrNull(zombieEntity)

@@ -12,7 +12,7 @@ function createCube(x: number, y: number, z: number) {
     scale: { x: 0.5, y: 0.5, z: 0.5}
   })
 
-  MeshRenderer.create(myEntity, { box: { uvs: [] } })
+  MeshRenderer.create(myEntity, { mesh: {$case:"box", box: { uvs:[]}}  })
 
   return myEntity
 }
@@ -26,8 +26,6 @@ for (var x = 0.5; x < 16; x += 0.5) {
 
 
 addSystem(CircleHoverSystem, { t: 0 })
-
-
 
 
 const sign = engine.addEntity(true)

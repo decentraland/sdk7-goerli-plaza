@@ -6,17 +6,17 @@ export function createCone() {
 	  position: { x: 3, y: 1, z: 3 }
 	})
   
-	MeshRenderer.create(cone, { cylinder: {    
+	MeshRenderer.create(cone, { mesh: { $case:"cylinder", cylinder: {    
 	  radiusTop: 0,
 	  radiusBottom: 1
-	}})
+	}}})
 
-	MeshCollider.create(cone, { cylinder: {    
+	MeshCollider.create(cone, { mesh: { $case:"cylinder", cylinder:{  
 		radiusTop: 0,
 		radiusBottom: 1
-	  }})
+	}}})
 
-	PointerEvents.create(cone, {
+	PointerHoverFeedback.create(cone, {
 		pointerEvents: [
 			{
 			  eventType: PointerEventType.PET_DOWN,

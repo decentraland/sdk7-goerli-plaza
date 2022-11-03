@@ -25,22 +25,22 @@ export function setupGlobalEvents() {
   const MagicGlobalEntity = undefined as any as Entity
 
   engine.addSystem(() => {
-    if (isPointerEventActive(MagicGlobalEntity, InputAction.IA_POINTER, PointerEventType.PET_DOWN)) {
+    if (Input.isTriggered(InputAction.IA_POINTER, PointerEventType.PET_DOWN, MagicGlobalEntity)) {
       PainterComponent.createOrReplace(globalPointerDownCube)
     }
-    if (isPointerEventActive(MagicGlobalEntity, InputAction.IA_POINTER, PointerEventType.PET_UP)) {
+    if (Input.isTriggered(InputAction.IA_POINTER, PointerEventType.PET_UP, MagicGlobalEntity)) {
       PainterComponent.createOrReplace(globalPointerUpCube)
     }
-    if (isPointerEventActive(MagicGlobalEntity, InputAction.IA_PRIMARY, PointerEventType.PET_DOWN)) {
+    if (Input.isTriggered(InputAction.IA_PRIMARY, PointerEventType.PET_DOWN, MagicGlobalEntity)) {
       PainterComponent.createOrReplace(globalPrimaryDownCube)
     }
-    if (isPointerEventActive(MagicGlobalEntity, InputAction.IA_PRIMARY, PointerEventType.PET_UP)) {
+    if (Input.isTriggered(InputAction.IA_PRIMARY, PointerEventType.PET_UP, MagicGlobalEntity)) {
       PainterComponent.createOrReplace(globalPrimaryUpCube)
     }
-    if (isPointerEventActive(MagicGlobalEntity, InputAction.IA_SECONDARY, PointerEventType.PET_DOWN)) {
+    if (Input.isTriggered(InputAction.IA_SECONDARY, PointerEventType.PET_DOWN, MagicGlobalEntity)) {
       PainterComponent.createOrReplace(globalSecondaryDownCube)
     }
-    if (isPointerEventActive(MagicGlobalEntity, InputAction.IA_SECONDARY, PointerEventType.PET_UP)) {
+    if (Input.isTriggered(InputAction.IA_SECONDARY, PointerEventType.PET_UP, MagicGlobalEntity)) {
       PainterComponent.createOrReplace(globalSecondaryUpCube)
     }
   })

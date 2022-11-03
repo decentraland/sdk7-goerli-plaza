@@ -100,7 +100,7 @@ export function enterState(entity:Entity, newState: dogStates){
 		case dogStates.Sit:
 			const SitAnim = animator.states.find((anim)=>{return anim.name == "Sitting"})
 			if(SitAnim) SitAnim.playing = true
-			const MutablePointerEvent = PointerEvents.getMutable(entity).pointerEvents[0]
+			const MutablePointerEvent = PointerHoverFeedback.getMutable(entity).pointerEvents[0]
 			if(MutablePointerEvent.eventInfo){
 				MutablePointerEvent.eventInfo.hoverText =  "Stand"
 			}
@@ -168,7 +168,7 @@ export function leaveState(entity:Entity, oldState: dogStates){
 			const SitAnim = animator.states.find((anim)=>{return anim.name == "Sitting"})
 			if(SitAnim) SitAnim.playing = false
 
-			const MutablePointerEvent = PointerEvents.getMutable(entity).pointerEvents[0]
+			const MutablePointerEvent = PointerHoverFeedback.getMutable(entity).pointerEvents[0]
 			if(MutablePointerEvent.eventInfo){
 				MutablePointerEvent.eventInfo.hoverText =  "Sit"
 			}

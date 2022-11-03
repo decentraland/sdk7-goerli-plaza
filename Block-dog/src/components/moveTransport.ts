@@ -24,3 +24,9 @@ const MoveTransportData = {
 
 
 export const MoveTransformComponent = engine.defineComponent(MoveTransportData, COMPONENT_ID)
+
+
+const originRotation = Quaternion.fromEulerDegress(0, 90, 0)
+const targetRotation = Quaternion.fromEulerDegress(0, 0, 0)
+
+let newRotation = Quaternion.slerp(originRotation, targetRotation, 0.6)

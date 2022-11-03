@@ -94,13 +94,9 @@ export function birdSystem(dt: number){
 				
 				})
 
-				
-
 				const mutableTransform = Transform.getMutable(bird)
-
 				
 				Vector3.Up()
-
 				turn(bird, nextPos)
 
 			}

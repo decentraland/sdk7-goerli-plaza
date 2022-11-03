@@ -97,7 +97,7 @@ export function createDog(): Entity {
 		paused: false
 	})
 
-	PointerEvents.create(dog, {
+	PointerHoverFeedback.create(dog, {
 		pointerEvents: [
 			{
 			  eventType: PointerEventType.PET_DOWN,

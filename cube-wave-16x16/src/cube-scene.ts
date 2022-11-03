@@ -11,7 +11,7 @@ function createCube(x: number, y: number, z: number) {
   })
 
 
-  MeshRenderer.create(myEntity, { box: { uvs: [] } })
+  MeshRenderer.create(myEntity, { mesh: {$case:"box", box: { uvs:[]}}  })
 
   return myEntity
 }

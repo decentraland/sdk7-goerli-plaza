@@ -24,7 +24,7 @@ let garden = createGLTF({
 	rotation: {x:0, y:180, z:0, w:1}
   }, "models/BlockDogBowl.gltf")
 
-  PointerEvents.create(bowl, {
+  PointerHoverFeedback.create(bowl, {
 	pointerEvents: [
 		{
 		  eventType: PointerEventType.PET_DOWN,

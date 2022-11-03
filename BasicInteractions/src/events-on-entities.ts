@@ -6,7 +6,7 @@ import { createMesh } from './utils'
 
 export function setupEventOnEntities() {
   const pointerDownCube = createMesh(Vector3.create(2, 1, 4), 'Pointer down', 1, false)
-  PointerEvents.create(pointerDownCube, {
+  PointerHoverFeedback.create(pointerDownCube, {
     pointerEvents: [
       {
         eventType: PointerEventType.PET_DOWN,
@@ -21,7 +21,7 @@ export function setupEventOnEntities() {
   // Pointer Up Cube
 
   const pointerUpCube = createMesh(Vector3.create(2, 1, 6), 'Pointer up', 1, false)
-  PointerEvents.create(pointerUpCube, {
+  PointerHoverFeedback.create(pointerUpCube, {
     pointerEvents: [
       {
         eventType: PointerEventType.PET_UP,
@@ -35,7 +35,7 @@ export function setupEventOnEntities() {
 
   //  Primary Down Cube (while pointing)
   const primaryDownCube = createMesh(Vector3.create(8, 1, 12), 'Primary down', 1, false)
-  PointerEvents.create(primaryDownCube, {
+  PointerHoverFeedback.create(primaryDownCube, {
     pointerEvents: [
       {
         eventType: PointerEventType.PET_DOWN,
@@ -48,7 +48,7 @@ export function setupEventOnEntities() {
   })
   // Primary Up Cube
   const primaryUpCube = createMesh(Vector3.create(10, 1, 12), 'Primary up', 1, false)
-  PointerEvents.create(primaryUpCube, {
+  PointerHoverFeedback.create(primaryUpCube, {
     pointerEvents: [
       {
         eventType: PointerEventType.PET_UP,
@@ -62,7 +62,7 @@ export function setupEventOnEntities() {
 
   // Secondary Down Cube
   const secondaryDownCube = createMesh(Vector3.create(12, 1, 12), 'Secondary down', 1, false)
-  PointerEvents.create(secondaryDownCube, {
+  PointerHoverFeedback.create(secondaryDownCube, {
     pointerEvents: [
       {
         eventType: PointerEventType.PET_DOWN,
@@ -76,7 +76,7 @@ export function setupEventOnEntities() {
 
   // Secondary Up Cube
   const secondaryUpCube = createMesh(Vector3.create(14, 1, 12), 'Secondary up', 1, false)
-  PointerEvents.create(secondaryUpCube, {
+  PointerHoverFeedback.create(secondaryUpCube, {
     pointerEvents: [
       {
         eventType: PointerEventType.PET_UP,
@@ -89,22 +89,22 @@ export function setupEventOnEntities() {
   })
 
   engine.addSystem(() => {
-    if (isPointerEventActive(pointerDownCube, InputAction.IA_POINTER, PointerEventType.PET_DOWN)) {
+    if (Input.isTriggered(InputAction.IA_POINTER, PointerEventType.PET_DOWN, pointerDownCube)) {
       PainterComponent.createOrReplace(pointerDownCube)
     }
-    if (isPointerEventActive(pointerUpCube, InputAction.IA_POINTER, PointerEventType.PET_UP)) {
+    if (Input.isTriggered(InputAction.IA_POINTER, PointerEventType.PET_UP, pointerUpCube)) {
       PainterComponent.createOrReplace(pointerUpCube)
     }
-    if (isPointerEventActive(primaryDownCube, InputAction.IA_PRIMARY, PointerEventType.PET_DOWN)) {
+    if (Input.isTriggered(InputAction.IA_PRIMARY, PointerEventType.PET_DOWN, primaryDownCube)) {
       PainterComponent.createOrReplace(primaryDownCube)
     }
-    if (isPointerEventActive(primaryUpCube, InputAction.IA_PRIMARY, PointerEventType.PET_UP)) {
+    if (Input.isTriggered(InputAction.IA_PRIMARY, PointerEventType.PET_UP, primaryUpCube)) {
       PainterComponent.createOrReplace(primaryUpCube)
     }
-    if (isPointerEventActive(secondaryDownCube, InputAction.IA_SECONDARY, PointerEventType.PET_DOWN)) {
+    if (Input.isTriggered(InputAction.IA_SECONDARY, PointerEventType.PET_DOWN, secondaryDownCube)) {
       PainterComponent.createOrReplace(secondaryDownCube)
     }
-    if (isPointerEventActive(secondaryUpCube, InputAction.IA_SECONDARY, PointerEventType.PET_UP)) {
+    if (Input.isTriggered(InputAction.IA_SECONDARY, PointerEventType.PET_UP, secondaryUpCube)) {
       PainterComponent.createOrReplace(secondaryUpCube)
     }
   })

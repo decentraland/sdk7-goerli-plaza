@@ -4,8 +4,8 @@ const callbackMap = new Map<Entity, (entity:Entity) => void>()
 
 export function clickedSystem(dt: number) {
 
-	for (const [entity] of engine.getEntitiesWith(PointerEvents)) {
-	  if (wasEntityClicked(entity, InputAction.IA_PRIMARY)) {
+	for (const [entity] of engine.getEntitiesWith(PointerHoverFeedback)) {
+	  if (Input.isTriggered(InputAction.IA_PRIMARY, PointerEventType.PET_DOWN, entity)) {
 		const fn = callbackMap.get(entity)
 		if (fn) fn(entity)
 	  }
@@ -16,7 +16,7 @@ engine.addSystem(clickedSystem)
 
 export function addClickBehavior (entity:Entity, fn:(entity:Entity) => void ) {
 
-	PointerEvents.create(entity, {
+	PointerHoverFeedback.create(entity, {
 		pointerEvents: [
 			{
 			  eventType: PointerEventType.PET_DOWN,
