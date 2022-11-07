@@ -52,7 +52,7 @@ export function pickingGlassSystem() {
 
   // Only happens when there isn't any PickedUp component
   for (const [entity, glass] of engine.getEntitiesWith(BeerGlass)) {
-    if (!glass.beingFilled && Input.wasInputJustActive(InputAction.IA_PRIMARY, PointerEventType.PET_DOWN, entity)) {
+    if (!glass.beingFilled && Input.isTriggered(InputAction.IA_PRIMARY, PointerEventType.PET_DOWN, entity)) {
       const parentBeer = engine.addEntity()
       PickedUp.create(parentBeer, {
         child: entity

@@ -39,7 +39,7 @@ export function tapPumpSystem(dt: number) {
       }
 
       // Listen the action
-    } else if (Input.wasInputJustActive(InputAction.IA_PRIMARY, PointerEventType.PET_DOWN, entity)) {
+    } else if (Input.isTriggered(InputAction.IA_PRIMARY, PointerEventType.PET_DOWN, entity)) {
       const glassEntity = getBeerBehindTap(tapReadonly.beerType)
       if (!glassEntity) {
         // TODO: notify that there is no glass
