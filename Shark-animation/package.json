@@ -1,0 +1,22 @@
+{
+	"name": "dcl-project",
+	"version": "1.0.0",
+	"description": "ECS7 ",
+	"scripts": {
+		"start": "dcl start",
+		"build": "build-ecs",
+		"watch": "build-ecs --watch",
+		"ecs:install-next": "npm install --save-dev @dcl/sdk@next",
+		"lint": "eslint . --ext .ts",
+		"lint:fix": "eslint . --ext .ts --fix"
+	},
+	"devDependencies": {
+		"@dcl/eslint-config": "^1.0.1",
+		"@dcl/sdk": "^7.0.0-3388940429.commit-45b2012"
+	},
+	"engines": {
+		"node": ">=14.0.0",
+		"npm": ">=6.0.0",
+		"yarn": "please use npm"
+	}
+}

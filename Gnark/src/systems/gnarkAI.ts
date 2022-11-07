@@ -145,6 +145,7 @@ export function leaveState(entity:Entity, oldState: gnarkStates){
 	const animator = Animator.getMutable(entity)
 	switch(oldState) {
 		case gnarkStates.WALKING:
+			// TODO use Animator.Play
 			const walkAnim = animator.states.find( (anim) =>{return anim.name=="walk"})
 			if(!walkAnim) return
 			walkAnim.playing = false
