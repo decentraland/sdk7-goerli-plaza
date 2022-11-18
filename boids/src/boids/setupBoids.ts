@@ -114,9 +114,13 @@ export function initBoidController() {
     boidController.boundaryYOffset = heightBottomOffset
 
 
-    boidController.aligmentWeight = 1
-    boidController.cohesionWeight = 1
-    boidController.separationWeight = 1
+    boidController.avoidRadius = BOID_CONFIG.AVOID_RADIUS //8
+    boidController.seekRadius = BOID_CONFIG.SEEK_RADIUS//2.75
+    //boidController.cohesionRadius = BOID_CONFIG.COHESION_RADIUS
+    boidController.cohesionWeight = BOID_CONFIG.COHESION_WEIGHT//-.2
+    boidController.aligmentWeight = BOID_CONFIG.ALIGNMENT_WEIGHT//-.2
+    boidController.separationWeight = BOID_CONFIG.SEPARATION_WEIGHT//1
+
 
     // create control helper for example controls
     const controlHelper = new ControlHelper(boidController);
