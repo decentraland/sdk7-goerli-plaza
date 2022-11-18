@@ -64,7 +64,7 @@ export function pickingGlassSystem() {
       })
       Transform.createOrReplace(entity, {
         position: Vector3.create(0, 0.1, 0.175),
-        rotation: Quaternion.fromEulerDegress(0, -90, 30),
+        rotation: Quaternion.fromEulerDegrees(0, -90, 30),
         parent: parentBeer
       })
 

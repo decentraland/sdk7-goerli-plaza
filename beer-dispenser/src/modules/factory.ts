@@ -103,7 +103,7 @@ export function createTap(tapBeerType: BeerType, dispenseEntity: Entity) {
   Transform.create(colliderEntity, {
     parent: colliderParentEntity,
     scale: Vector3.scale(Vector3.One(), 0.33),
-    rotation: Quaternion.fromEulerDegress(90, 0, 0)
+    rotation: Quaternion.fromEulerDegrees(90, 0, 0)
   })
 
   MeshCollider.create(colliderEntity, { mesh: { $case: 'plane', plane: {} } })
