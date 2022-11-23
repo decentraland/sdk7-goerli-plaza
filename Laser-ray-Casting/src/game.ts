@@ -26,9 +26,7 @@ function setup() {
   })
 
   const rayCubeObject = engine.addEntity()
-  MeshRenderer.create(rayCubeObject, {
-    mesh: { $case: 'box', box: { uvs: [] } }
-  })
+  MeshRenderer.setBox(rayCubeObject)
   Transform.create(rayCubeObject, {
     parent: rayCube,
     scale: Vector3.create(0.1, 0.1, rayDistance),
@@ -41,12 +39,8 @@ function setup() {
     Transform.create(cube, {
       position: Vector3.create(2 + i * 3, 1.5, 16)
     })
-    MeshRenderer.create(cube, {
-      mesh: { $case: 'box', box: { uvs: [] } }
-    })
-    MeshCollider.create(cube, {
-      mesh: { $case: 'box', box: { uvs: [] } }
-    })
+    MeshRenderer.setBox(cube)
+    MeshCollider.setBox(cube)
     Material.create(cube, defaultMaterial)
     MovingCube.create(cube)
   }

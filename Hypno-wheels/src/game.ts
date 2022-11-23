@@ -21,21 +21,11 @@ setup()
 
 function createWheel(position: Vector3, speed: number, direction: Vector3) {
   const wheel = engine.addEntity()
-  MeshRenderer.create(wheel, {
-    mesh: {
-      $case: 'cylinder',
-      cylinder: {}
-    }
-  })
-  MeshCollider.create(wheel, {
-    mesh: {
-      $case: 'cylinder',
-      cylinder: {}
-    }
-  })
+  MeshRenderer.setCylinder(wheel)
+  MeshCollider.setCylinder(wheel)
   Transform.create(wheel, {
     position,
-    rotation: Quaternion.fromEulerDegress(90, 0, 0),
+    rotation: Quaternion.fromEulerDegrees(90, 0, 0),
     scale: Vector3.create(1, 0.05, 1)
   })
 

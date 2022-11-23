@@ -8,7 +8,7 @@ function spawnSmokePuff(entity: Entity, parent: Entity) {
   }
   const size = Math.random() / 2 + 0.2
 
-  MeshRenderer.createOrReplace(entity, { mesh: { $case: 'plane', plane: { uvs: [] } } })
+  MeshRenderer.setPlane(entity)
   Material.createOrReplace(entity, smokeMaterial)
 
   Transform.createOrReplace(entity, {

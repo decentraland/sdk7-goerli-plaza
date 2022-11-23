@@ -6,15 +6,8 @@ export function createCone() {
     position: { x: 3, y: 1, z: 3 }
   })
 
-  MeshRenderer.create(cone, { cylinder: {    
-	radiusTop: 0,
-    radiusBottom: 1
-  }})
-
-  MeshCollider.create(cone, { cylinder: {    
-	radiusTop: 0,
-    radiusBottom: 1
-  }})
+  MeshRenderer.setCylinder(cone, 1, 0)
+  MeshCollider.setCylinder(cone, 1, 0)
 
   return cone
 }

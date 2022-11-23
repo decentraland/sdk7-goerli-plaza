@@ -6,22 +6,22 @@ function createCube(x: number, y: number, z: number, spawner = false): Entity {
     position: { x, y, z }
   })
 
-  MeshRenderer.create(meshEntity, { mesh: {$case:"box", box: { uvs:[]}}  })
-  MeshCollider.create(meshEntity, { mesh: {$case:"box", box: { }}  })
+  MeshRenderer.setBox(meshEntity)
+  MeshCollider.setBox(meshEntity)
 
   if (spawner) {
     PointerHoverFeedback.create(meshEntity, {
-		pointerEvents: [
-			{
-			  eventType: PointerEventType.PET_DOWN,
-			  eventInfo: {
-				button: InputAction.IA_PRIMARY,
-				hoverText: 'Press E to spawn',
-				maxDistance: 100,
-				showFeedback: true
-			  }
-			}
-		  ]
+      pointerEvents: [
+        {
+          eventType: PointerEventType.PET_DOWN,
+          eventInfo: {
+            button: InputAction.IA_PRIMARY,
+            hoverText: 'Press E to spawn',
+            maxDistance: 100,
+            showFeedback: true
+          }
+        }
+      ]
     })
   }
 
@@ -38,7 +38,7 @@ function circularSystem(dt: number) {
 
 function spawnerSystem() {
   for (const [entity] of engine.getEntitiesWith(PointerHoverFeedback)) {
-    if (Input.isTriggered(InputAction.IA_PRIMARY,  PointerEventType.PET_DOWN, entity)) {
+    if (Input.isTriggered(InputAction.IA_PRIMARY, PointerEventType.PET_DOWN, entity)) {
       createCube(
         1 + Math.random() * 8,
         Math.random() * 8,
@@ -49,8 +49,8 @@ function spawnerSystem() {
   }
 
   if (Input.isTriggered(InputAction.IA_SECONDARY, PointerEventType.PET_DOWN)) {
-	const cubeTransform = Transform.getMutable(cube)
-	cubeTransform.scale.y += 0.3
+    const cubeTransform = Transform.getMutable(cube)
+    cubeTransform.scale.y += 0.3
   }
 }
 

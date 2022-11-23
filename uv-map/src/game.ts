@@ -17,9 +17,7 @@ function setup() {
     roughness: 1
   })
   // create plane to show the frames on
-  MeshRenderer.create(robotFace, {
-    mesh: { $case: 'plane', plane: { uvs: Array.from({ length: 8 }, () => 0) } }
-  })
+  MeshRenderer.setPlane(robotFace, Array.from({ length: 8 }, () => 0))
   Transform.create(robotFace, {
     position: Vector3.create(8, 1.5, 8.005),
     scale: Vector3.create(0.4, 0.4, 0.4)

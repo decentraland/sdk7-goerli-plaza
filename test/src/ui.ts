@@ -5,9 +5,9 @@
 // 	YGDisplay,
 // 	YGJustify
 //   } from '@dcl/react-ecs'
-  
-  let counter = 0
-  
+
+let counter = 0
+
 //   export const uiComponent = () => (
 // 	<UiEntity
 // 	  uiTransform={{
@@ -61,70 +61,69 @@
 // 	  </UiEntity>
 // 	</UiEntity>
 //   )
-  
- 
-// renderUi(uiComponent)
-  
 
-  function getPlayerPosition() {
+
+// renderUi(uiComponent)
+
+
+function getPlayerPosition() {
 	const playerPosition = Transform.getOrNull(engine.PlayerEntity)
 	if (!playerPosition) return ''
 	const { x, y, z } = playerPosition.position
 	return `{x: ${x.toFixed(2)}, y: ${y.toFixed(2)}, z: ${z.toFixed(2)} }`
-  }
- 
-  // Cube factory
-  function createCube(x: number, y: number, z: number, spawner = true): Entity {
+}
+
+// Cube factory
+function createCube(x: number, y: number, z: number, spawner = true): Entity {
 	const meshEntity = engine.addEntity()
 	Transform.create(meshEntity, { position: { x, y, z } })
-	MeshRenderer.create(meshEntity, { mesh: {$case:"box", box: { uvs:[]}}  })
-	MeshCollider.create(meshEntity, { mesh: {$case:"box", box: { }}  })
+	MeshRenderer.setBox(meshEntity)
+	MeshCollider.setBox(meshEntity)
 	if (spawner) {
-	  PointerHoverFeedback.create(meshEntity, {
-		pointerEvents: [
-		  {
-			eventType: PointerEventType.PET_DOWN,
-			eventInfo: {
-			  button: InputAction.IA_PRIMARY,
-			  hoverText: 'Press E to spawn',
-			  maxDistance: 100,
-			  showFeedback: true
-			}
-		  }
-		]
-	  })
+		PointerHoverFeedback.create(meshEntity, {
+			pointerEvents: [
+				{
+					eventType: PointerEventType.PET_DOWN,
+					eventInfo: {
+						button: InputAction.IA_PRIMARY,
+						hoverText: 'Press E to spawn',
+						maxDistance: 100,
+						showFeedback: true
+					}
+				}
+			]
+		})
 	}
 	return meshEntity
-  }
-  
-  // Systems
-  function circularSystem(dt: number) {
+}
+
+// Systems
+function circularSystem(dt: number) {
 	const entitiesWithMeshRenderer = engine.getEntitiesWith(
-	  MeshRenderer,
-	  Transform
+		MeshRenderer,
+		Transform
 	)
 	for (const [entity, _meshRenderer, _transform] of entitiesWithMeshRenderer) {
-	  const mutableTransform = Transform.getMutable(entity)
-  
-	  mutableTransform.rotation = Quaternion.multiply(
-		mutableTransform.rotation,
-		Quaternion.fromAngleAxis(dt * 10, Vector3.Up())
-	  )
+		const mutableTransform = Transform.getMutable(entity)
+
+		mutableTransform.rotation = Quaternion.multiply(
+			mutableTransform.rotation,
+			Quaternion.fromAngleAxis(dt * 10, Vector3.Up())
+		)
 	}
-  }
-  
-  function spawnerSystem() {
+}
+
+function spawnerSystem() {
 	const clickedCubes = engine.getEntitiesWith(PointerHoverFeedback)
 	for (const [entity] of clickedCubes) {
-	  if (Input.isTriggered(InputAction.IA_PRIMARY, PointerEventType.PET_DOWN, entity)) {
-		counter++
-	  }
+		if (Input.isTriggered(InputAction.IA_PRIMARY, PointerEventType.PET_DOWN, entity)) {
+			counter++
+		}
 	}
-  }
-  
-  // Init
-  createCube(8, 1, 8)
-  engine.addSystem(circularSystem)
-  engine.addSystem(spawnerSystem)
-  
-  
+}
+
+// Init
+createCube(8, 1, 8)
+engine.addSystem(circularSystem)
+engine.addSystem(spawnerSystem)
+
