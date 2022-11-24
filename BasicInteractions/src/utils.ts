@@ -1,5 +1,3 @@
-
-
 export function createMesh(
   position: Vector3.ReadonlyVector3,
   text: string = '',
@@ -38,6 +36,3 @@ export function addLabel(text: string, parent: Entity) {
     font: Font.F_SANS_SERIF
   })
 }
-
-
-
