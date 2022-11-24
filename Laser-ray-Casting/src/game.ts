@@ -26,28 +26,22 @@ function setup() {
   })
 
   const rayCubeObject = engine.addEntity()
-  MeshRenderer.create(rayCubeObject, {
-    mesh: { $case: 'box', box: { uvs: [] } }
-  })
+  MeshRenderer.setBox(rayCubeObject)
   Transform.create(rayCubeObject, {
     parent: rayCube,
     scale: Vector3.create(0.1, 0.1, rayDistance),
     position: Vector3.create(0, 0, rayDistance / 2 + 3)
   })
-  Material.create(rayCubeObject, rayMaterial)
+  Material.setPbrMaterial(rayCubeObject, rayMaterial)
 
   for (let i = 0; i < boxesCount; i++) {
     const cube = engine.addEntity()
     Transform.create(cube, {
       position: Vector3.create(2 + i * 3, 1.5, 16)
     })
-    MeshRenderer.create(cube, {
-      mesh: { $case: 'box', box: { uvs: [] } }
-    })
-    MeshCollider.create(cube, {
-      mesh: { $case: 'box', box: { uvs: [] } }
-    })
-    Material.create(cube, defaultMaterial)
+    MeshRenderer.setBox(cube)
+    MeshCollider.setBox(cube)
+    Material.setPbrMaterial(cube, defaultMaterial)
     MovingCube.create(cube)
   }
 

@@ -106,9 +106,9 @@ export function createTap(tapBeerType: BeerType, dispenseEntity: Entity) {
     rotation: Quaternion.fromEulerDegrees(90, 0, 0)
   })
 
-  MeshCollider.create(colliderEntity, { mesh: { $case: 'plane', plane: {} } })
+  MeshCollider.setPlane(colliderEntity)
   // Debug to see the collider
-  MeshRenderer.create(colliderEntity, { mesh: { $case: 'plane', plane: { uvs: [] } } })
+  MeshRenderer.setPlane(colliderEntity)
 }
 
 export function playSound(audio: string, loop: boolean = false, position?: Vector3) {

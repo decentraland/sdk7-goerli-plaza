@@ -8,7 +8,7 @@ function createJukebox(position: Vector3) {
   GltfContainer.create(jukebox, { src: 'models/Jukebox.gltf' })
   Transform.create(jukebox, {
     position,
-    rotation: Quaternion.fromEulerDegress(0, 180, 0),
+    rotation: Quaternion.fromEulerDegrees(0, 180, 0),
     scale: Vector3.create(0.6, 0.6, 0.6)
   })
 

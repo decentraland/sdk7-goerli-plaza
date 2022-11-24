@@ -5,9 +5,9 @@ import { ensureGameController } from '../game'
 import { Interpolate } from '../helper/interpolation'
 
 export function moveSystem(dt: number) {
-  for (const [entity, , transform] of engine.getEntitiesWith(MoveTransformComponent, Transform, ZombieComponent)) {
-	const move =MoveTransformComponent.getMutable(entity)
-	const transform = Transform.getMutable(entity)
+  for (const [entity] of engine.getEntitiesWith(MoveTransformComponent, Transform, ZombieComponent)) {
+    const move = MoveTransformComponent.getMutable(entity)
+    const transform = Transform.getMutable(entity)
 
     move.normalizedTime = Math.min(Math.max(move.normalizedTime + dt * move.speed, 0), 1)
     move.lerpTime = Interpolate(move.interpolationType, move.normalizedTime)

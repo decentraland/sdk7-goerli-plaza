@@ -1,12 +1,11 @@
-import { GameControllerComponent } from "./components/gameController"
-import { createCone } from "./factory/cone"
-import { createNft } from "./factory/nft"
-import { playSound } from "./factory/sound"
-import { createText } from "./factory/text"
-import { createZombie } from "./factory/zombie"
-import { moveSystem } from "./systems/moveZombie"
-import { zombieKiller } from "./systems/zombieKiller"
-
+import { GameControllerComponent } from './components/gameController'
+import { createCone } from './factory/cone'
+import { createNft } from './factory/nft'
+import { playSound } from './factory/sound'
+import { createText } from './factory/text'
+import { createZombie } from './factory/zombie'
+import { moveSystem } from './systems/moveZombie'
+import { zombieKiller } from './systems/zombieKiller'
 
 const _LIVES = 5
 const _WINNING_SCORE = 15
@@ -15,9 +14,7 @@ const _SPAWN_INTERVAL = 3
 const gameEntity = engine.addEntity()
 const coneStarterEntity = createCone()
 
-
-createText(coneStarterEntity,'Click Cone to Play')
-
+createText(coneStarterEntity, 'Click Cone to Play')
 
 export function ensureGameController() {
   if (GameControllerComponent.has(gameEntity)) {
@@ -78,7 +75,7 @@ function triggerGameStart() {
 export function gameLogicSystem(dt: number) {
   const gameController = ensureGameController()
 
-  if (coneStarterEntity && Input.isTriggered(InputAction.IA_PRIMARY, PointerEventType.PET_DOWN,  coneStarterEntity)) {
+  if (coneStarterEntity && Input.isTriggered(InputAction.IA_PRIMARY, PointerEventType.PET_DOWN, coneStarterEntity)) {
     triggerGameStart()
   }
 
@@ -125,8 +122,6 @@ function endGame() {
 
 engine.addSystem(zombieKiller)
 
-
 engine.addSystem(gameLogicSystem)
-
 
 engine.addSystem(moveSystem)

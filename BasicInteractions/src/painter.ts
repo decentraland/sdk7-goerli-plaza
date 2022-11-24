@@ -5,11 +5,11 @@ export const PainterComponent = engine.defineComponent(
   2022
 )
 
-const greenMaterial: PBMaterial = {
+const greenMaterial: PBMaterial_PbrMaterial = {
   albedoColor: { r: 0, g: 1, b: 0 }
 }
 
-const lightGreenMaterial: PBMaterial = {
+const lightGreenMaterial: PBMaterial_PbrMaterial = {
   albedoColor: { r: 0, g: 1, b: 1 }
 }
 
@@ -28,12 +28,17 @@ engine.addSystem((dt: number) => {
     value.t += dt
 
     const materialReadonly = Material.getOrNull(entity)
-    if (materialReadonly === null || !equalColor(materialReadonly.albedoColor, greenMaterial.albedoColor)) {
-      Material.createOrReplace(entity, { ...greenMaterial })
+    if (materialReadonly?.material?.$case === 'pbr') {
+      if (
+        materialReadonly === null ||
+        !equalColor(materialReadonly.material.pbr.albedoColor, greenMaterial.albedoColor)
+      ) {
+        Material.setPbrMaterial(entity, { ...greenMaterial })
+      }
     }
 
     if (value.t > 1) {
-      Material.createOrReplace(entity, { ...lightGreenMaterial })
+      Material.setPbrMaterial(entity, { ...lightGreenMaterial })
       PainterComponent.deleteFrom(entity)
     }
   }

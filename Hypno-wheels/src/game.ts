@@ -8,7 +8,7 @@ function setup() {
   Transform.create(stage, {
     position: Vector3.create(8, 0, 8),
     scale: Vector3.create(0.9, 1, 0.9),
-    rotation: Quaternion.fromEulerDegress(0, 270, 0)
+    rotation: Quaternion.fromEulerDegrees(0, 270, 0)
   })
 
   createWheel(Vector3.create(6, 2, 11.1), 20, Vector3.Up())
@@ -21,21 +21,11 @@ setup()
 
 function createWheel(position: Vector3, speed: number, direction: Vector3) {
   const wheel = engine.addEntity()
-  MeshRenderer.create(wheel, {
-    mesh: {
-      $case: 'cylinder',
-      cylinder: {}
-    }
-  })
-  MeshCollider.create(wheel, {
-    mesh: {
-      $case: 'cylinder',
-      cylinder: {}
-    }
-  })
+  MeshRenderer.setCylinder(wheel)
+  MeshCollider.setCylinder(wheel)
   Transform.create(wheel, {
     position,
-    rotation: Quaternion.fromEulerDegress(90, 0, 0),
+    rotation: Quaternion.fromEulerDegrees(90, 0, 0),
     scale: Vector3.create(1, 0.05, 1)
   })
 
@@ -43,10 +33,8 @@ function createWheel(position: Vector3, speed: number, direction: Vector3) {
     direction
   })
 
-  Material.create(wheel, {
-    texture: {
-      tex: { $case: 'texture', texture: { src: 'materials/hypno-wheel.png' } }
-    }
+  Material.setBasicMaterial(wheel, {
+    texture: Material.Texture.Common({ src: 'materials/hypno-wheel.png' })
   })
 
   EventsSystem.onPointerDown(

@@ -1,12 +1,10 @@
 import { MoveTransformComponent } from '../components/moveTransport'
 // import { Interpolate } from '../helper/interpolation'
 
-
 export function moveSystem(dt: number) {
   for (const [entity] of engine.getEntitiesWith(MoveTransformComponent, Transform)) {
-
-	const move = MoveTransformComponent.getMutable(entity)
-	const transform = Transform.getMutable(entity)
+    const move = MoveTransformComponent.getMutable(entity)
+    const transform = Transform.getMutable(entity)
     move.normalizedTime = Math.min(Math.max(move.normalizedTime + dt * move.speed, 0), 1)
     move.lerpTime = move.normalizedTime //  Interpolate(move.interpolationType, move.normalizedTime)
 

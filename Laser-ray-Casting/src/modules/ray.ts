@@ -7,15 +7,12 @@ export default function raycastSystem() {
       if (result.hits.length > 0) {
         for (const hit of result.hits) {
           if (hit.entityId) {
-            Material.createOrReplace(
-              hit.entityId as Entity,
-              entity === engine.CameraEntity ? hitMaterial2 : hitMaterial
-            )
+            Material.setPbrMaterial(hit.entityId as Entity, entity === engine.CameraEntity ? hitMaterial2 : hitMaterial)
           }
         }
       } else {
         for (const [entity] of engine.getEntitiesWith(MovingCube)) {
-          Material.createOrReplace(entity, defaultMaterial)
+          Material.setPbrMaterial(entity, defaultMaterial)
         }
       }
     }
@@ -27,7 +24,6 @@ export default function raycastSystem() {
       raycastMut.timestamp += 1
 
       Raycast.createOrReplace(entity, {
-        timestamp: raycastMut.timestamp,
         origin: transform.position,
         direction: Vector3.rotate(Vector3.Forward(), transform.rotation),
         maxDistance: raycastMut.power,

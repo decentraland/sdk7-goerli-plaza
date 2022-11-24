@@ -1,33 +1,25 @@
-
 export function createCone() {
-	const cone = engine.addEntity()
-  
-	Transform.create(cone, {
-	  position: { x: 3, y: 1, z: 3 }
-	})
-  
-	MeshRenderer.create(cone, { mesh: { $case:"cylinder", cylinder: {    
-	  radiusTop: 0,
-	  radiusBottom: 1
-	}}})
+  const cone = engine.addEntity()
 
-	MeshCollider.create(cone, { mesh: { $case:"cylinder", cylinder:{  
-		radiusTop: 0,
-		radiusBottom: 1
-	}}})
+  Transform.create(cone, {
+    position: { x: 3, y: 1, z: 3 }
+  })
 
-	PointerHoverFeedback.create(cone, {
-		pointerEvents: [
-			{
-			  eventType: PointerEventType.PET_DOWN,
-			  eventInfo: {
-				button: InputAction.IA_PRIMARY,
-				hoverText: 'Click',
-				showFeedback: true
-			  }
-			}
-		  ]
-    })
-  
-	return cone
-  }
+  MeshRenderer.setCylinder(cone, 1, 0)
+  MeshCollider.setCylinder(cone, 1, 0)
+
+  PointerHoverFeedback.create(cone, {
+    pointerEvents: [
+      {
+        eventType: PointerEventType.PET_DOWN,
+        eventInfo: {
+          button: InputAction.IA_PRIMARY,
+          hoverText: 'Click',
+          showFeedback: true
+        }
+      }
+    ]
+  })
+
+  return cone
+}
