@@ -1,5 +1,5 @@
-import { Sprite } from "./definitions"
-import updateSpriteFrameSystem from "./modules/spriteFrames"
+import { Sprite } from './definitions'
+import updateSpriteFrameSystem from './modules/spriteFrames'
 
 function setup() {
   // // 3d model of robot
@@ -10,14 +10,17 @@ function setup() {
   const robotFace = engine.addEntity()
 
   // // material for face
-  Material.create(robotFace, {
-    texture: { tex: { $case: 'texture', texture: { src: 'images/robotTalking.png' } } },
+  Material.setPbrMaterial(robotFace, {
+    texture: Material.Texture.Common({ src: 'images/robotTalking.png' }),
     specularIntensity: 0,
     metallic: 0,
     roughness: 1
   })
   // create plane to show the frames on
-  MeshRenderer.setPlane(robotFace, Array.from({ length: 8 }, () => 0))
+  MeshRenderer.setPlane(
+    robotFace,
+    Array.from({ length: 8 }, () => 0)
+  )
   Transform.create(robotFace, {
     position: Vector3.create(8, 1.5, 8.005),
     scale: Vector3.create(0.4, 0.4, 0.4)
@@ -34,4 +37,3 @@ function setup() {
 }
 
 setup()
-
