@@ -1,6 +1,4 @@
-
-
-import { InterpolationType } from "../helper/interpolation"
+import { InterpolationType } from '../helper/interpolation'
 
 // TODO: use higher number so we dont have conflicts (i.e. > 2000)
 const COMPONENT_ID = 2046
@@ -18,7 +16,7 @@ const MoveTransportData = {
   normalizedTime: Schemas.Float,
   lerpTime: Schemas.Float,
   speed: Schemas.Float,
-  interpolationType:  Schemas.Enum<InterpolationType>(Schemas.Int)
+  interpolationType: Schemas.Enum<InterpolationType>(Schemas.Int)
 }
 
 export const MoveTransformComponent = engine.defineComponent(MoveTransportData, COMPONENT_ID)

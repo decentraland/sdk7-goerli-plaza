@@ -1,4 +1,4 @@
-import { CustomComponents } from "../components"
+import { CustomComponents } from '../components'
 
 const callbackMap = new Map<Entity, () => void>()
 
@@ -8,7 +8,6 @@ export function onTimeUp(entity: Entity, callback: () => void) {
 
 export function timerSystem(dt: number) {
   for (const [entity] of engine.getEntitiesWith(CustomComponents.TimeOut)) {
-
     const timer = CustomComponents.TimeOut.getMutable(entity)
 
     if (timer.paused) return
@@ -22,8 +21,6 @@ export function timerSystem(dt: number) {
       CustomComponents.TimeOut.deleteFrom(entity)
       const fn = callbackMap.get(entity)
       if (fn) fn()
-
     }
   }
 }
-

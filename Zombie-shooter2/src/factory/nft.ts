@@ -1,4 +1,3 @@
-
 export function createNft(xPos: number): Entity {
   const nft = engine.addEntity()
 

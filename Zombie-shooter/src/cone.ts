@@ -1,4 +1,3 @@
-
 export function createCone() {
   const cone = engine.addEntity()
 

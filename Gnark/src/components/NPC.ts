@@ -1,16 +1,14 @@
-
 const COMPONENT_ID = 2066
 
 export enum gnarkStates {
-	WALKING,
-	TURNING,
-	YELLING	
+  WALKING,
+  TURNING,
+  YELLING
 }
 
-
 const NPCData = {
-	state: Schemas.Enum<gnarkStates>(Schemas.Int),
-	previousState: Schemas.Enum<gnarkStates>(Schemas.Int)
-  }
+  state: Schemas.Enum<gnarkStates>(Schemas.Int),
+  previousState: Schemas.Enum<gnarkStates>(Schemas.Int)
+}
 
-export const NPComponent = engine.defineComponent(NPCData, COMPONENT_ID )
+export const NPComponent = engine.defineComponent(NPCData, COMPONENT_ID)

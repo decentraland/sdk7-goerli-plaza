@@ -11,7 +11,7 @@ export function playSounds(dt: number, state: State) {
 
   const entitiesWSound = engine.getEntitiesWith(AudioSource)
   for (const [entity] of entitiesWSound) {
-	const audioSource = AudioSource.getMutable(entity)
+    const audioSource = AudioSource.getMutable(entity)
     audioSource.volume = 1
     audioSource.pitch = Math.random() * 5
     audioSource.playing = true

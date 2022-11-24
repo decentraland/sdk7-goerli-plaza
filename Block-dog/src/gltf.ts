@@ -1,9 +1,10 @@
 export function createGLTF(
   transform: {
-    position: { x: number, y: number, z: number },
-    scale: { x: number, y: number, z: number },
-    rotation: { x: number, y: number, z: number, w: number }
-  }, model: string
+    position: { x: number; y: number; z: number }
+    scale: { x: number; y: number; z: number }
+    rotation: { x: number; y: number; z: number; w: number }
+  },
+  model: string
 ): Entity {
   const gltf = engine.addEntity()
 
@@ -12,7 +13,6 @@ export function createGLTF(
   GltfContainer.create(gltf, {
     src: model
   })
-
 
   return gltf
 }

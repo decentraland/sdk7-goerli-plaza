@@ -1,4 +1,3 @@
-
 function createCube(x: number, y: number, z: number, spawner = false): Entity {
   const meshEntity = engine.addEntity()
 
@@ -35,16 +34,10 @@ function circularSystem(dt: number) {
   }
 }
 
-
 function spawnerSystem() {
   for (const [entity] of engine.getEntitiesWith(PointerHoverFeedback)) {
     if (Input.isTriggered(InputAction.IA_PRIMARY, PointerEventType.PET_DOWN, entity)) {
-      createCube(
-        1 + Math.random() * 8,
-        Math.random() * 8,
-        1 + Math.random() * 8,
-        false
-      )
+      createCube(1 + Math.random() * 8, Math.random() * 8, 1 + Math.random() * 8, false)
     }
   }
 
@@ -57,4 +50,3 @@ function spawnerSystem() {
 const cube = createCube(8, 1, 8, true)
 engine.addSystem(circularSystem)
 engine.addSystem(spawnerSystem)
-
