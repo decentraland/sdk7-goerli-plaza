@@ -14,7 +14,7 @@ jobs:
         with:
           node-version: 16.x
       - name: install decentraland
-        run: npm i -g decentraland@latest
+        run: npm i -g "https://sdk-team-cdn.decentraland.org/decentraland-cli/branch/feat/support-workspace-build/decentraland-3.14.0-20221123125739.commit-39da12e.tgz"
       - name: install dependencies
         run: npm i
       - name: build
