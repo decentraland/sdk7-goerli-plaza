@@ -33,10 +33,8 @@ function createWheel(position: Vector3, speed: number, direction: Vector3) {
     direction
   })
 
-  Material.create(wheel, {
-    texture: {
-      tex: { $case: 'texture', texture: { src: 'materials/hypno-wheel.png' } }
-    }
+  Material.setBasicMaterial(wheel, {
+    texture: Material.Texture.Common({ src: 'materials/hypno-wheel.png' })
   })
 
   EventsSystem.onPointerDown(
