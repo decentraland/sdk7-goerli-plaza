@@ -1,9 +1,9 @@
 export function createGLTF(
-	transform:{
-	position: {x:number,y:number,z:number} ,
-	scale: { x: number, y: number, z: number },
+  transform: {
+    position: { x: number, y: number, z: number },
+    scale: { x: number, y: number, z: number },
     rotation: { x: number, y: number, z: number, w: number }
-}, model:string
+  }, model: string
 ): Entity {
   const gltf = engine.addEntity()
 

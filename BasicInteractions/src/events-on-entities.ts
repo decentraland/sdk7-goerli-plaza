@@ -1,6 +1,5 @@
 // Pointer Down Cube
 
-
 import { PainterComponent } from './painter'
 import { createMesh } from './utils'
 

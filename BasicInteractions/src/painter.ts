@@ -5,11 +5,11 @@ export const PainterComponent = engine.defineComponent(
   2022
 )
 
-const greenMaterial: PBMaterial = {
+const greenMaterial: PBMaterial_PbrMaterial = {
   albedoColor: { r: 0, g: 1, b: 0 }
 }
 
-const lightGreenMaterial: PBMaterial = {
+const lightGreenMaterial: PBMaterial_PbrMaterial = {
   albedoColor: { r: 0, g: 1, b: 1 }
 }
 
