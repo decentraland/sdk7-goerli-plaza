@@ -32,7 +32,7 @@ function setup() {
     scale: Vector3.create(0.1, 0.1, rayDistance),
     position: Vector3.create(0, 0, rayDistance / 2 + 3)
   })
-  Material.create(rayCubeObject, rayMaterial)
+  Material.setPbrMaterial(rayCubeObject, rayMaterial)
 
   for (let i = 0; i < boxesCount; i++) {
     const cube = engine.addEntity()
@@ -41,7 +41,7 @@ function setup() {
     })
     MeshRenderer.setBox(cube)
     MeshCollider.setBox(cube)
-    Material.create(cube, defaultMaterial)
+    Material.setPbrMaterial(cube, defaultMaterial)
     MovingCube.create(cube)
   }
 
