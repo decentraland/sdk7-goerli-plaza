@@ -50,14 +50,14 @@ export function createSongButton(parent: Entity, x: number, y: number, song: Son
   const buttonWrapper = engine.addEntity()
   Transform.create(buttonWrapper, {
     position: Vector3.create(x, y, 0.7),
-    rotation: Quaternion.fromEulerDegress(0, 180, 0),
+    rotation: Quaternion.fromEulerDegrees(0, 180, 0),
     parent
   })
 
   const buttonLabel = engine.addEntity()
   Transform.create(buttonLabel, {
     position: Vector3.create(0.05, 0.053, -0.1),
-    rotation: Quaternion.fromEulerDegress(0, -180, 0),
+    rotation: Quaternion.fromEulerDegrees(0, -180, 0),
     parent: buttonWrapper
   })
 
@@ -72,7 +72,7 @@ export function createSongButton(parent: Entity, x: number, y: number, song: Son
   const button = engine.addEntity()
   Transform.create(button, {
     position: Vector3.create(0, 0, -0.04),
-    rotation: Quaternion.fromEulerDegress(270, 0, 0),
+    rotation: Quaternion.fromEulerDegrees(270, 0, 0),
     scale: Vector3.create(0.3, 0.3, 0.3),
     parent: buttonWrapper
   })

@@ -19,7 +19,7 @@ function setup() {
   })
   Transform.create(dispenserEntity, {
     position: Vector3.create(8, 1.25, 7.5),
-    rotation: Quaternion.fromEulerDegress(0, 180, 0)
+    rotation: Quaternion.fromEulerDegrees(0, 180, 0)
   })
 
   // Create taps

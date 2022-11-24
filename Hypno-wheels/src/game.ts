@@ -8,7 +8,7 @@ function setup() {
   Transform.create(stage, {
     position: Vector3.create(8, 0, 8),
     scale: Vector3.create(0.9, 1, 0.9),
-    rotation: Quaternion.fromEulerDegress(0, 270, 0)
+    rotation: Quaternion.fromEulerDegrees(0, 270, 0)
   })
 
   createWheel(Vector3.create(6, 2, 11.1), 20, Vector3.Up())
