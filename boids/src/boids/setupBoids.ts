@@ -1,6 +1,8 @@
 import { CONFIG } from "src/config"
 import { REGISTRY } from "src/registry"
-
+import { EntityWrapper } from "../portwrapper/EntityWrapper"
+import { QuaternionWrapper } from "../portwrapper/Quaternion3Wrapper"
+import { Vector3Wrapper } from "../portwrapper/Vector3Wrapper"
 import BoidsController from "./BoidsController"
 import { BOID_CONFIG } from "./Constants"
 import ControlHelper from "./ControlHelper"
@@ -26,11 +28,11 @@ const predatorCount = 0
 const seekCount = 0
 
 
-// const boundaryEdgeShape = PlaneShape
-// //boundaryEdgeShape.withCollisions = false
+const boundaryEdgeShape = PlaneShape
+//boundaryEdgeShape.withCollisions = false
 
-// const boundarMarkerShape = CylinderShape
-// //boundarMarkerShape.withCollisions = false
+const boundarMarkerShape = CylinderShape
+//boundarMarkerShape.withCollisions = false
 
 export function createBoundaryPlanes(){
 
@@ -39,22 +41,23 @@ export function createBoundaryPlanes(){
     return
   }
   
-  const boundaryTopEnt = engine.addEntity()
-  MeshRenderer.setPlane(boundaryTopEnt)
-  Transform.create(boundaryTopEnt,
-    {position: Vector3.create(width/2,height+heightBottomOffset,depth/2)
-    ,scale:Vector3.create(width,depth,1)
-    ,rotation:Quaternion.fromEulerDegrees(90,0,0)}
+  const boundaryTopEnt = new EntityWrapper()
+  boundaryTopEnt.addComponent(boundaryEdgeShape)
+  boundaryTopEnt.addComponent(Transform, 
+    {position: new Vector3Wrapper(width/2,height+heightBottomOffset,depth/2)
+    ,scale:new Vector3Wrapper(width,depth,1)
+    ,rotation:QuaternionWrapper.Euler(90,0,0)}
     
     )
   //engine.addEntity(boundaryTopEnt)
 
-  const boundaryBottomEnt = engine.addEntity()
-  MeshRenderer.setPlane(boundaryBottomEnt)
-  Transform.create(boundaryBottomEnt,
-    {position: Vector3.create(width/2,heightBottomOffset,depth/2)
-    ,scale:Vector3.create(width,depth,1)
-    ,rotation:Quaternion.fromEulerDegrees(90,0,0)}
+  const boundaryBottomEnt = new EntityWrapper()
+  boundaryBottomEnt.addComponent(boundaryEdgeShape)
+  boundaryBottomEnt.addComponent( Transform,
+    {position: new Vector3Wrapper(width/2,heightBottomOffset,depth/2)
+    ,scale:new Vector3Wrapper(width,depth,1)
+    ,rotation:QuaternionWrapper.Euler(90,0,0)}
+    
     )
   //engine.addEntity(boundaryBottomEnt)
 }
@@ -69,9 +72,9 @@ export function createBoundaryMarkers(){
   
   for(let x=0;x<=width;x+=parcelSize){
     for(let z=0;z<=depth;z+=parcelSize){
-        const boundaryEnt = new Entity()
+        const boundaryEnt = new EntityWrapper()
         boundaryEnt.addComponent(new CylinderShape())
-        boundaryEnt.addComponent(new Transform( {position: Vector3.create(x+offset,1,z+offset),scale:Vector3.create(.3,1,.3)} ))
+        boundaryEnt.addComponent(new Transform( {position: new Vector3Wrapper(x+offset,1,z+offset),scale:new Vector3Wrapper(.3,1,.3)} ))
 
         engine.addEntity(boundaryEnt)
     }
@@ -88,21 +91,21 @@ export function createBoundaryMarkers(){
   
   for(let x=0;x<=cellRowCount;x+=1){
     for(let z=0;z<=cellRowCount;z+=1){
-        const boundaryEnt = engine.addEntity()
-        MeshRenderer.setCylinder(boundaryEnt)
-        Transform.create(boundaryEnt,
-          {position: Vector3.create((x*cellSize)+offset,height/2 + heightBottomOffset,(cellSize*z)+offset)
-          ,scale:Vector3.create(.1,height/2,.1)
-          ,rotation:Quaternion.Zero()
+        const boundaryEnt = new EntityWrapper()
+        boundaryEnt.addComponent(boundarMarkerShape)
+        boundaryEnt.addComponent(Transform, 
+          {position: new Vector3Wrapper((x*cellSize)+offset,height/2 + heightBottomOffset,(cellSize*z)+offset)
+          ,scale:new Vector3Wrapper(.1,height/2,.1)
+          ,rotation:QuaternionWrapper.Zero()
         } )
 
         //engine.addEntity(boundaryEnt)
     }
   }
 /*
-  const floorEnt = new Entity()
+  const floorEnt = new EntityWrapper()
   boundaryEnt.addComponent(boundarMarkerShape)
-  boundaryEnt.addComponent(new Transform( {position: Vector3.create((x*cellSize)+offset,1,(cellSize*z)+offset),scale:Vector3.create(.1,1,.1)} ))
+  boundaryEnt.addComponent(new Transform( {position: new Vector3Wrapper((x*cellSize)+offset,1,(cellSize*z)+offset),scale:new Vector3Wrapper(.1,1,.1)} ))
 
   engine.addEntity(boundaryEnt)*/
 
@@ -114,13 +117,9 @@ export function initBoidController() {
     boidController.boundaryYOffset = heightBottomOffset
 
 
-    boidController.avoidRadius = BOID_CONFIG.AVOID_RADIUS //8
-    boidController.seekRadius = BOID_CONFIG.SEEK_RADIUS//2.75
-    //boidController.cohesionRadius = BOID_CONFIG.COHESION_RADIUS
-    boidController.cohesionWeight = BOID_CONFIG.COHESION_WEIGHT//-.2
-    boidController.aligmentWeight = BOID_CONFIG.ALIGNMENT_WEIGHT//-.2
-    boidController.separationWeight = BOID_CONFIG.SEPARATION_WEIGHT//1
-
+    boidController.aligmentWeight = 1
+    boidController.cohesionWeight = 1
+    boidController.separationWeight = 1
 
     // create control helper for example controls
     const controlHelper = new ControlHelper(boidController);
@@ -131,19 +130,19 @@ export function initBoidController() {
     controlHelper.addObstacles(obstacleEntityCount);
  
     //for(let x=0;x<depth/16;x++){
-      controlHelper.addObstacle("big-trunk.1",Vector3.create(12.5,0,4.5),1.2)
-      controlHelper.addObstacle("big-trunk.2",Vector3.create(12,2,4.5),1)
-      controlHelper.addObstacle("big-trunk.3",Vector3.create(11,3.5,5),1)
-      controlHelper.addObstacle("big-trunk.35",Vector3.create(9.5,4.5,6.5),.75)
-      controlHelper.addObstacle("big-trunk.4",Vector3.create(8,4,7),.5)
+      controlHelper.addObstacle("big-trunk.1",new Vector3Wrapper(12.5,0,4.5),1.2)
+      controlHelper.addObstacle("big-trunk.2",new Vector3Wrapper(12,2,4.5),1)
+      controlHelper.addObstacle("big-trunk.3",new Vector3Wrapper(11,3.5,5),1)
+      controlHelper.addObstacle("big-trunk.35",new Vector3Wrapper(9.5,4.5,6.5),.75)
+      controlHelper.addObstacle("big-trunk.4",new Vector3Wrapper(8,4,7),.5)
 
-      controlHelper.addObstacle("rock.gray.big",Vector3.create(2.2,0,2.2),1.5)
-      controlHelper.addObstacle("rock.gray.small",Vector3.create(8.5,-.5,3.5),1)
-      controlHelper.addObstacle("rock.gray.med",Vector3.create(14,0,8),1)
-      controlHelper.addObstacle("rock.red.1",Vector3.create(12.5,1,13.5),2)
-      controlHelper.addObstacle("rock.red.2",Vector3.create(12,4,13.5),2)
-      controlHelper.addObstacle("rock.purple",Vector3.create(3,1,13),2)
-    //controlHelper.addObstacle("big",Vector3.create(7,4,7),1)
+      controlHelper.addObstacle("rock.gray.big",new Vector3Wrapper(2.2,0,2.2),1.5)
+      controlHelper.addObstacle("rock.gray.small",new Vector3Wrapper(8.5,-.5,3.5),1)
+      controlHelper.addObstacle("rock.gray.med",new Vector3Wrapper(14,0,8),1)
+      controlHelper.addObstacle("rock.red.1",new Vector3Wrapper(12.5,1,13.5),2)
+      controlHelper.addObstacle("rock.red.2",new Vector3Wrapper(12,4,13.5),2)
+      controlHelper.addObstacle("rock.purple",new Vector3Wrapper(3,1,13),2)
+    //controlHelper.addObstacle("big",new Vector3Wrapper(7,4,7),1)
     //}
 
     controlHelper.addPredators(predatorCount)
@@ -154,10 +153,10 @@ export function initBoidController() {
     //seaTest.start(64)
 
     /*
-    const seaCube = new Entity()
+    const seaCube = new EntityWrapper()
     seaCube.addComponent(new Transform({
-        position: Vector3.create(width, 2, depth),
-        scale: Vector3.create(width, height, depth)
+        position: new Vector3Wrapper(width, 2, depth),
+        scale: new Vector3Wrapper(width, height, depth)
     }))
     const boxShape = new BoxShape()
     boxShape.withCollisions = false

@@ -1,22 +1,22 @@
 {
-	"name": "dcl-project",
-	"version": "1.0.0",
-	"description": "ECS7 ",
-	"scripts": {
-		"start": "dcl start",
-		"build": "build-ecs",
-		"watch": "build-ecs --watch",
-		"ecs:install-next": "npm install --save-dev @dcl/sdk@next",
-		"lint": "eslint . --ext .ts",
-		"lint:fix": "eslint . --ext .ts --fix"
-	},
-	"devDependencies": {
-		"@dcl/eslint-config": "^1.0.1",
-		"@dcl/sdk": "next"
-	},
-	"engines": {
-		"node": ">=14.0.0",
-		"npm": ">=6.0.0",
-		"yarn": "please use npm"
-	}
+  "name": "dcl-project",
+  "version": "1.0.0",
+  "description": "ECS7 ",
+  "scripts": {
+    "start": "dcl start",
+    "build": "build-ecs",
+    "watch": "build-ecs --watch",
+    "ecs:install-next": "npm install --save-dev @dcl/sdk@next",
+    "lint": "eslint . --ext .ts",
+    "lint:fix": "eslint . --ext .ts --fix"
+  },
+  "devDependencies": {
+    "@dcl/eslint-config": "^1.0.1",
+    "@dcl/sdk": "https://sdk-team-cdn.decentraland.org/@dcl/js-sdk-toolchain/branch/fix/deep-readonly/dcl-sdk-7.0.0-2964312248.commit-4e5ef72.tgz"
+  },
+  "engines": {
+    "node": ">=14.0.0",
+    "npm": ">=6.0.0",
+    "yarn": "please use npm"
+  }
 }
