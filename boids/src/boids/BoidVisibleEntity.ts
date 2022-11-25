@@ -6,13 +6,13 @@ import Grid from "./Grid";
 import IBoidEntity, { BoidTypeEnum } from './IBoidEntity.js';
 import IBoidVisibleEntity from './IBoidVisibleEntity.js';
 
-export const fishConeShape =  CylinderShape//CylinderShape////CylinderShape //// is gone? /
-//fishConeShape.withCollisions = false
+// export const fishConeShape =  MeshRenderer//CylinderShape////CylinderShape //// is gone? /
+// //fishConeShape.withCollisions = false
 
-export const fishBoxShape =  BoxShape
-//fishBoxShape.withCollisions = false
+// export const fishBoxShape =  MeshRenderer
+// //fishBoxShape.withCollisions = false
  
-export const objsSphere =  SphereShape
+// export const objsSphere =  MeshRenderer
  //objsSphere.withCollisions = false
 
 export const fishShapes:string[] =
@@ -87,13 +87,13 @@ export default class BoidVisibleEntity implements IBoidVisibleEntity {
             //Vector3.rotate()
             //child.getComponent(Transform).rotation = Quaternion.euler(90,-90,0)
             const tf = Transform.getMutable(child)
-            tf.rotation = Quaternion.euler(90,-90,0)
+            tf.rotation = Quaternion.fromEulerDegrees(90,-90,0)
             //child.getComponent(Transform).rotate(new Vector3(0,1,0),-90)
             //child.getComponent(Transform).rotate(new Vector3(1,0,0),90)
  
             //as fish
             //child.entity.addComponent(fishShapes[ Math.floor(Math.random()*fishShapes.length) ])
-            GLTFShape.create(child,{
+            GltfContainer.create(child,{
                 src:fishShapes[ Math.floor(Math.random()*fishShapes.length) ]
             })
               
@@ -110,9 +110,7 @@ export default class BoidVisibleEntity implements IBoidVisibleEntity {
         }else if(type == BoidTypeEnum.PREDATOR_ENTITY){
             if(BOID_CONFIG.VISIBLE_PREDATOR) {
                 //child.addComponent(fishConeShape)
-                fishConeShape.create(child,{
-                    radiusTop:0 //new way to make cone
-                })
+                MeshRenderer.setCylinder(child, 1, 0)
 
                 //child.getComponent(Transform).rotate(new Vector3(1,1,1),90)
                 const tf = Transform.getMutable(child)
@@ -123,7 +121,7 @@ export default class BoidVisibleEntity implements IBoidVisibleEntity {
         }else if(type == BoidTypeEnum.SEEK_ENTITY){
             if(BOID_CONFIG.VISIBLE_SEEK) {
                 //child.addComponent(BoxShape)
-                BoxShape.create(child)
+                MeshRenderer.setBox(child)
 
                 
                 
@@ -134,7 +132,12 @@ export default class BoidVisibleEntity implements IBoidVisibleEntity {
             }
         }else if(type == BoidTypeEnum.OBSTACLE_ENTITY){
             if(BOID_CONFIG.VISIBLE_OBSTACLES) {
-                objsSphere.createOrReplace(child)
+				MeshRenderer.createOrReplace(child, {
+					mesh: { 
+						$case: 'cylinder',
+						cylinder: {} 
+					  }
+				})
                 //child.addComponentOrReplace( objsSphere )
                 //child.addComponent(CommonResources.RESOURCES.materials.transparent)
             }

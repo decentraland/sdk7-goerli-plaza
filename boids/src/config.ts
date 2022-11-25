@@ -1,4 +1,4 @@
-import { isPreviewMode, PreviewModeResponse } from '~system/EnvironmentAPI'
+import { isPreviewMode, PreviewModeResponse } from "~system/EnvironmentApi";
 
 
 //set in preview mode from env, local == preview

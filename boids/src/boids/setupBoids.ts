@@ -26,11 +26,11 @@ const predatorCount = 0
 const seekCount = 0
 
 
-const boundaryEdgeShape = PlaneShape
-//boundaryEdgeShape.withCollisions = false
+// const boundaryEdgeShape = PlaneShape
+// //boundaryEdgeShape.withCollisions = false
 
-const boundarMarkerShape = CylinderShape
-//boundarMarkerShape.withCollisions = false
+// const boundarMarkerShape = CylinderShape
+// //boundarMarkerShape.withCollisions = false
 
 export function createBoundaryPlanes(){
 
@@ -40,21 +40,21 @@ export function createBoundaryPlanes(){
   }
   
   const boundaryTopEnt = engine.addEntity()
-  boundaryEdgeShape.create(boundaryTopEnt)
+  MeshRenderer.setPlane(boundaryTopEnt)
   Transform.create(boundaryTopEnt,
     {position: Vector3.create(width/2,height+heightBottomOffset,depth/2)
     ,scale:Vector3.create(width,depth,1)
-    ,rotation:Quaternion.euler(90,0,0)}
+    ,rotation:Quaternion.fromEulerDegrees(90,0,0)}
     
     )
   //engine.addEntity(boundaryTopEnt)
 
   const boundaryBottomEnt = engine.addEntity()
-  boundaryEdgeShape.create(boundaryBottomEnt)
+  MeshRenderer.setPlane(boundaryBottomEnt)
   Transform.create(boundaryBottomEnt,
     {position: Vector3.create(width/2,heightBottomOffset,depth/2)
     ,scale:Vector3.create(width,depth,1)
-    ,rotation:Quaternion.euler(90,0,0)}
+    ,rotation:Quaternion.fromEulerDegrees(90,0,0)}
     )
   //engine.addEntity(boundaryBottomEnt)
 }
@@ -89,7 +89,7 @@ export function createBoundaryMarkers(){
   for(let x=0;x<=cellRowCount;x+=1){
     for(let z=0;z<=cellRowCount;z+=1){
         const boundaryEnt = engine.addEntity()
-        boundarMarkerShape.create(boundaryEnt)
+        MeshRenderer.setCylinder(boundaryEnt)
         Transform.create(boundaryEnt,
           {position: Vector3.create((x*cellSize)+offset,height/2 + heightBottomOffset,(cellSize*z)+offset)
           ,scale:Vector3.create(.1,height/2,.1)
