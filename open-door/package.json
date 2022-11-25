@@ -1,0 +1,28 @@
+{
+	"name": "dcl-project",
+	"version": "1.0.0",
+	"description": "ECS7 ",
+	"main": "src/game.ts",
+	"typings": "",
+	"scripts": {
+		"start": "dcl start",
+		"build": "NODE_ENV=production ./../../../js-sdk-toolchain/packages/@dcl/dcl-rollup/node_modules/.bin/rollup -c ../../../js-sdk-toolchain/packages/@dcl/dcl-rollup/dist/scene.config.js",
+		"watch": "./../../../js-sdk-toolchain/packages/@dcl/dcl-rollup/node_modules/.bin/rollup -c ../../../js-sdk-toolchain/packages/@dcl/dcl-rollup/dist/scene.config.js",
+		"ecs:install-next": "npm install --save-dev @dcl/sdk@next",
+		"lint": "eslint . --ext .ts",
+		"lint:fix": "eslint . --ext .ts --fix"
+	},
+	"devDependencies": {
+		"@dcl/eslint-config": "^1.0.1",
+		"@dcl/sdk": "^7.0.0-3532389879.commit-c89c80c"
+	},
+	"engines": {
+		"node": ">=14.0.0",
+		"npm": ">=6.0.0",
+		"yarn": "please use npm"
+	},
+	"bundleDependencies": [],
+	"dependencies": {
+		"ethers": "^5.7.2"
+	}
+}
