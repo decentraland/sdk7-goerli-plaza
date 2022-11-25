@@ -1,0 +1,187 @@
+{
+    "accessors" : [
+        {
+            "bufferView" : 0,
+            "componentType" : 5121,
+            "count" : 168,
+            "max" : [
+                119
+            ],
+            "min" : [
+                0
+            ],
+            "type" : "SCALAR"
+        },
+        {
+            "bufferView" : 1,
+            "componentType" : 5126,
+            "count" : 120,
+            "max" : [
+                0.399632066488266,
+                0.07500000298023224,
+                0.399632066488266
+            ],
+            "min" : [
+                -0.399632066488266,
+                0.0,
+                -0.399632066488266
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 2,
+            "componentType" : 5126,
+            "count" : 120,
+            "max" : [
+                0.7678391337394714,
+                0.9999999403953552,
+                0.7678391337394714
+            ],
+            "min" : [
+                -0.7678391337394714,
+                0.5561184883117676,
+                -0.7678391337394714
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 3,
+            "componentType" : 5126,
+            "count" : 120,
+            "max" : [
+                0.940690279006958,
+                0.8309895992279053,
+                0.034436047077178955,
+                1.0
+            ],
+            "min" : [
+                0.5073928833007812,
+                -0.8309895396232605,
+                -0.6788243651390076,
+                1.0
+            ],
+            "type" : "VEC4"
+        },
+        {
+            "bufferView" : 4,
+            "componentType" : 5126,
+            "count" : 120,
+            "max" : [
+                0.9998999834060669,
+                0.9999000199968577
+            ],
+            "min" : [
+                9.998000314226374e-05,
+                0.00010007619857788086
+            ],
+            "type" : "VEC2"
+        }
+    ],
+    "asset" : {
+        "generator" : "Khronos Blender glTF 2.0 exporter",
+        "version" : "2.0"
+    },
+    "bufferViews" : [
+        {
+            "buffer" : 0,
+            "byteLength" : 168,
+            "byteOffset" : 0,
+            "target" : 34963
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 1440,
+            "byteOffset" : 168,
+            "target" : 34962
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 1440,
+            "byteOffset" : 1608,
+            "target" : 34962
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 1920,
+            "byteOffset" : 3048,
+            "target" : 34962
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 960,
+            "byteOffset" : 4968,
+            "target" : 34962
+        }
+    ],
+    "buffers" : [
+        {
+            "byteLength" : 5928,
+            "uri" : "BlockDogBowl.bin"
+        }
+    ],
+    "images" : [
+        {
+            "mimeType" : "image/png",
+            "name" : "BowlTexture",
+            "uri" : "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAEHklEQVR42rWXa1MTZxTH9+NULrknuxuEcBMkICKoTF/ZN7U61aDBIiqKFwTvWqz6HXTs9J2O9Y2OKJCOozN2KmOBTdIQAvgZ/j3nWSKbzSbZBX1xZp9cdv+/59z2PNKCXINy9kz1IqG6hfHarj1UNu4r93yp3I9G4fx6M7YpAPNDZkM1ZLWYla0tIbuQUNaN1zYhJDviCYUAgtWY9m8raTNGC1SJe+xASHbFk82qI5sJVOveqAAhlRd3iQc5Fd+AqKoYDqm8eFXBA6d939myAggKiciREhCSZebmxZtkR+JPlDCmfNXWECFrCKmUuNYQsBSvPb5AtghXXDexPvYvWg5NYaJzCL/Xtdn2BJe3ZGwYnHBCPBK0FGdB74lF+IeSCJ7SLTCchG9Ig5vADvzwGKM95/HKX2sNIarDVdBbJGOTEdneGCoSfy6riMT+gv9kEupICvWjGTReWkLT2JK4bqfP8ukU1KF58sYCvLGP1jlBIeWkNnqiEICajVH8jW8bnoXCuNh7AY3xv1F3Lo3W8Szary6j8+YKum/p1nF9BS2Xl+j3DEFqcHFYBj5ZQnAo8j1ChKAAgMjyf3ztr8Ljhigmu46iKz5Lu04Lkej1HLpvr2DP3VX03l0T1vPrKnYRSPuVrIDgkLgoJJ7YnDWAagMg74Fw7B3kk/OIXMxg57VlIc6ie+99xv77uvXRmr9jiJbLWQpHGu64hpqB+a0BsHniC5DPpNBM8e68kcNu2m3fbyT84DP6143X+wiiZ3INHQRZP/ofJauGWsoHRwDctcwAnPXKSBptV/S490yuil33Pyg0/m4PAXCIGs4vUaVookSdASjWAKoBgEXMAMIDJoAAlepXA2APtI7rIWAPsLv3m3a/996aCE/H1ZwIge+XTXnAXQTgHlxE6FQKjZSEogLucAWs6RDrSchr3j0nYev4MurOpuEZ1KD8/A5T/moHAGoxQCj2gcoqKXrAjoksojd0CE44BunjMqR1923a/bUcIhcyCFLDao69xf2dPxFAzdYAXgQ9iBxJIDisUcfTGxFnetfNHHZRSfKueR0lca4Uzpdw/B+M9E3gTzlcuREVjF1B7oRKMUTAi/4f/0DH0Wk0Dc9R+82gZSxLHlmm5Myhja68c+VMWsS+8+BzPFW2W7Zi/mx8H0jmodM8/eQf8irgxljvOXx/+CmaB99DOa2JWHNowrTrwHAKXhL3HPtUcjbg0Y2fn9d6aBWC/BvRCuJRfTcmo0fQfniKkkx/M/pO6Fc3vykH5sqLh4oHH8nJNMSt+SV54g0Pog6moukSA8kXAEsI6oqcMN98JCt7FqAbzRCOhtIK4rbG8g0IxYG4Ykvc9sGE4zdjPnxUMDvijo5mX45dNsyuuO3D6WbMWN5bPh3z5OzkaG6EqHT8/x/zcjleP37n/gAAAABJRU5ErkJggg=="
+        }
+    ],
+    "materials" : [
+        {
+            "name" : "DogBowl",
+            "pbrMetallicRoughness" : {
+                "baseColorFactor" : [
+                    0.800000011920929,
+                    0.800000011920929,
+                    0.800000011920929,
+                    1.0
+                ],
+                "baseColorTexture" : {
+                    "index" : 0
+                },
+                "metallicFactor" : 0.0
+            }
+        }
+    ],
+    "meshes" : [
+        {
+            "name" : "DogBowl",
+            "primitives" : [
+                {
+                    "attributes" : {
+                        "NORMAL" : 2,
+                        "POSITION" : 1,
+                        "TANGENT" : 3,
+                        "TEXCOORD_0" : 4
+                    },
+                    "indices" : 0,
+                    "material" : 0
+                }
+            ]
+        }
+    ],
+    "nodes" : [
+        {
+            "mesh" : 0,
+            "name" : "DogBowl"
+        }
+    ],
+    "samplers" : [
+        {}
+    ],
+    "scene" : 0,
+    "scenes" : [
+        {
+            "name" : "Scene",
+            "nodes" : [
+                0
+            ]
+        }
+    ],
+    "textures" : [
+        {
+            "sampler" : 0,
+            "source" : 0
+        }
+    ]
+}
