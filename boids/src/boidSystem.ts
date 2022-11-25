@@ -6,22 +6,26 @@ import BoidEntity from "./boids/BoidEntity"
 import { REGISTRY } from "./registry"
 import { CommonResources } from "./resources/common"
 import { IntervalUtil } from "./utils/interval-util"
+import { EntityWrapper } from "./portwrapper/EntityWrapper"
 import IBoidEntity from "./boids/IBoidEntity"
+import { QuaternionWrapper } from "./portwrapper/Quaternion3Wrapper"
 import { Vector3Wrapper } from "./portwrapper/Vector3Wrapper"
+import { EngineWrapper } from "./portwrapper/EngineWrapper"
+import { CameraWrapper } from "./portwrapper/CameraWrapper"
+import { TransformWrapper } from "./portwrapper/TransformWrapper"
 
 type ExtPredatorEntity={
   boid:BoidEntity
   entity:Entity
 }
 
-function setShapeCollisions(entity:Entity,val:boolean){
-  //entity.withCollisions(val)
+function setShapeCollisions(entity:EntityWrapper,val:boolean){
+  entity.withCollisions(val)
   
 }
-function scaleInPlace(entity:Entity,val:number){
-  if(Transform.has(entity)){
-    const tf = Transform.getMutable(entity)
-    Vector3.scaleToRef(tf.scale,val,tf.scale)
+function scaleInPlace(entity:EntityWrapper,val:number){
+  if(entity.hasComponent(Transform)){
+    Vector3Wrapper.scaleInPlace(entity.getComponent(Transform).scale,val,entity.getComponent(Transform).scale)
   }
 }
 
@@ -40,7 +44,7 @@ export class BoidSystem  {
   externalEntities:ExtPredatorEntity[] = []
   
   boidInterval:IntervalUtil
-  
+
   systemFnCache!:(dt:number)=>void
 
   constructor (controller:BoidsController,interval:number){
@@ -155,7 +159,6 @@ export class BoidSystem  {
       //this.playerFish.enabled = false
     }
   }
-
   
   createUpdateFn(){
     if(this.systemFnCache === undefined){
@@ -169,42 +172,39 @@ export class BoidSystem  {
   }
 
   update(dt: number) {
+    //log("system update",dt,this.controller)
     if(this.controller ){//&& this.controller.enabled){
       if(this.boidInterval.update(dt)){
-
+        //log("system update",dt) 
   
         const feet = - 1.3
         const head = 0
-        let cameraPos = null
-        let cameraTransform = Transform.getOrNull((1 as Entity))
-        if(cameraTransform !== null){
-          cameraPos =  cameraTransform.position
-        }
+        const cameraPos = CameraWrapper.getPositionOrNull()
         if(cameraPos !== undefined && cameraPos !== null ){
           for( let playerEnt of this.playerEntities){
             if(playerEnt && playerEnt.enabled){
               this.controller.grid?.moveEntity(playerEnt, cameraPos.x, cameraPos.y-head , cameraPos.z);
               
-              //const flocation = Vector3.create(this.playerFish.x,this.playerFish.y,this.playerFish.z)
-              const transform = Transform.getMutable(playerEnt.visibleEntity.entity)//.getComponent(Transform)
+              //const flocation = new Vector3(this.playerFish.x,this.playerFish.y,this.playerFish.z)
+              const transform = playerEnt.visibleEntity.entity.getComponent(Transform)
               transform.position.x = playerEnt.x
               transform.position.y = playerEnt.y // + REGISTRY.boidController!.boundaryYOffset
               transform.position.z = playerEnt.z
             }
           }
         }else{
-          log("WARN missing camera data",cameraPos)
+          //log("WARN missing camera data",cameraPos)
         }
         for( let extEnt of this.externalEntities){
           if(extEnt && extEnt.boid.enabled){
              
-            const sdkEnttransform = Transform.get(extEnt.entity)//.getComponent(Transform)
+            const sdkEnttransform = TransformWrapper.get(extEnt.entity)//.getComponent(Transform)
             
             this.controller.grid?.moveEntity(extEnt.boid, sdkEnttransform.position.x, sdkEnttransform.position.y , sdkEnttransform.position.z);
               
 
-            //const flocation = Vector3.create(this.playerFish.x,this.playerFish.y,this.playerFish.z)
-            const transform = Transform.getMutable(extEnt.boid.visibleEntity.entity)//.getComponent(Transform)
+            //const flocation = new Vector3(this.playerFish.x,this.playerFish.y,this.playerFish.z)
+            const transform = extEnt.boid.visibleEntity.entity.getComponent(Transform)
             //log("externalEntities sdkEnttransform",extEnt.boid.canMove,extEnt.boid.enabled,sdkEnttransform.position,extEnt.boid.x,extEnt.boid.y,extEnt.boid.z )
             
             //grid move handled above, this is syncing visible representation
@@ -231,25 +231,28 @@ export class BoidSystem  {
     
   }
   draw(boid:BoidEntity,dt?:number){
-    //if(!boid.visibleEntity.entity.isAlive()){
-    //  log("not alive skipping",boid.id)
-    //  return
-    //} 
+    if(!boid.visibleEntity.entity.isAlive()){
+      log("not alive skipping",boid.id)
+      return
+    } 
     const moveDt = dt !== undefined ? dt*2 : 1
-    const transform = Transform.getMutable(boid.visibleEntity.entity)//.getComponent(Transform)
+
+    const transform = boid.visibleEntity.entity.getComponent(Transform)
     
-    const flocation = Vector3.create(boid.x,boid.y+ REGISTRY.boidController!.boundaryYOffset,boid.z)
-    const direction = Vector3.subtract(flocation,transform.position )//flocation.subtract(transform.position )
-    const lookRot = Quaternion.lookRotation(direction)
+    //log("moving ",boid.id)
+
+    const flocation = new Vector3Wrapper(boid.x,boid.y+ REGISTRY.boidController!.boundaryYOffset,boid.z)
+    const direction = flocation.subtract(transform.position )
+    const lookRot = QuaternionWrapper.LookRotation(direction)
 
     
-    const moveVec = Vector3.lerp( transform.position, flocation, moveDt)
+    const moveVec = Vector3Wrapper.Lerp( transform.position, flocation, moveDt)
     //const rotQ = Quaternion.Slerp( fish.entity.getComponent(Transform).rotation, fish., dt)
     
     Vector3Wrapper.copyFrom(transform.position,moveVec)
 
-    transform.rotation = Quaternion.slerp( transform.rotation, lookRot, 1 )
-    //transform.lookAt( Vector3.create().copyFrom(fish.location) )//.rotate( Vector3.create(1,1,1),90 )
+    transform.rotation = QuaternionWrapper.Slerp( transform.rotation, lookRot, 1 )
+    //transform.lookAt( new Vector3().copyFrom(fish.location) )//.rotate( new Vector3(1,1,1),90 )
     //fish.entity.getComponent(Transform).rotation.copyFrom(rotQ)
   }
   drawStaticObstacles(){
@@ -285,5 +288,5 @@ export function initBoidSystem(){
   
 export function startBoidSystem(){
   if(!REGISTRY.boidSystem) throw new Error("REGISTRY.boidSystem must be initalized!!!")
-  engine.addSystem(REGISTRY.boidSystem.createUpdateFn())
+  EngineWrapper.addSystem(REGISTRY.boidSystem.createUpdateFn())
 }

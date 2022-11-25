@@ -1,4 +1,4 @@
-
+import { EntityWrapper } from 'src/portwrapper/EntityWrapper.js';
 import IBoidEntity from './IBoidEntity.js';
 
 
@@ -9,8 +9,8 @@ import IBoidEntity from './IBoidEntity.js';
  */
 export default interface IBoidVisibleEntity {
     boid:IBoidEntity
-    entity:Entity
-    modelEntity:Entity
+    entity:EntityWrapper
+    modelEntity:EntityWrapper
     //maxEntitySpeed?:number
     
     initEntity():void

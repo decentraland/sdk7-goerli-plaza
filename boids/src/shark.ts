@@ -18,7 +18,7 @@ export function createShark(){
 		rotation: {x:0, y:0, z:0, w: 1},
 		scale:  {x:0.5, y:0.5, z:0.5}
 	})
-	GltfContainer.create(shark, {
+	GLTFShape.create(shark, {
 		src:'models/shark.glb'
 	})
 	Animator.create(shark, {

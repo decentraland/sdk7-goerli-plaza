@@ -1,6 +1,7 @@
 //import Stats from 'https://cdnjs.cloudflare.com/ajax/libs/stats.js/r17/Stats.min.js'
 import BoidsController from './BoidsController';
 import BoidEntity from './BoidEntity';
+import { Vector3Wrapper } from '../portwrapper/Vector3Wrapper';
 //import Entity from './Entity.js'
 
 let stats = undefined;
@@ -80,8 +81,7 @@ export default class ControlHelper {
             const entity = new BoidEntity(BoidEntity.OBSTACLE_ENTITY, x, y, z);
             this.boidsController.addObstacleEntity(entity);
 
-            const tf =  Transform.getMutable(entity.visibleEntity.entity)//.getComponent(Transform)
-            Vector3.scaleToRef( tf.scale,this.boidsController.obstacleRadius,tf.scale)
+            Vector3Wrapper.scaleToRef( entity.visibleEntity.entity.getComponent(Transform).scale,this.boidsController.obstacleRadius,entity.visibleEntity.entity.getComponent(Transform).scale)
             //entity.visibleEntity.entity.getComponent(Transform).scale.scale( this.boidsController.obstacleRadius )
         }
     /*
@@ -92,16 +92,14 @@ export default class ControlHelper {
         this.updateButtonLabels();*/
     }
 
-    addObstacle(name:string,position:Vector3.ReadonlyVector3,radius:number) {
+    addObstacle(name:string,position:Vector3Wrapper,radius:number) {
         
         const entity = new BoidEntity(BoidEntity.OBSTACLE_ENTITY, position.x, position.y, position.z);
         entity.obstacleRadius = radius
         this.boidsController.addObstacleEntity(entity);
 
         //entity.visibleEntity.entity.getComponent(Transform).scale.scaleInPlace( radius )
-        //Vector3.scaleToRef( entity.visibleEntity.entity.getComponent(Transform).scale,radius,entity.visibleEntity.entity.getComponent(Transform).scale)
-        const tf =  Transform.getMutable(entity.visibleEntity.entity)//.getComponent(Transform)
-        Vector3.scaleToRef( tf.scale,radius,tf.scale)
+        Vector3Wrapper.scaleToRef( entity.visibleEntity.entity.getComponent(Transform).scale,radius,entity.visibleEntity.entity.getComponent(Transform).scale)
         
     /*
         if(this.workerPlanner) {
@@ -156,15 +154,13 @@ export default class ControlHelper {
         this.updateButtonLabels();*/
     }
     //TODO make whol arg params
-    addSeek(name:string,position:Vector3.ReadonlyVector3,radius:number) {
+    addSeek(name:string,position:Vector3Wrapper,radius:number) {
         const entity = new BoidEntity(BoidEntity.SEEK_ENTITY, position.x, position.y, position.z);
         entity.canMove = false
         entity.seekRadius = radius
         this.boidsController.addSeekEntity(entity);
 
-        //Vector3.scaleToRef( entity.visibleEntity.entity.getComponent(Transform).scale,radius,entity.visibleEntity.entity.getComponent(Transform).scale)
-        const tf =  Transform.getMutable(entity.visibleEntity.entity)//.getComponent(Transform)
-        Vector3.scaleToRef( tf.scale,radius,tf.scale)
+        Vector3Wrapper.scaleToRef( entity.visibleEntity.entity.getComponent(Transform).scale,radius,entity.visibleEntity.entity.getComponent(Transform).scale)
         
         return entity
     }
