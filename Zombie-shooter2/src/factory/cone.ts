@@ -1,27 +1,25 @@
-const { Transform: TransformC, CylinderShape, OnPointerDown } = engine.baseComponents
-
 export function createCone() {
   const cone = engine.addEntity()
 
-  TransformC.create(cone, {
-    position: { x: 3, y: 1, z: 3 },
-    scale: { x: 1, y: 1, z: 1 },
-    rotation: { x: 0, y: 0, z: 0, w: 1 }
+  Transform.create(cone, {
+    position: { x: 3, y: 1, z: 3 }
   })
 
-  CylinderShape.create(cone, {
-    withCollisions: true,
-    isPointerBlocker: true,
-    visible: true,
-    radiusTop: 0,
-    radiusBottom: 1
+  MeshRenderer.setCylinder(cone, 1, 0)
+  MeshCollider.setCylinder(cone, 1, 0)
+
+  PointerHoverFeedback.create(cone, {
+    pointerEvents: [
+      {
+        eventType: PointerEventType.PET_DOWN,
+        eventInfo: {
+          button: InputAction.IA_PRIMARY,
+          hoverText: 'Click',
+          showFeedback: true
+        }
+      }
+    ]
   })
 
-  OnPointerDown.create(cone, {
-    button: 0,
-    maxDistance: 100,
-    hoverText: 'click',
-    showFeedback: true
-  })
   return cone
 }

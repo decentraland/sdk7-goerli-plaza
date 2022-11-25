@@ -1,5 +1,3 @@
-const { Transform, NFTShape } = engine.baseComponents
-
 export function createNft(xPos: number): Entity {
   const nft = engine.addEntity()
 
@@ -9,13 +7,9 @@ export function createNft(xPos: number): Entity {
     rotation: { x: 0, y: 0, z: 0, w: 1 }
   })
 
-  NFTShape.create(nft, {
-    withCollisions: true,
-    isPointerBlocker: true,
-    visible: true,
-    assetId: '',
+  NftShape.create(nft, {
     color: { r: 1, g: 1, b: 1 },
-    style: 4,
+    style: NftFrameType.NFT_CLASSIC,
     src: 'ethereum://0x06012c8cf97bead5deae237070f9587f8e7a266d/229795'
   })
 

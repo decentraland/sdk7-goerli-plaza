@@ -1,12 +1,10 @@
 import { ZombieComponent } from '../components/zombie'
 import { playSound } from '../factory/sound'
-import { ensureGameController } from './game'
-
-const { OnPointerDownResult, Transform } = engine.baseComponents
+import { ensureGameController } from '../game'
 
 export function zombieKiller() {
   for (const [zombieEntity] of engine.getEntitiesWith(ZombieComponent)) {
-    if (OnPointerDownResult.has(zombieEntity)) {
+    if (Input.isTriggered(InputAction.IA_PRIMARY, PointerEventType.PET_DOWN, zombieEntity)) {
       dcl.log('BOOM!!! ', zombieEntity)
 
       const zombieTransform = Transform.getOrNull(zombieEntity)

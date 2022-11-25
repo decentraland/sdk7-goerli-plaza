@@ -29,6 +29,30 @@
 		},
 		{
 			"path": "boids"
+		},
+		{
+			"path": "BasicInteractions"
+		},
+		{
+			"path": "beer-dispenser"
+		},
+		{
+			"path": "Hypno-wheels"
+		},
+		{
+			"path": "Jukebox"
+		},
+		{
+			"path": "Shark-animation"
+		},
+		{
+			"path": "Laser-ray-Casting"
+		},
+		{
+			"path": "Smoke"
+		},
+		{
+			"path": "uv-map"
 		}
 	]
 }

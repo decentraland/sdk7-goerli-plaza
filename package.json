@@ -11,7 +11,7 @@
 		"ecs:install-next": "npm install --save-dev decentraland-ecs@next"
 	},
 	"dependencies": {
-		"@dcl/sdk": "https://sdk-team-cdn.decentraland.org/@dcl/js-sdk-toolchain/branch/fix/deep-readonly/dcl-sdk-7.0.0-2964312248.commit-4e5ef72.tgz",
-		"decentraland-ecs": "^6.11.6"
+		"@dcl/eslint-config": "^1.0.1",
+		"@dcl/sdk": "next"
 	}
 }

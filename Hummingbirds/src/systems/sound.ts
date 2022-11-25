@@ -9,11 +9,11 @@ export function playSounds(dt: number, state: State) {
   }
   state.t = 0
 
-const entitiesWSound = engine.getEntitiesWith(engine.baseComponents.AudioSource)
-for (const [entity] of entitiesWSound) {
-  const audioSource = AudioSource.getMutable(entity)
-  audioSource.volume = 1
-  audioSource.pitch = Math.random() * 5
-  audioSource.playing = true
-}
+  const entitiesWSound = engine.getEntitiesWith(AudioSource)
+  for (const [entity] of entitiesWSound) {
+    const audioSource = AudioSource.getMutable(entity)
+    audioSource.volume = 1
+    audioSource.pitch = Math.random() * 5
+    audioSource.playing = true
+  }
 }

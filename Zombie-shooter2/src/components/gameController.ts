@@ -10,4 +10,4 @@ const GameControlleType = {
   maxZombies: Schemas.Int
 }
 
-export const GameControllerComponent = engine.defineComponent( GameControlleType, getNextComponentId())
+export const GameControllerComponent = engine.defineComponent(GameControlleType, getNextComponentId())
