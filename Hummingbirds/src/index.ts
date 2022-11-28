@@ -1,4 +1,7 @@
+import { Animator, engine, GltfContainer, InputAction, pointerEventsSystem, Transform } from '@dcl/sdk/ecs'
 import { createHummingBird } from './hummingBird'
+
+export * from '@dcl/sdk'
 
 const ground = engine.addEntity()
 Transform.create(ground, {
@@ -32,7 +35,7 @@ Animator.create(tree, {
   ]
 })
 
-EventsSystem.onPointerDown(
+pointerEventsSystem.onPointerDown(
   tree,
   function () {
     createHummingBird()
