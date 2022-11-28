@@ -5,6 +5,7 @@ import { addClickBehavior } from './systems/clickable'
 import { onMoveZombieFinish } from './systems/moveZombie'
 
 import { playSound } from './systems/sound'
+import { Entity, engine, Transform, GltfContainer, Animator, NftShape } from '@dcl/sdk/ecs'
 
 export function createZombie(xPos: number): Entity {
   const zombie = engine.addEntity()
@@ -54,7 +55,7 @@ export function createZombie(xPos: number): Entity {
   })
 
   onMoveZombieFinish(zombie, () => {
-    dcl.log('finished zombie', zombie)
+    console.log('finished zombie', zombie)
 
     if (GameControllerComponent.has(coneEntity)) {
       GameControllerComponent.getMutable(coneEntity).livesLeft -= 1
@@ -82,7 +83,7 @@ export function createZombie(xPos: number): Entity {
   })
 
   addClickBehavior(zombie, () => {
-    dcl.log('BOOM!!!')
+    console.log('BOOM!!!')
 
     engine.removeEntity(zombie)
     playSound(zombie, 'sounds/explosion.mp3', true)

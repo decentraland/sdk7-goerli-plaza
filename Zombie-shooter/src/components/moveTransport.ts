@@ -1,3 +1,4 @@
+import { Schemas, engine } from '@dcl/sdk/ecs'
 import { InterpolationType } from '../helper/interpolation'
 
 // TODO: use higher number so we dont have conflicts (i.e. > 2000)

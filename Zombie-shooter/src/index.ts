@@ -1,3 +1,5 @@
+import { AudioSource, engine, NftShape } from '@dcl/sdk/ecs'
+import { } from '@dcl/sdk/math'
 //import { createCube } from './cube'
 import { GameControllerComponent } from './components/gameController'
 import { createCone } from './cone'
@@ -5,6 +7,8 @@ import { createNft } from './nft'
 import { addClickBehavior } from './systems/clickable'
 import { moveSystem } from './systems/moveZombie'
 import { createText } from './text'
+
+export * from '@dcl/sdk'
 
 const _LIVES = 5
 const _WINNING_SCORE = 15
@@ -19,7 +23,7 @@ engine.addSystem(moveSystem)
 export const coneEntity = createCone()
 
 addClickBehavior(coneEntity, () => {
-  dcl.log('STARTING GAME')
+  console.log('STARTING GAME')
 
   if (GameControllerComponent.has(coneEntity)) {
     if (!GameControllerComponent.get(coneEntity).spawnActive) {

@@ -3,6 +3,7 @@ import { GameControllerComponent } from '../components/gameController'
 import { coneEntity } from '..'
 import { createZombie } from '../zombie'
 import { playSound } from './sound'
+import { engine, AudioSource } from '@dcl/sdk/ecs'
 
 export function zombieSpawnSystem(dt: number) {
   const gameControllers = engine.getEntitiesWith(GameControllerComponent)
@@ -23,7 +24,7 @@ export function zombieSpawnSystem(dt: number) {
     controller.spawnCountDown -= dt
     if (controller.spawnCountDown < 0) {
       controller.spawnCountDown = controller.spawnInterval
-      dcl.log('SPAWNING NEW ZOMBIE')
+      console.log('SPAWNING NEW ZOMBIE')
       spawnZombie()
       playSound(entity, 'sounds/pickUp.mp3', true)
     }
@@ -34,12 +35,12 @@ engine.addSystem(zombieSpawnSystem)
 
 // how do I pass the controller component as a param to this function????
 function lose() {
-  dcl.log('GAME OVER!!')
+  console.log('GAME OVER!!')
   endGame()
 }
 
 function win() {
-  dcl.log('YOU WIN!!')
+  console.log('YOU WIN!!')
   endGame()
 }
 
