@@ -1,6 +1,11 @@
+import { engine, GltfContainer, Material, MeshCollider, MeshRenderer, Transform } from '@dcl/sdk/ecs'
+import { Vector3 } from '@dcl/sdk/math'
+
 import { boxesCount, defaultMaterial, MovingCube, Ray, rayDistance, rayMaterial } from './definitions'
 import movingCubesSystem from './modules/movingCubes'
 import raycastSystem from './modules/ray'
+
+export * from '@dcl/sdk'
 
 function setup() {
   // laser turret

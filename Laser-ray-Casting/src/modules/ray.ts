@@ -1,3 +1,5 @@
+import { engine, Transform, RaycastResult, Material, Entity, Raycast, RaycastQueryType } from '@dcl/sdk/ecs'
+import { Vector3 } from '@dcl/sdk/math'
 import { defaultMaterial, hitMaterial, hitMaterial2, MovingCube, Ray } from '../definitions'
 
 export default function raycastSystem() {
