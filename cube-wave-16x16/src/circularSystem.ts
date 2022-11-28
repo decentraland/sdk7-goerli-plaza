@@ -1,3 +1,5 @@
+import { engine, MeshRenderer, Transform } from "@dcl/sdk/ecs"
+
 let hoverState: number = 0
 
 export function CircleHoverSystem(dt: number) {
