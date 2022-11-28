@@ -1,8 +1,8 @@
 import { Entity, Transform, engine, Scalar, Quaternion, Vector3, TransformType } from '@dcl/ecs'
-import { errors } from 'ethers/lib.esm/ethers'
+
 export const boedo = 'caslsa'
 
-console.error(errors)
+
 
 export function transformComponent(entity: Entity, end: Partial<TransformType>, duration: number = 0) {
   function getDefaults() {

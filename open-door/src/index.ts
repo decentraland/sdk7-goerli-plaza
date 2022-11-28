@@ -7,13 +7,12 @@ import {
   MeshRenderer,
   MeshCollider,
   Material,
-  Schemas,
+  Schemas
 } from "@dcl/ecs"
 import { Quaternion, Vector3, Color3 } from "@dcl/ecs-math"
 import { getUserData } from "~system/UserIdentity"
 import { transformComponent } from "./system"
 export * from "@dcl/sdk"
-
 
 getUserData({})
   .then((value) => console.log(value))

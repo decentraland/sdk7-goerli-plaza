@@ -1,7 +1,7 @@
 import { MoveTransformComponent, MoveTransformFinishedComponent } from '../components/moveTransport'
 import { ZombieComponent } from '../components/zombie'
 import { playSound } from '../factory/sound'
-import { ensureGameController } from '../game'
+import { ensureGameController } from '..'
 import { Interpolate } from '../helper/interpolation'
 
 export function moveSystem(dt: number) {

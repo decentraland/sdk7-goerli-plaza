@@ -11,7 +11,7 @@
 		"ecs:install-next": "npm install --save-dev @dcl/sdk@next"
 	},
 	"devDependencies": {
-		"@dcl/sdk": "https://sdk-team-cdn.decentraland.org/@dcl/js-sdk-toolchain/branch/rollup/dcl-sdk-7.0.0-3560545340.commit-6c0c93d.tgz"
+		"@dcl/sdk": "https://sdk-team-cdn.decentraland.org/@dcl/js-sdk-toolchain/branch/rollup/dcl-sdk-7.0.0-3568304978.commit-6368268.tgz"
 	},
 	"engines": {
 		"node": ">=14.0.0",
@@ -20,6 +20,7 @@
 	},
 	"bundleDependencies": [],
 	"dependencies": {
+		"@dcl/kernel": "https://sdk-team-cdn.decentraland.org/@dcl/kernel/branch/new-runtime/dcl-kernel-2.0.0-3564879847.commit-cd5157a.tgz",
 		"ethers": "^5.7.2",
 		"fp-future": "^1.0.1"
 	}

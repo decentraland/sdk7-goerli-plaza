@@ -1,6 +1,6 @@
 import { ZombieComponent } from '../components/zombie'
 import { playSound } from '../factory/sound'
-import { ensureGameController } from '../game'
+import { ensureGameController } from '..'
 
 export function zombieKiller() {
   for (const [zombieEntity] of engine.getEntitiesWith(ZombieComponent)) {

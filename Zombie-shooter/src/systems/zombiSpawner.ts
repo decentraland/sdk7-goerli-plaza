@@ -1,6 +1,6 @@
 import { GameControllerComponent } from '../components/gameController'
 // import { createCube } from '../cube'
-import { coneEntity } from '../game'
+import { coneEntity } from '..'
 import { createZombie } from '../zombie'
 import { playSound } from './sound'
 

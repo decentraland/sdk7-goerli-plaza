@@ -1,6 +1,6 @@
 import { GameControllerComponent } from './components/gameController'
 import { MoveTransformComponent } from './components/moveTransport'
-import { coneEntity } from './game'
+import { coneEntity } from '.'
 import { addClickBehavior } from './systems/clickable'
 import { onMoveZombieFinish } from './systems/moveZombie'
 

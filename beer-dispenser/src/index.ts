@@ -1,7 +1,10 @@
+import { engine, GltfContainer, Transform } from '@dcl/sdk/ecs'
+import { Vector3, Quaternion } from '@dcl/sdk/math'
 import { BeerType } from './definitions'
 import { pickingGlassSystem } from './modules/beerGlass'
 import { createBeerGlass, createTap } from './modules/factory'
 import { tapPumpSystem } from './modules/tap'
+export * from '@dcl/sdk'
 
 function setup() {
   // Create tables

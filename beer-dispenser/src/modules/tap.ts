@@ -1,3 +1,5 @@
+import { Animator, engine, InputAction, inputSystem, PointerEventType, Transform } from '@dcl/sdk/ecs'
+import { Scalar } from '@dcl/sdk/math'
 import { BeerGlass, BeerType, getTapData, TapBase, TapComponent } from '../definitions'
 import { playSound } from './factory'
 import { getPlayerPosition, playSingleAnim } from './helpers'
@@ -39,7 +41,7 @@ export function tapPumpSystem(dt: number) {
       }
 
       // Listen the action
-    } else if (Input.isTriggered(InputAction.IA_PRIMARY, PointerEventType.PET_DOWN, entity)) {
+    } else if (inputSystem.isTriggered(InputAction.IA_PRIMARY, PointerEventType.PET_DOWN, entity)) {
       const glassEntity = getBeerBehindTap(tapReadonly.beerType)
       if (!glassEntity) {
         // TODO: notify that there is no glass
