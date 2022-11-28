@@ -1,3 +1,5 @@
+import { engine, Transform, GltfContainer, Animator } from '@dcl/sdk/ecs'
+import { Quaternion } from '@dcl/sdk/math'
 import { PathDataComponent } from './components/path'
 import { SpeedComponent } from './components/swimSpeed'
 import { cpoints } from './sharkPath'

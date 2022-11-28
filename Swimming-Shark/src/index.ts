@@ -1,5 +1,10 @@
+import { engine, GltfContainer, Transform } from '@dcl/sdk/ecs'
+import { Quaternion } from '@dcl/sdk/math'
+
 import { createShark } from './shark'
 import { PatrolPath, UpdateSpeed } from './systems/move'
+
+export * from '@dcl/sdk'
 
 const seaBed = engine.addEntity()
 Transform.create(seaBed, {
