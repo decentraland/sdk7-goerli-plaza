@@ -1,5 +1,10 @@
+import { engine, GltfContainer, InputAction, Material, MeshCollider, MeshRenderer, pointerEventsSystem, Transform } from '@dcl/sdk/ecs'
+import { Quaternion, Vector3 } from '@dcl/sdk/math'
+
 import { WheelSpin } from './definitions'
 import rotatorSystem from './modules/rotator'
+
+export * from '@dcl/sdk'
 
 function setup() {
   // Environment
@@ -37,7 +42,7 @@ function createWheel(position: Vector3, speed: number, direction: Vector3) {
     texture: Material.Texture.Common({ src: 'materials/hypno-wheel.png' })
   })
 
-  EventsSystem.onPointerDown(
+  pointerEventsSystem.onPointerDown(
     wheel,
     () => {
       const spin = WheelSpin.getMutable(wheel)

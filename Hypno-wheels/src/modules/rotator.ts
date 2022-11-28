@@ -1,3 +1,5 @@
+import { engine, Transform } from '@dcl/sdk/ecs'
+import { Quaternion } from '@dcl/sdk/math'
 import { WheelSpin } from '../definitions'
 
 export default function rotatorSystem(dt: number) {
