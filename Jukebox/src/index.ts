@@ -1,6 +1,11 @@
+import { Quaternion, Vector3 } from '@dcl/sdk/math'
+import { engine, GltfContainer, Transform } from '@dcl/sdk/ecs'
+
 import { songs } from './definitions'
 import moveAnimationSystem from './modules/moveAnimation'
 import { createSongButton } from './modules/songButton'
+
+export * from '@dcl/sdk'
 
 function createJukebox(position: Vector3) {
   // Jukebox

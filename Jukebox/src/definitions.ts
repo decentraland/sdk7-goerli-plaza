@@ -1,5 +1,7 @@
 /////// Define song list
 
+import { engine, Schemas } from "@dcl/sdk/ecs";
+
 export type Song = { src: string; name: string }
 
 export const songs: Song[] = [
@@ -16,7 +18,7 @@ enum CustomComponentIds {
 
 export const SongButton = engine.defineComponent(
   {
-    jukebox: Schemas.Int
+    jukebox: Schemas.Entity
   },
   CustomComponentIds.SongButton
 )
