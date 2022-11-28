@@ -1,3 +1,6 @@
+import { engine, GltfContainer, Transform } from '@dcl/sdk/ecs'
+import { Vector3 } from '@dcl/sdk/math'
+
 import { SmokeSource } from './definitions'
 import smokeSystem from './modules/smoke'
 import throwSmokeSystem from './modules/smokeSource'

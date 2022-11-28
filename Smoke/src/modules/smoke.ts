@@ -1,3 +1,5 @@
+import { engine, Transform, MeshRenderer } from '@dcl/sdk/ecs'
+import { Vector3 } from '@dcl/sdk/math'
 import { SmokeParticle } from '../definitions'
 
 // Function to check if smoke is too far from source
