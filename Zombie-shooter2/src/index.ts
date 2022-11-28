@@ -1,3 +1,5 @@
+import { AudioSource, engine, InputAction, inputSystem, NftShape, PointerEventType } from '@dcl/sdk/ecs'
+
 import { GameControllerComponent } from './components/gameController'
 import { createCone } from './factory/cone'
 import { createNft } from './factory/nft'
@@ -6,6 +8,8 @@ import { createText } from './factory/text'
 import { createZombie } from './factory/zombie'
 import { moveSystem } from './systems/moveZombie'
 import { zombieKiller } from './systems/zombieKiller'
+
+export * from '@dcl/sdk'
 
 const _LIVES = 5
 const _WINNING_SCORE = 15
@@ -75,7 +79,10 @@ function triggerGameStart() {
 export function gameLogicSystem(dt: number) {
   const gameController = ensureGameController()
 
-  if (coneStarterEntity && Input.isTriggered(InputAction.IA_PRIMARY, PointerEventType.PET_DOWN, coneStarterEntity)) {
+  if (
+    coneStarterEntity &&
+    inputSystem.isTriggered(InputAction.IA_PRIMARY, PointerEventType.PET_DOWN, coneStarterEntity)
+  ) {
     triggerGameStart()
   }
 
@@ -90,7 +97,7 @@ export function gameLogicSystem(dt: number) {
     if (gameController.spawnCountDown < 0) {
       gameController.spawnCountDown = gameController.spawnInterval
       const zombie = spawnZombie()
-      dcl.log('SPAWNING NEW ZOMBIE ', zombie)
+      console.log('SPAWNING NEW ZOMBIE ', zombie)
       playSound(zombie, 'sounds/pickUp.mp3', true)
     }
   }
@@ -103,12 +110,12 @@ function spawnZombie() {
 
 // how do I pass the controller component as a param to this function????
 function lose() {
-  dcl.log('GAME OVER!!')
+  console.log('GAME OVER!!')
   endGame()
 }
 
 function win() {
-  dcl.log('YOU WIN!!')
+  console.log('YOU WIN!!')
   endGame()
 }
 

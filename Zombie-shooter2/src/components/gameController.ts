@@ -1,3 +1,4 @@
+import { Schemas, engine } from '@dcl/sdk/ecs'
 import { getNextComponentId } from './customComponentIds'
 
 const GameControlleType = {
