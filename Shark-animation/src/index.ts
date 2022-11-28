@@ -1,3 +1,8 @@
+import { Animator, engine, GltfContainer, InputAction, pointerEventsSystem, Transform } from '@dcl/sdk/ecs'
+import { Vector3 } from '@dcl/sdk/math'
+
+export * from '@dcl/sdk'
+
 const seaBed = engine.addEntity()
 
 Transform.create(seaBed, {
@@ -37,7 +42,7 @@ Animator.create(shark, {
   ]
 })
 
-EventsSystem.onPointerDown(
+pointerEventsSystem.onPointerDown(
   shark,
   () => {
     // TODO use Animator.getClip()
