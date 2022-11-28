@@ -53,6 +53,9 @@
 		},
 		{
 			"path": "uv-map"
+		},
+		{
+			"path": "grab-object-advance"
 		}
 	]
 }

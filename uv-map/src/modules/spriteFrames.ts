@@ -3,7 +3,6 @@ import { Sprite } from '../definitions'
 export default function updateSpriteFrameSystem(dt: number) {
   for (const [entity] of engine.getEntitiesWith(Sprite, MeshRenderer)) {
     const sprite = Sprite.getMutable(entity)
-    debugger
     sprite.t += dt
     if (sprite.t > sprite.interval) {
       sprite.t -= sprite.interval
