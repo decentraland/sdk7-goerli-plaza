@@ -1,20 +1,17 @@
 {
 	"name": "dcl-project",
 	"version": "1.0.0",
-	"description": "ECS7 ",
+	"description": "ECS7",
 	"main": "src/game.ts",
 	"typings": "",
 	"scripts": {
 		"start": "dcl start",
-		"build": "NODE_ENV=production ./../../../js-sdk-toolchain/packages/@dcl/dcl-rollup/node_modules/.bin/rollup -c ../../../js-sdk-toolchain/packages/@dcl/dcl-rollup/dist/scene.config.js",
-		"watch": "./../../../js-sdk-toolchain/packages/@dcl/dcl-rollup/node_modules/.bin/rollup -c ../../../js-sdk-toolchain/packages/@dcl/dcl-rollup/dist/scene.config.js",
-		"ecs:install-next": "npm install --save-dev @dcl/sdk@next",
-		"lint": "eslint . --ext .ts",
-		"lint:fix": "eslint . --ext .ts --fix"
+		"build": "build-ecs",
+		"watch": "build-ecs --watch",
+		"ecs:install-next": "npm install --save-dev @dcl/sdk@next"
 	},
 	"devDependencies": {
-		"@dcl/eslint-config": "^1.0.1",
-		"@dcl/sdk": "^7.0.0-3532389879.commit-c89c80c"
+		"@dcl/sdk": "https://sdk-team-cdn.decentraland.org/@dcl/js-sdk-toolchain/branch/rollup/dcl-sdk-7.0.0-3560545340.commit-6c0c93d.tgz"
 	},
 	"engines": {
 		"node": ">=14.0.0",
@@ -23,6 +20,7 @@
 	},
 	"bundleDependencies": [],
 	"dependencies": {
-		"ethers": "^5.7.2"
+		"ethers": "^5.7.2",
+		"fp-future": "^1.0.1"
 	}
 }

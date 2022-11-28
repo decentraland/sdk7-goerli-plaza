@@ -1,8 +1,8 @@
-import { Entity, Transform, error, Scalar, TransformType, Vector3, Quaternion, log, engine } from '@dcl/sdk'
+import { Entity, Transform, engine, Scalar, Quaternion, Vector3, TransformType } from '@dcl/ecs'
 import { errors } from 'ethers/lib.esm/ethers'
 export const boedo = 'caslsa'
 
-log(errors)
+console.error(errors)
 
 export function transformComponent(entity: Entity, end: Partial<TransformType>, duration: number = 0) {
   function getDefaults() {
@@ -14,7 +14,7 @@ export function transformComponent(entity: Entity, end: Partial<TransformType>, 
 
   const transform = Transform.getOrNull(entity)
   if (!transform) {
-    error(`[rotateComponent] Transform for entity ${entity} not found`)
+    console.error(`[rotateComponent] Transform for entity ${entity} not found`)
     return
   }
 
@@ -33,7 +33,7 @@ export function transformComponent(entity: Entity, end: Partial<TransformType>, 
 
     const transform = Transform.getMutableOrNull(entity)
     if (!transform) {
-      log('removed system, transform not found')
+      console.log('removed system, transform not found')
       return removeSystem()
     }
     if (cache.end.rotation) {
@@ -47,7 +47,7 @@ export function transformComponent(entity: Entity, end: Partial<TransformType>, 
     }
 
     if (cache.normalizedTime >= 1) {
-      log('removed system, normalizedtime')
+      console.log('removed system, normalizedtime')
       return removeSystem()
     }
   }
