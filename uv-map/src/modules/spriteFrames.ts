@@ -1,3 +1,4 @@
+import { engine, MeshRenderer } from '@dcl/sdk/ecs'
 import { Sprite } from '../definitions'
 
 export default function updateSpriteFrameSystem(dt: number) {

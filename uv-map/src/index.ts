@@ -1,5 +1,9 @@
+import { engine, GltfContainer, Material, MeshRenderer, Transform } from '@dcl/sdk/ecs'
+import { Vector3 } from '@dcl/sdk/math'
 import { Sprite } from './definitions'
 import updateSpriteFrameSystem from './modules/spriteFrames'
+
+export * from '@dcl/sdk'
 
 function setup() {
   // // 3d model of robot
