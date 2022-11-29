@@ -1,4 +1,6 @@
-import { CommonResources } from 'src/resources/common.js';
+import { Entity, engine, Transform, GltfContainer, MeshRenderer } from '@dcl/sdk/ecs.js';
+import { Vector3, Quaternion } from '@dcl/sdk/math.js';
+import { CommonResources } from '../resources/common.js';
 
 //import BoidEntity from './BoidEntity.js';
 import { BOID_CONFIG } from './Constants.js';
@@ -141,9 +143,9 @@ export default class BoidVisibleEntity implements IBoidVisibleEntity {
                 //child.addComponentOrReplace( objsSphere )
                 //child.addComponent(CommonResources.RESOURCES.materials.transparent)
             }
-            log("adding child obs")
+            console.log("adding child obs")
         }else{
-            log("unknown type",type)
+            console.log("unknown type",type)
         }
         
         

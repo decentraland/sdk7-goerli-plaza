@@ -1,3 +1,5 @@
+import { engine, Schemas } from "@dcl/sdk/ecs";
+
 enum CustomComponentIds {
   WheelSpin = 2002
 }

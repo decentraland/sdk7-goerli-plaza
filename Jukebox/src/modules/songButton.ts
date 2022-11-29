@@ -1,3 +1,5 @@
+import { Entity, AudioSource, engine, Transform, TextShape, TextAlignMode, Font, GltfContainer, InputAction, pointerEventsSystem } from '@dcl/sdk/ecs'
+import { Vector3, Quaternion, Color4 } from '@dcl/sdk/math'
 import { MoveAnimation, Song, SongButton } from '../definitions'
 
 const buttonPositionClicked = Vector3.create(0, 0, 0.02)
@@ -89,7 +91,7 @@ export function createSongButton(parent: Entity, x: number, y: number, song: Son
     audioClipUrl: song.src
   })
 
-  EventsSystem.onPointerDown(
+  pointerEventsSystem.onPointerDown(
     button,
     () => {
       const { jukebox } = SongButton.get(button)

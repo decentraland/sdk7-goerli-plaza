@@ -1,3 +1,5 @@
+import { engine, GltfContainer, Transform, Animator, PointerHoverFeedback, PointerEventType, InputAction, Entity, MeshCollider, MeshRenderer, AudioSource } from '@dcl/sdk/ecs'
+import { Vector3, Quaternion } from '@dcl/sdk/math'
 import { BeerGlass, BeerType, getTapData, TapBase, TapComponent } from '../definitions'
 
 export function createBeerGlass(model: string, position: Vector3) {

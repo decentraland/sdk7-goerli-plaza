@@ -1,3 +1,5 @@
+import { Entity, MeshRenderer, Material, Transform, Billboard, BillboardMode, engine } from '@dcl/sdk/ecs'
+import { Vector3 } from '@dcl/sdk/math'
 import { smokeMaterial, SmokeParticle, SmokeSource } from '../definitions'
 
 function spawnSmokePuff(entity: Entity, parent: Entity) {

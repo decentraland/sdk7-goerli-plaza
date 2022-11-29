@@ -1,5 +1,8 @@
+import { Entity, engine, MeshRenderer, Transform, Material, InputAction, PointerEventType, inputSystem } from '@dcl/sdk/ecs'
+import { Vector3 } from '@dcl/sdk/math'
 import { BoxBody, JointBodyID, Marker, markerMaterial, markerPullMaterial } from './definitions'
 import { addBody, addConstraint, getBoxBodyOrNull, getConstraintOrNull, removeConstraint } from './world'
+import * as CANNON from 'cannon/build/cannon'
 
 function getMarkerEntity(): Entity {
   const markers = Array.from(engine.getEntitiesWith(Marker))
@@ -66,10 +69,10 @@ function removeJointConstraint() {
   if (mouseConstraint) removeConstraint(mouseConstraint)
 }
 
-export function inputSystem() {
+export function _inputSystem() {
   const markerEntity = getMarkerEntity()
   const marker = Marker.get(markerEntity)
-  const eventPointerDown = Input.getInputCommand(InputAction.IA_POINTER, PointerEventType.PET_DOWN)
+  const eventPointerDown = inputSystem.getInputCommand(InputAction.IA_POINTER, PointerEventType.PET_DOWN)
 
   if (eventPointerDown && !marker.isPointerPressed) {
     const marker = Marker.getMutable(markerEntity)
@@ -88,7 +91,7 @@ export function inputSystem() {
     }
   }
 
-  if (Input.isTriggered(InputAction.IA_POINTER, PointerEventType.PET_UP) && marker.isPointerPressed) {
+  if (inputSystem.isTriggered(InputAction.IA_POINTER, PointerEventType.PET_UP) && marker.isPointerPressed) {
     const marker = Marker.getMutable(markerEntity)
 
     // Remove marker
@@ -99,12 +102,12 @@ export function inputSystem() {
     removeJointConstraint()
   }
 
-  if (Input.isTriggered(InputAction.IA_PRIMARY, PointerEventType.PET_DOWN)) {
+  if (inputSystem.isTriggered(InputAction.IA_PRIMARY, PointerEventType.PET_DOWN)) {
     Marker.getMutable(markerEntity).isEKeyPressed = true
     Material.setPbrMaterial(markerEntity, markerPullMaterial)
   }
 
-  if (Input.isTriggered(InputAction.IA_PRIMARY, PointerEventType.PET_UP)) {
+  if (inputSystem.isTriggered(InputAction.IA_PRIMARY, PointerEventType.PET_UP)) {
     Marker.getMutable(markerEntity).isEKeyPressed = false
     Material.setPbrMaterial(markerEntity, markerMaterial)
   }

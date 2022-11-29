@@ -1,6 +1,6 @@
-import { BOID_CONFIG } from './Constants.js';
-import BoidEntity from './BoidEntity.js';
-import Grid from './Grid.js'
+import { BOID_CONFIG } from './Constants';
+import BoidEntity from './BoidEntity';
+import Grid from './Grid'
 
 
 /**
@@ -97,12 +97,12 @@ export default class BoidsController {
      * @param {Entity} entity 
      */
     addObstacleEntity(entity:BoidEntity) {
-        log("addObstacleEntity",entity.id)
+        console.log("addObstacleEntity",entity.id)
         this.grid.addEntity(entity);
         this.obstacleEntities.push(entity);
     }
     addPredator(entity:BoidEntity) {
-        log("addPredator",entity.id)
+        console.log("addPredator",entity.id)
         this.grid.addEntity(entity);
         this.flockEntities.push(entity);
     }
@@ -397,7 +397,7 @@ export default class BoidsController {
                 if( isAvoid && currentEntity.getType() == BoidEntity.PREDATOR_ENTITY ){ 
                     //TODO lower cohesion/separation out of fear?
                     entity.burstSpeed = Math.max(entity.burstSpeed + entity.acelSpeed,entity.maxSpeed)
-                    log("computeSeekOrAvoid.predator",currentEntity.id,entity.id,entity.burstSpeed)
+                    console.log("computeSeekOrAvoid.predator",currentEntity.id,entity.id,entity.burstSpeed)
                 }
             }
         });
@@ -453,7 +453,7 @@ export default class BoidsController {
                 if( currentObstacle.getType() == BoidEntity.PREDATOR_ENTITY ){ 
                     //TODO lower cohesion/separation out of fear?
                     entity.burstSpeed = Math.max(entity.burstSpeed + entity.acelSpeed,entity.maxSpeed)
-                    log("computeObstacles.predator",currentObstacle.id,entity.id,entity.burstSpeed)
+                    console.log("computeObstacles.predator",currentObstacle.id,entity.id,entity.burstSpeed)
                 }else{
                     //log("computeObstacles.obstacle",currentObstacle.id,entity.id,entity.burstSpeed)
                 }

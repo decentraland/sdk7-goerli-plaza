@@ -1,3 +1,4 @@
+import { Schemas, engine } from '@dcl/sdk/ecs'
 import { InterpolationType } from '../helper/interpolation'
 import { getNextComponentId } from './customComponentIds'
 

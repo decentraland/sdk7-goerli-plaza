@@ -1,3 +1,5 @@
+import { engine, AudioSource, Entity } from "@dcl/sdk/ecs"
+
 type State = {
   t: number
 }

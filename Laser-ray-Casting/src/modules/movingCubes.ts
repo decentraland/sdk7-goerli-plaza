@@ -1,6 +1,7 @@
 //-------------------------------------------------------
 // This system moves all the cubes to the right and when
 
+import { engine, Transform } from '@dcl/sdk/ecs'
 import { boxesCount, MovingCube, speed } from '../definitions'
 
 // a limit is reached, teleports the cube to the left

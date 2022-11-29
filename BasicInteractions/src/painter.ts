@@ -1,3 +1,6 @@
+import { engine, Material, PBMaterial_PbrMaterial, Schemas } from "@dcl/sdk/ecs"
+import { Color3 } from "@dcl/sdk/math"
+
 export const PainterComponent = engine.defineComponent(
   {
     t: Schemas.Number

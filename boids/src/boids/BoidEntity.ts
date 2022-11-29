@@ -1,4 +1,4 @@
-import { CommonResources } from 'src/resources/common.js';
+import { CommonResources } from '../resources/common';
 import BoidVisibleEntity from './BoidVisibleEntity.js';
 import { BOID_CONFIG } from './Constants.js';
 import Grid from "./Grid";

@@ -3,7 +3,7 @@
 	"version": "1.0.0",
 	"description": "ECS7 ",
 	"scripts": {
-		"start": "./node_modules/.bin/dcl start",
+		"start": "dcl start",
 		"build": "build-ecs",
 		"watch": "build-ecs --watch",
 		"ecs:install": "npm install --save-dev decentraland-ecs@latest",

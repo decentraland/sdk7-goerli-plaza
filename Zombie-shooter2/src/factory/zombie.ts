@@ -1,3 +1,14 @@
+import {
+  Entity,
+  engine,
+  Transform,
+  GltfContainer,
+  MeshRenderer,
+  Animator,
+  PointerHoverFeedback,
+  PointerEventType,
+  InputAction
+} from '@dcl/sdk/ecs'
 import { MoveTransformComponent } from '../components/moveTransport'
 import { ZombieComponent } from '../components/zombie'
 

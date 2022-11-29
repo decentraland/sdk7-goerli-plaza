@@ -1,3 +1,5 @@
+import { engine, Transform, GltfContainer, PointerEventsResult, inputSystem, InputAction, PointerEventType } from '@dcl/sdk/ecs'
+import { Vector3 } from '@dcl/sdk/math'
 import { PainterComponent } from './painter'
 import { createMesh } from './utils'
 
@@ -21,7 +23,7 @@ export function setupQueryMeshes() {
       //   log({ results })
     }
 
-    if (Input.isTriggered(InputAction.IA_POINTER, PointerEventType.PET_DOWN, r2)) {
+    if (inputSystem.isTriggered(InputAction.IA_POINTER, PointerEventType.PET_DOWN, r2)) {
       PainterComponent.createOrReplace(r2)
     }
   })

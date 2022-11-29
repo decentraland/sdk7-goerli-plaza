@@ -1,3 +1,5 @@
+import { Schemas, engine } from '@dcl/sdk/ecs'
+
 const COMPONENT_ID = 2048
 
 const Vector3EcsSchema = Schemas.Map({

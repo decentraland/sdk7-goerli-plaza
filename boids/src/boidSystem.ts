@@ -8,6 +8,8 @@ import { CommonResources } from "./resources/common"
 import { IntervalUtil } from "./utils/interval-util"
 import IBoidEntity from "./boids/IBoidEntity"
 import { Vector3Wrapper } from "./portwrapper/Vector3Wrapper"
+import { Entity, Transform, engine } from "@dcl/sdk/ecs"
+import { Vector3, Quaternion } from "@dcl/sdk/math"
 
 type ExtPredatorEntity={
   boid:BoidEntity
@@ -159,7 +161,7 @@ export class BoidSystem  {
   
   createUpdateFn(){
     if(this.systemFnCache === undefined){
-      log("createUpdateFn",this)
+      console.log("createUpdateFn",this)
       this.systemFnCache = (dt:number)=>{
         //log("createUpdateFn called",this)
         this.update(dt)
@@ -193,7 +195,7 @@ export class BoidSystem  {
             }
           }
         }else{
-          log("WARN missing camera data",cameraPos)
+          console.log("WARN missing camera data",cameraPos)
         }
         for( let extEnt of this.externalEntities){
           if(extEnt && extEnt.boid.enabled){

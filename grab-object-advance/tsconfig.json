@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "outFile": "./bin/game.js",
     "allowJs": true,
     "strict": true
   },
@@ -10,5 +9,5 @@
   "files": [
     "node_modules/cannon/build/cannon.min.js"
   ],
-  "extends": "./node_modules/@dcl/sdk/types/tsconfig.ecs7.json"
+  "extends": "@dcl/sdk/types/tsconfig.ecs7.json"
 }

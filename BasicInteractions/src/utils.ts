@@ -1,3 +1,6 @@
+import { Entity, engine, Transform, MeshRenderer, MeshCollider, Billboard, TextShape, Font } from "@dcl/sdk/ecs"
+import { Vector3 } from "@dcl/sdk/math"
+
 export function createMesh(
   position: Vector3.ReadonlyVector3,
   text: string = '',

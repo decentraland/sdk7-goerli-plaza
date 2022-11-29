@@ -1,0 +1,27 @@
+{
+	"name": "dcl-project",
+	"version": "1.0.0",
+	"description": "ECS7",
+	"main": "src/game.ts",
+	"typings": "",
+	"scripts": {
+		"start": "dcl start",
+		"build": "build-ecs",
+		"watch": "build-ecs --watch",
+		"ecs:install-next": "npm install --save-dev @dcl/sdk@next"
+	},
+	"devDependencies": {
+		"@dcl/sdk": "next"
+	},
+	"engines": {
+		"node": ">=14.0.0",
+		"npm": ">=6.0.0",
+		"yarn": "please use npm"
+	},
+	"bundleDependencies": [],
+	"dependencies": {
+		"@dcl/kernel": "https://sdk-team-cdn.decentraland.org/@dcl/kernel/branch/new-runtime/dcl-kernel-2.0.0-3564879847.commit-cd5157a.tgz",
+		"ethers": "^5.7.2",
+		"fp-future": "^1.0.1"
+	}
+}

@@ -1,3 +1,5 @@
+import { engine, Transform, GltfContainer } from '@dcl/sdk/ecs'
+import { Vector3 } from '@dcl/sdk/math'
 import { PainterComponent } from './painter'
 import { createMesh } from './utils'
 

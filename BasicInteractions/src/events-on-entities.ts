@@ -1,5 +1,7 @@
 // Pointer Down Cube
 
+import { PointerHoverFeedback, PointerEventType, InputAction, engine, inputSystem } from '@dcl/sdk/ecs'
+import { Vector3 } from '@dcl/sdk/math'
 import { PainterComponent } from './painter'
 import { createMesh } from './utils'
 
@@ -88,22 +90,22 @@ export function setupEventOnEntities() {
   })
 
   engine.addSystem(() => {
-    if (Input.isTriggered(InputAction.IA_POINTER, PointerEventType.PET_DOWN, pointerDownCube)) {
+    if (inputSystem.isTriggered(InputAction.IA_POINTER, PointerEventType.PET_DOWN, pointerDownCube)) {
       PainterComponent.createOrReplace(pointerDownCube)
     }
-    if (Input.isTriggered(InputAction.IA_POINTER, PointerEventType.PET_UP, pointerUpCube)) {
+    if (inputSystem.isTriggered(InputAction.IA_POINTER, PointerEventType.PET_UP, pointerUpCube)) {
       PainterComponent.createOrReplace(pointerUpCube)
     }
-    if (Input.isTriggered(InputAction.IA_PRIMARY, PointerEventType.PET_DOWN, primaryDownCube)) {
+    if (inputSystem.isTriggered(InputAction.IA_PRIMARY, PointerEventType.PET_DOWN, primaryDownCube)) {
       PainterComponent.createOrReplace(primaryDownCube)
     }
-    if (Input.isTriggered(InputAction.IA_PRIMARY, PointerEventType.PET_UP, primaryUpCube)) {
+    if (inputSystem.isTriggered(InputAction.IA_PRIMARY, PointerEventType.PET_UP, primaryUpCube)) {
       PainterComponent.createOrReplace(primaryUpCube)
     }
-    if (Input.isTriggered(InputAction.IA_SECONDARY, PointerEventType.PET_DOWN, secondaryDownCube)) {
+    if (inputSystem.isTriggered(InputAction.IA_SECONDARY, PointerEventType.PET_DOWN, secondaryDownCube)) {
       PainterComponent.createOrReplace(secondaryDownCube)
     }
-    if (Input.isTriggered(InputAction.IA_SECONDARY, PointerEventType.PET_UP, secondaryUpCube)) {
+    if (inputSystem.isTriggered(InputAction.IA_SECONDARY, PointerEventType.PET_UP, secondaryUpCube)) {
       PainterComponent.createOrReplace(secondaryUpCube)
     }
   })

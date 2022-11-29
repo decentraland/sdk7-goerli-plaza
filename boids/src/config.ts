@@ -25,7 +25,7 @@ export const CONFIG = new Config()
 
 
 export function setInPreview(val: boolean) {
-  log("setInPreview " + val)
+  console.log("setInPreview " + val)
   CONFIG.IN_PREVIEW = val
 
   //var console: any

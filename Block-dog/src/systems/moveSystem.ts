@@ -1,3 +1,5 @@
+import { engine, Entity, Transform } from '@dcl/sdk/ecs'
+import { Vector3 } from '@dcl/sdk/math'
 import { CustomComponents } from '../components'
 import { Interpolate } from '../helper/interpolation'
 

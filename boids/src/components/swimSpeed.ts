@@ -1,3 +1,5 @@
+import { engine, Schemas } from "@dcl/sdk/ecs"
+
 const COMPONENT_ID = 1111
 
 
