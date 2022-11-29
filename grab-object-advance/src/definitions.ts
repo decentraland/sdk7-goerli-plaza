@@ -1,3 +1,6 @@
+import { engine, Schemas, PBMaterial_PbrMaterial } from "@dcl/sdk/ecs"
+import { Color3 } from "@dcl/sdk/math"
+
 enum CustomComponentIds {
   BoxBody = 2022,
   Marker = 2023

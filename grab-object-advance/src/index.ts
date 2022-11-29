@@ -1,9 +1,12 @@
+export * from '@dcl/sdk'
+import {engine, GltfContainer, Transform} from '@dcl/sdk/ecs'
+import { Vector3 } from '@dcl/sdk/math'
 // /*
 //   IMPORTANT: The tsconfig.json has been configured to include "node_modules/cannon/build/cannon.js"
 //   Code is adapted from: https://github.com/schteppe/cannon.js/blob/master/examples/threejs_mousepick.html
 // */
 
-import { inputSystem, setupMarker, updateMarkerSystem } from './marker'
+import { _inputSystem, setupMarker, updateMarkerSystem } from './marker'
 import { createBoxBody, setupCannon, updatePhysicsSystem } from './world'
 
 function setup() {
@@ -20,7 +23,7 @@ function setup() {
 
   engine.addSystem(updatePhysicsSystem)
   engine.addSystem(updateMarkerSystem)
-  engine.addSystem(inputSystem)
+  engine.addSystem(_inputSystem)
 }
 
 setup()

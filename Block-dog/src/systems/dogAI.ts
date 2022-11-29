@@ -190,7 +190,7 @@ export function leaveState(entity: Entity, oldState: dogStates) {
   }
 }
 
-export function turn(entity: Entity, target: ReadOnlyVector3) {
+export function turn(entity: Entity, target: Vector3) {
   const transform = Transform.getMutable(entity)
   const difference = Vector3.subtract(transform.position, target)
   const normalizedDifference = Vector3.normalize(difference)
@@ -199,6 +199,6 @@ export function turn(entity: Entity, target: ReadOnlyVector3) {
 }
 
 // check if the target is inside the scene's bounds
-export function isInBounds(position: ReadOnlyVector3): boolean {
+export function isInBounds(position: Vector3): boolean {
   return position.x > 0.5 && position.x < 9.5 && position.z > 0.5 && position.z < 9.5
 }

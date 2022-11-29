@@ -1,4 +1,7 @@
 import { BoxBody } from './definitions'
+import * as CANNON from 'cannon/build/cannon'
+import { engine, GltfContainer, Material, Transform } from '@dcl/sdk/ecs'
+import { Vector3, Color3, Quaternion } from '@dcl/sdk/math'
 
 let world: CANNON.World
 
