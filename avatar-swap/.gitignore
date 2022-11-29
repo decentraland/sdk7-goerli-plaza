@@ -4,4 +4,4 @@ bin
 *.swp
 *.*~
 export
-
+.idea/
