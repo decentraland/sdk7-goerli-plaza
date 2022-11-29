@@ -1,3 +1,20 @@
+import { 
+    engine,
+    Entity,
+    GltfContainer,
+    Transform,
+    Animator,
+    AvatarModifierArea,
+    AvatarModifierType,
+    AvatarAttach,
+    AvatarAnchorPointType
+} from '@dcl/sdk/ecs'
+import { Vector3 } from '@dcl/sdk/math'
+// import { BeerType } from './definitions'
+// import { pickingGlassSystem } from './modules/beerGlass'
+// import { createBeerGlass, createTap } from './modules/factory'
+// import { tapPumpSystem } from './modules/tap'
+export * from '@dcl/sdk'
 import { getUserData } from "~system/UserIdentity"
 
 // Set ground model
@@ -35,7 +52,7 @@ Animator.create(arissaCharaEntity, {
 async function attachEntityToPlayer (entity: Entity){
     let userData = await getUserData({})
     if(!userData.data) return
-    log(userData.data.userId)
+    console.log(`userId: ${userData.data.userId}`)
 
     AvatarAttach.create(entity, {
         anchorPointId: AvatarAnchorPointType.AAPT_POSITION,

@@ -1,7 +1,7 @@
 {
-  "name": "dcl-project",
+  "name": "avatar-swap",
   "version": "1.0.0",
-  "description": "Dance Floor",
+  "description": "Avatar Swap",
   "scripts": {
     "start": "dcl start",
     "build": "build-ecs",
@@ -11,6 +11,6 @@
   },
   "devDependencies": {
     "@dcl/eslint-config": "^1.0.1",
-    "@dcl/sdk": "^7.0.0-3548419522.commit-ddcf4b7"
+    "@dcl/sdk": "next"
   }
 }
