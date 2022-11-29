@@ -1,3 +1,5 @@
+import {Vector3} from '@dcl/sdk/math'
+import {engine, Schemas} from '@dcl/sdk/ecs'
 /**
  * Types
  */

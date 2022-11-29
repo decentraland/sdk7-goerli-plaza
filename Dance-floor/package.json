@@ -11,6 +11,6 @@
   },
   "devDependencies": {
     "@dcl/eslint-config": "^1.0.1",
-    "@dcl/sdk": "^7.0.0-3532389879.commit-c89c80c"
+    "@dcl/sdk": "next"
   }
 }

@@ -12,6 +12,6 @@
 	},
 	"dependencies": {
 		"@dcl/eslint-config": "^1.0.1",
-		"@dcl/sdk": "next"
+		"@dcl/sdk": "https://sdk-team-cdn.decentraland.org/@dcl/js-sdk-toolchain/branch/rollup/dcl-sdk-7.0.0-3560913699.commit-26d9b0c.tgz"
 	}
 }

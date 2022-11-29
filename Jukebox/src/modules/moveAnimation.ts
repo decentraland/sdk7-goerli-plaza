@@ -1,3 +1,5 @@
+import { engine, Transform } from '@dcl/sdk/ecs'
+import { Vector3 } from '@dcl/sdk/math'
 import { MoveAnimation } from '../definitions'
 
 export default function moveAnimationSystem(dt: number) {

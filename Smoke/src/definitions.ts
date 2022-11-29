@@ -1,3 +1,5 @@
+import { engine, Schemas, PBMaterial_PbrMaterial, Material } from '@dcl/sdk/ecs'
+
 export const SmokeParticle = engine.defineComponent(
   {
     velocity: Schemas.Vector3,

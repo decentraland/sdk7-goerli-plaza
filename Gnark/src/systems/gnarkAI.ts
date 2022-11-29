@@ -1,3 +1,5 @@
+import { Transform, Entity, engine, Animator } from '@dcl/sdk/ecs'
+import { Vector3, Quaternion } from '@dcl/sdk/math'
 import { MoveTransformComponent } from '../components/moveTransport'
 import { gnarkStates, NPComponent } from '../components/NPC'
 import { PathDataComponent } from '../components/pathData'

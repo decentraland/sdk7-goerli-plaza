@@ -1,12 +1,10 @@
 {
   "compilerOptions": {
-    "outFile": "./bin/game.js",
     "allowJs": true,
     "strict": true
   },
   "include": [
     "src/**/*.ts",
-    "./node_modules/@dcl/posix/index.d.ts"
   ],
-  "extends": "./node_modules/@dcl/sdk/types/tsconfig.ecs7.json"
+  "extends": "@dcl/sdk/types/tsconfig.ecs7.json"
 }

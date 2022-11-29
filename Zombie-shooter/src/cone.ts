@@ -1,3 +1,5 @@
+import { engine, Transform, MeshRenderer, MeshCollider } from "@dcl/sdk/ecs"
+
 export function createCone() {
   const cone = engine.addEntity()
 

@@ -1,4 +1,6 @@
-//-------------------------------------------------------
+import { PBMaterial_PbrMaterial, engine, Schemas } from '@dcl/sdk/ecs'
+import { Color3 } from '@dcl/sdk/math'
+
 // Configuration constants
 export const boxesCount = 10
 export const speed = 1

@@ -1,4 +1,6 @@
 
+import { engine, Transform, Animator } from '@dcl/sdk/ecs'
+import { Vector3, Quaternion } from '@dcl/sdk/math'
 import { PathDataComponent } from '../components/path'
 import { SpeedComponent } from '../components/swimSpeed'
 

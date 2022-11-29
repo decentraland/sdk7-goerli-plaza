@@ -1,3 +1,5 @@
+import { Entity, engine, Transform, GltfContainer } from "@dcl/sdk/ecs";
+
 export function createGLTF(
   transform: {
     position: { x: number; y: number; z: number }

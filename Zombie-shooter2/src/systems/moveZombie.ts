@@ -1,8 +1,10 @@
 import { MoveTransformComponent, MoveTransformFinishedComponent } from '../components/moveTransport'
 import { ZombieComponent } from '../components/zombie'
 import { playSound } from '../factory/sound'
-import { ensureGameController } from '../game'
+import { ensureGameController } from '..'
 import { Interpolate } from '../helper/interpolation'
+import { engine, Transform, Animator, NftShape } from '@dcl/sdk/ecs'
+import { Vector3 } from '@dcl/sdk/math'
 
 export function moveSystem(dt: number) {
   for (const [entity] of engine.getEntitiesWith(MoveTransformComponent, Transform, ZombieComponent)) {
@@ -23,7 +25,7 @@ export function moveSystem(dt: number) {
   }
 
   for (const [zombieEntity] of engine.getEntitiesWith(MoveTransformFinishedComponent, Transform, ZombieComponent)) {
-    dcl.log('finished zombie', zombieEntity)
+    console.log('finished zombie', zombieEntity)
     ensureGameController().livesLeft -= 1
 
     const animator = Animator.getMutable(zombieEntity)

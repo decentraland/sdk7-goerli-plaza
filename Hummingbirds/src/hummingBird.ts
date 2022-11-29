@@ -1,3 +1,5 @@
+import { Schemas, engine, Transform, GltfContainer, Animator, CameraMode, Entity } from '@dcl/sdk/ecs'
+import { Quaternion, Vector3 } from '@dcl/sdk/math'
 import { MoveTransformComponent } from './components/moveTransport'
 import { InterpolationType } from './helper/interpolation'
 
@@ -49,7 +51,7 @@ export function createHummingBird() {
   })
 
   const cameraEntity = CameraMode.getMutable(engine.CameraEntity)
-  log('CAMERA MODE: ', cameraEntity.mode)
+  console.log('CAMERA MODE: ', cameraEntity.mode)
   cameraEntity.mode = 0
 }
 
@@ -93,7 +95,7 @@ export function birdSystem(dt: number) {
 
 engine.addSystem(birdSystem)
 
-export function turn(entity: Entity, target: ReadOnlyVector3) {
+export function turn(entity: Entity, target: Vector3) {
   const transform = Transform.getMutable(entity)
   const difference = Vector3.subtract(target, transform.position)
   const normalizedDifference = Vector3.normalize(difference)

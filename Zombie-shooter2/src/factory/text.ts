@@ -1,3 +1,5 @@
+import { Entity, engine, Transform, TextShape, TextAlignMode } from "@dcl/sdk/ecs"
+
 export function createText(parent: Entity, value: string): Entity {
   const text = engine.addEntity()
 

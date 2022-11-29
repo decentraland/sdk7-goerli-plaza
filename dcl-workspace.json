@@ -56,6 +56,9 @@
 		},
 		{
 			"path": "grab-object-advance"
+		},
+		{
+			"path": "dbmonster"
 		}
 	]
 }

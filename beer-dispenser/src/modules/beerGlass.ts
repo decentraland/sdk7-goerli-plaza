@@ -1,12 +1,15 @@
+import { engine, inputSystem, InputAction, PointerEventType, Entity, Transform, AvatarAttach, AvatarAnchorPointType } from '@dcl/sdk/ecs'
+import { Vector3, Quaternion } from '@dcl/sdk/math'
 import { BeerGlass, PickedUp, TapBase } from '../definitions'
 import { playSound } from './factory'
 import { currentPlayerId, getEntityParent, getPlayerPosition, playSingleAnim } from './helpers'
+
 
 export function pickingGlassSystem() {
   // If there is some PickedUp, so the behvior is to listen when this
   //  can be dropped
   for (const [entity, pickedUp] of engine.getEntitiesWith(PickedUp)) {
-    const tryToDropCommand = Input.getInputCommand(InputAction.IA_PRIMARY, PointerEventType.PET_DOWN)
+    const tryToDropCommand = inputSystem.getInputCommand(InputAction.IA_PRIMARY, PointerEventType.PET_DOWN)
     if (tryToDropCommand) {
       const hitPosition = tryToDropCommand.hit?.position || getPlayerPosition()
       const hitEntity = tryToDropCommand.hit?.entityId as Entity
@@ -41,7 +44,7 @@ export function pickingGlassSystem() {
 
     const glass = BeerGlass.get(pickedUp.child as Entity)
 
-    const tryToDrinkCommand = Input.getInputCommand(InputAction.IA_SECONDARY, PointerEventType.PET_DOWN)
+    const tryToDrinkCommand = inputSystem.getInputCommand(InputAction.IA_SECONDARY, PointerEventType.PET_DOWN)
     if (glass.filled && tryToDrinkCommand) {
       BeerGlass.getMutable(pickedUp.child as Entity).filled = false
       playSingleAnim(pickedUp.child as Entity, 'Blank')
@@ -52,10 +55,10 @@ export function pickingGlassSystem() {
 
   // Only happens when there isn't any PickedUp component
   for (const [entity, glass] of engine.getEntitiesWith(BeerGlass)) {
-    if (!glass.beingFilled && Input.isTriggered(InputAction.IA_PRIMARY, PointerEventType.PET_DOWN, entity)) {
+    if (!glass.beingFilled && inputSystem.isTriggered(InputAction.IA_PRIMARY, PointerEventType.PET_DOWN, entity)) {
       const parentBeer = engine.addEntity()
       PickedUp.create(parentBeer, {
-        child: entity
+        child: entity as any
       })
 
       AvatarAttach.create(parentBeer, {

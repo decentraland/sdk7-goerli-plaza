@@ -1,3 +1,5 @@
+
+import { engine, Transform, MeshRenderer, TextShape, Billboard } from '@dcl/sdk/ecs'
 import { CircleHoverSystem } from './circularSystem'
 
 // My cube generator

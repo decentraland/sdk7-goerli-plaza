@@ -1,4 +1,5 @@
-import { InterpolationType } from 'helper/interpolation'
+import { Schemas, engine } from '@dcl/sdk/ecs'
+import { InterpolationType } from './helper/interpolation'
 
 export enum dogStates {
   Idle,

@@ -1,3 +1,5 @@
+import { Transform, engine, executeTask, Entity, Animator } from '@dcl/sdk/ecs'
+import { Vector3 } from '@dcl/sdk/math'
 import { getUserData } from '~system/UserIdentity'
 
 export function getPlayerPosition() {
