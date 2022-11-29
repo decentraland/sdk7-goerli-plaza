@@ -1,5 +1,5 @@
 {
-  "ecs7": true,
+	"ecs7": true,
 	"display": {
 		"title": "beer-dispenser",
 		"favicon": "favicon_asset"

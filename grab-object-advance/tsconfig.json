@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "outFile": "./bin/game.js",
+    "allowJs": true,
+    "strict": true
+  },
+  "include": [
+    "src/**/*.ts"
+  ],
+  "files": [
+    "node_modules/cannon/build/cannon.min.js"
+  ],
+  "extends": "./node_modules/@dcl/sdk/types/tsconfig.ecs7.json"
+}
