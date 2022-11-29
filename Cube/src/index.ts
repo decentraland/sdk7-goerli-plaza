@@ -1,3 +1,7 @@
+import { engine, Entity, InputAction, inputSystem, MeshCollider, MeshRenderer, PointerEventType, PointerHoverFeedback, Transform } from '@dcl/sdk/ecs'
+import { Quaternion, Vector3 } from '@dcl/sdk/math'
+export * from '@dcl/sdk'
+
 function createCube(x: number, y: number, z: number, spawner = false): Entity {
   const meshEntity = engine.addEntity()
 
@@ -36,12 +40,12 @@ function circularSystem(dt: number) {
 
 function spawnerSystem() {
   for (const [entity] of engine.getEntitiesWith(PointerHoverFeedback)) {
-    if (Input.isTriggered(InputAction.IA_PRIMARY, PointerEventType.PET_DOWN, entity)) {
+    if (inputSystem.isTriggered(InputAction.IA_PRIMARY, PointerEventType.PET_DOWN, entity)) {
       createCube(1 + Math.random() * 8, Math.random() * 8, 1 + Math.random() * 8, false)
     }
   }
 
-  if (Input.isTriggered(InputAction.IA_SECONDARY, PointerEventType.PET_DOWN)) {
+  if (inputSystem.isTriggered(InputAction.IA_SECONDARY, PointerEventType.PET_DOWN)) {
     const cubeTransform = Transform.getMutable(cube)
     cubeTransform.scale.y += 0.3
   }

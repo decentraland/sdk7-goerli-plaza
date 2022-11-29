@@ -4,7 +4,7 @@
 	"description": "ECS7 ",
 	"scripts": {
 		"start": "dcl start",
-		"build": "build-ecs",
+		"build": "build-ecs --production",
 		"watch": "build-ecs --watch",
 		"ecs:install-next": "npm install --save-dev @dcl/sdk@next",
 		"lint": "eslint . --ext .ts",
@@ -15,7 +15,7 @@
 		"@dcl/sdk": "https://sdk-team-cdn.decentraland.org/@dcl/js-sdk-toolchain/branch/rollup/dcl-sdk-7.0.0-3568304978.commit-6368268.tgz"
 	},
 	"engines": {
-		"node": ">=14.0.0",
+		"node": ">=16.0.0",
 		"npm": ">=6.0.0",
 		"yarn": "please use npm"
 	}
