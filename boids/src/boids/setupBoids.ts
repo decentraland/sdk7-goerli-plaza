@@ -1,5 +1,7 @@
-import { CONFIG } from "src/config"
-import { REGISTRY } from "src/registry"
+import { engine, MeshRenderer, Transform } from "@dcl/sdk/ecs"
+import { Vector3, Quaternion } from "@dcl/sdk/math"
+import { CONFIG } from "../config"
+import { REGISTRY } from "../registry"
 
 import BoidsController from "./BoidsController"
 import { BOID_CONFIG } from "./Constants"
@@ -35,7 +37,7 @@ const seekCount = 0
 export function createBoundaryPlanes(){
 
   if(!BOID_CONFIG.SHOW_DEBUG_BOUNDARY_PLANES){
-    log("createBoundaryPlanes is disabled SHOW_DEBUG_BOUNDARY_PLANES")
+    console.log("createBoundaryPlanes is disabled SHOW_DEBUG_BOUNDARY_PLANES")
     return
   }
   
@@ -61,7 +63,7 @@ export function createBoundaryPlanes(){
 
 export function createBoundaryMarkers(){
   if(!BOID_CONFIG.SHOW_DEBUG_BOUNDARY_MARKERS){
-    log("createBoundaryMarkers is disabled SHOW_DEBUG_BOUNDARY_MARKERS")
+    console.log("createBoundaryMarkers is disabled SHOW_DEBUG_BOUNDARY_MARKERS")
     return
   }
   const offset = .3

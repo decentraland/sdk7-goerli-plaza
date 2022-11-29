@@ -1,4 +1,5 @@
 // TODO: use higher number so we dont have conflicts (i.e. > 2000)
+import { Schemas, engine } from '@dcl/sdk/ecs'
 import { InterpolationType } from '../helper/interpolation'
 
 const COMPONENT_ID = 2046

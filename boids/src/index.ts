@@ -1,7 +1,9 @@
 import { createBoundaryMarkers, createBoundaryPlanes, initBoidController } from "./boids/setupBoids"
 import { initBoidSystem, startBoidSystem } from "./boidSystem"
 import { createDebugUIButtons } from "./ui/ui-hud-debugger"
-
+import { engine, GltfContainer, Transform } from '@dcl/sdk/ecs'
+import { Vector3, Quaternion } from '@dcl/sdk/math'
+export * from '@dcl/sdk'
 
 const seaBed = engine.addEntity()
 Transform.create(seaBed, {

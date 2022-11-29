@@ -1,3 +1,5 @@
+import { Vector3 } from "@dcl/sdk/math";
+
   type Vector3Type = {
    x: number; y: number; z: number 
  }

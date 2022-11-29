@@ -1,4 +1,5 @@
 
+import { Entity } from '@dcl/sdk/ecs.js';
 import IBoidEntity from './IBoidEntity.js';
 
 

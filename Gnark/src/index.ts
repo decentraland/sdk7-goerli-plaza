@@ -1,3 +1,6 @@
+export * from '@dcl/sdk'
+import {engine} from '@dcl/sdk/ecs'
+
 import { createGLTF } from './gltf'
 import { createGnark } from './gnark'
 

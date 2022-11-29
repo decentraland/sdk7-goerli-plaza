@@ -1,3 +1,5 @@
+import { engine, Entity, Animator, PointerHoverFeedback, Transform } from '@dcl/sdk/ecs'
+import { Vector3, Quaternion } from '@dcl/sdk/math'
 import { CustomComponents, dogStates } from '../components'
 
 export function dogBehavior() {

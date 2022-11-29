@@ -1,6 +1,8 @@
 //import Stats from 'https://cdnjs.cloudflare.com/ajax/libs/stats.js/r17/Stats.min.js'
 import BoidsController from './BoidsController';
 import BoidEntity from './BoidEntity';
+import { Transform } from '@dcl/sdk/ecs';
+import { Vector3 } from '@dcl/sdk/math';
 //import Entity from './Entity.js'
 
 let stats = undefined;

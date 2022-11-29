@@ -1,5 +1,7 @@
 import { createGLTF } from './gltf'
 import { createDog } from './dog'
+import { PointerHoverFeedback, PointerEventType, InputAction } from '@dcl/sdk/ecs'
+export * from '@dcl/sdk'
 
 createGLTF(
   {

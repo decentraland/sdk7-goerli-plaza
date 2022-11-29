@@ -1,5 +1,6 @@
 // Coordinates of path to patrol
 
+import { Entity, engine, Transform, GltfContainer, Animator, PointerHoverFeedback, PointerEventType, InputAction } from '@dcl/sdk/ecs'
 import { CustomComponents, dogStates } from './components'
 
 const point1 = { x: 8, y: 0, z: 8 }

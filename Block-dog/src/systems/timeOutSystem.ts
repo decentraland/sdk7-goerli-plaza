@@ -1,3 +1,4 @@
+import { Entity, engine } from '@dcl/sdk/ecs'
 import { CustomComponents } from '../components'
 
 const callbackMap = new Map<Entity, () => void>()
