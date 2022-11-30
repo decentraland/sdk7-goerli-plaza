@@ -19,4 +19,4 @@ export function moveSystem(dt: number) {
   }
 }
 
-engine.addSystem(moveSystem)
+

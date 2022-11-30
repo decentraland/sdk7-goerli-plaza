@@ -1,5 +1,6 @@
-import { Animator, engine, GltfContainer, InputAction, pointerEventsSystem, Transform } from '@dcl/sdk/ecs'
+import { Animator, AudioSource, engine, GltfContainer, InputAction, pointerEventsSystem, Transform } from '@dcl/sdk/ecs'
 import { createHummingBird } from './hummingBird'
+import { moveSystem } from './systems/move'
 
 export * from '@dcl/sdk'
 
@@ -23,6 +24,12 @@ GltfContainer.create(tree, {
   src: 'models/Tree.gltf'
 })
 
+AudioSource.create(tree, {
+	audioClipUrl: 'sounds/pickUp.mp3',
+	loop: false,
+	playing: false
+})
+
 Animator.create(tree, {
   states: [
     {
@@ -41,9 +48,14 @@ pointerEventsSystem.onPointerDown(
     createHummingBird()
     const anim = Animator.getMutable(tree)
     anim.states[0].playing = true
+	const audioSource = AudioSource.getMutable(tree)
+	audioSource.playing = true
   },
   {
     button: InputAction.IA_PRIMARY,
     hoverText: 'Shake'
   }
 )
+
+engine.addSystem(moveSystem)
+
