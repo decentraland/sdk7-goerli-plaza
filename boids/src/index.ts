@@ -3,6 +3,8 @@ import { initBoidSystem, startBoidSystem } from "./boidSystem"
 import { createDebugUIButtons } from "./ui/ui-hud-debugger"
 import { engine, GltfContainer, Transform } from '@dcl/sdk/ecs'
 import { Vector3, Quaternion } from '@dcl/sdk/math'
+import { createShark } from "./shark"
+import { PatrolPath } from "./systems/move"
 export * from '@dcl/sdk'
 
 const seaBed = engine.addEntity()
@@ -28,7 +30,10 @@ function start(){
 	createBoundaryPlanes()
 	createBoundaryMarkers() 
   
-	//addShark()
+	createShark()
+
+	engine.addSystem(PatrolPath)
+
   }
   
   

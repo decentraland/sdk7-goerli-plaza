@@ -9,7 +9,7 @@ import { cpoints } from "./sharkPath"
 
 
 
-createShark()
+
 
 export function createShark(){
 

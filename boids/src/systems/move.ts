@@ -49,8 +49,7 @@ export function PatrolPath(dt:number) {
 	
   }
   
-  engine.addSystem(PatrolPath)
-
+  
 
 
   export function UpdateSpeed() {
