@@ -1,10 +1,13 @@
-# Beer Dispenser
+# Beer Dispenser (SDK7 Version)
 _demo of beer-dispenser scene running in preview._
+
+> Please visit the [SDK7 scene template](https://github.com/decentraland/sdk7-scene-template) for a SDK7 summary.  
 
 ![demo](https://github.com/decentraland-scenes/beer-dispenser/blob/main/screenshots/beer-dispenser.gif)
 
 ## Description
-A beer dispenser that uses P2P messaging so that you can pour beer for yourself and friends. To view the scene, please visit [here](https://beer-dispenser.vercel.app/).
+A beer dispenser that uses P2P messaging so that you can pour beer for yourself and friends. 
+> IMPORTANT: In this version with SDK7 the P2P is not working yet, and
 
 ## Instructions
 Pick up and put down the beer glass using the <kbd>E</kbd> key - you will only be able to place the beer glass on a flat surface that's pointing upwards. To fill a glass, place it at one of the bases on the dispenser and then press on the corresponding tap using the the <kbd>E</kbd> key again; to drink the beer just press the <kbd>F</kbd> key. Use your mouse to look around and <kbd>W</kbd> <kbd>A</kbd> <kbd>S</kbd> <kbd>D</kbd> keys on your keyboard to move forward, left, backward and right respectively. Finally, pressing the <kbd>Space</kbd> key will make your avatar jump.

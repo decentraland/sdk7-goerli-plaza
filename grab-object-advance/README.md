@@ -1,4 +1,9 @@
-# Grab Objects Advanced (ECS7)
+# Grab Objects Advanced(SDK7 Version)
+
+This scene has no description yet.
+
+> Please visit the [SDK7 scene template](https://github.com/decentraland/sdk7-scene-template) for a SDK7 summary.  
+
 _demo of grab-objects-advanced scene running in preview._
 
 ![demo](https://github.com/decentraland-scenes/sdk7-goerli-plaza/grab-objects-advanced/blob/main/screenshots/grab-objects-advanced.gif)

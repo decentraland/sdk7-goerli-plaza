@@ -1,4 +1,6 @@
-# Boids
+#  Block dog (SDK7 Version)
+
+> Please visit the [SDK7 scene template](https://github.com/decentraland/sdk7-scene-template) for a SDK7 summary.  
 
 Boids is an implementation of the boids algorithm. This can be used for simulation flock behavior such as birds or fish in 3D space.  It uses a grid implementation for fast lookups. 
 
