@@ -1,6 +1,22 @@
-# ECS7 Test scene
-This scene is built with the ECS7 in alpha state.
+# Zombie shooter v1 (SDK7 Version)
 
-1. Run `npm i`
-2. Run `npm start`
+This scene has no description yet.
 
+> Please visit the [SDK7 scene template](https://github.com/decentraland/sdk7-scene-template) for a SDK7 summary.  
+
+
+## Try it out
+
+**Install the CLI**
+Download and install the Decentraland CLI by running the following command:
+
+```
+$ npm i -g decentraland
+```
+
+**Previewing the scene**
+Download this example and navigate to its directory, then run:
+
+```
+$  dcl start
+```

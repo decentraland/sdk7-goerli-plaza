@@ -1,7 +1,8 @@
-# Dance floor
+# Dance floor (SDK7 Version)
+
+> Please visit the [SDK7 scene template](https://github.com/decentraland/sdk7-scene-template) for a SDK7 summary.  
 
 A scene with animations, sound, and tiles on the floor that randomly change color to the beat.
-
 
 ![](screenshot/screenshot.png)
 
