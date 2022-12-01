@@ -1,3 +1,6 @@
+import { engine, Schemas } from "@dcl/sdk/ecs";
+import { Color3 } from '@dcl/sdk/math'
+
 export const colors: Color3[] = [
     Color3.fromHexString('#1dccc7'),
     Color3.fromHexString('#ffce00'),
