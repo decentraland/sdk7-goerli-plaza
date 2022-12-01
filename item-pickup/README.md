@@ -1,31 +1,35 @@
-# Item Pickup
-_demo of item-pickup scene running in preview._
+# Item Pickup (SDK7 Version)
 
-![demo](https://github.com/decentraland-scenes/item-pickup/blob/master/screenshots/item-pickup.gif)
+> Please visit the [SDK7 scene template](https://github.com/decentraland/sdk7-scene-template) for a SDK7 summary.
 
-## Description
-Item pickup mechanic where each item has a different spawn time. To view the scene, please visit [here](https://item-pickup.vercel.app/).
+A scene with Item-pickup mechanic where each item has a different re-spawn time and triggers an SDF on pickup.
+
+![](screenshots/item-pickup.gif)
 
 ## Instructions
-Run over or stand over an item to pick it up. Use your mouse to look around and <kbd>W</kbd> <kbd>A</kbd> <kbd>S</kbd> <kbd>D</kbd> keys on your keyboard to move forward, left, backward and right respectively. To jump, press the <kbd>Space</kbd> key.
+Run over or stand over an item to pick it up. Use your mouse to look around and <kbd>W</kbd> <kbd>A</kbd> <kbd>S</kbd> <kbd>D</kbd> keys on your keyboard to move forward, left, backward and right respectively.
 
 ## Try it out
 
 **Install the CLI**
 
-Download and install the Decentraland CLI by running the following command:
+Download and install the Decentraland CLI by running the following command inside this scene root directory:
 
-```
-$ npm i -g decentraland
+```bash
+npm install @dcl/sdk@next
 ```
 
 **Previewing the scene**
 
-Download this example and navigate to its directory, then run:
+Inside this scene root directory run:
 
 ```
-$  dcl start
+dcl start
 ```
+
+## Copyright info
+
+This scene is protected with a standard Apache 2 licence. See the terms and conditions in the [LICENSE](/LICENSE) file.
 
 ## Acknowledgements
 The following files were taken from https://freesound.org/:
