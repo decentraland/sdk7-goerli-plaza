@@ -6,11 +6,6 @@ import { createGnark } from './gnark'
 
 import { distanceSystem, walkAround } from './systems/gnarkAI'
 
-// const _cubeEntity = createCube(8, 2, 8)
-// const _coneEntity = createCone()
-// const _nftEntity = createNft()
-// const _textEntity = createText()
-
 createGLTF(
   {
     position: { x: 16, y: 0, z: 16 },
@@ -19,12 +14,9 @@ createGLTF(
   },
   'models/Temple.glb'
 )
-createGnark()
-createGnark()
+createGnark(1)
+createGnark(2)
 
-//  engine.addSystem(moveSystem)
-
-//  engine.addSystem(timerSystem)
 
 engine.addSystem(walkAround)
 engine.addSystem(distanceSystem)

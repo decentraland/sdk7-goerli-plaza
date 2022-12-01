@@ -85,19 +85,12 @@ export function birdSystem(dt: number) {
         interpolationType: InterpolationType.EASESINE
       })
 
-      // ??
-      // const mutableTransform = Transform.getMutable(bird)
-      // Vector3.Up()
-      turn(bird, nextPos)
+      const mutableTransform = Transform.getMutable(bird)
+	  mutableTransform.rotation = Quaternion.fromLookAt(mutableTransform.position, nextPos)
+
     }
   }
 }
 
 engine.addSystem(birdSystem)
 
-export function turn(entity: Entity, target: Vector3) {
-  const transform = Transform.getMutable(entity)
-  const difference = Vector3.subtract(target, transform.position)
-  const normalizedDifference = Vector3.normalize(difference)
-  transform.rotation = Quaternion.lookRotation(normalizedDifference)
-}

@@ -1,8 +1,8 @@
-import { engine, inputSystem, InputAction, PointerEventType, Entity, Transform, AvatarAttach, AvatarAnchorPointType } from '@dcl/sdk/ecs'
+import { engine, inputSystem, InputAction, PointerEventType, Entity, Transform, AvatarAttach, AvatarAnchorPointType, Animator } from '@dcl/sdk/ecs'
 import { Vector3, Quaternion } from '@dcl/sdk/math'
 import { BeerGlass, PickedUp, TapBase } from '../definitions'
 import { playSound } from './factory'
-import { currentPlayerId, getEntityParent, getPlayerPosition, playSingleAnim } from './helpers'
+import { currentPlayerId, getEntityParent, getPlayerPosition } from './helpers'
 
 
 export function pickingGlassSystem() {
@@ -47,7 +47,7 @@ export function pickingGlassSystem() {
     const tryToDrinkCommand = inputSystem.getInputCommand(InputAction.IA_SECONDARY, PointerEventType.PET_DOWN)
     if (glass.filled && tryToDrinkCommand) {
       BeerGlass.getMutable(pickedUp.child as Entity).filled = false
-      playSingleAnim(pickedUp.child as Entity, 'Blank')
+	  Animator.playSingleAnimation(pickedUp.child, 'Blank')
       playSound('sounds/swallow.mp3', false, getPlayerPosition())
     }
     return

@@ -2,7 +2,7 @@ import { Animator, engine, InputAction, inputSystem, PointerEventType, Transform
 import { Scalar } from '@dcl/sdk/math'
 import { BeerGlass, BeerType, getTapData, TapBase, TapComponent } from '../definitions'
 import { playSound } from './factory'
-import { getPlayerPosition, playSingleAnim } from './helpers'
+import { getPlayerPosition } from './helpers'
 
 function getBeerBehindTap(beerType: BeerType) {
   for (const [glassEntity, _1, _2, glassTransform] of engine.getEntitiesWith(BeerGlass, Animator, Transform)) {
@@ -18,10 +18,10 @@ export function tapPumpSystem(dt: number) {
     if (tapReadonly.pouring) {
       // At start the pouring, play the sound an animation
       if (Scalar.withinEpsilon(tapReadonly.pouringTime, 0)) {
-        playSingleAnim(entity, `Pour`)
+		Animator.playSingleAnimation(entity, `Pour`)
         playSound('sounds/beerPump.mp3', false, getPlayerPosition())
         const glassEntity = getBeerBehindTap(tapReadonly.beerType)
-        if (glassEntity) playSingleAnim(glassEntity, `Pour${getTapData(tapReadonly.beerType).name}`)
+        if (glassEntity) Animator.playSingleAnimation(glassEntity, `Pour${getTapData(tapReadonly.beerType).name}`)
       }
 
       const tap = TapComponent.getMutable(entity)

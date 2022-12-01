@@ -16,7 +16,7 @@ import { gnarkStates, NPComponent } from './components/NPC'
 import { PathDataComponent } from './components/pathData'
 import { TimeOutComponent } from './components/timeOut'
 
-export function createGnark(): Entity {
+export function createGnark(startingSegment: number = 1): Entity {
   const gnark = engine.addEntity()
 
   Transform.create(gnark, {
@@ -61,18 +61,16 @@ export function createGnark(): Entity {
 
   NPComponent.create(gnark, { state: gnarkStates.TURNING, previousState: gnarkStates.WALKING })
 
-  const randomPathStart = Math.floor(Math.random() * 3)
-
   PathDataComponent.create(gnark, {
     path: pathArray,
     paused: false,
-    origin: randomPathStart,
-    target: randomPathStart + 1
+    origin: startingSegment,
+    target: startingSegment + 1
   })
 
   MoveTransformComponent.create(gnark, {
-    start: pathArray[randomPathStart],
-    end: pathArray[randomPathStart + 1],
+    start: pathArray[startingSegment],
+    end: pathArray[startingSegment + 1],
     normalizedTime: 0,
     lerpTime: 0,
     speed: 0.1,

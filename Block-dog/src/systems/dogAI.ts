@@ -79,12 +79,12 @@ export function changeState(entity: Entity, newState: dogStates) {
 export function enterState(entity: Entity, newState: dogStates) {
   switch (newState) {
     case dogStates.Idle:
-      const IdleAnim = Animator.getClipOrNull(entity, 'Idle')
+      const IdleAnim = Animator.getClip(entity, 'Idle')
       if (IdleAnim) IdleAnim.playing = true
       break
 
     case dogStates.Sit:
-      const SitAnim = Animator.getClipOrNull(entity, 'Sitting')
+      const SitAnim = Animator.getClip(entity, 'Sitting')
       if (SitAnim) SitAnim.playing = true
       const MutablePointerEvent = PointerHoverFeedback.getMutable(entity).pointerEvents[0]
       if (MutablePointerEvent.eventInfo) {
@@ -94,59 +94,31 @@ export function enterState(entity: Entity, newState: dogStates) {
       break
 
     case dogStates.Follow:
-      const walkAnim = Animator.getClipOrNull(entity, 'Walking')
+      const walkAnim = Animator.getClip(entity, 'Walking')
       if (walkAnim) walkAnim.playing = true
       break
 
     case dogStates.GoDrink:
-      const walkAnim2 = Animator.getClipOrNull(entity, 'Walking')
+      const walkAnim2 = Animator.getClip(entity, 'Walking')
       if (walkAnim2) walkAnim2.playing = true
       break
 
     case dogStates.Drinking:
-      const drinkAnim = Animator.getClipOrNull(entity, 'Drinking')
+      const drinkAnim = Animator.getClip(entity, 'Drinking')
       if (drinkAnim) drinkAnim.playing = true
       break
-
-    // 		case dogStates.WALKING:
-    // 			const walkAnim = animator.states.find( (anim) =>{return anim.name=="walk"})
-    // 			if(!walkAnim) return
-    // 			walkAnim.playing = true
-
-    // 			const move = MoveTransform.getFrom(entity)
-    // 			if(move.hasFinished){
-    // 				nextSegment(entity)
-    // 			}
-    // 			break
-    // 		case dogStates.TURNING:
-    // 			const turnAnim = animator.states.find( (anim) =>{return anim.name=="turnRight"})
-    // 			if(!turnAnim) return
-    // 			turnAnim.playing = true
-
-    // 			const timer = TimeOut.getMutable(entity)
-    // 			if(timer.hasFinished){
-    // 				timer.timeLeft = 0.9
-    // 				timer.hasFinished = false
-    // 			}
-
-    // 			break
-    // 		case dogStates.YELLING:
-    // 			const raiseDeadAnim = animator.states.find( (anim) =>{return anim.name=="raiseDead"})
-    // 			if(!raiseDeadAnim) return
-    // 			raiseDeadAnim.playing = true
-    // 			break
   }
 }
 
 export function leaveState(entity: Entity, oldState: dogStates) {
   switch (oldState) {
     case dogStates.Idle:
-      const IdleAnim = Animator.getClipOrNull(entity, 'Idle')
+      const IdleAnim = Animator.getClip(entity, 'Idle')
       if (IdleAnim) IdleAnim.playing = false
       break
 
     case dogStates.Sit:
-      const SitAnim = Animator.getClipOrNull(entity, 'Sitting')
+      const SitAnim = Animator.getClip(entity, 'Sitting')
       if (SitAnim) SitAnim.playing = false
 
       const MutablePointerEvent = PointerHoverFeedback.getMutable(entity).pointerEvents[0]
@@ -156,37 +128,21 @@ export function leaveState(entity: Entity, oldState: dogStates) {
       break
 
     case dogStates.Follow:
-      const walkAnim = Animator.getClipOrNull(entity, 'Walking')
+      const walkAnim = Animator.getClip(entity, 'Walking')
       if (walkAnim) walkAnim.playing = false
       break
 
     case dogStates.GoDrink:
-      const walkAnim2 = Animator.getClipOrNull(entity, 'Walking')
+      const walkAnim2 = Animator.getClip(entity, 'Walking')
       if (walkAnim2) walkAnim2.playing = false
       break
 
     case dogStates.Drinking:
-      const drinkAnim = Animator.getClipOrNull(entity, 'Drinking')
+      const drinkAnim = Animator.getClip(entity, 'Drinking')
       if (drinkAnim) drinkAnim.playing = false
       break
 
-    // 		case dogStates.WALKING:
-    // 			const walkAnim = animator.states.find( (anim) =>{return anim.name=="walk"})
-    // 			if(!walkAnim) return
-    // 			walkAnim.playing = false
 
-    // 			break
-    // 		case dogStates.TURNING:
-    // 			const turnAnim = animator.states.find( (anim) =>{return anim.name=="turnRight"})
-    // 			if(!turnAnim) return
-    // 			turnAnim.playing = false
-
-    // 			break
-    // 		case dogStates.YELLING:
-    // 			const raiseDeadAnim = animator.states.find( (anim) =>{return anim.name=="raiseDead"})
-    // 			if(!raiseDeadAnim) return
-    // 			raiseDeadAnim.playing = false
-    // 			break
   }
 }
 

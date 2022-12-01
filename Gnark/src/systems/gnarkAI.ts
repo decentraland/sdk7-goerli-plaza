@@ -89,10 +89,7 @@ export function enterState(entity: Entity, newState: gnarkStates) {
   const animator = Animator.getMutable(entity)
   switch (newState) {
     case gnarkStates.WALKING:
-      const walkAnim = animator.states.find((anim) => {
-        return anim.name === 'walk'
-      })
-      if (!walkAnim) return
+      const walkAnim = Animator.getClip(entity, "walk")
       walkAnim.playing = true
 
       const move = MoveTransformComponent.get(entity)
@@ -102,10 +99,7 @@ export function enterState(entity: Entity, newState: gnarkStates) {
       break
     case gnarkStates.TURNING:
       nextSegment(entity)
-      const turnAnim = animator.states.find((anim) => {
-        return anim.name === 'turnRight'
-      })
-      if (!turnAnim) return
+      const turnAnim = Animator.getClip(entity, "turnRight")
       turnAnim.playing = true
 
       const timer = TimeOutComponent.getMutable(entity)
@@ -116,10 +110,10 @@ export function enterState(entity: Entity, newState: gnarkStates) {
 
       break
     case gnarkStates.YELLING:
-      const raiseDeadAnim = animator.states.find((anim) => {
-        return anim.name === 'raiseDead'
-      })
-      if (!raiseDeadAnim) return
+	  const transform = Transform.getMutable(entity)
+	  const playerPosition = Transform.get(engine.PlayerEntity)
+	  transform.rotation = Quaternion.fromToRotation(transform.position, playerPosition.position)
+      const raiseDeadAnim = Animator.getClip(entity, "raiseDead")
       raiseDeadAnim.playing = true
       break
   }
@@ -130,41 +124,36 @@ export function leaveState(entity: Entity, oldState: gnarkStates) {
   switch (oldState) {
     case gnarkStates.WALKING:
       // TODO use Animator.Play
-      const walkAnim = animator.states.find((anim) => {
-        return anim.name === 'walk'
-      })
-      if (!walkAnim) return
+      const walkAnim = Animator.getClip(entity, "walk")
+      if (!walkAnim.playing) return
       walkAnim.playing = false
 
       break
     case gnarkStates.TURNING:
-      const turnAnim = animator.states.find((anim) => {
-        return anim.name === 'turnRight'
-      })
-      if (!turnAnim) return
+      const turnAnim = Animator.getClip(entity, "turnRight")
+      if (!turnAnim.playing) return
       turnAnim.playing = false
 
       break
     case gnarkStates.YELLING:
-      const raiseDeadAnim = animator.states.find((anim) => {
-        return anim.name === 'raiseDead'
-      })
-      if (!raiseDeadAnim) return
+      const raiseDeadAnim = Animator.getClip(entity, "raiseDead")
+      if (!raiseDeadAnim.playing) return
       raiseDeadAnim.playing = false
+	  const path= PathDataComponent.get(entity)
+	  turn(entity, path.path[path.target])
       break
   }
 }
 
-export function turn(gnark: Entity) {
-  const path = PathDataComponent.getMutable(gnark)
-  const difference = Vector3.subtract(path.path[path.target], path.path[path.origin])
-  const normalizedDifference = Vector3.normalize(difference)
 
-  Transform.getMutable(gnark).rotation = Quaternion.lookRotation(normalizedDifference)
-}
+export function turn(entity: Entity, target: Vector3) {
+	const transform = Transform.getMutable(entity)
+	transform.rotation = Quaternion.fromLookAt(transform.position, target)
+  }
 
-export function nextSegment(gnark: Entity) {
-  const path = PathDataComponent.getMutable(gnark)
+
+export function nextSegment(entity: Entity) {
+  const path = PathDataComponent.getMutable(entity)
   path.origin += 1
   path.target += 1
   if (path.target >= path.path.length) {
@@ -173,12 +162,12 @@ export function nextSegment(gnark: Entity) {
     path.origin = 0
   }
 
-  const move = MoveTransformComponent.getMutable(gnark)
+  const move = MoveTransformComponent.getMutable(entity)
 
   ;(move.start = path.path[path.origin]), (move.end = path.path[path.target]), (move.normalizedTime = 0)
   move.lerpTime = 0
   move.speed = 0.1
   move.hasFinished = false
 
-  turn(gnark)
+  turn(entity, path.path[path.target])
 }
