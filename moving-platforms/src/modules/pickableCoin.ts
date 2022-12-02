@@ -1,3 +1,25 @@
+import { Vector3 } from "@dcl/sdk/math";
+import { engine, GltfContainer, Transform } from "@dcl/sdk/ecs";
+import { Area3D } from "../definitions";
+
+export function createPickableCoin(position: Vector3, pickUpAreaSize: Vector3) {
+    const coinEntity = engine.addEntity()
+    GltfContainer.create(coinEntity, {
+        src: "models/starCoin.glb"
+    })
+    Transform.create(coinEntity, {
+        position 
+    })
+    Area3D.create(coinEntity, {
+        size: pickUpAreaSize
+    })
+}
+
+export function coinPickupSystem (deltaTime: number) {
+    // TODO
+}
+
+
 /*
 import * as utils from '@dcl/ecs-scene-utils'
 

@@ -1,5 +1,7 @@
 {
   "compilerOptions": {},
   "include": ["src/**/*.ts", "@dcl/ecs"],
-  "extends": "@dcl/sdk/types/tsconfig.ecs7.strict.json"
+  "extends": "@dcl/sdk/types/tsconfig.ecs7.strict.json",
+  "alwaysStrict": true,
+  "suppressExcessPropertyErrors": false
 }

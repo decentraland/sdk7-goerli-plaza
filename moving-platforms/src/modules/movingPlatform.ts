@@ -35,6 +35,10 @@ export function platformsMovementSystem(deltaTime: number) {
     // TODO
 }
 
+export function areaPlayerPositionTriggeringSystem(deltaTime: number) {
+    
+}
+
 /*
 import * as utils from '@dcl/ecs-scene-utils'
 
