@@ -62,6 +62,9 @@
 		},
 		{
 			"path": "Random-noise-movement"
+		},
+		{
+			"path": "enemy-spawner"
 		}
 	]
 }
