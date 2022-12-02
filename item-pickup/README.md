@@ -2,9 +2,16 @@
 
 > Please visit the [SDK7 scene template](https://github.com/decentraland/sdk7-scene-template) for a SDK7 summary.
 
-A scene with Item-pickup mechanic where each item has a different re-spawn time and triggers an SDF on pickup.
-
 ![](screenshots/item-pickup.gif)
+
+This scene shows you:
+
+- How to play a local audio file
+- How to add a 3D model
+- How to create custom components
+- How to detect the player position inside a defined area and react to that
+- How to use the `VisibilityComponent` to toggle 3D meshes visibility
+- How to use group of entities that have a specific component
 
 ## Instructions
 Run over or stand over an item to pick it up. Use your mouse to look around and <kbd>W</kbd> <kbd>A</kbd> <kbd>S</kbd> <kbd>D</kbd> keys on your keyboard to move forward, left, backward and right respectively.
@@ -27,10 +34,6 @@ Inside this scene root directory run:
 dcl start
 ```
 
-## Copyright info
-
-This scene is protected with a standard Apache 2 licence. See the terms and conditions in the [LICENSE](/LICENSE) file.
-
 ## Acknowledgements
 The following files were taken from https://freesound.org/:
 
@@ -38,3 +41,6 @@ The following files were taken from https://freesound.org/:
 - _armorPickup.mp3_ modified from https://freesound.org/people/morganpurkis/sounds/371217/
 - _medikitPickup.mp3_ modified from https://freesound.org/people/Adam_N/sounds/325279/
 
+## Copyright info
+
+This scene is protected with a standard Apache 2 licence. See the terms and conditions in the [LICENSE](/LICENSE) file.
