@@ -4,7 +4,7 @@ import {
     Transform
 } from "@dcl/sdk/ecs"
 import { Vector3 } from "@dcl/sdk/math";
-import { Area3D, MovingPlatform } from "../definitions";
+import { TriggerArea, MovingPlatform } from "../definitions";
 
 export function createMovingPlatform(modelPath: string, waypoints: Vector3[], travelDurationInSeconds: number, triggerAreaSize: Vector3 | undefined = undefined) {
     const entity = engine.addEntity()
@@ -19,14 +19,13 @@ export function createMovingPlatform(modelPath: string, waypoints: Vector3[], tr
         previousWaypointIndex: 0,
         targetWaypointIndex: 1,
         currentLerpTimeBetweenWaypoints: 0,
-        totalRouteTimeInSeconds: travelDurationInSeconds,
-        calculatedSpeed: calculateMovementSpeed(waypoints[0], waypoints[1], travelDurationInSeconds),
+        speed: calculateMovementSpeed(waypoints, travelDurationInSeconds),
         pingPong: true,
-        moving: true
+        moving: !triggerAreaSize
     })
     
     if (triggerAreaSize) {
-        Area3D.create(entity, {
+        TriggerArea.create(entity, {
             size: triggerAreaSize,
             centerOffset: Vector3.create(0, triggerAreaSize.y/2, 0)
         })
@@ -39,7 +38,7 @@ export function platformsMovementSystem(deltaTime: number) {
         
         if (!movingPlatformComp.moving) continue
         
-        movingPlatformComp.currentLerpTimeBetweenWaypoints += movingPlatformComp.calculatedSpeed * deltaTime
+        movingPlatformComp.currentLerpTimeBetweenWaypoints += movingPlatformComp.speed * deltaTime
 
         Transform.getMutable(entity).position = Vector3.lerp(
             movingPlatformComp.waypoints[movingPlatformComp.previousWaypointIndex],
@@ -55,8 +54,7 @@ export function platformsMovementSystem(deltaTime: number) {
                 if (movingPlatformComp.pingPong) {
                     const currentWaypointIndex = movingPlatformComp.targetWaypointIndex
                     movingPlatformComp.targetWaypointIndex = movingPlatformComp.previousWaypointIndex
-                    movingPlatformComp.previousWaypointIndex = currentWaypointIndex
-                    // We don't re-calculate speed here because the distance is the same 
+                    movingPlatformComp.previousWaypointIndex = currentWaypointIndex 
                 } else {
                     movingPlatformComp.moving = false
                 }
@@ -68,24 +66,20 @@ export function platformsMovementSystem(deltaTime: number) {
                     movingPlatformComp.targetWaypointIndex--
                     movingPlatformComp.previousWaypointIndex--
                 }
-                
-                movingPlatformComp.calculatedSpeed = calculateMovementSpeed(movingPlatformComp.waypoints[movingPlatformComp.previousWaypointIndex], movingPlatformComp.waypoints[movingPlatformComp.targetWaypointIndex], movingPlatformComp.totalRouteTimeInSeconds)
             }
         }
     }
 }
 
-function calculateMovementSpeed (startPosition: Vector3, endPosition: Vector3, targetTimeInSeconds: number) {
-    const pathMagnitude = Vector3.length(Vector3.subtract(endPosition, startPosition))
-    return pathMagnitude / targetTimeInSeconds
+function calculateMovementSpeed (waypoints: Vector3[], targetTimeInSeconds: number) {
+    let totalPathMagnitude = 0
+    for (let i = 0; i < waypoints.length-1; i++) {
+        totalPathMagnitude += Vector3.length(Vector3.subtract(waypoints[i+1], waypoints[i]))
+    }
+    
+    return totalPathMagnitude / targetTimeInSeconds
 }
 
 function isLastWaypoint(targetWaypointIndex: number, waypoints: Vector3[], isMovingForward: Boolean): Boolean {
     return isMovingForward ? targetWaypointIndex == waypoints.length-1 : targetWaypointIndex == 0
-}
-
-export function areaPlayerPositionTriggeringSystem(deltaTime: number) {
-    for (const [entity] of engine.getEntitiesWith(Area3D)) {
-        // TODO
-    }
 }

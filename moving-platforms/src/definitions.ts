@@ -2,7 +2,7 @@ import { engine, Schemas } from "@dcl/sdk/ecs";
 
 enum CustomComponentIds {
     MovingPlatform = 2002,
-    Area3D = 2003
+    TriggerArea = 2003
 }
 
 export const MovingPlatform = engine.defineComponent(
@@ -11,16 +11,15 @@ export const MovingPlatform = engine.defineComponent(
         previousWaypointIndex: Schemas.Number,
         targetWaypointIndex: Schemas.Number,
         currentLerpTimeBetweenWaypoints: Schemas.Number,
-        totalRouteTimeInSeconds: Schemas.Number,
-        calculatedSpeed: Schemas.Number,
+        speed: Schemas.Number,
         pingPong: Schemas.Boolean,
         moving: Schemas.Boolean
     },
     CustomComponentIds.MovingPlatform
 )
-export const Area3D = engine.defineComponent(
+export const TriggerArea = engine.defineComponent(
     {
         size: Schemas.Vector3,
         centerOffset: Schemas.Vector3
-    }, CustomComponentIds.Area3D
+    }, CustomComponentIds.TriggerArea
 )
