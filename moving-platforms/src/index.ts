@@ -49,8 +49,7 @@ function setup() {
     )
 
     // Instantiate pickable coin
-    // createPickableCoin(Vector3.create(9, 12.75, 8), Vector3.create(1.5, 3, 1.5))
-    createPickableCoin(Vector3.create(9, 0.5, 8), Vector3.create(1.5, 3, 1.5))
+    createPickableCoin(Vector3.create(9, 12.75, 8), Vector3.create(1.5, 3, 1.5))
 
     // Add needed systems
     engine.addSystem(platformsMovementSystem)
