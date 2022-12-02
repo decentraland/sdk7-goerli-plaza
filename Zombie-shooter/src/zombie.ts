@@ -11,9 +11,7 @@ export function createZombie(xPos: number): Entity {
   const zombie = engine.addEntity()
 
   Transform.create(zombie, {
-    position: { x: xPos, y: 1, z: 3 },
-    scale: { x: 1, y: 1, z: 1 },
-    rotation: { x: 0, y: 0, z: 0, w: 1 }
+    position: { x: xPos, y: 1, z: 3 }
   })
 
   GltfContainer.create(zombie, {
@@ -37,19 +35,13 @@ export function createZombie(xPos: number): Entity {
         clip: 'Walking',
         loop: true,
         name: 'Walk',
-        playing: true,
-        shouldReset: false,
-        speed: 1,
-        weight: 1
+        playing: true
       },
       {
         clip: 'Attacking',
         loop: true,
         name: 'Attack',
-        playing: false,
-        shouldReset: false,
-        speed: 1,
-        weight: 1
+        playing: false
       }
     ]
   })

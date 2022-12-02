@@ -13,8 +13,7 @@ export function playSound(entity: Entity, soundPath: string, rndPitch?: boolean)
       audioClipUrl: soundPath,
       loop: false,
       pitch: pitch,
-      playing: true,
-      volume: 1
+      playing: true
     })
   }
 }

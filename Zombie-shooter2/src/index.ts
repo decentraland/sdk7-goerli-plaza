@@ -69,9 +69,7 @@ function triggerGameStart() {
     AudioSource.create(gameEntity, {
       audioClipUrl: '/sounds/ambient.mp3',
       loop: true,
-      playing: true,
-      pitch: 1,
-      volume: 1
+      playing: true
     })
   }
 }
