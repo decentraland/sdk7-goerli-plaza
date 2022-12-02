@@ -1,0 +1,37 @@
+{
+	"ecs7": true,
+	"display": {
+		"title": "item-pickup",
+		"favicon": "favicon_asset"
+	},
+	"contact": {
+		"name": "decentraland",
+		"email": ""
+	},
+	"owner": "",
+	"scene": {
+		"parcels": [
+			"53,53"
+		],
+		"base": "53,53"
+	},
+	"requiredPermissions": [],
+	"main": "bin/game.js",
+	"tags": [],
+	"spawnPoints": [
+		{
+			"name": "spawn1",
+			"default": true,
+			"position": {
+				"x": 0,
+				"y": 0,
+				"z": 0
+			},
+			"cameraTarget": {
+				"x": 8,
+				"y": 1,
+				"z": 8
+			}
+		}
+	]
+}
