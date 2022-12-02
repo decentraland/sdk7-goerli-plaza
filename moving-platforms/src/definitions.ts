@@ -8,8 +8,11 @@ enum CustomComponentIds {
 export const MovingPlatform = engine.defineComponent(
     {
         waypoints: Schemas.Array(Schemas.Vector3),
-        currentTargetWaypointIndex: Schemas.Number,
+        previousWaypointIndex: Schemas.Number,
+        targetWaypointIndex: Schemas.Number,
+        currentLerpTimeBetweenWaypoints: Schemas.Number,
         totalRouteTimeInSeconds: Schemas.Number,
+        calculatedSpeed: Schemas.Number,
         pingPong: Schemas.Boolean,
         moving: Schemas.Boolean
     },
@@ -17,6 +20,7 @@ export const MovingPlatform = engine.defineComponent(
 )
 export const Area3D = engine.defineComponent(
     {
-        size: Schemas.Vector3
+        size: Schemas.Vector3,
+        centerOffset: Schemas.Vector3
     }, CustomComponentIds.Area3D
 )
