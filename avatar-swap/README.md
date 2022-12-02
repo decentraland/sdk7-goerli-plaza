@@ -33,10 +33,10 @@ Inside this scene root directory run:
 dcl start
 ```
 
-## Copyright info
-
-This scene is protected with a standard Apache 2 licence. See the terms and conditions in the [LICENSE](/LICENSE) file.
-
 ## Acknowledgements
 
 Model and animations from https://www.mixamo.com/
+
+## Copyright info
+
+This scene is protected with a standard Apache 2 licence. See the terms and conditions in the [LICENSE](/LICENSE) file.
