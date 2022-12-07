@@ -1,7 +1,8 @@
 // Coordinates of path to patrol
 
-import { Entity, engine, Transform, GltfContainer, Animator, PointerHoverFeedback, PointerEventType, InputAction } from '@dcl/sdk/ecs'
+import { Entity, engine, Transform, GltfContainer, Animator, PointerHoverFeedback, PointerEventType, InputAction, pointerEventsSystem } from '@dcl/sdk/ecs'
 import { CustomComponents, dogStates } from './components'
+import { changeState } from './systems/dogAI'
 
 const point1 = { x: 8, y: 0, z: 8 }
 const point2 = { x: 8, y: 0, z: 24 }
@@ -29,8 +30,6 @@ export function createDog(): Entity {
         name: 'Walking',
         clip: 'Walking',
         playing: false,
-        weight: 1,
-        speed: 1,
         loop: true,
         shouldReset: false
       },
@@ -38,8 +37,6 @@ export function createDog(): Entity {
         name: 'Sitting',
         clip: 'Sitting',
         playing: false,
-        weight: 1,
-        speed: 1,
         loop: false,
         shouldReset: true
       },
@@ -47,8 +44,6 @@ export function createDog(): Entity {
         name: 'Standing',
         clip: 'Standing',
         playing: false,
-        weight: 1,
-        speed: 1,
         loop: false,
         shouldReset: true
       },
@@ -56,8 +51,6 @@ export function createDog(): Entity {
         name: 'Drinking',
         clip: 'Drinking',
         playing: false,
-        weight: 1,
-        speed: 1,
         loop: true,
         shouldReset: true
       },
@@ -65,8 +58,6 @@ export function createDog(): Entity {
         name: 'Idle',
         clip: 'Idle',
         playing: false,
-        weight: 1,
-        speed: 1,
         loop: true,
         shouldReset: true
       }
@@ -93,17 +84,21 @@ export function createDog(): Entity {
     paused: false
   })
 
-  PointerHoverFeedback.create(dog, {
-    pointerEvents: [
-      {
-        eventType: PointerEventType.PET_DOWN,
-        eventInfo: {
-          button: InputAction.IA_PRIMARY,
-          hoverText: 'Sit'
+  pointerEventsSystem.onPointerDown(
+	dog, ()=>{
+		const currentState = CustomComponents.NPC.getMutable(dog)
+        if (currentState.state === dogStates.Sit) {
+          changeState(dog, dogStates.Idle)
+        } else {
+          changeState(dog, dogStates.Sit)
         }
-      }
-    ]
-  })
+	},
+	{
+		button: InputAction.IA_PRIMARY,
+		hoverText: 'Sit'
+	}
+  )
+
 
   return dog
 }
