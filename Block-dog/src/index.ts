@@ -1,6 +1,10 @@
 import { createGLTF } from './gltf'
 import { createDog } from './dog'
-import { PointerHoverFeedback, PointerEventType, InputAction } from '@dcl/sdk/ecs'
+import { PointerHoverFeedback, PointerEventType, InputAction, createPointerEventSystem, pointerEventsSystem, engine } from '@dcl/sdk/ecs'
+import { changeState } from './systems/dogAI'
+import { dogStates } from './components'
+import { moveSystem } from './systems/moveSystem'
+import { timerSystem } from './systems/timeOutSystem'
 export * from '@dcl/sdk'
 
 createGLTF(
@@ -12,7 +16,7 @@ createGLTF(
   'models/garden.glb'
 )
 
-const bowl = createGLTF(
+export const bowl = createGLTF(
   {
     position: { x: 9, y: 0, z: 1 },
     scale: { x: 1, y: 1, z: 1 },
@@ -21,16 +25,21 @@ const bowl = createGLTF(
   'models/BlockDogBowl.gltf'
 )
 
-PointerHoverFeedback.create(bowl, {
-  pointerEvents: [
-    {
-      eventType: PointerEventType.PET_DOWN,
-      eventInfo: {
-        button: InputAction.IA_PRIMARY,
-        hoverText: 'Drink'
-      }
-    }
-  ]
-})
+pointerEventsSystem.onPointerDown(
+	bowl, ()=>{
+		changeState(dog, dogStates.GoDrink)
+	},
+	{
+		button: InputAction.IA_PRIMARY,
+		hoverText: 'Drink'
+	}
+)
 
-createDog()
+
+const dog = createDog()
+
+
+engine.addSystem(moveSystem)
+
+
+engine.addSystem(timerSystem)

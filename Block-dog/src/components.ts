@@ -30,14 +30,14 @@ const MoveTransformSchema = {
   interpolationType: Schemas.Enum<InterpolationType>(Schemas.Int)
 }
 
-const MoveTransformComponent = engine.defineComponent(MoveTransformSchema, CustomComponentIds.MoveTransform)
+export const MoveTransformComponent = engine.defineComponent(MoveTransformSchema, CustomComponentIds.MoveTransform)
 
 const NPCSchema = {
   state: Schemas.Enum<dogStates>(Schemas.Int),
   previousState: Schemas.Enum<dogStates>(Schemas.Int)
 }
 
-const NPCComponent = engine.defineComponent(NPCSchema, CustomComponentIds.NPC)
+export const NPCComponent = engine.defineComponent(NPCSchema, CustomComponentIds.NPC)
 
 const TimeOutSchema = {
   timeLeft: Schemas.Float,
@@ -45,7 +45,7 @@ const TimeOutSchema = {
   paused: Schemas.Boolean
 }
 
-const TimeOutComponent = engine.defineComponent(TimeOutSchema, CustomComponentIds.TimeOut)
+export const TimeOutComponent = engine.defineComponent(TimeOutSchema, CustomComponentIds.TimeOut)
 
 /**
  * Export components
