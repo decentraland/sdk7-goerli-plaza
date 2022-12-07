@@ -1,26 +1,32 @@
 import { engine, Entity, Animator, PointerHoverFeedback, Transform } from '@dcl/sdk/ecs'
 import { Vector3, Quaternion } from '@dcl/sdk/math'
+import { bowl } from '..'
 import { CustomComponents, dogStates } from '../components'
 
-export function dogBehavior() {
-  for (const [entity] of engine.getEntitiesWith(CustomComponents.NPC)) {
-    const npcData = CustomComponents.NPC.getMutable(entity)
+// export function dogBehavior() {
+//   for (const [entity] of engine.getEntitiesWith(CustomComponents.NPC)) {
+//     const npcData = CustomComponents.NPC.getMutable(entity)
 
-    switch (npcData.state) {
-      case dogStates.Idle:
-        break
+    // switch (npcData.state) {
+    //   case dogStates.Idle:
+	// 	Animator.playSingleAnimation(entity, "Idle")
+    //     break
 
-      case dogStates.Sit:
-        break
+    //   case dogStates.Sit:
+	// 	Animator.playSingleAnimation(entity, "Sit")
+    //     break
 
-      case dogStates.Follow:
-        break
+    //   case dogStates.Follow:
+	// 	Animator.playSingleAnimation(entity, "Walk")
+    //     break
 
-      case dogStates.GoDrink:
-        break
+    //   case dogStates.GoDrink:
+	// 	Animator.playSingleAnimation(entity, "Walk")
+    //     break
 
-      case dogStates.Drinking:
-        break
+    //   case dogStates.Drinking:
+	// 	Animator.playSingleAnimation(entity, "Drinking")
+    //     break
 
       // 	const move = MoveTransform.getMutable(entity)
       // 	const transform = Transform.getMutable(entity)
@@ -51,9 +57,9 @@ export function dogBehavior() {
       // 		changeState(entity, dogStates.WALKING)
       // 	}
       // break
-    }
-  }
-}
+    //}
+//   }
+// }
 
 export function changeState(entity: Entity, newState: dogStates) {
   const npcDataMutable = CustomComponents.NPC.getMutable(entity)
@@ -77,35 +83,59 @@ export function changeState(entity: Entity, newState: dogStates) {
 // }
 
 export function enterState(entity: Entity, newState: dogStates) {
-  switch (newState) {
+  const MutableTransform = Transform.getMutable(entity)
+
+	switch (newState) {
     case dogStates.Idle:
-      const IdleAnim = Animator.getClip(entity, 'Idle')
-      if (IdleAnim) IdleAnim.playing = true
+		Animator.playSingleAnimation(entity, "Idle")
+		CustomComponents.MoveTransform.deleteFrom(entity)
       break
 
     case dogStates.Sit:
-      const SitAnim = Animator.getClip(entity, 'Sitting')
-      if (SitAnim) SitAnim.playing = true
+	  Animator.playSingleAnimation(entity, "Sitting")
       const MutablePointerEvent = PointerHoverFeedback.getMutable(entity).pointerEvents[0]
       if (MutablePointerEvent.eventInfo) {
         MutablePointerEvent.eventInfo.hoverText = 'Stand'
       }
-
+	  CustomComponents.MoveTransform.deleteFrom(entity)
       break
 
     case dogStates.Follow:
-      const walkAnim = Animator.getClip(entity, 'Walking')
-      if (walkAnim) walkAnim.playing = true
+	  Animator.playSingleAnimation(entity, "Walking")
+	  
+	  
+	  const playerPos = Transform.get(engine.PlayerEntity).position
+	  if(isInBounds(playerPos)){
+		MutableTransform.rotation = Quaternion.fromToRotation(MutableTransform.position, playerPos )
+		CustomComponents.MoveTransform.createOrReplace(entity, {
+			start: Transform.get(entity).position,
+			end: playerPos,
+			speed: 0.05,
+			hasFinished: false,
+			normalizedTime: 0,
+			lerpTime: 0
+		})
+	  }
       break
 
     case dogStates.GoDrink:
-      const walkAnim2 = Animator.getClip(entity, 'Walking')
-      if (walkAnim2) walkAnim2.playing = true
+	  Animator.playSingleAnimation(entity, "Walking")
+	  const bowlPosition = Transform.get(bowl).position
+	  MutableTransform.rotation = Quaternion.fromToRotation(MutableTransform.position, bowlPosition )
+
+	  CustomComponents.MoveTransform.createOrReplace(entity, {
+		start: Transform.get(entity).position,
+		end: bowlPosition,
+		speed: 0.05,
+		hasFinished: false,
+		normalizedTime: 0,
+		lerpTime: 0
+	})
       break
 
     case dogStates.Drinking:
-      const drinkAnim = Animator.getClip(entity, 'Drinking')
-      if (drinkAnim) drinkAnim.playing = true
+	  Animator.playSingleAnimation(entity, "Drinking")
+	  CustomComponents.MoveTransform.deleteFrom(entity)
       break
   }
 }
@@ -113,14 +143,10 @@ export function enterState(entity: Entity, newState: dogStates) {
 export function leaveState(entity: Entity, oldState: dogStates) {
   switch (oldState) {
     case dogStates.Idle:
-      const IdleAnim = Animator.getClip(entity, 'Idle')
-      if (IdleAnim) IdleAnim.playing = false
+      
       break
 
     case dogStates.Sit:
-      const SitAnim = Animator.getClip(entity, 'Sitting')
-      if (SitAnim) SitAnim.playing = false
-
       const MutablePointerEvent = PointerHoverFeedback.getMutable(entity).pointerEvents[0]
       if (MutablePointerEvent.eventInfo) {
         MutablePointerEvent.eventInfo.hoverText = 'Sit'
@@ -128,31 +154,21 @@ export function leaveState(entity: Entity, oldState: dogStates) {
       break
 
     case dogStates.Follow:
-      const walkAnim = Animator.getClip(entity, 'Walking')
-      if (walkAnim) walkAnim.playing = false
+	  CustomComponents.MoveTransform.deleteFrom(entity)
       break
 
     case dogStates.GoDrink:
-      const walkAnim2 = Animator.getClip(entity, 'Walking')
-      if (walkAnim2) walkAnim2.playing = false
+	  CustomComponents.MoveTransform.deleteFrom(entity)
       break
 
     case dogStates.Drinking:
-      const drinkAnim = Animator.getClip(entity, 'Drinking')
-      if (drinkAnim) drinkAnim.playing = false
+      
       break
 
 
   }
 }
 
-export function turn(entity: Entity, target: Vector3) {
-  const transform = Transform.getMutable(entity)
-  const difference = Vector3.subtract(transform.position, target)
-  const normalizedDifference = Vector3.normalize(difference)
-
-  Transform.getMutable(entity).rotation = Quaternion.lookRotation(normalizedDifference)
-}
 
 // check if the target is inside the scene's bounds
 export function isInBounds(position: Vector3): boolean {
