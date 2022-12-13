@@ -1,5 +1,6 @@
 {
 	"ecs7": true,
+  "runtimeVersion": "7",
 	"display": {
 		"title": "ECS7 Decentraland First Scene",
 		"description": "Test",
