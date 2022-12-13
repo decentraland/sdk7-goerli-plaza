@@ -1,34 +1,7 @@
 {
 	"folders": [
 		{
-			"path": "Block-dog"
-		},
-		{
-			"path": "Cube"
-		},
-		{
-			"path": "Gnark"
-		},
-		{
-			"path": "Hummingbirds"
-		},
-		{
-			"path": "Zombie-shooter"
-		},
-		{
-			"path": "Zombie-shooter2"
-		},
-		{
-			"path": "cube-wave-16x16"
-		},
-		{
-			"path": "cube-wave-32x32"
-		},
-		{
-			"path": "Swimming-Shark"
-		},
-		{
-			"path": "boids"
+			"path": "avatar-swap"
 		},
 		{
 			"path": "BasicInteractions"
@@ -37,31 +10,73 @@
 			"path": "beer-dispenser"
 		},
 		{
-			"path": "Hypno-wheels"
+			"path": "Block-dog"
 		},
 		{
-			"path": "Jukebox"
+			"path": "boids"
 		},
 		{
-			"path": "Shark-animation"
+			"path": "Cube"
 		},
 		{
-			"path": "Laser-ray-Casting"
+			"path": "cube-wave-16x16"
 		},
 		{
-			"path": "Smoke"
+			"path": "cube-wave-32x32"
 		},
 		{
-			"path": "uv-map"
-		},
-		{
-			"path": "grab-object-advance"
+			"path": "Dance-floor"
 		},
 		{
 			"path": "dbmonster"
 		},
 		{
+			"path": "Gnark"
+		},
+		{
+			"path": "grab-object-advance"
+		},
+		{
+			"path": "Hummingbirds"
+		},
+		{
+			"path": "Hypno-wheels"
+		},
+		{
+			"path": "item-pickup"
+		},
+		{
+			"path": "Jukebox"
+		},
+		{
+			"path": "Laser-ray-Casting"
+		},
+		{
+			"path": "moving-platforms"
+		},
+		{
+			"path": "open-door"
+		},
+		{
 			"path": "Random-noise-movement"
+		},
+		{
+			"path": "Shark-animation"
+		},
+		{
+			"path": "Smoke"
+		},
+		{
+			"path": "Swimming-Shark"
+		},
+		{
+			"path": "uv-map"
+		},
+		{
+			"path": "Zombie-shooter"
+		},
+		{
+			"path": "Zombie-shooter2"
 		}
 	]
 }
