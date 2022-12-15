@@ -60,12 +60,14 @@ export function createPowerBase(position: Vector3, gltfSrc: string) {
   }
 
   triggerAreaSystem.setTriggerArea(entity, Vector3.create(4, 4, 4), Vector3.create(0, 0.75, 0))
-  triggerAreaSystem.onPlayerEnter(entity, () => {
-    togglePower(true)
+  triggerAreaSystem.onPlayerEnter(entity, (args) => {
+    console.log('on enter', { args })
+    if (args.length > 0) togglePower(true)
   })
 
-  triggerAreaSystem.onPlayerExit(entity, () => {
-    togglePower(false)
+  triggerAreaSystem.onPlayerExit(entity, (args) => {
+    console.log('on exit', { args })
+    if (args.length === 0) togglePower(false)
   })
 }
 

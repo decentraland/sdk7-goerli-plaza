@@ -33,6 +33,7 @@ function isPositionInsideTriggerArea(
 }
 
 export function createTriggerArea(targetEngine: IEngine) {
+  const TriggerBox = targetEngine.defineComponent({}, 2004)
   const TriggerArea = targetEngine.defineComponent(
     {
       size: Schemas.Vector3,
@@ -43,7 +44,7 @@ export function createTriggerArea(targetEngine: IEngine) {
 
   const TriggerState = targetEngine.defineComponent(
     {
-      state: Schemas.Boolean
+      state: Schemas.Array(Schemas.Number)
     },
     2001
   )
@@ -51,22 +52,37 @@ export function createTriggerArea(targetEngine: IEngine) {
     Enter,
     Exit
   }
-  type EventMapType = Map<EventType, { cb: () => void }>
+  type EventMapType = Map<EventType, { cb: (entities: Entity[]) => void }>
 
   const eventsMap = new Map<Entity, EventMapType>()
 
-  function system() {
-    const position = Transform.getOrNull(targetEngine.PlayerEntity)?.position || Vector3.Zero()
+  function checkTrigger(positionEntity: Entity, position: Vector3) {
     for (const [entity, area, state, transform] of targetEngine.getEntitiesWith(TriggerArea, TriggerState, Transform)) {
       const nextState = isPositionInsideTriggerArea(position, transform.position, area.size, area.centerOffset)
+      const stateIndex = state.state.indexOf(positionEntity as number)
+      const currentState = stateIndex !== -1
 
-      if (state.state !== nextState) {
+      if (currentState !== nextState) {
         const eventType = nextState ? EventType.Enter : EventType.Exit
         const data = eventsMap.get(entity)?.get(eventType)
 
-        TriggerState.getMutable(entity).state = nextState
-        if (data) data.cb()
+        const triggerStateMutable = TriggerState.getMutable(entity)
+        if (!currentState) {
+          triggerStateMutable.state.push(positionEntity as number)
+        } else {
+          triggerStateMutable.state = triggerStateMutable.state.filter((item) => item !== positionEntity)
+        }
+
+        if (data) data.cb(triggerStateMutable.state)
       }
+    }
+  }
+
+  function system() {
+    const playerPosition = Transform.getOrNull(targetEngine.PlayerEntity)?.position || Vector3.Zero()
+    checkTrigger(engine.PlayerEntity, playerPosition)
+    for (const [entity, , transform] of targetEngine.getEntitiesWith(TriggerBox, Transform)) {
+      checkTrigger(entity, transform.position)
     }
   }
 
@@ -84,11 +100,11 @@ export function createTriggerArea(targetEngine: IEngine) {
       TriggerArea.deleteFrom(entity)
       TriggerState.deleteFrom(entity)
     },
-    onPlayerEnter(entity: Entity, cb: () => void) {
+    onPlayerEnter(entity: Entity, cb: (entities: Entity[]) => void) {
       const event = eventsMap.get(entity) || eventsMap.set(entity, new Map()).get(entity)!
       event.set(EventType.Enter, { cb })
     },
-    onPlayerExit(entity: Entity, cb: () => void) {
+    onPlayerExit(entity: Entity, cb: (entities: Entity[]) => void) {
       const event = eventsMap.get(entity) || eventsMap.set(entity, new Map()).get(entity)!
       event.set(EventType.Exit, { cb })
     },
@@ -103,6 +119,12 @@ export function createTriggerArea(targetEngine: IEngine) {
       if (eventsMap.get(entity)?.size === 0) {
         eventsMap.delete(entity)
       }
+    },
+    addTriggerBox(entity: Entity) {
+      TriggerBox.createOrReplace(entity)
+    },
+    removeTriggerBox(entity: Entity) {
+      TriggerBox.deleteFrom(entity)
     }
   }
 }

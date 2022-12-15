@@ -51,19 +51,20 @@ engine.addSystem(() => {
         // Calculates the crate's position relative to the camera
         transform.position = Vector3.Zero()
         transform.rotation = Quaternion.Identity()
+        transform.position.y = -1
         transform.position.z += Z_OFFSET
 
         transform.parent = engine.addEntity()
         AvatarAttach.createOrReplace(transform.parent, {
           avatarId: userId,
-          anchorPointId: AvatarAnchorPointType.AAPT_LEFT_HAND
+          anchorPointId: AvatarAnchorPointType.AAPT_NAME_TAG
         })
-      } else {
+      } else if (powerCube.isGrabbed) {
         const transform = Transform.getMutable(powerCubeEntity)
         PowerCube.getMutable(powerCubeEntity).isGrabbed = false
         AudioSource.getMutable(cubePutDownSound).playing = true
 
-        const cameraTransform = Transform.get(engine.CameraEntity)
+        const cameraTransform = Transform.get(engine.PlayerEntity)
         const forwardVector = Vector3.rotate(Vector3.scale(Vector3.Forward(), Z_OFFSET), cameraTransform.rotation)
 
         transform.position = Vector3.add(cameraTransform.position, forwardVector)
@@ -73,7 +74,6 @@ engine.addSystem(() => {
         transform.rotation.x = 0
         transform.rotation.z = 0
 
-        engine.removeEntity(transform.parent)
         transform.parent = undefined
       }
     }

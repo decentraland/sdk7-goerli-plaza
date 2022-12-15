@@ -9,6 +9,7 @@ import {
   Transform
 } from '@dcl/sdk/ecs'
 import { Vector3 } from '@dcl/sdk/math'
+import { triggerAreaSystem } from './utils/triggerArea'
 
 export const PowerCube = engine.defineComponent(
   {
@@ -34,6 +35,7 @@ export function createPowerCube(position: Vector3, gltfSrc: string) {
   }
   PointerHoverFeedback.create(entity, phf)
 
+  triggerAreaSystem.addTriggerBox(entity)
   // const triggerBox = new utils.TriggerBoxShape(Vector3.One(), Vector3.Zero())
   // this.addComponent(new utils.TriggerComponent(triggerBox, { layer: 1 }))
 
