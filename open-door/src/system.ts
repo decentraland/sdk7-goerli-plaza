@@ -1,8 +1,8 @@
-import { Entity, Transform, engine, Scalar, Quaternion, Vector3, TransformType } from '@dcl/ecs'
+import { Entity, Transform, engine, TransformType } from '@dcl/ecs'
+
+import { Quaternion, Scalar, Vector3 } from '@dcl/sdk/math'
 
 export const boedo = 'caslsa'
-
-
 
 export function transformComponent(entity: Entity, end: Partial<TransformType>, duration: number = 0) {
   function getDefaults() {

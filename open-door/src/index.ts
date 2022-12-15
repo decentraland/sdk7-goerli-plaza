@@ -8,11 +8,11 @@ import {
   MeshCollider,
   Material,
   Schemas
-} from "@dcl/ecs"
-import { Quaternion, Vector3, Color3 } from "@dcl/ecs-math"
-import { getUserData } from "~system/UserIdentity"
-import { transformComponent } from "./system"
-export * from "@dcl/sdk"
+} from '@dcl/ecs'
+import { Quaternion, Vector3, Color3 } from '@dcl/ecs-math'
+import { getUserData } from '~system/UserIdentity'
+import { transformComponent } from './system'
+export * from '@dcl/sdk'
 
 getUserData({})
   .then((value) => console.log(value))
@@ -20,7 +20,7 @@ getUserData({})
 
 const DoorComponent = engine.defineComponent(
   {
-    open: Schemas.Boolean,
+    open: Schemas.Boolean
   },
   888
 )
@@ -33,10 +33,10 @@ function createWall(position: Vector3, scale: Vector3, parent?: Entity) {
   Transform.create(WallEntity, {
     position,
     scale,
-    parent,
+    parent
   })
-  MeshRenderer.create(WallEntity, { mesh: { $case: "box", box: { uvs: [] } } })
-  MeshCollider.create(WallEntity, { mesh: { $case: "box", box: {} } })
+  MeshRenderer.create(WallEntity, { mesh: { $case: 'box', box: { uvs: [] } } })
+  MeshCollider.create(WallEntity, { mesh: { $case: 'box', box: {} } })
   return WallEntity
 }
 createWall(Vector3.create(5.75, 1, 3), Vector3.create(1.5, 2, 0.05))
@@ -49,13 +49,13 @@ const doorEntity = createWall(Vector3.create(0.5, 0, 0), Vector3.create(1, 2, 0.
 DoorComponent.create(doorEntity, { open: false })
 Material.create(doorEntity, {
   material: {
-    $case: "pbr",
+    $case: 'pbr',
     pbr: {
       albedoColor: Color3.Red(),
       metallic: 0.9,
-      roughness: 0.1,
-    },
-  },
+      roughness: 0.1
+    }
+  }
 })
 
 pointerEventsSystem.onPointerDown(
