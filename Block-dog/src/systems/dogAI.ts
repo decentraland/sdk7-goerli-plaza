@@ -2,64 +2,37 @@ import { engine, Entity, Animator, PointerHoverFeedback, Transform } from '@dcl/
 import { Vector3, Quaternion } from '@dcl/sdk/math'
 import { bowl } from '..'
 import { CustomComponents, dogStates } from '../components'
+import { onMoveFinish } from './moveSystem'
 
-// export function dogBehavior() {
-//   for (const [entity] of engine.getEntitiesWith(CustomComponents.NPC)) {
-//     const npcData = CustomComponents.NPC.getMutable(entity)
 
-    // switch (npcData.state) {
-    //   case dogStates.Idle:
-	// 	Animator.playSingleAnimation(entity, "Idle")
-    //     break
+const CHANGE_VARIABILITY = 4
 
-    //   case dogStates.Sit:
-	// 	Animator.playSingleAnimation(entity, "Sit")
-    //     break
 
-    //   case dogStates.Follow:
-	// 	Animator.playSingleAnimation(entity, "Walk")
-    //     break
+export function randomSwitchBehavior(dt:number){
+	for (const [entity] of engine.getEntitiesWith(CustomComponents.NPC)) {
+		const npcData = CustomComponents.NPC.getMutable(entity)
+		npcData.changeTimer -= dt
+		if(npcData.changeTimer < 0){
+			
 
-    //   case dogStates.GoDrink:
-	// 	Animator.playSingleAnimation(entity, "Walk")
-    //     break
+			const stateRandomizer = Math.random()
 
-    //   case dogStates.Drinking:
-	// 	Animator.playSingleAnimation(entity, "Drinking")
-    //     break
-
-      // 	const move = MoveTransform.getMutable(entity)
-      // 	const transform = Transform.getMutable(entity)
-
-      // 	move.normalizedTime = Math.min(Math.max(move.normalizedTime + dt * move.speed, 0), 1)
-      // 	move.lerpTime = Interpolate(move.interpolationType, move.normalizedTime)
-
-      // 	// assign value to transform
-      // 	transform.position = Vector3.lerp(move.start, move.end, move.lerpTime)
-
-      // 	// has finished
-      // 	move.hasFinished = move.normalizedTime >= 1
-
-      // 	if (move.hasFinished) {
-      // 		changeState(entity, dogStates.TURNING)
-      // 	}
-      // break
-      // case dogStates.TURNING:
-
-      // 	const timer = TimeOut.getMutable(entity)
-
-      // 	timer.timeLeft = timer.timeLeft - dt
-
-      // 	// has finished
-      // 	timer.hasFinished = timer.timeLeft >= 0
-
-      // 	if (timer.hasFinished) {
-      // 		changeState(entity, dogStates.WALKING)
-      // 	}
-      // break
-    //}
-//   }
-// }
+			if (stateRandomizer > 0.9 && npcData.state !== dogStates.Drinking){
+				changeState(entity,dogStates.GoDrink)
+				npcData.changeTimer = 12 +((Math.random() - 0.5) * CHANGE_VARIABILITY)
+			} else if(stateRandomizer > 0.8){    
+				changeState(entity,dogStates.Follow)
+				npcData.changeTimer = 12 +((Math.random() - 0.5) * CHANGE_VARIABILITY)
+			} else if(stateRandomizer > 0.4){
+				changeState(entity,dogStates.Idle)
+				npcData.changeTimer = 5 +((Math.random() - 0.5) * CHANGE_VARIABILITY)
+			} else {
+				changeState(entity,dogStates.Sit)
+				npcData.changeTimer = 5 +((Math.random() - 0.5) * CHANGE_VARIABILITY)
+			} 
+		}
+	}
+}
 
 export function changeState(entity: Entity, newState: dogStates) {
   const npcDataMutable = CustomComponents.NPC.getMutable(entity)
@@ -71,16 +44,7 @@ export function changeState(entity: Entity, newState: dogStates) {
   enterState(entity, npcDataMutable.state)
 }
 
-// export function previousState(entity:Entity){
 
-// 	const npcDataMutable = NPC.getMutable(entity)
-
-// 	leaveState(entity, npcDataMutable.state)
-// 	npcDataMutable.state = npcDataMutable.previousState
-
-// 	enterState(entity, npcDataMutable.state)
-
-// }
 
 export function enterState(entity: Entity, newState: dogStates) {
   const MutableTransform = Transform.getMutable(entity)
@@ -106,32 +70,45 @@ export function enterState(entity: Entity, newState: dogStates) {
 	  
 	  const playerPos = Transform.get(engine.PlayerEntity).position
 	  if(isInBounds(playerPos)){
-		MutableTransform.rotation = Quaternion.fromToRotation(MutableTransform.position, playerPos )
+
+		const floorLevelPlayerPos = Vector3.create(playerPos.x, 0, playerPos.z)
+
+		MutableTransform.rotation = Quaternion.fromLookAt(MutableTransform.position, floorLevelPlayerPos )
+
+		const playerToDogVector = Vector3.normalize(Vector3.subtract(MutableTransform.position, floorLevelPlayerPos))
+		const finalPos = Vector3.add(floorLevelPlayerPos, playerToDogVector)
+		
+  
 		CustomComponents.MoveTransform.createOrReplace(entity, {
 			start: Transform.get(entity).position,
-			end: playerPos,
-			speed: 0.05,
+			end: finalPos,
+			speed: 0.1,
 			hasFinished: false,
 			normalizedTime: 0,
 			lerpTime: 0
 		})
+		onMoveFinish(entity, ()=> {changeState(entity, dogStates.Sit )})
 	  }
       break
 
     case dogStates.GoDrink:
 	  Animator.playSingleAnimation(entity, "Walking")
 	  const bowlPosition = Transform.get(bowl).position
-	  MutableTransform.rotation = Quaternion.fromToRotation(MutableTransform.position, bowlPosition )
+	  const bowlToDogVector = Vector3.normalize(Vector3.subtract(MutableTransform.position, bowlPosition))
+	  const finalPos = Vector3.add(bowlPosition, bowlToDogVector)
+
+	  MutableTransform.rotation = Quaternion.fromLookAt(MutableTransform.position, bowlPosition )
 
 	  CustomComponents.MoveTransform.createOrReplace(entity, {
 		start: Transform.get(entity).position,
-		end: bowlPosition,
-		speed: 0.05,
+		end: finalPos,
+		speed: 0.1,
 		hasFinished: false,
 		normalizedTime: 0,
 		lerpTime: 0
 	})
-      break
+	onMoveFinish(entity, ()=> {changeState(entity, dogStates.Drinking )})
+    break
 
     case dogStates.Drinking:
 	  Animator.playSingleAnimation(entity, "Drinking")
@@ -172,5 +149,5 @@ export function leaveState(entity: Entity, oldState: dogStates) {
 
 // check if the target is inside the scene's bounds
 export function isInBounds(position: Vector3): boolean {
-  return position.x > 0.5 && position.x < 9.5 && position.z > 0.5 && position.z < 9.5
+  return position.x > 0 && position.x < 16 && position.z > 0 && position.z < 16
 }

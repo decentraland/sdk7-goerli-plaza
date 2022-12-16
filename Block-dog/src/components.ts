@@ -34,7 +34,8 @@ export const MoveTransformComponent = engine.defineComponent(MoveTransformSchema
 
 const NPCSchema = {
   state: Schemas.Enum<dogStates>(Schemas.Int),
-  previousState: Schemas.Enum<dogStates>(Schemas.Int)
+  previousState: Schemas.Enum<dogStates>(Schemas.Int),
+  changeTimer: Schemas.Number
 }
 
 export const NPCComponent = engine.defineComponent(NPCSchema, CustomComponentIds.NPC)

@@ -112,7 +112,7 @@ export function enterState(entity: Entity, newState: gnarkStates) {
     case gnarkStates.YELLING:
 	  const transform = Transform.getMutable(entity)
 	  const playerPosition = Transform.get(engine.PlayerEntity)
-	  transform.rotation = Quaternion.fromToRotation(transform.position, playerPosition.position)
+	  transform.rotation = Quaternion.fromLookAt(transform.position, playerPosition.position)
       const raiseDeadAnim = Animator.getClip(entity, "raiseDead")
       raiseDeadAnim.playing = true
       break
