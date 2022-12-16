@@ -18,8 +18,6 @@ const forcefieldEntity = engine.addEntity()
 GltfContainer.create(forcefieldEntity, { src: 'models/forcefield.glb' })
 Transform.create(forcefieldEntity)
 
-// let forcefieldParticles: ISystem
-
 // Sounds
 const powerUp = createSound('sounds/powerUp.mp3')
 const powerDown = createSound('sounds/powerDown.mp3')
@@ -32,14 +30,15 @@ export function createPowerBase(position: Vector3, gltfSrc: string) {
 
   function togglePower(isPowerOn: boolean) {
     if (isPowerOn) {
+      // TODO: change this workaround until the DisableComponent is available
       Transform.getMutable(powerBlueGlowEntity).scale = Vector3.One()
-      VisibilityComponent.createOrReplace(forcefieldEntity)
+      Transform.getMutable(forcefieldEntity).scale = Vector3.One()
 
       try {
         engine.addSystem(particleSystem)
-      } catch (err) {}
+      } catch (err) { }
       AudioSource.getMutable(powerUp).playing = true
-      VisibilityComponent.createOrReplace(forcefieldEntity, { visible: true })
+
       for (const [entity] of engine.getEntitiesWith(Particle)) {
         VisibilityComponent.deleteFrom(entity)
       }
@@ -49,10 +48,10 @@ export function createPowerBase(position: Vector3, gltfSrc: string) {
         VisibilityComponent.createOrReplace(entity, { visible: false })
       }
 
+      // TODO: change this workaround until the DisableComponent is available
       // Hide the blue glow
       Transform.getMutable(powerBlueGlowEntity).scale = Vector3.Zero()
-
-      VisibilityComponent.createOrReplace(forcefieldEntity, { visible: false })
+      Transform.getMutable(forcefieldEntity).scale = Vector3.Zero()
 
       engine.removeSystem(particleSystem)
       AudioSource.getMutable(powerDown).playing = true
