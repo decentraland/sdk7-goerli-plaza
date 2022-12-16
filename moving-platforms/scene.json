@@ -1,5 +1,6 @@
 {
 	"ecs7": true,
+  "runtimeVersion": "7",
 	"display": {
 		"title": "moving-platforms",
 		"favicon": "favicon_asset"

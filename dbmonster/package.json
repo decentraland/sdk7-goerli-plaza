@@ -15,6 +15,6 @@
   },
   "author": "",
   "dependencies": {
-    "@dcl/sdk": "^7.0.2-3570171208.commit-a7ab97a"
+    "@dcl/sdk": "latest"
   }
 }

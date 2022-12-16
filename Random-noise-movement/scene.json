@@ -1,5 +1,6 @@
 {
 	"ecs7": true,
+  "runtimeVersion": "7",
 	"display": {
 		"title": "SDK7 Decentraland - Random noise generator",
 		"description": "First scene with SDK7",

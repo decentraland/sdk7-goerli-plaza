@@ -68,7 +68,7 @@ export function createSongButton(parent: Entity, x: number, y: number, song: Son
     textAlign: TextAlignMode.TAM_TOP_LEFT,
     text: song.name,
     textColor: Color4.White(),
-    font: Font.F_LIBERATION_SANS
+    font: Font.F_SANS_SERIF
   })
 
   const button = engine.addEntity()

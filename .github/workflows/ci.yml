@@ -16,7 +16,7 @@ jobs:
       - name: check parcel collisions
         run: node scripts/checkParcelsCollision.js
       - name: install decentraland
-        run: npm i -g "https://sdk-team-cdn.decentraland.org/decentraland-cli/branch/feat/support-workspace-build/decentraland-3.14.0-20221123125739.commit-39da12e.tgz"
+        run: npm i -g decentraland@next
       - name: install dependencies
         run: npm i
       - name: build

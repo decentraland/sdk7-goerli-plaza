@@ -17,11 +17,5 @@
 		"node": ">=14.0.0",
 		"npm": ">=6.0.0",
 		"yarn": "please use npm"
-	},
-	"bundleDependencies": [],
-	"dependencies": {
-		"@dcl/kernel": "https://sdk-team-cdn.decentraland.org/@dcl/kernel/branch/new-runtime/dcl-kernel-2.0.0-3564879847.commit-cd5157a.tgz",
-		"ethers": "^5.7.2",
-		"fp-future": "^1.0.1"
 	}
 }
