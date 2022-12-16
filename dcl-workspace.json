@@ -58,6 +58,9 @@
 			"path": "open-door"
 		},
 		{
+			"path": "power-cube"
+		},
+		{
 			"path": "Random-noise-movement"
 		},
 		{
