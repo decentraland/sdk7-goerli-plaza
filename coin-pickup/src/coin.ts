@@ -1,5 +1,5 @@
 
-import { AudioSource, engine, Entity, GltfContainer, Transform } from "@dcl/sdk/ecs"
+import { AudioSource, AvatarAttach, engine, Entity, GltfContainer, Transform } from "@dcl/sdk/ecs"
 import { Vector3 } from "@dcl/sdk/math"
 import { triggerAreaSystem } from "./utils/triggerArea"
 
@@ -9,7 +9,7 @@ import { triggerAreaSystem } from "./utils/triggerArea"
  */
 const coinPickupSound = engine.addEntity()
 Transform.create(coinPickupSound)
-AudioSource.create(coinPickupSound, { audioClipSource: 'sounds/coinPickup.mp3' })
+AudioSource.create(coinPickupSound, { audioClipUrl: 'sounds/coinPickup.mp3' })
 
 export function createCoin(
   model: string,
@@ -26,6 +26,7 @@ export function createCoin(
   triggerAreaSystem.onPlayerEnter(entity, () => {
     triggerAreaSystem.removeTriggerArea(entity)
     AudioSource.getMutable(coinPickupSound).playing = true
+    Transform.getMutable(coinPickupSound).position = Transform.get(engine.PlayerEntity).position
     engine.removeEntity(entity)
   })
 
