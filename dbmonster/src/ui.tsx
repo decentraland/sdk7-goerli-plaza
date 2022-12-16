@@ -17,7 +17,7 @@ const Monster = (props: { index: number }) => (
       textAlign: props.index % TextAlignMode.TAM_BOTTOM_RIGHT,
       fontSize: 12 + props.index,
       color: Color4.Black(),
-      font: Font.F_LIBERATION_SANS,
+      font: Font.F_SANS_SERIF,
     }}
     uiBackground={{ backgroundColor: { r: 0, g: Math.random(), b: Math.random(), a: 1 } }}
   />
@@ -44,7 +44,7 @@ const Column = () => {
           textAlign: TextAlignMode.TAM_BOTTOM_CENTER,
           fontSize: 15,
           color: Color4.Black(),
-          font: Font.F_LIBERATION_SANS,
+          font: Font.F_SANS_SERIF,
         }}
         uiBackground={{ backgroundColor: { r: 1, g: 0.45, b: 0.85, a: 1 } }}
       />
@@ -71,7 +71,7 @@ export const ui = () => {
           textAlign: TextAlignMode.TAM_BOTTOM_CENTER,
           fontSize: 12,
           color: Color4.Black(),
-          font: Font.F_LIBERATION_SANS,
+          font: Font.F_SANS_SERIF,
         }}
         uiBackground={{ backgroundColor: { r: 1, g: 0.45, b: 0.85, a: 1 } }}
       />
