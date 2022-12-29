@@ -38,7 +38,9 @@ engine.addSystem((dt: number) => {
       ) {
         Material.setPbrMaterial(entity, { ...greenMaterial })
       }
-    }
+    } else {
+		Material.setPbrMaterial(entity, { ...greenMaterial })
+	}
 
     if (value.t > 1) {
       Material.setPbrMaterial(entity, { ...lightGreenMaterial })
