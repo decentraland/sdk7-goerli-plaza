@@ -3,11 +3,10 @@
 	"version": "1.0.0",
 	"description": "ECS7 ",
 	"scripts": {
-		"start": "./node_modules/.bin/dcl start",
+		"start": "dcl start",
 		"build": "build-ecs",
 		"watch": "build-ecs --watch",
-		"ecs:install": "npm install --save-dev decentraland-ecs@latest",
-		"ecs:install-next": "npm install --save-dev decentraland-ecs@next",
+		"ecs:install-next": "npm install --save-dev @dcl/sdk@next",
 		"lint": "eslint . --ext .ts",
 		"lint:fix": "eslint . --ext .ts --fix"
 	},
@@ -19,8 +18,5 @@
 		"node": ">=14.0.0",
 		"npm": ">=6.0.0",
 		"yarn": "please use npm"
-	},
-	"dependencies": {
-		"@dcl/posix": "^1.0.4"
 	}
 }

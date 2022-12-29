@@ -5,8 +5,6 @@ export function createNft(xPos: number): Entity {
 
   Transform.create(nft, {
     position: { x: xPos, y: 1, z: 13 },
-    scale: { x: 1, y: 1, z: 1 },
-    rotation: { x: 0, y: 0, z: 0, w: 1 }
   })
 
   NftShape.create(nft, {

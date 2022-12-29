@@ -14,10 +14,7 @@ const _LIVES = 5
 const _WINNING_SCORE = 15
 const _SPAWN_INTERVAL = 3
 
-// const zombie = createZombie(3)
-// const _cubeEntity = createCube(2, 2, 8)
-// addStateSystem(playSounds, { t: 0 })
-// engine.addSystem(circularSystem)
+
 engine.addSystem(moveSystem)
 
 export const coneEntity = createCone()
@@ -62,8 +59,6 @@ addClickBehavior(coneEntity, () => {
       audioClipUrl: '/sounds/ambient.mp3',
       loop: true,
       playing: true,
-      pitch: 1,
-      volume: 1
     })
   }
 })

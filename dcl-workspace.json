@@ -64,6 +64,9 @@
 			"path": "Random-noise-movement"
 		},
 		{
+			"path": "enemy-spawner"
+		},
+		{
 			"path": "Shark-animation"
 		},
 		{

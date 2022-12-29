@@ -1,10 +1,10 @@
 import { createGLTF } from './gltf'
 import { createDog } from './dog'
-import { PointerHoverFeedback, PointerEventType, InputAction, createPointerEventSystem, pointerEventsSystem, engine } from '@dcl/sdk/ecs'
-import { changeState } from './systems/dogAI'
+import { InputAction,  pointerEventsSystem, engine } from '@dcl/sdk/ecs'
+import { changeState, randomSwitchBehavior } from './systems/dogAI'
 import { dogStates } from './components'
 import { moveSystem } from './systems/moveSystem'
-import { timerSystem } from './systems/timeOutSystem'
+import { Vector3 } from '@dcl/sdk/math'
 export * from '@dcl/sdk'
 
 createGLTF(
@@ -36,10 +36,11 @@ pointerEventsSystem.onPointerDown(
 )
 
 
-const dog = createDog()
+const dog = createDog(Vector3.create( 8, 0, 9))
+
+const dog2 = createDog(Vector3.create( 10, 0, 8))
 
 
 engine.addSystem(moveSystem)
 
-
-engine.addSystem(timerSystem)
+engine.addSystem(randomSwitchBehavior)

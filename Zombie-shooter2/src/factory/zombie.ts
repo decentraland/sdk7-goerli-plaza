@@ -18,8 +18,7 @@ export function createZombie(xPos: number): Entity {
   ZombieComponent.create(zombie)
 
   Transform.create(zombie, {
-    position: { x: xPos, y: 1, z: 3 },
-    rotation: { x: 0, y: 0, z: 0, w: 1 }
+    position: { x: xPos, y: 1, z: 3 }
   })
 
   const zombieGltf = true
@@ -48,19 +47,13 @@ export function createZombie(xPos: number): Entity {
         clip: 'Walking',
         loop: true,
         name: 'Walk',
-        playing: true,
-        shouldReset: false,
-        speed: 1,
-        weight: 1
+        playing: true
       },
       {
         clip: 'Attacking',
         loop: true,
         name: 'Attack',
-        playing: false,
-        shouldReset: false,
-        speed: 1,
-        weight: 1
+        playing: false
       }
     ]
   })
@@ -71,8 +64,7 @@ export function createZombie(xPos: number): Entity {
         eventType: PointerEventType.PET_DOWN,
         eventInfo: {
           button: InputAction.IA_PRIMARY,
-          hoverText: 'Shoot',
-          showFeedback: true
+          hoverText: 'Shoot'
         }
       }
     ]
