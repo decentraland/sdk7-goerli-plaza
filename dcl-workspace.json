@@ -58,6 +58,9 @@
 			"path": "open-door"
 		},
 		{
+			"path": "power-cube"
+		},
+		{
 			"path": "Random-noise-movement"
 		},
 		{
@@ -80,6 +83,9 @@
 		},
 		{
 			"path": "Zombie-shooter2"
+		},
+		{
+			"path": "zombie-attack"
 		}
 	]
 }
