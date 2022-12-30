@@ -1,5 +1,7 @@
-import { getUserData } from '~system/UserIdentity'
+import { executeTask } from "@dcl/sdk/ecs"
+import { getUserData } from "~system/UserIdentity"
 export let userId: undefined | string = undefined
-getUserData({})
-  .then((data) => (userId = data.data?.userId))
-  .catch(console.error)
+
+executeTask(async () => {
+  userId = (await getUserData({})).data?.userId
+})

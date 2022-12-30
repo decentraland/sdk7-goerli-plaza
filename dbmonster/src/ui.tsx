@@ -1,5 +1,5 @@
 import { YGDisplay, YGJustify, YGAlign, TextAlignMode, Font, engine } from "@dcl/sdk/ecs"
-import ReactEcs, { UiEntity } from "@dcl/sdk/react-ecs"
+import ReactEcs, { Label, UiEntity } from "@dcl/sdk/react-ecs"
 import { Color4 } from "@dcl/sdk/math"
 
 let dt = 0
@@ -9,17 +9,15 @@ engine.addSystem((d) => {
 })
 
 const Monster = (props: { index: number }) => (
-  <UiEntity
-    key={props.index.toString()}
+  <Label
+    // key={props.index.toString()}
     uiTransform={{ width: 80 + Math.random() * 100, height: 20 + props.index * 3 }}
-    uiText={{
-      value: Math.random().toString(36),
-      textAlign: props.index % TextAlignMode.TAM_BOTTOM_RIGHT,
-      fontSize: 12 + props.index,
-      color: Color4.Black(),
-      font: Font.F_SANS_SERIF,
-    }}
-    uiBackground={{ backgroundColor: { r: 0, g: Math.random(), b: Math.random(), a: 1 } }}
+    value={Math.random().toString(36)}
+    textAlign={props.index % TextAlignMode.TAM_BOTTOM_RIGHT}
+    fontSize={12 + props.index}
+    color={Color4.Black()}
+    font={Font.F_SANS_SERIF}
+    uiBackground={{ color: { r: 0, g: Math.random(), b: Math.random(), a: 1 } }}
   />
 )
 
@@ -35,18 +33,16 @@ const Column = () => {
         justifyContent: YGJustify.YGJ_CENTER,
         alignItems: YGAlign.YGA_CENTER,
       }}
-      uiBackground={{ backgroundColor: { r: 1, g: 0.45, b: 0.85, a: Math.random() } }}
+      uiBackground={{ color: { r: 1, g: 0.45, b: 0.85, a: Math.random() } }}
     >
-      <UiEntity
+      <Label
         uiTransform={{ width: 80, height: 20 }}
-        uiText={{
-          value: "Amount: " + monsters.length,
-          textAlign: TextAlignMode.TAM_BOTTOM_CENTER,
-          fontSize: 15,
-          color: Color4.Black(),
-          font: Font.F_SANS_SERIF,
-        }}
-        uiBackground={{ backgroundColor: { r: 1, g: 0.45, b: 0.85, a: 1 } }}
+        value={"Amount:" + monsters.length}
+        textAlign={TextAlignMode.TAM_BOTTOM_CENTER}
+        fontSize={15}
+        color={Color4.Black()}
+        font={Font.F_SANS_SERIF}
+        uiBackground={{ color: { r: 1, g: 0.45, b: 0.85, a: 1 } }}
       />
       {...monsters}
     </UiEntity>
@@ -62,18 +58,16 @@ export const ui = () => {
         margin: { left: 300 },
         padding: { top: 10, right: 10, bottom: 10, left: 10 },
       }}
-      uiBackground={{ backgroundColor: { r: 0, g: 0, b: 0, a: 0.8 } }}
+      uiBackground={{ color: { r: 0, g: 0, b: 0, a: 0.8 } }}
     >
-      <UiEntity
+      <Label
         uiTransform={{ width: 80, height: 20 }}
-        uiText={{
-          value: "Delta time: " + dt.toFixed(4),
-          textAlign: TextAlignMode.TAM_BOTTOM_CENTER,
-          fontSize: 12,
-          color: Color4.Black(),
-          font: Font.F_SANS_SERIF,
-        }}
-        uiBackground={{ backgroundColor: { r: 1, g: 0.45, b: 0.85, a: 1 } }}
+        value={"Delta time:" + dt.toFixed(4)}
+        textAlign={TextAlignMode.TAM_BOTTOM_CENTER}
+        fontSize={12}
+        color={Color4.Black()}
+        font={Font.F_SANS_SERIF}
+        uiBackground={{ color: { r: 1, g: 0.45, b: 0.85, a: 1 } }}
       />
       <Column />
       <Column />
