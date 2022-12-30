@@ -12,8 +12,7 @@
     "lint:fix": "eslint . --ext .ts --fix"
   },
   "devDependencies": {
-    "@dcl/eslint-config": "^1.0.1",
-    "@dcl/sdk": "^7.0.5"
+    "@dcl/sdk": "^7.0.6-3808564125.commit-7a2650b"
   },
   "engines": {
     "node": ">=16.0.0",

@@ -11,8 +11,7 @@
     "lint:fix": "eslint . --ext .ts --fix"
   },
   "devDependencies": {
-    "@dcl/eslint-config": "^1.0.1",
-    "@dcl/sdk": "https://sdk-team-cdn.decentraland.org/@dcl/js-sdk-toolchain/branch/rollup/dcl-sdk-7.0.0-3568373524.commit-18a3dd4.tgz"
+    "@dcl/sdk": "^7.0.6-3808564125.commit-7a2650b"
   },
   "engines": {
     "node": ">=14.0.0",
