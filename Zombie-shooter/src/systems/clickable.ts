@@ -1,9 +1,9 @@
-import { Entity, engine, PointerHoverFeedback, InputAction, PointerEventType, inputSystem } from '@dcl/sdk/ecs'
+import { Entity, engine, PointerEvents, InputAction, PointerEventType, inputSystem } from "@dcl/sdk/ecs"
 
 const callbackMap = new Map<Entity, (entity: Entity) => void>()
 
 export function clickedSystem() {
-  for (const [entity] of engine.getEntitiesWith(PointerHoverFeedback)) {
+  for (const [entity] of engine.getEntitiesWith(PointerEvents)) {
     if (inputSystem.isTriggered(InputAction.IA_PRIMARY, PointerEventType.PET_DOWN, entity)) {
       const fn = callbackMap.get(entity)
       if (fn) fn(entity)
@@ -14,18 +14,18 @@ export function clickedSystem() {
 engine.addSystem(clickedSystem)
 
 export function addClickBehavior(entity: Entity, fn: (entity: Entity) => void) {
-  PointerHoverFeedback.create(entity, {
+  PointerEvents.create(entity, {
     pointerEvents: [
       {
         eventType: PointerEventType.PET_DOWN,
         eventInfo: {
           button: InputAction.IA_PRIMARY,
-          hoverText: 'Click',
+          hoverText: "Click",
           maxDistance: 100,
-          showFeedback: true
-        }
-      }
-    ]
+          showFeedback: true,
+        },
+      },
+    ],
   })
   callbackMap.set(entity, fn)
 

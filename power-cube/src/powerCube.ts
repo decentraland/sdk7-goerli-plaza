@@ -2,18 +2,18 @@ import {
   engine,
   GltfContainer,
   InputAction,
-  PBPointerHoverFeedback,
+  PBPointerEvents,
   PointerEventType,
-  PointerHoverFeedback,
+  PointerEvents,
   Schemas,
-  Transform
-} from '@dcl/sdk/ecs'
-import { Vector3 } from '@dcl/sdk/math'
-import { triggerAreaSystem } from './utils/triggerArea'
+  Transform,
+} from "@dcl/sdk/ecs"
+import { Vector3 } from "@dcl/sdk/math"
+import { triggerAreaSystem } from "./utils/triggerArea"
 
 export const PowerCube = engine.defineComponent(
   {
-    isGrabbed: Schemas.Boolean
+    isGrabbed: Schemas.Boolean,
   },
   2003
 )
@@ -21,19 +21,19 @@ export const PowerCube = engine.defineComponent(
 export function createPowerCube(position: Vector3, gltfSrc: string) {
   const entity = engine.addEntity()
 
-  const phf: PBPointerHoverFeedback = {
+  const phf: PBPointerEvents = {
     pointerEvents: [
       {
         eventType: PointerEventType.PET_DOWN,
         eventInfo: {
           button: InputAction.IA_PRIMARY,
-          hoverText: 'Pick Up / Put Down',
-          maxDistance: 5
-        }
-      }
-    ]
+          hoverText: "Pick Up / Put Down",
+          maxDistance: 5,
+        },
+      },
+    ],
   }
-  PointerHoverFeedback.create(entity, phf)
+  PointerEvents.create(entity, phf)
 
   triggerAreaSystem.addTriggerBox(entity)
   // const triggerBox = new utils.TriggerBoxShape(Vector3.One(), Vector3.Zero())

@@ -5,20 +5,20 @@ import {
   InputAction,
   inputSystem,
   PointerEventType,
-  PointerHoverFeedback,
+  PointerEvents,
   Transform,
   AudioSource,
   CameraModeArea,
-  CameraType
-} from '@dcl/sdk/ecs'
-import { Quaternion, Vector3 } from '@dcl/sdk/math'
+  CameraType,
+} from "@dcl/sdk/ecs"
+import { Quaternion, Vector3 } from "@dcl/sdk/math"
 
-export * from '@dcl/sdk'
+export * from "@dcl/sdk"
 
 // Force camera first person
 CameraModeArea.create(engine.RootEntity, {
   area: Vector3.create(32, 32, 32),
-  mode: CameraType.CT_FIRST_PERSON
+  mode: CameraType.CT_FIRST_PERSON,
 })
 
 // Base
@@ -29,7 +29,7 @@ GltfContainer.create(base, { src: `models/baseLight.glb` })
 const Z_OFFSET = 1.5
 const GROUND_HEIGHT = 0.55
 const state = {
-  grabbed: false
+  grabbed: false,
 }
 const toggleGrabbed = () => {
   state.grabbed = !state.grabbed
@@ -50,25 +50,25 @@ export function createCreate(): Entity {
   Transform.create(crate, { position: Vector3.create(8, GROUND_HEIGHT, 8) })
   GltfContainer.create(crate, { src: `models/crate.glb` })
 
-  PointerHoverFeedback.create(crate, {
+  PointerEvents.create(crate, {
     pointerEvents: [
       {
         eventType: PointerEventType.PET_DOWN,
         eventInfo: {
           button: InputAction.IA_PRIMARY,
-          hoverText: 'Pick Up / Put Down',
+          hoverText: "Pick Up / Put Down",
           maxDistance: 5,
-          showFeedback: true
-        }
-      }
-    ]
+          showFeedback: true,
+        },
+      },
+    ],
   })
 
   return crate
 }
 
 export function grabbingSystem() {
-  const objs = engine.getEntitiesWith(PointerHoverFeedback, Transform)
+  const objs = engine.getEntitiesWith(PointerEvents, Transform)
   for (const [entity] of objs) {
     const mutableTransform = Transform.getMutable(entity)
     if (inputSystem.isTriggered(InputAction.IA_PRIMARY, PointerEventType.PET_DOWN, entity)) {

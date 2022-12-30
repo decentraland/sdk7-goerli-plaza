@@ -11,7 +11,6 @@
 		"ecs:install-next": "npm install --save-dev decentraland-ecs@next"
 	},
 	"dependencies": {
-		
 		"@dcl/sdk": "https://sdk-team-cdn.decentraland.org/@dcl/js-sdk-toolchain/branch/rollup/dcl-sdk-7.0.0-3560913699.commit-26d9b0c.tgz"
 	}
 }

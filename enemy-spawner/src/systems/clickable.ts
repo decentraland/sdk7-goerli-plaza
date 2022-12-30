@@ -1,7 +1,7 @@
 import {
   Entity,
   engine,
-  PointerHoverFeedback,
+  PointerEvents,
   InputAction,
   PointerEventType,
   inputSystem,
@@ -44,6 +44,6 @@ async function attachEntity(entity: Entity) {
 
   AvatarAttach.create(entity, {
     anchorPointId: AvatarAnchorPointType.AAPT_POSITION,
-    avatarId: userData.data.userId
+    avatarId: userData.data.userId,
   })
 }
