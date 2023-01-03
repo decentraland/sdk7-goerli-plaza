@@ -11,7 +11,7 @@
     "lint:fix": "eslint . --ext .ts --fix"
   },
   "devDependencies": {
-    "@dcl/sdk": "^7.0.6-3808564125.commit-7a2650b",
+    "@dcl/sdk": "next",
     "cannon": "github:schteppe/cannon.js"
   },
   "engines": {

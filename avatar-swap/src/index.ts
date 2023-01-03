@@ -14,7 +14,7 @@ function setup() {
 
     // Instantiate 'Arissa' character animated model
     const arissaCharaEntity = createArissaCharacter()
-    attachEntityToPlayer(Transform.get(arissaCharaEntity).parent)
+    attachEntityToPlayer(Transform.get(arissaCharaEntity).parent!)
 
     // Set avatar modifier area to swap player avatar
     createAvatarSwappingArea(Vector3.create(8, 2, 10.5), Vector3.create(16, 4, 11), arissaCharaEntity)

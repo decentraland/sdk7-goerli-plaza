@@ -18,7 +18,7 @@ export function pickingGlassSystem() {
 
       // If there is a tap base (the collider)
       if (TapBase.getOrNull(hitParentEntity)) {
-        Transform.createOrReplace(pickedUp.child as Entity, {
+        Transform.createOrReplace(pickedUp.child, {
           parent: hitParentEntity
         })
         drop = true
@@ -26,7 +26,7 @@ export function pickingGlassSystem() {
         // Only it's allowed to hold the beer in surface parallel to floor
         const diff = Vector3.subtract(Vector3.Up(), tryToDropCommand.hit?.normalHit || Vector3.Zero())
         if (Vector3.length(diff) < 0.01) {
-          Transform.createOrReplace(pickedUp.child as Entity, {
+          Transform.createOrReplace(pickedUp.child, {
             position: hitPosition
           })
           drop = true
@@ -42,12 +42,12 @@ export function pickingGlassSystem() {
       }
     }
 
-    const glass = BeerGlass.get(pickedUp.child as Entity)
+    const glass = BeerGlass.get(pickedUp.child)
 
     const tryToDrinkCommand = inputSystem.getInputCommand(InputAction.IA_SECONDARY, PointerEventType.PET_DOWN)
     if (glass.filled && tryToDrinkCommand) {
-      BeerGlass.getMutable(pickedUp.child as Entity).filled = false
-	  Animator.playSingleAnimation(pickedUp.child, 'Blank')
+      BeerGlass.getMutable(pickedUp.child).filled = false
+      Animator.playSingleAnimation(pickedUp.child, 'Blank')
       playSound('sounds/swallow.mp3', false, getPlayerPosition())
     }
     return
@@ -58,7 +58,7 @@ export function pickingGlassSystem() {
     if (!glass.beingFilled && inputSystem.isTriggered(InputAction.IA_PRIMARY, PointerEventType.PET_DOWN, entity)) {
       const parentBeer = engine.addEntity()
       PickedUp.create(parentBeer, {
-        child: entity as any
+        child: entity
       })
 
       AvatarAttach.create(parentBeer, {

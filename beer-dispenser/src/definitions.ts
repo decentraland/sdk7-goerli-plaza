@@ -61,7 +61,7 @@ export const BeerGlass = engine.defineComponent(
 )
 export const PickedUp = engine.defineComponent(
   {
-    child: Schemas.Int
+    child: Schemas.Entity
   },
   CustomComponentIds.PickedUp
 )

@@ -44,7 +44,7 @@ export function createTriggerArea(targetEngine: IEngine) {
 
     const TriggerState = targetEngine.defineComponent(
         {
-            state: Schemas.Array(Schemas.Number)
+            state: Schemas.Array(Schemas.Entity)
         },
         2001
     )
