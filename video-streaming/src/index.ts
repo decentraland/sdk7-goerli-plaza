@@ -30,9 +30,10 @@ const screen2 = engine.addEntity()
 MeshRenderer.setPlane(screen2)
 MeshCollider.setPlane(screen2, ColliderLayer.CL_POINTER | ColliderLayer.CL_PHYSICS)
 Transform.create(screen2, { parent: screenDisplay, scale: { x: 3.84, y: 2.16, z: 1 }, rotation: Quaternion.fromEulerDegrees(0, 0, 180), position: { x: 8.0, y: -5.0, z: -0.1 } })
-
-const videoPlayer = VideoPlayer.create(screen, {
-  src: 'https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_2mb.mp4'
+VideoPlayer.create(screen, {
+  src: 'https://player.vimeo.com/external/552481870.m3u8?s=c312c8533f97e808fccc92b0510b085c8122a875',
+  playing: true,
+  volume: 1.0
 })
 
 const videoTexture = Material.Texture.Video({ videoPlayerEntity: screen })
@@ -51,9 +52,7 @@ Material.setPbrMaterial(screen2, {
   roughness: 1.0,
 })
 
-videoPlayer.volume = 1.0
-videoPlayer.playing = true
-
 pointerEventsSystem.onPointerDown(screen2, () => {
+  const videoPlayer = VideoPlayer.getMutable(screen)
   videoPlayer.playing = !videoPlayer.playing
 }, { button: InputAction.IA_POINTER, hoverText: "Play/pause" })
