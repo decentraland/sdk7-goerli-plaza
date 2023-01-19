@@ -9,7 +9,7 @@
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix"
   },
-  "devDependencies": {
-    "@dcl/sdk": "^7.0.6-3808564125.commit-7a2650b"
+  "dependencies": {
+    "@dcl/sdk": "^7.0.5"
   }
 }
