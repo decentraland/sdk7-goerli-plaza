@@ -115,5 +115,12 @@ Transform.create(irregularMeshEntity, {
     position: Vector3.create(16, 1, -16),
     rotation: Quaternion.fromEulerDegrees(0, -90, 0)
 })
+setAsMovingPlatform(irregularMeshEntity,
+    [
+        Vector3.create(16, 1, -16),
+        Vector3.create(16, 1, -8)
+    ],
+    15
+)
 
 engine.addSystem(platformsMovementSystem)

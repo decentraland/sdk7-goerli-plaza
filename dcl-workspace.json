@@ -86,6 +86,9 @@
 		},
 		{
 			"path": "zombie-attack"
+		},
+		{
+			"path": "scene-bounds-check"
 		}
 	]
 }
