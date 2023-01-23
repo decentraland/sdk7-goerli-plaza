@@ -42,7 +42,7 @@ export class KeepRotatingSystem{
   static createAndAddToEngine(): KeepRotatingSystem {
     if (this._instance == null) {
       this._instance = new KeepRotatingSystem()
-      engine.addSystem(this._instance.systemFnCache)
+      engine.addSystem(this._instance.system)
     }
     return this._instance
   }
@@ -143,6 +143,7 @@ export function createKeepRotatingSystem(targetEngine: IEngine) {
             transform.rotation = Quaternion.multiply( transform.rotation,keepRotating.rotation)
 
         }
+        counter++
     }
 
     targetEngine.addSystem(system)
@@ -173,4 +174,5 @@ export function createKeepRotatingSystem(targetEngine: IEngine) {
     }
 }   
 
-export const keepRotatingSystem = createKeepRotatingSystem(engine)
+//uncomment  to use FP way
+//export const keepRotatingSystem = createKeepRotatingSystem(engine)

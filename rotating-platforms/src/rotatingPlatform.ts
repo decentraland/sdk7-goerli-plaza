@@ -1,7 +1,7 @@
 //import * as utils from '@dcl/ecs-scene-utils'
 import { engine, Entity, GltfContainer, Transform, TransformType } from '@dcl/sdk/ecs'
 import { Quaternion } from '@dcl/sdk/math'
-import { KeepRotatingSystem, keepRotatingSystem } from './utils/keepRotating'
+import { KeepRotatingSystem } from './utils/keepRotating'
 
 export function createRotatingPlatform(
   model: string,
