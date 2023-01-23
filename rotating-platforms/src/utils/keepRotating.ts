@@ -143,7 +143,6 @@ export function createKeepRotatingSystem(targetEngine: IEngine) {
             transform.rotation = Quaternion.multiply( transform.rotation,keepRotating.rotation)
 
         }
-        counter++
     }
 
     targetEngine.addSystem(system)
