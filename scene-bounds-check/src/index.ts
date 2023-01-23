@@ -1,5 +1,5 @@
 import {
-    engine, GltfContainer, NftShape, MeshCollider, MeshRenderer, Transform, VisibilityComponent
+    engine, GltfContainer, NftShape, MeshCollider, MeshRenderer, Transform, VisibilityComponent, AvatarShape
 } from '@dcl/sdk/ecs'
 import { Color3, Vector3, Quaternion } from '@dcl/sdk/math'
 import { createCube } from './factory'
@@ -122,5 +122,57 @@ setAsMovingPlatform(irregularMeshEntity,
     ],
     15
 )
+
+// AVATAR SHAPE
+const avatarEntity = engine.addEntity()
+Transform.create(avatarEntity, {
+    position: Vector3.create(16, 0, -14)
+})
+const femaleBodyShapeId = 'urn:decentraland:off-chain:base-avatars:BaseFemale'
+const maleBodyShapeId = 'urn:decentraland:off-chain:base-avatars:BaseMale'
+AvatarShape.create(avatarEntity, {
+    id: 'avatar-shape',
+    name: 'avatar-shape',
+    bodyShape: femaleBodyShapeId,
+    wearables: [
+        "urn:decentraland:off-chain:base-avatars:eyebrows_00",
+        "urn:decentraland:off-chain:base-avatars:mouth_00",
+        "urn:decentraland:off-chain:base-avatars:eyes_00",
+        "urn:decentraland:matic:collections-v2:0xd07a56f7198ae6e4e3d6738bd8c4b81d21bf0403:12",
+        "urn:decentraland:matic:collections-v2:0xd07a56f7198ae6e4e3d6738bd8c4b81d21bf0403:2",
+        "urn:decentraland:matic:collections-v2:0xd07a56f7198ae6e4e3d6738bd8c4b81d21bf0403:7",
+        "urn:decentraland:ethereum:collections-v1:xmas_2019:santa_facial_hair",
+        "urn:decentraland:matic:collections-v2:0x4334a820f556a54845a35f8aad5986aecdf07d43:1",
+        "urn:decentraland:ethereum:collections-v1:sugarclub_yumi:yumi_retro_shades_eyewear",
+        "urn:decentraland:matic:collections-v2:0x4334a820f556a54845a35f8aad5986aecdf07d43:0"
+    ]
+})
+
+setAsMovingPlatform(avatarEntity,
+    [
+        Vector3.create(14, 0, -15),
+        Vector3.create(14, 0, -17),
+        Vector3.create(17, 0, -17),
+        Vector3.create(17, 0, -15)
+    ],
+    10,
+
+)
+
+let avatarUpdateTimer = 10
+engine.addSystem((deltaTime: number) => {
+    avatarUpdateTimer -= deltaTime
+    
+    if(avatarUpdateTimer <= 0)
+    {
+        avatarUpdateTimer = 10
+        
+        const component = AvatarShape.getMutable(avatarEntity)
+        if(component.bodyShape == femaleBodyShapeId)
+            component.bodyShape = maleBodyShapeId
+        else
+            component.bodyShape = femaleBodyShapeId
+    }
+})
 
 engine.addSystem(platformsMovementSystem)
