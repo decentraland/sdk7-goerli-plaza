@@ -42,7 +42,7 @@ export class KeepRotatingSystem{
   static createAndAddToEngine(): KeepRotatingSystem {
     if (this._instance == null) {
       this._instance = new KeepRotatingSystem()
-      engine.addSystem(this._instance.system)
+      engine.addSystem(this._instance.systemFnCache)
     }
     return this._instance
   }
