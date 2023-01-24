@@ -3,7 +3,7 @@
 
 import { engine, GltfContainer, Raycast, RaycastQueryType, RaycastResult, Transform } from "@dcl/sdk/ecs"
 import { Quaternion, Vector3 } from "@dcl/sdk/math"
-import { DistanceBirdComopnent } from "./components"
+import { DistanceBirdComponent } from "./components"
 import { realDistance } from "./utilities"
 
 
@@ -49,7 +49,7 @@ export function spawnBirds(){
 				GltfContainer.create(entity, {
 					src: "models/bird.glb"
 				})
-				DistanceBirdComopnent.create(entity, {elapsed: Math.random(), flying: false, originalPos: newPos})
+				DistanceBirdComponent.create(entity, {elapsed: Math.random(), flying: false, originalPos: newPos})
 			
 			}        
 			}       
@@ -88,7 +88,7 @@ export function spawnBirds(){
 // System that checks distances to each bird
 export function proximitySystem(dt:number){
 
-	for (const [entity, birdInfo] of engine.getEntitiesWith(DistanceBirdComopnent)) {
+	for (const [entity, birdInfo] of engine.getEntitiesWith(DistanceBirdComponent)) {
 
 		const playerTransform = Transform.getOrNull(engine.PlayerEntity)
 		if(!playerTransform){return}
@@ -101,7 +101,7 @@ export function proximitySystem(dt:number){
 		// if the player is within a certain distance from the birds original perching position
 		if( dist < RADIUS ){  
 
-			  const mutableBirdInfo  = DistanceBirdComopnent.getMutable(entity)
+			  const mutableBirdInfo  = DistanceBirdComponent.getMutable(entity)
 			  const mutableTransform = Transform.getMutable(entity) 
 
 			  // calculate a ratio (0-1) based on how close the player is to the bird and multiply it with a constant to amplify the effect
@@ -136,7 +136,7 @@ export function proximitySystem(dt:number){
 		 // make the flying bird change GLTF shape to the idle one
 		else if(birdInfo.flying){
 
-			const mutableBirdInfo  = DistanceBirdComopnent.getMutable(entity)
+			const mutableBirdInfo  = DistanceBirdComponent.getMutable(entity)
 			const mutableTransform = Transform.getMutable(entity) 
 
 			mutableBirdInfo.flying = false
