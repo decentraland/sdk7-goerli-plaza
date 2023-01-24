@@ -1,5 +1,5 @@
 import {
-    engine, GltfContainer, NftShape, MeshCollider, MeshRenderer, Transform, VisibilityComponent, AvatarShape, AudioSource
+    engine, GltfContainer, NftShape, MeshCollider, MeshRenderer, Transform, VisibilityComponent, AvatarShape, AudioSource, TextShape
 } from '@dcl/sdk/ecs'
 import { Color3, Vector3, Quaternion } from '@dcl/sdk/math'
 import { createCube } from './factory'
@@ -198,4 +198,18 @@ setAsMovingPlatform(audioSourceEntity,
         Vector3.create(24, 1, -33),
     ],
     10
+)
+
+// TEXT SHAPE
+const textShapeEntity = engine.addEntity(true)
+TextShape.create(textShapeEntity,{
+    text: 'IA IA CTHULHU FHTAGN!',
+    fontSize: 2
+})
+setAsMovingPlatform(textShapeEntity,
+    [
+        Vector3.create(30.5, 1, -16),
+        Vector3.create(32.5, 1, -16),
+    ],
+    5
 )
