@@ -1,18 +1,19 @@
 import { engine, Material, PBMaterial_PbrMaterial, Schemas } from "@dcl/sdk/ecs"
 import { Color3 } from "@dcl/sdk/math"
 
-export const PainterComponent = engine.defineComponent("painterComponent",
+export const PainterComponent = engine.defineComponent(
   {
     t: Schemas.Number
-  }
+  },
+  2022
 )
 
 const greenMaterial: PBMaterial_PbrMaterial = {
-  albedoColor: { r: 0, g: 1, b: 0, a: 1  }
+  albedoColor: { r: 0, g: 1, b: 0 }
 }
 
 const lightGreenMaterial: PBMaterial_PbrMaterial = {
-  albedoColor: { r: 0, g: 1, b: 1, a: 1 }
+  albedoColor: { r: 0, g: 1, b: 1 }
 }
 
 function equalColor(a?: Color3, b?: Color3) {

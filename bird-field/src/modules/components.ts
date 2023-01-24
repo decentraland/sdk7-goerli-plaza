@@ -1,5 +1,9 @@
 import { engine, Schemas } from "@dcl/sdk/ecs"
 
+export enum CustomComponentIds {
+	DistanceBird = 2096,
+
+  }
 
 
 const DistanceBird = {
@@ -8,5 +12,5 @@ const DistanceBird = {
   	elapsed: Schemas.Number
   }
   
-export const DistanceBirdComponent = engine.defineComponent("DistanceBirdComponent", DistanceBird)
+export const DistanceBirdComopnent = engine.defineComponent(DistanceBird, CustomComponentIds.DistanceBird)
   
