@@ -1,4 +1,4 @@
-import { Entity, engine, Transform, MeshRenderer, MeshCollider, Billboard, TextShape, Font } from "@dcl/sdk/ecs"
+import { Entity, engine, Transform, MeshRenderer, MeshCollider, Billboard, TextShape, Font, BillboardMode } from "@dcl/sdk/ecs"
 import { Vector3 } from "@dcl/sdk/math"
 
 export function createMesh(
@@ -31,7 +31,7 @@ export function addLabel(text: string, parent: Entity) {
     position: Vector3.create(0, 1.5, 0),
     parent
   })
-  Billboard.create(label, { oppositeDirection: true })
+  Billboard.create(label, { billboardMode:BillboardMode.BM_Z })
 
   TextShape.create(label, {
     text,
