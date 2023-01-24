@@ -6,6 +6,10 @@ import { Quaternion, Vector3 } from "@dcl/sdk/math"
 import { DistanceBirdComopnent } from "./components"
 import { realDistance } from "./utilities"
 
+
+//// FIXED PARAMS
+
+
 //set the center of the bird scattering area to the center of the scene
 const CENTER =  Vector3.create(24,10,24)    
 
@@ -17,6 +21,8 @@ const SPACING:number = SIDE_LENGTH/ROWS
 //set the starting positions of the bird spawn grid to the south-west corner of the spawn area
 const BASE = Vector3.create(CENTER.x - SIDE_LENGTH/2, CENTER.y, CENTER.z - SIDE_LENGTH/2) 
 
+const RADIUS :number = 8 // how close you can get to a bird before it reacts
+const AMPLITUDE:number = 1  
 
 
 
@@ -36,7 +42,6 @@ export function spawnBirds(){
 				const newPos = result.hits[0].position 
 				
 				//spawn a bird at the generated and terrain adapted position
-				//const bird = engine.addEntity()
 				Transform.create(entity, {
 					position: newPos,
 					rotation: Quaternion.fromEulerDegrees(0, Math.random()*360,0)
@@ -73,27 +78,18 @@ export function spawnBirds(){
 				maxDistance: 22,
 				queryType: RaycastQueryType.RQT_HIT_FIRST
 			  })
-  
-  
-			
-	
 		}
 	  }
-
 	engine.addSystem(proximitySystem)
 }  
 
 
-const RADIUS :number = 8 // how close you can get to a bird before it reacts
-const AMPLITUDE:number = 1  
 
 // System that checks distances to each bird
 export function proximitySystem(dt:number){
 
 	for (const [entity, birdInfo] of engine.getEntitiesWith(DistanceBirdComopnent)) {
 
-		//const transform = Transform.get(entity) 
-		//const birdInfo = DistanceBirdComopnent.get(entity)
 		const playerTransform = Transform.getOrNull(engine.PlayerEntity)
 		if(!playerTransform){return}
 
