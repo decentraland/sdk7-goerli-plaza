@@ -1,5 +1,5 @@
 import {
-    engine, GltfContainer, NftShape, MeshCollider, MeshRenderer, Transform, VisibilityComponent, AvatarShape
+    engine, GltfContainer, NftShape, MeshCollider, MeshRenderer, Transform, VisibilityComponent, AvatarShape, AudioSource
 } from '@dcl/sdk/ecs'
 import { Color3, Vector3, Quaternion } from '@dcl/sdk/math'
 import { createCube } from './factory'
@@ -7,6 +7,8 @@ import {createMovingPlatform, platformsMovementSystem, setAsMovingPlatform} from
 
 // export all the functions required to make the scene work
 export * from '@dcl/sdk'
+
+engine.addSystem(platformsMovementSystem)
 
 // PARENTING BOUNDS TESTING
 const grandParentEntity = createCube(4, 7, 2)
@@ -93,7 +95,6 @@ setAsMovingPlatform(boxColliderEntity,
 )
 
 // NFT SHAPE
-
 const nftShapeEntity = engine.addEntity()
 NftShape.create(nftShapeEntity, {
     src: 'ethereum://0x06012c8cf97bead5deae237070f9587f8e7a266d/558536'
@@ -175,4 +176,26 @@ engine.addSystem((deltaTime: number) => {
     }
 })
 
-engine.addSystem(platformsMovementSystem)
+// GIGANTIC MESHES
+// const giganticMesh = createCube(8, 8, 8)
+// Transform.getMutable(giganticMesh).scale = Vector3.scale(Vector3.One(), 1000000000)
+
+// AUDIO SOURCES
+const audioSourceEntity = engine.addEntity()
+MeshRenderer.setBox(audioSourceEntity)
+Transform.create(audioSourceEntity, {
+    scale: Vector3.create(0.1, 0.1, 0.1)
+})
+AudioSource.create(audioSourceEntity, {
+    playing: true,
+    volume: 1,
+    loop: true,
+    audioClipUrl: 'audio/brahms-melody.mp3'
+})
+setAsMovingPlatform(audioSourceEntity,
+    [
+        Vector3.create(24, 1, -31),
+        Vector3.create(24, 1, -33),
+    ],
+    10
+)
