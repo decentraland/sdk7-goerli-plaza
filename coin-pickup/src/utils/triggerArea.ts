@@ -33,20 +33,18 @@ function isPositionInsideTriggerArea(
 }
 
 export function createTriggerArea(targetEngine: IEngine) {
-    const TriggerBox = targetEngine.defineComponent({}, 2004)
-    const TriggerArea = targetEngine.defineComponent(
+    const TriggerBox = targetEngine.defineComponent("TriggerBox", {})
+    const TriggerArea = targetEngine.defineComponent( "TriggerArea",
         {
             size: Schemas.Vector3,
             centerOffset: Schemas.Vector3
-        },
-        2000
+        }
     )
 
-    const TriggerState = targetEngine.defineComponent(
+    const TriggerState = targetEngine.defineComponent("TriggerState",
         {
             state: Schemas.Array(Schemas.Number)
-        },
-        2001
+        }
     )
     enum EventType {
         Enter,

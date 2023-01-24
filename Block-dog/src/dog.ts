@@ -4,7 +4,6 @@ import {
   Transform,
   GltfContainer,
   Animator,
-  PointerEvents,
   PointerEventType,
   InputAction,
   pointerEventsSystem,

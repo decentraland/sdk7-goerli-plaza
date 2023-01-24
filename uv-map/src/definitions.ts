@@ -1,10 +1,8 @@
 import { engine, Schemas } from '@dcl/sdk/ecs'
 
-enum CustomComponentIds {
-  Sprite = 2002
-}
 
 export const Sprite = engine.defineComponent(
+  "Sprite",
   {
     t: Schemas.Number,
     rows: Schemas.Number,
@@ -13,6 +11,5 @@ export const Sprite = engine.defineComponent(
 
     faceMappingsX: Schemas.Number,
     faceMappingsY: Schemas.Number
-  },
-  CustomComponentIds.Sprite
+  }
 )

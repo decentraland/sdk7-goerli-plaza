@@ -1,14 +1,9 @@
 import { Schemas, engine } from '@dcl/sdk/ecs'
 import { InterpolationType } from '../helper/interpolation'
 
-const COMPONENT_IDs = {
-	enemyShip: 2228,
-	moveTransform: 2229,
-	enemySpawner: 2230,
-	expire: 2231
-}
 
-export const EnemyShip = engine.defineComponent({}, COMPONENT_IDs.enemyShip)
+
+export const EnemyShip = engine.defineComponent("EnemyShip", {})
 
 
 const MoveTransportData = {
@@ -21,7 +16,7 @@ const MoveTransportData = {
   interpolationType: Schemas.Enum<InterpolationType>(Schemas.Int)
 }
 
-export const MoveTransformComponent = engine.defineComponent(MoveTransportData, COMPONENT_IDs.moveTransform)
+export const MoveTransformComponent = engine.defineComponent("MoveTransform", MoveTransportData)
 
 
 // Spawner shapes
@@ -45,14 +40,12 @@ const SpawnerComponentType = {
   size: Schemas.Int,
 }
 
-export const SpawnerComponent = engine.defineComponent(SpawnerComponentType, COMPONENT_IDs.enemySpawner)
+export const SpawnerComponent = engine.defineComponent("Spawner", SpawnerComponentType)
 
 
-export const Expire = engine.defineComponent({timeLeft: Schemas.Float}, COMPONENT_IDs.expire)
+export const Expire = engine.defineComponent("Expire", {timeLeft: Schemas.Float})
 
 
-
-// const COMPONENT_ID = 2066
 
 // const GameControlleType = {
 //   spawnActive: Schemas.Boolean,
@@ -62,4 +55,4 @@ export const Expire = engine.defineComponent({timeLeft: Schemas.Float}, COMPONEN
 //   winningScore: Schemas.Int
 // }
 
-// export const GameControllerComponent = engine.defineComponent(GameControlleType, COMPONENT_ID)
+// export const GameControllerComponent = engine.defineComponent("GameController", GameControlleType)

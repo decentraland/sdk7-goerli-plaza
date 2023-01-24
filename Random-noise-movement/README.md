@@ -170,8 +170,8 @@ const VelocitySchema = Schemas.Map({
   y: Schemas.Float,
   z: Schemas.Float
 })
-const COMPONENT_ID = 2008
-const VelocityComponent = engine.deficneComponent(Velocity, COMPONENT_ID)
+
+const VelocityComponent = engine.deficneComponent("VelocityComponent", Schemas.Vector3)
 // Create Entity
 const entity = engine.addEntity()
 

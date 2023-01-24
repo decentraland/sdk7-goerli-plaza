@@ -7,7 +7,7 @@ const BirdData = {
   waitingTime: Schemas.Int
 }
 
-export const isBird = engine.defineComponent(BirdData, 3333)
+export const isBird = engine.defineComponent("isBird", BirdData)
 
 export function createHummingBird() {
   const bird = engine.addEntity()

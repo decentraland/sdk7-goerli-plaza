@@ -1,11 +1,8 @@
 import { engine, Schemas } from "@dcl/sdk/ecs";
 
-enum CustomComponentIds {
-    PickableItem = 2002
-}
 
-export const PickableItem = engine.defineComponent({
+export const PickableItem = engine.defineComponent("Pickable",{
     respawnSeconds: Schemas.Number,
     respawnTimer: Schemas.Number,
     playerDetectionArea: Schemas.Vector3
-}, CustomComponentIds.PickableItem) 
+}) 

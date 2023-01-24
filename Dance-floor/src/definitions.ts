@@ -11,17 +11,13 @@ export const colors: Color3[] = [
     Color3.fromHexString('#6699cc')
 ]
 
-enum CustomComponentIds {
-  Tile = 2002,
-  Beat = 2003
-}
 
-export const Tile = engine.defineComponent({}, CustomComponentIds.Tile)
+export const Tile = engine.defineComponent("Tile", {})
 
 export const Beat = engine.defineComponent(
+	"Beat",
     {
         interval: Schemas.Number,
         timer: Schemas.Number
-    },
-    CustomComponentIds.Beat
+    }
 )

@@ -1,6 +1,5 @@
 import { Schemas, engine } from "@dcl/sdk/ecs"
 
-const COMPONENT_ID = 2048
 
 const TimeOut = {
   timeLeft: Schemas.Float,
@@ -8,4 +7,4 @@ const TimeOut = {
   paused: Schemas.Boolean
 }
 
-export const TimeOutComponent = engine.defineComponent(TimeOut, COMPONENT_ID)
+export const TimeOutComponent = engine.defineComponent("TimeOut", TimeOut)

@@ -12,10 +12,10 @@ import { Vector3 } from "@dcl/sdk/math"
 import { triggerAreaSystem } from "./utils/triggerArea"
 
 export const PowerCube = engine.defineComponent(
+  "PowerCube",
   {
     isGrabbed: Schemas.Boolean,
-  },
-  2003
+  }
 )
 
 export function createPowerCube(position: Vector3, gltfSrc: string) {

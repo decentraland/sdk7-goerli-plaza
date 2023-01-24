@@ -19,10 +19,10 @@ getUserData({})
   .catch((error) => console.log(error))
 
 const DoorComponent = engine.defineComponent(
+  "Door",
   {
     open: Schemas.Boolean
-  },
-  888
+  }
 )
 
 const openPos: Quaternion = Quaternion.create(0, 1, 0)

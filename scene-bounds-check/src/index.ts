@@ -145,7 +145,8 @@ AvatarShape.create(avatarEntity, {
         "urn:decentraland:matic:collections-v2:0x4334a820f556a54845a35f8aad5986aecdf07d43:1",
         "urn:decentraland:ethereum:collections-v1:sugarclub_yumi:yumi_retro_shades_eyewear",
         "urn:decentraland:matic:collections-v2:0x4334a820f556a54845a35f8aad5986aecdf07d43:0"
-    ]
+    ],
+	emotes: []
 })
 
 setAsMovingPlatform(avatarEntity,

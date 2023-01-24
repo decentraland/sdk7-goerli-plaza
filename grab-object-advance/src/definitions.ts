@@ -1,26 +1,23 @@
 import { engine, Schemas, PBMaterial_PbrMaterial } from "@dcl/sdk/ecs"
 import { Color3 } from "@dcl/sdk/math"
 
-enum CustomComponentIds {
-  BoxBody = 2022,
-  Marker = 2023
-}
+
 
 export const BoxBody = engine.defineComponent(
+  "BoxBody",
   {
     boxBodyId: Schemas.Number
-  },
-  CustomComponentIds.BoxBody
+  }
 )
 
 export const Marker = engine.defineComponent(
+  "Marker",
   {
     mouseConstraintId: Schemas.Number,
     isPointerPressed: Schemas.Boolean,
     isEKeyPressed: Schemas.Boolean,
     markerDistance: Schemas.Number
-  },
-  CustomComponentIds.Marker
+  }
 )
 
 export const JointBodyID = 1

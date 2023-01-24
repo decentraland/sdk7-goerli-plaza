@@ -10,14 +10,14 @@ import { Color3, Quaternion, Vector3 } from '@dcl/sdk/math'
 
 // Particles
 export const Particle = engine.defineComponent(
+  "Particle",
   {
     life: Schemas.Float,
     seed: Schemas.Float,
     width: Schemas.Number,
     height: Schemas.Number,
     speed: Schemas.Number
-  },
-  3004
+  }
 )
 
 export function particleSystem(dt: number) {

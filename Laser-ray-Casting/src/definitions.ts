@@ -27,17 +27,12 @@ export const rayMaterial: PBMaterial_PbrMaterial = {
   albedoColor: Color3.create(30, 1, 1)
 }
 
-export enum CustomComponentIds {
-  Ray = 12001,
-  MovingCube = 12002
-}
-
 export const Ray = engine.defineComponent(
+  "Ray",
   {
     power: Schemas.Int,
     timestamp: Schemas.Int
-  },
-  CustomComponentIds.Ray
+  }
 )
 
-export const MovingCube = engine.defineComponent({}, CustomComponentIds.MovingCube)
+export const MovingCube = engine.defineComponent("MovingCube", {})

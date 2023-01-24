@@ -8,10 +8,10 @@ export * from '@dcl/sdk'
 
 // Define component to have the state of the door
 const DoorComponent = engine.defineComponent(
+  "DoorComponent",
   {
     open: Schemas.Boolean
-  },
-  888
+  }
 )
 
 // Create the walls
