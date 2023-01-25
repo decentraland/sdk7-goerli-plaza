@@ -9,7 +9,7 @@ import {
   Material,
   Schemas
 } from '@dcl/ecs'
-import { Quaternion, Vector3, Color3 } from '@dcl/ecs-math'
+import { Quaternion, Vector3, Color4 } from '@dcl/ecs-math'
 import { getUserData } from '~system/UserIdentity'
 import { transformComponent } from './system'
 export * from '@dcl/sdk'
@@ -51,7 +51,7 @@ Material.create(doorEntity, {
   material: {
     $case: 'pbr',
     pbr: {
-      albedoColor: Color3.Red(),
+      albedoColor: Color4.Red(),
       metallic: 0.9,
       roughness: 0.1
     }

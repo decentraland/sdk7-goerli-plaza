@@ -1,5 +1,5 @@
 import { engine, Schemas, PBMaterial_PbrMaterial } from "@dcl/sdk/ecs"
-import { Color3 } from "@dcl/sdk/math"
+import { Color4 } from "@dcl/sdk/math"
 
 
 
@@ -24,9 +24,9 @@ export const JointBodyID = 1
 
 // Marker
 export const markerMaterial: PBMaterial_PbrMaterial = {
-  albedoColor: Color3.create(5, 2.5, 1)
+  albedoColor: Color4.create(5, 2.5, 1, 1)
 }
 
 export const markerPullMaterial: PBMaterial_PbrMaterial = {
-  albedoColor: Color3.create(5, 1, 3.5)
+  albedoColor: Color4.create(5, 1, 3.5, 1)
 }

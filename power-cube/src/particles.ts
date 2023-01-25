@@ -1,5 +1,5 @@
 import { engine, Material, MeshRenderer, PBMaterial_PbrMaterial, Schemas, Transform } from '@dcl/sdk/ecs'
-import { Color3, Quaternion, Vector3 } from '@dcl/sdk/math'
+import { Color4, Quaternion, Vector3 } from '@dcl/sdk/math'
 
 // @Component('particle')
 // export class Particle {
@@ -35,8 +35,8 @@ export function particleSystem(dt: number) {
 // Setup particles
 const material: PBMaterial_PbrMaterial = {
   metallic: 1,
-  albedoColor: Color3.create(0.5, 1.5, 2),
-  emissiveColor: Color3.create(0.5, 1.5, 2)
+  albedoColor: Color4.create(0.5, 1.5, 2),
+  emissiveColor: Color4.create(0.5, 1.5, 2)
 }
 
 // Position particles with a

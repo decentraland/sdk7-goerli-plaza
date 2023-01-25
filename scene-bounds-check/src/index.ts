@@ -34,7 +34,7 @@ function timedParentingSystem(deltaTime: number) {
         timer = 6
         const transform = Transform.getMutable(outsiderParentChild)
         if (transform.parent == outsiderParent) {
-            transform.parent = null
+            transform.parent = undefined
         } else {
             transform.parent = outsiderParent
         }
