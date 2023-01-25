@@ -1,5 +1,5 @@
 import {
-    engine, GltfContainer, NftShape, MeshCollider, MeshRenderer, Transform, VisibilityComponent, AvatarShape, AudioSource, TextShape
+    engine, GltfContainer, NftShape, MeshCollider, MeshRenderer, Transform, VisibilityComponent, AvatarShape, AudioSource, TextShape, PointerHoverFeedback, PointerEventType, InputAction
 } from '@dcl/sdk/ecs'
 import { Color3, Vector3, Quaternion } from '@dcl/sdk/math'
 import { createCube } from './factory'
@@ -56,6 +56,7 @@ createMovingPlatform(
     ],
     5
 )
+
 createMovingPlatform(
     "models/movingPlatform.glb",
     [
@@ -107,7 +108,7 @@ setAsMovingPlatform(nftShapeEntity,
     180
 )
 
-// IRREGULAR SHAPED MESH
+// IRREGULAR SHAPED MESH + POINTER HOVER FEEDBACK
 const irregularMeshEntity = engine.addEntity()
 GltfContainer.create(irregularMeshEntity, {
     src: "models/irregular.glb"
@@ -115,6 +116,17 @@ GltfContainer.create(irregularMeshEntity, {
 Transform.create(irregularMeshEntity, {
     position: Vector3.create(16, 1, -16),
     rotation: Quaternion.fromEulerDegrees(0, -90, 0)
+})
+PointerHoverFeedback.create(irregularMeshEntity, {
+    pointerEvents: [
+        {
+            eventType: PointerEventType.PET_DOWN,
+            eventInfo: {
+                button: InputAction.IA_POINTER,
+                hoverText: "POINTER HOVER!",
+            }
+        }
+    ]
 })
 setAsMovingPlatform(irregularMeshEntity,
     [
@@ -213,3 +225,21 @@ setAsMovingPlatform(textShapeEntity,
     ],
     5
 )
+
+// HEIGHT CHECK...
+const highEntity = engine.addEntity()
+MeshRenderer.setBox(highEntity)
+Transform.create(highEntity, {
+    scale: Vector3.create(5, 1, 5)
+})
+setAsMovingPlatform(highEntity,
+    [
+        Vector3.create(8, 45, -8),
+        Vector3.create(8, 46, -8),
+    ],
+    2
+)
+
+
+
+
