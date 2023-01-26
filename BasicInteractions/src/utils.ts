@@ -31,7 +31,8 @@ export function addLabel(text: string, parent: Entity) {
     position: Vector3.create(0, 1.5, 0),
     parent
   })
-  Billboard.create(label, { oppositeDirection: true })
+  // TODO: oppositeDirection bug?
+  Billboard.create(label)
 
   TextShape.create(label, {
     text,

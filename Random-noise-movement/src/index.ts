@@ -1,6 +1,6 @@
 import { Noise } from '@dcl/noise-utils'
 import { engine, GltfContainer, Material, Transform } from '@dcl/sdk/ecs'
-import { Color3, Quaternion, Vector3 } from '@dcl/sdk/math'
+import { Color4, Quaternion, Vector3 } from '@dcl/sdk/math'
 import { WaveGrass } from './components'
 // export all the functions required to make the scene work
 export * from '@dcl/sdk'
@@ -76,7 +76,7 @@ function spawnGrass(shape: string, x: number, y: number, z: number) {
   WaveGrass.create(grass)
 
   Material.setPbrMaterial(grass, {
-	 albedoColor: Color3.create(x / 16, y / 16, z / 4)
+	 albedoColor: Color4.create(x / 16, y / 16, z / 4)
   })
 
   return grass

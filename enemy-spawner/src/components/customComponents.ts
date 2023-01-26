@@ -1,42 +1,34 @@
 import { Schemas, engine } from '@dcl/sdk/ecs'
 import { InterpolationType } from '../helper/interpolation'
 
-const COMPONENT_IDs = {
-	enemyShip: 2228,
-	moveTransform: 2229,
-	enemySpawner: 2230,
-	expire: 2231
-}
-
-export const EnemyShip = engine.defineComponent({}, COMPONENT_IDs.enemyShip)
-
+export const EnemyShip = engine.defineComponent('EnemyShip', {})
 
 const MoveTransportData = {
   hasFinished: Schemas.Boolean,
   start: Schemas.Vector3,
   end: Schemas.Vector3,
-  speed:  Schemas.Float,
+  speed: Schemas.Float,
   normalizedTime: Schemas.Float,
   lerpTime: Schemas.Float,
   interpolationType: Schemas.Enum<InterpolationType>(Schemas.Int)
 }
 
-export const MoveTransformComponent = engine.defineComponent(MoveTransportData, COMPONENT_IDs.moveTransform)
+export const MoveTransformComponent = engine.defineComponent('MoveTransportData', MoveTransportData)
 
 
 // Spawner shapes
 export enum SpawnerShape {
-	CIRCLE,
-	SQUARE,
-	TRIANGLE
-  }
+  CIRCLE,
+  SQUARE,
+  TRIANGLE
+}
 
 // Enemy shapes
 export enum ShipShapes {
-	BLUE = 'models/blueSpaceship.glb',
-	RED = 'models/redSpaceship.glb',
-	GREEN  = 'models/greenSpaceship.glb'
-  }
+  BLUE = 'models/blueSpaceship.glb',
+  RED = 'models/redSpaceship.glb',
+  GREEN = 'models/greenSpaceship.glb'
+}
 
 const SpawnerComponentType = {
   timeToNextSpawn: Schemas.Int,
@@ -45,10 +37,10 @@ const SpawnerComponentType = {
   size: Schemas.Int,
 }
 
-export const SpawnerComponent = engine.defineComponent(SpawnerComponentType, COMPONENT_IDs.enemySpawner)
+export const SpawnerComponent = engine.defineComponent('SpawnerComponentType', SpawnerComponentType)
 
 
-export const Expire = engine.defineComponent({timeLeft: Schemas.Float}, COMPONENT_IDs.expire)
+export const Expire = engine.defineComponent('Expire', { timeLeft: Schemas.Float })
 
 
 

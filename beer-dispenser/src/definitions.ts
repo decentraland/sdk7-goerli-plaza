@@ -1,5 +1,5 @@
-import {Vector3} from '@dcl/sdk/math'
-import {engine, Schemas} from '@dcl/sdk/ecs'
+import { Vector3 } from '@dcl/sdk/math'
+import { engine, Schemas } from '@dcl/sdk/ecs'
 /**
  * Types
  */
@@ -43,41 +43,34 @@ export function getTapData(tapBeerType: BeerType) {
  * Component Definitions
  */
 
-enum CustomComponentIds {
-  BeerGlass = 2000,
-  PickedUp = 2001,
-  TapComponent = 2002,
-  TapBase = 2003
-}
-
 export const BeerGlass = engine.defineComponent(
+  "BeerGlass",
   {
     beingFilled: Schemas.Boolean,
     filled: Schemas.Boolean,
     beerType: Schemas.Enum<BeerType>(Schemas.Int),
     drinking: Schemas.Boolean
-  },
-  CustomComponentIds.BeerGlass
+  }
 )
 export const PickedUp = engine.defineComponent(
+  "PickedUp",
   {
-    child: Schemas.Int
-  },
-  CustomComponentIds.PickedUp
+    child: Schemas.Entity
+  }
 )
 
 export const TapComponent = engine.defineComponent(
+  "TapComponent",
   {
     pouringTime: Schemas.Number,
     pouring: Schemas.Boolean,
     beerType: Schemas.Enum<BeerType>(Schemas.Int)
-  },
-  CustomComponentIds.TapComponent
+  }
 )
 
 export const TapBase = engine.defineComponent(
+  "TapBase",
   {
     beerType: Schemas.Enum<BeerType>(Schemas.Int)
-  },
-  CustomComponentIds.TapBase
+  }
 )

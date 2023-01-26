@@ -9,13 +9,6 @@ export enum dogStates {
   Drinking
 }
 
-// TODO: use higher number so we dont have conflicts (i.e. > 2000)
-export enum CustomComponentIds {
-  MoveTransform = 2046,
-  NPC = 2066,
-  TimeOut = 2048
-}
-
 /**
  * Schemas and component definitions
  */
@@ -30,7 +23,7 @@ const MoveTransformSchema = {
   interpolationType: Schemas.Enum<InterpolationType>(Schemas.Int)
 }
 
-export const MoveTransformComponent = engine.defineComponent(MoveTransformSchema, CustomComponentIds.MoveTransform)
+export const MoveTransformComponent = engine.defineComponent("MoveTransformSchema", MoveTransformSchema)
 
 const NPCSchema = {
   state: Schemas.Enum<dogStates>(Schemas.Int),
@@ -38,7 +31,7 @@ const NPCSchema = {
   changeTimer: Schemas.Number
 }
 
-export const NPCComponent = engine.defineComponent(NPCSchema, CustomComponentIds.NPC)
+export const NPCComponent = engine.defineComponent("NPCSchema", NPCSchema)
 
 const TimeOutSchema = {
   timeLeft: Schemas.Float,
@@ -46,7 +39,7 @@ const TimeOutSchema = {
   paused: Schemas.Boolean
 }
 
-export const TimeOutComponent = engine.defineComponent(TimeOutSchema, CustomComponentIds.TimeOut)
+export const TimeOutComponent = engine.defineComponent("TimeOutSchema", TimeOutSchema)
 
 /**
  * Export components

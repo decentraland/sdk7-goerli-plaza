@@ -1,7 +1,5 @@
 import { Schemas, engine } from "@dcl/sdk/ecs"
 
-const COMPONENT_ID = 2066
-
 const GameControlleType = {
   spawnActive: Schemas.Boolean,
   spawnInterval: Schemas.Float,
@@ -12,4 +10,4 @@ const GameControlleType = {
   maxZombies: Schemas.Int
 }
 
-export const GameControllerComponent = engine.defineComponent(GameControlleType, COMPONENT_ID)
+export const GameControllerComponent = engine.defineComponent('GameControllerComponent', GameControlleType)

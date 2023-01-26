@@ -1,7 +1,7 @@
 import { BoxBody } from './definitions'
 import * as CANNON from 'cannon/build/cannon'
 import { engine, GltfContainer, Material, Transform } from '@dcl/sdk/ecs'
-import { Vector3, Color3, Quaternion } from '@dcl/sdk/math'
+import { Vector3, Color4, Quaternion } from '@dcl/sdk/math'
 
 let world: CANNON.World
 
@@ -65,7 +65,7 @@ export function createBoxBody(position: Vector3) {
   Transform.create(entity, { position })
 
   // // Box
-  Material.setPbrMaterial(entity, { albedoColor: Color3.Red() })
+  Material.setPbrMaterial(entity, { albedoColor: Color4.Red() })
   GltfContainer.create(entity, { src: 'models/crate.glb' })
   // Create box body
   const boxShape = new CANNON.Box(new CANNON.Vec3(0.5, 0.5, 0.5))

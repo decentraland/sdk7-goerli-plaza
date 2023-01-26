@@ -54,6 +54,5 @@ TextShape.create(sign, {
   textWrapping: false
 })
 
-Billboard.create(sign, {
-  oppositeDirection: true
-})
+// TODO: oppositeDirection
+Billboard.create(sign)
