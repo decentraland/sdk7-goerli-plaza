@@ -1,6 +1,5 @@
 export * from '@dcl/sdk'
 
-import './cube-scene'
 import { CircleHoverSystem } from './circularSystem'
 import { Billboard, engine, MeshRenderer, TextShape, Transform } from "@dcl/sdk/ecs"
 
