@@ -17,9 +17,6 @@ function createCube(x: number, y: number, z: number) {
   return myEntity
 }
 
-createCube(8, 0, 8)
-
-
 for (let x = 0.5; x < 16; x += 1) {
   for (let y = 0.5; y < 16; y += 1) {
     createCube(x, 0, y)
@@ -40,20 +37,9 @@ TextShape.create(sign, {
   fontSize: 5,
   height: 2,
   width: 4,
-  lineCount: 1,
-  lineSpacing: 1,
   outlineWidth: 0.1,
   outlineColor: { r: 0, g: 0, b: 1 },
-  textColor: { r: 1, g: 0, b: 0, a: 1 },
-  paddingBottom: 0,
-  paddingLeft: 0,
-  paddingRight: 0,
-  paddingTop: 0,
-  shadowBlur: 1,
-  shadowColor: { r: 1, g: 0, b: 0 },
-  shadowOffsetX: 0,
-  shadowOffsetY: 5,
-  textWrapping: false
+  textColor: { r: 1, g: 0, b: 0, a: 1 }
 })
 
 // TODO: oppositeDirection
