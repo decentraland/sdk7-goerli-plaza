@@ -82,7 +82,7 @@ const intervalUtil = new IntervalUtil(50);
 export function avatarSwappingSystem (dt: number) {
     if (!Transform.has(engine.PlayerEntity)) return
 
-    if(intervalUtil.update(dt)) return;
+    if(!intervalUtil.update(dt)) return;
 
     const playerPos = Transform.get(engine.PlayerEntity).position
     const moved = playerPos != lastPlayerPos
