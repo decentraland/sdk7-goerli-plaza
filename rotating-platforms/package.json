@@ -1,12 +1,12 @@
 {
   "name": "dcl-project",
   "version": "1.0.0",
-  "description": "SDK7 Template scene",
+  "description": "SDK7 Template scene",  
   "scripts": {
-    "start": "dcl start",
-    "build": "build-ecs",
-    "watch": "build-ecs --watch",
-    "ecs:install-next": "npm install --save-dev @dcl/sdk@next"
+    "start": "sdk-commands start",
+    "build": "sdk-commands build",
+    "upgrade-sdk": "npm install --save-dev @dcl/sdk@latest",
+    "upgrade-sdk:next": "npm install --save-dev @dcl/sdk@next"
   },
   "devDependencies": {
     "@dcl/sdk": "latest"

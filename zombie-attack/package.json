@@ -3,11 +3,10 @@
   "version": "1.0.0",
   "description": "Zombie Attack",
   "scripts": {
-    "start": "dcl start",
-    "build": "build-ecs",
-    "watch": "build-ecs --watch",
-    "lint": "eslint . --ext .ts",
-    "lint:fix": "eslint . --ext .ts --fix"
+    "start": "sdk-commands start",
+    "build": "sdk-commands build",
+    "upgrade-sdk": "npm install --save-dev @dcl/sdk@latest",
+    "upgrade-sdk:next": "npm install --save-dev @dcl/sdk@next"
   },
   "devDependencies": {
     "@dcl/sdk": "next"

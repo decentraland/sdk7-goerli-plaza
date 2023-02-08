@@ -8,10 +8,10 @@
   "license": "Apache-2.0",
   "description": "My new Decentraland project",
   "scripts": {
-    "start": "dcl start",
-    "build": "build-ecs",
-    "build-prod": "build-ecs --production",
-    "watch": "build-ecs --watch"
+    "start": "sdk-commands start",
+    "build": "sdk-commands build",
+    "upgrade-sdk": "npm install --save-dev @dcl/sdk@latest",
+    "upgrade-sdk:next": "npm install --save-dev @dcl/sdk@next"
   },
   "author": "",
   "dependencies": {
