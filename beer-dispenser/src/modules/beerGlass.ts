@@ -66,8 +66,8 @@ export function pickingGlassSystem() {
         anchorPointId: AvatarAnchorPointType.AAPT_RIGHT_HAND
       })
       Transform.createOrReplace(entity, {
-        position: Vector3.create(0, 0.1, 0.175),
-        rotation: Quaternion.fromEulerDegrees(0, -90, 30),
+        position: Vector3.create(0, 0.225, 0),
+        rotation: Quaternion.fromEulerDegrees(180, -90, -60),
         parent: parentBeer
       })
 
