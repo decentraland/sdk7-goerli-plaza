@@ -26,7 +26,7 @@ export function setupGlobalEvents() {
 
   const MagicGlobalEntity = undefined as any as Entity
 
-  const prevButtonStates: Map<InputAction, boolean> = new Map([[InputAction.IA_POINTER, true], [InputAction.IA_PRIMARY, true], [InputAction.IA_SECONDARY, true]])
+  const prevButtonStates: Map<InputAction, boolean> = new Map([[InputAction.IA_POINTER, false], [InputAction.IA_PRIMARY, false], [InputAction.IA_SECONDARY, false]])
 
   engine.addSystem((dt: number) => {
 
