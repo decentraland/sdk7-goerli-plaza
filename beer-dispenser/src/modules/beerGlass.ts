@@ -47,7 +47,7 @@ export function pickingGlassSystem() {
     const tryToDrinkCommand = inputSystem.getInputCommand(InputAction.IA_SECONDARY, PointerEventType.PET_DOWN)
     if (glass.filled && tryToDrinkCommand) {
       BeerGlass.getMutable(pickedUp.child).filled = false
-	  Animator.playSingleAnimation(pickedUp.child, 'Blank')
+      Animator.playSingleAnimation(pickedUp.child, 'Blank')
       playSound('sounds/swallow.mp3', false, getPlayerPosition())
     }
     return

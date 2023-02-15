@@ -48,7 +48,7 @@ export const BeerGlass = engine.defineComponent(
   {
     beingFilled: Schemas.Boolean,
     filled: Schemas.Boolean,
-    beerType: Schemas.EnumInt<BeerType>(BeerType, BeerType.NONE),
+    beerType: Schemas.EnumNumber<BeerType>(BeerType, BeerType.NONE),
     drinking: Schemas.Boolean
   }
 )
@@ -64,13 +64,13 @@ export const TapComponent = engine.defineComponent(
   {
     pouringTime: Schemas.Number,
     pouring: Schemas.Boolean,
-    beerType: Schemas.EnumInt<BeerType>(BeerType, BeerType.NONE)
+    beerType: Schemas.EnumNumber<BeerType>(BeerType, BeerType.NONE)
   }
 )
 
 export const TapBase = engine.defineComponent(
   "TapBase",
   {
-    beerType: Schemas.EnumInt<BeerType>(BeerType, BeerType.NONE)
+    beerType: Schemas.EnumNumber<BeerType>(BeerType, BeerType.NONE)
   }
 )

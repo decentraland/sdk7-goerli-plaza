@@ -9,7 +9,7 @@
     "upgrade-sdk:next": "npm install --save-dev @dcl/sdk@next"
   },
   "devDependencies": {
-    "@dcl/sdk": "https://sdk-team-cdn.decentraland.org/@dcl/js-sdk-toolchain/branch/feat/video-player/dcl-sdk-7.0.6-3898114463.commit-c52dafb.tgz"
+    "@dcl/sdk": "next"
   },
   "engines": {
     "node": ">=16.0.0",

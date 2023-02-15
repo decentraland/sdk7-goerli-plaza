@@ -10,7 +10,7 @@ const MoveTransportData = {
   speed: Schemas.Float,
   normalizedTime: Schemas.Float,
   lerpTime: Schemas.Float,
-  interpolationType: Schemas.EnumInt<InterpolationType>(InterpolationType, InterpolationType.EASESINE)
+  interpolationType: Schemas.EnumNumber<InterpolationType>(InterpolationType, InterpolationType.EASESINE)
 }
 
 export const MoveTransformComponent = engine.defineComponent('MoveTransportData', MoveTransportData)
@@ -32,7 +32,7 @@ export enum ShipShapes {
 
 const SpawnerComponentType = {
   timeToNextSpawn: Schemas.Int,
-  spawnerShape: Schemas.EnumInt<SpawnerShape>(SpawnerShape, SpawnerShape.CIRCLE),
+  spawnerShape: Schemas.EnumNumber<SpawnerShape>(SpawnerShape, SpawnerShape.CIRCLE),
   enemyShape: Schemas.EnumString<ShipShapes>(ShipShapes, ShipShapes.BLUE),
   size: Schemas.Int,
 }
