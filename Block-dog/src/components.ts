@@ -20,14 +20,14 @@ const MoveTransformSchema = {
   normalizedTime: Schemas.Float,
   lerpTime: Schemas.Float,
   speed: Schemas.Float,
-  interpolationType: Schemas.Enum<InterpolationType>(Schemas.Int)
+  interpolationType: Schemas.EnumInt<InterpolationType>(InterpolationType, InterpolationType.EASESINE)
 }
 
 export const MoveTransformComponent = engine.defineComponent("MoveTransformSchema", MoveTransformSchema)
 
 const NPCSchema = {
-  state: Schemas.Enum<dogStates>(Schemas.Int),
-  previousState: Schemas.Enum<dogStates>(Schemas.Int),
+  state: Schemas.EnumInt<dogStates>(dogStates, dogStates.Idle),
+  previousState: Schemas.EnumInt<dogStates>(dogStates, dogStates.Idle),
   changeTimer: Schemas.Number
 }
 
