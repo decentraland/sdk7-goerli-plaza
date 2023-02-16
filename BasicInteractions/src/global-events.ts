@@ -1,4 +1,4 @@
-import { engine, Entity, InputAction, inputSystem } from '@dcl/sdk/ecs'
+import { engine, InputAction, inputSystem, PointerEventType } from '@dcl/sdk/ecs'
 import { Vector3 } from '@dcl/sdk/math'
 import { PainterComponent } from './painter'
 import { createMesh } from './utils'
@@ -24,39 +24,24 @@ export function setupGlobalEvents() {
 
   /////// GLOBAL EVENT LISTENERS
 
-  const MagicGlobalEntity = undefined as any as Entity
-
-  const prevButtonStates: Map<InputAction, boolean> = new Map([[InputAction.IA_POINTER, false], [InputAction.IA_PRIMARY, false], [InputAction.IA_SECONDARY, false]])
-
-  engine.addSystem((dt: number) => {
-
-    const buttonStateChange: Map<InputAction, boolean> = new Map()
-    for (const [button, state] of prevButtonStates.entries()) {
-      buttonStateChange.set(button, state !== inputSystem.isPressed(button))
-    }
-
-    if (buttonStateChange.get(InputAction.IA_POINTER) && inputSystem.isPressed(InputAction.IA_POINTER)) {
+  engine.addSystem(() => {
+    if (inputSystem.isTriggered(InputAction.IA_POINTER, PointerEventType.PET_DOWN)) {
       PainterComponent.createOrReplace(globalPointerDownCube)
     }
-    if (buttonStateChange.get(InputAction.IA_POINTER) && !inputSystem.isPressed(InputAction.IA_POINTER)) {
+    if (inputSystem.isTriggered(InputAction.IA_POINTER, PointerEventType.PET_UP)) {
       PainterComponent.createOrReplace(globalPointerUpCube)
     }
-    if (buttonStateChange.get(InputAction.IA_PRIMARY) && inputSystem.isPressed(InputAction.IA_PRIMARY)) {
+    if (inputSystem.isTriggered(InputAction.IA_PRIMARY, PointerEventType.PET_DOWN)) {
       PainterComponent.createOrReplace(globalPrimaryDownCube)
     }
-    if (buttonStateChange.get(InputAction.IA_PRIMARY) && !inputSystem.isPressed(InputAction.IA_PRIMARY)) {
+    if (inputSystem.isTriggered(InputAction.IA_PRIMARY, PointerEventType.PET_UP)) {
       PainterComponent.createOrReplace(globalPrimaryUpCube)
     }
-    if (buttonStateChange.get(InputAction.IA_SECONDARY) && inputSystem.isPressed(InputAction.IA_SECONDARY)) {
+    if (inputSystem.isTriggered(InputAction.IA_SECONDARY, PointerEventType.PET_DOWN)) {
       PainterComponent.createOrReplace(globalSecondaryDownCube)
     }
-    if (buttonStateChange.get(InputAction.IA_SECONDARY) && !inputSystem.isPressed(InputAction.IA_SECONDARY)) {
+    if (inputSystem.isTriggered(InputAction.IA_SECONDARY, PointerEventType.PET_UP)) {
       PainterComponent.createOrReplace(globalSecondaryUpCube)
     }
-
-    for (const button of prevButtonStates.keys()) {
-      prevButtonStates.set(button, inputSystem.isPressed(button))
-    }
   })
-
 }
