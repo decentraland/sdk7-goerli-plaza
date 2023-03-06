@@ -108,6 +108,7 @@ export function createSongButton(parent: Entity, x: number, y: number, song: Son
       }
     },
     {
+	  hoverText: "Play",
       button: InputAction.IA_POINTER
     }
   )
