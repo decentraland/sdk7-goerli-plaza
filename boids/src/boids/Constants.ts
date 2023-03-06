@@ -7,12 +7,12 @@ class BoidConfig{
     MAX_SPEED_SCALE:number = .02    
     
     // see debug markers for seek/obsticle/predator
-    VISIBLE_OBSTACLES:boolean = true 
-    VISIBLE_SEEK:boolean = true 
-    VISIBLE_PREDATOR:boolean = true
+    VISIBLE_OBSTACLES:boolean = false 
+    VISIBLE_SEEK:boolean = false 
+    VISIBLE_PREDATOR:boolean = false
 
     // see boundary grid markers
-    SHOW_DEBUG_BOUNDARY_MARKERS:boolean = true
+    SHOW_DEBUG_BOUNDARY_MARKERS:boolean = false
     // see boundary planes (top,bottom)
     SHOW_DEBUG_BOUNDARY_PLANES:boolean = false
 
