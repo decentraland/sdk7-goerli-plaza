@@ -1,7 +1,6 @@
 export * from '@dcl/sdk'
-import { engine, MeshRenderer, Transform } from '@dcl/sdk/ecs'
+import { AvatarAnchorPointType, AvatarAttach, engine, MeshRenderer, Transform } from '@dcl/sdk/ecs'
 import { Color4, Vector3 } from '@dcl/sdk/math'
-import { attachEntityToPlayer } from "./modules/utils";
 import { initializeCharacter, initializeModels } from "./modules/modelsHandler";
 import { createAvatarSwappingArea, avatarSwappingSystem, createSeparationWall } from "./modules/avatarSwappingArea";
 import { createJoinTeamControl } from './modules/swappingControls';
@@ -24,8 +23,11 @@ function setup() {
 
 	const modelEntityTransform = Transform.get(modelEntity)
 
+
 	if(modelEntityTransform.parent){
-		attachEntityToPlayer(modelEntityTransform.parent)
+		AvatarAttach.create(modelEntityTransform.parent, {
+			anchorPointId: AvatarAnchorPointType.AAPT_POSITION
+		})
 	}
 
 

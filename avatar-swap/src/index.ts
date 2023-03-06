@@ -1,7 +1,6 @@
 export * from '@dcl/sdk'
-import { engine, GltfContainer, Transform } from '@dcl/sdk/ecs'
+import { AvatarAnchorPointType, AvatarAttach, engine, GltfContainer, Transform } from '@dcl/sdk/ecs'
 import { Vector3 } from '@dcl/sdk/math'
-import { attachEntityToPlayer } from "./modules/utils";
 import { createArissaCharacter } from "./modules/arissa";
 import { createAvatarSwappingArea, avatarSwappingSystem } from "./modules/avatarSwappingArea";
 
@@ -16,7 +15,9 @@ function setup() {
     const arissaCharaEntity = createArissaCharacter()
     const parent = Transform.get(arissaCharaEntity).parent
     if (parent) {
-        attachEntityToPlayer(parent)
+		AvatarAttach.create(parent, {
+			anchorPointId: AvatarAnchorPointType.AAPT_POSITION
+		})
     }
 
     // Set avatar modifier area to swap player avatar
