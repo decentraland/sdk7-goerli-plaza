@@ -55,12 +55,11 @@ engine.addSystem(() => {
         transform.position.z += Z_OFFSET
 
         transform.parent = engine.addEntity()
-        if (userId) {
-          AvatarAttach.createOrReplace(transform.parent, {
-            avatarId: userId,
-            anchorPointId: AvatarAnchorPointType.AAPT_NAME_TAG,
-          })
-        }
+       
+		AvatarAttach.createOrReplace(transform.parent, {
+			anchorPointId: AvatarAnchorPointType.AAPT_NAME_TAG,
+		})
+        
       } else if (powerCube.isGrabbed) {
         const transform = Transform.getMutable(powerCubeEntity)
         PowerCube.getMutable(powerCubeEntity).isGrabbed = false
