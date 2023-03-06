@@ -8,7 +8,8 @@ export * from '@dcl/sdk'
 import './painter'
 
 createMesh(Vector3.create(8, 1, 8), "You're using ECS7", 0.5)
-setupQueryMeshes()
+
 setupEventOnEntities()
 setupProximity()
 setupGlobalEvents()
+//setupQueryMeshes()
