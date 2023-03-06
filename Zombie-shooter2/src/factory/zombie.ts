@@ -8,6 +8,7 @@ import {
   PointerEvents,
   PointerEventType,
   InputAction,
+  MeshCollider,
 } from "@dcl/sdk/ecs"
 import { MoveTransformComponent } from "../components/moveTransport"
 import { ZombieComponent } from "../components/zombie"
@@ -58,12 +59,14 @@ export function createZombie(xPos: number): Entity {
     ],
   })
 
+  MeshCollider.setBox(zombie)
+
   PointerEvents.create(zombie, {
     pointerEvents: [
       {
         eventType: PointerEventType.PET_DOWN,
         eventInfo: {
-          button: InputAction.IA_PRIMARY,
+          button: InputAction.IA_POINTER,
           hoverText: "Shoot",
         },
       },

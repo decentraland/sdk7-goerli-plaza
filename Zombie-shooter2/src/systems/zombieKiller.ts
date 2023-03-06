@@ -5,7 +5,7 @@ import { engine, InputAction, inputSystem, PointerEventType, Transform } from '@
 
 export function zombieKiller() {
   for (const [zombieEntity] of engine.getEntitiesWith(ZombieComponent)) {
-    if (inputSystem.isTriggered(InputAction.IA_PRIMARY, PointerEventType.PET_DOWN, zombieEntity)) {
+    if (inputSystem.isTriggered(InputAction.IA_POINTER, PointerEventType.PET_DOWN, zombieEntity)) {
       console.log('BOOM!!! ', zombieEntity)
 
       const zombieTransform = Transform.getOrNull(zombieEntity)

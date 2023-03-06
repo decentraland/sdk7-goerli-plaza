@@ -1,11 +1,10 @@
 import { GameControllerComponent } from './components/gameController'
 import { MoveTransformComponent } from './components/moveTransport'
 import { coneEntity } from '.'
-import { addClickBehavior } from './systems/clickable'
 import { onMoveZombieFinish } from './systems/moveZombie'
 
 import { playSound } from './systems/sound'
-import { Entity, engine, Transform, GltfContainer, Animator, NftShape } from '@dcl/sdk/ecs'
+import { Entity, engine, Transform, GltfContainer, Animator, NftShape, pointerEventsSystem, InputAction, MeshCollider, AvatarAttach, AvatarAnchorPointType } from '@dcl/sdk/ecs'
 
 export function createZombie(xPos: number): Entity {
   const zombie = engine.addEntity()
@@ -29,6 +28,8 @@ export function createZombie(xPos: number): Entity {
     interpolationType: 1
   })
 
+  MeshCollider.setBox(zombie)
+
   Animator.create(zombie, {
     states: [
       {
@@ -45,6 +46,26 @@ export function createZombie(xPos: number): Entity {
       }
     ]
   })
+
+
+  pointerEventsSystem.onPointerDown(
+	zombie,
+	function () {
+		console.log('BOOM!!!')
+
+		engine.removeEntity(zombie)
+		playSound(dummySoundPlayer, 'sounds/explosion.mp3', true)
+		
+	
+		if (GameControllerComponent.has(coneEntity)) {
+		  GameControllerComponent.getMutable(coneEntity).score += 1
+		}
+	},
+	{
+	  button: InputAction.IA_POINTER,
+	  hoverText: 'Shoot'
+	}
+  )
 
   onMoveZombieFinish(zombie, () => {
     console.log('finished zombie', zombie)
@@ -74,16 +95,10 @@ export function createZombie(xPos: number): Entity {
     playSound(zombie, 'sounds/attack.mp3', true)
   })
 
-  addClickBehavior(zombie, () => {
-    console.log('BOOM!!!')
-
-    engine.removeEntity(zombie)
-    playSound(zombie, 'sounds/explosion.mp3', true)
-
-    if (GameControllerComponent.has(coneEntity)) {
-      GameControllerComponent.getMutable(coneEntity).score += 1
-    }
-  })
 
   return zombie
 }
+
+
+const dummySoundPlayer = engine.addEntity()
+AvatarAttach.create(dummySoundPlayer)
