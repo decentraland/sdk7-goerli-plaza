@@ -4,16 +4,25 @@
 			"path": "avatar-swap"
 		},
 		{
+			"path": "advanced-avatar-swap"
+		},
+		{
 			"path": "BasicInteractions"
 		},
 		{
 			"path": "beer-dispenser"
 		},
 		{
+			"path": "bird-field"
+		},
+		{
 			"path": "Block-dog"
 		},
 		{
 			"path": "boids"
+		},
+		{
+			"path": "coin-pickup"
 		},
 		{
 			"path": "Cube"
@@ -31,10 +40,16 @@
 			"path": "dbmonster"
 		},
 		{
+			"path": "enemy-spawner"
+		},
+		{
 			"path": "Gnark"
 		},
 		{
 			"path": "grab-object-advance"
+		},
+		{
+			"path": "grab-objects"
 		},
 		{
 			"path": "Hummingbirds"
@@ -61,10 +76,10 @@
 			"path": "power-cube"
 		},
 		{
-			"path": "Random-noise-movement"
+			"path": "rotating-platforms"
 		},
 		{
-			"path": "enemy-spawner"
+			"path": "Random-noise-movement"
 		},
 		{
 			"path": "Shark-animation"
@@ -77,6 +92,9 @@
 		},
 		{
 			"path": "uv-map"
+		},
+		{
+			"path": "video-streaming"
 		},
 		{
 			"path": "Zombie-shooter"
