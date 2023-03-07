@@ -10,6 +10,6 @@
 		"upgrade-sdk:next": "npm install --save-dev @dcl/sdk@next"
 	},
 	"devDependencies": {
-		"@dcl/sdk": "next"
+		"@dcl/sdk": "latest"
 	}
 }

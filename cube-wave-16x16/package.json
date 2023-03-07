@@ -7,9 +7,9 @@
 		"build": "sdk-commands build",
 		"upgrade-sdk": "npm install --save-dev @dcl/sdk@latest",
 		"upgrade-sdk:next": "npm install --save-dev @dcl/sdk@next"
-	  },
+	},
 	"devDependencies": {
-		"@dcl/sdk": "next"
+		"@dcl/sdk": "latest"
 	},
 	"engines": {
 		"node": ">=14.0.0",

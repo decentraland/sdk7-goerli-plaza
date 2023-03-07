@@ -16,6 +16,6 @@
 	},
 	"author": "",
 	"dependencies": {
-		"@dcl/sdk": "next"
+		"@dcl/sdk": "latest"
 	}
 }

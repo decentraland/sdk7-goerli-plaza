@@ -10,7 +10,7 @@
 		"upgrade-sdk:next": "npm install --save-dev @dcl/sdk@next"
 	},
 	"devDependencies": {
-		"@dcl/sdk": "^7.0.6",
+		"@dcl/sdk": "latest",
 		"cannon": "github:schteppe/cannon.js"
 	},
 	"engines": {

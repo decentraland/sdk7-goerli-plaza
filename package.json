@@ -7,8 +7,8 @@
 		"build": "sdk-commands build",
 		"upgrade-sdk": "npm install --save-dev @dcl/sdk@latest",
 		"upgrade-sdk:next": "npm install --save-dev @dcl/sdk@next"
-	  },
+	},
 	"dependencies": {
-		"@dcl/sdk": "next"
+		"@dcl/sdk": "latest"
 	}
 }
