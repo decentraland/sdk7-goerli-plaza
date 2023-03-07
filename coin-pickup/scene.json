@@ -11,9 +11,9 @@
 	"owner": "",
 	"scene": {
 		"parcels": [
-			"-133,-42"
+			"76,-4"
 		],
-		"base": "-133,-42"
+		"base": "76,-4"
 	},
 	"main": "bin/game.js",
 	"spawnPoints": [

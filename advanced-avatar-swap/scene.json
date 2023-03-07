@@ -1,6 +1,6 @@
 {
 	"ecs7": true,
-  "runtimeVersion": "7",
+	"runtimeVersion": "7",
 	"display": {
 		"title": "advanced-avatar-swap",
 		"favicon": "favicon_asset"
@@ -12,9 +12,10 @@
 	"owner": "",
 	"scene": {
 		"parcels": [
-			"78,-9","78,-8"
+			"76,-7",
+			"76,-6"
 		],
-		"base": "78,-9"
+		"base": "76,-7"
 	},
 	"requiredPermissions": [],
 	"main": "bin/game.js",
