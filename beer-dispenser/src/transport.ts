@@ -1,7 +1,7 @@
-import {MessageBus} from '@dcl/sdk/messageBus'
+// import {MessageBus} from '@dcl/sdk/messageBus'
 
-declare const btoa: any
-declare const atob: any
+// declare const btoa: any
+// declare const atob: any
 
 // export function createCommsTransport(): Transport {
 //   const bus = new MessageBus()

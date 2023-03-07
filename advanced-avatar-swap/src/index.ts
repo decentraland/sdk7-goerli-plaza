@@ -1,7 +1,6 @@
 export * from '@dcl/sdk'
-import { engine, MeshRenderer, Transform } from '@dcl/sdk/ecs'
+import { AvatarAnchorPointType, AvatarAttach, engine, MeshRenderer, Transform } from '@dcl/sdk/ecs'
 import { Color4, Vector3 } from '@dcl/sdk/math'
-import { attachEntityToPlayer } from "./modules/utils";
 import { initializeCharacter, initializeModels } from "./modules/modelsHandler";
 import { createAvatarSwappingArea, avatarSwappingSystem, createSeparationWall } from "./modules/avatarSwappingArea";
 import { createJoinTeamControl } from './modules/swappingControls';
@@ -21,7 +20,16 @@ function setup() {
 
     // Instantiate 'Santa' character animated model
     const modelEntity = initializeCharacter()
-    attachEntityToPlayer(Transform.get(modelEntity).parent)
+
+	const modelEntityTransform = Transform.get(modelEntity)
+
+
+	if(modelEntityTransform.parent){
+		AvatarAttach.create(modelEntityTransform.parent, {
+			anchorPointId: AvatarAnchorPointType.AAPT_POSITION
+		})
+	}
+
 
     // Set avatar modifier area to swap player avatar
     createAvatarSwappingArea(Vector3.create(8, 2, 18.5), Vector3.create(16, 4, 27), modelEntity)

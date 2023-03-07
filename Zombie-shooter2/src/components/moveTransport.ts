@@ -1,22 +1,15 @@
 import { Schemas, engine } from '@dcl/sdk/ecs'
 import { InterpolationType } from '../helper/interpolation'
-import { getNextComponentId } from './customComponentIds'
-
-const Vector3EcsSchema = Schemas.Map({
-  x: Schemas.Float,
-  y: Schemas.Float,
-  z: Schemas.Float
-})
 
 const MoveTransportData = {
   duration: Schemas.Float,
-  start: Vector3EcsSchema,
-  end: Vector3EcsSchema,
+  start: Schemas.Vector3,
+  end: Schemas.Vector3,
   normalizedTime: Schemas.Float,
   lerpTime: Schemas.Float,
   speed: Schemas.Float,
-  interpolationType: Schemas.Enum<InterpolationType>(Schemas.Int)
+  interpolationType: Schemas.EnumNumber<InterpolationType>(InterpolationType, InterpolationType.EASESINE)
 }
 
-export const MoveTransformComponent = engine.defineComponent(MoveTransportData, getNextComponentId())
-export const MoveTransformFinishedComponent = engine.defineComponent({ flag: Schemas.Boolean }, getNextComponentId())
+export const MoveTransformComponent = engine.defineComponent('MoveTransformComponent', MoveTransportData)
+export const MoveTransformFinishedComponent = engine.defineComponent('MoveTransformFinishedComponent', { flag: Schemas.Boolean })

@@ -9,7 +9,7 @@ import {
   Material,
   Schemas
 } from '@dcl/ecs'
-import { Quaternion, Vector3, Color3 } from '@dcl/ecs-math'
+import { Quaternion, Vector3, Color4 } from '@dcl/ecs-math'
 import { getUserData } from '~system/UserIdentity'
 import { transformComponent } from './system'
 export * from '@dcl/sdk'
@@ -18,11 +18,10 @@ getUserData({})
   .then((value) => console.log(value))
   .catch((error) => console.log(error))
 
-const DoorComponent = engine.defineComponent(
+const DoorComponent = engine.defineComponent('DoorComponent',
   {
     open: Schemas.Boolean
-  },
-  888
+  }
 )
 
 const openPos: Quaternion = Quaternion.create(0, 1, 0)
@@ -51,7 +50,7 @@ Material.create(doorEntity, {
   material: {
     $case: 'pbr',
     pbr: {
-      albedoColor: Color3.Red(),
+      albedoColor: Color4.Red(),
       metallic: 0.9,
       roughness: 0.1
     }

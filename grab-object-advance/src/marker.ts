@@ -65,7 +65,9 @@ function moveJointToPoint(x: number, y: number, z: number) {
 
 function removeJointConstraint() {
   // Remove constraint from world
-  const mouseConstraint = getConstraintOrNull(Marker.getMutable(getMarkerEntity()).mouseConstraintId)
+  const markerComponent = Marker.get(getMarkerEntity())
+  const mouseConstraint = getConstraintOrNull(markerComponent.mouseConstraintId)
+  console.log("MARKER REMOVED", markerComponent, mouseConstraint)
   if (mouseConstraint) removeConstraint(mouseConstraint)
 }
 

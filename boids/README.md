@@ -26,7 +26,7 @@ See Debug Markers such as grid markers, boundary top/bottom, obstacles, seek and
 //see debug markers for seek/obsticle/predator
 VISIBLE_OBSTACLES:boolean = true 
 VISIBLE_SEEK:boolean = true
-VISIBLE_PREDATOR:boolean = true
+VISIBLE_PREDATOR:boolean = false
 
 // see boundary grid markers
 SHOW_DEBUG_BOUNDARY_MARKERS:boolean = true

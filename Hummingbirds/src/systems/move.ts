@@ -8,7 +8,7 @@ export function moveSystem(dt: number) {
     const move = MoveTransformComponent.getMutable(entity)
     const transform = Transform.getMutable(entity)
     move.normalizedTime = Math.min(Math.max(move.normalizedTime + dt * move.speed, 0), 1)
-    move.lerpTime =  Interpolate(move.interpolationType, move.normalizedTime)
+    move.lerpTime = Interpolate(move.interpolationType, move.normalizedTime)
 
     // assign value to transform
     transform.position = Vector3.lerp(move.start, move.end, move.lerpTime)

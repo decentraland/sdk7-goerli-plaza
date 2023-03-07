@@ -1,12 +1,10 @@
-import {
-    engine, GltfContainer, NftShape, MeshCollider, MeshRenderer, Transform, VisibilityComponent, AvatarShape, AudioSource, TextShape, PointerHoverFeedback, PointerEventType, InputAction
-} from '@dcl/sdk/ecs'
-import { Color3, Vector3, Quaternion } from '@dcl/sdk/math'
-import { createCube } from './factory'
-import {createMovingPlatform, platformsMovementSystem, setAsMovingPlatform} from "./movingPlatform";
+import { AudioSource, AvatarShape, engine, GltfContainer, InputAction, MeshCollider, MeshRenderer, NftShape, PointerEventType, PointerEvents, TextShape, Transform, VisibilityComponent } from '@dcl/sdk/ecs';
+import { Quaternion, Vector3 } from '@dcl/sdk/math';
+import { createCube } from './factory';
+import { createMovingPlatform, platformsMovementSystem, setAsMovingPlatform } from "./movingPlatform";
 
 // export all the functions required to make the scene work
-export * from '@dcl/sdk'
+export * from '@dcl/sdk';
 
 engine.addSystem(platformsMovementSystem)
 
@@ -36,7 +34,7 @@ function timedParentingSystem(deltaTime: number) {
         timer = 6
         const transform = Transform.getMutable(outsiderParentChild)
         if (transform.parent == outsiderParent) {
-            transform.parent = null
+            transform.parent = undefined
         } else {
             transform.parent = outsiderParent
         }
@@ -117,7 +115,7 @@ Transform.create(irregularMeshEntity, {
     position: Vector3.create(16, 1, -16),
     rotation: Quaternion.fromEulerDegrees(0, -90, 0)
 })
-PointerHoverFeedback.create(irregularMeshEntity, {
+PointerEvents.create(irregularMeshEntity, {
     pointerEvents: [
         {
             eventType: PointerEventType.PET_DOWN,
@@ -158,7 +156,8 @@ AvatarShape.create(avatarEntity, {
         "urn:decentraland:matic:collections-v2:0x4334a820f556a54845a35f8aad5986aecdf07d43:1",
         "urn:decentraland:ethereum:collections-v1:sugarclub_yumi:yumi_retro_shades_eyewear",
         "urn:decentraland:matic:collections-v2:0x4334a820f556a54845a35f8aad5986aecdf07d43:0"
-    ]
+    ],
+    emotes: []
 })
 
 setAsMovingPlatform(avatarEntity,
@@ -175,13 +174,12 @@ setAsMovingPlatform(avatarEntity,
 let avatarUpdateTimer = 10
 engine.addSystem((deltaTime: number) => {
     avatarUpdateTimer -= deltaTime
-    
-    if(avatarUpdateTimer <= 0)
-    {
+
+    if (avatarUpdateTimer <= 0) {
         avatarUpdateTimer = 10
-        
+
         const component = AvatarShape.getMutable(avatarEntity)
-        if(component.bodyShape == femaleBodyShapeId)
+        if (component.bodyShape == femaleBodyShapeId)
             component.bodyShape = maleBodyShapeId
         else
             component.bodyShape = femaleBodyShapeId
@@ -214,7 +212,7 @@ setAsMovingPlatform(audioSourceEntity,
 
 // TEXT SHAPE
 const textShapeEntity = engine.addEntity(true)
-TextShape.create(textShapeEntity,{
+TextShape.create(textShapeEntity, {
     text: 'IA IA CTHULHU FHTAGN!',
     fontSize: 2
 })

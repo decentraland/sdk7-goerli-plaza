@@ -3,16 +3,14 @@
 	"version": "1.0.0",
 	"description": "ECS7 ",
 	"scripts": {
-		"start": "./node_modules/.bin/dcl start",
-		"build": "build-ecs",
-		"watch": "build-ecs --watch",
-		"ecs:install": "npm install --save-dev decentraland-ecs@latest",
-		"ecs:install-next": "npm install --save-dev decentraland-ecs@next",
-		"lint": "eslint . --ext .ts",
-		"lint:fix": "eslint . --ext .ts --fix"
+		"start": "sdk-commands start",
+		"build": "sdk-commands build",
+		"deploy": "sdk-commands deploy",
+		"upgrade-sdk": "npm install --save-dev @dcl/sdk@latest",
+		"upgrade-sdk:next": "npm install --save-dev @dcl/sdk@next"
 	},
 	"devDependencies": {
-		"@dcl/sdk": "^7.0.5"
+		"@dcl/sdk": "^7.0.6"
 	},
 	"engines": {
 		"node": ">=14.0.0",

@@ -1,7 +1,5 @@
 import { Schemas, engine } from "@dcl/sdk/ecs"
 
-const COMPONENT_ID = 2066
-
 export enum gnarkStates {
   WALKING,
   TURNING,
@@ -9,8 +7,8 @@ export enum gnarkStates {
 }
 
 const NPCData = {
-  state: Schemas.Enum<gnarkStates>(Schemas.Int),
-  previousState: Schemas.Enum<gnarkStates>(Schemas.Int)
+  state: Schemas.EnumNumber<gnarkStates>(gnarkStates, gnarkStates.TURNING),
+  previousState: Schemas.EnumNumber<gnarkStates>(gnarkStates, gnarkStates.TURNING)
 }
 
-export const NPComponent = engine.defineComponent(NPCData, COMPONENT_ID)
+export const NPComponent = engine.defineComponent('NPComponent', NPCData)

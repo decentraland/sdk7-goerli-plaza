@@ -1,20 +1,18 @@
 import { engine, Schemas, PBMaterial_PbrMaterial, Material } from '@dcl/sdk/ecs'
 
-export const SmokeParticle = engine.defineComponent(
+export const SmokeParticle = engine.defineComponent('SmokeParticle',
   {
     velocity: Schemas.Vector3,
     visible: Schemas.Boolean
-  },
-  2022
+  }
 )
 
-export const SmokeSource = engine.defineComponent(
+export const SmokeSource = engine.defineComponent('SmokeSource',
   {
     particleCount: Schemas.Number,
     smokeInterval: Schemas.Number,
     nextSmoke: Schemas.Number
-  },
-  2023
+  }
 )
 
 export const smokeMaterial: PBMaterial_PbrMaterial = {

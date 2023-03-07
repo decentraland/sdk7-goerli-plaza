@@ -33,20 +33,18 @@ function isPositionInsideTriggerArea(
 }
 
 export function createTriggerArea(targetEngine: IEngine) {
-    const TriggerBox = targetEngine.defineComponent({}, 2004)
-    const TriggerArea = targetEngine.defineComponent(
+    const TriggerBox = targetEngine.defineComponent('TriggerBox', {})
+    const TriggerArea = targetEngine.defineComponent('TriggerArea',
         {
             size: Schemas.Vector3,
             centerOffset: Schemas.Vector3
-        },
-        2000
+        }
     )
 
-    const TriggerState = targetEngine.defineComponent(
+    const TriggerState = targetEngine.defineComponent('TriggerState',
         {
             state: Schemas.Array(Schemas.Number)
-        },
-        2001
+        }
     )
     enum EventType {
         Enter,
@@ -81,7 +79,7 @@ export function createTriggerArea(targetEngine: IEngine) {
     function system() {
         //FIXME what if zero lines up with trigger location!?!?!
         const playerPosition = Transform.getOrNull(targetEngine.PlayerEntity)?.position
-        if(playerPosition) checkTrigger(engine.PlayerEntity, playerPosition) //checks player with ...?
+        if (playerPosition) checkTrigger(engine.PlayerEntity, playerPosition) //checks player with ...?
         //WHY need blank comma????
         //what is this loop doing?? checking if trigger areas collide with other trigger areas?
         for (const [entity, , transform] of targetEngine.getEntitiesWith(TriggerBox, Transform)) {
