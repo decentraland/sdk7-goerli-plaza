@@ -88,11 +88,11 @@ const grassModel = 'models/grass.glb'
 const grass2Model = 'models/grass2.glb'
 const grass3Model = 'models/grass3.glb'
 
-for (let x = 0.7; x < 15.4; x++) {
-  for (let y = 0.7; y < 15.4; y++) {
+for (let x = 1.4; x < 15.35; x++) {
+  for (let y = 1.4; y < 15.35; y++) {
     // select a glb mesh randomly from the 3 variations
     const selector = Math.random()
-
+    
     if (selector > 0.66) {
       spawnGrass(grassModel, x, 0, y)
     } else if (selector > 0.33) {
