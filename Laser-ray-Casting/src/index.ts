@@ -1,5 +1,5 @@
 import { engine, GltfContainer, Material, MeshCollider, MeshRenderer, Transform } from '@dcl/sdk/ecs'
-import { Vector3 } from '@dcl/sdk/math'
+import { Quaternion, Vector3 } from '@dcl/sdk/math'
 
 import { boxesCount, defaultMaterial, MovingCube, Ray, rayDistance, rayMaterial } from './definitions'
 import movingCubesSystem from './modules/movingCubes'
@@ -18,7 +18,8 @@ function setup() {
   const turret = engine.addEntity()
   GltfContainer.create(turret, { src: 'models/Turret_01.glb' })
   Transform.create(turret, {
-    position: Vector3.create(16, 1, 2)
+    position: Vector3.create(16, 1, 2),
+	rotation: Quaternion.fromEulerDegrees(0,0,0)
   })
   Ray.create(turret, {
     power: 1000
