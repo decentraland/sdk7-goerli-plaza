@@ -98,7 +98,7 @@ executeTask(async function () {
     // Crown
     createCrown(
       'models/crown.glb',
-      Transform.create({ position: Vector3.create(27, 13.75, 28.5) })
+       { position: Vector3.create(27, 13.75, 28.5) }
     )
 
 
