@@ -102,8 +102,12 @@ executeTask(async function () {
 
     // Crown
     createCrown(
-      'models/crown.glb',
-       { position: Vector3.create(27, 13.75, 28.5-16) }
+      'models/crown.glb', 
+{ 
+           position: Vector3.create(27, 13.75, 28.5-16),
+           rotation: Quaternion.Identity(),
+           scale: Vector3.One()
+       }
     )
 
 
