@@ -27,30 +27,30 @@ executeTask(async function () {
   GltfContainer.create(base, { src: 'models/baseLight.glb' })
   Transform.create(base, {
 	scale:Vector3.create(2, 1, 2),
-	position:Vector3.create(0, 0, -16)
+	position:Vector3.create(0, 0, 0)
 })
 
   const platform = engine.addEntity()
   GltfContainer.create(platform, { src: 'models/staticPlatforms.glb' })
   Transform.create(platform, {
-	position:Vector3.create(0, 0, -16)
+	position:Vector3.create(0, 0, 0)
   })
 
   // Contains the positions for each coin
   const platforms = [
     {
       model:roundaboutAShape,
-      transformArgs:{ position: Vector3.create(5.5, 3, 9.75-16)},
+      transformArgs:{ position: Vector3.create(5.5, 3, 9.75)},
       rotation:Quaternion.fromEulerDegrees(0, 120, 0)
     },
     {
         model:'models/roundaboutB.glb',
-      transformArgs:{ position: Vector3.create(5.5, 3, 17.25-16)},
+      transformArgs:{ position: Vector3.create(5.5, 3, 17.25)},
       rotation:Quaternion.fromEulerDegrees(0, -120, 0)
     },
     {
       model:roundaboutAShape,
-      transformArgs:{ position: Vector3.create(5.5, 3, 24.75-16)},
+      transformArgs:{ position: Vector3.create(5.5, 3, 24.75)},
       rotation:Quaternion.fromEulerDegrees(0, 120, 0)
     },
     {
@@ -61,41 +61,41 @@ executeTask(async function () {
 
     {
       model:wheelAShape,
-      transformArgs:{ position: Vector3.create(15.5, 5.5, 24.325-16)},
+      transformArgs:{ position: Vector3.create(15.5, 5.5, 24.325)},
       rotation:Quaternion.fromEulerDegrees(0, 0, 45)
     },
     {
       model:'models/wheelB.glb',
-      transformArgs:{ position: Vector3.create(15.5, 5.5, 16.325-16)},
+      transformArgs:{ position: Vector3.create(15.5, 5.5, 16.325)},
       rotation:Quaternion.fromEulerDegrees(0, 0, -45)
     },
 
     {
       model:wheelAShape,
-      transformArgs:{ position: Vector3.create(15.5, 5.5, 7.825-16)},
+      transformArgs:{ position: Vector3.create(15.5, 5.5, 7.825)},
       rotation:Quaternion.fromEulerDegrees(0, 0, 45)
     },
 
     // Stage 3 (Barriers)
     {
       model:'models/bridgeB.glb',
-      transformArgs:{ position: Vector3.create(21, 8.25, 2.5-16)},
+      transformArgs:{ position: Vector3.create(21, 8.25, 2.5)},
       rotation:Quaternion.fromEulerDegrees(90, 0, 0)
     },
     {
       model:'models/barrierA.glb',
-      transformArgs:{ position: Vector3.create(27, 9.7, 7.5-16)},
+      transformArgs:{ position: Vector3.create(27, 9.7, 7.5)},
       rotation:Quaternion.fromEulerDegrees(0, 90, 0)
     },
     {
       model:'models/barrierB.glb',
-      transformArgs:{ position: Vector3.create(23.5, 10.7, 15-16)},
+      transformArgs:{ position: Vector3.create(23.5, 10.7, 15)},
       rotation:Quaternion.fromEulerDegrees(0, -90, 0)
     },
     {
       model:'models/barrierC.glb',
       //FIXME why is this not bombinb syntax??, its not being passed the entity arg
-      transformArgs:{ position: Vector3.create(27, 11.7, 22.5-16)},
+      transformArgs:{ position: Vector3.create(27, 11.7, 22.5)},
       rotation:Quaternion.fromEulerDegrees(0, 90, 0)
     },
   ]
