@@ -68,7 +68,7 @@ export class KeepRotatingSystem {
         keepRotating.rotationVelocity,
         dt
       )
-      transform.rotation = Quaternion.multiply(transform.rotation, keepRotating.rotation)
+      transform.rotation = Quaternion.multiply(transform.rotation as Quaternion, keepRotating.rotation)
 
     }
   }
@@ -138,7 +138,7 @@ export function createKeepRotatingSystem(targetEngine: IEngine) {
         keepRotating.rotationVelocity,
         dt
       )
-      transform.rotation = Quaternion.multiply(transform.rotation, keepRotating.rotation)
+      transform.rotation = Quaternion.multiply(transform.rotation as Quaternion, keepRotating.rotation)
 
     }
   }

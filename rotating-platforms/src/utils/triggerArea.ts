@@ -56,7 +56,7 @@ export function createTriggerArea(targetEngine: IEngine) {
 
     function checkTrigger(positionEntity: Entity, position: Vector3) {
         for (const [entity, area, state, transform] of targetEngine.getEntitiesWith(TriggerArea, TriggerState, Transform)) {
-            const nextState = isPositionInsideTriggerArea(position, transform.position, area.size, area.centerOffset)
+            const nextState = isPositionInsideTriggerArea(position, transform.position as Vector3, area.size, area.centerOffset)
             const stateIndex = state.state.indexOf(positionEntity as number)
             const currentState = stateIndex !== -1
 
@@ -71,7 +71,7 @@ export function createTriggerArea(targetEngine: IEngine) {
                     triggerStateMutable.state = triggerStateMutable.state.filter((item) => item !== positionEntity)
                 }
 
-                if (data) data.cb(triggerStateMutable.state)
+                if (data) data.cb([positionEntity])
             }
         }
     }
@@ -83,7 +83,7 @@ export function createTriggerArea(targetEngine: IEngine) {
         //WHY need blank comma????
         //what is this loop doing?? checking if trigger areas collide with other trigger areas?
         for (const [entity, , transform] of targetEngine.getEntitiesWith(TriggerBox, Transform)) {
-            checkTrigger(entity, transform.position)
+            checkTrigger(entity, transform.position as Vector3)
         }
     }
 
