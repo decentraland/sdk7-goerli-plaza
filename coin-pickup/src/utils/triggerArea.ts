@@ -71,7 +71,7 @@ export function createTriggerArea(targetEngine: IEngine) {
                     triggerStateMutable.state = triggerStateMutable.state.filter((item) => item !== positionEntity)
                 }
 
-                if (data) data.cb(triggerStateMutable.state)
+                if (data) data.cb([positionEntity])
             }
         }
     }
