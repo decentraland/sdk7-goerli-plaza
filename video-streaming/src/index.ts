@@ -52,7 +52,8 @@ Material.setPbrMaterial(screen2, {
   roughness: 1.0,
 })
 
-pointerEventsSystem.onPointerDown(screen2, () => {
+pointerEventsSystem.onPointerDown(screen, () => {
   const videoPlayer = VideoPlayer.getMutable(screen)
   videoPlayer.playing = !videoPlayer.playing
 }, { button: InputAction.IA_POINTER, hoverText: "Play/pause" })
+
