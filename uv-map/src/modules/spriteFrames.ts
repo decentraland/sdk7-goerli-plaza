@@ -23,22 +23,24 @@ export default function updateSpriteFrameSystem(dt: number) {
       if (mutableMesh.mesh?.$case === 'plane') {
         // Set plane mesh UVs clock-wise starting from the top-left
         mutableMesh.mesh.plane.uvs = [
-          sprite.faceMappingsX,
-          sprite.faceMappingsY + frameSizeY,
-          sprite.faceMappingsX + frameSizeX,
-          sprite.faceMappingsY + frameSizeY,
-          sprite.faceMappingsX + frameSizeX,
-          sprite.faceMappingsY,
+          // face 1
           sprite.faceMappingsX,
           sprite.faceMappingsY,
-          sprite.faceMappingsX,
+		  sprite.faceMappingsX,
           sprite.faceMappingsY + frameSizeY,
-          sprite.faceMappingsX + frameSizeX,
+		  sprite.faceMappingsX + frameSizeX,
           sprite.faceMappingsY + frameSizeY,
-          sprite.faceMappingsX + frameSizeX,
+		  sprite.faceMappingsX + frameSizeX,
           sprite.faceMappingsY,
+          // face 2
           sprite.faceMappingsX,
-          sprite.faceMappingsY
+          sprite.faceMappingsY,
+		  sprite.faceMappingsX,
+          sprite.faceMappingsY + frameSizeY,
+		  sprite.faceMappingsX + frameSizeX,
+          sprite.faceMappingsY + frameSizeY,
+		  sprite.faceMappingsX + frameSizeX,
+          sprite.faceMappingsY,
         ]
       }
     }
