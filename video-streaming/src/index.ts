@@ -24,12 +24,12 @@ Transform.create(screenDisplay, { parent: screenBody, position: { x: 0, y: 6.15,
 const screen = engine.addEntity()
 MeshRenderer.setPlane(screen)
 MeshCollider.setPlane(screen, ColliderLayer.CL_POINTER | ColliderLayer.CL_PHYSICS)
-Transform.create(screen, { parent: screenDisplay, scale: { x: 19.2, y: 10.8, z: 1 }, rotation: Quaternion.fromEulerDegrees(0, 0, 180) })
+Transform.create(screen, { parent: screenDisplay, scale: { x: 19.2, y: 10.8, z: 1 }, rotation: Quaternion.fromEulerDegrees(0, 0, 0) })
 
 const screen2 = engine.addEntity()
 MeshRenderer.setPlane(screen2)
 MeshCollider.setPlane(screen2, ColliderLayer.CL_POINTER | ColliderLayer.CL_PHYSICS)
-Transform.create(screen2, { parent: screenDisplay, scale: { x: 3.84, y: 2.16, z: 1 }, rotation: Quaternion.fromEulerDegrees(0, 0, 180), position: { x: 8.0, y: -5.0, z: -0.1 } })
+Transform.create(screen2, { parent: screenDisplay, scale: { x: 3.84, y: 2.16, z: 1 }, rotation: Quaternion.fromEulerDegrees(0, 0, 0), position: { x: 8.0, y: -5.0, z: -0.1 } })
 VideoPlayer.create(screen, {
   src: 'https://player.vimeo.com/external/552481870.m3u8?s=c312c8533f97e808fccc92b0510b085c8122a875',
   playing: true,
