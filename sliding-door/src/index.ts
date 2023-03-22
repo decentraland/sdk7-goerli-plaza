@@ -7,7 +7,7 @@ import { transformComponent } from './systems'
 export * from '@dcl/sdk'
 
 // Define component to have the state of the door
-const DoorComponent = engine.defineComponent('DoorComponent'
+const DoorComponent = engine.defineComponent('DoorComponent',
   {
     open: Schemas.Boolean
   }
@@ -34,8 +34,8 @@ setMaterial(rightDoor)
 DoorComponent.create(parentDoor, { open: false })
 
 // Register event when you click on one of the doors
-pointerEventsSystem.onPointerDown(leftDoor, onDoorClicked, { button: InputAction.IA_POINTER })
-pointerEventsSystem.onPointerDown(rightDoor, onDoorClicked, { button: InputAction.IA_POINTER })
+pointerEventsSystem.onPointerDown(leftDoor, onDoorClicked, { button: InputAction.IA_PRIMARY, hoverText: "Open / Close" })
+pointerEventsSystem.onPointerDown(rightDoor, onDoorClicked, { button: InputAction.IA_PRIMARY, hoverText: "Open / Close" })
 
 // Callback when click the doors
 // Open both doors at the same time

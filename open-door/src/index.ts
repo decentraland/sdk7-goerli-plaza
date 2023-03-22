@@ -65,5 +65,8 @@ pointerEventsSystem.onPointerDown(
     door.open = !door.open
     transformComponent(doorPivotEntity, { rotation: nextPosition }, 0.5)
   },
-  { button: InputAction.IA_POINTER }
+  { 
+	button: InputAction.IA_PRIMARY,
+	hoverText: "Open / Close" 
+  }
 )
