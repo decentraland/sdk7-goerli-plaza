@@ -3,7 +3,7 @@ import { Quaternion, Vector3 } from '@dcl/sdk/math'
 
 import { boxesCount, defaultMaterial, MovingCube, Ray, rayDistance, rayMaterial } from './definitions'
 import movingCubesSystem from './modules/movingCubes'
-import raycastSystem from './modules/ray'
+import { raycastResultsSystem, createRaycast } from './modules/ray'
 
 export * from '@dcl/sdk'
 
@@ -24,6 +24,7 @@ function setup() {
   Ray.create(turret, {
     power: 1000
   })
+  createRaycast(turret)
 
   // Ray
   const rayCube = engine.addEntity()
@@ -59,11 +60,7 @@ function setup() {
   })
 
   engine.addSystem(movingCubesSystem)
-  engine.addSystem(raycastSystem)
-
-  // Ray.create(engine.CameraEntity, {
-  //   power: 1000
-  // })
+  engine.addSystem(raycastResultsSystem)
 }
 
 setup()
