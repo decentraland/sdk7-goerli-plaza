@@ -1,7 +1,7 @@
 import { engine, GltfContainer, Material, MeshCollider, MeshRenderer, Transform } from '@dcl/sdk/ecs'
 import { Quaternion, Vector3 } from '@dcl/sdk/math'
 
-import { boxesCount, defaultMaterial, MovingCube, Ray, rayDistance, rayMaterial } from './definitions'
+import { boxesCount, defaultMaterial, MovingCube, Ray, rayDistance, rayMaterial, RayMesh } from './definitions'
 import movingCubesSystem from './modules/movingCubes'
 import { raycastResultsSystem, createRaycast } from './modules/ray'
 
@@ -26,20 +26,15 @@ function setup() {
   })
   createRaycast(turret)
 
-  // Ray
-  const rayCube = engine.addEntity()
-  Transform.create(rayCube, {
-    position: Vector3.create(16, 1.645, 0)
-  })
-
-  const rayCubeObject = engine.addEntity()
-  MeshRenderer.setBox(rayCubeObject)
-  Transform.create(rayCubeObject, {
-    parent: rayCube,
+  // Ray mesh
+  const rayMesh = engine.addEntity()
+  MeshRenderer.setBox(rayMesh)
+  Transform.create(rayMesh, {
     scale: Vector3.create(0.1, 0.1, rayDistance),
-    position: Vector3.create(0, 0, rayDistance / 2 + 3)
+    position: Vector3.create(16, 1.645, rayDistance / 2 + 2)
   })
-  Material.setPbrMaterial(rayCubeObject, rayMaterial)
+  Material.setPbrMaterial(rayMesh, rayMaterial)
+  RayMesh.create(rayMesh)
 
   for (let i = 0; i < boxesCount; i++) {
     const cube = engine.addEntity()

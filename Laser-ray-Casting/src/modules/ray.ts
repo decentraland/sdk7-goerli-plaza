@@ -1,37 +1,47 @@
-import { engine, Transform, RaycastResult, Material, Entity, Raycast, RaycastQueryType } from '@dcl/sdk/ecs'
+import { engine, Transform, RaycastResult, Material, Entity, Raycast, RaycastQueryType, TransformType } from '@dcl/sdk/ecs'
 import { Vector3 } from '@dcl/sdk/math'
-import { defaultMaterial, hitMaterial, hitMaterial2, MovingCube, Ray } from '../definitions'
+import {
+  defaultMaterial,
+  hitMaterial,
+  hitMaterial2,
+  Ray,
+  raycastMode,
+  RaycastModeType,
+  RayMesh, rayTargetEntity, rayTargetTransform
+} from '../definitions'
 
 let lastHitEntity: Entity
 export function raycastResultsSystem() {
   for (const [entity, raycastResult] of engine.getEntitiesWith(RaycastResult)) {
     if (raycastResult.hits.length > 0) {
-      const entityHit = raycastResult.hits[0].entityId
-      if (entityHit) {
-        lastHitEntity = entityHit as Entity
+      const hit = raycastResult.hits[0]
+      if (hit.entityId) {
+        for (const [rayMeshEntity] of engine.getEntitiesWith(RayMesh, Transform)) {
+          // console.log("hit length: " + hit.length)
+          updateRayMeshScale(Transform.getMutable(rayMeshEntity), hit.length)
+        }        
+        lastHitEntity = hit.entityId as Entity
         Material.setPbrMaterial(lastHitEntity, entity === engine.CameraEntity ? hitMaterial2 : hitMaterial) 
       }      
-    } else if (lastHitEntity) {
-      Material.setPbrMaterial(lastHitEntity, defaultMaterial)
-    }
+    } else {
+      for (const [rayMeshEntity] of engine.getEntitiesWith(RayMesh, Transform)) {
+        const raycast = Raycast.getOrNull(entity)
+        if (raycast) {
+          updateRayMeshScale(Transform.getMutable(rayMeshEntity), Math.min(raycast.maxDistance, 25))
+        }
+      }
+      
+      if (lastHitEntity) {
+        Material.setPbrMaterial(lastHitEntity, defaultMaterial)
+      }
+    }       
   }
 }
 
-// There are 4 types of 'direction' we may use with the Raycast component,
-// by changing 'raycastMode' you can try out those different types
-const enum RaycastModeType {
-  LOCAL_DIRECTION,
-  GLOBAL_DIRECTION,
-  TARGET_ENTITY,
-  GLOBAL_TARGET
+function updateRayMeshScale(mutableTransform: TransformType, rayLength: number ) {
+  mutableTransform.scale.z = rayLength
+  mutableTransform.position.z = mutableTransform.scale.z / 2 + 2
 }
-let raycastMode = RaycastModeType.LOCAL_DIRECTION
-
-// Only used if raycastMode is TARGET_ENTITY or GLOBAL_TARGET
-const rayTargetEntity = engine.addEntity()
-const rayTargetTransform = Transform.create(rayTargetEntity, {
-  position: Vector3.create(8, 1, 20)
-})
 
 export function createRaycast(entity: Entity)
 {
@@ -68,6 +78,7 @@ export function createRaycast(entity: Entity)
       }
       break
   }
+
   Raycast.createOrReplace(entity, {
     direction: direction,
     maxDistance: ray.power,
