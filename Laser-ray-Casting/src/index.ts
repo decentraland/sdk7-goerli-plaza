@@ -61,9 +61,9 @@ function setup() {
   engine.addSystem(movingCubesSystem)
   engine.addSystem(raycastSystem)
 
-  Ray.create(engine.CameraEntity, {
-    power: 1000
-  })
+  // Ray.create(engine.CameraEntity, {
+  //   power: 1000
+  // })
 }
 
 setup()
