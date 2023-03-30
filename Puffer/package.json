@@ -1,0 +1,26 @@
+{
+	"name": "dcl-project",
+	"version": "1.0.0",
+	"description": "ECS7 ",
+	"scripts": {
+		"start": "sdk-commands start",
+		"build": "sdk-commands build",
+		"deploy": "sdk-commands deploy",
+		"upgrade-sdk": "npm install --save-dev @dcl/sdk@latest",
+		"upgrade-sdk:next": "npm install --save-dev @dcl/sdk@next"
+	},
+	"devDependencies": {
+		"@dcl/sdk": "^7.1.3"
+	},
+	"engines": {
+		"node": ">=16.0.0",
+		"npm": ">=6.0.0",
+		"yarn": "please use npm"
+	},
+	"dependencies": {
+		"@dcl-sdk/utils": "^0.0.1-20230329141627.commit-341126d"
+	},
+	"bundleDependencies": [
+		"@dcl-sdk/utils"
+	]
+}
