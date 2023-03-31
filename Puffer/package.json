@@ -18,7 +18,7 @@
 		"yarn": "please use npm"
 	},
 	"dependencies": {
-		"@dcl-sdk/utils": "^0.0.1-20230329141627.commit-341126d"
+		"@dcl-sdk/utils": "^0.0.1-20230331120320.commit-0bc15a5"
 	},
 	"bundleDependencies": [
 		"@dcl-sdk/utils"

@@ -2,17 +2,12 @@ import {
   engine,
   Entity,
   InputAction,
-  inputSystem,
-  MeshCollider,
-  MeshRenderer,
-  PointerEventType,
-  PointerEvents,
   Transform,
   GltfContainer,
   AudioSource,
   pointerEventsSystem,
 } from "@dcl/sdk/ecs"
-import { Color3, Quaternion, Vector3 } from "@dcl/sdk/math"
+import { Color3, Vector3 } from "@dcl/sdk/math"
 export * from "@dcl/sdk"
 
 import * as utils from '@dcl-sdk/utils'
@@ -42,7 +37,7 @@ GltfContainer.create(puffer, {
   src: 'models/puffer.gltf'
 })
 
-const deflatedSound = AudioSource.create(puffer, {
+AudioSource.create(puffer, {
 	audioClipUrl: 'sounds/deflate.wav',
 	loop: false,
 	playing: false
@@ -58,14 +53,13 @@ pointerEventsSystem.onPointerDown(
 	}
 )
 
+//utils.triggers.enableDebugDraw(true)
+
 //Trigger on fish
-utils.triggers.addTrigger(puffer, 1, 1, [], [{position: Vector3.create(0,0,0), radius: 2 }],
-	(puffer) => inflateFish(puffer)
+utils.triggers.addTrigger(puffer, 1, 1, [{ type: "sphere", position: Vector3.create(0,0,0), radius: 2 }],
+	() => inflateFish(puffer)
 	, undefined, Color3.Blue()
 )
-
-// Trigger on player
-utils.triggers.addTrigger(engine.PlayerEntity, 1, 1, [], [{position: Vector3.create(0,0,0), radius: 2 }], undefined, undefined, Color3.Blue())
 
 // Flag to avoid re-triggering
 let isInflating = false
