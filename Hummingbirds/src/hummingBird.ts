@@ -1,13 +1,7 @@
-import { Animator, CameraMode, engine, GltfContainer, Schemas, Transform } from '@dcl/sdk/ecs'
+import { Animator, CameraMode, engine, Entity, GltfContainer, Schemas, Transform } from '@dcl/sdk/ecs'
 import { Quaternion } from '@dcl/sdk/math'
-import { MoveTransformComponent } from './components/moveTransport'
-import { InterpolationType } from './helper/interpolation'
+import * as utils from '@dcl-sdk/utils'
 
-const BirdData = {
-  waitingTime: Schemas.Int
-}
-
-export const isBird = engine.defineComponent('isBird', BirdData)
 
 export function createHummingBird() {
   const bird = engine.addEntity()
@@ -46,49 +40,47 @@ export function createHummingBird() {
     ]
   })
 
-  isBird.create(bird, {
-    waitingTime: 0
-  })
+  // fly pattern
+  utils.timers.setInterval( ()=>{
 
-  const cameraEntity = CameraMode.getMutable(engine.CameraEntity)
-  console.log('CAMERA MODE: ', cameraEntity.mode)
-  cameraEntity.mode = 0
-}
+	const birdTransform = Transform.getMutable(bird)
 
-export function birdSystem(dt: number) {
-  for (const [bird] of engine.getEntitiesWith(isBird)) {
-    if (MoveTransformComponent.has(bird)) return
-
-    const birdData = isBird.getMutable(bird)
-
-    birdData.waitingTime -= dt
-    if (birdData.waitingTime <= 0) {
-      const currentPos = Transform.get(bird).position
-
-      birdData.waitingTime = 2
-
-      // next target
-      const nextPos = {
+	// next target
+	const nextPos = {
         x: Math.random() * 12 + 2,
         y: Math.random() * 3 + 1,
         z: Math.random() * 12 + 2
       }
 
-      MoveTransformComponent.create(bird, {
-        speed: 1,
-        start: currentPos,
-        end: nextPos,
-        normalizedTime: 0,
-        lerpTime: 0,
-        interpolationType: InterpolationType.EASESINE
-      })
+	const nextRot = Quaternion.fromLookAt(birdTransform.position, nextPos)
 
-      const mutableTransform = Transform.getMutable(bird)
-      mutableTransform.rotation = Quaternion.fromLookAt(mutableTransform.position, nextPos)
+	// face new pos
+	utils.tweens.startRotation(bird, birdTransform.rotation, nextRot, 0.3, utils.InterpolationType.EASEINSINE)
 
-    }
-  }
+	// move to next pos (after rotating)
+	utils.timers.setTimeout(
+		()=>{	
+			utils.tweens.startTranslation(bird, birdTransform.position, nextPos, 2, utils.InterpolationType.EASEINEXPO)
+		}, 300 // after rotation is over
+	)
+
+	// randomly play head animation
+	utils.timers.setTimeout(
+		() => randomHeadMovement(bird), 
+		2500 // after rotation and translation + pause
+	)
+  },
+  4000)  // loop every 4 seconds
 }
 
-engine.addSystem(birdSystem)
-
+// Randomly determine if any head moving animations are played
+export function randomHeadMovement(bird: Entity) {
+	const anim = Math.random()
+	if (anim < 0.2) {
+		const look = Animator.getClip(bird, "look") 
+		look.playing = true
+	} else if (anim > 0.8) {
+		const shake = Animator.getClip(bird, "shake")
+		shake.playing = true
+	}
+  }
