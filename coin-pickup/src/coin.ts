@@ -21,27 +21,15 @@ export function createCoin(
   GltfContainer.create(entity, { src: model })
   Transform.create(entity, { position })
 
-//   utils.oneTimeTrigger(1, 1, [{type: "box", position: position}],
-// 	()=>{
-// 		console.log("PICKED UP COIN")
-// 		Transform.getMutable(coinPickupSound).position = Transform.get(engine.PlayerEntity).position
-// 		AudioSource.getMutable(coinPickupSound).playing = true
-// 		engine.removeEntity(entity)
-// 	}
-//   )
-
-  utils.triggers.addTrigger(entity, 1, 1, [{type: "box"}],
-  ()=>{
-	  console.log("PICKED UP COIN")
-	  Transform.getMutable(coinPickupSound).position = Transform.get(engine.PlayerEntity).position
-	  AudioSource.getMutable(coinPickupSound).playing = true
-	  utils.triggers.removeTrigger(entity)
-	  engine.removeEntity(entity)
-  }, undefined, Color3.Yellow()
-  
+  utils.triggers.oneTimeTrigger(entity, 1, 1, [{type: "box"}],
+	()=>{
+		Transform.getMutable(coinPickupSound).position = Transform.get(engine.PlayerEntity).position
+		AudioSource.getMutable(coinPickupSound).playing = true
+		engine.removeEntity(entity)
+	},  Color3.Yellow()
   )
 
   return entity
 }
 
-utils.triggers.enableDebugDraw(true)
+//utils.triggers.enableDebugDraw(true)

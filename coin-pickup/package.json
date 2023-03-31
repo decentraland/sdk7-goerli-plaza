@@ -13,7 +13,7 @@
 		"@dcl/sdk": "latest"
 	},
 	"dependencies": {
-		"@dcl-sdk/utils": "^0.0.1-20230331120320.commit-0bc15a5"
+		"@dcl-sdk/utils": "^0.0.1-20230331134805.commit-393f3f8"
 	},
 	"bundleDependencies": [
 		"@dcl-sdk/utils"
