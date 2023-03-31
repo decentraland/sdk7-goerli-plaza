@@ -11,5 +11,11 @@
 	},
 	"devDependencies": {
 		"@dcl/sdk": "latest"
-	}
+	},
+	"dependencies": {
+		"@dcl-sdk/utils": "^0.0.1-20230331120320.commit-0bc15a5"
+	},
+	"bundleDependencies": [
+		"@dcl-sdk/utils"
+	]
 }

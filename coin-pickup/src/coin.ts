@@ -1,7 +1,7 @@
 
 import { AudioSource, AvatarAttach, engine, Entity, GltfContainer, Transform } from "@dcl/sdk/ecs"
-import { Vector3 } from "@dcl/sdk/math"
-import { triggerAreaSystem } from "./utils/triggerArea"
+import { Color3, Vector3 } from "@dcl/sdk/math"
+import * as utils from '@dcl-sdk/utils'
 
 /**
  * Sound is a separated from the coin entity so that you can
@@ -21,14 +21,27 @@ export function createCoin(
   GltfContainer.create(entity, { src: model })
   Transform.create(entity, { position })
 
-  triggerAreaSystem.setTriggerArea(entity, size, centerOffset)
+//   utils.oneTimeTrigger(1, 1, [{type: "box", position: position}],
+// 	()=>{
+// 		console.log("PICKED UP COIN")
+// 		Transform.getMutable(coinPickupSound).position = Transform.get(engine.PlayerEntity).position
+// 		AudioSource.getMutable(coinPickupSound).playing = true
+// 		engine.removeEntity(entity)
+// 	}
+//   )
 
-  triggerAreaSystem.onPlayerEnter(entity, () => {
-    triggerAreaSystem.removeTriggerArea(entity)
-    AudioSource.getMutable(coinPickupSound).playing = true
-    Transform.getMutable(coinPickupSound).position = Transform.get(engine.PlayerEntity).position
-    engine.removeEntity(entity)
-  })
+  utils.triggers.addTrigger(entity, 1, 1, [{type: "box"}],
+  ()=>{
+	  console.log("PICKED UP COIN")
+	  Transform.getMutable(coinPickupSound).position = Transform.get(engine.PlayerEntity).position
+	  AudioSource.getMutable(coinPickupSound).playing = true
+	  utils.triggers.removeTrigger(entity)
+	  engine.removeEntity(entity)
+  }, undefined, Color3.Yellow()
+  
+  )
 
   return entity
 }
+
+utils.triggers.enableDebugDraw(true)
