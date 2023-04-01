@@ -4,7 +4,7 @@ import { Color4, Vector3 } from '@dcl/sdk/math'
 // Configuration constants
 export const boxesCount = 10
 export const speed = 1
-export const rayDistance = 20
+export const rayDistance = 28
 
 // There are 4 types of 'direction' we may use with the Raycast component,
 // by changing 'raycastMode' you can try out those different types
