@@ -1,7 +1,7 @@
 //import * as utils from '@dcl/ecs-scene-utils'
 import { AudioSource, engine, Entity, GltfContainer, Transform,TransformType } from "@dcl/sdk/ecs"
-import { Vector3 } from "@dcl/sdk/math"
-import { triggerAreaSystem } from "./utils/triggerArea"
+import { Color3, Vector3 } from "@dcl/sdk/math"
+import * as utils from '@dcl-sdk/utils'
 /*
 export class Crown {
   constructor(model: GLTFShape, transform: Transform) {
@@ -50,17 +50,26 @@ export function createCrown(
   const size = Vector3.create(2.5, 2.5, 2.5)
   const centerOffset = Vector3.Zero()
   
-  triggerAreaSystem.setTriggerArea(entity, size, centerOffset)
- 
-  triggerAreaSystem.onPlayerEnter(entity, () => {
-    //how can it detect player enter if is null
-    triggerAreaSystem.removeTriggerArea(entity)
-    AudioSource.getMutable(crownPickupSound).playing = true 
-    const playerPosition = Transform.getOrNull(engine.PlayerEntity)?.position || Vector3.Zero()
-    //console.log("engine.PlayerEntity",Transform.getOrNull(engine.PlayerEntity),playerPosition,AudioSource.get(crownPickupSound).playing) 
-    Transform.getMutable(crownPickupSound).position = playerPosition//.position
-    engine.removeEntity(entity)  
-  })
+  utils.triggers.enableDebugDraw(true)
+  //utils.triggers.setLayerMask(engine.PlayerEntity,1)
+  //utils.triggers.setTriggeredByMask(entity,1)
+  
+  //entity: Entity, layerMask: number, triggeredByMask: number, areas?: Array<TriggerAreaSpec>, onEnterCallback?: OnTriggerEnterCallback, onExitCallback?: OnTriggerExitCallback, debugColor?: Color3
+  utils.triggers.addTrigger(entity
+    , 1, 1, 
+    [{position:Vector3.Zero(),scale:size,type:'box'}],
+    ()=>{
+      console.log("enter crown")
+      AudioSource.getMutable(crownPickupSound).playing = true 
+      const playerPosition = Transform.getOrNull(engine.PlayerEntity)?.position || Vector3.Zero()
+      //console.log("engine.PlayerEntity",Transform.getOrNull(engine.PlayerEntity),playerPosition,AudioSource.get(crownPickupSound).playing) 
+      Transform.getMutable(crownPickupSound).position = playerPosition//.position
+      engine.removeEntity(entity)  
+      utils.triggers.removeTrigger(entity)
+    }
+    ,()=>{},  Color3.Yellow()
+  )
+
 
   return entity
 }
