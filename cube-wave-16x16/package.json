@@ -8,14 +8,8 @@
   "devDependencies": {
     "@dcl/sdk": "next"
   },
-  "engines": {
-    "node": ">=14.0.0",
-    "npm": ">=6.0.0"
-  },
   "scripts": {
-    "build": "sdk-commands build",
-    "start": "sdk-commands start",
-    "upgrade-sdk": "npm install --save-dev @dcl/sdk@latest",
-    "upgrade-sdk:next": "npm install --save-dev @dcl/sdk@next"
+    "build": "sdk-commands build --skip-install",
+    "start": "sdk-commands start"
   }
 }

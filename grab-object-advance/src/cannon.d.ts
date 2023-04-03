@@ -944,7 +944,3 @@ declare module "cannon/build/cannon" {
     contact: any
   }
 }
-
-declare module 'cannon' {
-  export = CANNON
-}
