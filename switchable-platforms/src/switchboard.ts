@@ -32,8 +32,12 @@ export function createSwitchBoard(
   GltfContainer.create(gear, { src: 'models/gears.glb' })
   Transform.create(gear, {parent: entity})
 
+  // Height of button when held down
+  const pressedHeight =  -0.12
+
+  // Add toggle actions to buttons
   utils.toggles.addToggle(buttonA, utils.ToggleState.On, ()=>{
-	Transform.getMutable(buttonA).position.y =  -0.12
+	Transform.getMutable(buttonA).position.y = pressedHeight
 	Transform.getMutable(switchSound).position = Transform.get(engine.PlayerEntity).position
 	AudioSource.getMutable(switchSound).playing = true
   })
@@ -45,7 +49,7 @@ export function createSwitchBoard(
   })
 
   utils.toggles.addToggle(buttonB, utils.ToggleState.On, ()=>{
-	Transform.getMutable(buttonA).position.y =  -0.12
+	Transform.getMutable(buttonA).position.y =  pressedHeight
 	Transform.getMutable(switchSound).position = Transform.get(engine.PlayerEntity).position
 	AudioSource.getMutable(switchSound).playing = true
   })
@@ -56,7 +60,7 @@ export function createSwitchBoard(
 	AudioSource.getMutable(switchSound).playing = true
   })
 
-
+  // trigger areas on top of each button
   utils.triggers.addTrigger(buttonA, 1, 1, [{type: "box", scale:Vector3.create(2.5, 2.5, 2.5), position:Vector3.create(1.5, 2, 0)}],
 	()=>{
 		utils.toggles.set(buttonA, utils.ToggleState.On)
@@ -74,7 +78,7 @@ export function createSwitchBoard(
   }, 
   ()=> {
 	utils.toggles.set(buttonB, utils.ToggleState.Off)
-},  
+  },  
   Color3.Yellow()
   )
 
@@ -101,9 +105,7 @@ function movePlatform(
 		utils.perpetualMotions.stopRotation(gear)
 		Transform.getMutable(switchSound).position = Transform.get(engine.PlayerEntity).position
 	  	AudioSource.getMutable(switchSound).playing = true
-
 	})
-
 }
 
 
