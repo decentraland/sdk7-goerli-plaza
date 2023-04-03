@@ -26,8 +26,10 @@ export default function raycastSystem() {
       raycastMut.timestamp += 1
 
       Raycast.createOrReplace(entity, {
-        origin: transform.position,
-        direction: Vector3.rotate(Vector3.Forward(), transform.rotation),
+        direction: {
+          $case: 'localDirection',
+          localDirection: Vector3.Forward()
+        },
         maxDistance: raycastMut.power,
         queryType: RaycastQueryType.RQT_QUERY_ALL
       })
