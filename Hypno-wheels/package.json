@@ -1,20 +1,19 @@
 {
-	"name": "dcl-project",
-	"version": "1.0.0",
-	"description": "ECS7 ",
-	"scripts": {
-		"start": "sdk-commands start",
-		"build": "sdk-commands build",
-		"deploy": "sdk-commands deploy",
-		"upgrade-sdk": "npm install --save-dev @dcl/sdk@latest",
-		"upgrade-sdk:next": "npm install --save-dev @dcl/sdk@next"
-	},
-	"devDependencies": {
-		"@dcl/sdk": "latest"
-	},
-	"engines": {
-		"node": ">=14.0.0",
-		"npm": ">=6.0.0",
-		"yarn": "please use npm"
-	}
+  "name": "hypnowheel",
+  "description": "ECS7 ",
+  "version": "1.0.0",
+  "devDependencies": {
+    "@dcl/sdk": "next"
+  },
+  "engines": {
+    "node": ">=14.0.0",
+    "npm": ">=6.0.0"
+  },
+  "scripts": {
+    "build": "sdk-commands build",
+    "deploy": "sdk-commands deploy",
+    "start": "sdk-commands start",
+    "upgrade-sdk": "npm install --save-dev @dcl/sdk@latest",
+    "upgrade-sdk:next": "npm install --save-dev @dcl/sdk@next"
+  }
 }

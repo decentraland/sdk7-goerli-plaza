@@ -1,14 +1,53 @@
 {
-	"name": "dcl-project",
-	"version": "1.0.0",
-	"description": "My new Decentraland project",
-	"scripts": {
-		"start": "sdk-commands start",
-		"build": "sdk-commands build",
-		"upgrade-sdk": "npm install --save-dev @dcl/sdk@latest",
-		"upgrade-sdk:next": "npm install --save-dev @dcl/sdk@next"
-	},
-	"dependencies": {
-		"@dcl/sdk": "latest"
-	}
+  "name": "test-scenes",
+  "description": "My new Decentraland project",
+  "version": "1.0.0",
+  "dependencies": {
+    "syncpack": "^9.8.4"
+  },
+  "private": true,
+  "scripts": {
+    "sync": "syncpack format --config .syncpackrc.json  --source \"*/package.json\" --source package.json",
+    "test": "syncpack list-mismatches --config .syncpackrc.json  --source \"*/package.json\" --source package.json",
+    "update-parcels": "node scripts/checkParcelsCollision.js"
+  },
+  "workspaces": [
+    "advanced-avatar-swap",
+    "avatar-swap",
+    "BasicInteractions",
+    "beer-dispenser",
+    "bird-field",
+    "Block-dog",
+    "boids",
+    "coin-pickup",
+    "cube-wave-16x16",
+    "cube-wave-32x32",
+    "Cube",
+    "Dance-floor",
+    "dbmonster",
+    "enemy-spawner",
+    "Gnark",
+    "grab-object-advance",
+    "grab-objects",
+    "Hummingbirds",
+    "Hypno-wheels",
+    "item-pickup",
+    "Jukebox",
+    "Laser-ray-Casting",
+    "moving-platforms",
+    "open-door",
+    "power-cube",
+    "Random-noise-movement",
+    "rotating-platforms",
+    "scene-bounds-check",
+    "Shark-animation",
+    "sliding-door",
+    "Smoke",
+    "Swimming-Shark",
+    "uv-map",
+    "video-streaming",
+    "zombie-attack",
+    "Zombie-shooter",
+    "Zombie-shooter2"
+  ]
 }

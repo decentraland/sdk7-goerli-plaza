@@ -1,15 +1,15 @@
 {
-	"name": "zombie-attack",
-	"version": "1.0.0",
-	"description": "Zombie Attack",
-	"scripts": {
-		"start": "sdk-commands start",
-		"build": "sdk-commands build",
-		"deploy": "sdk-commands deploy",
-		"upgrade-sdk": "npm install --save-dev @dcl/sdk@latest",
-		"upgrade-sdk:next": "npm install --save-dev @dcl/sdk@next"
-	},
-	"devDependencies": {
-		"@dcl/sdk": "latest"
-	}
+  "name": "zombie-attack",
+  "description": "Zombie Attack",
+  "version": "1.0.0",
+  "devDependencies": {
+    "@dcl/sdk": "next"
+  },
+  "scripts": {
+    "build": "sdk-commands build",
+    "deploy": "sdk-commands deploy",
+    "start": "sdk-commands start",
+    "upgrade-sdk": "npm install --save-dev @dcl/sdk@latest",
+    "upgrade-sdk:next": "npm install --save-dev @dcl/sdk@next"
+  }
 }

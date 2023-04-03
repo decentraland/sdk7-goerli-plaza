@@ -7,10 +7,6 @@ on:
         type: string
         description: "@dcl/sdk package"
         default: "@dcl/sdk@next"
-      dcl-cli:
-        type: string
-        description: "decentraland package"
-        default: "decentraland@next"
 
 jobs:
   lint-and-build:
@@ -20,16 +16,8 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-          cache: 'npm'
-      - name: install fixed sdk
-        run: ./install-fixed-sdk.sh
-        env:
-          SDK_VERSION: ${{github.event.inputs.dcl-sdk-package}}
-      - name: install decentraland
-        run: npm i -g ${{github.event.inputs.dcl-cli}}
-      - name: install dependencies
-        run: npm i
       - name: build
-        run: dcl build
-        env:g
+        run: ./build-all.sh
+        env:
           DCL_DISABLE_ANALYTICS: "true"
+          SDK_VERSION: ${{github.event.inputs.dcl-sdk-package}}

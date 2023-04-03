@@ -1,15 +1,15 @@
 {
-	"name": "dcl-project",
-	"version": "1.0.0",
-	"description": "Power Cube: Decentraland scene project",
-	"scripts": {
-		"start": "sdk-commands start",
-		"build": "sdk-commands build",
-		"deploy": "sdk-commands deploy",
-		"upgrade-sdk": "npm install --save-dev @dcl/sdk@latest",
-		"upgrade-sdk:next": "npm install --save-dev @dcl/sdk@next"
-	},
-	"devDependencies": {
-		"@dcl/sdk": "latest"
-	}
+  "name": "power-cube",
+  "description": "Power Cube: Decentraland scene project",
+  "version": "1.0.0",
+  "devDependencies": {
+    "@dcl/sdk": "next"
+  },
+  "scripts": {
+    "build": "sdk-commands build",
+    "deploy": "sdk-commands deploy",
+    "start": "sdk-commands start",
+    "upgrade-sdk": "npm install --save-dev @dcl/sdk@latest",
+    "upgrade-sdk:next": "npm install --save-dev @dcl/sdk@next"
+  }
 }

@@ -12,14 +12,8 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-          cache: 'npm'
-      - name: check parcel collisions
-        run: node scripts/checkParcelsCollision.js
-      - name: install decentraland
-        run: npm i -g decentraland@next
-      - name: install dependencies
-        run: npm i
       - name: build
-        run: dcl build
+        run: ./build-all.sh
         env:
           DCL_DISABLE_ANALYTICS: "true"
+          SDK_VERSION: ${{github.event.inputs.dcl-sdk-package}}
