@@ -21,3 +21,5 @@ jobs:
         run: npm i
       - name: build
         run: dcl build
+        env:
+          DCL_DISABLE_ANALYTICS: "true"
