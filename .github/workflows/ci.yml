@@ -16,4 +16,4 @@ jobs:
         run: ./build-all.sh
         env:
           DCL_DISABLE_ANALYTICS: "true"
-          SDK_VERSION: ${{github.event.inputs.dcl-sdk-package}}
+          SDK_VERSION: ${{ github.event.inputs.dcl-sdk-package }}
