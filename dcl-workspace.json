@@ -1,0 +1,115 @@
+{
+  "folders": [
+    {
+      "path": "advanced-avatar-swap"
+    },
+    {
+      "path": "avatar-swap"
+    },
+    {
+      "path": "BasicInteractions"
+    },
+    {
+      "path": "beer-dispenser"
+    },
+    {
+      "path": "bird-field"
+    },
+    {
+      "path": "Block-dog"
+    },
+    {
+      "path": "boids"
+    },
+    {
+      "path": "coin-pickup"
+    },
+    {
+      "path": "cube-wave-16x16"
+    },
+    {
+      "path": "cube-wave-32x32"
+    },
+    {
+      "path": "Cube"
+    },
+    {
+      "path": "Dance-floor"
+    },
+    {
+      "path": "dbmonster"
+    },
+    {
+      "path": "enemy-spawner"
+    },
+    {
+      "path": "Gnark"
+    },
+    {
+      "path": "grab-object-advance"
+    },
+    {
+      "path": "grab-objects"
+    },
+    {
+      "path": "Hummingbirds"
+    },
+    {
+      "path": "Hypno-wheels"
+    },
+    {
+      "path": "item-pickup"
+    },
+    {
+      "path": "Jukebox"
+    },
+    {
+      "path": "Laser-ray-Casting"
+    },
+    {
+      "path": "moving-platforms"
+    },
+    {
+      "path": "open-door"
+    },
+    {
+      "path": "power-cube"
+    },
+    {
+      "path": "Random-noise-movement"
+    },
+    {
+      "path": "rotating-platforms"
+    },
+    {
+      "path": "scene-bounds-check"
+    },
+    {
+      "path": "Shark-animation"
+    },
+    {
+      "path": "sliding-door"
+    },
+    {
+      "path": "Smoke"
+    },
+    {
+      "path": "Swimming-Shark"
+    },
+    {
+      "path": "uv-map"
+    },
+    {
+      "path": "video-streaming"
+    },
+    {
+      "path": "zombie-attack"
+    },
+    {
+      "path": "Zombie-shooter"
+    },
+    {
+      "path": "Zombie-shooter2"
+    }
+  ]
+}
