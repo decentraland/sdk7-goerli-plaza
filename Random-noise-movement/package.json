@@ -1,31 +1,32 @@
 {
-  "name": "dcl-project",
-  "version": "1.0.0",
-  "description": "SDK7 Template scene",
-  "scripts": {
-    "start": "dcl start",
-    "build": "build-ecs",
-    "watch": "build-ecs --watch",
-    "ecs:install-next": "npm install --save-dev @dcl/sdk@next"
-  },
-  "devDependencies": {
-    "@dcl/sdk": "^7.0.5"
-  },
-  "engines": {
-    "node": ">=16.0.0",
-    "npm": ">=6.0.0",
-    "yarn": "please use npm"
-  },
-  "prettier": {
-    "semi": false,
-    "singleQuote": true,
-    "printWidth": 120,
-    "trailingComma": "none"
-  },
-  "dependencies": {
-    "@dcl/noise-utils": "^1.0.12-20221201202440.commit-51d8250"
-  },
-  "bundleDependencies": [
-    "@dcl/noise-utils"
-  ]
+	"name": "dcl-project",
+	"version": "1.0.0",
+	"description": "SDK7 Template scene",
+	"scripts": {
+		"start": "sdk-commands start",
+		"build": "sdk-commands build",
+		"deploy": "sdk-commands deploy",
+		"upgrade-sdk": "npm install --save-dev @dcl/sdk@latest",
+		"upgrade-sdk:next": "npm install --save-dev @dcl/sdk@next"
+	},
+	"devDependencies": {
+		"@dcl/sdk": "latest"
+	},
+	"engines": {
+		"node": ">=16.0.0",
+		"npm": ">=6.0.0",
+		"yarn": "please use npm"
+	},
+	"prettier": {
+		"semi": false,
+		"singleQuote": true,
+		"printWidth": 120,
+		"trailingComma": "none"
+	},
+	"dependencies": {
+		"@dcl/noise-utils": "^1.0.12-20221201202440.commit-51d8250"
+	},
+	"bundleDependencies": [
+		"@dcl/noise-utils"
+	]
 }

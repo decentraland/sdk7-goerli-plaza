@@ -122,7 +122,14 @@ export function createTap(tapBeerType: BeerType, dispenseEntity: Entity) {
 
   MeshCollider.setPlane(colliderEntity)
   // Debug to see the collider
-  MeshRenderer.setPlane(colliderEntity)
+  //MeshRenderer.setPlane(colliderEntity)
+  PointerEvents.create(colliderEntity, { pointerEvents: [{
+	eventType: PointerEventType.PET_DOWN, 
+	eventInfo: {
+		hoverText: "Place mug",
+		button: InputAction.IA_PRIMARY
+	}}
+	]})
 }
 
 export function playSound(audio: string, loop: boolean = false, position?: Vector3) {

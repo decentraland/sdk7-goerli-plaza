@@ -140,7 +140,7 @@ const VelocitySchema = Schemas.Map({
 To then create a custom component using one of these schemas, use the following syntax:
 
 ```ts
-export const myCustomComponent = engine.defineComponent(MyDataSchema, ComponentID)
+export const myCustomComponent = engine.defineComponent('ComponentName', MyDataSchema)
 ```
 
 
@@ -174,8 +174,7 @@ const VelocitySchema = Schemas.Map({
   y: Schemas.Float,
   z: Schemas.Float
 })
-const COMPONENT_ID = 2008
-const VelocityComponent = engine.defineComponent(Velocity, COMPONENT_ID)
+const VelocityComponent = engine.defineComponent('Velocity', Velocity)
 // Create Entity
 const entity = engine.addEntity()
 

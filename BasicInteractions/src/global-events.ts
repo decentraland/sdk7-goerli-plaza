@@ -1,5 +1,5 @@
+import { engine, InputAction, inputSystem, PointerEventType } from '@dcl/sdk/ecs'
 import { Vector3 } from '@dcl/sdk/math'
-import { engine, Entity, InputAction, inputSystem, PointerEventType } from '@dcl/sdk/ecs'
 import { PainterComponent } from './painter'
 import { createMesh } from './utils'
 
@@ -24,25 +24,23 @@ export function setupGlobalEvents() {
 
   /////// GLOBAL EVENT LISTENERS
 
-  const MagicGlobalEntity = undefined as any as Entity
-
   engine.addSystem(() => {
-    if (inputSystem.isTriggered(InputAction.IA_POINTER, PointerEventType.PET_DOWN, MagicGlobalEntity)) {
+    if (inputSystem.isTriggered(InputAction.IA_POINTER, PointerEventType.PET_DOWN)) {
       PainterComponent.createOrReplace(globalPointerDownCube)
     }
-    if (inputSystem.isTriggered(InputAction.IA_POINTER, PointerEventType.PET_UP, MagicGlobalEntity)) {
+    if (inputSystem.isTriggered(InputAction.IA_POINTER, PointerEventType.PET_UP)) {
       PainterComponent.createOrReplace(globalPointerUpCube)
     }
-    if (inputSystem.isTriggered(InputAction.IA_PRIMARY, PointerEventType.PET_DOWN, MagicGlobalEntity)) {
+    if (inputSystem.isTriggered(InputAction.IA_PRIMARY, PointerEventType.PET_DOWN)) {
       PainterComponent.createOrReplace(globalPrimaryDownCube)
     }
-    if (inputSystem.isTriggered(InputAction.IA_PRIMARY, PointerEventType.PET_UP, MagicGlobalEntity)) {
+    if (inputSystem.isTriggered(InputAction.IA_PRIMARY, PointerEventType.PET_UP)) {
       PainterComponent.createOrReplace(globalPrimaryUpCube)
     }
-    if (inputSystem.isTriggered(InputAction.IA_SECONDARY, PointerEventType.PET_DOWN, MagicGlobalEntity)) {
+    if (inputSystem.isTriggered(InputAction.IA_SECONDARY, PointerEventType.PET_DOWN)) {
       PainterComponent.createOrReplace(globalSecondaryDownCube)
     }
-    if (inputSystem.isTriggered(InputAction.IA_SECONDARY, PointerEventType.PET_UP, MagicGlobalEntity)) {
+    if (inputSystem.isTriggered(InputAction.IA_SECONDARY, PointerEventType.PET_UP)) {
       PainterComponent.createOrReplace(globalSecondaryUpCube)
     }
   })

@@ -7,6 +7,7 @@ import {
     AvatarModifierType
 } from '@dcl/sdk/ecs'
 import { Vector3 } from '@dcl/sdk/math'
+import { IntervalUtil } from './intervalUtil'
 
 let areaCenter: Vector3
 let areaSize: Vector3
@@ -55,9 +56,13 @@ export function createAvatarSwappingArea(center: Vector3, size: Vector3, avatarE
 }
 
 let lastPlayerPos: Vector3 | undefined = undefined
+const intervalUtil = new IntervalUtil(50);
+
 export function avatarSwappingSystem (dt: number) {
     if (!Transform.has(engine.PlayerEntity)) return
 
+    if (!intervalUtil.update(dt)) return;
+    
     const playerPos = Transform.get(engine.PlayerEntity).position
     const moved = playerPos != lastPlayerPos
 

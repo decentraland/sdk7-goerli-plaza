@@ -1,5 +1,5 @@
-import { Schemas, engine, Transform, GltfContainer, Animator, CameraMode, Entity } from '@dcl/sdk/ecs'
-import { Quaternion, Vector3 } from '@dcl/sdk/math'
+import { Animator, CameraMode, engine, GltfContainer, Schemas, Transform } from '@dcl/sdk/ecs'
+import { Quaternion } from '@dcl/sdk/math'
 import { MoveTransformComponent } from './components/moveTransport'
 import { InterpolationType } from './helper/interpolation'
 
@@ -7,7 +7,7 @@ const BirdData = {
   waitingTime: Schemas.Int
 }
 
-export const isBird = engine.defineComponent(BirdData, 3333)
+export const isBird = engine.defineComponent('isBird', BirdData)
 
 export function createHummingBird() {
   const bird = engine.addEntity()
@@ -84,7 +84,7 @@ export function birdSystem(dt: number) {
       })
 
       const mutableTransform = Transform.getMutable(bird)
-	  mutableTransform.rotation = Quaternion.fromLookAt(mutableTransform.position, nextPos)
+      mutableTransform.rotation = Quaternion.fromLookAt(mutableTransform.position, nextPos)
 
     }
   }

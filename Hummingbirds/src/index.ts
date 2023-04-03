@@ -25,9 +25,9 @@ GltfContainer.create(tree, {
 })
 
 AudioSource.create(tree, {
-	audioClipUrl: 'sounds/pickUp.mp3',
-	loop: false,
-	playing: false
+  audioClipUrl: 'sounds/pickUp.mp3',
+  loop: false,
+  playing: false
 })
 
 Animator.create(tree, {
@@ -48,8 +48,8 @@ pointerEventsSystem.onPointerDown(
     createHummingBird()
     const anim = Animator.getMutable(tree)
     anim.states[0].playing = true
-	const audioSource = AudioSource.getMutable(tree)
-	audioSource.playing = true
+    const audioSource = AudioSource.getMutable(tree)
+    audioSource.playing = true
   },
   {
     button: InputAction.IA_PRIMARY,

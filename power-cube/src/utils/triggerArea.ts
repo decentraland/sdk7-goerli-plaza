@@ -33,20 +33,18 @@ function isPositionInsideTriggerArea(
 }
 
 export function createTriggerArea(targetEngine: IEngine) {
-  const TriggerBox = targetEngine.defineComponent({}, 2004)
-  const TriggerArea = targetEngine.defineComponent(
+  const TriggerBox = targetEngine.defineComponent('TriggerBox', {})
+  const TriggerArea = targetEngine.defineComponent('TriggerArea',
     {
       size: Schemas.Vector3,
       centerOffset: Schemas.Vector3
-    },
-    2000
+    }
   )
 
-  const TriggerState = targetEngine.defineComponent(
+  const TriggerState = targetEngine.defineComponent('TriggerState',
     {
-      state: Schemas.Array(Schemas.Number)
-    },
-    2001
+      state: Schemas.Array(Schemas.Entity)
+    }
   )
   enum EventType {
     Enter,
@@ -59,7 +57,7 @@ export function createTriggerArea(targetEngine: IEngine) {
   function checkTrigger(positionEntity: Entity, position: Vector3) {
     for (const [entity, area, state, transform] of targetEngine.getEntitiesWith(TriggerArea, TriggerState, Transform)) {
       const nextState = isPositionInsideTriggerArea(position, transform.position, area.size, area.centerOffset)
-      const stateIndex = state.state.indexOf(positionEntity as number)
+      const stateIndex = state.state.indexOf(positionEntity)
       const currentState = stateIndex !== -1
 
       if (currentState !== nextState) {
@@ -68,12 +66,12 @@ export function createTriggerArea(targetEngine: IEngine) {
 
         const triggerStateMutable = TriggerState.getMutable(entity)
         if (!currentState) {
-          triggerStateMutable.state.push(positionEntity as number)
+          triggerStateMutable.state.push(positionEntity)
         } else {
           triggerStateMutable.state = triggerStateMutable.state.filter((item) => item !== positionEntity)
         }
 
-        if (data) data.cb(triggerStateMutable.state)
+        if (data) data.cb([positionEntity])
       }
     }
   }

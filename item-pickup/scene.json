@@ -1,6 +1,6 @@
 {
 	"ecs7": true,
-  "runtimeVersion": "7",
+	"runtimeVersion": "7",
 	"display": {
 		"title": "item-pickup",
 		"favicon": "favicon_asset"
@@ -12,9 +12,9 @@
 	"owner": "",
 	"scene": {
 		"parcels": [
-			"53,53"
+			"77,-4"
 		],
-		"base": "53,53"
+		"base": "77,-4"
 	},
 	"requiredPermissions": [],
 	"main": "bin/game.js",

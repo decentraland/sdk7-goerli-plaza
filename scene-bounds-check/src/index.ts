@@ -1,12 +1,12 @@
-import {
-    engine, GltfContainer, NftShape, MeshCollider, MeshRenderer, Transform, VisibilityComponent, AvatarShape
-} from '@dcl/sdk/ecs'
-import { Color3, Vector3, Quaternion } from '@dcl/sdk/math'
-import { createCube } from './factory'
-import {createMovingPlatform, platformsMovementSystem, setAsMovingPlatform} from "./movingPlatform";
+import { AudioSource, AvatarShape, engine, GltfContainer, InputAction, MeshCollider, MeshRenderer, NftShape, PointerEventType, PointerEvents, TextShape, Transform, VisibilityComponent } from '@dcl/sdk/ecs';
+import { Quaternion, Vector3 } from '@dcl/sdk/math';
+import { createCube } from './factory';
+import { createMovingPlatform, platformsMovementSystem, setAsMovingPlatform } from "./movingPlatform";
 
 // export all the functions required to make the scene work
-export * from '@dcl/sdk'
+export * from '@dcl/sdk';
+
+engine.addSystem(platformsMovementSystem)
 
 // PARENTING BOUNDS TESTING
 const grandParentEntity = createCube(4, 7, 2)
@@ -34,7 +34,7 @@ function timedParentingSystem(deltaTime: number) {
         timer = 6
         const transform = Transform.getMutable(outsiderParentChild)
         if (transform.parent == outsiderParent) {
-            transform.parent = null
+            transform.parent = undefined
         } else {
             transform.parent = outsiderParent
         }
@@ -54,6 +54,7 @@ createMovingPlatform(
     ],
     5
 )
+
 createMovingPlatform(
     "models/movingPlatform.glb",
     [
@@ -93,7 +94,6 @@ setAsMovingPlatform(boxColliderEntity,
 )
 
 // NFT SHAPE
-
 const nftShapeEntity = engine.addEntity()
 NftShape.create(nftShapeEntity, {
     src: 'ethereum://0x06012c8cf97bead5deae237070f9587f8e7a266d/558536'
@@ -106,7 +106,7 @@ setAsMovingPlatform(nftShapeEntity,
     180
 )
 
-// IRREGULAR SHAPED MESH
+// IRREGULAR SHAPED MESH + POINTER HOVER FEEDBACK
 const irregularMeshEntity = engine.addEntity()
 GltfContainer.create(irregularMeshEntity, {
     src: "models/irregular.glb"
@@ -114,6 +114,17 @@ GltfContainer.create(irregularMeshEntity, {
 Transform.create(irregularMeshEntity, {
     position: Vector3.create(16, 1, -16),
     rotation: Quaternion.fromEulerDegrees(0, -90, 0)
+})
+PointerEvents.create(irregularMeshEntity, {
+    pointerEvents: [
+        {
+            eventType: PointerEventType.PET_DOWN,
+            eventInfo: {
+                button: InputAction.IA_POINTER,
+                hoverText: "POINTER HOVER!",
+            }
+        }
+    ]
 })
 setAsMovingPlatform(irregularMeshEntity,
     [
@@ -145,7 +156,8 @@ AvatarShape.create(avatarEntity, {
         "urn:decentraland:matic:collections-v2:0x4334a820f556a54845a35f8aad5986aecdf07d43:1",
         "urn:decentraland:ethereum:collections-v1:sugarclub_yumi:yumi_retro_shades_eyewear",
         "urn:decentraland:matic:collections-v2:0x4334a820f556a54845a35f8aad5986aecdf07d43:0"
-    ]
+    ],
+    emotes: []
 })
 
 setAsMovingPlatform(avatarEntity,
@@ -162,17 +174,70 @@ setAsMovingPlatform(avatarEntity,
 let avatarUpdateTimer = 10
 engine.addSystem((deltaTime: number) => {
     avatarUpdateTimer -= deltaTime
-    
-    if(avatarUpdateTimer <= 0)
-    {
+
+    if (avatarUpdateTimer <= 0) {
         avatarUpdateTimer = 10
-        
+
         const component = AvatarShape.getMutable(avatarEntity)
-        if(component.bodyShape == femaleBodyShapeId)
+        if (component.bodyShape == femaleBodyShapeId)
             component.bodyShape = maleBodyShapeId
         else
             component.bodyShape = femaleBodyShapeId
     }
 })
 
-engine.addSystem(platformsMovementSystem)
+// GIGANTIC MESHES
+// const giganticMesh = createCube(8, 8, 8)
+// Transform.getMutable(giganticMesh).scale = Vector3.scale(Vector3.One(), 1000000000)
+
+// AUDIO SOURCES
+const audioSourceEntity = engine.addEntity()
+MeshRenderer.setBox(audioSourceEntity)
+Transform.create(audioSourceEntity, {
+    scale: Vector3.create(0.1, 0.1, 0.1)
+})
+AudioSource.create(audioSourceEntity, {
+    playing: true,
+    volume: 1,
+    loop: true,
+    audioClipUrl: 'audio/brahms-melody.mp3'
+})
+setAsMovingPlatform(audioSourceEntity,
+    [
+        Vector3.create(24, 1, -31),
+        Vector3.create(24, 1, -33),
+    ],
+    10
+)
+
+// TEXT SHAPE
+const textShapeEntity = engine.addEntity(true)
+TextShape.create(textShapeEntity, {
+    text: 'IA IA CTHULHU FHTAGN!',
+    fontSize: 2
+})
+setAsMovingPlatform(textShapeEntity,
+    [
+        Vector3.create(30.5, 1, -16),
+        Vector3.create(32.5, 1, -16),
+    ],
+    5
+)
+
+// HEIGHT CHECK...
+const highEntity = engine.addEntity()
+MeshRenderer.setBox(highEntity)
+Transform.create(highEntity, {
+    scale: Vector3.create(5, 1, 5)
+})
+setAsMovingPlatform(highEntity,
+    [
+        Vector3.create(8, 45, -8),
+        Vector3.create(8, 46, -8),
+    ],
+    2
+)
+
+
+
+

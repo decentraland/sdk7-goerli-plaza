@@ -3,15 +3,14 @@
 	"version": "1.0.0",
 	"description": "ECS7 ",
 	"scripts": {
-		"start": "dcl start",
-		"build": "build-ecs --production",
-		"watch": "build-ecs --watch",
-		"ecs:install-next": "npm install --save-dev @dcl/sdk@next",
-		"lint": "eslint . --ext .ts",
-		"lint:fix": "eslint . --ext .ts --fix"
+		"start": "sdk-commands start",
+		"build": "sdk-commands build",
+		"deploy": "sdk-commands deploy",
+		"upgrade-sdk": "npm install --save-dev @dcl/sdk@latest",
+		"upgrade-sdk:next": "npm install --save-dev @dcl/sdk@next"
 	},
 	"devDependencies": {
-		"@dcl/sdk": "^7.0.5"
+		"@dcl/sdk": "latest"
 	},
 	"engines": {
 		"node": ">=16.0.0",

@@ -1,6 +1,6 @@
 {
-  "ecs7": true,
-  "runtimeVersion": "7",
+	"ecs7": true,
+	"runtimeVersion": "7",
 	"display": {
 		"title": "dance-floor",
 		"favicon": "favicon_asset"
@@ -12,9 +12,9 @@
 	"owner": "",
 	"scene": {
 		"parcels": [
-			"66,66"
+			"76,-3"
 		],
-		"base": "66,66"
+		"base": "76,-3"
 	},
 	"requiredPermissions": [],
 	"main": "bin/game.js",

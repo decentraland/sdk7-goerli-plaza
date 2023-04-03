@@ -33,20 +33,18 @@ function isPositionInsideTriggerArea(
 }
 
 export function createTriggerArea(targetEngine: IEngine) {
-    const TriggerBox = targetEngine.defineComponent({}, 2004)
-    const TriggerArea = targetEngine.defineComponent(
+    const TriggerBox = targetEngine.defineComponent('TriggerBox', {})
+    const TriggerArea = targetEngine.defineComponent('TriggerArea',
         {
             size: Schemas.Vector3,
             centerOffset: Schemas.Vector3
-        },
-        2000
+        }
     )
 
-    const TriggerState = targetEngine.defineComponent(
+    const TriggerState = targetEngine.defineComponent('TriggerState',
         {
             state: Schemas.Array(Schemas.Number)
-        },
-        2001
+        }
     )
     enum EventType {
         Enter,
@@ -58,7 +56,7 @@ export function createTriggerArea(targetEngine: IEngine) {
 
     function checkTrigger(positionEntity: Entity, position: Vector3) {
         for (const [entity, area, state, transform] of targetEngine.getEntitiesWith(TriggerArea, TriggerState, Transform)) {
-            const nextState = isPositionInsideTriggerArea(position, transform.position, area.size, area.centerOffset)
+            const nextState = isPositionInsideTriggerArea(position, transform.position as Vector3, area.size, area.centerOffset)
             const stateIndex = state.state.indexOf(positionEntity as number)
             const currentState = stateIndex !== -1
 
@@ -73,7 +71,7 @@ export function createTriggerArea(targetEngine: IEngine) {
                     triggerStateMutable.state = triggerStateMutable.state.filter((item) => item !== positionEntity)
                 }
 
-                if (data) data.cb(triggerStateMutable.state)
+                if (data) data.cb([positionEntity])
             }
         }
     }
@@ -81,11 +79,11 @@ export function createTriggerArea(targetEngine: IEngine) {
     function system() {
         //FIXME what if zero lines up with trigger location!?!?!
         const playerPosition = Transform.getOrNull(targetEngine.PlayerEntity)?.position
-        if(playerPosition) checkTrigger(engine.PlayerEntity, playerPosition) //checks player with ...?
+        if (playerPosition) checkTrigger(engine.PlayerEntity, playerPosition) //checks player with ...?
         //WHY need blank comma????
         //what is this loop doing?? checking if trigger areas collide with other trigger areas?
         for (const [entity, , transform] of targetEngine.getEntitiesWith(TriggerBox, Transform)) {
-            checkTrigger(entity, transform.position)
+            checkTrigger(entity, transform.position as Vector3)
         }
     }
 

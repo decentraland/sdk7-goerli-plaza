@@ -11,24 +11,17 @@ export const songs: Song[] = [
   { src: 'sounds/Chopin.mp3', name: 'Chopin' }
 ]
 
-enum CustomComponentIds {
-  SongButton = 2002,
-  MoveAnimation = 2003
-}
-
-export const SongButton = engine.defineComponent(
+export const SongButton = engine.defineComponent('SongButton',
   {
     jukebox: Schemas.Entity
-  },
-  CustomComponentIds.SongButton
+  }
 )
 
-export const MoveAnimation = engine.defineComponent(
+export const MoveAnimation = engine.defineComponent('MoveAnimation',
   {
     from: Schemas.Vector3,
     to: Schemas.Vector3,
     currentPosition: Schemas.Number,
     deltaMultiplier: Schemas.Number
-  },
-  CustomComponentIds.MoveAnimation
+  }
 )

@@ -1,6 +1,6 @@
 {
 	"ecs7": true,
-  "runtimeVersion": "7",
+	"runtimeVersion": "7",
 	"display": {
 		"title": "moving-platforms",
 		"favicon": "favicon_asset"
@@ -12,9 +12,9 @@
 	"owner": "",
 	"scene": {
 		"parcels": [
-			"80,60"
+			"77,-5"
 		],
-		"base": "80,60"
+		"base": "77,-5"
 	},
 	"requiredPermissions": [],
 	"main": "bin/game.js",

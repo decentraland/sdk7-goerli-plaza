@@ -25,11 +25,16 @@ executeTask(async function () {
   // Adding base scene models
   const base = engine.addEntity()
   GltfContainer.create(base, { src: 'models/baseLight.glb' })
-  Transform.create(base, {scale:Vector3.create(2, 1, 2)})
+  Transform.create(base, {
+	scale:Vector3.create(2, 1, 2),
+	position:Vector3.create(0, 0, 0)
+})
 
   const platform = engine.addEntity()
   GltfContainer.create(platform, { src: 'models/staticPlatforms.glb' })
-  Transform.create(platform)
+  Transform.create(platform, {
+	position:Vector3.create(0, 0, 0)
+  })
 
   // Contains the positions for each coin
   const platforms = [
@@ -97,8 +102,12 @@ executeTask(async function () {
 
     // Crown
     createCrown(
-      'models/crown.glb',
-      Transform.create({ position: Vector3.create(27, 13.75, 28.5) })
+      'models/crown.glb', 
+{ 
+           position: Vector3.create(27, 13.75, 28.5-16),
+           rotation: Quaternion.Identity(),
+           scale: Vector3.One()
+       }
     )
 
 

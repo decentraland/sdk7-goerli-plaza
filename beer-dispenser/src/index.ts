@@ -8,10 +8,18 @@ export * from '@dcl/sdk'
 
 function setup() {
   // Create tables
-  GltfContainer.create(engine.addEntity(), { src: 'models/tables.glb' })
+  const tables = engine.addEntity()
+  Transform.create(tables,{
+	position: Vector3.create(0,0,0)
+  })
+  GltfContainer.create(tables, { src: 'models/tables.glb' })
 
   // Create floor
-  GltfContainer.create(engine.addEntity(), {
+  const floor = engine.addEntity()
+  Transform.create(floor,{
+	position: Vector3.create(0,0,0)
+  })
+  GltfContainer.create(floor, {
     src: 'models/baseDarkWithCollider.glb'
   })
 
@@ -21,8 +29,7 @@ function setup() {
     src: 'models/beerDispenser.glb'
   })
   Transform.create(dispenserEntity, {
-    position: Vector3.create(8, 1.25, 7.5),
-    rotation: Quaternion.fromEulerDegrees(0, 180, 0)
+    position: Vector3.create(8, 1.25, 7.5)
   })
 
   // Create taps

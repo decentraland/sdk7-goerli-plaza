@@ -9,6 +9,8 @@ import {
   AvatarAttach,
   AvatarAnchorPointType,
 } from "@dcl/sdk/ecs"
+import { EnemyShip } from "../components/customComponents"
+import { destroyEnemy } from "../enemy"
 
 export function clickedSystem() {
   if (inputSystem.getInputCommand(InputAction.IA_POINTER, PointerEventType.PET_DOWN)) {
@@ -31,19 +33,11 @@ AudioSource.create(soundPlayer, {
   loop: false,
   volume: 0.5,
 })
-attachEntity(soundPlayer)
 
-import { getUserData } from "~system/UserIdentity"
-import { EnemyShip } from "../components/customComponents"
-import { destroyEnemy } from "../enemy"
 
-async function attachEntity(entity: Entity) {
-  let userData = await getUserData({})
-  if (!userData.data) return
-  console.log(userData.data.userId)
-
-  AvatarAttach.create(entity, {
-    anchorPointId: AvatarAnchorPointType.AAPT_POSITION,
-    avatarId: userData.data.userId,
+AvatarAttach.create(soundPlayer, {
+    anchorPointId: AvatarAnchorPointType.AAPT_POSITION
   })
-}
+
+
+

@@ -20,7 +20,7 @@ export function createGnark(startingSegment: number = 1): Entity {
   const gnark = engine.addEntity()
 
   Transform.create(gnark, {
-    position: point1
+    position: point1,
   })
 
   GltfContainer.create(gnark, {

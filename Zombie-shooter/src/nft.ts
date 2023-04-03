@@ -4,7 +4,7 @@ export function createNft(xPos: number): Entity {
   const nft = engine.addEntity()
 
   Transform.create(nft, {
-    position: { x: xPos, y: 1, z: 13 },
+    position: { x: 3+  xPos, y: 1, z: 13 },
   })
 
   NftShape.create(nft, {

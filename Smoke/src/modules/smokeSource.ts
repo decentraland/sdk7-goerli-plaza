@@ -18,7 +18,7 @@ function spawnSmokePuff(entity: Entity, parent: Entity) {
     parent
   })
 
-  Billboard.createOrReplace(entity, { billboardMode: BillboardMode.BM_Y_AXE })
+  Billboard.createOrReplace(entity, { billboardMode: BillboardMode.BM_Y })
 
   SmokeParticle.createOrReplace(entity, {
     velocity: newVel,

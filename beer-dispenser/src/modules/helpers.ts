@@ -26,20 +26,3 @@ export function getEntityParent(entity: Entity) {
   return Transform.getOrNull(entity)?.parent || engine.RootEntity
 }
 
-// export function playSingleAnim(entity: Entity, animName: string) {
-//   const animator = Animator.getMutableOrNull(entity)
-//   if (!animator) return
-
-//   const animItem = animator.states.find((item) => item.name === animName)
-//   if (!animItem) return
-
-//   // Reset all other animations
-//   for (const state of animator.states) {
-//     state.playing = false
-//   }
-
-//   animItem.playing = true
-//   animItem.loop = false
-
-//   return animItem
-// }

@@ -1,19 +1,25 @@
 export * from '@dcl/sdk'
-import {engine} from '@dcl/sdk/ecs'
+import {engine, GltfContainer, Transform} from '@dcl/sdk/ecs'
+import { Vector3 } from '@dcl/sdk/math'
 
-import { createGLTF } from './gltf'
+
 import { createGnark } from './gnark'
 
 import { distanceSystem, walkAround } from './systems/gnarkAI'
 
-createGLTF(
-  {
-    position: { x: 16, y: 0, z: 16 },
-    scale: { x: 1.6, y: 1.6, z: 1.6 },
-    rotation: { x: 0, y: 180, z: 0, w: 1 }
-  },
-  'models/Temple.glb'
-)
+
+const temple = engine.addEntity()
+
+Transform.create(temple, { 
+	position: Vector3.create(16, 0, 16 ),
+    scale: Vector3.create(1.6, 1.6, 1.6)
+})
+
+GltfContainer.create(temple, {
+	src: 'models/Temple.glb'
+})
+
+
 createGnark(1)
 createGnark(2)
 

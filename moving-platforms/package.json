@@ -1,15 +1,15 @@
 {
-  "name": "moving-platforms",
-  "version": "1.0.0",
-  "description": "Moving Platforms",
-  "scripts": {
-    "start": "dcl start",
-    "build": "build-ecs",
-    "watch": "build-ecs --watch",
-    "lint": "eslint . --ext .ts",
-    "lint:fix": "eslint . --ext .ts --fix"
-  },
-  "dependencies": {
-    "@dcl/sdk": "^7.0.5"
-  }
+	"name": "moving-platforms",
+	"version": "1.0.0",
+	"description": "Moving Platforms",
+	"scripts": {
+		"start": "sdk-commands start",
+		"build": "sdk-commands build",
+		"deploy": "sdk-commands deploy",
+		"upgrade-sdk": "npm install --save-dev @dcl/sdk@latest",
+		"upgrade-sdk:next": "npm install --save-dev @dcl/sdk@next"
+	},
+	"dependencies": {
+		"@dcl/sdk": "latest"
+	}
 }

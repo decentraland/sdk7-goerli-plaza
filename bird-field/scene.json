@@ -1,48 +1,55 @@
 {
-  "ecs7": true,
-  "runtimeVersion": "7",
-  "display": {
-    "title": "item-pickup",
-    "favicon": "favicon_asset"
-  },
-  "contact": {
-    "name": "decentraland",
-    "email": ""
-  },
-  "owner": "",
-  "requiredPermissions": [],
-  "main": "bin/game.js",
-  "tags": [],
-  "spawnPoints": [
-    {
-      "name": "spawn1",
-      "default": true,
-      "position": {
-        "x": 0,
-        "y": 0,
-        "z": 0
-      },
-      "cameraTarget": {
-        "x": 8,
-        "y": 1,
-        "z": 8
-      }
-    }
-  ],
-  "scene": {
-    "parcels": [
-     
-      "74,-3",
-      "74,-2",
-      "75,-3",
-      "75,-2",
-      "76,-3",
-      "76,-2",
-      "74,-1",
-      "75,-1",
-       "76,-1",
-      
-    ],
-    "base": "74,-3"
-  }
+	"ecs7": true,
+	"runtimeVersion": "7",
+	"display": {
+		"title": "item-pickup",
+		"favicon": "favicon_asset"
+	},
+	"contact": {
+		"name": "decentraland",
+		"email": ""
+	},
+	"owner": "",
+	"requiredPermissions": [],
+	"main": "bin/game.js",
+	"tags": [],
+	"spawnPoints": [
+		{
+			"name": "spawn1",
+			"default": true,
+			"position": {
+				"x": [
+					0,
+					3
+				],
+				"y": [
+					0,
+					0
+				],
+				"z": [
+					0,
+					3
+				]
+			},
+			"cameraTarget": {
+				"x": 8,
+				"y": 1,
+				"z": 8
+			}
+		}
+	],
+	"scene": {
+		"parcels": [
+			"74,-2",
+			"74,-1",
+			"75,-2",
+			"75,-1",
+			"76,-2",
+			"76,-1",
+			"74,0",
+			"75,0",
+			"76,0"
+		],
+		"base": "74,-2"
+	}
 }

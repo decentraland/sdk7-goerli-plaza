@@ -11,7 +11,7 @@ export function CircleHoverSystem(dt: number) {
   for (const [entity] of entitiesWithBoxShapes) {
     const transform = Transform.getMutable(entity)
 
-    // mutate the rotation
+    // mutate the position
     transform.position.y =
       Math.cos(
         hoverState + Math.sqrt(Math.pow(transform.position.x - 8, 2) + Math.pow(transform.position.z - 8, 2)) / Math.PI

@@ -31,7 +31,6 @@ export function zombieSpawnSystem(dt: number) {
   }
 }
 
-engine.addSystem(zombieSpawnSystem)
 
 // how do I pass the controller component as a param to this function????
 function lose() {

@@ -1,15 +1,7 @@
 import {
-  Entity,
-  engine,
-  Transform,
-  MeshRenderer,
-  MeshCollider,
-  Material,
-  pointerEventsSystem,
-  Schemas,
-  InputAction
+  engine, Entity, Material, MeshCollider, MeshRenderer, Transform
 } from '@dcl/sdk/ecs'
-import { Color3, Vector3 } from '@dcl/sdk/math'
+import { Color4, Vector3 } from '@dcl/sdk/math'
 
 export function createWall(position: Vector3, scale: Vector3, parent?: Entity) {
   const entity = engine.addEntity()
@@ -22,7 +14,7 @@ export function createWall(position: Vector3, scale: Vector3, parent?: Entity) {
     mesh: {
       $case: 'box',
       box: { uvs: [] }
-    } 
+    }
   })
   MeshCollider.create(entity, {
     mesh: {
@@ -38,7 +30,7 @@ export function setMaterial(entity: Entity) {
     material: {
       $case: "pbr",
       pbr: {
-        albedoColor: Color3.Red(),
+        albedoColor: Color4.Red(),
         metallic: 0.9,
         roughness: 0.1
       }
