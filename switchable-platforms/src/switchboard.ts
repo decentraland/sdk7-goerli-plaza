@@ -32,24 +32,49 @@ export function createSwitchBoard(
   GltfContainer.create(gear, { src: 'models/gears.glb' })
   Transform.create(gear, {parent: entity})
 
-  utils.triggers.addTrigger(buttonA, 1, 1, [{type: "box", scale:Vector3.create(2.75, 2.75, 2.75), position:Vector3.create(1.5, 2, 0)}],
+  utils.toggles.addToggle(buttonA, utils.ToggleState.On, ()=>{
+	Transform.getMutable(buttonA).position.y =  -0.12
+	Transform.getMutable(switchSound).position = Transform.get(engine.PlayerEntity).position
+	AudioSource.getMutable(switchSound).playing = true
+  })
+
+  utils.toggles.addToggle(buttonA, utils.ToggleState.Off, ()=>{
+	Transform.getMutable(buttonA).position.y =  0
+	Transform.getMutable(switchSound).position = Transform.get(engine.PlayerEntity).position
+	AudioSource.getMutable(switchSound).playing = true
+  })
+
+  utils.toggles.addToggle(buttonB, utils.ToggleState.On, ()=>{
+	Transform.getMutable(buttonA).position.y =  -0.12
+	Transform.getMutable(switchSound).position = Transform.get(engine.PlayerEntity).position
+	AudioSource.getMutable(switchSound).playing = true
+  })
+
+  utils.toggles.addToggle(buttonB, utils.ToggleState.Off, ()=>{
+	Transform.getMutable(buttonA).position.y =  0
+	Transform.getMutable(switchSound).position = Transform.get(engine.PlayerEntity).position
+	AudioSource.getMutable(switchSound).playing = true
+  })
+
+
+  utils.triggers.addTrigger(buttonA, 1, 1, [{type: "box", scale:Vector3.create(2.5, 2.5, 2.5), position:Vector3.create(1.5, 2, 0)}],
 	()=>{
-		Transform.getMutable(switchSound).position = Transform.get(engine.PlayerEntity).position
-		AudioSource.getMutable(switchSound).playing = true
-		
-		movePlatform(entity, buttonA, buttonB, gear, -0.12, 0, -180, endPos)
-	}, 
-	undefined,  
+		utils.toggles.set(buttonA, utils.ToggleState.On)
+		movePlatform(entity,  gear, -180, endPos)
+	}, ()=> {
+		utils.toggles.set(buttonA, utils.ToggleState.Off)
+	},  
 	Color3.Yellow()
   )
 
-  utils.triggers.addTrigger(buttonB, 1, 1, [{type: "box", scale:Vector3.create(2.75, 2.75, 2.75), position:Vector3.create(-1.5, 2, 0)}],
+  utils.triggers.addTrigger(buttonB, 1, 1, [{type: "box", scale:Vector3.create(2.5, 2.5, 2.5), position:Vector3.create(-1.5, 2, 0)}],
   ()=>{
-	  Transform.getMutable(switchSound).position = Transform.get(engine.PlayerEntity).position
-	  AudioSource.getMutable(switchSound).playing = true
-	  movePlatform(entity, buttonA, buttonB, gear, 0, -0.12, 180, startPos) 
+	  utils.toggles.set(buttonB, utils.ToggleState.On)
+	  movePlatform(entity,  gear, 180, startPos) 
   }, 
-  undefined,  
+  ()=> {
+	utils.toggles.set(buttonB, utils.ToggleState.Off)
+},  
   Color3.Yellow()
   )
 
@@ -59,19 +84,12 @@ export function createSwitchBoard(
 
 function movePlatform(
 	platform: Entity,
-	buttonA: Entity,
-	buttonB: Entity,
 	gear: Entity,
-	buttonAPos: number,
-	buttonBPos: number,
     rotationSpeed: number,
     targetPos: Vector3
 ){
 
 	utils.tweens.stopTranslation(platform)
-
-	Transform.getMutable(buttonA).position.y = buttonAPos
-	Transform.getMutable(buttonB).position.y = buttonBPos
 
 	utils.perpetualMotions.startRotation(gear, Quaternion.fromEulerDegrees(0,0, rotationSpeed))
 
@@ -80,11 +98,7 @@ function movePlatform(
 
 	utils.tweens.startTranslation(platform, currentPos, targetPos, speed, utils.InterpolationType.LINEAR, ()=>{
 
-		Transform.getMutable(buttonA).position.y = 0
-		Transform.getMutable(buttonB).position.y = 0
-
 		utils.perpetualMotions.stopRotation(gear)
-
 		Transform.getMutable(switchSound).position = Transform.get(engine.PlayerEntity).position
 	  	AudioSource.getMutable(switchSound).playing = true
 
