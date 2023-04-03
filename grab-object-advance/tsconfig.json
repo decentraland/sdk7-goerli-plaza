@@ -6,8 +6,6 @@
   "include": [
     "src/**/*.ts"
   ],
-  "files": [
-    "node_modules/cannon/build/cannon.min.js"
-  ],
+  "files": [],
   "extends": "@dcl/sdk/types/tsconfig.ecs7.json"
 }

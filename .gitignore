@@ -4,7 +4,8 @@ bin
 *.swp
 *.*~
 export
-.DS_Store
+**/.DS_Store
 */node_modules
 node_modules/
 **/package-lock.json
+.pnpm-store

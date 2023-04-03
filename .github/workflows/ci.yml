@@ -8,16 +8,12 @@ jobs:
   lint-and-build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Use Node.js 16.x
-        uses: actions/setup-node@v1
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
-          node-version: 16.x
-      - name: check parcel collisions
-        run: node scripts/checkParcelsCollision.js
-      - name: install decentraland
-        run: npm i -g decentraland@next
-      - name: install dependencies
-        run: npm i
+          node-version: 16
       - name: build
-        run: dcl build
+        run: ./build-all.sh
+        env:
+          DCL_DISABLE_ANALYTICS: "true"
+          SDK_VERSION: ${{github.event.inputs.dcl-sdk-package}}
