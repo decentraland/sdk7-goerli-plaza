@@ -50,17 +50,24 @@ export function createCrown(
   const size = Vector3.create(2.5, 2.5, 2.5)
   const centerOffset = Vector3.Zero()
   
-  utils.triggers.addTrigger(entity, 1, 1, [{position:Vector3.Zero(),size:size}],[],
-	()=>{
-    console.log("enter crown")
-		AudioSource.getMutable(crownPickupSound).playing = true 
-    const playerPosition = Transform.getOrNull(engine.PlayerEntity)?.position || Vector3.Zero()
-    //console.log("engine.PlayerEntity",Transform.getOrNull(engine.PlayerEntity),playerPosition,AudioSource.get(crownPickupSound).playing) 
-    Transform.getMutable(crownPickupSound).position = playerPosition//.position
-    engine.removeEntity(entity)  
-    utils.triggers.removeTrigger(entity)
-	}
-  ,()=>{},  Color3.Yellow()
+  utils.triggers.enableDebugDraw(true)
+  //utils.triggers.setLayerMask(engine.PlayerEntity,1)
+  //utils.triggers.setTriggeredByMask(entity,1)
+  
+  //entity: Entity, layerMask: number, triggeredByMask: number, areas?: Array<TriggerAreaSpec>, onEnterCallback?: OnTriggerEnterCallback, onExitCallback?: OnTriggerExitCallback, debugColor?: Color3
+  utils.triggers.addTrigger(entity
+    , 1, 1, 
+    [{position:Vector3.Zero(),scale:size,type:'box'}],
+    ()=>{
+      console.log("enter crown")
+      AudioSource.getMutable(crownPickupSound).playing = true 
+      const playerPosition = Transform.getOrNull(engine.PlayerEntity)?.position || Vector3.Zero()
+      //console.log("engine.PlayerEntity",Transform.getOrNull(engine.PlayerEntity),playerPosition,AudioSource.get(crownPickupSound).playing) 
+      Transform.getMutable(crownPickupSound).position = playerPosition//.position
+      engine.removeEntity(entity)  
+      utils.triggers.removeTrigger(entity)
+    }
+    ,()=>{},  Color3.Yellow()
   )
 
 

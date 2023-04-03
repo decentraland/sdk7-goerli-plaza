@@ -24,7 +24,7 @@
 		"trailingComma": "none"
 	},
 	"dependencies": {
-		"@dcl-sdk/utils": "^0.0.1-20230329141627.commit-341126d"
+		"@dcl-sdk/utils": "0.0.1-20230403135929.commit-a2af362"
 	},
 	"bundleDependencies": [
 		"@dcl-sdk/utils"
