@@ -989,7 +989,7 @@ glob-parent@~5.1.2:
   dependencies:
     is-glob "^4.0.1"
 
-glob@^9.3.2:
+glob@^9.3.2, glob@^9.3.4:
   version "9.3.4"
   resolved "https://registry.npmjs.org/glob/-/glob-9.3.4.tgz"
   integrity sha512-qaSc49hojMOv1EPM4EuyITjDSgSKI0rthoHnvE81tcOi1SCVndHko7auqxdQ14eiQG2NDBJBE86+2xIrbIvrbA==

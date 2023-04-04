@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "dependencies": {
     "@dcl/sdk": "https://sdk-team-cdn.decentraland.org/@dcl/js-sdk-toolchain/branch/dcl-workspace/dcl-sdk-7.1.4-4613000766.commit-7fc4641.tgz",
+    "glob": "^9.3.4",
     "syncpack": "^9.8.4"
   },
   "private": true,
