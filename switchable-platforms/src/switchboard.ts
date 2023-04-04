@@ -51,18 +51,18 @@ export function createSwitchBoard(
 
   utils.toggles.addToggle(buttonB, utils.ToggleState.Off, (value)=>{
 	if (value == utils.ToggleState.On) {
-		Transform.getMutable(buttonA).position.y =  pressedHeight
+		Transform.getMutable(buttonB).position.y =  pressedHeight
 		Transform.getMutable(switchSound).position = Transform.get(engine.PlayerEntity).position
 		AudioSource.getMutable(switchSound).playing = true
 	} else {
-		Transform.getMutable(buttonA).position.y =  0
+		Transform.getMutable(buttonB).position.y =  0
 		Transform.getMutable(switchSound).position = Transform.get(engine.PlayerEntity).position
 		AudioSource.getMutable(switchSound).playing = true
 	}
   })
 
   // trigger areas on top of each button
-  utils.triggers.addTrigger(buttonA, 1, 1, [{type: "box", scale:Vector3.create(2.5, 2.5, 2.5), position:Vector3.create(1.5, 2, 0)}],
+  utils.triggers.addTrigger(buttonA, 2, 1, [{type: "box", scale:Vector3.create(2.5, 2.5, 2.5), position:Vector3.create(1.5, 2, 0)}],
 	()=>{
 		utils.toggles.set(buttonA, utils.ToggleState.On)
 		movePlatform(entity,  gear, -180, endPos)
@@ -72,7 +72,7 @@ export function createSwitchBoard(
 	Color3.Yellow()
   )
 
-  utils.triggers.addTrigger(buttonB, 1, 1, [{type: "box", scale:Vector3.create(2.5, 2.5, 2.5), position:Vector3.create(-1.5, 2, 0)}],
+  utils.triggers.addTrigger(buttonB, 2, 1, [{type: "box", scale:Vector3.create(2.5, 2.5, 2.5), position:Vector3.create(-1.5, 2, 0)}],
   ()=>{
 	  utils.toggles.set(buttonB, utils.ToggleState.On)
 	  movePlatform(entity,  gear, 180, startPos) 
