@@ -1,4 +1,4 @@
-import { PBMaterial_PbrMaterial, engine, Schemas, Transform } from '@dcl/sdk/ecs'
+import { PBMaterial_PbrMaterial, engine, Schemas, Transform, RaycastQueryType } from '@dcl/sdk/ecs'
 import { Color4, Vector3 } from '@dcl/sdk/math'
 
 // Configuration constants
@@ -14,6 +14,7 @@ export const enum RaycastModeType {
   TARGET_ENTITY,
   GLOBAL_TARGET
 }
+export const raycastQueryType: RaycastQueryType = RaycastQueryType.RQT_QUERY_ALL
 export let raycastMode = RaycastModeType.LOCAL_DIRECTION
 
 // Only used if raycastMode is TARGET_ENTITY or GLOBAL_TARGET

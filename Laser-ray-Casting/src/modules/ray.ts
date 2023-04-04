@@ -9,21 +9,20 @@ import {
   Transform,
   TransformType
 } from '@dcl/sdk/ecs'
-import {Vector3} from '@dcl/sdk/math'
+import { Vector3 } from '@dcl/sdk/math'
 import {
   defaultMaterial,
   hitMaterial,
   hitMaterial2,
   Ray,
   raycastMode,
-  RaycastModeType,
+  RaycastModeType, raycastQueryType,
   RayMesh,
   rayTargetEntity,
   rayTargetTransform
 } from '../definitions'
 
 const lastHitEntities: Entity[] = []
-const queryType: RaycastQueryType = RaycastQueryType.RQT_QUERY_ALL
 export function raycastResultsSystem() {
   // clear last hit entities
   if (lastHitEntities.length > 0) {
@@ -41,7 +40,7 @@ export function raycastResultsSystem() {
           Material.setPbrMaterial(hitEntity, entity === engine.CameraEntity ? hitMaterial2 : hitMaterial)
           lastHitEntities.push(hitEntity)
           
-          if(queryType == RaycastQueryType.RQT_HIT_FIRST) {
+          if(raycastQueryType == RaycastQueryType.RQT_HIT_FIRST) {
             for (const [rayMeshEntity] of engine.getEntitiesWith(RayMesh, Transform)) {
               updateRayMeshScale(Transform.getMutable(rayMeshEntity), hit.length)
             }
@@ -49,7 +48,7 @@ export function raycastResultsSystem() {
         }
       }      
     } else {
-      if(queryType == RaycastQueryType.RQT_HIT_FIRST) {
+      if(raycastQueryType == RaycastQueryType.RQT_HIT_FIRST) {
         for (const [rayMeshEntity] of engine.getEntitiesWith(RayMesh, Transform)) {
           const raycast = Raycast.getOrNull(entity)
           if (raycast) {
@@ -106,10 +105,10 @@ export function createRaycast(entity: Entity)
     // collisionMask: ColliderLayer.CL_CUSTOM1,
     // collisionMask: ColliderLayer.CL_CUSTOM2,
     // collisionMask: ColliderLayer.CL_CUSTOM3,
-    collisionMask: ColliderLayer.CL_CUSTOM3 | ColliderLayer.CL_CUSTOM1 | ColliderLayer.CL_PHYSICS | ColliderLayer.CL_POINTER,
+    collisionMask: ColliderLayer.CL_CUSTOM1 | ColliderLayer.CL_CUSTOM3 | ColliderLayer.CL_PHYSICS | ColliderLayer.CL_POINTER,
     direction: direction,
     maxDistance: ray.power,
-    queryType: queryType,
+    queryType: raycastQueryType,
     continuous: true // don't overuse the 'continuous' property as raycasting is expensive on performance
   })
 }
