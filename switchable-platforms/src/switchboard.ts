@@ -36,28 +36,29 @@ export function createSwitchBoard(
   const pressedHeight =  -0.12
 
   // Add toggle actions to buttons
-  utils.toggles.addToggle(buttonA, utils.ToggleState.On, ()=>{
-	Transform.getMutable(buttonA).position.y = pressedHeight
-	Transform.getMutable(switchSound).position = Transform.get(engine.PlayerEntity).position
-	AudioSource.getMutable(switchSound).playing = true
+  utils.toggles.addToggle(buttonA, utils.ToggleState.Off, (value)=>{
+	if (value == utils.ToggleState.On) {
+		Transform.getMutable(buttonA).position.y = pressedHeight
+		Transform.getMutable(switchSound).position = Transform.get(engine.PlayerEntity).position
+		AudioSource.getMutable(switchSound).playing = true
+	} else {
+		Transform.getMutable(buttonA).position.y =  0
+		Transform.getMutable(switchSound).position = Transform.get(engine.PlayerEntity).position
+		AudioSource.getMutable(switchSound).playing = true
+	}
   })
 
-  utils.toggles.addToggle(buttonA, utils.ToggleState.Off, ()=>{
-	Transform.getMutable(buttonA).position.y =  0
-	Transform.getMutable(switchSound).position = Transform.get(engine.PlayerEntity).position
-	AudioSource.getMutable(switchSound).playing = true
-  })
 
-  utils.toggles.addToggle(buttonB, utils.ToggleState.On, ()=>{
-	Transform.getMutable(buttonA).position.y =  pressedHeight
-	Transform.getMutable(switchSound).position = Transform.get(engine.PlayerEntity).position
-	AudioSource.getMutable(switchSound).playing = true
-  })
-
-  utils.toggles.addToggle(buttonB, utils.ToggleState.Off, ()=>{
-	Transform.getMutable(buttonA).position.y =  0
-	Transform.getMutable(switchSound).position = Transform.get(engine.PlayerEntity).position
-	AudioSource.getMutable(switchSound).playing = true
+  utils.toggles.addToggle(buttonB, utils.ToggleState.Off, (value)=>{
+	if (value == utils.ToggleState.On) {
+		Transform.getMutable(buttonA).position.y =  pressedHeight
+		Transform.getMutable(switchSound).position = Transform.get(engine.PlayerEntity).position
+		AudioSource.getMutable(switchSound).playing = true
+	} else {
+		Transform.getMutable(buttonA).position.y =  0
+		Transform.getMutable(switchSound).position = Transform.get(engine.PlayerEntity).position
+		AudioSource.getMutable(switchSound).playing = true
+	}
   })
 
   // trigger areas on top of each button
