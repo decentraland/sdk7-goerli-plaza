@@ -6,7 +6,7 @@ if [ ! -z $SDK_VERSION ]; then
   npm i $SDK_VERSION
   # for d in ./*/ ; do
   #   if [ -f "$d/scene.json" ]; then
-  #     echo "in $d; yarn add $SDK_VERSION"
+  #     echo "in $d; no add $SDK_VERSION"
   #     (cd "$d" && yarn add --silent $SDK_VERSION);
   #   fi
   # done
