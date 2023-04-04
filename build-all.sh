@@ -2,15 +2,6 @@
 
 echo "Installing and building all folders"
 
-yarn run update-parcels
-
-git diff --exit-code .
-
-if [[ $? -eq 1 ]]; then
-  echo "GIT IS ON DIRTY STATE 🔴 Please run 'yarn run update-parcels' locally and commit"
-  exit 1
-fi
-
 if [ ! -z $SDK_VERSION ]; then
   npm i $SDK_VERSION
   rm package-lock.json
@@ -22,6 +13,18 @@ if [ ! -z $SDK_VERSION ]; then
   #   fi
   # done
 fi
+
+yarn install
+
+yarn run update-parcels
+
+git diff --exit-code .
+
+if [[ $? -eq 1 ]]; then
+  echo "GIT IS ON DIRTY STATE 🔴 Please run 'yarn run update-parcels' locally and commit"
+  exit 1
+fi
+
 
 # ensure all packages are on sync
 yarn run sync && yarn run test
