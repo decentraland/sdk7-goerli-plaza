@@ -2,12 +2,8 @@
   "name": "cube-wave16",
   "description": "ECS7 ",
   "version": "1.0.0",
-  "dependencies": {
-    "@dcl/posix": "^1.0.4"
-  },
-  "devDependencies": {
-    "@dcl/sdk": "next"
-  },
+  "dependencies": {},
+  "devDependencies": {},
   "scripts": {
     "build": "sdk-commands build --skip-install",
     "start": "sdk-commands start"

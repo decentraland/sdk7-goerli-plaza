@@ -2,9 +2,7 @@
   "name": "coin-pickup",
   "description": "My new Decentraland project",
   "version": "1.0.0",
-  "devDependencies": {
-    "@dcl/sdk": "next"
-  },
+  "devDependencies": {},
   "scripts": {
     "build": "sdk-commands build --skip-install",
     "deploy": "sdk-commands deploy",

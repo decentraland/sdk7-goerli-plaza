@@ -6,9 +6,7 @@ import { Quaternion, Vector3 } from "@dcl/sdk/math"
 import { DistanceBirdComopnent } from "./components"
 import { realDistance } from "./utilities"
 
-
 //// FIXED PARAMS
-
 
 //set the center of the bird scattering area to the center of the scene
 const CENTER = Vector3.create(24, 10, 24)
@@ -85,13 +83,9 @@ export function spawnBirds() {
   engine.addSystem(proximitySystem)
 }
 
-
-
 // System that checks distances to each bird
 export function proximitySystem(dt: number) {
-
   for (const [entity, birdInfo] of engine.getEntitiesWith(DistanceBirdComopnent)) {
-
     const playerTransform = Transform.getOrNull(engine.PlayerEntity)
     if (!playerTransform) { return }
 

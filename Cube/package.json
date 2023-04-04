@@ -2,9 +2,7 @@
   "name": "cube",
   "description": "ECS7 ",
   "version": "1.0.0",
-  "devDependencies": {
-    "@dcl/sdk": "next"
-  },
+  "devDependencies": {},
   "engines": {
     "node": ">=16.0.0",
     "npm": ">=6.0.0"
