@@ -2,9 +2,7 @@
   "name": "zombie-shooter",
   "description": "ECS7 ",
   "version": "1.0.0",
-  "devDependencies": {
-    "@dcl/sdk": "next"
-  },
+  "devDependencies": {},
   "scripts": {
     "build": "sdk-commands build --skip-install",
     "start": "sdk-commands start"

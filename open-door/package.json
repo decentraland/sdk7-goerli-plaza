@@ -2,9 +2,7 @@
   "name": "open-door",
   "description": "ECS7",
   "version": "1.0.0",
-  "devDependencies": {
-    "@dcl/sdk": "next"
-  },
+  "devDependencies": {},
   "main": "src/game.ts",
   "scripts": {
     "build": "sdk-commands build --skip-install",

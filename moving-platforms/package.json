@@ -2,9 +2,7 @@
   "name": "moving-platforms",
   "description": "Moving Platforms",
   "version": "1.0.0",
-  "dependencies": {
-    "@dcl/sdk": "next"
-  },
+  "dependencies": {},
   "scripts": {
     "build": "sdk-commands build --skip-install",
     "deploy": "sdk-commands deploy",

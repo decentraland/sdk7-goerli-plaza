@@ -23,7 +23,7 @@ for (const projectFolder of projects.map(path.dirname)) {
 {
   const packageJsonPath = path.resolve('package.json')
   const packageJson = JSON.parse(fs.readFileSync(packageJsonPath))
-  packageJson.workspaces = projects.map(path.dirname).map(_ => path.relative(process.cwd(), _))
+  packageJson.workspaces = projects.map(path.dirname).map(_ => path.relative(process.cwd(), _)).sort()
   fs.writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2))
 }
 
@@ -31,7 +31,7 @@ for (const projectFolder of projects.map(path.dirname)) {
 {
   const workspaceJsonPath = path.resolve('dcl-workspace.json')
   const workspaceJson = JSON.parse(fs.readFileSync(workspaceJsonPath))
-  workspaceJson.folders = projects.map(path.dirname).map(_ => ({ path: path.relative(process.cwd(), _) }))
+  workspaceJson.folders = projects.map(path.dirname).map(_ => ({ path: path.relative(process.cwd(), _) })).sort()
   fs.writeFileSync(workspaceJsonPath, JSON.stringify(workspaceJson, null, 2))
 }
 

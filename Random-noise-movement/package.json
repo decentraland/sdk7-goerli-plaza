@@ -5,9 +5,7 @@
   "dependencies": {
     "@dcl/noise-utils": "^1.0.12-20221201202440.commit-51d8250"
   },
-  "devDependencies": {
-    "@dcl/sdk": "next"
-  },
+  "devDependencies": {},
   "engines": {
     "node": ">=16.0.0",
     "npm": ">=6.0.0"

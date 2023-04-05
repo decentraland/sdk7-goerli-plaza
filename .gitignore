@@ -9,3 +9,6 @@ export
 node_modules/
 **/package-lock.json
 .pnpm-store
+ipfs
+yarn.lock
+**/tsconfig.tsbuildinfo
