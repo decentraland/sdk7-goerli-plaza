@@ -20,7 +20,7 @@ jobs:
       - name: export-static
         run: >
           npm run export-static -- \
-            --realmName ${{ github.sha }} \
+            --realmName goerli-plaza-${{ github.sha }} \
             --baseUrl '${{ secrets.SDK_TEAM_S3_BASE_URL }}/ipfs' \
             --destination "$(pwd)/ipfs"
       - name: upload to s3
@@ -28,7 +28,7 @@ jobs:
           npx @dcl/cdn-uploader@next \
               --bucket ${{ secrets.SDK_TEAM_S3_BUCKET }} \
               --local-folder "$(pwd)/ipfs" \
-              --bucket-folder 'sdk7-goerli-plaza/branch/ipfs'
+              --bucket-folder 'ipfs'
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.SDK_TEAM_AWS_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.SDK_TEAM_AWS_SECRET }}
@@ -40,8 +40,8 @@ jobs:
           issue-number: ${{ github.event.pull_request.number }}
           body: |
             # Test this pull request
-            - The `/changerealm` command to test [test in-world](https://play.decentraland.zone/?realm=${{ secrets.SDK_TEAM_S3_BASE_URL }}/ipfs/${{ github.sha }})
+            - The `/changerealm` command to test [test in-world](https://play.decentraland.zone/?realm=${{ secrets.SDK_TEAM_S3_BASE_URL }}/ipfs/goerli-plaza-${{ github.sha }})
                ```
-               /changerealm ${{ secrets.SDK_TEAM_S3_BASE_URL }}/ipfs/${{ github.sha }}
+               /changerealm ${{ secrets.SDK_TEAM_S3_BASE_URL }}/ipfs/goerli-plaza-${{ github.sha }}
                ```
           edit-mode: replace
