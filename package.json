@@ -3,14 +3,14 @@
   "description": "My new Decentraland project",
   "version": "1.0.0",
   "dependencies": {
-    "@dcl/sdk": "https://sdk-team-cdn.decentraland.org/@dcl/js-sdk-toolchain/branch/dcl-workspace/dcl-sdk-7.1.4-4613000766.commit-7fc4641.tgz",
+    "@dcl/sdk": "next",
     "glob": "^9.3.4",
     "syncpack": "^9.8.4"
   },
   "private": true,
   "scripts": {
     "build": "sdk-commands build",
-    "export-static": "sdk-commands export-static --destination ipfs --realmName=menduz --baseUrl https://some-url.com",
+    "export-static": "sdk-commands export-static",
     "start": "sdk-commands start",
     "sync": "syncpack format --config .syncpackrc.json  --source \"*/package.json\" --source package.json",
     "test": "syncpack list-mismatches --config .syncpackrc.json  --source \"*/package.json\" --source package.json",
