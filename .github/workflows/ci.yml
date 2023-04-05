@@ -21,7 +21,7 @@ jobs:
         run: >
           npm run export-static -- \
             --realmName ${{ github.sha }} \
-            --baseUrl '${{ secrets.SDK_TEAM_S3_BASE_URL }}/sdk7-goerli-plaza/ipfs' \
+            --baseUrl '${{ secrets.SDK_TEAM_S3_BASE_URL }}/ipfs' \
             --destination "$(pwd)/ipfs"
       - name: upload to s3
         run: >
@@ -34,6 +34,7 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.SDK_TEAM_AWS_SECRET }}
       - name: Create or update comment
         uses: peter-evans/create-or-update-comment@v1
+        if: ${{ github.event.pull_request.number }}
         with:
           comment-id: ${{ steps.fc.outputs.comment-id }}
           issue-number: ${{ github.event.pull_request.number }}
