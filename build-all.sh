@@ -17,7 +17,8 @@ git add */package.json package.json
 npm run update-parcels
 
 # and fail if git state is dirty
-git diff --exit-code .
+git diff --ignore-cr-at-eol --exit-code .
+
 if [[ $? -eq 1 ]]; then
   echo "GIT IS ON DIRTY STATE 🔴 Please run 'npm run update-parcels' locally and commit"
   exit 1
