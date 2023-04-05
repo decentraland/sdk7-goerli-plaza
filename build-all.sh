@@ -10,6 +10,9 @@ fi
 # then the rest of the dependencies
 npm install
 
+# clean the git state of package.json(s)
+git add */package.json package.json
+
 # run a check to ensure all parcels are updated and also dcl-workspace.json
 npm run update-parcels
 
