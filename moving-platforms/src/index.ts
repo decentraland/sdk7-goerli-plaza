@@ -1,9 +1,10 @@
 export * from '@dcl/sdk'
 import { engine, GltfContainer } from "@dcl/sdk/ecs"
 import { Vector3 } from "@dcl/sdk/math"
-import { createMovingPlatform, platformsMovementSystem } from "./modules/movingPlatform";
-import { createPickableCoin } from "./modules/pickableCoin";
-import { triggerAreaDetectionSystem } from "./modules/triggerArea";
+import { createMovingPlatform } from "./modules/movingPlatform";
+import { createCoin } from './modules/coin';
+
+
 
 function setup() {
     // Instantiate base models
@@ -49,11 +50,9 @@ function setup() {
     )
 
     // Instantiate pickable coin
-    createPickableCoin(Vector3.create(9, 12.75, 8), Vector3.create(1.5, 3, 1.5))
+    createCoin( 'models/coin.glb', Vector3.create(9, 12.75, 8), Vector3.create(1.5, 3, 1.5),
+    Vector3.create(0, 1, 0))
 
-    // Add needed systems
-    engine.addSystem(platformsMovementSystem)
-    engine.addSystem(triggerAreaDetectionSystem)
 }
 
 setup()
