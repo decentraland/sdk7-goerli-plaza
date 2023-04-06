@@ -22,7 +22,7 @@ jobs:
         env:
           BRANCH: ${{ github.head_ref || github.ref }}
         with:
-          script: return `goerli-plaza-${process.env.BRANCH.replaceAll('/', '-').substr(0, 28)}`
+          script: return `goerli-plaza-${process.env.BRANCH.replaceAll('/', '-').replaceAll('refs-head-', '').substr(0, 28)}`
           result-encoding: string
       - uses: actions/github-script@v6
         id: get-sdk-version
