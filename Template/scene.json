@@ -2,18 +2,24 @@
 	"ecs7": true,
 	"runtimeVersion": "7",
 	"display": {
-		"title": "ECS7 Decentraland First Scene",
-		"description": "Test",
+		"title": "SDK7 Decentraland - Cube Spawner Scene",
+		"description": "First scene with SDK7",
 		"navmapThumbnail": "images/scene-thumbnail.png",
 		"favicon": "favicon_asset"
 	},
 	"owner": "",
 	"contact": {
-		"name": "Lean",
+		"name": "SDK",
 		"email": ""
 	},
-	"main": "bin/game.js",
+	"main": "bin/index.js",
 	"tags": [],
+	"scene": {
+		"parcels": [
+			"79,-8"
+		],
+		"base": "79,-8"
+	},
 	"spawnPoints": [
 		{
 			"name": "spawn1",
@@ -43,11 +49,5 @@
 		"ALLOW_TO_TRIGGER_AVATAR_EMOTE",
 		"ALLOW_TO_MOVE_PLAYER_INSIDE_SCENE"
 	],
-	"featureToggles": {},
-	"scene": {
-		"base": "77,-2",
-		"parcels": [
-			"77,-2"
-		]
-	}
+	"featureToggles": {}
 }
