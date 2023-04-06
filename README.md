@@ -16,3 +16,11 @@ This project uses NPM workspaces, that means all scenes must have their own pack
 ## Testing pull requests
 
 Each pull request generates a permanent new realm in `offline:offline` mode. The instructions to enter the realm are posted as a PR comment after passes. The realm is stored in a static CDN, and its name takes the commit hash of the repository. Making realms easy to access even if the PR was merged.
+
+## Testing main branch
+
+In a Decentraland explorer execute:
+
+```
+/changerealm https://sdk-team-cdn.decentraland.org/ipfs/goerli-plaza-main
+```
