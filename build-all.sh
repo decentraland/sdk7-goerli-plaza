@@ -29,6 +29,3 @@ npm run sync && npm run test
 
 # and lastly build scenes
 npm run build
-
-# and export the final static builds
-npm run export-static
