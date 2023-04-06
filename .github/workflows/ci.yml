@@ -32,6 +32,13 @@ jobs:
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.SDK_TEAM_AWS_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.SDK_TEAM_AWS_SECRET }}
+      - name: Find Comment
+        uses: peter-evans/find-comment@v1
+        id: fc
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          comment-author: 'github-actions[bot]'
+          body-includes: Test this pull request
       - name: Create or update comment
         uses: peter-evans/create-or-update-comment@v1
         if: ${{ github.event.pull_request.number }}

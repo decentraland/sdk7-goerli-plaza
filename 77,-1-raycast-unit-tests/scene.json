@@ -15,9 +15,9 @@
   "tags": [],
   "scene": {
     "parcels": [
-      "4,87"
+      "77,-1"
     ],
-    "base": "4,87"
+    "base": "77,-1"
   },
   "spawnPoints": [
     {
@@ -49,5 +49,5 @@
     "ALLOW_TO_MOVE_PLAYER_INSIDE_SCENE"
   ],
   "featureToggles": {},
-  "name": "4,87-raycast-unit-tests"
+  "name": "77,-1-raycast-unit-tests"
 }
