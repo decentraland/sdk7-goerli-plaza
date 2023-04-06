@@ -34,6 +34,7 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.SDK_TEAM_AWS_SECRET }}
       - name: Find Comment
         uses: peter-evans/find-comment@v1
+        if: ${{ github.event.pull_request.number }}
         id: fc
         with:
           issue-number: ${{ github.event.pull_request.number }}
