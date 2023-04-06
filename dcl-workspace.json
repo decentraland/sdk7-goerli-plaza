@@ -110,6 +110,9 @@
     },
     {
       "path": "BasicInteractions"
+    },
+    {
+      "path": "4,87-raycast-unit-tests"
     }
   ]
 }

@@ -17,6 +17,7 @@
     "update-parcels": "node scripts/checkParcelsCollision.js"
   },
   "workspaces": [
+    "4,87-raycast-unit-tests",
     "BasicInteractions",
     "Block-dog",
     "Cube",
