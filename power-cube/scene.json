@@ -1,5 +1,6 @@
 {
   "ecs7": true,
+  "runtimeVersion": "7",
   "display": {
     "title": "Power Cube",
     "favicon": "favicon_asset"
@@ -41,5 +42,6 @@
   ],
   "requiredPermissions": [
     "ALLOW_TO_MOVE_PLAYER_INSIDE_SCENE"
-  ]
+  ],
+  "name": "power-cube"
 }
