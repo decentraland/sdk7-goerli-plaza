@@ -14,14 +14,6 @@ export const enum RaycastModeType {
   TARGET_ENTITY,
   GLOBAL_TARGET
 }
-export const raycastQueryType: RaycastQueryType = RaycastQueryType.RQT_QUERY_ALL
-export let raycastMode = RaycastModeType.LOCAL_DIRECTION
-
-// Only used if raycastMode is TARGET_ENTITY or GLOBAL_TARGET
-export const rayTargetEntity = engine.addEntity()
-export const rayTargetTransform = Transform.create(rayTargetEntity, {
-  position: Vector3.create(8, 1, 20)
-})
 
 export const defaultMaterial: PBMaterial_PbrMaterial = {
   metallic: 0,

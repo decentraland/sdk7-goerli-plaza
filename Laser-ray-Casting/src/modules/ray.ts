@@ -13,56 +13,58 @@ import { Vector3 } from '@dcl/sdk/math'
 import {
   defaultMaterial,
   hitMaterial,
-  hitMaterial2,
-  Ray,
-  raycastMode,
-  RaycastModeType, raycastQueryType,
-  RayMesh,
-  rayTargetEntity,
-  rayTargetTransform
+  Ray
 } from '../definitions'
+import { rayMeshEntity } from "../index";
 
+// If the query type is changed to HitFirst, the ray mesh adapts to the hit distance
+let raycastQueryType = RaycastQueryType.RQT_QUERY_ALL
 const lastHitEntities: Entity[] = []
 export function raycastResultsSystem() {
-  // clear last hit entities
-  if (lastHitEntities.length > 0) {
-    for (const entity of lastHitEntities) {
-      Material.setPbrMaterial(entity, defaultMaterial)
-    }
-    lastHitEntities.length = 0
-  }
+  resetLastHitEntities()
   
-  for (const [entity, raycastResult] of engine.getEntitiesWith(RaycastResult)) {    
-    if (raycastResult.hits.length > 0) {      
+  for (const [entity, raycastResult] of engine.getEntitiesWith(RaycastResult)) {
+    if (raycastResult.hits.length > 0) {
       for (const hit of raycastResult.hits) {
         if (hit.entityId) {
-          const hitEntity = hit.entityId as Entity
-          Material.setPbrMaterial(hitEntity, entity === engine.CameraEntity ? hitMaterial2 : hitMaterial)
-          lastHitEntities.push(hitEntity)
-          
+          affectHitEntity(hit.entityId as Entity)
           if(raycastQueryType == RaycastQueryType.RQT_HIT_FIRST) {
-            for (const [rayMeshEntity] of engine.getEntitiesWith(RayMesh, Transform)) {
-              updateRayMeshScale(Transform.getMutable(rayMeshEntity), hit.length)
-            }
+            updateRayMeshScale(Transform.getMutable(rayMeshEntity), hit.length)
           }
         }
-      }      
+      }
     } else {
       if(raycastQueryType == RaycastQueryType.RQT_HIT_FIRST) {
-        for (const [rayMeshEntity] of engine.getEntitiesWith(RayMesh, Transform)) {
-          const raycast = Raycast.getOrNull(entity)
-          if (raycast) {
-            updateRayMeshScale(Transform.getMutable(rayMeshEntity), Math.min(raycast.maxDistance, 30))
-          }
+        const raycast = Raycast.getOrNull(entity)
+        if (raycast) {
+          updateRayMeshScale(Transform.getMutable(rayMeshEntity), Math.min(raycast.maxDistance, 30))
         }
       }
     }       
   }
 }
 
-function updateRayMeshScale(mutableTransform: TransformType, rayLength: number ) {
+function updateRayMeshScale(mutableTransform: TransformType, rayLength: number) {
   mutableTransform.scale.z = rayLength
   mutableTransform.position.z = mutableTransform.scale.z / 2 + 2
+}
+
+function resetLastHitEntities()
+{
+  if (lastHitEntities.length > 0) {
+    for (const hitEntity of lastHitEntities) {
+      Material.setPbrMaterial(hitEntity, defaultMaterial)
+      // Transform.getMutable(hitEntity).scale = Vector3.One()
+    }
+    lastHitEntities.length = 0
+  }
+}
+
+function affectHitEntity(hitEntity: Entity)
+{
+  Material.setPbrMaterial(hitEntity, hitMaterial)
+  // Transform.getMutable(hitEntity).scale = Vector3.create(0.5, 0.5, 0.5)
+  lastHitEntities.push(hitEntity)
 }
 
 export function createRaycast(entity: Entity)
@@ -70,43 +72,12 @@ export function createRaycast(entity: Entity)
   const ray = Ray.getOrNull(entity)
   if(!ray) return
   
-  let direction: {$case: "localDirection", localDirection: Vector3}
-      | {$case: "globalDirection", globalDirection: Vector3}
-      | {$case: "globalTarget", globalTarget: Vector3}
-      | {$case: "targetEntity", targetEntity: Entity}
-  switch (raycastMode) {
-    case RaycastModeType.LOCAL_DIRECTION:
-      direction = {
-        $case: "localDirection",
-        localDirection: Vector3.Forward()
-      }
-      break
-    case RaycastModeType.GLOBAL_DIRECTION:
-      direction = {
-        $case: "globalDirection",
-        globalDirection: Vector3.Forward()
-      }
-      break
-    case RaycastModeType.TARGET_ENTITY:
-      direction = {
-        $case: "targetEntity",
-        targetEntity: rayTargetEntity
-      }
-      break
-    case RaycastModeType.GLOBAL_TARGET:
-      direction = {
-        $case: "globalTarget",
-        globalTarget: rayTargetTransform.position
-      }
-      break
-  }
-
   Raycast.createOrReplace(entity, {
-    // collisionMask: ColliderLayer.CL_CUSTOM1,
-    // collisionMask: ColliderLayer.CL_CUSTOM2,
-    // collisionMask: ColliderLayer.CL_CUSTOM3,
-    collisionMask: ColliderLayer.CL_CUSTOM1 | ColliderLayer.CL_CUSTOM3 | ColliderLayer.CL_PHYSICS | ColliderLayer.CL_POINTER,
-    direction: direction,
+    collisionMask: ColliderLayer.CL_CUSTOM1 | ColliderLayer.CL_CUSTOM3 | ColliderLayer.CL_POINTER,
+    direction: {
+      $case: "localDirection",
+      localDirection: Vector3.Forward()
+    },
     maxDistance: ray.power,
     queryType: raycastQueryType,
     continuous: true // don't overuse the 'continuous' property as raycasting is expensive on performance
