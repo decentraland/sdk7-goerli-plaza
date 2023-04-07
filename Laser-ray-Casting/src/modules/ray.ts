@@ -31,24 +31,24 @@ export function raycastResultsSystem() {
     }
     lastHitEntities.length = 0
   }
-  
-  for (const [entity, raycastResult] of engine.getEntitiesWith(RaycastResult)) {    
-    if (raycastResult.hits.length > 0) {      
+
+  for (const [entity, raycastResult] of engine.getEntitiesWith(RaycastResult)) {
+    if (raycastResult.hits.length > 0) {
       for (const hit of raycastResult.hits) {
         if (hit.entityId) {
           const hitEntity = hit.entityId as Entity
           Material.setPbrMaterial(hitEntity, entity === engine.CameraEntity ? hitMaterial2 : hitMaterial)
           lastHitEntities.push(hitEntity)
-          
-          if(raycastQueryType == RaycastQueryType.RQT_HIT_FIRST) {
+
+          if (raycastQueryType == RaycastQueryType.RQT_HIT_FIRST) {
             for (const [rayMeshEntity] of engine.getEntitiesWith(RayMesh, Transform)) {
               updateRayMeshScale(Transform.getMutable(rayMeshEntity), hit.length)
             }
           }
         }
-      }      
+      }
     } else {
-      if(raycastQueryType == RaycastQueryType.RQT_HIT_FIRST) {
+      if (raycastQueryType == RaycastQueryType.RQT_HIT_FIRST) {
         for (const [rayMeshEntity] of engine.getEntitiesWith(RayMesh, Transform)) {
           const raycast = Raycast.getOrNull(entity)
           if (raycast) {
@@ -56,24 +56,23 @@ export function raycastResultsSystem() {
           }
         }
       }
-    }       
+    }
   }
 }
 
-function updateRayMeshScale(mutableTransform: TransformType, rayLength: number ) {
+function updateRayMeshScale(mutableTransform: TransformType, rayLength: number) {
   mutableTransform.scale.z = rayLength
   mutableTransform.position.z = mutableTransform.scale.z / 2 + 2
 }
 
-export function createRaycast(entity: Entity)
-{
+export function createRaycast(entity: Entity) {
   const ray = Ray.getOrNull(entity)
-  if(!ray) return
-  
-  let direction: {$case: "localDirection", localDirection: Vector3}
-      | {$case: "globalDirection", globalDirection: Vector3}
-      | {$case: "globalTarget", globalTarget: Vector3}
-      | {$case: "targetEntity", targetEntity: Entity}
+  if (!ray) return
+
+  let direction: { $case: "localDirection", localDirection: Vector3 }
+    | { $case: "globalDirection", globalDirection: Vector3 }
+    | { $case: "globalTarget", globalTarget: Vector3 }
+    | { $case: "targetEntity", targetEntity: Entity }
   switch (raycastMode) {
     case RaycastModeType.LOCAL_DIRECTION:
       direction = {
@@ -111,4 +110,6 @@ export function createRaycast(entity: Entity)
     queryType: raycastQueryType,
     continuous: true // don't overuse the 'continuous' property as raycasting is expensive on performance
   })
+
+  console.log('raycast', entity, JSON.stringify(Raycast.get(entity)))
 }

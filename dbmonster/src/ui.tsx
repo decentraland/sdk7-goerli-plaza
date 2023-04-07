@@ -1,10 +1,12 @@
-import { YGDisplay, YGJustify, YGAlign, TextAlignMode, Font, engine } from "@dcl/sdk/ecs"
+import { engine } from "@dcl/sdk/ecs"
 import ReactEcs, { Label, TextAlignType, UiEntity } from "@dcl/sdk/react-ecs"
 import { Color4 } from "@dcl/sdk/math"
 
 let dt = 0
 
 engine.addSystem((d) => {
+  if(dt === undefined) throw new Error('dt was undefined')
+  if(d === undefined) throw new Error('d was undefined')
   dt = d
 })
 
@@ -12,7 +14,6 @@ const Monster = (props: { index: number }) => {
 
   const textAlign: TextAlignType[] = ['top-left', 'top-center', 'top-right', 'middle-left', 'middle-center', 'middle-right', 'bottom-left', 'bottom-center', 'bottom-right']
   return (< Label
-    // key={props.index.toString()}
     uiTransform={{ width: 80 + Math.random() * 100, height: 20 + props.index * 3 }}
     value={Math.random().toString(36)}
     textAlign={textAlign[props.index % textAlign.length]}
