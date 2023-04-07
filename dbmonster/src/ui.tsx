@@ -2,14 +2,12 @@ import { engine } from "@dcl/sdk/ecs"
 import ReactEcs, { Label, TextAlignType, UiEntity } from "@dcl/sdk/react-ecs"
 import { Color4 } from "@dcl/sdk/math"
 
-let dt = 0
+const vars = { dt: 0 }
 
-debugger
 engine.addSystem((d) => {
-  if(dt === undefined) throw new Error('dt was undefined')
-  if(d === undefined) throw new Error('d was undefined')
-  debugger
-  dt = d
+  if (vars.dt === undefined) throw new Error('dt was undefined')
+  if (d === undefined) throw new Error('d was undefined')
+  vars.dt = d
 })
 
 const Monster = (props: { index: number }) => {
@@ -34,7 +32,7 @@ const Column = () => {
   return (
     <UiEntity
       uiTransform={{
-        width: 100 + dt * 200,
+        width: 100 + vars.dt * 200,
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
@@ -56,7 +54,7 @@ const Column = () => {
 }
 
 export const ui = () => {
-  if(typeof dt == 'undefined') debugger
+  if (typeof vars.dt == 'undefined') debugger
   return (
     <UiEntity
       uiTransform={{
@@ -69,7 +67,7 @@ export const ui = () => {
     >
       <Label
         uiTransform={{ width: 80, height: 20 }}
-        value={"Delta time:" + dt.toFixed(4)}
+        value={"Delta time:" + vars.dt.toFixed(4)}
         textAlign={'bottom-center'}
         fontSize={12}
         color={Color4.Black()}
