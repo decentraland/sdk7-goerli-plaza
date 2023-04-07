@@ -4,9 +4,11 @@ import { Color4 } from "@dcl/sdk/math"
 
 let dt = 0
 
+debugger
 engine.addSystem((d) => {
   if(dt === undefined) throw new Error('dt was undefined')
   if(d === undefined) throw new Error('d was undefined')
+  debugger
   dt = d
 })
 
@@ -54,6 +56,7 @@ const Column = () => {
 }
 
 export const ui = () => {
+  if(typeof dt == 'undefined') debugger
   return (
     <UiEntity
       uiTransform={{
