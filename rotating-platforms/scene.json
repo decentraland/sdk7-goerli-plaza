@@ -49,5 +49,6 @@
 		}
 	],
 	"requiredPermissions": [],
-	"featureToggles": {}
+	"featureToggles": {},
+	"name": "rotating-platforms"
 }

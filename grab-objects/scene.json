@@ -1,32 +1,33 @@
 {
-	"display": {
-		"title": "interactive-text",
-		"favicon": "favicon_asset"
-	},
-	"contact": {
-		"name": "author-name",
-		"email": ""
-	},
-	"owner": "",
-	"scene": {
-		"parcels": [
-			"77,-3"
-		],
-		"base": "77,-3"
-	},
-	"communications": {
-		"type": "webrtc",
-		"signalling": "https://signalling-01.decentraland.org"
-	},
-	"policy": {
-		"contentRating": "E",
-		"fly": true,
-		"voiceEnabled": true,
-		"blacklist": [],
-		"teleportPosition": ""
-	},
-	"main": "bin/index.js",
-	"tags": [],
-	"ecs7": true,
-	"runtimeVersion": "7"
+  "display": {
+    "title": "interactive-text",
+    "favicon": "favicon_asset"
+  },
+  "contact": {
+    "name": "author-name",
+    "email": ""
+  },
+  "owner": "",
+  "scene": {
+    "parcels": [
+      "77,-3"
+    ],
+    "base": "77,-3"
+  },
+  "communications": {
+    "type": "webrtc",
+    "signalling": "https://signalling-01.decentraland.org"
+  },
+  "policy": {
+    "contentRating": "E",
+    "fly": true,
+    "voiceEnabled": true,
+    "blacklist": [],
+    "teleportPosition": ""
+  },
+  "main": "bin/index.js",
+  "tags": [],
+  "ecs7": true,
+  "runtimeVersion": "7",
+  "name": "grab-objects"
 }

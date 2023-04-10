@@ -8,16 +8,70 @@ jobs:
   lint-and-build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Use Node.js 16.x
-        uses: actions/setup-node@v1
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
-          node-version: 16.x
-      - name: check parcel collisions
-        run: node scripts/checkParcelsCollision.js
-      - name: install decentraland
-        run: npm i -g decentraland@next
-      - name: install dependencies
-        run: npm i
+          node-version: 18
       - name: build
-        run: dcl build
+        run: ./build-all.sh
+        env:
+          DCL_DISABLE_ANALYTICS: "true"
+          SDK_VERSION: "@dcl/sdk@next"
+      - uses: actions/github-script@v6
+        id: get-branch-realm-name
+        env:
+          BRANCH: ${{ github.head_ref || github.ref }}
+        with:
+          script: return `goerli-plaza-${process.env.BRANCH.replaceAll('/', '-').replaceAll('refs-heads-', '').substr(0, 28)}`
+          result-encoding: string
+      - uses: actions/github-script@v6
+        id: get-sdk-version
+        with:
+          script: return require('./package.json').dependencies['@dcl/sdk']
+          result-encoding: string
+      - name: export-static (permalink)
+        run: >
+          npm run export-static -- \
+            --realmName goerli-plaza-${{ github.sha }} \
+            --baseUrl '${{ secrets.SDK_TEAM_S3_BASE_URL }}/ipfs' \
+            --destination "$(pwd)/ipfs"
+      - name: export-static (branch)
+        run: >
+          npm run export-static -- \
+            --realmName ${{steps.get-branch-realm-name.outputs.result}} \
+            --baseUrl '${{ secrets.SDK_TEAM_S3_BASE_URL }}/ipfs' \
+            --destination "$(pwd)/ipfs"
+      - name: upload to s3
+        run: >
+          npx @dcl/cdn-uploader@next \
+              --bucket ${{ secrets.SDK_TEAM_S3_BUCKET }} \
+              --local-folder "$(pwd)/ipfs" \
+              --bucket-folder 'ipfs'
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.SDK_TEAM_AWS_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.SDK_TEAM_AWS_SECRET }}
+      - name: Find Comment
+        uses: peter-evans/find-comment@v1
+        if: ${{ github.event.pull_request.number }}
+        id: fc
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          comment-author: 'github-actions[bot]'
+          body-includes: Test this pull request
+      - name: Create or update comment
+        uses: peter-evans/create-or-update-comment@v1
+        if: ${{ github.event.pull_request.number }}
+        with:
+          comment-id: ${{ steps.fc.outputs.comment-id }}
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            # Test this pull request
+            - The `/changerealm` command to test [test in-world](https://play.decentraland.zone/?realm=${{ secrets.SDK_TEAM_S3_BASE_URL }}/ipfs/goerli-plaza-${{ github.sha }})
+               ```bash
+               # permalink
+               /changerealm ${{ secrets.SDK_TEAM_S3_BASE_URL }}/ipfs/goerli-plaza-${{ github.sha }}
+               # branch name
+               /changerealm ${{ secrets.SDK_TEAM_S3_BASE_URL }}/ipfs/${{steps.get-branch-realm-name.outputs.result}}
+               ```
+            This PR has been published using the `@dcl/sdk` version `${{steps.get-sdk-version.outputs.result}}`
+          edit-mode: replace
