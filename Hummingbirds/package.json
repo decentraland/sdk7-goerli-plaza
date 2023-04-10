@@ -1,18 +1,18 @@
 {
-	"name": "Hummingbirds",
-	"description": "ECS7 ",
-	"version": "1.0.0",
-	"dependencies": {
-		"@dcl/sdk": "next",
-		"@dcl-sdk/utils": "^1.0.1"
-	},
-	"devDependencies": {},
-	"bundleDependencies": [
-		"@dcl-sdk/utils"
-	],
-	"scripts": {
-		"build": "sdk-commands build --skip-install",
-		"deploy": "sdk-commands deploy",
-		"start": "sdk-commands start"
-	}
+  "name": "Hummingbirds",
+  "description": "ECS7 ",
+  "version": "1.0.0",
+  "bundleDependencies": [
+    "@dcl-sdk/utils"
+  ],
+  "dependencies": {
+    "@dcl-sdk/utils": "^1.0.1",
+    "@dcl/sdk": "next"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "build": "sdk-commands build --skip-install",
+    "deploy": "sdk-commands deploy",
+    "start": "sdk-commands start"
+  }
 }

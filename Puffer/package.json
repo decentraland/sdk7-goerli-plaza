@@ -1,23 +1,23 @@
 {
-	"name": "puffer",
-	"version": "1.0.0",
-	"description": "ECS7 ",
-	"scripts": {
-		"start": "sdk-commands start",
-		"build": "sdk-commands build",
-		"deploy": "sdk-commands deploy",
-		"upgrade-sdk": "npm install --save-dev @dcl/sdk@latest",
-		"upgrade-sdk:next": "npm install --save-dev @dcl/sdk@next"
-	},
-	"engines": {
-		"node": ">=16.0.0",
-		"npm": ">=6.0.0",
-		"yarn": "please use npm"
-	},
-	"dependencies": {
-		"@dcl-sdk/utils": "^1.0.1"
-	},
-	"bundleDependencies": [
-		"@dcl-sdk/utils"
-	]
+  "name": "puffer",
+  "description": "ECS7 ",
+  "version": "1.0.0",
+  "bundleDependencies": [
+    "@dcl-sdk/utils"
+  ],
+  "dependencies": {
+    "@dcl-sdk/utils": "^1.0.1"
+  },
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=6.0.0",
+    "yarn": "please use npm"
+  },
+  "scripts": {
+    "build": "sdk-commands build",
+    "deploy": "sdk-commands deploy",
+    "start": "sdk-commands start",
+    "upgrade-sdk": "npm install --save-dev @dcl/sdk@latest",
+    "upgrade-sdk:next": "npm install --save-dev @dcl/sdk@next"
+  }
 }
