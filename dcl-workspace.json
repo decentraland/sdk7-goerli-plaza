@@ -10,6 +10,9 @@
       "path": "uv-map"
     },
     {
+      "path": "switchable-platforms"
+    },
+    {
       "path": "sliding-door"
     },
     {
@@ -73,6 +76,9 @@
       "path": "Zombie-shooter"
     },
     {
+      "path": "Template"
+    },
+    {
       "path": "Swimming-Shark"
     },
     {
@@ -83,6 +89,9 @@
     },
     {
       "path": "Random-noise-movement"
+    },
+    {
+      "path": "Puffer"
     },
     {
       "path": "Laser-ray-Casting"

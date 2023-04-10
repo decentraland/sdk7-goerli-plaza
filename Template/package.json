@@ -1,14 +1,7 @@
 {
   "name": "dcl-project",
-  "version": "1.0.0",
   "description": "SDK7 Template scene",
-  "scripts": {
-    "start": "sdk-commands start",
-    "deploy": "sdk-commands deploy",
-    "build": "sdk-commands build",
-    "upgrade-sdk": "npm install --save-dev @dcl/sdk@latest",
-    "upgrade-sdk:next": "npm install --save-dev @dcl/sdk@next"
-  },
+  "version": "1.0.0",
   "devDependencies": {
     "@dcl/sdk": "latest"
   },
@@ -21,5 +14,12 @@
     "singleQuote": true,
     "printWidth": 120,
     "trailingComma": "none"
+  },
+  "scripts": {
+    "build": "sdk-commands build",
+    "deploy": "sdk-commands deploy",
+    "start": "sdk-commands start",
+    "upgrade-sdk": "npm install --save-dev @dcl/sdk@latest",
+    "upgrade-sdk:next": "npm install --save-dev @dcl/sdk@next"
   }
 }
