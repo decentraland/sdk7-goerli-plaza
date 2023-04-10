@@ -1,12 +1,12 @@
 {
-  "name": "swim-shark",
-  "description": "ECS7 ",
-  "version": "1.0.0",
-  "devDependencies": {
-    "@dcl/sdk": "latest"
-  },
-  "scripts": {
-    "build": "sdk-commands build --skip-install",
-    "start": "sdk-commands start"
-  }
+	"name": "swim-shark",
+	"description": "ECS7 ",
+	"version": "1.0.0",
+	"devDependencies": {
+		"@dcl/sdk": "latest"
+	},
+	"scripts": {
+		"build": "sdk-commands build --skip-install",
+		"start": "sdk-commands start"
+	}
 }

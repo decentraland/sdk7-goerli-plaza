@@ -1,13 +1,13 @@
 {
-  "name": "hypnowheel",
-  "description": "ECS7 ",
-  "version": "1.0.0",
-  "devDependencies": {
-    "@dcl/sdk": "latest"
-  },
-  "scripts": {
-    "build": "sdk-commands build --skip-install",
-    "deploy": "sdk-commands deploy",
-    "start": "sdk-commands start"
-  }
+	"name": "hypnowheel",
+	"description": "ECS7 ",
+	"version": "1.0.0",
+	"devDependencies": {
+		"@dcl/sdk": "latest"
+	},
+	"scripts": {
+		"build": "sdk-commands build --skip-install",
+		"deploy": "sdk-commands deploy",
+		"start": "sdk-commands start"
+	}
 }
