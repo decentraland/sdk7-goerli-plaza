@@ -1,14 +1,12 @@
 {
-	"name": "zs2",
-	"description": "ECS7 ",
-	"version": "1.0.0",
-	"dependencies": {},
-	"devDependencies": {
-		"@dcl/sdk": "latest"
-	},
-	"scripts": {
-		"build": "sdk-commands build --skip-install",
-		"deploy": "sdk-commands deploy",
-		"start": "sdk-commands start"
-	}
+  "name": "zs2",
+  "description": "ECS7 ",
+  "version": "1.0.0",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "build": "sdk-commands build --skip-install",
+    "deploy": "sdk-commands deploy",
+    "start": "sdk-commands start"
+  }
 }

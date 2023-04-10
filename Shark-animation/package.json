@@ -1,12 +1,10 @@
 {
-	"name": "shark",
-	"description": "ECS7 ",
-	"version": "1.0.0",
-	"devDependencies": {
-		"@dcl/sdk": "latest"
-	},
-	"scripts": {
-		"build": "sdk-commands build --skip-install",
-		"start": "sdk-commands start"
-	}
+  "name": "shark",
+  "description": "ECS7 ",
+  "version": "1.0.0",
+  "devDependencies": {},
+  "scripts": {
+    "build": "sdk-commands build --skip-install",
+    "start": "sdk-commands start"
+  }
 }
