@@ -1,31 +1,31 @@
 {
-  "name": "dcl-project",
-  "description": "SDK7 Template scene",
-  "version": "1.0.0",
-  "bundleDependencies": [
-    "@dcl-sdk/utils"
-  ],
-  "dependencies": {
-    "@dcl-sdk/utils": "^1.0.1"
-  },
-  "devDependencies": {
-    "@dcl/sdk": "^7.1.3"
-  },
-  "engines": {
-    "node": ">=16.0.0",
-    "npm": ">=6.0.0"
-  },
-  "prettier": {
-    "semi": false,
-    "singleQuote": true,
-    "printWidth": 120,
-    "trailingComma": "none"
-  },
-  "scripts": {
-    "build": "sdk-commands build",
-    "deploy": "sdk-commands deploy",
-    "start": "sdk-commands start",
-    "upgrade-sdk": "npm install --save-dev @dcl/sdk@latest",
-    "upgrade-sdk:next": "npm install --save-dev @dcl/sdk@next"
-  }
+	"name": "switchable-platforms",
+	"description": "SDK7 Template scene",
+	"version": "1.0.0",
+	"bundleDependencies": [
+		"@dcl-sdk/utils"
+	],
+	"dependencies": {
+		"@dcl-sdk/utils": "^1.0.1"
+	},
+	"devDependencies": {
+		"@dcl/sdk": "^7.1.3"
+	},
+	"engines": {
+		"node": ">=16.0.0",
+		"npm": ">=6.0.0"
+	},
+	"prettier": {
+		"semi": false,
+		"singleQuote": true,
+		"printWidth": 120,
+		"trailingComma": "none"
+	},
+	"scripts": {
+		"build": "sdk-commands build",
+		"deploy": "sdk-commands deploy",
+		"start": "sdk-commands start",
+		"upgrade-sdk": "npm install --save-dev @dcl/sdk@latest",
+		"upgrade-sdk:next": "npm install --save-dev @dcl/sdk@next"
+	}
 }
