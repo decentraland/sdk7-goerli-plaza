@@ -1,5 +1,5 @@
 {
-	"name": "dcl-project",
+	"name": "puffer",
 	"version": "1.0.0",
 	"description": "ECS7 ",
 	"scripts": {
@@ -8,9 +8,6 @@
 		"deploy": "sdk-commands deploy",
 		"upgrade-sdk": "npm install --save-dev @dcl/sdk@latest",
 		"upgrade-sdk:next": "npm install --save-dev @dcl/sdk@next"
-	},
-	"devDependencies": {
-		"@dcl/sdk": "^7.1.3"
 	},
 	"engines": {
 		"node": ">=16.0.0",

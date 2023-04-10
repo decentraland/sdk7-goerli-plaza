@@ -9,9 +9,6 @@
 		"upgrade-sdk": "npm install --save-dev @dcl/sdk@latest",
 		"upgrade-sdk:next": "npm install --save-dev @dcl/sdk@next"
 	},
-	"devDependencies": {
-		"@dcl/sdk": "latest"
-	},
 	"dependencies": {
 		"@dcl-sdk/utils": "^1.0.1"
 	},
