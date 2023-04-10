@@ -3,7 +3,8 @@
   "description": "SDK7 Template scene",
   "version": "1.0.0",
   "dependencies": {
-    "@dcl/noise-utils": "^1.0.12-20221201202440.commit-51d8250"
+    "@dcl/noise-utils": "^1.0.12-20221201202440.commit-51d8250",
+    "@dcl/sdk": "next"
   },
   "devDependencies": {},
   "engines": {

@@ -2,7 +2,9 @@
   "name": "cw32",
   "description": "ECS7 ",
   "version": "1.0.0",
-  "dependencies": {},
+  "dependencies": {
+    "@dcl/sdk": "next"
+  },
   "devDependencies": {},
   "scripts": {
     "build": "sdk-commands build --skip-install",

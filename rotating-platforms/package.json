@@ -1,14 +1,15 @@
 {
 	"name": "rotating-platform",
-	"version": "1.0.0",
 	"description": "SDK7 Template scene",
-	"scripts": {
-		"start": "sdk-commands start",
-		"build": "sdk-commands build --skip-install",
-		"deploy": "sdk-commands deploy",
-		"upgrade-sdk": "npm install --save-dev @dcl/sdk@latest",
-		"upgrade-sdk:next": "npm install --save-dev @dcl/sdk@next"
+	"version": "1.0.0",
+	"dependencies": {
+		"@dcl/sdk": "next",
+		"@dcl-sdk/utils": "^1.0.1"
 	},
+	"devDependencies": {},
+	"bundleDependencies": [
+		"@dcl-sdk/utils"
+	],
 	"engines": {
 		"node": ">=16.0.0",
 		"npm": ">=6.0.0"
@@ -19,10 +20,9 @@
 		"printWidth": 120,
 		"trailingComma": "none"
 	},
-	"dependencies": {
-		"@dcl-sdk/utils": "^1.0.1"
-	},
-	"bundleDependencies": [
-		"@dcl-sdk/utils"
-	]
+	"scripts": {
+		"build": "sdk-commands build --skip-install",
+		"deploy": "sdk-commands deploy",
+		"start": "sdk-commands start"
+	}
 }
