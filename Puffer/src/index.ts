@@ -56,7 +56,7 @@ pointerEventsSystem.onPointerDown(
 //utils.triggers.enableDebugDraw(true)
 
 //Trigger on fish
-utils.triggers.addTrigger(puffer, 1, 1, [{ type: "sphere", position: Vector3.create(0,0,0), radius: 2 }],
+utils.triggers.addTrigger(puffer, utils.LAYER_1, utils.LAYER_1, [{ type: "sphere", position: Vector3.create(0,0,0), radius: 2 }],
 	() => inflateFish(puffer)
 	, undefined, Color3.Blue()
 )
