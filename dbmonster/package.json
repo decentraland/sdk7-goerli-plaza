@@ -3,7 +3,9 @@
   "description": "My new Decentraland project",
   "version": "1.0.0",
   "author": "",
-  "dependencies": {},
+  "dependencies": {
+    "@dcl/sdk": "next"
+  },
   "license": "Apache-2.0",
   "repository": "menduz/menduzlandia.git",
   "scripts": {

@@ -2,6 +2,9 @@
   "name": "4_87-raycast-unit-tests",
   "description": "SDK7 Template scene",
   "version": "1.0.0",
+  "dependencies": {
+    "@dcl/sdk": "next"
+  },
   "devDependencies": {},
   "engines": {
     "node": ">=16.0.0",
