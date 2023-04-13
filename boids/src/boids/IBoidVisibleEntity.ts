@@ -9,10 +9,10 @@ import IBoidEntity from './IBoidEntity.js';
  * Also it has some utiliy methods.
  */
 export default interface IBoidVisibleEntity {
-    boid:IBoidEntity
-    entity:Entity
-    modelEntity:Entity
-    //maxEntitySpeed?:number
-    
-    initEntity():void
+  boid: IBoidEntity
+  entity: Entity
+  modelEntity: Entity
+  //maxEntitySpeed?:number
+
+  initEntity(): void
 }
