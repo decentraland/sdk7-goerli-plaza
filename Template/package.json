@@ -2,12 +2,12 @@
   "name": "sdk7-template-scene",
   "description": "SDK7 Template scene",
   "version": "1.0.0",
+  "dependencies": {
+    "@dcl/sdk": "next"
+  },
   "engines": {
     "node": ">=16.0.0",
     "npm": ">=6.0.0"
-  },
-  "dependencies": {
-    "@dcl/sdk": "next"
   },
   "prettier": {
     "semi": false,
