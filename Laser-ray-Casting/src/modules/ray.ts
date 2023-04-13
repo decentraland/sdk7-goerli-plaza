@@ -1,38 +1,83 @@
-import { engine, Transform, RaycastResult, Material, Entity, Raycast, RaycastQueryType } from '@dcl/sdk/ecs'
+import {
+  ColliderLayer,
+  engine,
+  Entity,
+  Material,
+  Raycast,
+  RaycastQueryType,
+  RaycastResult,
+  Transform,
+  TransformType
+} from '@dcl/sdk/ecs'
 import { Vector3 } from '@dcl/sdk/math'
-import { defaultMaterial, hitMaterial, hitMaterial2, MovingCube, Ray } from '../definitions'
+import {
+  defaultMaterial,
+  hitMaterial,
+  Ray
+} from '../definitions'
+import { rayMeshEntity } from "../index";
 
-export default function raycastSystem() {
-  for (const [entity, ray, transform] of engine.getEntitiesWith(Ray, Transform)) {
-    const result = RaycastResult.getOrNull(entity)
-    if (result?.timestamp === ray.timestamp) {
-      if (result.hits.length > 0) {
-        for (const hit of result.hits) {
-          if (hit.entityId) {
-            Material.setPbrMaterial(hit.entityId as Entity, entity === engine.CameraEntity ? hitMaterial2 : hitMaterial)
+// If the query type is changed to HitFirst, the ray mesh adapts to the hit distance
+let raycastQueryType = RaycastQueryType.RQT_QUERY_ALL
+const lastHitEntities: Entity[] = []
+export function raycastResultsSystem() {
+  resetLastHitEntities()
+  
+  for (const [entity, raycastResult] of engine.getEntitiesWith(RaycastResult)) {
+    if (raycastResult.hits.length > 0) {
+      for (const hit of raycastResult.hits) {
+        if (hit.entityId) {
+          affectHitEntity(hit.entityId as Entity)
+          if(raycastQueryType == RaycastQueryType.RQT_HIT_FIRST) {
+            updateRayMeshScale(Transform.getMutable(rayMeshEntity), hit.length)
           }
         }
-      } else {
-        for (const [entity] of engine.getEntitiesWith(MovingCube)) {
-          Material.setPbrMaterial(entity, defaultMaterial)
+      }
+    } else {
+      if(raycastQueryType == RaycastQueryType.RQT_HIT_FIRST) {
+        const raycast = Raycast.getOrNull(entity)
+        if (raycast) {
+          updateRayMeshScale(Transform.getMutable(rayMeshEntity), Math.min(raycast.maxDistance, 30))
         }
       }
-    }
-
-    const shouldUpdateRaycast = Raycast.getOrNull(entity) === null || (result && ray.timestamp === result.timestamp)
-
-    if (shouldUpdateRaycast) {
-      const raycastMut = Ray.getMutable(entity)
-      raycastMut.timestamp += 1
-
-      Raycast.createOrReplace(entity, {
-        direction: {
-          $case: 'localDirection',
-          localDirection: Vector3.Forward()
-        },
-        maxDistance: raycastMut.power,
-        queryType: RaycastQueryType.RQT_QUERY_ALL
-      })
-    }
+    }       
   }
+}
+
+function updateRayMeshScale(mutableTransform: TransformType, rayLength: number) {
+  mutableTransform.scale.z = rayLength
+  mutableTransform.position.z = mutableTransform.scale.z / 2 + 2
+}
+
+function resetLastHitEntities()
+{
+  if (lastHitEntities.length > 0) {
+    for (const hitEntity of lastHitEntities) {
+      Material.setPbrMaterial(hitEntity, defaultMaterial)
+    }
+    lastHitEntities.length = 0
+  }
+}
+
+function affectHitEntity(hitEntity: Entity)
+{
+  Material.setPbrMaterial(hitEntity, hitMaterial)
+  lastHitEntities.push(hitEntity)
+}
+
+export function createRaycast(entity: Entity)
+{
+  const ray = Ray.getOrNull(entity)
+  if(!ray) return
+  
+  Raycast.createOrReplace(entity, {
+    collisionMask: ColliderLayer.CL_CUSTOM1 | ColliderLayer.CL_CUSTOM3 | ColliderLayer.CL_POINTER,
+    direction: {
+      $case: "localDirection",
+      localDirection: Vector3.Forward()
+    },
+    maxDistance: ray.power,
+    queryType: raycastQueryType,
+    continuous: true // don't overuse the 'continuous' property as raycasting is expensive on performance
+  })
 }

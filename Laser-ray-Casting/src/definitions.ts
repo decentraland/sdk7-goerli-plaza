@@ -4,7 +4,7 @@ import { Color4 } from '@dcl/sdk/math'
 // Configuration constants
 export const boxesCount = 10
 export const speed = 1
-export const rayDistance = 20
+export const rayDistance = 28
 
 export const defaultMaterial: PBMaterial_PbrMaterial = {
   metallic: 0,
@@ -35,3 +35,5 @@ export const Ray = engine.defineComponent('Ray',
 )
 
 export const MovingCube = engine.defineComponent('MovingCube', {})
+
+export const RayMesh = engine.defineComponent('RayMesh', {})
