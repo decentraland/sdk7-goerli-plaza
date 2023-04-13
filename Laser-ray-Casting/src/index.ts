@@ -1,9 +1,9 @@
-import {ColliderLayer, engine, GltfContainer, Material, MeshCollider, MeshRenderer, Transform} from '@dcl/sdk/ecs'
-import {Quaternion, Vector3} from '@dcl/sdk/math'
+import { ColliderLayer, engine, GltfContainer, Material, MeshCollider, MeshRenderer, Transform } from '@dcl/sdk/ecs'
+import { Quaternion, Vector3 } from '@dcl/sdk/math'
 
-import {boxesCount, defaultMaterial, MovingCube, Ray, rayDistance, rayMaterial, RayMesh} from './definitions'
+import { boxesCount, defaultMaterial, MovingCube, Ray, rayDistance, rayMaterial, RayMesh } from './definitions'
 import movingCubesSystem from './modules/movingCubes'
-import {createRaycast, raycastResultsSystem} from './modules/ray'
+import { createRaycast, raycastResultsSystem } from './modules/ray'
 
 export * from '@dcl/sdk'
 
