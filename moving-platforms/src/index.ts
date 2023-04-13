@@ -1,7 +1,6 @@
 export * from '@dcl/sdk'
 import { engine, Entity, GltfContainer, Transform } from "@dcl/sdk/ecs"
 import { Vector3 } from "@dcl/sdk/math"
-import { createMovingPlatform } from "./modules/movingPlatform";
 import { createCoin } from './modules/coin';
 import * as utils from '@dcl-sdk/utils'
 
