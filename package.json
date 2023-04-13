@@ -3,6 +3,7 @@
   "description": "My new Decentraland project",
   "version": "1.0.0",
   "dependencies": {
+    "@dcl-sdk/utils": "^1.0.2",
     "@dcl/sdk": "next",
     "glob": "^9.3.4",
     "syncpack": "^9.8.4"
