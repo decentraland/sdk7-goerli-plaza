@@ -1,7 +1,5 @@
 import { Animator, AudioSource, engine, GltfContainer, InputAction, pointerEventsSystem, Transform } from '@dcl/sdk/ecs'
 import { createHummingBird } from './hummingBird'
-import { moveSystem } from './systems/move'
-
 export * from '@dcl/sdk'
 
 const ground = engine.addEntity()
@@ -56,6 +54,4 @@ pointerEventsSystem.onPointerDown(
     hoverText: 'Shake'
   }
 )
-
-engine.addSystem(moveSystem)
 

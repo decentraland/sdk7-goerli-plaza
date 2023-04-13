@@ -3,6 +3,7 @@
   "description": "My new Decentraland project",
   "version": "1.0.0",
   "dependencies": {
+    "@dcl-sdk/utils": "^1.0.2",
     "@dcl/sdk": "next",
     "glob": "^9.3.4",
     "syncpack": "^9.8.4"
@@ -27,10 +28,12 @@
     "Hypno-wheels",
     "Jukebox",
     "Laser-ray-Casting",
+    "Puffer",
     "Random-noise-movement",
     "Shark-animation",
     "Smoke",
     "Swimming-Shark",
+    "Template",
     "Zombie-shooter",
     "Zombie-shooter2",
     "advanced-avatar-swap",
@@ -52,6 +55,7 @@
     "rotating-platforms",
     "scene-bounds-check",
     "sliding-door",
+    "switchable-platforms",
     "uv-map",
     "video-streaming",
     "zombie-attack"

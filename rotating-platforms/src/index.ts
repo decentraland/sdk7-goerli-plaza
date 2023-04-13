@@ -104,12 +104,13 @@ executeTask(async function () {
     createCrown(
       'models/crown.glb', 
 { 
-           position: Vector3.create(27, 13.75, 28.5-16),
+          //NOTE: for tesing moving crown to ground
+           position: Vector3.create(27, 13.75 - 13, 28.5-16),
            rotation: Quaternion.Identity(),
            scale: Vector3.One()
        }
     )
-
+ 
 
   // Setup the coins
   for (const platform of platforms) {

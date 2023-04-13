@@ -2,7 +2,11 @@
   "name": "Hummingbirds",
   "description": "ECS7 ",
   "version": "1.0.0",
+  "bundleDependencies": [
+    "@dcl-sdk/utils"
+  ],
   "dependencies": {
+    "@dcl-sdk/utils": "^1.0.2",
     "@dcl/sdk": "next"
   },
   "devDependencies": {},
