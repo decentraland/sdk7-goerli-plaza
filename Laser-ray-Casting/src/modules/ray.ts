@@ -54,7 +54,6 @@ function resetLastHitEntities()
   if (lastHitEntities.length > 0) {
     for (const hitEntity of lastHitEntities) {
       Material.setPbrMaterial(hitEntity, defaultMaterial)
-      // Transform.getMutable(hitEntity).scale = Vector3.One()
     }
     lastHitEntities.length = 0
   }
@@ -63,7 +62,6 @@ function resetLastHitEntities()
 function affectHitEntity(hitEntity: Entity)
 {
   Material.setPbrMaterial(hitEntity, hitMaterial)
-  // Transform.getMutable(hitEntity).scale = Vector3.create(0.5, 0.5, 0.5)
   lastHitEntities.push(hitEntity)
 }
 
