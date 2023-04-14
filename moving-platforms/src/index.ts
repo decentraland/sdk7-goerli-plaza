@@ -50,7 +50,6 @@ startPath(
   true
 )
 
-
 //// triggerable platform
 const platform3 = engine.addEntity()
 GltfContainer.create(platform3, {

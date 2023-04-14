@@ -22,25 +22,25 @@ let raycastQueryType = RaycastQueryType.RQT_QUERY_ALL
 const lastHitEntities: Entity[] = []
 export function raycastResultsSystem() {
   resetLastHitEntities()
-  
+
   for (const [entity, raycastResult] of engine.getEntitiesWith(RaycastResult)) {
     if (raycastResult.hits.length > 0) {
       for (const hit of raycastResult.hits) {
         if (hit.entityId) {
           affectHitEntity(hit.entityId as Entity)
-          if(raycastQueryType == RaycastQueryType.RQT_HIT_FIRST) {
+          if (raycastQueryType == RaycastQueryType.RQT_HIT_FIRST) {
             updateRayMeshScale(Transform.getMutable(rayMeshEntity), hit.length)
           }
         }
       }
     } else {
-      if(raycastQueryType == RaycastQueryType.RQT_HIT_FIRST) {
+      if (raycastQueryType == RaycastQueryType.RQT_HIT_FIRST) {
         const raycast = Raycast.getOrNull(entity)
         if (raycast) {
           updateRayMeshScale(Transform.getMutable(rayMeshEntity), Math.min(raycast.maxDistance, 30))
         }
       }
-    }       
+    }
   }
 }
 
@@ -49,8 +49,7 @@ function updateRayMeshScale(mutableTransform: TransformType, rayLength: number) 
   mutableTransform.position.z = mutableTransform.scale.z / 2 + 2
 }
 
-function resetLastHitEntities()
-{
+function resetLastHitEntities() {
   if (lastHitEntities.length > 0) {
     for (const hitEntity of lastHitEntities) {
       Material.setPbrMaterial(hitEntity, defaultMaterial)
@@ -59,19 +58,18 @@ function resetLastHitEntities()
   }
 }
 
-function affectHitEntity(hitEntity: Entity)
-{
+function affectHitEntity(hitEntity: Entity) {
   Material.setPbrMaterial(hitEntity, hitMaterial)
   lastHitEntities.push(hitEntity)
 }
 
-export function createRaycast(entity: Entity)
-{
+export function createRaycast(entity: Entity) {
   const ray = Ray.getOrNull(entity)
-  if(!ray) return
-  
+  if (!ray) return
+
   Raycast.createOrReplace(entity, {
     collisionMask: ColliderLayer.CL_CUSTOM1 | ColliderLayer.CL_CUSTOM3 | ColliderLayer.CL_POINTER,
+    originOffset: Vector3.create(0, 0.4, 0),
     direction: {
       $case: "localDirection",
       localDirection: Vector3.Forward()
