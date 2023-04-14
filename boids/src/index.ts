@@ -9,43 +9,43 @@ export * from '@dcl/sdk'
 
 const seaBed = engine.addEntity()
 Transform.create(seaBed, {
-	position: {x:8, y:0, z:8},
-	rotation: Quaternion.fromEulerDegrees(0,90,0),
-	scale:  {x:0.8, y:0.8, z:0.8}
+  position: { x: 8, y: 0, z: 8 },
+  rotation: Quaternion.fromEulerDegrees(0, 90, 0),
+  scale: { x: 0.8, y: 0.8, z: 0.8 }
 })
 GltfContainer.create(seaBed, {
-	src:'models/Underwater.gltf',
+  src: 'models/Underwater.gltf',
 })
 
 const seaBed2 = engine.addEntity()
 Transform.create(seaBed2, {
-	position: {x:8, y:0, z:24},
-	rotation: Quaternion.fromEulerDegrees(0,90,0),
-	scale:  {x:0.8, y:0.8, z:0.8}
+  position: { x: 8, y: 0, z: 24 },
+  rotation: Quaternion.fromEulerDegrees(0, 90, 0),
+  scale: { x: 0.8, y: 0.8, z: 0.8 }
 })
 GltfContainer.create(seaBed2, {
-	src:'models/Underwater.gltf',
+  src: 'models/Underwater.gltf',
 })
 
 
 
 
-function start(){
-	initBoidController()
-	initBoidSystem()
-	
-	createDebugUIButtons()
-	
-	startBoidSystem()
-  
-	createBoundaryPlanes()
-	createBoundaryMarkers() 
-  
-	createShark()
+function start() {
+  initBoidController()
+  initBoidSystem()
 
-	engine.addSystem(PatrolPath)
+  createDebugUIButtons()
 
-  }
-  
-  
-  start()
+  startBoidSystem()
+
+  createBoundaryPlanes()
+  createBoundaryMarkers()
+
+  createShark()
+
+  engine.addSystem(PatrolPath)
+
+}
+
+
+start()

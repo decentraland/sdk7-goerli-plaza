@@ -12,32 +12,32 @@ INVISIBLE_MATERIAL.alphaTest = 1
 
 
 export class CommonResources {
-    static RESOURCES = {
-        models:{
-          names:{
-            
-          }
-        },
-        textures: {
-          //sprite_sheet: spriteSheetTexture,
-          /*transparent: {
-            texture: INVISIBLE_MATERIAL_texture,
-            size:{sourceHeight:1,sourceWidth:1} //ImageSection
-          }*/
-          
-        },
-        materials: {
-          //sprite_sheet: spriteSheetMaterial
-          //transparent: INVISIBLE_MATERIAL
-        },
-        strings:{
-           
-        },
-        images:{
-          portrait:{
-          }
-        }
+  static RESOURCES = {
+    models: {
+      names: {
+
       }
+    },
+    textures: {
+      //sprite_sheet: spriteSheetTexture,
+      /*transparent: {
+        texture: INVISIBLE_MATERIAL_texture,
+        size:{sourceHeight:1,sourceWidth:1} //ImageSection
+      }*/
+
+    },
+    materials: {
+      //sprite_sheet: spriteSheetMaterial
+      //transparent: INVISIBLE_MATERIAL
+    },
+    strings: {
+
+    },
+    images: {
+      portrait: {
+      }
+    }
+  }
 }
 
 /*
