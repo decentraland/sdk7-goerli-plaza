@@ -3,9 +3,9 @@
   "description": "SDK7 Template scene",
   "version": "1.0.0",
   "dependencies": {
+    "@dcl-sdk/utils": "^1.0.3",
     "@dcl/sdk": "next"
   },
-  "devDependencies": {},
   "engines": {
     "node": ">=16.0.0",
     "npm": ">=6.0.0"
@@ -20,5 +20,8 @@
     "build": "sdk-commands build --skip-install",
     "deploy": "sdk-commands deploy",
     "start": "sdk-commands start"
-  }
+  },
+  "bundleDependencies": [
+    "@dcl-sdk/utils"
+  ]
 }

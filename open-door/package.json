@@ -3,14 +3,17 @@
   "description": "ECS7",
   "version": "1.0.0",
   "dependencies": {
+    "@dcl-sdk/utils": "^1.0.3",
     "@dcl/sdk": "next"
   },
-  "devDependencies": {},
   "main": "src/game.ts",
   "scripts": {
     "build": "sdk-commands build --skip-install",
     "deploy": "sdk-commands deploy",
     "start": "sdk-commands start"
   },
-  "typings": ""
+  "typings": "",
+  "bundleDependencies": [
+    "@dcl-sdk/utils"
+  ]
 }
