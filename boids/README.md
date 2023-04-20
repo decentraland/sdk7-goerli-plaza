@@ -1,4 +1,4 @@
-#  Block dog (SDK7 Version)
+#  Boids
 
 > Please visit the [SDK7 scene template](https://github.com/decentraland/sdk7-scene-template) for a SDK7 summary.  
 
@@ -79,13 +79,17 @@ npm i -g decentraland
 
 **Previewing the scene**
 
-Open this folder on the command line, then run:
+1) Install the [Decentraland Editor](https://docs.decentraland.org/creator/development-guide/sdk7/editor/)
+
+2) Open a Visual Stuido Code window on the scene's root folder.
+
+3) Open the Decentraland Editor tab, and press **Run Project**
+
+Alternatively, you can use the command line. Inside this scene root directory run:
 
 ```
-dcl start
+npm run start
 ```
-
-Any dependencies are installed and then the CLI opens the scene in a new browser tab.
 
 ## Deploy to Decentraland
 

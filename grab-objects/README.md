@@ -2,9 +2,6 @@
 
 A scene with examples of some simple interactions. Perform the corresponding action on each cube to turn it green.
 
-<!--
-[Explore the scene](https://blockdog-flbnuykvwf.now.sh): this link takes you to a copy of the scene deployed to a remote server where you can interact with it just as if you were running `dcl start` locally.
--->
 
 ![](screenshot/screenshot.png)
 
@@ -36,13 +33,17 @@ npm i -g decentraland
 
 **Previewing the scene**
 
-Download this example and navigate to its directory, then run:
+1) Install the [Decentraland Editor](https://docs.decentraland.org/creator/development-guide/sdk7/editor/)
+
+2) Open a Visual Stuido Code window on the scene's root folder.
+
+3) Open the Decentraland Editor tab, and press **Run Project**
+
+Alternatively, you can use the command line. Inside this scene root directory run:
 
 ```
-$:  dcl start
+npm run start
 ```
-
-Any dependencies are installed and then the CLI opens the scene in a new browser tab.
 
 **Scene Usage**
 
