@@ -24,8 +24,8 @@ function createWall(position: Vector3, scale: Vector3, parent?: Entity) {
 		scale,
 		parent
 	})
-	MeshRenderer.create(WallEntity, { mesh: { $case: 'box', box: { uvs: [] } } })
-	MeshCollider.create(WallEntity, { mesh: { $case: 'box', box: {} } })
+	MeshRenderer.setBox(WallEntity)
+	MeshCollider.setBox(WallEntity)
 	return WallEntity
 }
 createWall(Vector3.create(5.75, 1, 3), Vector3.create(1.5, 2, 0.05))
