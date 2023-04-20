@@ -3,9 +3,8 @@
   "description": "ECS7 ",
   "version": "1.0.0",
   "dependencies": {
-    "@dcl/sdk": "next"
+    "@dcl/sdk": "^7.1.8-4757726595.commit-28cb54f"
   },
-  "devDependencies": {},
   "scripts": {
     "build": "sdk-commands build --skip-install",
     "deploy": "sdk-commands deploy",
