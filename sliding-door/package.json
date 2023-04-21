@@ -2,6 +2,9 @@
   "name": "sliding-door",
   "description": "SDK7 Template scene",
   "version": "1.0.0",
+  "bundleDependencies": [
+    "@dcl-sdk/utils"
+  ],
   "dependencies": {
     "@dcl-sdk/utils": "^1.0.3",
     "@dcl/sdk": "next"
@@ -20,8 +23,5 @@
     "build": "sdk-commands build --skip-install",
     "deploy": "sdk-commands deploy",
     "start": "sdk-commands start"
-  },
-  "bundleDependencies": [
-    "@dcl-sdk/utils"
-  ]
+  }
 }
