@@ -2,6 +2,9 @@
   "name": "power-cube",
   "description": "Power Cube: Decentraland scene project",
   "version": "1.0.0",
+  "bundleDependencies": [
+    "@dcl-sdk/utils"
+  ],
   "dependencies": {
     "@dcl-sdk/utils": "^1.0.2",
     "@dcl/sdk": "next"
@@ -10,8 +13,5 @@
     "build": "sdk-commands build --skip-install",
     "deploy": "sdk-commands deploy",
     "start": "sdk-commands start"
-  },
-  "bundleDependencies": [
-    "@dcl-sdk/utils"
-  ]
+  }
 }
