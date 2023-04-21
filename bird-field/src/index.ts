@@ -34,7 +34,7 @@ function setup() {
 	utils.timers.setTimeout(
 		() => {
 			spawnBirds()
-		}, 10000
+		}, 100
 	)
 
 }

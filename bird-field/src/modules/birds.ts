@@ -46,6 +46,7 @@ export function spawnBirds() {
 				(result) => {
 					console.log("GOT A RAYCAST HIT", result)
 					//if we hit the collider set the generated bird position's Y coord to the hitpoint's height
+					if (!result.hits.length) return
 					const spawnPos = result.hits[0].position
 					if (!spawnPos) return
 					createBird(spawnPos)
@@ -55,7 +56,6 @@ export function spawnBirds() {
 					maxDistance: 22,
 					queryType: RaycastQueryType.RQT_HIT_FIRST,
 					continuous: false
-
 				}
 			)
 		}
