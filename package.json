@@ -15,6 +15,7 @@
     "export-static": "sdk-commands export-static",
     "start": "sdk-commands start",
     "format": "./node_modules/.bin/prettier '**/*.ts' -w",
+    "lint": "./node_modules/.bin/prettier '**/*.ts' --check",
     "sync": "syncpack format --config .syncpackrc.json  --source \"*/package.json\" --source package.json",
     "test": "syncpack list-mismatches --config .syncpackrc.json  --source \"*/package.json\" --source package.json",
     "update-parcels": "node scripts/checkParcelsCollision.js"
