@@ -1,13 +1,13 @@
-import BoidVisibleEntity from './BoidVisibleEntity.js';
-import { BOID_CONFIG } from './Constants.js';
-import Grid from "./Grid";
-import IBoidEntity, { BoidTypeEnum } from './IBoidEntity.js';
-import IBoidVisibleEntity from './IBoidVisibleEntity.js';
+import BoidVisibleEntity from './BoidVisibleEntity.js'
+import { BOID_CONFIG } from './Constants.js'
+import Grid from './Grid'
+import IBoidEntity, { BoidTypeEnum } from './IBoidEntity.js'
+import IBoidVisibleEntity from './IBoidVisibleEntity.js'
 
-let idCounter = 0;
+let idCounter = 0
 
 /**
- * @module BoidEntity 
+ * @module BoidEntity
  * Entity class defines an entitiy model which has a position and a velocity.
  * Also it has some utiliy methods.
  */
@@ -30,8 +30,8 @@ export default class BoidEntity implements IBoidEntity {
 
   maxSpeed: number
   burstSpeed: number
-  decelSpeed: number = .05
-  acelSpeed: number = .2
+  decelSpeed: number = 0.05
+  acelSpeed: number = 0.2
   enabled: boolean = true
 
   //optional //override system controlling it
@@ -53,13 +53,13 @@ export default class BoidEntity implements IBoidEntity {
   //separationRadius?:number
   //obstacleRadius?:number
 
-  static FLOCK_ENTITY = BoidTypeEnum.FLOCK_ENTITY;
-  static OBSTACLE_ENTITY = BoidTypeEnum.OBSTACLE_ENTITY;
-  static PREDATOR_ENTITY = BoidTypeEnum.PREDATOR_ENTITY;
-  static SEEK_ENTITY = BoidTypeEnum.SEEK_ENTITY;
+  static FLOCK_ENTITY = BoidTypeEnum.FLOCK_ENTITY
+  static OBSTACLE_ENTITY = BoidTypeEnum.OBSTACLE_ENTITY
+  static PREDATOR_ENTITY = BoidTypeEnum.PREDATOR_ENTITY
+  static SEEK_ENTITY = BoidTypeEnum.SEEK_ENTITY
   /**
    * Constructor for the Entity class
-   * @param {Number} type entitiy type that defines it as flock or obstacle entitiy 
+   * @param {Number} type entitiy type that defines it as flock or obstacle entitiy
    * @param {Number} x x position
    * @param {Number} y y position
    * @param {Number} z z position
@@ -67,15 +67,23 @@ export default class BoidEntity implements IBoidEntity {
    * @param {Number} vy y velocity
    * @param {Number} vz z velocity
    */
-  constructor(type: number, x: number = 0, y: number = 0, z: number = 0, vx: number = 0, vy: number = 0, vz: number = 0) {
-    this.id = ++idCounter;
-    this.type = type;
-    this.x = x;
-    this.y = y;
-    this.z = z;
-    this.vx = vx;
-    this.vy = vy;
-    this.vz = vz;
+  constructor(
+    type: number,
+    x: number = 0,
+    y: number = 0,
+    z: number = 0,
+    vx: number = 0,
+    vy: number = 0,
+    vz: number = 0
+  ) {
+    this.id = ++idCounter
+    this.type = type
+    this.x = x
+    this.y = y
+    this.z = z
+    this.vx = vx
+    this.vy = vy
+    this.vz = vz
 
     this.maxSpeed = (Math.random() + 5) * BOID_CONFIG.MAX_SPEED_SCALE
     this.burstSpeed = 0
@@ -102,36 +110,36 @@ export default class BoidEntity implements IBoidEntity {
   }
   /**
    * Sets the grid instance
-   * @param {Grid} grid 
+   * @param {Grid} grid
    */
   setGrid(grid?: Grid) {
-    this.grid = grid;
+    this.grid = grid
   }
 
   /**
    * @returns {Number} type of the entity
    */
   getType() {
-    return this.type;
+    return this.type
   }
 
   /**
    * @returns {Number} the current scalar velocity of the entity.
    */
   getVelocity() {
-    return Math.sqrt((this.vx * this.vx) + (this.vy * this.vy) + (this.vz * this.vz));
+    return Math.sqrt(this.vx * this.vx + this.vy * this.vy + this.vz * this.vz)
   }
 
   /**
    * Checks the velocity of the entitiy and limits it to the given parameter
-   * @param {Number} maxVelocity 
+   * @param {Number} maxVelocity
    */
   checkVelocity(maxVelocity = 1) {
-    const velocity = this.getVelocity();
+    const velocity = this.getVelocity()
     if (velocity > maxVelocity && velocity > 0) {
-      this.vx = maxVelocity * this.vx / velocity;
-      this.vy = maxVelocity * this.vy / velocity;
-      this.vz = maxVelocity * this.vz / velocity;
+      this.vx = (maxVelocity * this.vx) / velocity
+      this.vy = (maxVelocity * this.vy) / velocity
+      this.vz = (maxVelocity * this.vz) / velocity
     }
   }
 
@@ -142,45 +150,45 @@ export default class BoidEntity implements IBoidEntity {
    * @param {Number} vz z velocity
    */
   addVelocity(vx: number, vy: number, vz: number) {
-    this.vx += vx;
-    this.vy += vy;
-    this.vz += vz;
+    this.vx += vx
+    this.vy += vy
+    this.vz += vz
   }
 
   /**
    * This method moves the entity.
-   * @param {Number} maxVelocity 
-   * @param {Number} bx 
-   * @param {Number} by 
-   * @param {Number} bz 
+   * @param {Number} maxVelocity
+   * @param {Number} bx
+   * @param {Number} by
+   * @param {Number} bz
    */
   move(maxVelocity: number, bx: number, by: number, bz: number) {
-    this.checkVelocity(maxVelocity);
+    this.checkVelocity(maxVelocity)
 
-    let nx = this.x + this.vx;
-    let ny = this.y + this.vy;
-    let nz = this.z + this.vz;
+    let nx = this.x + this.vx
+    let ny = this.y + this.vy
+    let nz = this.z + this.vz
 
-    nx = Math.max(0, nx);
-    nx = Math.min(bx, nx);
-    ny = Math.max(0, ny);
-    ny = Math.min(by, ny);
-    nz = Math.max(0, nz);
-    nz = Math.min(bz, nz);
+    nx = Math.max(0, nx)
+    nx = Math.min(bx, nx)
+    ny = Math.max(0, ny)
+    ny = Math.min(by, ny)
+    nz = Math.max(0, nz)
+    nz = Math.min(bz, nz)
 
-    this.grid?.moveEntity(this, nx, ny, nz);
+    this.grid?.moveEntity(this, nx, ny, nz)
   }
 
   /**
    * Calculate the distance between the entity and the given entity
-   * @param {Entity} otherEntity 
+   * @param {Entity} otherEntity
    * @returns {Number} the distance between two entities
    */
   getDistance(otherEntity: BoidEntity) {
-    const dx = this.x - otherEntity.x;
-    const dy = this.y - otherEntity.y;
-    const dz = this.z - otherEntity.z;
-    return Math.sqrt((dx * dx) + (dy * dy) + (dz * dz));
+    const dx = this.x - otherEntity.x
+    const dy = this.y - otherEntity.y
+    const dz = this.z - otherEntity.z
+    return Math.sqrt(dx * dx + dy * dy + dz * dz)
   }
 
   /**
@@ -193,7 +201,7 @@ export default class BoidEntity implements IBoidEntity {
 
   /**
    * Updates the internal data of the entity if the IDs match
-   * @param {Object} data 
+   * @param {Object} data
    */
   updateData(data: any) {
     //removed
@@ -201,7 +209,7 @@ export default class BoidEntity implements IBoidEntity {
 
   /**
    * This static method deserializes the given data and returns new Entity instance.
-   * @param {Object} data 
+   * @param {Object} data
    * @returns {Entitiy} deserialized Entitiy instance
    */
   deserialize(data: any) {

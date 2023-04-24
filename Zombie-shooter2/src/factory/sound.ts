@@ -1,4 +1,4 @@
-import { Entity, AudioSource } from "@dcl/sdk/ecs";
+import { Entity, AudioSource } from '@dcl/sdk/ecs'
 
 export function playSound(entity: Entity, soundPath: string, rndPitch?: boolean) {
   const pitch = rndPitch ? Math.random() * 3 + 0.3 : 1

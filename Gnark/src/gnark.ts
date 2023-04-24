@@ -1,7 +1,6 @@
 // Coordinates of path to patrol
-import {Animator, engine, Entity, GltfContainer, Transform} from '@dcl/sdk/ecs'
+import { Animator, engine, Entity, GltfContainer, Transform } from '@dcl/sdk/ecs'
 import {} from '@dcl/sdk/math'
-
 
 const point1 = { x: 8, y: 0, z: 8 }
 const point2 = { x: 8, y: 0, z: 24 }
@@ -20,7 +19,7 @@ export function createGnark(startingSegment: number = 1): Entity {
   const gnark = engine.addEntity()
 
   Transform.create(gnark, {
-    position: point1,
+    position: point1
   })
 
   GltfContainer.create(gnark, {
@@ -59,7 +58,10 @@ export function createGnark(startingSegment: number = 1): Entity {
     ]
   })
 
-  NPComponent.create(gnark, { state: gnarkStates.TURNING, previousState: gnarkStates.WALKING })
+  NPComponent.create(gnark, {
+    state: gnarkStates.TURNING,
+    previousState: gnarkStates.WALKING
+  })
 
   PathDataComponent.create(gnark, {
     path: pathArray,

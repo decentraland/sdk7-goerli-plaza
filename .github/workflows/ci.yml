@@ -75,3 +75,5 @@ jobs:
                ```
             This PR has been published using the `@dcl/sdk` version `${{steps.get-sdk-version.outputs.result}}`
           edit-mode: replace
+      - name: lint
+        run: npm run lint

@@ -89,7 +89,7 @@ export function enterState(entity: Entity, newState: gnarkStates) {
   const animator = Animator.getMutable(entity)
   switch (newState) {
     case gnarkStates.WALKING:
-      const walkAnim = Animator.getClip(entity, "walk")
+      const walkAnim = Animator.getClip(entity, 'walk')
       walkAnim.playing = true
 
       const move = MoveTransformComponent.get(entity)
@@ -99,7 +99,7 @@ export function enterState(entity: Entity, newState: gnarkStates) {
       break
     case gnarkStates.TURNING:
       nextSegment(entity)
-      const turnAnim = Animator.getClip(entity, "turnRight")
+      const turnAnim = Animator.getClip(entity, 'turnRight')
       turnAnim.playing = true
 
       const timer = TimeOutComponent.getMutable(entity)
@@ -110,10 +110,10 @@ export function enterState(entity: Entity, newState: gnarkStates) {
 
       break
     case gnarkStates.YELLING:
-	  const transform = Transform.getMutable(entity)
-	  const playerPosition = Transform.get(engine.PlayerEntity)
-	  transform.rotation = Quaternion.fromLookAt(transform.position, playerPosition.position)
-      const raiseDeadAnim = Animator.getClip(entity, "raiseDead")
+      const transform = Transform.getMutable(entity)
+      const playerPosition = Transform.get(engine.PlayerEntity)
+      transform.rotation = Quaternion.fromLookAt(transform.position, playerPosition.position)
+      const raiseDeadAnim = Animator.getClip(entity, 'raiseDead')
       raiseDeadAnim.playing = true
       break
   }
@@ -124,33 +124,31 @@ export function leaveState(entity: Entity, oldState: gnarkStates) {
   switch (oldState) {
     case gnarkStates.WALKING:
       // TODO use Animator.Play
-      const walkAnim = Animator.getClip(entity, "walk")
+      const walkAnim = Animator.getClip(entity, 'walk')
       if (!walkAnim.playing) return
       walkAnim.playing = false
 
       break
     case gnarkStates.TURNING:
-      const turnAnim = Animator.getClip(entity, "turnRight")
+      const turnAnim = Animator.getClip(entity, 'turnRight')
       if (!turnAnim.playing) return
       turnAnim.playing = false
 
       break
     case gnarkStates.YELLING:
-      const raiseDeadAnim = Animator.getClip(entity, "raiseDead")
+      const raiseDeadAnim = Animator.getClip(entity, 'raiseDead')
       if (!raiseDeadAnim.playing) return
       raiseDeadAnim.playing = false
-	  const path= PathDataComponent.get(entity)
-	  turn(entity, path.path[path.target])
+      const path = PathDataComponent.get(entity)
+      turn(entity, path.path[path.target])
       break
   }
 }
 
-
 export function turn(entity: Entity, target: Vector3) {
-	const transform = Transform.getMutable(entity)
-	transform.rotation = Quaternion.fromLookAt(transform.position, target)
-  }
-
+  const transform = Transform.getMutable(entity)
+  transform.rotation = Quaternion.fromLookAt(transform.position, target)
+}
 
 export function nextSegment(entity: Entity) {
   const path = PathDataComponent.getMutable(entity)

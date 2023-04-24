@@ -1,7 +1,6 @@
-
-import { engine, GltfContainer, Transform } from "@dcl/sdk/ecs"
-import { Vector3 } from "@dcl/sdk/math"
-import { createCoin } from "./coin"
+import { engine, GltfContainer, Transform } from '@dcl/sdk/ecs'
+import { Vector3 } from '@dcl/sdk/math'
+import { createCoin } from './coin'
 
 export * from '@dcl/sdk'
 
@@ -31,15 +30,10 @@ const coinPositions = [
   Vector3.create(5.2, 3.9, 13.8),
   Vector3.create(8, 3.9, 13.8),
   Vector3.create(10.8, 3.9, 13.8),
-  Vector3.create(13.8, 3.9, 13.8),
+  Vector3.create(13.8, 3.9, 13.8)
 ]
 
 // Setup the coins
 for (const coinPosition of coinPositions) {
-  createCoin(
-    'models/coin.glb',
-    coinPosition,
-    Vector3.create(1.5, 3, 1.5),
-    Vector3.create(0, 1, 0)
-  )
+  createCoin('models/coin.glb', coinPosition, Vector3.create(1.5, 3, 1.5), Vector3.create(0, 1, 0))
 }

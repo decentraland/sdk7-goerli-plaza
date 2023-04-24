@@ -5,14 +5,14 @@ import {
   MeshCollider,
   PointerEvents,
   PointerEventType,
-  InputAction,
-} from "@dcl/sdk/ecs"
+  InputAction
+} from '@dcl/sdk/ecs'
 
 export function createCone() {
   const cone = engine.addEntity()
 
   Transform.create(cone, {
-    position: { x: 3, y: 1, z: 3 },
+    position: { x: 3, y: 1, z: 3 }
   })
 
   MeshRenderer.setCylinder(cone, 1, 0)
@@ -24,11 +24,11 @@ export function createCone() {
         eventType: PointerEventType.PET_DOWN,
         eventInfo: {
           button: InputAction.IA_PRIMARY,
-          hoverText: "Click",
-          showFeedback: true,
-        },
-      },
-    ],
+          hoverText: 'Click',
+          showFeedback: true
+        }
+      }
+    ]
   })
 
   return cone

@@ -4,7 +4,7 @@ import { test } from '@dcl/sdk/testing'
 import { assertComponentValue } from '@dcl/sdk/testing/assert'
 import { createChainedEntities } from './helpers'
 
-test("raycast: raycasting from a translated origin works", function* (context) {
+test('raycast: raycasting from a translated origin works', function* (context) {
   // this is the paremeter of the globalTarget
   const globalTarget = Vector3.create(0, 10, 0)
 
@@ -38,12 +38,12 @@ test("raycast: raycasting from a translated origin works", function* (context) {
   })
 })
 
-test("raycast: localDirection raycasting from a translated origin works", function* (context) {
+test('raycast: localDirection raycasting from a translated origin works', function* (context) {
   // 1. Create an entity that is located in a transformed origin
   const entity = createChainedEntities([
     {
       position: Vector3.create(10, 0, 10),
-      scale: Vector3.create(0.5, 0.5, 0.5),
+      scale: Vector3.create(0.5, 0.5, 0.5)
     },
     {
       position: Vector3.create(10, 0, 10),
@@ -76,19 +76,19 @@ test("raycast: localDirection raycasting from a translated origin works", functi
   })
 })
 
-test("raycast: localDirection raycasting from a translated origin works, with rotated parent", function* (context) {
+test('raycast: localDirection raycasting from a translated origin works, with rotated parent', function* (context) {
   // 1. Create an entity that is located in a transformed origin
   const entity = createChainedEntities([
     {
       position: Vector3.create(10, 0, 10),
-      scale: Vector3.create(0.5, 0.5, 0.5),
+      scale: Vector3.create(0.5, 0.5, 0.5)
     },
     {
       position: Vector3.create(10, 0, 10),
       rotation: Quaternion.fromEulerDegrees(0, 90, 0)
     },
     {
-      scale: Vector3.create(1, 1, 1),
+      scale: Vector3.create(1, 1, 1)
     }
   ])
 
@@ -117,20 +117,19 @@ test("raycast: localDirection raycasting from a translated origin works, with ro
   })
 })
 
-
-test("raycast: localDirection raycasting from a translated origin works, with rotated parent and offsetOrigin", function* (context) {
+test('raycast: localDirection raycasting from a translated origin works, with rotated parent and offsetOrigin', function* (context) {
   // 1. Create an entity that is located in a transformed origin
   const entity = createChainedEntities([
     {
       position: Vector3.create(10, 0, 10),
-      scale: Vector3.create(0.5, 0.5, 0.5),
+      scale: Vector3.create(0.5, 0.5, 0.5)
     },
     {
       position: Vector3.create(10, 0, 10),
       rotation: Quaternion.fromEulerDegrees(0, 90, 0)
     },
     {
-      scale: Vector3.create(1, 1, 1),
+      scale: Vector3.create(1, 1, 1)
     }
   ])
 

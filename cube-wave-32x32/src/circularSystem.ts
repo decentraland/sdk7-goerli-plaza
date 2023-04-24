@@ -1,4 +1,4 @@
-import { engine, MeshRenderer, Transform } from "@dcl/sdk/ecs"
+import { engine, MeshRenderer, Transform } from '@dcl/sdk/ecs'
 
 let hoverState: number = 0
 

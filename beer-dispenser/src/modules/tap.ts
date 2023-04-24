@@ -18,7 +18,7 @@ export function tapPumpSystem(dt: number) {
     if (tapReadonly.pouring) {
       // At start the pouring, play the sound an animation
       if (Scalar.withinEpsilon(tapReadonly.pouringTime, 0)) {
-		Animator.playSingleAnimation(entity, `Pour`)
+        Animator.playSingleAnimation(entity, `Pour`)
         playSound('sounds/beerPump.mp3', false, getPlayerPosition())
         const glassEntity = getBeerBehindTap(tapReadonly.beerType)
         if (glassEntity) Animator.playSingleAnimation(glassEntity, `Pour${getTapData(tapReadonly.beerType).name}`)

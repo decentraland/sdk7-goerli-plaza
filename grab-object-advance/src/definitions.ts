@@ -1,20 +1,16 @@
-import { engine, Schemas, PBMaterial_PbrMaterial } from "@dcl/sdk/ecs"
-import { Color4 } from "@dcl/sdk/math"
+import { engine, Schemas, PBMaterial_PbrMaterial } from '@dcl/sdk/ecs'
+import { Color4 } from '@dcl/sdk/math'
 
-export const BoxBody = engine.defineComponent('BoxBody',
-  {
-    boxBodyId: Schemas.Number
-  }
-)
+export const BoxBody = engine.defineComponent('BoxBody', {
+  boxBodyId: Schemas.Number
+})
 
-export const Marker = engine.defineComponent('Marker',
-  {
-    mouseConstraintId: Schemas.Number,
-    isPointerPressed: Schemas.Boolean,
-    isEKeyPressed: Schemas.Boolean,
-    markerDistance: Schemas.Number
-  }
-)
+export const Marker = engine.defineComponent('Marker', {
+  mouseConstraintId: Schemas.Number,
+  isPointerPressed: Schemas.Boolean,
+  isEKeyPressed: Schemas.Boolean,
+  markerDistance: Schemas.Number
+})
 
 export const JointBodyID = 1
 

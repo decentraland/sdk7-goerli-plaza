@@ -3,16 +3,12 @@ import { engine, Entity, GltfContainer, Transform, TransformType } from '@dcl/sd
 import { Quaternion } from '@dcl/sdk/math'
 import * as utils from '@dcl-sdk/utils'
 
-export function createRotatingPlatform(
-  model: string,
-  transform:Partial<TransformType>,
-  rotation:Quaternion
-): Entity {
+export function createRotatingPlatform(model: string, transform: Partial<TransformType>, rotation: Quaternion): Entity {
   const entity = engine.addEntity()
   GltfContainer.create(entity, { src: model })
   Transform.create(entity, transform)
 
-  utils.perpetualMotions.startRotation(entity,rotation)
-  
+  utils.perpetualMotions.startRotation(entity, rotation)
+
   return entity
 }

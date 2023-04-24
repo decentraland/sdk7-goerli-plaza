@@ -3,7 +3,7 @@ import { Quaternion, Vector3 } from '@dcl/sdk/math'
 import { test } from '@dcl/sdk/testing'
 import { assertComponentValue } from '@dcl/sdk/testing/assert'
 
-test("raycast: raycasting from an entity to global origin yields correct direction", function* (context) {
+test('raycast: raycasting from an entity to global origin yields correct direction', function* (context) {
   const globalTarget = Vector3.create(0, 10, 0)
   const globalOrigin = Vector3.One()
 
@@ -32,7 +32,7 @@ test("raycast: raycasting from an entity to global origin yields correct directi
   })
 })
 
-test("raycast: raycasting from an entity to local direction origin yields correct direction without transform", function* (context) {
+test('raycast: raycasting from an entity to local direction origin yields correct direction without transform', function* (context) {
   // create a new entity with a transform and a raycast component
   const globalOrigin = Vector3.create(0, 10, 0)
   const localDirection = Vector3.Down()
@@ -61,7 +61,7 @@ test("raycast: raycasting from an entity to local direction origin yields correc
   })
 })
 
-test("raycast: raycasting from an entity to another entity works like globalTarget", function* (context) {
+test('raycast: raycasting from an entity to another entity works like globalTarget', function* (context) {
   // create a new entity with a transform and a raycast component
   const globalOrigin = Vector3.create(0, 10, 0)
   const targetEntityGlobalOrigin = Vector3.create(0, 10, 10)
@@ -93,7 +93,7 @@ test("raycast: raycasting from an entity to another entity works like globalTarg
   })
 })
 
-test("raycast: raycasting from an entity to local direction origin yields correct direction with last entity rotated", function* (context) {
+test('raycast: raycasting from an entity to local direction origin yields correct direction with last entity rotated', function* (context) {
   // create a new entity with a transform and a raycast component
   const globalOrigin = Vector3.create(0, 10, 0)
   const globalDirection = Vector3.Down()

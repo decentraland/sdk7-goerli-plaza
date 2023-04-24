@@ -1,10 +1,8 @@
-
-import { Entity } from '@dcl/sdk/ecs.js';
-import IBoidEntity from './IBoidEntity.js';
-
+import { Entity } from '@dcl/sdk/ecs.js'
+import IBoidEntity from './IBoidEntity.js'
 
 /**
- * @module BoidVisualEntity 
+ * @module BoidVisualEntity
  * Entity class defines an entitiy model which has a position and a velocity.
  * Also it has some utiliy methods.
  */

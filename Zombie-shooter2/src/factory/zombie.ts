@@ -8,10 +8,10 @@ import {
   PointerEvents,
   PointerEventType,
   InputAction,
-  MeshCollider,
-} from "@dcl/sdk/ecs"
-import { MoveTransformComponent } from "../components/moveTransport"
-import { ZombieComponent } from "../components/zombie"
+  MeshCollider
+} from '@dcl/sdk/ecs'
+import { MoveTransformComponent } from '../components/moveTransport'
+import { ZombieComponent } from '../components/zombie'
 
 export function createZombie(xPos: number): Entity {
   const zombie = engine.addEntity()
@@ -19,14 +19,14 @@ export function createZombie(xPos: number): Entity {
   ZombieComponent.create(zombie)
 
   Transform.create(zombie, {
-    position: { x: xPos, y: 1, z: 3 },
+    position: { x: xPos, y: 1, z: 3 }
   })
 
   const zombieGltf = true
 
   if (zombieGltf) {
     GltfContainer.create(zombie, {
-      src: "models/zombie.glb",
+      src: 'models/zombie.glb'
     })
   } else {
     MeshRenderer.setBox(zombie)
@@ -39,24 +39,24 @@ export function createZombie(xPos: number): Entity {
     normalizedTime: 0,
     lerpTime: 0,
     speed: 0.04,
-    interpolationType: 1,
+    interpolationType: 1
   })
 
   Animator.create(zombie, {
     states: [
       {
-        clip: "Walking",
+        clip: 'Walking',
         loop: true,
-        name: "Walk",
-        playing: true,
+        name: 'Walk',
+        playing: true
       },
       {
-        clip: "Attacking",
+        clip: 'Attacking',
         loop: true,
-        name: "Attack",
-        playing: false,
-      },
-    ],
+        name: 'Attack',
+        playing: false
+      }
+    ]
   })
 
   MeshCollider.setBox(zombie)
@@ -67,10 +67,10 @@ export function createZombie(xPos: number): Entity {
         eventType: PointerEventType.PET_DOWN,
         eventInfo: {
           button: InputAction.IA_POINTER,
-          hoverText: "Shoot",
-        },
-      },
-    ],
+          hoverText: 'Shoot'
+        }
+      }
+    ]
   })
 
   return zombie

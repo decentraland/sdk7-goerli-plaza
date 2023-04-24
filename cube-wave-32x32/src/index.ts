@@ -1,7 +1,7 @@
 export * from '@dcl/sdk'
 
 import { CircleHoverSystem } from './circularSystem'
-import { Billboard, engine, MeshRenderer, TextShape, Transform } from "@dcl/sdk/ecs"
+import { Billboard, engine, MeshRenderer, TextShape, Transform } from '@dcl/sdk/ecs'
 
 // My cube generator
 function createCube(x: number, y: number, z: number) {

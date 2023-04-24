@@ -4,7 +4,7 @@
 //                 Grzegorz Rozdzialik <https://github.com/Gelio>
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
 
-declare module "cannon/build/cannon" {
+declare module 'cannon/build/cannon' {
   export interface IAABBOptions {
     upperBound?: Vec3
     lowerBound?: Vec3

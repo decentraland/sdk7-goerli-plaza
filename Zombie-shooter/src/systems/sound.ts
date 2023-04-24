@@ -1,4 +1,4 @@
-import { engine, AudioSource, Entity } from "@dcl/sdk/ecs"
+import { engine, AudioSource, Entity } from '@dcl/sdk/ecs'
 
 type State = {
   t: number

@@ -1,4 +1,3 @@
-
 /*
 const INVISIBLE_MATERIAL = new BasicMaterial()
 const INVISIBLE_MATERIAL_texture = new Texture('images/transparent-texture.png')
@@ -6,17 +5,12 @@ INVISIBLE_MATERIAL.texture = INVISIBLE_MATERIAL_texture
 INVISIBLE_MATERIAL.alphaTest = 1
 */
 
-
 //const GLTF_CACHE:Record<string,GLTFShape> = {}
-
-
 
 export class CommonResources {
   static RESOURCES = {
     models: {
-      names: {
-
-      }
+      names: {}
     },
     textures: {
       //sprite_sheet: spriteSheetTexture,
@@ -24,18 +18,14 @@ export class CommonResources {
         texture: INVISIBLE_MATERIAL_texture,
         size:{sourceHeight:1,sourceWidth:1} //ImageSection
       }*/
-
     },
     materials: {
       //sprite_sheet: spriteSheetMaterial
       //transparent: INVISIBLE_MATERIAL
     },
-    strings: {
-
-    },
+    strings: {},
     images: {
-      portrait: {
-      }
+      portrait: {}
     }
   }
 }

@@ -1,4 +1,13 @@
-import { engine, GltfContainer, InputAction, Material, MeshCollider, MeshRenderer, pointerEventsSystem, Transform } from '@dcl/sdk/ecs'
+import {
+  engine,
+  GltfContainer,
+  InputAction,
+  Material,
+  MeshCollider,
+  MeshRenderer,
+  pointerEventsSystem,
+  Transform
+} from '@dcl/sdk/ecs'
 import { Quaternion, Vector3 } from '@dcl/sdk/math'
 
 import { WheelSpin } from './definitions'
