@@ -1,5 +1,5 @@
 export * from '@dcl/sdk'
-import {engine, GltfContainer, Transform} from '@dcl/sdk/ecs'
+import { engine, GltfContainer, Transform } from '@dcl/sdk/ecs'
 import { Vector3 } from '@dcl/sdk/math'
 // /*
 //   IMPORTANT: The tsconfig.json has been configured to include "node_modules/cannon/build/cannon.js"

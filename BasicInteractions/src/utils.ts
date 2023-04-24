@@ -1,5 +1,5 @@
-import { Entity, engine, Transform, MeshRenderer, MeshCollider, Billboard, TextShape, Font } from "@dcl/sdk/ecs"
-import { Vector3 } from "@dcl/sdk/math"
+import { Entity, engine, Transform, MeshRenderer, MeshCollider, Billboard, TextShape, Font } from '@dcl/sdk/ecs'
+import { Vector3 } from '@dcl/sdk/math'
 
 export function createMesh(
   position: Vector3.ReadonlyVector3,
@@ -8,7 +8,10 @@ export function createMesh(
   sphere = false
 ): Entity {
   const meshEntity = engine.addEntity()
-  Transform.create(meshEntity, { position, scale: Vector3.scale(Vector3.One(), scale) })
+  Transform.create(meshEntity, {
+    position,
+    scale: Vector3.scale(Vector3.One(), scale)
+  })
 
   if (sphere) {
     MeshRenderer.setSphere(meshEntity)

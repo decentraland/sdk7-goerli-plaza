@@ -15,7 +15,6 @@ const MoveTransportData = {
 
 export const MoveTransformComponent = engine.defineComponent('MoveTransportData', MoveTransportData)
 
-
 // Spawner shapes
 export enum SpawnerShape {
   CIRCLE,
@@ -34,15 +33,14 @@ const SpawnerComponentType = {
   timeToNextSpawn: Schemas.Int,
   spawnerShape: Schemas.EnumNumber<SpawnerShape>(SpawnerShape, SpawnerShape.CIRCLE),
   enemyShape: Schemas.EnumString<ShipShapes>(ShipShapes, ShipShapes.BLUE),
-  size: Schemas.Int,
+  size: Schemas.Int
 }
 
 export const SpawnerComponent = engine.defineComponent('SpawnerComponentType', SpawnerComponentType)
 
-
-export const Expire = engine.defineComponent('Expire', { timeLeft: Schemas.Float })
-
-
+export const Expire = engine.defineComponent('Expire', {
+  timeLeft: Schemas.Float
+})
 
 // const COMPONENT_ID = 2066
 

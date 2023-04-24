@@ -1,4 +1,4 @@
-import { Entity, engine, Transform, NftShape, NftFrameType } from "@dcl/sdk/ecs"
+import { Entity, engine, Transform, NftShape, NftFrameType } from '@dcl/sdk/ecs'
 
 export function createNft(xPos: number): Entity {
   const nft = engine.addEntity()

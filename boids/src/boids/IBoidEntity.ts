@@ -1,4 +1,4 @@
-import Grid from "./Grid";
+import Grid from './Grid'
 
 export enum BoidTypeEnum {
   FLOCK_ENTITY = 1,
@@ -8,7 +8,7 @@ export enum BoidTypeEnum {
 }
 
 /**
- * @module IBoidEntity 
+ * @module IBoidEntity
  * Entity class defines an entitiy model which has a position and a velocity.
  * Also it has some utiliy methods.
  */
@@ -53,7 +53,7 @@ export default interface IBoidEntity {
   initEntity(): void
   /**
    * Sets the grid instance
-   * @param {Grid} grid 
+   * @param {Grid} grid
    */
   setGrid(grid?: Grid): void
 
@@ -69,7 +69,7 @@ export default interface IBoidEntity {
 
   /**
    * Checks the velocity of the entitiy and limits it to the given parameter
-   * @param {Number} maxVelocity 
+   * @param {Number} maxVelocity
    */
   checkVelocity(): void
 
@@ -83,16 +83,16 @@ export default interface IBoidEntity {
 
   /**
    * This method moves the entity.
-   * @param {Number} maxVelocity 
-   * @param {Number} bx 
-   * @param {Number} by 
-   * @param {Number} bz 
+   * @param {Number} maxVelocity
+   * @param {Number} bx
+   * @param {Number} by
+   * @param {Number} bz
    */
   move(maxVelocity: number, bx: number, by: number, bz: number): void
 
   /**
    * Calculate the distance between the entity and the given entity
-   * @param {Entity} otherEntity 
+   * @param {Entity} otherEntity
    * @returns {Number} the distance between two entities
    */
   getDistance(otherEntity: IBoidEntity): number
@@ -105,13 +105,13 @@ export default interface IBoidEntity {
 
   /**
    * Updates the internal data of the entity if the IDs match
-   * @param {Object} data 
+   * @param {Object} data
    */
   updateData(data: any): void
 
   /**
    * This static method deserializes the given data and returns new Entity instance.
-   * @param {Object} data 
+   * @param {Object} data
    * @returns {Entitiy} deserialized Entitiy instance
    */
   deserialize(data: any): void

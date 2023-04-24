@@ -1,5 +1,4 @@
-import { Vector3 } from "@dcl/sdk/math";
-
+import { Vector3 } from '@dcl/sdk/math'
 
 export class Vector3Wrapper {
   static copyFrom(src: Vector3.MutableVector3, dest: Vector3.ReadonlyVector3) {

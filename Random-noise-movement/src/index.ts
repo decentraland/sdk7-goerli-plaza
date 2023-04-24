@@ -5,15 +5,11 @@ import { WaveGrass } from './components'
 // export all the functions required to make the scene work
 export * from '@dcl/sdk'
 
-
-
-
 // --- Set up a system ---
 
 // timer variable
 let t = 0
 function PerlinNoiseSystem(dt: number) {
-
   // update the timer based on the time since the last tick
   t += dt / 2
 
@@ -25,26 +21,16 @@ function PerlinNoiseSystem(dt: number) {
     if (!transform.rotation) return
 
     // // rotate grass blades along x axis based on noise
-    const rotX = Noise.simplex3(
-      transform.position.x / 16,
-      t,
-      transform.position.z / 16
-    ) * 2
+    const rotX = Noise.simplex3(transform.position.x / 16, t, transform.position.z / 16) * 2
 
     //  // rotate grass blades along z axis based on noise
-    const rotZ = Noise.simplex3(
-      transform.position.z / 16,
-      t,
-      transform.position.x / 16
-    ) * 2
+    const rotZ = Noise.simplex3(transform.position.z / 16, t, transform.position.x / 16) * 2
 
     transform.rotation = Quaternion.fromEulerDegrees(rotX, 0, rotZ)
   }
-
 }
 
 engine.addSystem(PerlinNoiseSystem)
-
 
 // --- ground ---
 const ground = engine.addEntity()
@@ -65,7 +51,7 @@ function spawnGrass(shape: string, x: number, y: number, z: number) {
   Transform.create(grass, {
     position: Vector3.create(x, y, z),
     rotation: Quaternion.fromEulerDegrees(0, Math.random() * 30, 0),
-    scale: Vector3.create(1, 0.5 + Math.random() / 2, 1),
+    scale: Vector3.create(1, 0.5 + Math.random() / 2, 1)
   })
 
   // add a shape to the entity
@@ -104,4 +90,3 @@ for (let x = 1.4; x < 15.35; x++) {
 }
 
 let started = false
-

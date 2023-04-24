@@ -1,10 +1,9 @@
-
 class BoidConfig {
   ENABLED: boolean = true
 
   AREA_SCALE: number = 1 / 80
-  FORCE_SCALE: number = 1//.05
-  MAX_SPEED_SCALE: number = .02
+  FORCE_SCALE: number = 1 //.05
+  MAX_SPEED_SCALE: number = 0.02
 
   // see debug markers for seek/obsticle/predator
   VISIBLE_OBSTACLES: boolean = false
@@ -25,4 +24,4 @@ class BoidConfig {
   SEPARATION_WEIGHT = 1
 }
 
-export const BOID_CONFIG = new BoidConfig();
+export const BOID_CONFIG = new BoidConfig()

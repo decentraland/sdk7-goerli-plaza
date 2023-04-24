@@ -1,4 +1,4 @@
-import { Schemas, engine } from "@dcl/sdk/ecs"
+import { Schemas, engine } from '@dcl/sdk/ecs'
 
 const TimeOut = {
   timeLeft: Schemas.Float,

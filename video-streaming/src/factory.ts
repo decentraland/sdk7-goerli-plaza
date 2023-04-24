@@ -1,12 +1,4 @@
-import {
-  Entity,
-  engine,
-  Transform,
-  MeshRenderer,
-  MeshCollider,
-  GltfContainer,
-  TransformType
-} from '@dcl/sdk/ecs'
+import { Entity, engine, Transform, MeshRenderer, MeshCollider, GltfContainer, TransformType } from '@dcl/sdk/ecs'
 
 // Cube factory
 export function createGLTF(transform: Partial<TransformType>, src: string): Entity {

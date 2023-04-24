@@ -1,9 +1,8 @@
-
-import { engine, Transform, GltfContainer, Animator } from "@dcl/sdk/ecs"
-import { Quaternion } from "@dcl/sdk/math"
-import { PathDataComponent } from "./components/path"
-import { SpeedComponent } from "./components/swimSpeed"
-import { cpoints } from "./sharkPath"
+import { engine, Transform, GltfContainer, Animator } from '@dcl/sdk/ecs'
+import { Quaternion } from '@dcl/sdk/math'
+import { PathDataComponent } from './components/path'
+import { SpeedComponent } from './components/swimSpeed'
+import { cpoints } from './sharkPath'
 
 export function createShark() {
   const shark = engine.addEntity()
@@ -18,19 +17,19 @@ export function createShark() {
   Animator.create(shark, {
     states: [
       {
-        clip: "swim",
+        clip: 'swim',
         loop: true,
         playing: true,
         speed: 0.5,
         weight: 0.5,
-        name: "swim"
+        name: 'swim'
       },
       {
-        clip: "bite",
+        clip: 'bite',
         loop: true,
         playing: false,
         shouldReset: false,
-        name: "bite"
+        name: 'bite'
       }
     ]
   })
@@ -54,16 +53,13 @@ export function createShark() {
   // 	interpolationType: 0
   // })
 
-  PathDataComponent.create(shark,
-    {
-      path: cpoints,
-      origin: 0,
-      target: 1,
-      startRot: Quaternion.Zero(),
-      endRot: Quaternion.Zero(),
-      fraction: 0,
-      paused: false
-    })
-
-
+  PathDataComponent.create(shark, {
+    path: cpoints,
+    origin: 0,
+    target: 1,
+    startRot: Quaternion.Zero(),
+    endRot: Quaternion.Zero(),
+    fraction: 0,
+    paused: false
+  })
 }

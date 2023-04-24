@@ -4,7 +4,19 @@ import { coneEntity } from '.'
 import { onMoveZombieFinish } from './systems/moveZombie'
 
 import { playSound } from './systems/sound'
-import { Entity, engine, Transform, GltfContainer, Animator, NftShape, pointerEventsSystem, InputAction, MeshCollider, AvatarAttach, AvatarAnchorPointType } from '@dcl/sdk/ecs'
+import {
+  Entity,
+  engine,
+  Transform,
+  GltfContainer,
+  Animator,
+  NftShape,
+  pointerEventsSystem,
+  InputAction,
+  MeshCollider,
+  AvatarAttach,
+  AvatarAnchorPointType
+} from '@dcl/sdk/ecs'
 
 export function createZombie(xPos: number): Entity {
   const zombie = engine.addEntity()
@@ -47,24 +59,22 @@ export function createZombie(xPos: number): Entity {
     ]
   })
 
-
   pointerEventsSystem.onPointerDown(
-	zombie,
-	function () {
-		console.log('BOOM!!!')
+    zombie,
+    function () {
+      console.log('BOOM!!!')
 
-		engine.removeEntity(zombie)
-		playSound(dummySoundPlayer, 'sounds/explosion.mp3', true)
-		
-	
-		if (GameControllerComponent.has(coneEntity)) {
-		  GameControllerComponent.getMutable(coneEntity).score += 1
-		}
-	},
-	{
-	  button: InputAction.IA_POINTER,
-	  hoverText: 'Shoot'
-	}
+      engine.removeEntity(zombie)
+      playSound(dummySoundPlayer, 'sounds/explosion.mp3', true)
+
+      if (GameControllerComponent.has(coneEntity)) {
+        GameControllerComponent.getMutable(coneEntity).score += 1
+      }
+    },
+    {
+      button: InputAction.IA_POINTER,
+      hoverText: 'Shoot'
+    }
   )
 
   onMoveZombieFinish(zombie, () => {
@@ -75,8 +85,8 @@ export function createZombie(xPos: number): Entity {
     }
 
     const animator = Animator.getMutable(zombie)
-    const walkAnim = Animator.getClip(zombie, "Walking")
-    const attackAnim = Animator.getClip(zombie, "Attacking")
+    const walkAnim = Animator.getClip(zombie, 'Walking')
+    const attackAnim = Animator.getClip(zombie, 'Attacking')
     if (walkAnim && attackAnim) {
       walkAnim.playing = false
       walkAnim.loop = false
@@ -95,10 +105,8 @@ export function createZombie(xPos: number): Entity {
     playSound(zombie, 'sounds/attack.mp3', true)
   })
 
-
   return zombie
 }
-
 
 const dummySoundPlayer = engine.addEntity()
 AvatarAttach.create(dummySoundPlayer)

@@ -1,4 +1,4 @@
-import { Entity, engine, Transform, TextShape } from "@dcl/sdk/ecs"
+import { Entity, engine, Transform, TextShape } from '@dcl/sdk/ecs'
 
 export function createText(parent: Entity, value: string): Entity {
   const text = engine.addEntity()
@@ -20,7 +20,7 @@ export function createText(parent: Entity, value: string): Entity {
     shadowBlur: 1,
     shadowColor: { r: 1, g: 0, b: 0 },
     shadowOffsetX: 100,
-    shadowOffsetY: 5,
+    shadowOffsetY: 5
   })
 
   return text

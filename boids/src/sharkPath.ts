@@ -1,5 +1,3 @@
-
-
 // how many points on the curve
 //const curvePoints = 25
 
@@ -20,7 +18,7 @@
 // ).getPoints()
 
 // hardcoded list of path points (curve generating functions not supported yet)
-export const cpoints: { x: number, y: number, z: number }[] = [
+export const cpoints: { x: number; y: number; z: number }[] = [
   { x: 12.8, y: 8, z: 3.2 },
   { x: 12.9253376, y: 8.069056, z: 3.3972224000000004 },
   { x: 13.044940800000001, y: 8.124608, z: 3.6420992000000005 },
@@ -121,4 +119,5 @@ export const cpoints: { x: number, y: number, z: number }[] = [
   { x: 12.309094400000003, y: 7.663078400000002, z: 2.7894656000000015 },
   { x: 12.495257600000002, y: 7.798233600000001, z: 2.9034624000000013 },
   { x: 12.659507200000004, y: 7.911219200000001, z: 3.0400128000000013 },
-  { x: 12.8, y: 8, z: 3.2 }]
+  { x: 12.8, y: 8, z: 3.2 }
+]

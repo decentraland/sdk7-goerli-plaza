@@ -24,7 +24,6 @@
 // //    interpolationType:  Schemas.Enum<InterpolationType>(Schemas.Int)
 // // }
 
-
 // const RotateTransportData = {
 // 	hasFinished: Schemas.Boolean,
 // 	start: QuaternionEcsType,
@@ -32,7 +31,6 @@
 // 	fraction: Schemas.Float,
 // 	 interpolationType:  Schemas.Enum<InterpolationType>(Schemas.Int)
 //   }
-
 
 // // export const MoveTransformComponent = engine.defineComponent(MoveTransportData, COMPONENT_ID)
 

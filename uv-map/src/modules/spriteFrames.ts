@@ -26,21 +26,21 @@ export default function updateSpriteFrameSystem(dt: number) {
           // face 1
           sprite.faceMappingsX,
           sprite.faceMappingsY,
-		  sprite.faceMappingsX,
+          sprite.faceMappingsX,
           sprite.faceMappingsY + frameSizeY,
-		  sprite.faceMappingsX + frameSizeX,
+          sprite.faceMappingsX + frameSizeX,
           sprite.faceMappingsY + frameSizeY,
-		  sprite.faceMappingsX + frameSizeX,
+          sprite.faceMappingsX + frameSizeX,
           sprite.faceMappingsY,
           // face 2
           sprite.faceMappingsX,
           sprite.faceMappingsY,
-		  sprite.faceMappingsX,
+          sprite.faceMappingsX,
           sprite.faceMappingsY + frameSizeY,
-		  sprite.faceMappingsX + frameSizeX,
+          sprite.faceMappingsX + frameSizeX,
           sprite.faceMappingsY + frameSizeY,
-		  sprite.faceMappingsX + frameSizeX,
-          sprite.faceMappingsY,
+          sprite.faceMappingsX + frameSizeX,
+          sprite.faceMappingsY
         ]
       }
     }

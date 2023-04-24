@@ -6,6 +6,7 @@
     "@dcl-sdk/utils": "^1.0.2",
     "@dcl/sdk": "next",
     "glob": "^9.3.4",
+    "prettier": "^2.8.8",
     "syncpack": "^9.8.4"
   },
   "private": true,
@@ -13,9 +14,16 @@
     "build": "sdk-commands build",
     "export-static": "sdk-commands export-static",
     "start": "sdk-commands start",
+    "format": "./node_modules/.bin/prettier '**/*.ts' -w",
     "sync": "syncpack format --config .syncpackrc.json  --source \"*/package.json\" --source package.json",
     "test": "syncpack list-mismatches --config .syncpackrc.json  --source \"*/package.json\" --source package.json",
     "update-parcels": "node scripts/checkParcelsCollision.js"
+  },
+  "prettier": {
+    "trailingComma": "none",
+    "singleQuote": true,
+    "printWidth": 120,
+    "semi": false
   },
   "workspaces": [
     "77,-1-raycast-unit-tests",

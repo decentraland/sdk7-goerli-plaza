@@ -1,5 +1,5 @@
-import { engine } from "@dcl/sdk/ecs"
-import { Expire } from "../components/customComponents"
+import { engine } from '@dcl/sdk/ecs'
+import { Expire } from '../components/customComponents'
 
 export function expire(dt: number) {
   for (const [entity] of engine.getEntitiesWith(Expire)) {

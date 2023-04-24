@@ -9,15 +9,15 @@ export * from '@dcl/sdk'
 function setup() {
   // Create tables
   const tables = engine.addEntity()
-  Transform.create(tables,{
-	position: Vector3.create(0,0,0)
+  Transform.create(tables, {
+    position: Vector3.create(0, 0, 0)
   })
   GltfContainer.create(tables, { src: 'models/tables.glb' })
 
   // Create floor
   const floor = engine.addEntity()
-  Transform.create(floor,{
-	position: Vector3.create(0,0,0)
+  Transform.create(floor, {
+    position: Vector3.create(0, 0, 0)
   })
   GltfContainer.create(floor, {
     src: 'models/baseDarkWithCollider.glb'

@@ -1,4 +1,3 @@
-
 export class IntervalUtil {
   elapsedTime: number
   targetTime: number
@@ -24,12 +23,11 @@ export class IntervalUtil {
     this.onTimeReachedCallback = onTimeReachedCallback
   }
   /**
-   * 
-   * @param dt 
+   *
+   * @param dt
    * @returns false if not hit interval, true if hit interval
    */
   update(dt: number): boolean {
-
     this.elapsedTime += dt
     //log("interval ",this.elapsedTime , this.targetTime)
     if (this.elapsedTime > this.targetTime) {
@@ -37,7 +35,6 @@ export class IntervalUtil {
       return true
       //this.elapsedTime -= this.targetTime //push back
     }
-    return false;
+    return false
   }
-
 }

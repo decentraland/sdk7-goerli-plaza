@@ -9,15 +9,13 @@ import { Color4, Quaternion, Vector3 } from '@dcl/sdk/math'
 // }
 
 // Particles
-export const Particle = engine.defineComponent('Particle',
-  {
-    life: Schemas.Float,
-    seed: Schemas.Float,
-    width: Schemas.Number,
-    height: Schemas.Number,
-    speed: Schemas.Number
-  }
-)
+export const Particle = engine.defineComponent('Particle', {
+  life: Schemas.Float,
+  seed: Schemas.Float,
+  width: Schemas.Number,
+  height: Schemas.Number,
+  speed: Schemas.Number
+})
 
 export function particleSystem(dt: number) {
   for (const [entity] of engine.getEntitiesWith(Particle, Transform)) {

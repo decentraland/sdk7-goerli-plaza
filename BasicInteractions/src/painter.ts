@@ -1,12 +1,9 @@
-import { engine, Material, PBMaterial_PbrMaterial, Schemas } from "@dcl/sdk/ecs"
-import { Color3 } from "@dcl/sdk/math"
+import { engine, Material, PBMaterial_PbrMaterial, Schemas } from '@dcl/sdk/ecs'
+import { Color3 } from '@dcl/sdk/math'
 
-export const PainterComponent = engine.defineComponent(
-  'PainterComponent',
-  {
-    t: Schemas.Number
-  }
-)
+export const PainterComponent = engine.defineComponent('PainterComponent', {
+  t: Schemas.Number
+})
 
 const greenMaterial: PBMaterial_PbrMaterial = {
   albedoColor: { a: 1, r: 0, g: 1, b: 0 }

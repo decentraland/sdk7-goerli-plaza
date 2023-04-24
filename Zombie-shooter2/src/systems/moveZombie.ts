@@ -29,8 +29,8 @@ export function moveSystem(dt: number) {
     ensureGameController().livesLeft -= 1
 
     const animator = Animator.getMutable(zombieEntity)
-	const walkAnim = Animator.getClip(zombieEntity, "Walking")
-    const attackAnim = Animator.getClip(zombieEntity, "Attacking")
+    const walkAnim = Animator.getClip(zombieEntity, 'Walking')
+    const attackAnim = Animator.getClip(zombieEntity, 'Attacking')
     if (walkAnim && attackAnim) {
       walkAnim.playing = false
       walkAnim.loop = false

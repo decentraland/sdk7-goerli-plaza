@@ -1,12 +1,12 @@
-import { Entity, engine, Transform, GltfContainer, MeshRenderer } from '@dcl/sdk/ecs.js';
-import { Vector3, Quaternion } from '@dcl/sdk/math.js';
-import { CommonResources } from '../resources/common.js';
+import { Entity, engine, Transform, GltfContainer, MeshRenderer } from '@dcl/sdk/ecs.js'
+import { Vector3, Quaternion } from '@dcl/sdk/math.js'
+import { CommonResources } from '../resources/common.js'
 
 //import BoidEntity from './BoidEntity.js';
-import { BOID_CONFIG } from './Constants.js';
-import Grid from "./Grid";
-import IBoidEntity, { BoidTypeEnum } from './IBoidEntity.js';
-import IBoidVisibleEntity from './IBoidVisibleEntity.js';
+import { BOID_CONFIG } from './Constants.js'
+import Grid from './Grid'
+import IBoidEntity, { BoidTypeEnum } from './IBoidEntity.js'
+import IBoidVisibleEntity from './IBoidVisibleEntity.js'
 
 // export const fishConeShape =  MeshRenderer//CylinderShape////CylinderShape //// is gone? /
 // //fishConeShape.withCollisions = false
@@ -17,20 +17,18 @@ import IBoidVisibleEntity from './IBoidVisibleEntity.js';
 // export const objsSphere =  MeshRenderer
 //objsSphere.withCollisions = false
 
-export const fishShapes: string[] =
-  [
-    ("models/Fish_01/Fish_01.glb"),
-    ("models/Fish_03/Fish_03.glb"),
-    ("models/Fish_04/Fish_04.glb")
-  ]
+export const fishShapes: string[] = [
+  'models/Fish_01/Fish_01.glb',
+  'models/Fish_03/Fish_03.glb',
+  'models/Fish_04/Fish_04.glb'
+]
 
 //for(const p in fishShapes){
 //  fishShapes[p].withCollisions = false
 //}
 
-
 /**
- * @module BoidVisualEntity 
+ * @module BoidVisualEntity
  * Entity class defines an entitiy model which has a position and a velocity.
  * Also it has some utiliy methods.
  */
@@ -59,30 +57,24 @@ export default class BoidVisibleEntity implements IBoidVisibleEntity {
 
   initEntity() {
     const type = this.boid.type
-    const parent = engine.addEntity()//"fish-p-"+this.boid.id)
+    const parent = engine.addEntity() //"fish-p-"+this.boid.id)
     //parent.addComponent(fishShape)
-    Transform.create(parent,
-      {
-        position: Vector3.create(1, 1, 1)
-        , scale: Vector3.One()
-        , rotation: Quaternion.Zero()
-      }
-    )
+    Transform.create(parent, {
+      position: Vector3.create(1, 1, 1),
+      scale: Vector3.One(),
+      rotation: Quaternion.Zero()
+    })
 
-    this.entity = parent;//new Entity(parent)
+    this.entity = parent //new Entity(parent)
 
+    const child = engine.addEntity() //new Entity("fish-"+this.boid.id)
 
-    const child = engine.addEntity()//new Entity("fish-"+this.boid.id)
-
-    Transform.create(child,
-      {
-        position: Vector3.Zero()
-        , scale: Vector3.One()
-        , rotation: Quaternion.Zero()
-        , parent: parent
-      }
-    )
-
+    Transform.create(child, {
+      position: Vector3.Zero(),
+      scale: Vector3.One(),
+      rotation: Quaternion.Zero(),
+      parent: parent
+    })
 
     if (type == BoidTypeEnum.FLOCK_ENTITY) {
       //FIXME NEED THIS
@@ -99,7 +91,7 @@ export default class BoidVisibleEntity implements IBoidVisibleEntity {
         src: fishShapes[Math.floor(Math.random() * fishShapes.length)]
       })
 
-      //as particles 
+      //as particles
 
       //sphere particles
       //child.addComponentOrReplace(objsSphere)
@@ -108,7 +100,6 @@ export default class BoidVisibleEntity implements IBoidVisibleEntity {
       //cube particles
       //child.addComponentOrReplace(fishBoxShape)
       //child.getComponent(Transform).scale.scaleInPlace(.05)
-
     } else if (type == BoidTypeEnum.PREDATOR_ENTITY) {
       if (BOID_CONFIG.VISIBLE_PREDATOR) {
         //child.addComponent(fishConeShape)
@@ -116,7 +107,7 @@ export default class BoidVisibleEntity implements IBoidVisibleEntity {
 
         //child.getComponent(Transform).rotate(new Vector3(1,1,1),90)
         const tf = Transform.getMutable(child)
-        Vector3.scaleToRef(tf.scale, .3, tf.scale)
+        Vector3.scaleToRef(tf.scale, 0.3, tf.scale)
 
         //child.addComponent(CommonResources.RESOURCES.materials.transparent)
       }
@@ -125,11 +116,9 @@ export default class BoidVisibleEntity implements IBoidVisibleEntity {
         //child.addComponent(BoxShape)
         MeshRenderer.setBox(child)
 
-
-
         //child.getComponent(Transform).rotate(new Vector3(1,1,1),90)
         const tf = Transform.getMutable(child)
-        Vector3.scaleToRef(tf.scale, .2, tf.scale)
+        Vector3.scaleToRef(tf.scale, 0.2, tf.scale)
         //child.addComponent(CommonResources.RESOURCES.materials.transparent)
       }
     } else if (type == BoidTypeEnum.OBSTACLE_ENTITY) {
@@ -143,17 +132,15 @@ export default class BoidVisibleEntity implements IBoidVisibleEntity {
         //child.addComponentOrReplace( objsSphere )
         //child.addComponent(CommonResources.RESOURCES.materials.transparent)
       }
-      console.log("adding child obs")
+      console.log('adding child obs')
     } else {
-      console.log("unknown type", type)
+      console.log('unknown type', type)
     }
-
 
     //child.setParent(parent.entity) //HOW DO WE DO PARENTING
 
-    this.modelEntity = child//new Entity(child)
+    this.modelEntity = child //new Entity(child)
 
-    //engine.addEntity(parent) 
-
+    //engine.addEntity(parent)
   }
 }

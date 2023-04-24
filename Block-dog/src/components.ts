@@ -23,7 +23,7 @@ const MoveTransformSchema = {
   interpolationType: Schemas.EnumNumber<InterpolationType>(InterpolationType, InterpolationType.EASESINE)
 }
 
-export const MoveTransformComponent = engine.defineComponent("MoveTransformSchema", MoveTransformSchema)
+export const MoveTransformComponent = engine.defineComponent('MoveTransformSchema', MoveTransformSchema)
 
 const NPCSchema = {
   state: Schemas.EnumNumber<dogStates>(dogStates, dogStates.Idle),
@@ -31,7 +31,7 @@ const NPCSchema = {
   changeTimer: Schemas.Number
 }
 
-export const NPCComponent = engine.defineComponent("NPCSchema", NPCSchema)
+export const NPCComponent = engine.defineComponent('NPCSchema', NPCSchema)
 
 const TimeOutSchema = {
   timeLeft: Schemas.Float,
@@ -39,7 +39,7 @@ const TimeOutSchema = {
   paused: Schemas.Boolean
 }
 
-export const TimeOutComponent = engine.defineComponent("TimeOutSchema", TimeOutSchema)
+export const TimeOutComponent = engine.defineComponent('TimeOutSchema', TimeOutSchema)
 
 /**
  * Export components

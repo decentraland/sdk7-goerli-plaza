@@ -7,16 +7,16 @@ import {
   MeshRenderer,
   PointerEventType,
   PointerEvents,
-  Transform,
-} from "@dcl/sdk/ecs"
-import { Quaternion, Vector3 } from "@dcl/sdk/math"
-export * from "@dcl/sdk"
+  Transform
+} from '@dcl/sdk/ecs'
+import { Quaternion, Vector3 } from '@dcl/sdk/math'
+export * from '@dcl/sdk'
 
 function createCube(x: number, y: number, z: number, spawner = false): Entity {
   const meshEntity = engine.addEntity()
 
   Transform.create(meshEntity, {
-    position: { x, y, z },
+    position: { x, y, z }
   })
 
   MeshRenderer.setBox(meshEntity)
@@ -29,12 +29,12 @@ function createCube(x: number, y: number, z: number, spawner = false): Entity {
           eventType: PointerEventType.PET_DOWN,
           eventInfo: {
             button: InputAction.IA_PRIMARY,
-            hoverText: "Press E to spawn",
+            hoverText: 'Press E to spawn',
             maxDistance: 100,
-            showFeedback: true,
-          },
-        },
-      ],
+            showFeedback: true
+          }
+        }
+      ]
     })
   }
 

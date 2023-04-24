@@ -1,8 +1,6 @@
-import { engine, Schemas } from "@dcl/sdk/ecs";
+import { engine, Schemas } from '@dcl/sdk/ecs'
 
-export const Zombie = engine.defineComponent('Zombie',
-    {
-        movementSpeed: Schemas.Number,
-        rotationSpeed: Schemas.Number
-    }
-)
+export const Zombie = engine.defineComponent('Zombie', {
+  movementSpeed: Schemas.Number,
+  rotationSpeed: Schemas.Number
+})

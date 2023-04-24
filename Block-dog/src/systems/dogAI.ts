@@ -1,8 +1,8 @@
-import { engine, Entity, Animator, PointerEvents, Transform } from "@dcl/sdk/ecs"
-import { Vector3, Quaternion } from "@dcl/sdk/math"
-import { bowl } from ".."
-import { CustomComponents, dogStates } from "../components"
-import { onMoveFinish } from "./moveSystem"
+import { engine, Entity, Animator, PointerEvents, Transform } from '@dcl/sdk/ecs'
+import { Vector3, Quaternion } from '@dcl/sdk/math'
+import { bowl } from '..'
+import { CustomComponents, dogStates } from '../components'
+import { onMoveFinish } from './moveSystem'
 
 const CHANGE_VARIABILITY = 4
 
@@ -45,21 +45,21 @@ export function enterState(entity: Entity, newState: dogStates) {
 
   switch (newState) {
     case dogStates.Idle:
-      Animator.playSingleAnimation(entity, "Idle")
+      Animator.playSingleAnimation(entity, 'Idle')
       CustomComponents.MoveTransform.deleteFrom(entity)
       break
 
     case dogStates.Sit:
-      Animator.playSingleAnimation(entity, "Sitting")
+      Animator.playSingleAnimation(entity, 'Sitting')
       const MutablePointerEvent = PointerEvents.getMutable(entity).pointerEvents[0]
       if (MutablePointerEvent.eventInfo) {
-        MutablePointerEvent.eventInfo.hoverText = "Stand"
+        MutablePointerEvent.eventInfo.hoverText = 'Stand'
       }
       CustomComponents.MoveTransform.deleteFrom(entity)
       break
 
     case dogStates.Follow:
-      Animator.playSingleAnimation(entity, "Walking")
+      Animator.playSingleAnimation(entity, 'Walking')
 
       const playerPos = Transform.get(engine.PlayerEntity).position
       if (isInBounds(playerPos)) {
@@ -76,7 +76,7 @@ export function enterState(entity: Entity, newState: dogStates) {
           speed: 0.1,
           hasFinished: false,
           normalizedTime: 0,
-          lerpTime: 0,
+          lerpTime: 0
         })
         onMoveFinish(entity, () => {
           changeState(entity, dogStates.Sit)
@@ -85,7 +85,7 @@ export function enterState(entity: Entity, newState: dogStates) {
       break
 
     case dogStates.GoDrink:
-      Animator.playSingleAnimation(entity, "Walking")
+      Animator.playSingleAnimation(entity, 'Walking')
       const bowlPosition = Transform.get(bowl).position
       const bowlToDogVector = Vector3.normalize(Vector3.subtract(MutableTransform.position, bowlPosition))
       const finalPos = Vector3.add(bowlPosition, bowlToDogVector)
@@ -98,7 +98,7 @@ export function enterState(entity: Entity, newState: dogStates) {
         speed: 0.1,
         hasFinished: false,
         normalizedTime: 0,
-        lerpTime: 0,
+        lerpTime: 0
       })
       onMoveFinish(entity, () => {
         changeState(entity, dogStates.Drinking)
@@ -106,7 +106,7 @@ export function enterState(entity: Entity, newState: dogStates) {
       break
 
     case dogStates.Drinking:
-      Animator.playSingleAnimation(entity, "Drinking")
+      Animator.playSingleAnimation(entity, 'Drinking')
       CustomComponents.MoveTransform.deleteFrom(entity)
       break
   }
@@ -120,7 +120,7 @@ export function leaveState(entity: Entity, oldState: dogStates) {
     case dogStates.Sit:
       const MutablePointerEvent = PointerEvents.getMutable(entity).pointerEvents[0]
       if (MutablePointerEvent.eventInfo) {
-        MutablePointerEvent.eventInfo.hoverText = "Sit"
+        MutablePointerEvent.eventInfo.hoverText = 'Sit'
       }
       break
 

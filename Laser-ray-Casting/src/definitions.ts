@@ -7,31 +7,31 @@ export const speed = 1
 export const rayDistance = 28
 
 export const defaultMaterial: PBMaterial_PbrMaterial = {
-	metallic: 0,
-	roughness: 1,
-	albedoColor: Color4.create(0.2, 0.1, 1)
+  metallic: 0,
+  roughness: 1,
+  albedoColor: Color4.create(0.2, 0.1, 1)
 }
 
 export const inmuneMaterial: PBMaterial_PbrMaterial = {
-	metallic: 0,
-	roughness: 1,
-	albedoColor: Color4.Yellow()
+  metallic: 0,
+  roughness: 1,
+  albedoColor: Color4.Yellow()
 }
 
 export const hitMaterial: PBMaterial_PbrMaterial = {
-	metallic: 1,
-	roughness: 0.5,
-	albedoColor: Color4.create(1, 1, 30)
+  metallic: 1,
+  roughness: 0.5,
+  albedoColor: Color4.create(1, 1, 30)
 }
 export const hitMaterial2: PBMaterial_PbrMaterial = {
-	metallic: 1,
-	roughness: 0.5,
-	albedoColor: Color4.create(0.2, 1, 0.2)
+  metallic: 1,
+  roughness: 0.5,
+  albedoColor: Color4.create(0.2, 1, 0.2)
 }
 export const rayMaterial: PBMaterial_PbrMaterial = {
-	metallic: 1,
-	roughness: 0.5,
-	albedoColor: Color4.create(30, 1, 1)
+  metallic: 1,
+  roughness: 0.5,
+  albedoColor: Color4.create(30, 1, 1)
 }
 
 export const MovingCube = engine.defineComponent('MovingCube', {})

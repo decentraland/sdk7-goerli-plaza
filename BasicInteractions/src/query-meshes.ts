@@ -1,4 +1,13 @@
-import { engine, Transform, GltfContainer, PointerEventsResult, inputSystem, InputAction, PointerEventType, pointerEventsSystem } from '@dcl/sdk/ecs'
+import {
+  engine,
+  Transform,
+  GltfContainer,
+  PointerEventsResult,
+  inputSystem,
+  InputAction,
+  PointerEventType,
+  pointerEventsSystem
+} from '@dcl/sdk/ecs'
 import { Vector3 } from '@dcl/sdk/math'
 import { PainterComponent } from './painter'
 import { createMesh } from './utils'
@@ -16,22 +25,21 @@ export function setupQueryMeshes() {
   // // Robot feedback cube 2
   const r2 = createMesh(Vector3.create(10.5, 1, 1.5), 'Click robot 2', 0.5, false)
 
-
   // TODO: we can not distinguish btween mesh inside gltf yet
 
   pointerEventsSystem.onPointerDown(
-	robots,
-	function (cmd) {
-		console.log(cmd.hit?.meshName)
-		if(cmd.hit?.meshName === 'Droid_01'){
-		  PainterComponent.createOrReplace(r1)
-		} else if (cmd.hit?.meshName === 'Droid_02'){
-			PainterComponent.createOrReplace(r2)
-		  } 
-	},
-	{
-		button: InputAction.IA_POINTER,
-		hoverText: "Click"
-	}
+    robots,
+    function (cmd) {
+      console.log(cmd.hit?.meshName)
+      if (cmd.hit?.meshName === 'Droid_01') {
+        PainterComponent.createOrReplace(r1)
+      } else if (cmd.hit?.meshName === 'Droid_02') {
+        PainterComponent.createOrReplace(r2)
+      }
+    },
+    {
+      button: InputAction.IA_POINTER,
+      hoverText: 'Click'
+    }
   )
 }

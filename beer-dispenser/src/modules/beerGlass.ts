@@ -1,9 +1,18 @@
-import { engine, inputSystem, InputAction, PointerEventType, Entity, Transform, AvatarAttach, AvatarAnchorPointType, Animator } from '@dcl/sdk/ecs'
+import {
+  engine,
+  inputSystem,
+  InputAction,
+  PointerEventType,
+  Entity,
+  Transform,
+  AvatarAttach,
+  AvatarAnchorPointType,
+  Animator
+} from '@dcl/sdk/ecs'
 import { Vector3, Quaternion } from '@dcl/sdk/math'
 import { BeerGlass, PickedUp, TapBase } from '../definitions'
 import { playSound } from './factory'
 import { currentPlayerId, getEntityParent, getPlayerPosition } from './helpers'
-
 
 export function pickingGlassSystem() {
   // If there is some PickedUp, so the behvior is to listen when this

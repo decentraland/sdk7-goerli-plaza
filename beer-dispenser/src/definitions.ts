@@ -43,34 +43,22 @@ export function getTapData(tapBeerType: BeerType) {
  * Component Definitions
  */
 
-export const BeerGlass = engine.defineComponent(
-  "BeerGlass",
-  {
-    beingFilled: Schemas.Boolean,
-    filled: Schemas.Boolean,
-    beerType: Schemas.EnumNumber<BeerType>(BeerType, BeerType.NONE),
-    drinking: Schemas.Boolean
-  }
-)
-export const PickedUp = engine.defineComponent(
-  "PickedUp",
-  {
-    child: Schemas.Entity
-  }
-)
+export const BeerGlass = engine.defineComponent('BeerGlass', {
+  beingFilled: Schemas.Boolean,
+  filled: Schemas.Boolean,
+  beerType: Schemas.EnumNumber<BeerType>(BeerType, BeerType.NONE),
+  drinking: Schemas.Boolean
+})
+export const PickedUp = engine.defineComponent('PickedUp', {
+  child: Schemas.Entity
+})
 
-export const TapComponent = engine.defineComponent(
-  "TapComponent",
-  {
-    pouringTime: Schemas.Number,
-    pouring: Schemas.Boolean,
-    beerType: Schemas.EnumNumber<BeerType>(BeerType, BeerType.NONE)
-  }
-)
+export const TapComponent = engine.defineComponent('TapComponent', {
+  pouringTime: Schemas.Number,
+  pouring: Schemas.Boolean,
+  beerType: Schemas.EnumNumber<BeerType>(BeerType, BeerType.NONE)
+})
 
-export const TapBase = engine.defineComponent(
-  "TapBase",
-  {
-    beerType: Schemas.EnumNumber<BeerType>(BeerType, BeerType.NONE)
-  }
-)
+export const TapBase = engine.defineComponent('TapBase', {
+  beerType: Schemas.EnumNumber<BeerType>(BeerType, BeerType.NONE)
+})

@@ -12,4 +12,6 @@ const MoveTransportData = {
 }
 
 export const MoveTransformComponent = engine.defineComponent('MoveTransformComponent', MoveTransportData)
-export const MoveTransformFinishedComponent = engine.defineComponent('MoveTransformFinishedComponent', { flag: Schemas.Boolean })
+export const MoveTransformFinishedComponent = engine.defineComponent('MoveTransformFinishedComponent', {
+  flag: Schemas.Boolean
+})

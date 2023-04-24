@@ -1,4 +1,13 @@
-import { Entity, engine, MeshRenderer, Transform, Material, InputAction, PointerEventType, inputSystem } from '@dcl/sdk/ecs'
+import {
+  Entity,
+  engine,
+  MeshRenderer,
+  Transform,
+  Material,
+  InputAction,
+  PointerEventType,
+  inputSystem
+} from '@dcl/sdk/ecs'
 import { Vector3 } from '@dcl/sdk/math'
 import { BoxBody, JointBodyID, Marker, markerMaterial, markerPullMaterial } from './definitions'
 import { addBody, addConstraint, getBoxBodyOrNull, getConstraintOrNull, removeConstraint } from './world'
@@ -67,7 +76,7 @@ function removeJointConstraint() {
   // Remove constraint from world
   const markerComponent = Marker.get(getMarkerEntity())
   const mouseConstraint = getConstraintOrNull(markerComponent.mouseConstraintId)
-  console.log("MARKER REMOVED", markerComponent, mouseConstraint)
+  console.log('MARKER REMOVED', markerComponent, mouseConstraint)
   if (mouseConstraint) removeConstraint(mouseConstraint)
 }
 

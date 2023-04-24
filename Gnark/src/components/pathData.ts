@@ -1,4 +1,4 @@
-import { Schemas, engine } from "@dcl/sdk/ecs"
+import { Schemas, engine } from '@dcl/sdk/ecs'
 
 const PathData = {
   path: Schemas.Array(Schemas.Vector3),

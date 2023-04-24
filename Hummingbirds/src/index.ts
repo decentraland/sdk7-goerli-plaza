@@ -54,4 +54,3 @@ pointerEventsSystem.onPointerDown(
     hoverText: 'Shake'
   }
 )
-
