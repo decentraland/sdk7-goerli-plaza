@@ -21,3 +21,5 @@ jobs:
         env:
           DCL_DISABLE_ANALYTICS: "true"
           SDK_VERSION: ${{github.event.inputs.dcl-sdk-package}}
+      - name: lint
+        run: npm run lint
