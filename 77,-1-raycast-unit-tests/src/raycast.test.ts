@@ -1,4 +1,4 @@
-import { engine, Raycast, RaycastQueryType, RaycastResult, Transform } from '@dcl/sdk/ecs'
+import { engine, EngineInfo, Raycast, RaycastQueryType, RaycastResult, Transform } from '@dcl/sdk/ecs'
 import { Quaternion, Vector3 } from '@dcl/sdk/math'
 import { test } from '@dcl/sdk/testing'
 import { assertComponentValue } from '@dcl/sdk/testing/assert'
@@ -23,12 +23,15 @@ test('raycast: raycasting from an entity to global origin yields correct directi
   // 2. Wait for the next frame to let the RaycastSystem to process the raycast
   yield // wait for next frame
 
+  const tickNumber = EngineInfo.getOrNull(engine.RootEntity)?.tickNumber || -1
+
   // 3. Validate that the RaycastResult component of the entity has the correct direction
   assertComponentValue(entity, RaycastResult, {
     direction: Vector3.normalize(Vector3.subtract(globalTarget, globalOrigin)),
     globalOrigin,
     hits: [],
-    timestamp: 3
+    timestamp: 3,
+    tickNumber
   })
 })
 
@@ -52,12 +55,15 @@ test('raycast: raycasting from an entity to local direction origin yields correc
   // wait for the next frame
   yield
 
+  const tickNumber = EngineInfo.getOrNull(engine.RootEntity)?.tickNumber || -1
+
   // check that the raycast result component was added to the entity
   assertComponentValue(entity, RaycastResult, {
     direction: Vector3.normalize(Vector3.Down()),
     globalOrigin,
     hits: [],
-    timestamp: 4
+    timestamp: 4,
+    tickNumber
   })
 })
 
@@ -84,12 +90,15 @@ test('raycast: raycasting from an entity to another entity works like globalTarg
   // wait for the next frame
   yield
 
+  const tickNumber = EngineInfo.getOrNull(engine.RootEntity)?.tickNumber || -1
+
   // check that the raycast result component was added to the entity
   assertComponentValue(entity, RaycastResult, {
     direction: Vector3.normalize(Vector3.subtract(targetEntityGlobalOrigin, globalOrigin)),
     globalOrigin,
     hits: [],
-    timestamp: 5
+    timestamp: 5,
+    tickNumber
   })
 })
 
@@ -113,11 +122,14 @@ test('raycast: raycasting from an entity to local direction origin yields correc
   // wait for the next frame
   yield
 
+  const tickNumber = EngineInfo.getOrNull(engine.RootEntity)?.tickNumber || -1
+
   // check that the raycast result component was added to the entity
   assertComponentValue(entity, RaycastResult, {
     direction: Vector3.normalize(Vector3.Down()),
     globalOrigin,
     hits: [],
-    timestamp: 6
+    timestamp: 6,
+    tickNumber
   })
 })

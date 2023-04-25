@@ -2,13 +2,18 @@
 
 echo "Installing and building all folders"
 
+# then the rest of the dependencies
+npm install --legacy-peer-deps
+
 # first install the parametrized package
 if [ ! -z $SDK_VERSION ]; then
   npm i $SDK_VERSION
 fi
 
-# then the rest of the dependencies
-npm install
+npm run sync
+
+npm ls @dcl/sdk
+npm ls @dcl-sdk/utils
 
 # clean the git state of package.json(s)
 git add */package.json package.json

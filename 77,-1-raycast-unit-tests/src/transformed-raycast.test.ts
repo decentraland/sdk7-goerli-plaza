@@ -1,4 +1,4 @@
-import { Raycast, RaycastQueryType, RaycastResult } from '@dcl/sdk/ecs'
+import { EngineInfo, Raycast, RaycastQueryType, RaycastResult, engine } from '@dcl/sdk/ecs'
 import { Quaternion, Vector3 } from '@dcl/sdk/math'
 import { test } from '@dcl/sdk/testing'
 import { assertComponentValue } from '@dcl/sdk/testing/assert'
@@ -29,12 +29,15 @@ test('raycast: raycasting from a translated origin works', function* (context) {
   // this is the global origin of the raycast, result of the translation of the entity
   const globalOrigin = Vector3.create(20, 0, 20)
 
+  const tickNumber = EngineInfo.getOrNull(engine.RootEntity)?.tickNumber || -1
+
   // 3. Validate that the RaycastResult component of the entity has the correct direction
   assertComponentValue(entity, RaycastResult, {
     direction: Vector3.normalize(Vector3.subtract(globalTarget, globalOrigin)),
     globalOrigin,
     hits: [],
-    timestamp: 3
+    timestamp: 3,
+    tickNumber
   })
 })
 
@@ -63,6 +66,8 @@ test('raycast: localDirection raycasting from a translated origin works', functi
   // 2. Wait for the next frame to let the RaycastSystem to process the raycast
   yield
 
+  const tickNumber = EngineInfo.getOrNull(engine.RootEntity)?.tickNumber || -1
+
   // this is the global origin of the raycast, result of the translation and scaling of the entity
   const globalOrigin = Vector3.create(15, 0, 15)
 
@@ -72,7 +77,8 @@ test('raycast: localDirection raycasting from a translated origin works', functi
     direction: Vector3.Right(),
     globalOrigin,
     hits: [],
-    timestamp: 3
+    timestamp: 3,
+    tickNumber
   })
 })
 
@@ -104,6 +110,8 @@ test('raycast: localDirection raycasting from a translated origin works, with ro
   // 2. Wait for the next frame to let the RaycastSystem to process the raycast
   yield
 
+  const tickNumber = EngineInfo.getOrNull(engine.RootEntity)?.tickNumber || -1
+
   // this is the global origin of the raycast, result of the translation and scaling of the entity
   const globalOrigin = Vector3.create(15, 0, 15)
 
@@ -113,7 +121,8 @@ test('raycast: localDirection raycasting from a translated origin works, with ro
     direction: Vector3.Right(),
     globalOrigin,
     hits: [],
-    timestamp: 3
+    timestamp: 3,
+    tickNumber
   })
 })
 
@@ -150,6 +159,8 @@ test('raycast: localDirection raycasting from a translated origin works, with ro
   const globalOrigin = Vector3.create(15, 0, 15)
   const rotatedForwardOrigin = Vector3.add(Vector3.create(0.5, 0, 0), globalOrigin)
 
+  const tickNumber = EngineInfo.getOrNull(engine.RootEntity)?.tickNumber || -1
+
   // 3. Validate that the RaycastResult component of the entity has the correct direction
   assertComponentValue(entity, RaycastResult, {
     // the direction is now right because the transform was rotated 90 degrees
@@ -157,6 +168,7 @@ test('raycast: localDirection raycasting from a translated origin works, with ro
     // and the globalOrigin is offsetted by originOffset
     globalOrigin: rotatedForwardOrigin,
     hits: [],
-    timestamp: 3
+    timestamp: 3,
+    tickNumber
   })
 })
