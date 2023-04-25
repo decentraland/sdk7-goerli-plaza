@@ -3,7 +3,7 @@
   "description": "Item Pickup",
   "version": "1.0.0",
   "dependencies": {
-    "@dcl-sdk/utils": "latest",
+    "@dcl-sdk/utils": "next",
     "@dcl/sdk": "next"
   },
   "scripts": {
