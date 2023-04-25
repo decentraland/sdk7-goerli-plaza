@@ -6,7 +6,7 @@
     "@dcl-sdk/utils"
   ],
   "dependencies": {
-    "@dcl-sdk/utils": "^1.0.3",
+    "@dcl-sdk/utils": "next",
     "@dcl/sdk": "next"
   },
   "engines": {

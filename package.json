@@ -3,28 +3,29 @@
   "description": "My new Decentraland project",
   "version": "1.0.0",
   "dependencies": {
-    "@dcl-sdk/utils": "^1.0.2",
+    "@dcl-sdk/utils": "next",
     "@dcl/sdk": "next",
     "glob": "^9.3.4",
     "prettier": "^2.8.8",
     "syncpack": "^9.8.4"
-  },
-  "private": true,
-  "scripts": {
-    "build": "sdk-commands build",
-    "export-static": "sdk-commands export-static",
-    "start": "sdk-commands start",
-    "format": "./node_modules/.bin/prettier '**/*.ts' -w",
-    "lint": "./node_modules/.bin/prettier '**/*.ts' --check",
-    "sync": "syncpack format --config .syncpackrc.json  --source \"*/package.json\" --source package.json",
-    "test": "syncpack list-mismatches --config .syncpackrc.json  --source \"*/package.json\" --source package.json",
-    "update-parcels": "node scripts/checkParcelsCollision.js"
   },
   "prettier": {
     "trailingComma": "none",
     "singleQuote": true,
     "printWidth": 120,
     "semi": false
+  },
+  "private": true,
+  "scripts": {
+    "build": "sdk-commands build --skip-install",
+    "export-static": "sdk-commands export-static",
+    "format": "./node_modules/.bin/prettier '**/*.ts' -w",
+    "lint": "./node_modules/.bin/prettier '**/*.ts' --check",
+    "reinstall-next": "./build-all.sh",
+    "start": "sdk-commands start",
+    "sync": "syncpack format --config .syncpackrc.json  --source \"*/package.json\" --source package.json",
+    "test": "syncpack list-mismatches --config .syncpackrc.json  --source \"*/package.json\" --source package.json",
+    "update-parcels": "node scripts/checkParcelsCollision.js"
   },
   "workspaces": [
     "77,-1-raycast-unit-tests",

@@ -2,13 +2,22 @@
 
 echo "Installing and building all folders"
 
+rm -rf node_modules
+
 # first install the parametrized package
 if [ ! -z $SDK_VERSION ]; then
-  npm i $SDK_VERSION
+  npm i $SDK_VERSION @dcl-sdk/utils@next --no-save --legacy-peer-deps
+else
+  npm i @dcl/sdk@next @dcl-sdk/utils@next --legacy-peer-deps
 fi
 
 # then the rest of the dependencies
-npm install
+npm install --legacy-peer-deps
+
+npm run sync
+
+npm ls @dcl/sdk
+npm ls @dcl-sdk/utils
 
 # clean the git state of package.json(s)
 git add */package.json package.json
