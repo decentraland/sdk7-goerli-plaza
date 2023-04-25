@@ -53,4 +53,3 @@ corountime.run(function* waitForAllGtfLoaded() {
   yield* waitForAllAssetsLoaded()
   spawnBirds()
 })
-

@@ -2,11 +2,9 @@
  * This module provides a createTestRuntime function that returns an object with a test function that can be used to define tests.
  */
 
-import { IEngine, Transform } from '@dcl/ecs'
+import { IEngine } from '@dcl/ecs'
 
-
-export type TestHelpers = {
-}
+export type TestHelpers = {}
 
 export type TestFunction = (helpers: TestHelpers) => Generator | Promise<any>
 
@@ -134,8 +132,7 @@ export function mendezCoroutineRuntime(engine: IEngine) {
       try {
         console.log(`🧪 Running coroutine ${entry.name}`)
 
-        const testHelpers: TestHelpers = {
-        }
+        const testHelpers: TestHelpers = {}
 
         const returnValue = entry.fn(testHelpers)
 
