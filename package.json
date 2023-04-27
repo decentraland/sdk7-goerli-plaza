@@ -29,6 +29,7 @@
   },
   "workspaces": [
     "77,-1-raycast-unit-tests",
+    "80,-2-main-crdt",
     "BasicInteractions",
     "Block-dog",
     "Cube",
