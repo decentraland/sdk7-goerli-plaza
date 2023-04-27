@@ -121,6 +121,9 @@
       "path": "BasicInteractions"
     },
     {
+      "path": "80,-2-main-crdt"
+    },
+    {
       "path": "77,-1-raycast-unit-tests"
     }
   ]
