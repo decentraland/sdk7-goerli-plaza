@@ -12,6 +12,8 @@ import {
 import { test } from '@dcl/sdk/testing'
 import { assertEquals, assertComponentValue } from '@dcl/sdk/testing/assert'
 
+export let didTestsPass = false
+
 test('ensure that cubes are in the scene on the first frame', function* () {
   const { tickNumber } = EngineInfo.get(engine.RootEntity)
   assertEquals(tickNumber, 1, 'Tick number must be 1')
@@ -40,4 +42,6 @@ test('ensure that cubes are in the scene on the first frame', function* () {
   }
 
   assertEquals(towers.length, 4, 'There are 4 GLTF')
+
+  didTestsPass = true
 })
