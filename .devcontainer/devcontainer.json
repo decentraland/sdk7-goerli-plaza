@@ -1,9 +1,16 @@
 {
-	"name": "sdk7-goerli-plaza",
-	"image": "mcr.microsoft.com/devcontainers/typescript-node:0-18",
-	"postCreateCommand": "npm install",
+  "name": "sdk7-goerli-plaza",
+  "image": "mcr.microsoft.com/devcontainers/typescript-node:0-18",
+  "postCreateCommand": "npm install",
   "containerEnv": {
     "DCL_DISABLE_ANALYTICS": "true",
     "SHELL": "/usr/bin/zsh"
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "DecentralandFoundation.decentraland-sdk7"
+      ]
+    }
   }
 }
