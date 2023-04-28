@@ -10,8 +10,5 @@
     "build": "sdk-commands build --skip-install",
     "deploy": "sdk-commands deploy",
     "start": "sdk-commands start"
-  },
-  "bundleDependencies": [
-    "@dcl-sdk/utils"
-  ]
+  }
 }
