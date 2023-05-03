@@ -1,28 +1,25 @@
 {
-  "name": "rotating-platform",
-  "description": "SDK7 Template scene",
-  "version": "1.0.0",
-  "bundleDependencies": [
-    "@dcl-sdk/utils"
-  ],
-  "dependencies": {
-    "@dcl-sdk/utils": "next",
-    "@dcl/sdk": "next"
-  },
-  "devDependencies": {},
-  "engines": {
-    "node": ">=16.0.0",
-    "npm": ">=6.0.0"
-  },
-  "prettier": {
-    "semi": false,
-    "singleQuote": true,
-    "printWidth": 120,
-    "trailingComma": "none"
-  },
-  "scripts": {
-    "build": "sdk-commands build --skip-install",
-    "deploy": "sdk-commands deploy",
-    "start": "sdk-commands start"
-  }
+	"name": "rotating-platform",
+	"description": "SDK7 Template scene",
+	"version": "1.0.0",
+	"dependencies": {
+		"@dcl-sdk/utils": "next",
+		"@dcl/sdk": "next"
+	},
+	"devDependencies": {},
+	"engines": {
+		"node": ">=16.0.0",
+		"npm": ">=6.0.0"
+	},
+	"prettier": {
+		"semi": false,
+		"singleQuote": true,
+		"printWidth": 120,
+		"trailingComma": "none"
+	},
+	"scripts": {
+		"build": "sdk-commands build --skip-install",
+		"deploy": "sdk-commands deploy",
+		"start": "sdk-commands start"
+	}
 }
