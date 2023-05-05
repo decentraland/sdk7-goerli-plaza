@@ -1,16 +1,16 @@
 {
-	"name": "open-door",
-	"description": "ECS7",
-	"version": "1.0.0",
-	"dependencies": {
-		"@dcl-sdk/utils": "next",
-		"@dcl/sdk": "next"
-	},
-	"main": "src/game.ts",
-	"scripts": {
-		"build": "sdk-commands build --skip-install",
-		"deploy": "sdk-commands deploy",
-		"start": "sdk-commands start"
-	},
-	"typings": ""
+  "name": "open-door",
+  "description": "ECS7",
+  "version": "1.0.0",
+  "dependencies": {
+    "@dcl-sdk/utils": "next",
+    "@dcl/sdk": "next"
+  },
+  "main": "src/game.ts",
+  "scripts": {
+    "build": "sdk-commands build --skip-install",
+    "deploy": "sdk-commands deploy",
+    "start": "sdk-commands start"
+  },
+  "typings": ""
 }
