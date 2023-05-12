@@ -2,7 +2,7 @@
   "ecs7": true,
   "runtimeVersion": "7",
   "display": {
-    "title": "SDK7 Decentraland - rotating-platforms",
+    "title": "rotating-platforms",
     "description": "rotating-platforms",
     "navmapThumbnail": "images/scene-thumbnail.png",
     "favicon": "favicon_asset"

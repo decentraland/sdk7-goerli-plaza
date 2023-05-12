@@ -2,7 +2,7 @@
   "ecs7": true,
   "runtimeVersion": "7",
   "display": {
-    "title": "SDK7 Decentraland - Sliding Door",
+    "title": "sliding-door",
     "description": "Sliding Door",
     "navmapThumbnail": "images/scene-thumbnail.png",
     "favicon": "favicon_asset"

@@ -2,7 +2,7 @@
   "ecs7": true,
   "runtimeVersion": "7",
   "display": {
-    "title": "Power Cube",
+    "title": "power-cube",
     "favicon": "favicon_asset"
   },
   "contact": {

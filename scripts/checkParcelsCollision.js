@@ -15,6 +15,7 @@ for (const projectFolder of projects.map(path.dirname)) {
     arr.push(projectFolder.path)
     parcels.set(tile, arr)
   }
+  sceneJson.display.title = path.basename(projectFolder)
   sceneJson.name = path.basename(projectFolder)
   fs.writeFileSync(sceneJsonPath, JSON.stringify(sceneJson, null, 2))
 }

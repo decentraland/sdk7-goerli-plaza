@@ -2,7 +2,7 @@
   "ecs7": true,
   "runtimeVersion": "7",
   "display": {
-    "title": "DCL Scene",
+    "title": "boids",
     "description": "My new Decentraland project",
     "navmapThumbnail": "images/scene-thumbnail.png",
     "favicon": "favicon_asset"
