@@ -99,7 +99,7 @@ setAsMovingPlatform(
 // NFT SHAPE
 const nftShapeEntity = engine.addEntity()
 NftShape.create(nftShapeEntity, {
-  src: 'ethereum://0x06012c8cf97bead5deae237070f9587f8e7a266d/558536'
+  urn: 'urn:decentraland:ethereum:erc721:0x06012c8cf97bead5deae237070f9587f8e7a266d/558536'
 })
 setAsMovingPlatform(nftShapeEntity, [Vector3.create(8, 1.5, -24), Vector3.create(40, 1.5, -24)], 180)
 
