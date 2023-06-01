@@ -1,4 +1,4 @@
-import { Entity, engine, Transform, GltfContainer, AudioSource } from '@dcl/sdk/ecs'
+import { Entity, engine, Transform, GltfContainer, AudioSource, PointerEvents, PointerEventType, InputAction } from '@dcl/sdk/ecs'
 import { Vector3 } from '@dcl/sdk/math'
 import { EnemyShip, Expire, MoveTransformComponent, ShipShapes } from './components/customComponents'
 import { InterpolationType } from './helper/interpolation'
@@ -27,6 +27,18 @@ export function spawnEnemy(shape: ShipShapes, x: number, y: number, z: number): 
 		lerpTime: 0,
 		hasFinished: false,
 		interpolationType: InterpolationType.EASEINSINE
+	})
+
+	PointerEvents.create(enemy, {
+		pointerEvents: [
+			{
+				eventType: PointerEventType.PET_DOWN,
+				eventInfo: {
+					button: InputAction.IA_PRIMARY,
+					showFeedback: false
+				}
+			}
+		]
 	})
 
 	EnemyShip.create(enemy)
