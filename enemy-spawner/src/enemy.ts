@@ -1,4 +1,4 @@
-import { Entity, engine, Transform, GltfContainer, Animator, NftShape, Vector3Type, AudioSource } from '@dcl/sdk/ecs'
+import { Entity, engine, Transform, GltfContainer, AudioSource } from '@dcl/sdk/ecs'
 import { Vector3 } from '@dcl/sdk/math'
 import { EnemyShip, Expire, MoveTransformComponent, ShipShapes } from './components/customComponents'
 import { InterpolationType } from './helper/interpolation'

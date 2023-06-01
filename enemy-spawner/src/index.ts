@@ -1,4 +1,4 @@
-import { AudioSource, engine, GltfContainer, NftShape, Transform } from '@dcl/sdk/ecs'
+import { engine, GltfContainer, Transform } from '@dcl/sdk/ecs'
 import { Vector3 } from '@dcl/sdk/math'
 import { ShipShapes, SpawnerComponent, SpawnerShape } from './components/customComponents'
 
