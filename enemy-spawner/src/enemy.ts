@@ -9,44 +9,44 @@ const SPEED = 2
 const MAX_TRAVEL_SPEED_OFFSET = 0.2
 
 export function spawnEnemy(shape: ShipShapes, x: number, y: number, z: number): Entity {
-	const enemy = engine.addEntity()
+  const enemy = engine.addEntity()
 
-	Transform.create(enemy, {
-		position: Vector3.create(x, y, z)
-	})
+  Transform.create(enemy, {
+    position: Vector3.create(x, y, z)
+  })
 
-	GltfContainer.create(enemy, {
-		src: shape
-	})
+  GltfContainer.create(enemy, {
+    src: shape
+  })
 
-	MoveTransformComponent.create(enemy, {
-		start: { x: x, y: y, z: z },
-		end: { x: x, y: y, z: z - TRAVEL_DISTANCE },
-		speed: SPEED / 10 + Math.random() * (MAX_TRAVEL_SPEED_OFFSET / 10),
-		normalizedTime: 0,
-		lerpTime: 0,
-		hasFinished: false,
-		interpolationType: InterpolationType.EASEINSINE
-	})
+  MoveTransformComponent.create(enemy, {
+    start: { x: x, y: y, z: z },
+    end: { x: x, y: y, z: z - TRAVEL_DISTANCE },
+    speed: SPEED / 10 + Math.random() * (MAX_TRAVEL_SPEED_OFFSET / 10),
+    normalizedTime: 0,
+    lerpTime: 0,
+    hasFinished: false,
+    interpolationType: InterpolationType.EASEINSINE
+  })
 
-	EnemyShip.create(enemy)
+  EnemyShip.create(enemy)
 
-	return enemy
+  return enemy
 }
 
 export function destroyEnemy(entity: Entity) {
-	MoveTransformComponent.deleteFrom(entity)
-	EnemyShip.deleteFrom(entity)
-	GltfContainer.createOrReplace(entity, {
-		src: 'models/glowingSpaceship.glb'
-	})
-	AudioSource.create(entity, {
-		audioClipUrl: 'sounds/explosion.mp3',
-		playing: true,
-		volume: 2
-	})
+  MoveTransformComponent.deleteFrom(entity)
+  EnemyShip.deleteFrom(entity)
+  GltfContainer.createOrReplace(entity, {
+    src: 'models/glowingSpaceship.glb'
+  })
+  AudioSource.create(entity, {
+    audioClipUrl: 'sounds/explosion.mp3',
+    playing: true,
+    volume: 2
+  })
 
-	Expire.create(entity, {
-		timeLeft: 1
-	})
+  Expire.create(entity, {
+    timeLeft: 1
+  })
 }
