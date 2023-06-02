@@ -1,6 +1,6 @@
 import { BoxBody } from './definitions'
 import * as CANNON from 'cannon/build/cannon'
-import { engine, GltfContainer, Material, Transform } from '@dcl/sdk/ecs'
+import { engine, GltfContainer, InputAction, Material, PointerEvents, PointerEventType, Transform } from '@dcl/sdk/ecs'
 import { Vector3, Color4, Quaternion } from '@dcl/sdk/math'
 
 let world: CANNON.World
@@ -67,6 +67,17 @@ export function createBoxBody(position: Vector3) {
   // // Box
   Material.setPbrMaterial(entity, { albedoColor: Color4.Red() })
   GltfContainer.create(entity, { src: 'models/crate.glb' })
+  PointerEvents.create(entity, {
+    pointerEvents: [
+      {
+        eventType: PointerEventType.PET_DOWN,
+        eventInfo: {
+          button: InputAction.IA_POINTER
+        }
+      }
+    ]
+  })
+
   // Create box body
   const boxShape = new CANNON.Box(new CANNON.Vec3(0.5, 0.5, 0.5))
   const boxBody = new CANNON.Body({ mass: 5 })

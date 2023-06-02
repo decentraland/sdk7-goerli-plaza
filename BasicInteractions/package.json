@@ -3,7 +3,7 @@
   "description": "ECS7 ",
   "version": "1.0.0",
   "dependencies": {
-    "@dcl-sdk/utils": "^1.0.4",
+    "@dcl-sdk/utils": "next",
     "@dcl/sdk": "next"
   },
   "scripts": {
