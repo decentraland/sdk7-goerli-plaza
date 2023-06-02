@@ -1,4 +1,12 @@
-import { AudioSource, engine, GltfContainer, Transform, VisibilityComponent } from '@dcl/sdk/ecs'
+import {
+  AudioSource,
+  engine,
+  GltfContainer,
+  PointerEvents,
+  PointerEventType,
+  Transform,
+  VisibilityComponent
+} from '@dcl/sdk/ecs'
 import { Vector3 } from '@dcl/sdk/math'
 import { Particle, particleSystem } from './particles'
 import { createSound } from './sound'
@@ -27,6 +35,16 @@ export function createPowerBase(position: Vector3, gltfSrc: string) {
 
   Transform.create(entity, { position })
   GltfContainer.create(entity, { src: gltfSrc })
+  PointerEvents.create(entity, {
+    pointerEvents: [
+      {
+        eventType: PointerEventType.PET_DOWN,
+        eventInfo: {
+          showFeedback: false
+        }
+      }
+    ]
+  })
 
   function togglePower(isPowerOn: boolean) {
     if (isPowerOn) {
