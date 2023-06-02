@@ -1,47 +1,51 @@
 import { createDog } from './dog'
 import { InputAction, pointerEventsSystem, engine, Transform, GltfContainer } from '@dcl/sdk/ecs'
-import { changeState, randomSwitchBehavior } from './systems/dogAI'
+import { BowlPosition, changeState, randomSwitchBehavior } from './systems/dogAI'
 import { dogStates } from './components'
 import { moveSystem } from './systems/moveSystem'
 import { Vector3 } from '@dcl/sdk/math'
-export * from '@dcl/sdk'
 
-const garden = engine.addEntity()
+export function main() {
 
-Transform.create(garden, {
-  position: Vector3.create(8, 0, 8),
-  scale: Vector3.create(1.6, 1.6, 1.6)
-})
+	const garden = engine.addEntity()
 
-GltfContainer.create(garden, {
-  src: 'models/garden.glb'
-})
+	Transform.create(garden, {
+		position: Vector3.create(8, 0, 8),
+		scale: Vector3.create(1.6, 1.6, 1.6)
+	})
 
-export const bowl = engine.addEntity()
+	GltfContainer.create(garden, {
+		src: 'models/garden.glb'
+	})
 
-Transform.create(bowl, {
-  position: Vector3.create(9, 0, 1)
-})
+	const bowl = engine.addEntity()
 
-GltfContainer.create(bowl, {
-  src: 'models/BlockDogBowl.gltf'
-})
+	Transform.create(bowl, {
+		position: BowlPosition
+	})
 
-pointerEventsSystem.onPointerDown(
-  bowl,
-  () => {
-    changeState(dog, dogStates.GoDrink)
-  },
-  {
-    button: InputAction.IA_PRIMARY,
-    hoverText: 'Drink'
-  }
-)
+	GltfContainer.create(bowl, {
+		src: 'models/BlockDogBowl.gltf'
+	})
 
-const dog = createDog(Vector3.create(8, 0, 9))
+	pointerEventsSystem.onPointerDown(
+		{
+			entity: bowl, opts: {
+				button: InputAction.IA_PRIMARY,
+				hoverText: 'Drink'
+			}
+		},
+		() => {
+			changeState(dog, dogStates.GoDrink)
+		}
+	)
 
-const dog2 = createDog(Vector3.create(10, 0, 8))
+	const dog = createDog(Vector3.create(8, 0, 9))
 
-engine.addSystem(moveSystem)
+	const dog2 = createDog(Vector3.create(10, 0, 8))
 
-engine.addSystem(randomSwitchBehavior)
+	engine.addSystem(moveSystem)
+
+	engine.addSystem(randomSwitchBehavior)
+
+}
