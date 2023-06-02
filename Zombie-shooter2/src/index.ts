@@ -14,127 +14,117 @@ const _WINNING_SCORE = 15
 const _SPAWN_INTERVAL = 3
 
 export function main() {
+  const gameEntity = engine.addEntity()
+  const coneStarterEntity = createCone()
 
-	const gameEntity = engine.addEntity()
-	const coneStarterEntity = createCone()
+  createText(coneStarterEntity, 'Click Cone to Play')
 
-	createText(coneStarterEntity, 'Click Cone to Play')
+  function ensureGameController() {
+    if (GameControllerComponent.has(gameEntity)) {
+      return GameControllerComponent.getMutable(gameEntity)
+    } else {
+      return GameControllerComponent.create(gameEntity)
+    }
+  }
 
+  function triggerGameStart() {
+    const gameController = ensureGameController()
 
-	function ensureGameController() {
-		if (GameControllerComponent.has(gameEntity)) {
-			return GameControllerComponent.getMutable(gameEntity)
-		} else {
-			return GameControllerComponent.create(gameEntity)
-		}
-	}
+    if (gameController.spawnActive) {
+      gameController.spawnActive = true
+      gameController.livesLeft = _LIVES
+      gameController.score = 0
 
+      // clear NFTs
+      const nfts = engine.getEntitiesWith(NftShape)
+      for (const [entity, _nftShape] of nfts) {
+        engine.removeEntity(entity)
+      }
 
-	function triggerGameStart() {
-		const gameController = ensureGameController()
+      for (let i = _LIVES; i >= 0; i--) {
+        createNft(i)
+      }
+      return
+    }
 
-		if (gameController.spawnActive) {
-			gameController.spawnActive = true
-			gameController.livesLeft = _LIVES
-			gameController.score = 0
+    Object.assign(gameController, {
+      spawnActive: true,
+      livesLeft: _LIVES,
+      score: 0,
+      spawnCountDown: 0,
+      spawnInterval: _SPAWN_INTERVAL,
+      winningScore: _WINNING_SCORE,
+      maxZombies: 10
+    })
 
-			// clear NFTs
-			const nfts = engine.getEntitiesWith(NftShape)
-			for (const [entity, _nftShape] of nfts) {
-				engine.removeEntity(entity)
-			}
+    for (let i = _LIVES; i >= 0; i--) {
+      createNft(i)
+    }
 
-			for (let i = _LIVES; i >= 0; i--) {
-				createNft(i)
-			}
-			return
-		}
+    if (AudioSource.has(gameEntity)) {
+      const source = AudioSource.getMutable(gameEntity)
+      source.playing = true
+    } else {
+      AudioSource.create(gameEntity, {
+        audioClipUrl: '/sounds/ambient.mp3',
+        loop: true,
+        playing: true
+      })
+    }
+  }
 
-		Object.assign(gameController, {
-			spawnActive: true,
-			livesLeft: _LIVES,
-			score: 0,
-			spawnCountDown: 0,
-			spawnInterval: _SPAWN_INTERVAL,
-			winningScore: _WINNING_SCORE,
-			maxZombies: 10
-		})
+  function spawnZombie() {
+    const xPos = 2 + Math.random() * 10
+    return createZombie(xPos)
+  }
 
-		for (let i = _LIVES; i >= 0; i--) {
-			createNft(i)
-		}
+  function lose() {
+    console.log('GAME OVER!!')
+    endGame()
+  }
 
-		if (AudioSource.has(gameEntity)) {
-			const source = AudioSource.getMutable(gameEntity)
-			source.playing = true
-		} else {
-			AudioSource.create(gameEntity, {
-				audioClipUrl: '/sounds/ambient.mp3',
-				loop: true,
-				playing: true
-			})
-		}
-	}
+  function win() {
+    console.log('YOU WIN!!')
+    endGame()
+  }
 
+  function endGame() {
+    ensureGameController().spawnActive = false
 
-	function spawnZombie() {
-		const xPos = 2 + Math.random() * 10
-		return createZombie(xPos)
-	}
+    if (AudioSource.has(gameEntity)) {
+      AudioSource.getMutable(gameEntity).playing = false
+    }
+  }
 
+  function gameLogicSystem(dt: number) {
+    const gameController = ensureGameController()
 
-	function lose() {
-		console.log('GAME OVER!!')
-		endGame()
-	}
+    if (
+      coneStarterEntity &&
+      inputSystem.isTriggered(InputAction.IA_PRIMARY, PointerEventType.PET_DOWN, coneStarterEntity)
+    ) {
+      triggerGameStart()
+    }
 
-	function win() {
-		console.log('YOU WIN!!')
-		endGame()
-	}
+    if (gameController.spawnActive) {
+      if (gameController.livesLeft <= 0) {
+        lose()
+      } else if (gameController.score >= gameController.winningScore) {
+        win()
+      }
 
-	function endGame() {
-		ensureGameController().spawnActive = false
-
-		if (AudioSource.has(gameEntity)) {
-			AudioSource.getMutable(gameEntity).playing = false
-		}
-	}
-
-
-	function gameLogicSystem(dt: number) {
-		const gameController = ensureGameController()
-
-		if (
-			coneStarterEntity &&
-			inputSystem.isTriggered(InputAction.IA_PRIMARY, PointerEventType.PET_DOWN, coneStarterEntity)
-		) {
-			triggerGameStart()
-		}
-
-		if (gameController.spawnActive) {
-			if (gameController.livesLeft <= 0) {
-				lose()
-			} else if (gameController.score >= gameController.winningScore) {
-				win()
-			}
-
-			gameController.spawnCountDown -= dt
-			if (gameController.spawnCountDown < 0) {
-				gameController.spawnCountDown = gameController.spawnInterval
-				const zombie = spawnZombie()
-				console.log('SPAWNING NEW ZOMBIE ', zombie)
-				playSound(zombie, 'sounds/pickUp.mp3', true)
-			}
-		}
-	}
-	engine.addSystem(gameLogicSystem)
-
+      gameController.spawnCountDown -= dt
+      if (gameController.spawnCountDown < 0) {
+        gameController.spawnCountDown = gameController.spawnInterval
+        const zombie = spawnZombie()
+        console.log('SPAWNING NEW ZOMBIE ', zombie)
+        playSound(zombie, 'sounds/pickUp.mp3', true)
+      }
+    }
+  }
+  engine.addSystem(gameLogicSystem)
 }
 
-
 engine.addSystem(zombieKiller)
-
-
 
 engine.addSystem(moveSystem)

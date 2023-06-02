@@ -13,10 +13,8 @@ engine.addSystem(bounceScalingSystem)
 
 // Initial function executed when scene is evaluated and after systems are created
 export function main() {
-	// Create my main cube and color it.
-	const cube = createCube(8, 1, 8)
-	Material.setPbrMaterial(cube, { albedoColor: Color4.create(1.0, 0.85, 0.42) })
-	setupUi()
+  // Create my main cube and color it.
+  const cube = createCube(8, 1, 8)
+  Material.setPbrMaterial(cube, { albedoColor: Color4.create(1.0, 0.85, 0.42) })
+  setupUi()
 }
-
-
