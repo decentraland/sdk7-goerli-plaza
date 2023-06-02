@@ -1,4 +1,3 @@
-
 import {
   Entity,
   engine,
