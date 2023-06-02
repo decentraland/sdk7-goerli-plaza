@@ -9,7 +9,7 @@ import { Vector3 } from '@dcl/sdk/math'
 import { _inputSystem, setupMarker, updateMarkerSystem } from './marker'
 import { createBoxBody, setupCannon, updatePhysicsSystem } from './world'
 
-function setup() {
+export function main() {
   // // Base scene
   const base = engine.addEntity()
   GltfContainer.create(base, { src: 'models/baseLight.glb' })
@@ -25,5 +25,3 @@ function setup() {
   engine.addSystem(updateMarkerSystem)
   engine.addSystem(_inputSystem)
 }
-
-setup()

@@ -1,4 +1,4 @@
-import { engine, GltfContainer, Transform } from '@dcl/sdk/ecs'
+import { engine, GltfContainer, PointerEvents, PointerEventType, Transform } from '@dcl/sdk/ecs'
 import { Vector3, Quaternion } from '@dcl/sdk/math'
 import { BeerType } from './definitions'
 import { pickingGlassSystem } from './modules/beerGlass'
@@ -13,6 +13,16 @@ function setup() {
     position: Vector3.create(0, 0, 0)
   })
   GltfContainer.create(tables, { src: 'models/tables.glb' })
+  PointerEvents.create(tables, {
+    pointerEvents: [
+      {
+        eventType: PointerEventType.PET_DOWN,
+        eventInfo: {
+          showFeedback: false
+        }
+      }
+    ]
+  })
 
   // Create floor
   const floor = engine.addEntity()
@@ -21,6 +31,16 @@ function setup() {
   })
   GltfContainer.create(floor, {
     src: 'models/baseDarkWithCollider.glb'
+  })
+  PointerEvents.create(floor, {
+    pointerEvents: [
+      {
+        eventType: PointerEventType.PET_DOWN,
+        eventInfo: {
+          showFeedback: false
+        }
+      }
+    ]
   })
 
   // Create dispenser
