@@ -1,5 +1,4 @@
-import { AudioSource, engine, InputAction, inputSystem, NftShape, PointerEventType } from '@dcl/sdk/ecs'
-
+import { AudioSource, engine, Entity, InputAction, inputSystem, NftShape, PointerEventType } from '@dcl/sdk/ecs'
 import { GameControllerComponent } from './components/gameController'
 import { createCone } from './factory/cone'
 import { createNft } from './factory/nft'
@@ -13,19 +12,12 @@ const _LIVES = 5
 const _WINNING_SCORE = 15
 const _SPAWN_INTERVAL = 3
 
+const gameEntity = engine.addEntity()
+
 export function main() {
-  const gameEntity = engine.addEntity()
   const coneStarterEntity = createCone()
 
   createText(coneStarterEntity, 'Click Cone to Play')
-
-  function ensureGameController() {
-    if (GameControllerComponent.has(gameEntity)) {
-      return GameControllerComponent.getMutable(gameEntity)
-    } else {
-      return GameControllerComponent.create(gameEntity)
-    }
-  }
 
   function triggerGameStart() {
     const gameController = ensureGameController()
@@ -123,6 +115,14 @@ export function main() {
     }
   }
   engine.addSystem(gameLogicSystem)
+}
+
+export function ensureGameController() {
+  if (GameControllerComponent.has(gameEntity)) {
+    return GameControllerComponent.getMutable(gameEntity)
+  } else {
+    return GameControllerComponent.create(gameEntity)
+  }
 }
 
 engine.addSystem(zombieKiller)
