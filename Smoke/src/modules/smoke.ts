@@ -12,7 +12,7 @@ function isOutOfBounds(position: Vector3) {
 
 export default function smokeSystem(dt: number) {
   for (const [entity, smoke] of engine.getEntitiesWith(SmokeParticle, Transform)) {
-    if (!smoke.visible) {
+    if (smoke.visible) {
       const transform = Transform.getMutable(entity)
       const smokeMut = SmokeParticle.getMutable(entity)
 
