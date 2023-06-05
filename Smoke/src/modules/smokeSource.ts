@@ -3,11 +3,6 @@ import { Vector3 } from '@dcl/sdk/math'
 import { smokeMaterial, SmokeParticle, SmokeSource } from '../definitions'
 
 function spawnSmokePuff(entity: Entity, parent: Entity) {
-  const newVel: Vector3 = {
-    x: (Math.random() - Math.random()) / 6,
-    y: Math.random() / 2 + 0.1,
-    z: (Math.random() - Math.random()) / 6
-  }
   const size = Math.random() / 2 + 0.2
 
   MeshRenderer.setPlane(entity)
@@ -21,7 +16,6 @@ function spawnSmokePuff(entity: Entity, parent: Entity) {
   Billboard.createOrReplace(entity, { billboardMode: BillboardMode.BM_Y })
 
   SmokeParticle.createOrReplace(entity, {
-    velocity: newVel,
     visible: true
   })
 }

@@ -11,19 +11,19 @@ function isOutOfBounds(position: Vector3) {
 }
 
 export default function smokeSystem(dt: number) {
-  for (const [entity] of engine.getEntitiesWith(SmokeParticle, Transform)) {
-    const transform = Transform.getMutable(entity)
-    const smoke = SmokeParticle.getMutable(entity)
+  for (const [entity, smoke] of engine.getEntitiesWith(SmokeParticle, Transform)) {
+    if (!smoke.visible) {
+      const transform = Transform.getMutable(entity)
+      const smokeMut = SmokeParticle.getMutable(entity)
 
-    transform.position = Vector3.add(transform.position, Vector3.create(dt, dt, dt))
-    transform.scale = Vector3.scale(transform.scale, 1.025)
-    smoke.velocity.x *= 0.995
-    smoke.velocity.z *= 0.995
+      transform.position = Vector3.add(transform.position, Vector3.create(dt, dt, dt))
+      transform.scale = Vector3.scale(transform.scale, 1 + 1.34 * dt)
 
-    if (isOutOfBounds(transform.position)) {
-      if (MeshRenderer.getOrNull(entity)) {
-        MeshRenderer.deleteFrom(entity)
-        smoke.visible = false
+      if (isOutOfBounds(transform.position)) {
+        if (MeshRenderer.getOrNull(entity)) {
+          MeshRenderer.deleteFrom(entity)
+          smokeMut.visible = false
+        }
       }
     }
   }
