@@ -8,8 +8,7 @@ import {
   Font,
   GltfContainer,
   InputAction,
-  pointerEventsSystem,
-  ColliderLayer
+  pointerEventsSystem
 } from '@dcl/sdk/ecs'
 import { Vector3, Quaternion, Color4 } from '@dcl/sdk/math'
 import { Song, SongButton } from '../definitions'
@@ -72,11 +71,7 @@ export function createSongButton(parent: Entity, x: number, y: number, song: Son
     scale: Vector3.create(0.3, 0.3, 0.3),
     parent: buttonWrapper
   })
-  GltfContainer.create(button, {
-    src: 'models/Button.glb',
-    visibleMeshesCollisionMask: ColliderLayer.CL_POINTER,
-    invisibleMeshesCollisionMask: undefined
-  })
+  GltfContainer.create(button, { src: 'models/Button.glb' })
 
   SongButton.create(button, {
     jukebox: parent
@@ -90,13 +85,7 @@ export function createSongButton(parent: Entity, x: number, y: number, song: Son
   })
 
   pointerEventsSystem.onPointerDown(
-    {
-      entity: button,
-      opts: {
-        hoverText: 'Play',
-        button: InputAction.IA_POINTER
-      }
-    },
+    button,
     () => {
       const { jukebox } = SongButton.get(button)
       if (AudioSource.get(button).playing) {
@@ -110,6 +99,10 @@ export function createSongButton(parent: Entity, x: number, y: number, song: Son
         }
         play(button)
       }
+    },
+    {
+      hoverText: 'Play',
+      button: InputAction.IA_POINTER
     }
   )
 }

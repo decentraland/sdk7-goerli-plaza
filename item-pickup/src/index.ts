@@ -1,8 +1,9 @@
+export * from '@dcl/sdk'
 import { engine, GltfContainer, Transform } from '@dcl/sdk/ecs'
 import { Vector3 } from '@dcl/sdk/math'
 import { instantiatePickableItem, itemPickupSystem } from './modules/item'
 
-export function main() {
+function setup() {
   // Instantiate ground model
   GltfContainer.create(engine.addEntity(), {
     src: 'models/baseLight.glb'
@@ -41,3 +42,5 @@ export function main() {
 
   engine.addSystem(itemPickupSystem)
 }
+
+setup()

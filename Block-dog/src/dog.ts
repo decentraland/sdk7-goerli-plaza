@@ -7,8 +7,7 @@ import {
   PointerEvents,
   PointerEventType,
   InputAction,
-  pointerEventsSystem,
-  ColliderLayer
+  pointerEventsSystem
 } from '@dcl/sdk/ecs'
 import { Vector3 } from '@dcl/sdk/math'
 import { CustomComponents, dogStates } from './components'
@@ -24,9 +23,7 @@ export function createDog(position: Vector3): Entity {
   })
 
   GltfContainer.create(dog, {
-    src: 'models/BlockDog.glb',
-    visibleMeshesCollisionMask: ColliderLayer.CL_POINTER,
-    invisibleMeshesCollisionMask: undefined
+    src: 'models/BlockDog.glb'
   })
 
   Animator.create(dog, {
@@ -76,13 +73,7 @@ export function createDog(position: Vector3): Entity {
   })
 
   pointerEventsSystem.onPointerDown(
-    {
-      entity: dog,
-      opts: {
-        button: InputAction.IA_PRIMARY,
-        hoverText: 'Sit'
-      }
-    },
+    dog,
     () => {
       const currentState = CustomComponents.NPC.getMutable(dog)
       if (currentState.state === dogStates.Sit) {
@@ -90,6 +81,10 @@ export function createDog(position: Vector3): Entity {
       } else {
         changeState(dog, dogStates.Sit)
       }
+    },
+    {
+      button: InputAction.IA_PRIMARY,
+      hoverText: 'Sit'
     }
   )
 

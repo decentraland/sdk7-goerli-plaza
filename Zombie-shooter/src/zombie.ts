@@ -60,13 +60,7 @@ export function createZombie(xPos: number): Entity {
   })
 
   pointerEventsSystem.onPointerDown(
-    {
-      entity: zombie,
-      opts: {
-        button: InputAction.IA_POINTER,
-        hoverText: 'Shoot'
-      }
-    },
+    zombie,
     function () {
       console.log('BOOM!!!')
 
@@ -76,6 +70,10 @@ export function createZombie(xPos: number): Entity {
       if (GameControllerComponent.has(coneEntity)) {
         GameControllerComponent.getMutable(coneEntity).score += 1
       }
+    },
+    {
+      button: InputAction.IA_POINTER,
+      hoverText: 'Shoot'
     }
   )
 

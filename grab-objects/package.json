@@ -5,9 +5,7 @@
   "dependencies": {
     "@dcl/sdk": "next"
   },
-  "devDependencies": {
-    "@dcl/js-runtime": "7.1.18-5158875305.commit-8967d79"
-  },
+  "devDependencies": {},
   "engines": {
     "node": ">=16.0.0",
     "npm": ">=8.0.0"

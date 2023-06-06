@@ -13,7 +13,9 @@ import { Quaternion, Vector3 } from '@dcl/sdk/math'
 import { WheelSpin } from './definitions'
 import rotatorSystem from './modules/rotator'
 
-export function main() {
+export * from '@dcl/sdk'
+
+function setup() {
   // Environment
   const stage = engine.addEntity()
   GltfContainer.create(stage, { src: 'models/Theatre.glb' })
@@ -28,6 +30,8 @@ export function main() {
 
   engine.addSystem(rotatorSystem)
 }
+
+setup()
 
 function createWheel(position: Vector3, speed: number, direction: Vector3) {
   const wheel = engine.addEntity()
@@ -48,19 +52,17 @@ function createWheel(position: Vector3, speed: number, direction: Vector3) {
   })
 
   pointerEventsSystem.onPointerDown(
-    {
-      entity: wheel,
-      opts: {
-        button: InputAction.IA_POINTER,
-        hoverText: 'Spin'
-      }
-    },
+    wheel,
     () => {
       const spin = WheelSpin.getMutable(wheel)
       if (!spin.active) {
         spin.active = true
       }
       spin.speed += speed
+    },
+    {
+      button: InputAction.IA_POINTER,
+      hoverText: 'Spin'
     }
   )
 }

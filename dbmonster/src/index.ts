@@ -1,8 +1,7 @@
 import { ReactEcsRenderer } from '@dcl/sdk/react-ecs'
 import { engine } from '@dcl/sdk/ecs'
+export * from '@dcl/sdk'
 import { ui } from './ui'
 
-export function main() {
-  ReactEcsRenderer.setUiRenderer(ui)
-  engine.addEntity()
-}
+ReactEcsRenderer.setUiRenderer(ui)
+engine.addEntity()

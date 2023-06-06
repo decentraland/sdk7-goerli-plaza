@@ -9,8 +9,7 @@ import {
   Entity,
   MeshCollider,
   MeshRenderer,
-  AudioSource,
-  ColliderLayer
+  AudioSource
 } from '@dcl/sdk/ecs'
 import { Vector3, Quaternion } from '@dcl/sdk/math'
 import { BeerGlass, BeerType, getTapData, TapBase, TapComponent } from '../definitions'
@@ -18,11 +17,7 @@ import { BeerGlass, BeerType, getTapData, TapBase, TapComponent } from '../defin
 export function createBeerGlass(model: string, position: Vector3) {
   const glassEntity = engine.addEntity()
 
-  GltfContainer.create(glassEntity, {
-    src: model,
-    visibleMeshesCollisionMask: ColliderLayer.CL_POINTER,
-    invisibleMeshesCollisionMask: undefined
-  })
+  GltfContainer.create(glassEntity, { src: model })
 
   Transform.create(glassEntity, { position })
 

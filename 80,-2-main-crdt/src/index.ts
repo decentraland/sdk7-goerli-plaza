@@ -1,3 +1,5 @@
+// export all the functions required to make the scene work
+export * from '@dcl/sdk'
 import { GltfContainer, MeshRenderer, Transform, engine } from '@dcl/sdk/ecs'
 import { Quaternion, Vector3 } from '@dcl/sdk/math'
 
@@ -6,9 +8,7 @@ import './validations.test'
 import { ui } from './ui'
 import { ReactEcsRenderer } from '@dcl/sdk/react-ecs'
 
-export function main() {
-  ReactEcsRenderer.setUiRenderer(ui)
-}
+ReactEcsRenderer.setUiRenderer(ui)
 
 // rotate all cubes
 engine.addSystem(function rotateCube(dt) {

@@ -2,6 +2,8 @@ import { Noise } from '@dcl/noise-utils'
 import { engine, GltfContainer, Material, Transform } from '@dcl/sdk/ecs'
 import { Color4, Quaternion, Vector3 } from '@dcl/sdk/math'
 import { WaveGrass } from './components'
+// export all the functions required to make the scene work
+export * from '@dcl/sdk'
 
 // --- Set up a system ---
 
@@ -30,6 +32,15 @@ function PerlinNoiseSystem(dt: number) {
 
 engine.addSystem(PerlinNoiseSystem)
 
+// --- ground ---
+const ground = engine.addEntity()
+Transform.create(ground, {
+  position: Vector3.create(8, 0, 8)
+})
+GltfContainer.create(ground, {
+  src: 'models/ground.glb'
+})
+
 /// --- Spawner function ---
 
 function spawnGrass(shape: string, x: number, y: number, z: number) {
@@ -57,36 +68,25 @@ function spawnGrass(shape: string, x: number, y: number, z: number) {
   return grass
 }
 
-export function main() {
-  // --- ground ---
-  const ground = engine.addEntity()
-  Transform.create(ground, {
-    position: Vector3.create(8, 0, 8)
-  })
-  GltfContainer.create(ground, {
-    src: 'models/ground.glb'
-  })
+/// --- Spawn grass blades ---
 
-  /// --- Spawn grass blades ---
+const grassModel = 'models/grass.glb'
+const grass2Model = 'models/grass2.glb'
+const grass3Model = 'models/grass3.glb'
 
-  const grassModel = 'models/grass.glb'
-  const grass2Model = 'models/grass2.glb'
-  const grass3Model = 'models/grass3.glb'
+for (let x = 1.4; x < 15.35; x++) {
+  for (let y = 1.4; y < 15.35; y++) {
+    // select a glb mesh randomly from the 3 variations
+    const selector = Math.random()
 
-  for (let x = 1.4; x < 15.35; x++) {
-    for (let y = 1.4; y < 15.35; y++) {
-      // select a glb mesh randomly from the 3 variations
-      const selector = Math.random()
-
-      if (selector > 0.66) {
-        spawnGrass(grassModel, x, 0, y)
-      } else if (selector > 0.33) {
-        spawnGrass(grass2Model, x, 0, y)
-      } else {
-        spawnGrass(grass3Model, x, 0, y)
-      }
+    if (selector > 0.66) {
+      spawnGrass(grassModel, x, 0, y)
+    } else if (selector > 0.33) {
+      spawnGrass(grass2Model, x, 0, y)
+    } else {
+      spawnGrass(grass3Model, x, 0, y)
     }
   }
-
-  let started = false
 }
+
+let started = false

@@ -33,15 +33,7 @@ export function spawnBirds() {
       // create a ray at the X,Z coord of the generated position which starts high up and has a downward direction
       // cast the ray downward and try to intersect it with the terrain's collider
       raycastSystem.registerGlobalDirectionRaycast(
-        {
-          entity: birdSpawnerEntity,
-          opts: {
-            direction: Vector3.Down(),
-            maxDistance: 22,
-            queryType: RaycastQueryType.RQT_HIT_FIRST,
-            continuous: false
-          }
-        },
+        birdSpawnerEntity,
         (result) => {
           // if we hit the collider set the generated bird position's Y coord to the hitpoint's height
           if (!result.hits.length) {
@@ -56,6 +48,12 @@ export function spawnBirds() {
           const spawnPos = result.hits[0].position
           if (!spawnPos) return
           createBird(spawnPos)
+        },
+        {
+          direction: Vector3.Down(),
+          maxDistance: 22,
+          queryType: RaycastQueryType.RQT_HIT_FIRST,
+          continuous: false
         }
       )
     }

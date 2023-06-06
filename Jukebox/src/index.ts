@@ -1,20 +1,10 @@
 import { Quaternion, Vector3 } from '@dcl/sdk/math'
 import { engine, GltfContainer, Transform } from '@dcl/sdk/ecs'
+
 import { songs } from './definitions'
 import { createSongButton } from './modules/songButton'
 
-export function main() {
-  // ground
-  const floor = engine.addEntity()
-  GltfContainer.create(floor, { src: 'models/FloorBaseGrass.glb' })
-  Transform.create(floor, {
-    position: Vector3.create(8, 0, 8),
-    scale: Vector3.create(1.6, 0.1, 1.6)
-  })
-
-  // jukebox
-  createJukebox(Vector3.create(5, 0, 9.5))
-}
+export * from '@dcl/sdk'
 
 function createJukebox(position: Vector3) {
   // Jukebox
@@ -32,3 +22,18 @@ function createJukebox(position: Vector3) {
     createSongButton(jukebox, posX, posY, songs[i])
   }
 }
+
+function setup() {
+  // ground
+  const floor = engine.addEntity()
+  GltfContainer.create(floor, { src: 'models/FloorBaseGrass.glb' })
+  Transform.create(floor, {
+    position: Vector3.create(8, 0, 8),
+    scale: Vector3.create(1.6, 0.1, 1.6)
+  })
+
+  // jukebox
+  createJukebox(Vector3.create(5, 0, 9.5))
+}
+
+setup()

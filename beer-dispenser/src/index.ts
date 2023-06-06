@@ -4,8 +4,9 @@ import { BeerType } from './definitions'
 import { pickingGlassSystem } from './modules/beerGlass'
 import { createBeerGlass, createTap } from './modules/factory'
 import { tapPumpSystem } from './modules/tap'
+export * from '@dcl/sdk'
 
-export function main() {
+function setup() {
   // Create tables
   const tables = engine.addEntity()
   Transform.create(tables, {
@@ -71,3 +72,5 @@ export function main() {
   engine.addSystem(pickingGlassSystem)
   engine.addSystem(tapPumpSystem)
 }
+
+setup()

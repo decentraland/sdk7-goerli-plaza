@@ -1,8 +1,9 @@
+export * from '@dcl/sdk'
 import { engine, GltfContainer, Transform } from '@dcl/sdk/ecs'
 import { Vector3 } from '@dcl/sdk/math'
 import { createZombie } from './modules/zombie'
 
-export function main() {
+function setup() {
   // Instantiate base model
   const baseModelEntity = engine.addEntity()
   Transform.create(baseModelEntity, {
@@ -14,3 +15,5 @@ export function main() {
 
   createZombie(Vector3.create(1 + Math.random() * 30, 0.933, 1 + Math.random() * 30))
 }
+
+setup()

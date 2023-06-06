@@ -17,8 +17,11 @@ executeTask(async () => {
   }
 })
 
+// export all the functions required to make the scene work
+export * from '@dcl/sdk'
+
 // Initial function executed when scene is evaluated and after systems are created
-export function main() {
+executeTask(async function () {
   // Create my main cube and color it.
   //create rotating systems
 
@@ -119,4 +122,4 @@ export function main() {
     //const platform = platforms[p]
     createRotatingPlatform(platform.model, platform.transformArgs, platform.rotation)
   }
-}
+})

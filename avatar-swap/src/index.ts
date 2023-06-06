@@ -1,9 +1,10 @@
+export * from '@dcl/sdk'
 import { AvatarAnchorPointType, AvatarAttach, engine, GltfContainer, Transform } from '@dcl/sdk/ecs'
 import { Vector3 } from '@dcl/sdk/math'
 import { createArissaCharacter } from './modules/arissa'
 import { createAvatarSwappingArea, avatarSwappingSystem } from './modules/avatarSwappingArea'
 
-export function main() {
+function setup() {
   // Instantiate ground model
   const groundEntity = engine.addEntity()
   GltfContainer.create(groundEntity, {
@@ -25,3 +26,5 @@ export function main() {
   // Register avatar swapping system
   engine.addSystem(avatarSwappingSystem)
 }
+
+setup()
