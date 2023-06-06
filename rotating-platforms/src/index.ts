@@ -5,11 +5,8 @@ import { createCrown } from './crown'
 //import { createCube } from './factory'
 import { createRotatingPlatform } from './rotatingPlatform'
 
-// export all the functions required to make the scene work
-export * from '@dcl/sdk'
-
 // Initial function executed when scene is evaluated and after systems are created
-executeTask(async function () {
+export function main() {
   // Create my main cube and color it.
   //create rotating systems
 
@@ -110,4 +107,4 @@ executeTask(async function () {
     //const platform = platforms[p]
     createRotatingPlatform(platform.model, platform.transformArgs, platform.rotation)
   }
-})
+}

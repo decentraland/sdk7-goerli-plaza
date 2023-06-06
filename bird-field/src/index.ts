@@ -1,12 +1,8 @@
-export * from '@dcl/sdk'
 import { engine, GltfContainer, GltfContainerLoadingState, LoadingState, Transform } from '@dcl/sdk/ecs'
 import { Vector3 } from '@dcl/sdk/math'
 import { spawnBirds } from './modules/birds'
-import { mendezCoroutineRuntime } from './modules/coroutine'
 
-const corountime = mendezCoroutineRuntime(engine)
-
-corountime.run(function* waitForAllGtfLoaded() {
+export function main() {
   // Instantiate ground model
   const ground = engine.addEntity()
   GltfContainer.create(ground, {
@@ -31,24 +27,5 @@ corountime.run(function* waitForAllGtfLoaded() {
     position: Vector3.create(8, -10, 6)
   })
 
-  yield // send all updates to renderer
-
-  while (true) {
-    let areLoading = false
-
-    for (const [_entity, loadingState] of engine.getEntitiesWith(GltfContainerLoadingState)) {
-      if (loadingState.currentState == LoadingState.LOADING) {
-        areLoading = true
-        break
-      }
-    }
-
-    if (areLoading) {
-      yield // wait one frame
-    } else {
-      break // finish the loading loop
-    }
-  }
-
   spawnBirds()
-})
+}

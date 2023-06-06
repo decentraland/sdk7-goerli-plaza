@@ -5,14 +5,12 @@ import {
   Material,
   Raycast,
   RaycastQueryType,
-  RaycastResult,
   raycastSystem,
   Transform,
   TransformType
 } from '@dcl/sdk/ecs'
 import { Vector3 } from '@dcl/sdk/math'
 import { defaultMaterial, hitMaterial } from '../definitions'
-import { rayMeshEntity } from '../index'
 
 // If the query type is changed to HitFirst, the ray mesh adapts to the hit distance
 let raycastQueryType = RaycastQueryType.RQT_QUERY_ALL
@@ -39,9 +37,19 @@ export function affectHitEntity(hitEntity: Entity) {
   lastHitEntities.push(hitEntity)
 }
 
-export function createRaycast(entity: Entity) {
+export function createRaycast(parentEntity: Entity, rayMeshEntity: Entity) {
   raycastSystem.registerLocalDirectionRaycast(
-    entity,
+    {
+      entity: parentEntity,
+      opts: {
+        collisionMask: ColliderLayer.CL_CUSTOM1 | ColliderLayer.CL_CUSTOM3 | ColliderLayer.CL_POINTER,
+        originOffset: Vector3.create(0, 0.4, 0),
+        direction: Vector3.Forward(),
+        maxDistance: RAY_POWER,
+        queryType: raycastQueryType,
+        continuous: true // don't overuse the 'continuous' property as raycasting is expensive on performance
+      }
+    },
     (raycastResult) => {
       resetLastHitEntities()
       if (raycastResult.hits.length > 0) {
@@ -55,20 +63,12 @@ export function createRaycast(entity: Entity) {
         }
       } else {
         if (raycastQueryType == RaycastQueryType.RQT_HIT_FIRST) {
-          const raycast = Raycast.getOrNull(entity)
+          const raycast = Raycast.getOrNull(parentEntity)
           if (raycast) {
             updateRayMeshScale(Transform.getMutable(rayMeshEntity), Math.min(raycast.maxDistance, 30))
           }
         }
       }
-    },
-    {
-      collisionMask: ColliderLayer.CL_CUSTOM1 | ColliderLayer.CL_CUSTOM3 | ColliderLayer.CL_POINTER,
-      originOffset: Vector3.create(0, 0.4, 0),
-      direction: Vector3.Forward(),
-      maxDistance: RAY_POWER,
-      queryType: raycastQueryType,
-      continuous: true // don't overuse the 'continuous' property as raycasting is expensive on performance
     }
   )
 }

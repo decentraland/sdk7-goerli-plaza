@@ -14,7 +14,7 @@ import { InterpolationType } from './helper/interpolation'
 
 // Configuration
 const TRAVEL_DISTANCE = 28
-const SPEED = 2
+const SPEED = 1.3
 const MAX_TRAVEL_SPEED_OFFSET = 0.2
 
 export function spawnEnemy(shape: ShipShapes, x: number, y: number, z: number): Entity {
@@ -51,7 +51,6 @@ export function spawnEnemy(shape: ShipShapes, x: number, y: number, z: number): 
   })
 
   EnemyShip.create(enemy)
-
   return enemy
 }
 
