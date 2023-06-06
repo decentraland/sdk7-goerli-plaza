@@ -1,9 +1,21 @@
-import { engine, executeTask, GltfContainer, Material, Transform } from '@dcl/sdk/ecs'
+import { engine, executeTask, GltfContainer, Transform } from '@dcl/sdk/ecs'
 import { Quaternion, Vector3 } from '@dcl/sdk/math'
 import { createCrown } from './crown'
-
-//import { createCube } from './factory'
 import { createRotatingPlatform } from './rotatingPlatform'
+import { triggers } from '@dcl-sdk/utils'
+
+// enable debug mode by default in preview mode
+executeTask(async () => {
+  try {
+    const { getRealm } = await import('~system/Runtime')
+    const realm = await getRealm({})
+    if (realm.realmInfo?.isPreview) {
+      triggers.enableDebugDraw(true)
+    }
+  } catch (err) {
+    console.error(err)
+  }
+})
 
 // Initial function executed when scene is evaluated and after systems are created
 export function main() {

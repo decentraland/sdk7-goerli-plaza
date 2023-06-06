@@ -1,4 +1,4 @@
-import { AudioSource, engine, Entity, GltfContainer, Transform } from '@dcl/sdk/ecs'
+import { AudioSource, engine, Entity, executeTask, GltfContainer, Transform } from '@dcl/sdk/ecs'
 import { Color3, Quaternion, Vector3 } from '@dcl/sdk/math'
 import * as utils from '@dcl-sdk/utils'
 
@@ -104,4 +104,15 @@ function movePlatform(platform: Entity, gear: Entity, rotationSpeed: number, tar
   })
 }
 
-utils.triggers.enableDebugDraw(true)
+// enable debug mode by default in preview mode
+executeTask(async () => {
+  try {
+    const { getRealm } = await import('~system/Runtime')
+    const realm = await getRealm({})
+    if (realm.realmInfo?.isPreview) {
+      utils.triggers.enableDebugDraw(true)
+    }
+  } catch (err) {
+    console.error(err)
+  }
+})
