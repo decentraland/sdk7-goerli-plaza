@@ -37,7 +37,7 @@ export function createCrown(model: string, transform: TransformType): Entity {
       engine.removeEntity(entity)
       utils.triggers.removeTrigger(entity)
     },
-    () => { },
+    () => {},
     Color3.Yellow()
   )
 

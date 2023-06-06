@@ -17,7 +17,6 @@ executeTask(async () => {
   }
 })
 
-
 // Initial function executed when scene is evaluated and after systems are created
 export function main() {
   // Create my main cube and color it.

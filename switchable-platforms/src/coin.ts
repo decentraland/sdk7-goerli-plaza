@@ -30,4 +30,3 @@ export function createCoin(model: string, position: Vector3, size: Vector3, cent
 
   return entity
 }
-
