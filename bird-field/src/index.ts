@@ -1,10 +1,16 @@
-import { engine, GltfContainer, GltfContainerLoadingState, LoadingState, Transform } from '@dcl/sdk/ecs'
+import { engine, EngineInfo, GltfContainer, GltfContainerLoadingState, LoadingState, Transform } from '@dcl/sdk/ecs'
 import { Vector3 } from '@dcl/sdk/math'
 import { spawnBirds } from './modules/birds'
 import { mendezCoroutineRuntime } from './modules/coroutine'
 
+// please do not remove this coroutine, it exists to test the compliance of the GltfContainerLoadingState component
 const corountime = mendezCoroutineRuntime(engine)
+
 corountime.run(function* waitForAllGtfLoaded() {
+  const info = EngineInfo.get(engine.RootEntity)
+
+  console.log(info)
+
   const ground = engine.addEntity()
   GltfContainer.create(ground, {
     src: 'models/sand.glb'
@@ -28,12 +34,11 @@ corountime.run(function* waitForAllGtfLoaded() {
     position: Vector3.create(8, -10, 6)
   })
 
-  spawnBirds()
-
   yield // send all updates to renderer
 
   while (true) {
     let areLoading = false
+    console.log(info)
 
     for (const [_entity, loadingState] of engine.getEntitiesWith(GltfContainerLoadingState)) {
       if (loadingState.currentState == LoadingState.LOADING) {
@@ -48,4 +53,9 @@ corountime.run(function* waitForAllGtfLoaded() {
       break // finish the loading loop
     }
   }
+
+  spawnBirds()
+
+  console.log('birds loaded')
+  console.log(info)
 })
