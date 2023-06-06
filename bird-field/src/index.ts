@@ -14,8 +14,13 @@ import { mendezCoroutineRuntime } from './modules/coroutine'
 // please do not remove this coroutine, it exists to test the compliance of the GltfContainerLoadingState component
 const corountime = mendezCoroutineRuntime(engine)
 
+function logCurrentMoment(log: string) {
+  const info = EngineInfo.get(engine.RootEntity)
+  console.log(`tick=${info.tickNumber} frame=${info.frameNumber} runtime=${info.totalRuntime} -- ${log}`)
+}
+
 corountime.run(function* waitForAllGtfLoaded() {
-  console.log('initializing coroutine', EngineInfo.get(engine.RootEntity))
+  logCurrentMoment(`initializing coroutine`)
 
   const ground = engine.addEntity()
   GltfContainer.create(ground, {
@@ -42,13 +47,14 @@ corountime.run(function* waitForAllGtfLoaded() {
 
   yield* waitForAllModelsToLoad(engine)
 
-  console.log('spawningBirds', EngineInfo.get(engine.RootEntity))
+  logCurrentMoment('spawningBirds')
 
   spawnBirds()
 })
 
 function* waitForAllModelsToLoad(engine: IEngine) {
-  console.log('flushing all changes to the renderer', EngineInfo.get(engine.RootEntity))
+  logCurrentMoment('flushing all changes to the renderer')
+
   yield // send all updates to renderer
 
   while (true) {
@@ -57,7 +63,7 @@ function* waitForAllModelsToLoad(engine: IEngine) {
     for (const [_entity, loadingState] of engine.getEntitiesWith(GltfContainerLoadingState)) {
       if (loadingState.currentState == LoadingState.LOADING) {
         areLoading = true
-        console.log('models are still loading', EngineInfo.get(engine.RootEntity))
+        logCurrentMoment('models are still loading')
         break
       }
     }
