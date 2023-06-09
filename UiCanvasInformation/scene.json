@@ -1,0 +1,27 @@
+{
+  "ecs7": true,
+  "runtimeVersion": "7",
+  "display": {
+    "title": "Ui Canvas Information",
+    "description": "Test",
+    "navmapThumbnail": "images/scene-thumbnail.png",
+    "favicon": "favicon_asset"
+  },
+  "owner": "",
+  "contact": {
+    "name": "",
+    "email": ""
+  },
+  "main": "bin/game.js",
+  "tags": [],
+  "spawnPoints": [],
+  "requiredPermissions": [],
+  "featureToggles": {},
+  "scene": {
+    "base": "0,0",
+    "parcels": [
+      "0,0"
+    ]
+  },
+  "name": "Ui Canvas Information"
+}
