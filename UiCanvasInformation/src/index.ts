@@ -15,7 +15,7 @@ export function main() {
   engine.addSystem((deltaTime) => {
     const uiCanvasInfo = UiCanvasInformation.getOrNull(engine.RootEntity)
 
-    if(!uiCanvasInfo) return
+    if (!uiCanvasInfo) return
 
     canvasInfo.width = uiCanvasInfo.width
     canvasInfo.height = uiCanvasInfo.height
