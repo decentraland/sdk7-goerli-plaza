@@ -2,7 +2,7 @@
   "ecs7": true,
   "runtimeVersion": "7",
   "display": {
-    "title": "Ui Canvas Information",
+    "title": "UiCanvasInformation",
     "description": "Test",
     "navmapThumbnail": "images/scene-thumbnail.png",
     "favicon": "favicon_asset"
@@ -23,5 +23,5 @@
       "0,0"
     ]
   },
-  "name": "Ui Canvas Information"
+  "name": "UiCanvasInformation"
 }
