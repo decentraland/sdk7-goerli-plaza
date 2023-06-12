@@ -5,8 +5,8 @@ import { setupUi } from './ui'
 export * from '@dcl/sdk'
 
 export let canvasInfo = {
-  width : 0,
-  height : 0
+  width: 0,
+  height: 0
 }
 
 export function main() {
