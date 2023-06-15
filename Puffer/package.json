@@ -17,5 +17,8 @@
     "start": "sdk-commands start",
     "upgrade-sdk": "npm install --save-dev @dcl/sdk@latest",
     "upgrade-sdk:next": "npm install --save-dev @dcl/sdk@next"
+  },
+  "devDependencies": {
+    "@dcl/js-runtime": "7.2.1-5280095582.commit-a205cd7"
   }
 }

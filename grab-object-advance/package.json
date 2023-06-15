@@ -6,6 +6,7 @@
     "@dcl/sdk": "next"
   },
   "devDependencies": {
+    "@dcl/js-runtime": "7.2.1-5280095582.commit-a205cd7",
     "cannon": "github:schteppe/cannon.js"
   },
   "scripts": {

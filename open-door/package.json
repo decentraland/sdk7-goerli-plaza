@@ -12,5 +12,8 @@
     "deploy": "sdk-commands deploy",
     "start": "sdk-commands start"
   },
-  "typings": ""
+  "typings": "",
+  "devDependencies": {
+    "@dcl/js-runtime": "7.2.1-5280095582.commit-a205cd7"
+  }
 }
