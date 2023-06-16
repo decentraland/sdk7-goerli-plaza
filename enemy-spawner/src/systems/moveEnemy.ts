@@ -1,4 +1,4 @@
-import { Entity, engine, Transform } from '@dcl/sdk/ecs'
+import { engine, Transform } from '@dcl/sdk/ecs'
 import { Vector3 } from '@dcl/sdk/math'
 import { MoveTransformComponent } from '../components/customComponents'
 import { Interpolate } from '../helper/interpolation'

@@ -1,10 +1,11 @@
 import { engine, Entity, Animator, PointerEvents, Transform } from '@dcl/sdk/ecs'
 import { Vector3, Quaternion } from '@dcl/sdk/math'
-import { bowl } from '..'
 import { CustomComponents, dogStates } from '../components'
 import { onMoveFinish } from './moveSystem'
 
 const CHANGE_VARIABILITY = 4
+
+export const BowlPosition = Vector3.create(9, 0, 1)
 
 export function randomSwitchBehavior(dt: number) {
   for (const [entity] of engine.getEntitiesWith(CustomComponents.NPC)) {
@@ -86,11 +87,10 @@ export function enterState(entity: Entity, newState: dogStates) {
 
     case dogStates.GoDrink:
       Animator.playSingleAnimation(entity, 'Walking')
-      const bowlPosition = Transform.get(bowl).position
-      const bowlToDogVector = Vector3.normalize(Vector3.subtract(MutableTransform.position, bowlPosition))
-      const finalPos = Vector3.add(bowlPosition, bowlToDogVector)
+      const bowlToDogVector = Vector3.normalize(Vector3.subtract(MutableTransform.position, BowlPosition))
+      const finalPos = Vector3.add(BowlPosition, bowlToDogVector)
 
-      MutableTransform.rotation = Quaternion.fromLookAt(MutableTransform.position, bowlPosition)
+      MutableTransform.rotation = Quaternion.fromLookAt(MutableTransform.position, BowlPosition)
 
       CustomComponents.MoveTransform.createOrReplace(entity, {
         start: Transform.get(entity).position,

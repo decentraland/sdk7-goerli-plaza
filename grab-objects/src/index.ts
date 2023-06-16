@@ -13,34 +13,32 @@ import {
 } from '@dcl/sdk/ecs'
 import { Quaternion, Vector3 } from '@dcl/sdk/math'
 
-export * from '@dcl/sdk'
-
-// Force camera first person
-CameraModeArea.create(engine.RootEntity, {
-  area: Vector3.create(32, 32, 32),
-  mode: CameraType.CT_FIRST_PERSON
-})
-
-// Base
-const base = engine.addEntity()
-GltfContainer.create(base, { src: `models/baseLight.glb` })
-
 // Configuration
 const Z_OFFSET = 1.5
 const GROUND_HEIGHT = 0.55
 const state = {
   grabbed: false
 }
-const toggleGrabbed = () => {
-  state.grabbed = !state.grabbed
-  const sound = state.grabbed ? `sounds/put-down.mp3` : `sounds/pick-up.mp3`
-  playSound(sound)
 
-  return state.grabbed
+export function main() {
+  // Force camera first person
+  CameraModeArea.create(engine.RootEntity, {
+    area: Vector3.create(32, 32, 32),
+    mode: CameraType.CT_FIRST_PERSON
+  })
+
+  // Base
+  const base = engine.addEntity()
+  GltfContainer.create(base, { src: `models/baseLight.glb` })
+
+  const crate1 = createCreate(Vector3.create(8, GROUND_HEIGHT, 8))
+
+  const crate2 = createCreate(Vector3.create(4, GROUND_HEIGHT, 10))
 }
 
 // Sounds
 const audioSourceEntity = engine.addEntity()
+
 export function playSound(audio: string) {
   AudioSource.createOrReplace(audioSourceEntity, {
     audioClipUrl: audio,
@@ -48,9 +46,9 @@ export function playSound(audio: string) {
   })
 }
 
-export function createCreate(): Entity {
+export function createCreate(Position: Vector3): Entity {
   const crate = engine.addEntity()
-  Transform.create(crate, { position: Vector3.create(8, GROUND_HEIGHT, 8) })
+  Transform.create(crate, { position: Position })
   GltfContainer.create(crate, { src: `models/crate.glb` })
 
   PointerEvents.create(crate, {
@@ -68,6 +66,14 @@ export function createCreate(): Entity {
   })
 
   return crate
+}
+
+const toggleGrabbed = () => {
+  state.grabbed = !state.grabbed
+  const sound = state.grabbed ? `sounds/put-down.mp3` : `sounds/pick-up.mp3`
+  playSound(sound)
+
+  return state.grabbed
 }
 
 export function grabbingSystem() {
@@ -98,4 +104,3 @@ export function grabbingSystem() {
 }
 
 engine.addSystem(grabbingSystem)
-createCreate()

@@ -1,13 +1,14 @@
 {
-  "name": "bird-field",
-  "description": "Item Pickup",
+  "name": "ui-canvas-information",
+  "description": "ECS7 ",
   "version": "1.0.0",
   "dependencies": {
-    "@dcl-sdk/utils": "next",
     "@dcl/sdk": "next"
   },
-  "devDependencies": {
-    "@dcl/js-runtime": "7.1.18-5188744353.commit-3d91501"
+  "devDependencies": {},
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=6.0.0"
   },
   "scripts": {
     "build": "sdk-commands build --skip-install",

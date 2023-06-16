@@ -3,8 +3,8 @@ import { engine, AudioSource, Transform } from '@dcl/sdk/ecs'
 import { ShipShapes, SpawnerComponent, SpawnerShape } from '../components/customComponents'
 
 // General config
-const BASE_SPAWN_TIME = 1.5
-const MAX_TIME_OFFSET = 1.5
+const BASE_SPAWN_TIME = 4
+const MAX_TIME_OFFSET = 6
 const POSITION_Z = 30
 
 const spaceships = {

@@ -5,7 +5,7 @@ import { SmokeSource } from './definitions'
 import smokeSystem from './modules/smoke'
 import throwSmokeSystem from './modules/smokeSource'
 
-function setup() {
+export function main() {
   const fire = engine.addEntity()
   GltfContainer.create(fire, { src: 'models/Fireplace.glb' })
   Transform.create(fire, { position: Vector3.create(8, 0, 8) })
@@ -26,5 +26,3 @@ function setup() {
   engine.addSystem(throwSmokeSystem)
   engine.addSystem(smokeSystem)
 }
-
-setup()

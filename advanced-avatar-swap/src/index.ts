@@ -1,4 +1,3 @@
-export * from '@dcl/sdk'
 import { AvatarAnchorPointType, AvatarAttach, engine, MeshRenderer, Transform } from '@dcl/sdk/ecs'
 import { Color4, Vector3 } from '@dcl/sdk/math'
 import { initializeCharacter, initializeModels } from './modules/modelsHandler'
@@ -6,7 +5,7 @@ import { createAvatarSwappingArea, avatarSwappingSystem, createSeparationWall } 
 import { createJoinTeamControl } from './modules/swappingControls'
 import { TeamModels } from './modules/modelsHandler'
 
-function setup() {
+export function main() {
   // Initializing for models to be properly loaded even before usage
   initializeModels()
 
@@ -42,5 +41,3 @@ function setup() {
   // Register avatar swapping system
   engine.addSystem(avatarSwappingSystem)
 }
-
-setup()
