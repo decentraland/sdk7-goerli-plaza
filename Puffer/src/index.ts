@@ -34,9 +34,9 @@ export function main() {
     scale: deflatedScale
   })
 
-GltfContainer.create(puffer, {
-  src: 'models/puffer.glb'
-})
+  GltfContainer.create(puffer, {
+    src: 'models/puffer.glb'
+  })
 
   AudioSource.create(puffer, {
     audioClipUrl: 'sounds/deflate.wav',
