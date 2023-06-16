@@ -26,7 +26,7 @@ Transform.create(puffer, {
 })
 
 GltfContainer.create(puffer, {
-  src: 'models/puffer.gltf'
+  src: 'models/puffer.glb'
 })
 
 AudioSource.create(puffer, {
