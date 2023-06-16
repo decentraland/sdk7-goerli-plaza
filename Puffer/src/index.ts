@@ -36,13 +36,15 @@ AudioSource.create(puffer, {
 })
 
 pointerEventsSystem.onPointerDown(
-  puffer,
+  {
+    entity: puffer,
+    opts: {
+      button: InputAction.IA_PRIMARY,
+      hoverText: 'Puff up!'
+    }
+  },
   () => {
     inflateFish(puffer)
-  },
-  {
-    button: InputAction.IA_PRIMARY,
-    hoverText: 'Puff up!'
   }
 )
 
