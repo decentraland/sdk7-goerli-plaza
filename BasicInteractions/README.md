@@ -7,12 +7,8 @@ This scene has no description yet.
 
 ## Try it out
 
-**Install the CLI**
-Download and install the Decentraland CLI by running the following command:
 
-```
-$ npm i -g decentraland
-```
+
 
  
 **Previewing the scene**
