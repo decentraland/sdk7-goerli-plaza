@@ -1,8 +1,8 @@
-#  Boids
+# Boids
 
-> Please visit the [SDK7 scene template](https://github.com/decentraland/sdk7-scene-template) for a SDK7 summary.  
+> Please visit the [SDK7 scene template](https://github.com/decentraland/sdk7-scene-template) for a SDK7 summary.
 
-Boids is an implementation of the boids algorithm. This can be used for simulation flock behavior such as birds or fish in 3D space.  It uses a grid implementation for fast lookups. 
+Boids is an implementation of the boids algorithm. This can be used for simulation flock behavior such as birds or fish in 3D space. It uses a grid implementation for fast lookups.
 
 # Class Overview
 
@@ -10,7 +10,7 @@ BoidsController class defines a container for boids entities. All entities (floc
 
 BoidSystem is the wrapper for BoidsController to make it work inside a Decentraland SDK. The responsibility of this class is to create a new BoidsController instance with the received data and run the requested iterations in this isolated context.
 
-setupBoids is the setup class.  It will initialize the BoidController.  Here can define here the area, flock, obsticles, predators, subGrid count
+setupBoids is the setup class. It will initialize the BoidController. Here can define here the area, flock, obsticles, predators, subGrid count
 
 BoidEntity class defines an entitiy model which has a position and a velocity. Also it has some utiliy methods.
 
@@ -24,7 +24,7 @@ See Debug Markers such as grid markers, boundary top/bottom, obstacles, seek and
 
 ```
 //see debug markers for seek/obsticle/predator
-VISIBLE_OBSTACLES:boolean = true 
+VISIBLE_OBSTACLES:boolean = true
 VISIBLE_SEEK:boolean = true
 VISIBLE_PREDATOR:boolean = false
 
@@ -42,15 +42,15 @@ TEST_CONTROLS_ENABLE = true
 
 /src/boids/setupBoids.js
 
-see initBoidController for creation of all entities types.  Some flags of note include
+see initBoidController for creation of all entities types. Some flags of note include
 
 ```
 //SETUP BOUNDARIES
 const parcelSize = 15.5
-const width = parcelSize 
+const width = parcelSize
 const depth = parcelSize * 2
 const height = 5
-const heightBottomOffset = 1 
+const heightBottomOffset = 1
 const subGrids = 4 //large grid count makes all fish operating the same get reduced
 
 /*
@@ -66,7 +66,6 @@ const predatorCount = 0
 const seekCount = 0
 ```
 
-
 ## Try it out
 
 **Install the CLI**
@@ -79,11 +78,13 @@ npm i -g decentraland
 
 **Previewing the scene**
 
-1) Install the [Decentraland Editor](https://docs.decentraland.org/creator/development-guide/sdk7/editor/)
+1. Download this full repository from [sdk7-goerli-plaza](https://github.com/decentraland/sdk7-goerli-plaza/tree/main), including this and several other example scenes on SDK7.
 
-2) Open a Visual Stuido Code window on the scene's root folder.
+2. Install the [Decentraland Editor](https://docs.decentraland.org/creator/development-guide/sdk7/editor/)
 
-3) Open the Decentraland Editor tab, and press **Run Project**
+3. Open a Visual Studio Code window on this scene's root folder. Not on the root folder of the whole repo, but instead on this sub-folder that belongs to the scene.
+
+4. Open the Decentraland Editor tab, and press **Run Scene**
 
 Alternatively, you can use the command line. Inside this scene root directory run:
 

@@ -35,9 +35,7 @@ export function main() {
   })
 
   GltfContainer.create(puffer, {
-    src: 'models/puffer.gltf',
-    visibleMeshesCollisionMask: ColliderLayer.CL_POINTER,
-    invisibleMeshesCollisionMask: undefined
+    src: 'models/puffer.glb'
   })
 
   AudioSource.create(puffer, {
