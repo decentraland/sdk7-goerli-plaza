@@ -36,7 +36,14 @@ export function createPowerCube(position: Vector3, gltfSrc: string) {
   PowerCube.create(entity, { isGrabbed: false })
 
   pointerEventsSystem.onPointerDown(
-    entity,
+    {
+      entity: entity,
+      opts: {
+        button: InputAction.IA_PRIMARY,
+        hoverText: 'Pick Up',
+        maxDistance: 5
+      }
+    },
     () => {
       const powerCube = PowerCube.getMutable(entity)
 
@@ -65,11 +72,6 @@ export function createPowerCube(position: Vector3, gltfSrc: string) {
           pointerEvent.eventInfo.showFeedback = false
         }
       }
-    },
-    {
-      button: InputAction.IA_PRIMARY,
-      hoverText: 'Pick Up',
-      maxDistance: 5
     }
   )
 
@@ -78,30 +80,38 @@ export function createPowerCube(position: Vector3, gltfSrc: string) {
   return entity
 }
 
+// When pressing F key
 engine.addSystem(() => {
   if (inputSystem.isTriggered(InputAction.IA_SECONDARY, PointerEventType.PET_DOWN)) {
-    for (const [entity] of engine.getEntitiesWith(PowerCube)) {
-      const powerCube = PowerCube.getMutable(entity)
-      const transform = Transform.getMutable(entity)
-      powerCube.isGrabbed = false
-      AudioSource.getMutable(cubePutDownSound).playing = true
-
-      const cameraTransform = Transform.get(engine.PlayerEntity)
-      const forwardVector = Vector3.rotate(Vector3.scale(Vector3.Forward(), Z_OFFSET), cameraTransform.rotation)
-
-      transform.position = Vector3.add(cameraTransform.position, forwardVector)
-      transform.position.y = GROUND_HEIGHT
-
-      transform.rotation = Quaternion.fromLookAt(transform.position, cameraTransform.position)
-      transform.rotation.x = 0
-      transform.rotation.z = 0
-
-      transform.parent = undefined
-
-      const pointerEvent = PointerEvents.getMutable(entity).pointerEvents[0]
-      if (pointerEvent && pointerEvent.eventInfo) {
-        pointerEvent.eventInfo.showFeedback = true
-      }
-    }
+    dropAllCubes()
   }
 })
+
+// Drop all cubes
+export function dropAllCubes() {
+  for (const [entity] of engine.getEntitiesWith(PowerCube)) {
+    const powerCube = PowerCube.getMutable(entity)
+    const transform = Transform.getMutable(entity)
+    if (!powerCube.isGrabbed) return
+
+    powerCube.isGrabbed = false
+    AudioSource.getMutable(cubePutDownSound).playing = true
+
+    const cameraTransform = Transform.get(engine.PlayerEntity)
+    const forwardVector = Vector3.rotate(Vector3.scale(Vector3.Forward(), Z_OFFSET), cameraTransform.rotation)
+
+    transform.position = Vector3.add(cameraTransform.position, forwardVector)
+    transform.position.y = GROUND_HEIGHT
+
+    transform.rotation = Quaternion.fromLookAt(transform.position, cameraTransform.position)
+    transform.rotation.x = 0
+    transform.rotation.z = 0
+
+    transform.parent = undefined
+
+    const pointerEvent = PointerEvents.getMutable(entity).pointerEvents[0]
+    if (pointerEvent && pointerEvent.eventInfo) {
+      pointerEvent.eventInfo.showFeedback = true
+    }
+  }
+}
