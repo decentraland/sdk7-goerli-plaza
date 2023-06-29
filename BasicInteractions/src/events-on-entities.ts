@@ -9,13 +9,15 @@ export function setupEventOnEntities() {
   const pointerDownCube = utils.addTestCube({ position: Vector3.create(2, 1, 4) }, undefined, 'Pointer down')
 
   pointerEventsSystem.onPointerDown(
-    pointerDownCube,
+    {
+      entity: pointerDownCube,
+      opts: {
+        button: InputAction.IA_POINTER,
+        hoverText: 'Activate'
+      }
+    },
     function (cmd) {
       paintCube(pointerDownCube)
-    },
-    {
-      button: InputAction.IA_POINTER,
-      hoverText: 'Activate'
     }
   )
 
@@ -24,13 +26,15 @@ export function setupEventOnEntities() {
   const pointerUpCube = utils.addTestCube({ position: Vector3.create(2, 1, 6) }, undefined, 'Pointer up')
 
   pointerEventsSystem.onPointerUp(
-    pointerUpCube,
+    {
+      entity: pointerUpCube,
+      opts: {
+        button: InputAction.IA_POINTER,
+        hoverText: 'Activate'
+      }
+    },
     function (cmd) {
       paintCube(pointerUpCube)
-    },
-    {
-      button: InputAction.IA_POINTER,
-      hoverText: 'Activate'
     }
   )
 
@@ -38,13 +42,15 @@ export function setupEventOnEntities() {
   const primaryDownCube = utils.addTestCube({ position: Vector3.create(8, 1, 12) }, undefined, 'Primary down')
 
   pointerEventsSystem.onPointerDown(
-    primaryDownCube,
+    {
+      entity: primaryDownCube,
+      opts: {
+        button: InputAction.IA_PRIMARY,
+        hoverText: 'Activate'
+      }
+    },
     function (cmd) {
       paintCube(primaryDownCube)
-    },
-    {
-      button: InputAction.IA_PRIMARY,
-      hoverText: 'Activate'
     }
   )
 
@@ -52,13 +58,15 @@ export function setupEventOnEntities() {
   const primaryUpCube = utils.addTestCube({ position: Vector3.create(10, 1, 12) }, undefined, 'Primary up')
 
   pointerEventsSystem.onPointerUp(
-    primaryUpCube,
+    {
+      entity: primaryUpCube,
+      opts: {
+        button: InputAction.IA_PRIMARY,
+        hoverText: 'Activate'
+      }
+    },
     function (cmd) {
       paintCube(primaryUpCube)
-    },
-    {
-      button: InputAction.IA_PRIMARY,
-      hoverText: 'Activate'
     }
   )
 
@@ -66,13 +74,15 @@ export function setupEventOnEntities() {
   const secondaryDownCube = utils.addTestCube({ position: Vector3.create(12, 1, 12) }, undefined, 'Secondary down')
 
   pointerEventsSystem.onPointerDown(
-    secondaryDownCube,
+    {
+      entity: secondaryDownCube,
+      opts: {
+        button: InputAction.IA_SECONDARY,
+        hoverText: 'Activate'
+      }
+    },
     function (cmd) {
       paintCube(secondaryDownCube)
-    },
-    {
-      button: InputAction.IA_SECONDARY,
-      hoverText: 'Activate'
     }
   )
 
@@ -80,13 +90,15 @@ export function setupEventOnEntities() {
   const secondaryUpCube = utils.addTestCube({ position: Vector3.create(14, 1, 12) }, undefined, 'Secondary up')
 
   pointerEventsSystem.onPointerUp(
-    secondaryUpCube,
+    {
+      entity: secondaryUpCube,
+      opts: {
+        button: InputAction.IA_SECONDARY,
+        hoverText: 'Activate'
+      }
+    },
     function (cmd) {
       paintCube(secondaryUpCube)
-    },
-    {
-      button: InputAction.IA_SECONDARY,
-      hoverText: 'Activate'
     }
   )
 }

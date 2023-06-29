@@ -3,9 +3,7 @@ import { Vector3 } from '@dcl/sdk/math'
 import { Sprite } from './definitions'
 import updateSpriteFrameSystem from './modules/spriteFrames'
 
-export * from '@dcl/sdk'
-
-function setup() {
+export function main() {
   // // 3d model of robot
   const robot = engine.addEntity()
   GltfContainer.create(robot, { src: 'models/robotTalking.glb' })
@@ -39,5 +37,3 @@ function setup() {
 
   engine.addSystem(updateSpriteFrameSystem)
 }
-
-setup()

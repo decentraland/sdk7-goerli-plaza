@@ -19,7 +19,6 @@ export function createCrown(model: string, transform: TransformType): Entity {
   const size = Vector3.create(2.5, 2.5, 2.5)
   const centerOffset = Vector3.Zero()
 
-  utils.triggers.enableDebugDraw(true)
   //utils.triggers.setLayerMask(engine.PlayerEntity,1)
   //utils.triggers.setTriggeredByMask(entity,1)
 

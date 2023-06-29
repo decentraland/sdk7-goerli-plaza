@@ -1,4 +1,3 @@
-export * from '@dcl/sdk'
 import { engine, GltfContainer, Transform } from '@dcl/sdk/ecs'
 import { Vector3 } from '@dcl/sdk/math'
 // /*

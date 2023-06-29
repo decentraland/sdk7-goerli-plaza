@@ -76,6 +76,9 @@
       "path": "Zombie-shooter"
     },
     {
+      "path": "UiCanvasInformation"
+    },
+    {
       "path": "Template"
     },
     {
@@ -83,6 +86,9 @@
     },
     {
       "path": "Smoke"
+    },
+    {
+      "path": "Simple-NPC"
     },
     {
       "path": "Shark-animation"
