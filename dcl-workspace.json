@@ -80,6 +80,9 @@
     },
     {
       "path": "Template"
+    }, 
+		{
+      "path": "droid-scene"
     },
     {
       "path": "Swimming-Shark"
