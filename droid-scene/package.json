@@ -6,11 +6,11 @@
     "@dcl-sdk/utils"
   ],
   "dependencies": {
-    "@dcl-sdk/utils": "^1.1.2"
+    "@dcl-sdk/utils": "next"
   },
   "devDependencies": {
-    "@dcl/js-runtime": "7.2.4",
-    "@dcl/sdk": "^7.2.4"
+    "@dcl/js-runtime": "next",
+    "@dcl/sdk": "next"
   },
   "engines": {
     "node": ">=16.0.0",
