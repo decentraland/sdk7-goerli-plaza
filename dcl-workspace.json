@@ -43,6 +43,9 @@
       "path": "enemy-spawner"
     },
     {
+      "path": "droid-scene"
+    },
+    {
       "path": "dbmonster"
     },
     {
@@ -80,9 +83,6 @@
     },
     {
       "path": "Template"
-    }, 
-		{
-      "path": "droid-scene"
     },
     {
       "path": "Swimming-Shark"
