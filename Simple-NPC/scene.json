@@ -1,7 +1,7 @@
 {
   "ecs7": true,
   "runtimeVersion": "7",
-	"name": "simple-npc",
+  "name": "Simple-NPC",
   "display": {
     "title": "Simple-NPC",
     "description": "First scene with SDK7",
