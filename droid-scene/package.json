@@ -1,6 +1,11 @@
 {
-  "name": "dcl-project",
-  "description": "SDK7 Template scene",
+  "name": "droid-scene",
+	"display": {
+    "title": "Droid Scene",
+    "description": "Simple scene that uses the Utils library to show basic mechanics",
+    "navmapThumbnail": "images/scene-thumbnail.png",
+    "favicon": "favicon_asset"
+  },
   "version": "1.0.0",
   "bundleDependencies": [
     "@dcl-sdk/utils"
