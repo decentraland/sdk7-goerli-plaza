@@ -1,13 +1,21 @@
 {
-  "name": "switchable-platforms",
-  "description": "SDK7 Template scene",
+  "name": "droid-scene",
+	"display": {
+    "title": "Droid Scene",
+    "description": "Simple scene that uses the Utils library to show basic mechanics",
+    "navmapThumbnail": "images/scene-thumbnail.png",
+    "favicon": "favicon_asset"
+  },
   "version": "1.0.0",
+  "bundleDependencies": [
+    "@dcl-sdk/utils"
+  ],
   "dependencies": {
-    "@dcl-sdk/utils": "next",
-    "@dcl/sdk": "next"
+    "@dcl-sdk/utils": "next"
   },
   "devDependencies": {
-    "@dcl/js-runtime": "7.1.18-5188744353.commit-3d91501"
+    "@dcl/js-runtime": "next",
+    "@dcl/sdk": "next"
   },
   "engines": {
     "node": ">=16.0.0",

@@ -43,6 +43,9 @@
       "path": "enemy-spawner"
     },
     {
+      "path": "droid-scene"
+    },
+    {
       "path": "dbmonster"
     },
     {

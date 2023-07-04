@@ -7,7 +7,7 @@
     "@dcl/sdk": "next"
   },
   "devDependencies": {
-    "@dcl/js-runtime": "7.1.18-5188744353.commit-3d91501"
+    "@dcl/js-runtime": "next"
   },
   "scripts": {
     "build": "sdk-commands build --skip-install",
