@@ -1,6 +1,6 @@
 import { engine, GltfContainer, Transform } from '@dcl/sdk/ecs'
 import { Vector3 } from '@dcl/sdk/math'
-import { instantiatePickableItem, itemPickupSystem } from './modules/item'
+import { instantiatePickableItem, respawnSystem } from './modules/item'
 
 export function main() {
   // Instantiate ground model
@@ -33,11 +33,25 @@ export function main() {
     position: Vector3.create(12, 0, 6)
   })
 
-  instantiatePickableItem('models/medikit.glb', Vector3.create(4, 0.75, 6), 'sounds/medikitPickup.mp3', 3)
+  // callback functions to run each time an item is picked
+  const medkitAction = () => {
+    console.log('PICKED UP MEDKIT')
+  }
 
-  instantiatePickableItem('models/ammo.glb', Vector3.create(8, 0.75, 10), 'sounds/ammoPickup.mp3', 1.5)
+  const armorAction = () => {
+    console.log('PICKED UP ARMOR')
+  }
 
-  instantiatePickableItem('models/armor.glb', Vector3.create(12, 0.75, 6), 'sounds/armorPickup.mp3', 5)
+  const ammoAction = () => {
+    console.log('PICKED UP AMMO')
+  }
 
-  engine.addSystem(itemPickupSystem)
+  // instantiate pickable items
+  instantiatePickableItem('models/medikit.glb', Vector3.create(4, 0.75, 6), 'sounds/medikitPickup.mp3', 3, medkitAction)
+
+  instantiatePickableItem('models/armor.glb', Vector3.create(12, 0.75, 6), 'sounds/armorPickup.mp3', 5, armorAction)
+
+  instantiatePickableItem('models/ammo.glb', Vector3.create(8, 0.75, 10), 'sounds/ammoPickup.mp3', 8, ammoAction)
+
+  engine.addSystem(respawnSystem)
 }
