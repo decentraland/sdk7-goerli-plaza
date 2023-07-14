@@ -22,7 +22,7 @@ jobs:
         env:
           BRANCH: ${{ github.head_ref || github.ref }}
         with:
-          script: return `goerli-plaza-${process.env.BRANCH.replaceAll('/', '-').replaceAll('refs-heads-', '').substr(0, 28)}`
+          script: return `streaming-world-${process.env.BRANCH.replaceAll('/', '-').replaceAll('refs-heads-', '').substr(0, 28)}`
           result-encoding: string
       - uses: actions/github-script@v6
         id: get-sdk-version
@@ -32,7 +32,7 @@ jobs:
       - name: export-static (permalink)
         run: >
           npm run export-static -- \
-            --realmName goerli-plaza-${{ github.sha }} \
+            --realmName streaming-world-${{ github.sha }} \
             --commsAdapter ws-room:ws-room-service.decentraland.org/rooms/${{ github.sha }} \
             --baseUrl '${{ secrets.SDK_TEAM_S3_BASE_URL }}/ipfs' \
             --destination "$(pwd)/ipfs"
@@ -68,14 +68,14 @@ jobs:
           issue-number: ${{ github.event.pull_request.number }}
           body: |
             # Test this pull request
-            - The `/changerealm` command to test [test in-world](https://play.decentraland.zone/?realm=${{ secrets.SDK_TEAM_S3_BASE_URL }}/ipfs/goerli-plaza-${{ github.sha }})
+            - The `/changerealm` command to test [test in-world](https://play.decentraland.zone/?realm=${{ secrets.SDK_TEAM_S3_BASE_URL }}/ipfs/streaming-world-${{ github.sha }})
                ```bash
                # permalink
-               /changerealm ${{ secrets.SDK_TEAM_S3_BASE_URL }}/ipfs/goerli-plaza-${{ github.sha }}
+               /changerealm ${{ secrets.SDK_TEAM_S3_BASE_URL }}/ipfs/streaming-world-${{ github.sha }}
                # branch name
                /changerealm ${{ secrets.SDK_TEAM_S3_BASE_URL }}/ipfs/${{steps.get-branch-realm-name.outputs.result}}
                ```
-            - Test in [the Babylon.js explorer](https://babylon.decentraland.org/?realm=${{ secrets.SDK_TEAM_S3_BASE_URL }}/ipfs/goerli-plaza-${{ github.sha }})
+            - Test in [the Babylon.js explorer](https://babylon.decentraland.org/?realm=${{ secrets.SDK_TEAM_S3_BASE_URL }}/ipfs/streaming-world-${{ github.sha }})
             This PR has been published using the `@dcl/sdk` version `${{steps.get-sdk-version.outputs.result}}`
           edit-mode: replace
       - name: lint
