@@ -1,4 +1,4 @@
-# SDK7 Goerli Plaza
+# SDK7 Streaming World Test
 
 # Adding a new scene
 
@@ -26,5 +26,5 @@ To keep consistent code styles, there is an automated CI step. If the build fail
 In a Decentraland explorer execute:
 
 ```
-/changerealm https://sdk-team-cdn.decentraland.org/ipfs/goerli-plaza-main
+/changerealm https://sdk-team-cdn.decentraland.org/ipfs/streaming-world-main
 ```
