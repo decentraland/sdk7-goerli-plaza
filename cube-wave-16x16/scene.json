@@ -45,9 +45,9 @@
   ],
   "featureToggles": {},
   "scene": {
-    "base": "78,-8",
+    "base": "-13,-8",
     "parcels": [
-      "78,-8"
+      "-13,-8"
     ]
   },
   "name": "cube-wave-16x16"

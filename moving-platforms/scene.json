@@ -12,9 +12,9 @@
   "owner": "",
   "scene": {
     "parcels": [
-      "77,-5"
+      "-14,-5"
     ],
-    "base": "77,-5"
+    "base": "-14,-5"
   },
   "requiredPermissions": [],
   "main": "bin/game.js",

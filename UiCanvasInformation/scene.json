@@ -18,9 +18,9 @@
   "requiredPermissions": [],
   "featureToggles": {},
   "scene": {
-    "base": "76,-10",
+    "base": "-15,-10",
     "parcels": [
-      "76,-10"
+      "-15,-10"
     ]
   },
   "name": "UiCanvasInformation"

@@ -12,12 +12,12 @@
   "owner": "",
   "scene": {
     "parcels": [
-      "90,5",
-      "89,5",
-      "89,6",
-      "88,6"
+      "-1,5",
+      "-2,5",
+      "-2,6",
+      "-3,6"
     ],
-    "base": "90,5"
+    "base": "-1,5"
   },
   "requiredPermissions": [],
   "main": "bin/index.js",

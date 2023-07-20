@@ -45,9 +45,9 @@
   ],
   "featureToggles": {},
   "scene": {
-    "base": "76,-8",
+    "base": "-15,-8",
     "parcels": [
-      "76,-8"
+      "-15,-8"
     ]
   },
   "name": "Cube"

@@ -45,9 +45,9 @@
   ],
   "featureToggles": {},
   "scene": {
-    "base": "77,-8",
+    "base": "-14,-8",
     "parcels": [
-      "77,-8"
+      "-14,-8"
     ]
   },
   "name": "Zombie-shooter2"

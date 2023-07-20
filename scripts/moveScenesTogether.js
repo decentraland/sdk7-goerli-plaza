@@ -19,7 +19,7 @@ let minYName = ''
 for (const projectFolder of projects.map(path.dirname)) {
   const sceneJsonPath = path.resolve(projectFolder, 'scene.json')
   const sceneJson = JSON.parse(fs.readFileSync(sceneJsonPath))
-  for (let i; i < sceneJson.scene.parcels.length; ++i) {
+  for (let i = 0; i < sceneJson.scene.parcels.length; ++i) {
     const tile = sceneJson.scene.parcels[i]
     const x = parseInt(tile.split(',')[0])
     const y = parseInt(tile.split(',')[1])
@@ -43,13 +43,20 @@ for (const projectFolder of projects.map(path.dirname)) {
       }
       console.log(projectFolder, x, y)
 
-      sceneJson.scene.parcels[i] = `${x - 90},${y}`
+      sceneJson.scene.parcels[i] = `${x - 91},${y}`
     }
 
     const arr = parcels.get(tile) || []
     arr.push(projectFolder.path)
     parcels.set(tile, arr)
   }
+
+  if (!projectFolder.includes('tree')) {
+    const x = parseInt(sceneJson.scene.base.split(',')[0])
+    const y = parseInt(sceneJson.scene.base.split(',')[1])
+    sceneJson.scene.base = `${x - 91},${y}`
+  }
+
   sceneJson.display.title = path.basename(projectFolder)
   sceneJson.name = path.basename(projectFolder)
   fs.writeFileSync(sceneJsonPath, JSON.stringify(sceneJson, null, 2))
