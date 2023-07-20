@@ -1,0 +1,14 @@
+{
+  "name": "Jukebox",
+  "description": "ECS7 ",
+  "version": "1.0.0",
+  "dependencies": {
+    "@dcl-sdk/utils": "next",
+    "@dcl/sdk": "next"
+  },
+  "scripts": {
+    "build": "sdk-commands build --skip-install",
+    "deploy": "sdk-commands deploy",
+    "start": "sdk-commands start"
+  }
+}

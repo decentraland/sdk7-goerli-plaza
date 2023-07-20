@@ -1,0 +1,17 @@
+{
+  "name": "bird-field",
+  "description": "Item Pickup",
+  "version": "1.0.0",
+  "dependencies": {
+    "@dcl-sdk/utils": "next",
+    "@dcl/sdk": "next"
+  },
+  "devDependencies": {
+    "@dcl/js-runtime": "next"
+  },
+  "scripts": {
+    "build": "sdk-commands build --skip-install",
+    "deploy": "sdk-commands deploy",
+    "start": "sdk-commands start"
+  }
+}

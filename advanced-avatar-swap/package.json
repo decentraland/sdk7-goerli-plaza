@@ -1,0 +1,14 @@
+{
+  "name": "advanced-avatar-swap",
+  "description": "Avatar Swap",
+  "version": "1.0.0",
+  "dependencies": {
+    "@dcl/sdk": "next"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "build": "sdk-commands build --skip-install",
+    "deploy": "sdk-commands deploy",
+    "start": "sdk-commands start"
+  }
+}

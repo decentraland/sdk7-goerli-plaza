@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "target": "es2020",
+    "allowJs": true,
+    "strict": true,
+    "baseUrl": ".",
+    "moduleResolution": "node",
+    "lib": [
+      "ES2020"
+    ],
+    "declaration": false
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules/"
+  ],
+  "extends": "@dcl/sdk/types/tsconfig.ecs7.json",
+  "compileOnSave": false
+}

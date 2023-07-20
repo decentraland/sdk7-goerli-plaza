@@ -1,0 +1,25 @@
+{
+  "name": "random-noise",
+  "description": "SDK7 Template scene",
+  "version": "1.0.0",
+  "dependencies": {
+    "@dcl/noise-utils": "^1.0.12-20221201202440.commit-51d8250",
+    "@dcl/sdk": "next"
+  },
+  "devDependencies": {},
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=6.0.0"
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true,
+    "printWidth": 120,
+    "trailingComma": "none"
+  },
+  "scripts": {
+    "build": "sdk-commands build --skip-install",
+    "deploy": "sdk-commands deploy",
+    "start": "sdk-commands start"
+  }
+}

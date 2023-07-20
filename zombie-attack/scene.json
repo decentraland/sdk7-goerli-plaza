@@ -1,0 +1,51 @@
+{
+  "ecs7": true,
+  "runtimeVersion": "7",
+  "display": {
+    "title": "zombie-attack",
+    "favicon": "favicon_asset"
+  },
+  "contact": {
+    "name": "decentraland",
+    "email": ""
+  },
+  "owner": "",
+  "scene": {
+    "parcels": [
+      "78,-1",
+      "78,0",
+      "79,-1",
+      "79,0"
+    ],
+    "base": "78,-1"
+  },
+  "requiredPermissions": [],
+  "main": "bin/game.js",
+  "tags": [],
+  "spawnPoints": [
+    {
+      "name": "spawn1",
+      "default": true,
+      "position": {
+        "x": [
+          0,
+          3
+        ],
+        "y": [
+          0,
+          0
+        ],
+        "z": [
+          0,
+          3
+        ]
+      },
+      "cameraTarget": {
+        "x": 8,
+        "y": 1,
+        "z": 8
+      }
+    }
+  ],
+  "name": "zombie-attack"
+}

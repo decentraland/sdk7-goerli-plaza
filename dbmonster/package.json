@@ -1,0 +1,16 @@
+{
+  "name": "simple-scene",
+  "description": "My new Decentraland project",
+  "version": "1.0.0",
+  "author": "",
+  "dependencies": {
+    "@dcl/sdk": "next"
+  },
+  "license": "Apache-2.0",
+  "repository": "menduz/menduzlandia.git",
+  "scripts": {
+    "build": "sdk-commands build --skip-install",
+    "deploy": "sdk-commands deploy",
+    "start": "sdk-commands start"
+  }
+}

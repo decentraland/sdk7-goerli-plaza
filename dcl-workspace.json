@@ -1,6 +1,15 @@
 {
   "folders": [
     {
+      "path": "zombie-attack"
+    },
+    {
+      "path": "video-streaming"
+    },
+    {
+      "path": "uv-map"
+    },
+    {
       "path": "tree9"
     },
     {
@@ -242,6 +251,135 @@
     },
     {
       "path": "tree1"
+    },
+    {
+      "path": "testing-gallery"
+    },
+    {
+      "path": "switchable-platforms"
+    },
+    {
+      "path": "sliding-door"
+    },
+    {
+      "path": "scene-bounds-check"
+    },
+    {
+      "path": "rotating-platforms"
+    },
+    {
+      "path": "raycast-unit-tests"
+    },
+    {
+      "path": "power-cube"
+    },
+    {
+      "path": "open-door"
+    },
+    {
+      "path": "moving-platforms"
+    },
+    {
+      "path": "main-crdt"
+    },
+    {
+      "path": "item-pickup"
+    },
+    {
+      "path": "grab-objects"
+    },
+    {
+      "path": "grab-object-advance"
+    },
+    {
+      "path": "enemy-spawner"
+    },
+    {
+      "path": "droid-scene"
+    },
+    {
+      "path": "dbmonster"
+    },
+    {
+      "path": "cube-wave-32x32"
+    },
+    {
+      "path": "cube-wave-16x16"
+    },
+    {
+      "path": "coin-pickup"
+    },
+    {
+      "path": "boids"
+    },
+    {
+      "path": "bird-field"
+    },
+    {
+      "path": "beer-dispenser"
+    },
+    {
+      "path": "avatar-swap"
+    },
+    {
+      "path": "advanced-avatar-swap"
+    },
+    {
+      "path": "Zombie-shooter2"
+    },
+    {
+      "path": "Zombie-shooter"
+    },
+    {
+      "path": "UiCanvasInformation"
+    },
+    {
+      "path": "Template"
+    },
+    {
+      "path": "Swimming-Shark"
+    },
+    {
+      "path": "Smoke"
+    },
+    {
+      "path": "Simple-NPC"
+    },
+    {
+      "path": "Shark-animation"
+    },
+    {
+      "path": "Random-noise-movement"
+    },
+    {
+      "path": "Puffer"
+    },
+    {
+      "path": "Laser-ray-Casting"
+    },
+    {
+      "path": "Jukebox"
+    },
+    {
+      "path": "Hypno-wheels"
+    },
+    {
+      "path": "Hummingbirds"
+    },
+    {
+      "path": "Gnark"
+    },
+    {
+      "path": "Dance-floor"
+    },
+    {
+      "path": "Cube"
+    },
+    {
+      "path": "Block-dog"
+    },
+    {
+      "path": "BasicInteractions"
     }
   ]
 }
