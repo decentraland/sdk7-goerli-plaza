@@ -9,13 +9,13 @@ import {
 	AudioSource,
 } from '@dcl/sdk/ecs'
 import { Quaternion, Vector3 } from '@dcl/sdk/math'
-import { PortalColor, createPortal } from './portals'
+import { createPortal } from './portals'
 import { HOLDING_GUN } from './gun'
-import { GlowColor, Portal } from './components'
+import { GlowColor, Portal, PortalColor } from './components'
 import * as utils from '@dcl-sdk/utils'
 
 
-export let activePortal = PortalColor.Blue
+export let activePortal: PortalColor = PortalColor.Blue
 
 /**
  * switch colors
@@ -60,8 +60,6 @@ export function gunSystem(dt: number) {
 
 		if (result && result.hit && result.hit.position && result.hit.normalHit) {
 
-
-			AudioSource.createOrReplace(engine.PlayerEntity, { audioClipUrl: 'sounds/portalSuccess.mp3', playing: true, loop: false })
 
 			// remove old portals of that color
 			const activePortals = engine.getEntitiesWith(Portal)

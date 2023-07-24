@@ -37,24 +37,31 @@ export function main() {
 				{
 					eventType: PointerEventType.PET_DOWN,
 					eventInfo: {
-						showFeedback: false
+						showFeedback: false, maxDistance: 15
 					}
 				}
 			]
 		})
-		//const wallGltf = GltfContainer.getMutable(walls)
-		//wallGltf.visibleMeshesCollisionMask = ColliderLayer.CL_POINTER
-		//wallGltf.invisibleMeshesCollisionMask = ColliderLayer.CL_PHYSICS
+	}
+
+	// add colliders
+	const floor = engine.getEntityOrNullByName("baseLight.glb")
+	if (floor) {
+		PointerEvents.create(floor, {
+			pointerEvents: [
+				{
+					eventType: PointerEventType.PET_DOWN,
+					eventInfo: {
+						showFeedback: false, maxDistance: 15
+					}
+				}
+			]
+		})
 	}
 
 
 	engine.addSystem(gunSystem)
 	engine.addSystem(colorSystem)
-
-	utils.addTestCube({ position: Vector3.create(5, 1, 3), rotation: Quaternion.fromEulerDegrees(0, 45, 0) }, () => { })
-
-	utils.addTestCube({ position: Vector3.create(5, 1, 8) }, () => { })
-
 
 }
 

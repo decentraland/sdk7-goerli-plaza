@@ -2,8 +2,7 @@ import { AudioSource, AvatarAnchorPointType, AvatarAttach, Entity, GltfContainer
 import { Quaternion, Vector3 } from "@dcl/sdk/math"
 import * as utils from '@dcl-sdk/utils'
 import { colorSystem, gunSystem } from "./systems"
-import { GlowColor } from "./components"
-import { PortalColor } from "./portals"
+import { GlowColor, PortalColor } from "./components"
 
 
 export let HOLDING_GUN = false
