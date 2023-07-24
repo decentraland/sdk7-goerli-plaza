@@ -9,7 +9,7 @@
     "@dcl-sdk/utils": "next"
   },
   "devDependencies": {
-    "@dcl/js-runtime": "7.2.5-5401474611.commit-3ce758e",
+    "@dcl/js-runtime": "next",
     "@dcl/sdk": "next"
   },
   "engines": {

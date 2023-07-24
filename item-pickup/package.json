@@ -6,11 +6,11 @@
     "@dcl-sdk/utils"
   ],
   "dependencies": {
-    "@dcl-sdk/utils": "^1.1.2",
+    "@dcl-sdk/utils": "next",
     "@dcl/sdk": "next"
   },
   "devDependencies": {
-    "@dcl/js-runtime": "7.2.5-5401474611.commit-3ce758e"
+    "@dcl/js-runtime": "next"
   },
   "scripts": {
     "build": "sdk-commands build --skip-install",
