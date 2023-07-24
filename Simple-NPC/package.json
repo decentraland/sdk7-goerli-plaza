@@ -1,6 +1,6 @@
 {
-  "name": "dcl-project",
-  "description": "SDK7 Template scene",
+  "name": "simple-npc",
+  "description": "Simple NPC",
   "version": "1.0.0",
   "bundleDependencies": [
     "@dcl-sdk/utils",
