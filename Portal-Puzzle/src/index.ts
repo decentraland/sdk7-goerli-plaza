@@ -17,7 +17,7 @@ export function main() {
 		utils.triggers.addTrigger(card, 1, 1, [{ type: "box" }], () => {
 			const cardTransform = Transform.getMutable(card)
 			cardTransform.scale = Vector3.Zero()
-			AudioSource.create(card, { audioClipUrl: 'sounds/cardPickup.mp3', playing: true, loop: false })
+			AudioSource.createOrReplace(card, { audioClipUrl: 'sounds/cardPickup.mp3', playing: true, loop: false })
 		})
 	}
 
