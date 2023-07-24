@@ -10,7 +10,7 @@ executeTask(async () => {
     const { getRealm } = await import('~system/Runtime')
     const realm = await getRealm({})
     if (realm.realmInfo?.isPreview) {
-      triggers.enableDebugDraw(true)
+      //triggers.enableDebugDraw(true)
     }
   } catch (err) {
     console.error(err)
