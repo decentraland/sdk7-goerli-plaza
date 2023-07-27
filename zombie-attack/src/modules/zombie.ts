@@ -1,5 +1,5 @@
 import { Vector3, Quaternion } from '@dcl/sdk/math'
-import { engine, GltfContainer, Transform, Animator } from '@dcl/sdk/ecs'
+import { engine, GltfContainer, Transform, Animator, removeEntityWithChildren, inputSystem, InputAction, PointerEventType, Entity, PointerEvents, Billboard, VisibilityComponent, TextShape } from '@dcl/sdk/ecs'
 import { Zombie } from '../definitions'
 
 const ZOMBIE_MODEL_PATH = 'models/zombie.glb'
@@ -30,9 +30,27 @@ export function createZombie(position: Vector3) {
       }
     ]
   })
-  Zombie.create(zombieEntity, {
+
+  const damageEntity = engine.addEntity()
+  const zombie = Zombie.create(zombieEntity, {
     movementSpeed: MOVEMENT_SPEED,
-    rotationSpeed: ROTATION_SPEED
+    rotationSpeed: ROTATION_SPEED,
+    damageEntity
+  })
+
+  Transform.create(damageEntity, { parent: zombieEntity, position: Vector3.create(0, 1, 0) })
+  Billboard.create(damageEntity)
+  TextShape.create(damageEntity, { text: `Health: ${zombie.health - zombie.damage}/${zombie.health}`, fontSize: 3 })
+
+  PointerEvents.create(zombieEntity, {
+    pointerEvents: [
+      {
+        eventType: PointerEventType.PET_DOWN,
+        eventInfo: {
+          hoverText: 'Attack!'
+        }
+      }
+    ]
   })
 }
 
@@ -66,4 +84,31 @@ function zombieMovementSystem(deltaTime: number) {
     Animator.getClip(entity, 'Attacking').playing = isInAttackDistance
   }
 }
+
+function zombieLifeSystem(dt: number) {
+  for (const [entity] of engine.getEntitiesWith(Zombie)) {
+    const zombie = Zombie.getMutable(entity)
+
+    if (inputSystem.isTriggered(InputAction.IA_POINTER, PointerEventType.PET_DOWN, entity)) {
+      zombie.damage += 1
+      TextShape.getMutable(zombie.damageEntity).text = `Health: ${zombie.health - zombie.damage}/${zombie.health}`
+    }
+
+    if (zombie.damage > 0) {
+      if (zombie.damage >= zombie.health) {
+        removeEntityWithChildren(engine, entity)
+        continue
+      }
+
+      zombie.damageCooldown += dt
+      if (zombie.damageCooldown > 1) {
+        zombie.damageCooldown = 0
+        zombie.damage -= 1
+        TextShape.getMutable(zombie.damageEntity).text = `Health: ${zombie.health - zombie.damage}/${zombie.health}`
+      }
+    }
+  }
+}
+
 engine.addSystem(zombieMovementSystem)
+engine.addSystem(zombieLifeSystem)
