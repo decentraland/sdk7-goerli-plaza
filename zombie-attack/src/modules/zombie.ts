@@ -1,5 +1,19 @@
 import { Vector3, Quaternion } from '@dcl/sdk/math'
-import { engine, GltfContainer, Transform, Animator, removeEntityWithChildren, inputSystem, InputAction, PointerEventType, Entity, PointerEvents, Billboard, VisibilityComponent, TextShape } from '@dcl/sdk/ecs'
+import {
+  engine,
+  GltfContainer,
+  Transform,
+  Animator,
+  removeEntityWithChildren,
+  inputSystem,
+  InputAction,
+  PointerEventType,
+  Entity,
+  PointerEvents,
+  Billboard,
+  VisibilityComponent,
+  TextShape
+} from '@dcl/sdk/ecs'
 import { Zombie } from '../definitions'
 
 const ZOMBIE_MODEL_PATH = 'models/zombie.glb'
