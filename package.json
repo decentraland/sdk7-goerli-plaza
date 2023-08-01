@@ -17,7 +17,7 @@
   },
   "private": true,
   "scripts": {
-    "build": "sdk-commands build --skip-install",
+    "build": "sdk-commands build --skip-install --production",
     "export-static": "sdk-commands export-static",
     "format": "./node_modules/.bin/prettier '**/*.ts' -w",
     "lint": "./node_modules/.bin/prettier '**/*.ts' --check",
