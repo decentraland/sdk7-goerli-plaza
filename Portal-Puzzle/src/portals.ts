@@ -51,7 +51,11 @@ export function teleport(portalEntity: Entity) {
   for (const [destinationEntity, portal] of activePortals) {
     if (portal.color != portalColor) {
       const destination = Transform.get(destinationEntity).position
-      movePlayerTo({ newRelativePosition: destination })
+      const direction = Transform.get(destinationEntity).rotation
+      const fiveMetersForward = Vector3.scale(Vector3.rotate(Vector3.Forward(), direction), 5)
+      const cameraTarget = Vector3.add(destination, fiveMetersForward)
+
+      movePlayerTo({ newRelativePosition: destination, cameraTarget: cameraTarget })
 
       const destinationPortalData = Portal.getMutable(destinationEntity)
 

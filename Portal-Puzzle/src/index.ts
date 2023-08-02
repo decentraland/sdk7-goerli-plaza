@@ -10,6 +10,7 @@ import {
   inputSystem,
   Material,
   MeshCollider,
+  MeshRenderer,
   PointerEvents,
   pointerEventsSystem,
   PointerEventType,
@@ -37,38 +38,6 @@ export function main() {
   const gun = engine.getEntityOrNullByName('portalGun.glb')
   if (gun) {
     spawnGun(gun)
-  }
-
-  // add colliders
-  const walls = engine.getEntityOrNullByName('walls.glb')
-  if (walls) {
-    PointerEvents.create(walls, {
-      pointerEvents: [
-        {
-          eventType: PointerEventType.PET_DOWN,
-          eventInfo: {
-            showFeedback: false,
-            maxDistance: 15
-          }
-        }
-      ]
-    })
-  }
-
-  // add colliders
-  const floor = engine.getEntityOrNullByName('baseLight.glb')
-  if (floor) {
-    PointerEvents.create(floor, {
-      pointerEvents: [
-        {
-          eventType: PointerEventType.PET_DOWN,
-          eventInfo: {
-            showFeedback: false,
-            maxDistance: 15
-          }
-        }
-      ]
-    })
   }
 
   engine.addSystem(gunSystem)
