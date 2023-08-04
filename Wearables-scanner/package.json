@@ -1,6 +1,6 @@
 {
   "name": "wearables-scanner",
-	"description": "A scanner checks what wearables you have on, and only opens the door if you have the right ones",
+  "description": "A scanner checks what wearables you have on, and only opens the door if you have the right ones",
   "version": "1.0.0",
   "bundleDependencies": [
     "@dcl-sdk/utils"
