@@ -57,7 +57,7 @@ export function gunSystem(dt: number) {
   if (result) {
     raycastSystem.registerGlobalDirectionRaycast(
       {
-        entity: engine.PlayerEntity,
+        entity: engine.CameraEntity,
         opts: {
           queryType: RaycastQueryType.RQT_HIT_FIRST,
           direction: Vector3.rotate(Vector3.Forward(), Transform.get(engine.CameraEntity).rotation),
