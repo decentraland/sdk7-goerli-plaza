@@ -25,7 +25,7 @@ export function createPortal(color: PortalColor, pos: TransformType) {
   //trigger
   utils.triggers.addTrigger(
     portal,
-    1,
+    utils.NO_LAYERS,
     1,
     [
       {
