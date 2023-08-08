@@ -1,6 +1,12 @@
 {
   "folders": [
     {
+      "path": "Zombie-shooter2"
+    },
+    {
+      "path": "Zombie-shooter"
+    },
+    {
       "path": "zombie-attack"
     },
     {
@@ -10,13 +16,31 @@
       "path": "uv-map"
     },
     {
+      "path": "UiCanvasInformation"
+    },
+    {
       "path": "testing-gallery"
+    },
+    {
+      "path": "Template"
     },
     {
       "path": "switchable-platforms"
     },
     {
+      "path": "Swimming-Shark"
+    },
+    {
+      "path": "Smoke"
+    },
+    {
       "path": "sliding-door"
+    },
+    {
+      "path": "Simple-NPC"
+    },
+    {
+      "path": "Shark-animation"
     },
     {
       "path": "scene-bounds-check"
@@ -28,10 +52,19 @@
       "path": "raycast-unit-tests"
     },
     {
+      "path": "Random-noise-movement"
+    },
+    {
+      "path": "Puffer"
+    },
+    {
       "path": "power-cube"
     },
     {
       "path": "open-door"
+    },
+    {
+      "path": "Office-template"
     },
     {
       "path": "moving-platforms"
@@ -40,13 +73,28 @@
       "path": "main-crdt"
     },
     {
+      "path": "Laser-ray-Casting"
+    },
+    {
+      "path": "Jukebox"
+    },
+    {
       "path": "item-pickup"
+    },
+    {
+      "path": "Hypno-wheels"
+    },
+    {
+      "path": "Hummingbirds"
     },
     {
       "path": "grab-objects"
     },
     {
       "path": "grab-object-advance"
+    },
+    {
+      "path": "Gnark"
     },
     {
       "path": "enemy-spawner"
@@ -58,10 +106,16 @@
       "path": "dbmonster"
     },
     {
+      "path": "Dance-floor"
+    },
+    {
       "path": "cube-wave-32x32"
     },
     {
       "path": "cube-wave-16x16"
+    },
+    {
+      "path": "Cube"
     },
     {
       "path": "coin-pickup"
@@ -70,73 +124,22 @@
       "path": "boids"
     },
     {
+      "path": "Block-dog"
+    },
+    {
       "path": "bird-field"
     },
     {
       "path": "beer-dispenser"
     },
     {
+      "path": "BasicInteractions"
+    },
+    {
       "path": "avatar-swap"
     },
     {
       "path": "advanced-avatar-swap"
-    },
-    {
-      "path": "Zombie-shooter2"
-    },
-    {
-      "path": "Zombie-shooter"
-    },
-    {
-      "path": "UiCanvasInformation"
-    },
-    {
-      "path": "Template"
-    },
-    {
-      "path": "Swimming-Shark"
-    },
-    {
-      "path": "Smoke"
-    },
-    {
-      "path": "Simple-NPC"
-    },
-    {
-      "path": "Shark-animation"
-    },
-    {
-      "path": "Random-noise-movement"
-    },
-    {
-      "path": "Puffer"
-    },
-    {
-      "path": "Laser-ray-Casting"
-    },
-    {
-      "path": "Jukebox"
-    },
-    {
-      "path": "Hypno-wheels"
-    },
-    {
-      "path": "Hummingbirds"
-    },
-    {
-      "path": "Gnark"
-    },
-    {
-      "path": "Dance-floor"
-    },
-    {
-      "path": "Cube"
-    },
-    {
-      "path": "Block-dog"
-    },
-    {
-      "path": "BasicInteractions"
     }
   ]
 }
