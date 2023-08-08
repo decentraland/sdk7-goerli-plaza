@@ -45,7 +45,8 @@ export function spawnEnemy(shape: ShipShapes, x: number, y: number, z: number): 
         eventType: PointerEventType.PET_DOWN,
         eventInfo: {
           button: InputAction.IA_POINTER,
-          showFeedback: false
+          showFeedback: false,
+          maxDistance: 100
         }
       }
     ]
