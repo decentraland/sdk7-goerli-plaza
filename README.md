@@ -27,4 +27,6 @@ In a Decentraland explorer execute:
 
 ```
 /changerealm https://sdk-team-cdn.decentraland.org/ipfs/streaming-world-main
+
+
 ```

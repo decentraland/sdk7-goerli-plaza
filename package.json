@@ -3,8 +3,8 @@
   "description": "My new Decentraland project",
   "version": "1.0.0",
   "dependencies": {
-    "@dcl-sdk/utils": "next",
-    "@dcl/sdk": "next",
+    "@dcl-sdk/utils": "^1.1.3-20230616162048.commit-15063f2",
+    "@dcl/sdk": "^7.3.6-5753960749.commit-f3cbac0",
     "glob": "^9.3.4",
     "prettier": "^2.8.8",
     "syncpack": "^9.8.4"
