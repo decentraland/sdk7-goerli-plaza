@@ -1,0 +1,51 @@
+{
+  "ecs7": true,
+  "runtimeVersion": "7",
+  "display": {
+    "title": "Shooting-Range-Advanced",
+    "description": "An interactive demo for shooting moving targets!",
+    "navmapThumbnail": "images/scene-thumbnail.png",
+    "favicon": "favicon_asset"
+  },
+  "owner": "",
+  "contact": {
+    "name": "SDK",
+    "email": ""
+  },
+  "main": "bin/index.js",
+  "tags": [],
+  "scene": {
+    "parcels": [
+      "83,-1",
+      "84,-1",
+      "83,0",
+      "84,0"
+    ],
+    "base": "83,-1"
+  },
+  "spawnPoints": [
+    {
+      "name": "spawn1",
+      "default": true,
+      "position": {
+        "x": 16,
+        "y": 1,
+        "z": 1
+      },
+      "cameraTarget": {
+        "x": 16,
+        "y": 1,
+        "z": 16
+      }
+    }
+  ],
+  "requiredPermissions": [
+    "ALLOW_TO_TRIGGER_AVATAR_EMOTE",
+    "ALLOW_TO_MOVE_PLAYER_INSIDE_SCENE"
+  ],
+  "featureToggles": {},
+  "worldConfiguration": {
+    "name": "SceneDebugging.dcl.eth"
+  },
+  "name": "Shooting-Range-Advanced"
+}
