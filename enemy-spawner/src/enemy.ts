@@ -6,7 +6,8 @@ import {
   AudioSource,
   PointerEvents,
   PointerEventType,
-  InputAction
+  InputAction,
+  ColliderLayer
 } from '@dcl/sdk/ecs'
 import { Vector3 } from '@dcl/sdk/math'
 import { EnemyShip, Expire, MoveTransformComponent, ShipShapes } from './components/customComponents'
@@ -43,8 +44,9 @@ export function spawnEnemy(shape: ShipShapes, x: number, y: number, z: number): 
       {
         eventType: PointerEventType.PET_DOWN,
         eventInfo: {
-          button: InputAction.IA_PRIMARY,
-          showFeedback: false
+          button: InputAction.IA_POINTER,
+          showFeedback: false,
+          maxDistance: 100
         }
       }
     ]
