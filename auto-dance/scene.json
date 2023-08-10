@@ -1,53 +1,54 @@
 {
-	"ecs7": true,
-	"runtimeVersion": "7",
-	"display": {
-		"title": "SDK7 Auto dance Scene Template",
-		"description": "template scene with autodance areas in SDK7",
-		"navmapThumbnail": "images/scene-thumbnail.png",
-		"favicon": "favicon_asset"
-	},
-	"owner": "DOGMAN",
-	"contact": {
-		"name": "DOGMAN ",
-		"email": ""
-	},
-	"main": "bin/index.js",
-	"tags": [],
-	"scene": {
-		"parcels": [
-			"0,0"
-		],
-		"base": "0,0"
-	},
-	"spawnPoints": [
-		{
-			"name": "spawn1",
-			"default": true,
-			"position": {
-				"x": [
-					0,
-					3
-				],
-				"y": [
-					0,
-					0
-				],
-				"z": [
-					0,
-					3
-				]
-			},
-			"cameraTarget": {
-				"x": 8,
-				"y": 1,
-				"z": 8
-			}
-		}
-	],
-	"requiredPermissions": [
-		"ALLOW_TO_TRIGGER_AVATAR_EMOTE",
-		"ALLOW_TO_MOVE_PLAYER_INSIDE_SCENE"
-	],
-	"featureToggles": {}
+  "ecs7": true,
+  "runtimeVersion": "7",
+  "display": {
+    "title": "auto-dance",
+    "description": "template scene with autodance areas in SDK7",
+    "navmapThumbnail": "images/scene-thumbnail.png",
+    "favicon": "favicon_asset"
+  },
+  "owner": "DOGMAN",
+  "contact": {
+    "name": "DOGMAN ",
+    "email": ""
+  },
+  "main": "bin/index.js",
+  "tags": [],
+  "scene": {
+    "parcels": [
+      "77,-6"
+    ],
+    "base": "77,-6"
+  },
+  "spawnPoints": [
+    {
+      "name": "spawn1",
+      "default": true,
+      "position": {
+        "x": [
+          0,
+          3
+        ],
+        "y": [
+          0,
+          0
+        ],
+        "z": [
+          0,
+          3
+        ]
+      },
+      "cameraTarget": {
+        "x": 8,
+        "y": 1,
+        "z": 8
+      }
+    }
+  ],
+  "requiredPermissions": [
+    "ALLOW_TO_TRIGGER_AVATAR_EMOTE",
+    "ALLOW_TO_MOVE_PLAYER_INSIDE_SCENE"
+  ],
+  "featureToggles": {},
+  "name": "auto-dance"
 }
