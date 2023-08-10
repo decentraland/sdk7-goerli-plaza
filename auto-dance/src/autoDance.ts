@@ -30,7 +30,7 @@ export function createDanceArea(position: Vector3, scale: Vector3) {
 
 
 ///MAKE TRUE FOR DEBUG
-    VisibilityComponent.create(myEntity, { visible: true })
+    VisibilityComponent.create(myEntity, { visible: false})
 
 
 
