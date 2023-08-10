@@ -10,6 +10,9 @@
       "path": "uv-map"
     },
     {
+      "path": "tin-can-alley"
+    },
+    {
       "path": "testing-gallery"
     },
     {
@@ -25,6 +28,9 @@
       "path": "rotating-platforms"
     },
     {
+      "path": "rocket-board"
+    },
+    {
       "path": "power-cube"
     },
     {
@@ -35,6 +41,9 @@
     },
     {
       "path": "item-pickup"
+    },
+    {
+      "path": "inflatable-punch-bag"
     },
     {
       "path": "grab-objects"
@@ -59,6 +68,9 @@
     },
     {
       "path": "coin-pickup"
+    },
+    {
+      "path": "coconut-shy"
     },
     {
       "path": "boids"

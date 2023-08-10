@@ -2,8 +2,8 @@
   "ecs7": true,
   "runtimeVersion": "7",
   "display": {
-    "title": "SDK7 Scene Template",
-    "description": "template scene with SDK7",
+    "title": "coconut-shy",
+    "description": "A scene that uses physics to handle the throwing of coconuts and falling of piled up items",
     "navmapThumbnail": "images/scene-thumbnail.png",
     "favicon": "favicon_asset"
   },
@@ -16,9 +16,9 @@
   "tags": [],
   "scene": {
     "parcels": [
-      "0,0"
+      "72,-2"
     ],
-    "base": "0,0"
+    "base": "72,-2"
   },
   "spawnPoints": [
     {
@@ -49,9 +49,10 @@
     "ALLOW_TO_TRIGGER_AVATAR_EMOTE",
     "ALLOW_TO_MOVE_PLAYER_INSIDE_SCENE",
     "ALLOW_MEDIA_HOSTNAMES"
-	],
-	"allowedMediaHostnames": [
-		"decentraland.org"
   ],
-  "featureToggles": {}
+  "allowedMediaHostnames": [
+    "decentraland.org"
+  ],
+  "featureToggles": {},
+  "name": "coconut-shy"
 }

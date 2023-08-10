@@ -1,15 +1,27 @@
-import { CameraModeArea, CameraType, Entity, GltfContainer, InputAction, PointerEventType, Transform, engine, executeTask, inputSystem, pointerEventsSystem } from "@dcl/sdk/ecs"
-import { createBall, playerThrow } from "./modules/ball"
-import { createCoconut } from "./modules/coconut"
+import {
+  CameraModeArea,
+  CameraType,
+  Entity,
+  GltfContainer,
+  InputAction,
+  PointerEventType,
+  Transform,
+  engine,
+  executeTask,
+  inputSystem,
+  pointerEventsSystem
+} from '@dcl/sdk/ecs'
+import { createBall, playerThrow } from './modules/ball'
+import { createCoconut } from './modules/coconut'
 // import { coconutShyMeshVertices, coconutShyMeshIndices } from "./modules/meshData/coconutShyMesh"
 // import { wallMeshVertices, wallMeshIndices } from "./modules/meshData/wallMesh"
-import { loadColliders } from "./modules/colliderSetup"
-import { Color4, Vector3 } from "@dcl/sdk/math"
-import CANNON from "cannon"
-import { Ball } from "./modules/components"
-import { createRaycast } from "./modules/highlighter"
-import { uiBar } from "./ui-entities/UiBar"
-import { setupUi } from "./ui"
+import { loadColliders } from './modules/colliderSetup'
+import { Color4, Vector3 } from '@dcl/sdk/math'
+import CANNON from 'cannon'
+import { Ball } from './modules/components'
+import { createRaycast } from './modules/highlighter'
+import { uiBar } from './ui-entities/UiBar'
+import { setupUi } from './ui'
 
 // UI
 setupUi()
@@ -23,13 +35,13 @@ const base = engine.addEntity()
 Transform.create(base)
 // Set the mesh
 GltfContainer.create(base, {
-  src: 'models/baseLight.glb',
+  src: 'models/baseLight.glb'
 })
 
 const coconutShy = engine.addEntity()
 Transform.create(coconutShy)
 GltfContainer.create(coconutShy, {
-  src: 'models/coconutShy.glb',
+  src: 'models/coconutShy.glb'
 })
 
 // Setup our world
@@ -41,8 +53,11 @@ world.gravity.set(0, -16, 0) // m/s²
 loadColliders(world)
 
 // Setup ground material
-const physicsMaterial = new CANNON.Material("groundMaterial")
-const ballContactMaterial = new CANNON.ContactMaterial(physicsMaterial, physicsMaterial, { friction: 1, restitution: 0.5 })
+const physicsMaterial = new CANNON.Material('groundMaterial')
+const ballContactMaterial = new CANNON.ContactMaterial(physicsMaterial, physicsMaterial, {
+  friction: 1,
+  restitution: 0.5
+})
 world.addContactMaterial(ballContactMaterial)
 
 // Create balls
@@ -131,7 +146,10 @@ export function physicsSystem(dt: number) {
       Vector3.copyFrom(balls[i].body.position, Transform.getMutable(balls[i].ball).position)
       Transform.getMutable(balls[i].ball).rotation = balls[i].body.quaternion
     }
-    if (balls[i].body.velocity.almostEquals(new CANNON.Vec3(0, 0, 0), 2) && balls[i].body.sleepState !== CANNON.Body.SLEEPING) {
+    if (
+      balls[i].body.velocity.almostEquals(new CANNON.Vec3(0, 0, 0), 2) &&
+      balls[i].body.sleepState !== CANNON.Body.SLEEPING
+    ) {
     }
     for (let i = 0; i < coconuts.length; i++) {
       Transform.getMutable(coconuts[i].coconut).position = coconuts[i].body.position

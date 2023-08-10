@@ -1,9 +1,9 @@
-import { GltfContainer, InputAction, PointerEventType, Transform, engine, inputSystem } from "@dcl/sdk/ecs"
-import { Vector3 } from "@dcl/sdk/math"
+import { GltfContainer, InputAction, PointerEventType, Transform, engine, inputSystem } from '@dcl/sdk/ecs'
+import { Vector3 } from '@dcl/sdk/math'
 import { onSceneReadyObservable } from '@dcl/sdk/observables'
-import CANNON from "cannon"
-import { createRing } from "./ring"
-import { playrocketBoosterSound, stoprocketBoosterSound } from "./sound"
+import CANNON from 'cannon'
+import { createRing } from './ring'
+import { playrocketBoosterSound, stoprocketBoosterSound } from './sound'
 
 onSceneReadyObservable.add(() => {
   // Create base
@@ -12,11 +12,11 @@ onSceneReadyObservable.add(() => {
   Transform.create(base)
   // Set the mesh
   GltfContainer.create(base, {
-    src: 'models/baseLargeCheckered.glb',
+    src: 'models/baseLargeCheckered.glb'
   })
 
   // Create ring
-  const ring = createRing("models/ring.glb", Vector3.create(40, 12, 40), 2)
+  const ring = createRing('models/ring.glb', Vector3.create(40, 12, 40), 2)
 
   // Create rocket board
   const rocketBoard = engine.addEntity()
@@ -25,7 +25,7 @@ onSceneReadyObservable.add(() => {
     scale: Vector3.create(1, 1, 1)
   })
   GltfContainer.create(rocketBoard, {
-    src: 'models/rocketBoard.glb',
+    src: 'models/rocketBoard.glb'
   })
 
   const rocketFlames = engine.addEntity()
@@ -34,7 +34,7 @@ onSceneReadyObservable.add(() => {
     parent: rocketBoard
   })
   GltfContainer.create(rocketFlames, {
-    src: 'models/rocketFlames.glb',
+    src: 'models/rocketFlames.glb'
   })
 
   // Useful vectors
@@ -45,11 +45,10 @@ onSceneReadyObservable.add(() => {
   const world = new CANNON.World()
   world.gravity.set(0, -20, 0) // m/s²
   const groundMaterial = new CANNON.Material('groundMaterial')
-  const groundContactMaterial = new CANNON.ContactMaterial(
-    groundMaterial,
-    groundMaterial,
-    { friction: 1, restitution: 0.33 }
-  )
+  const groundContactMaterial = new CANNON.ContactMaterial(groundMaterial, groundMaterial, {
+    friction: 1,
+    restitution: 0.33
+  })
   world.addContactMaterial(groundContactMaterial)
 
   // Invisible walls
@@ -58,21 +57,21 @@ onSceneReadyObservable.add(() => {
   const wallNorth = new CANNON.Body({
     mass: 0,
     shape: wallShape,
-    position: new CANNON.Vec3(40, 49.5, 80),
+    position: new CANNON.Vec3(40, 49.5, 80)
   })
   world.addBody(wallNorth)
 
   const wallSouth = new CANNON.Body({
     mass: 0,
     shape: wallShape,
-    position: new CANNON.Vec3(40, 49.5, 0),
+    position: new CANNON.Vec3(40, 49.5, 0)
   })
   world.addBody(wallSouth)
 
   const wallEast = new CANNON.Body({
     mass: 0,
     shape: wallShape,
-    position: new CANNON.Vec3(80, 49.5, 40),
+    position: new CANNON.Vec3(80, 49.5, 40)
   })
   wallEast.quaternion.setFromAxisAngle(new CANNON.Vec3(0, 1, 0), -Math.PI / 2)
   world.addBody(wallEast)
@@ -80,7 +79,7 @@ onSceneReadyObservable.add(() => {
   const wallWest = new CANNON.Body({
     mass: 0,
     shape: wallShape,
-    position: new CANNON.Vec3(0, 49.5, 40),
+    position: new CANNON.Vec3(0, 49.5, 40)
   })
   wallWest.quaternion.setFromAxisAngle(new CANNON.Vec3(0, 1, 0), -Math.PI / 2)
   world.addBody(wallWest)
@@ -96,11 +95,7 @@ onSceneReadyObservable.add(() => {
   world.addBody(groundBody)
 
   const boxMaterial = new CANNON.Material('boxMaterial')
-  const boxContactMaterial = new CANNON.ContactMaterial(
-    groundMaterial,
-    boxMaterial,
-    { friction: 0.4, restitution: 0 }
-  )
+  const boxContactMaterial = new CANNON.ContactMaterial(groundMaterial, boxMaterial, { friction: 0.4, restitution: 0 })
   world.addContactMaterial(boxContactMaterial)
 
   // Create body to represent the rocket board
@@ -108,12 +103,8 @@ onSceneReadyObservable.add(() => {
 
   const rocketBody: CANNON.Body = new CANNON.Body({
     mass: 5, // kg
-    position: new CANNON.Vec3(
-      rocketTransform.position.x,
-      rocketTransform.position.y,
-      rocketTransform.position.z
-    ), // m
-    shape: new CANNON.Box(new CANNON.Vec3(2, 0.3, 2)), // m (Create sphere shaped body with a radius of 1)
+    position: new CANNON.Vec3(rocketTransform.position.x, rocketTransform.position.y, rocketTransform.position.z), // m
+    shape: new CANNON.Box(new CANNON.Vec3(2, 0.3, 2)) // m (Create sphere shaped body with a radius of 1)
   })
   rocketBody.material = boxMaterial // Add bouncy material to box body
   world.addBody(rocketBody) // Add body to the world
@@ -130,16 +121,8 @@ onSceneReadyObservable.add(() => {
     if (inputSystem.isPressed(InputAction.IA_PRIMARY)) {
       forwardVector = Vector3.rotate(Vector3.Forward(), Transform.get(engine.CameraEntity).rotation) // Update forward vector to wherever the player is facing
       rocketBody.applyImpulse(
-        new CANNON.Vec3(
-          forwardVector.x * velocityScale,
-          0,
-          forwardVector.z * velocityScale
-        ),
-        new CANNON.Vec3(
-          rocketBody.position.x,
-          rocketBody.position.y,
-          rocketBody.position.z
-        )
+        new CANNON.Vec3(forwardVector.x * velocityScale, 0, forwardVector.z * velocityScale),
+        new CANNON.Vec3(rocketBody.position.x, rocketBody.position.y, rocketBody.position.z)
       )
       activateRocketBooster(true)
     }
@@ -148,15 +131,11 @@ onSceneReadyObservable.add(() => {
     if (inputSystem.isPressed(InputAction.IA_SECONDARY)) {
       rocketBody.applyImpulse(
         new CANNON.Vec3(0, 1 * velocityScale, 0),
-        new CANNON.Vec3(
-          rocketBody.position.x,
-          rocketBody.position.y,
-          rocketBody.position.z
-        )
+        new CANNON.Vec3(rocketBody.position.x, rocketBody.position.y, rocketBody.position.z)
       )
       activateRocketBooster(true)
     }
-    
+
     if (!inputSystem.isPressed(InputAction.IA_PRIMARY) && !inputSystem.isPressed(InputAction.IA_SECONDARY)) {
       activateRocketBooster(false)
     }

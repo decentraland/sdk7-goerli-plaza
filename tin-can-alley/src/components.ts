@@ -1,11 +1,13 @@
-import { Schemas, engine } from "@dcl/sdk/ecs";
+import { Schemas, engine } from '@dcl/sdk/ecs'
 
-export const Cooldown = engine.defineComponent('Cooldown',
-    {
-        time: Schemas.Int,
-        on: Schemas.Boolean
-    },
-    {
-        time: 1,
-        on: false
-    })
+export const Cooldown = engine.defineComponent(
+  'Cooldown',
+  {
+    time: Schemas.Int,
+    on: Schemas.Boolean
+  },
+  {
+    time: 1,
+    on: false
+  }
+)

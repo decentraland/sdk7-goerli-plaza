@@ -2,8 +2,8 @@
   "ecs7": true,
   "runtimeVersion": "7",
   "display": {
-    "title": "SDK7 Scene Template",
-    "description": "template scene with SDK7",
+    "title": "tin-can-alley",
+    "description": "A scene that uses physics to simulate the falling of piled up items",
     "navmapThumbnail": "images/scene-thumbnail.png",
     "favicon": "favicon_asset"
   },
@@ -16,9 +16,9 @@
   "tags": [],
   "scene": {
     "parcels": [
-      "0,0"
+      "73,-1"
     ],
-    "base": "0,0"
+    "base": "73,-1"
   },
   "spawnPoints": [
     {
@@ -49,9 +49,10 @@
     "ALLOW_TO_TRIGGER_AVATAR_EMOTE",
     "ALLOW_TO_MOVE_PLAYER_INSIDE_SCENE",
     "ALLOW_MEDIA_HOSTNAMES"
-	],
-	"allowedMediaHostnames": [
-		"decentraland.org"
   ],
-  "featureToggles": {}
+  "allowedMediaHostnames": [
+    "decentraland.org"
+  ],
+  "featureToggles": {},
+  "name": "tin-can-alley"
 }

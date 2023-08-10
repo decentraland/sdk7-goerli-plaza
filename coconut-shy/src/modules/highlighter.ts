@@ -1,10 +1,4 @@
-import {
-  ColliderLayer,
-  engine,
-  Entity,
-  RaycastQueryType,
-  raycastSystem,
-} from '@dcl/sdk/ecs'
+import { ColliderLayer, engine, Entity, RaycastQueryType, raycastSystem } from '@dcl/sdk/ecs'
 import { Vector3 } from '@dcl/sdk/math'
 import { Ball } from './components'
 import { setGlow } from './ball'
@@ -27,18 +21,23 @@ export function createRaycast(parentEntity: Entity) {
       }
     },
     (raycastResult) => {
-      if (raycastResult.hits.length > 0) { // if hitted entity
-        for (const hit of raycastResult.hits) { // do something on each entity hitted
+      if (raycastResult.hits.length > 0) {
+        // if hitted entity
+        for (const hit of raycastResult.hits) {
+          // do something on each entity hitted
           for (const [entity] of engine.getEntitiesWith(Ball)) {
-            if (hit.entityId == entity) { // if hitted entity is an entity with the Ball component do something
-              for (const [entity] of engine.getEntitiesWith(Ball)) { // remove glow of all entities
+            if (hit.entityId == entity) {
+              // if hitted entity is an entity with the Ball component do something
+              for (const [entity] of engine.getEntitiesWith(Ball)) {
+                // remove glow of all entities
                 setGlow(entity, false)
               }
               setGlow(entity, true) // enable glow of hitted entity if has Ball component
             }
           }
         }
-      } else { // if not hitted entity, remove glow of all entities
+      } else {
+        // if not hitted entity, remove glow of all entities
         for (const [entity] of engine.getEntitiesWith(Ball)) {
           setGlow(entity, false)
         }

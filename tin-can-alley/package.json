@@ -1,17 +1,20 @@
 {
-  "name": "dcl-project",
+  "name": "tin-can-alley",
+  "description": "A scene that uses physics to simulate the falling of piled up items",
   "version": "1.0.0",
-  "description": "SDK7 Template scene",
-  "scripts": {
-    "start": "sdk-commands start",
-    "deploy": "sdk-commands deploy",
-    "build": "sdk-commands build",
-    "upgrade-sdk": "npm install --save-dev @dcl/sdk@latest",
-    "upgrade-sdk:next": "npm install --save-dev @dcl/sdk@next"
+  "bundleDependencies": [
+    "@dcl-sdk/utils",
+    "@dcl-sdk/ui-utils"
+  ],
+  "dependencies": {
+    "@dcl-sdk/utils": "next",
+    "@types/cannon": "^0.1.8",
+    "cannon": "github:schteppe/cannon.js",
+    "dcl-ui-toolkit": "next"
   },
   "devDependencies": {
-    "@dcl/js-runtime": "7.3.6",
-    "@dcl/sdk": "latest"
+    "@dcl/js-runtime": "next",
+    "@dcl/sdk": "next"
   },
   "engines": {
     "node": ">=16.0.0",
@@ -23,15 +26,11 @@
     "printWidth": 120,
     "trailingComma": "none"
   },
-  "dependencies": {
-    "@dcl-sdk/ui-utils": "file:..",
-    "@dcl-sdk/utils": "^1.1.2",
-    "@types/cannon": "^0.1.8",
-    "cannon": "github:schteppe/cannon.js",
-    "dcl-ui-toolkit": "^0.9.1"
-  },
-  "bundleDependencies": [
-    "@dcl-sdk/utils",
-    "@dcl-sdk/ui-utils"
-  ]
+  "scripts": {
+    "build": "sdk-commands build",
+    "deploy": "sdk-commands deploy",
+    "start": "sdk-commands start",
+    "upgrade-sdk": "npm install --save-dev @dcl/sdk@latest",
+    "upgrade-sdk:next": "npm install --save-dev @dcl/sdk@next"
+  }
 }

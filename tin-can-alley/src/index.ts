@@ -1,13 +1,25 @@
-import { CameraModeArea, CameraType, Entity, GltfContainer, InputAction, PointerEventType, Transform, engine, executeTask, inputSystem, pointerEventsSystem } from "@dcl/sdk/ecs"
-import { createCan, hit } from "./modules/can"
+import {
+  CameraModeArea,
+  CameraType,
+  Entity,
+  GltfContainer,
+  InputAction,
+  PointerEventType,
+  Transform,
+  engine,
+  executeTask,
+  inputSystem,
+  pointerEventsSystem
+} from '@dcl/sdk/ecs'
+import { createCan, hit } from './modules/can'
 // import { coconutShyMeshVertices, coconutShyMeshIndices } from "./modules/meshData/coconutShyMesh"
 // import { wallMeshVertices, wallMeshIndices } from "./modules/meshData/wallMesh"
-import { loadColliders } from "./modules/colliderSetup"
-import { Vector3 } from "@dcl/sdk/math"
-import CANNON from "cannon"
-import { createRifle, playFireAnim } from "./modules/rifle"
-import { Cooldown } from "./components"
-import { playshotWoodSound } from "./modules/sound"
+import { loadColliders } from './modules/colliderSetup'
+import { Vector3 } from '@dcl/sdk/math'
+import CANNON from 'cannon'
+import { createRifle, playFireAnim } from './modules/rifle'
+import { Cooldown } from './components'
+import { playshotWoodSound } from './modules/sound'
 
 // Create base
 const base = engine.addEntity()
@@ -15,16 +27,16 @@ const base = engine.addEntity()
 Transform.create(base)
 // Set the mesh
 GltfContainer.create(base, {
-  src: 'models/baseLight.glb',
+  src: 'models/baseLight.glb'
 })
 
 const tinCanAlley = engine.addEntity()
 Transform.create(tinCanAlley)
 GltfContainer.create(tinCanAlley, {
-  src: 'models/tinCanAlley.glb',
+  src: 'models/tinCanAlley.glb'
 })
 
-const rifle = createRifle("models/rifle.glb", Vector3.create(0.075, -2, 2), Vector3.create(-5, 0, 0))
+const rifle = createRifle('models/rifle.glb', Vector3.create(0.075, -2, 2), Vector3.create(-5, 0, 0))
 
 // Setup our world
 const world = new CANNON.World()
@@ -35,8 +47,11 @@ world.gravity.set(0, -16, 0) // m/s²
 loadColliders(world)
 
 // Setup ground material
-const physicsMaterial = new CANNON.Material("groundMaterial")
-const ballContactMaterial = new CANNON.ContactMaterial(physicsMaterial, physicsMaterial, { friction: 1, restitution: 0.5 })
+const physicsMaterial = new CANNON.Material('groundMaterial')
+const ballContactMaterial = new CANNON.ContactMaterial(physicsMaterial, physicsMaterial, {
+  friction: 1,
+  restitution: 0.5
+})
 world.addContactMaterial(ballContactMaterial)
 
 // Setup cans
@@ -65,7 +80,23 @@ const can14 = createCan(Vector3.create(8.15, 2.278, 9.535), physicsMaterial, wor
 // Top can
 const can15 = createCan(Vector3.create(8, 2.564, 9.535), physicsMaterial, world)
 
-export const cans: any[] = [can1, can2, can3, can4, can5, can6, can7, can8, can9, can10, can11, can12, can13, can14, can15]
+export const cans: any[] = [
+  can1,
+  can2,
+  can3,
+  can4,
+  can5,
+  can6,
+  can7,
+  can8,
+  can9,
+  can10,
+  can11,
+  can12,
+  can13,
+  can14,
+  can15
+]
 
 // Create a ground plane and apply physics material
 const groundShape: CANNON.Plane = new CANNON.Plane()
@@ -94,7 +125,7 @@ engine.addSystem(physicsSystem)
 export function shootSystem() {
   const result = inputSystem.getInputCommand(InputAction.IA_POINTER, PointerEventType.PET_DOWN)
   if (result) {
-    console.log("CD: ", Cooldown.get(rifle.rifle).on)
+    console.log('CD: ', Cooldown.get(rifle.rifle).on)
     if (Cooldown.get(rifle.rifle).on) return
     playFireAnim(rifle.rifle)
     if (result.hit !== undefined) {
@@ -120,5 +151,5 @@ Transform.create(areaEntity, {
 })
 CameraModeArea.create(areaEntity, {
   area: Vector3.create(16, 4, 16),
-  mode: CameraType.CT_FIRST_PERSON,
+  mode: CameraType.CT_FIRST_PERSON
 })
