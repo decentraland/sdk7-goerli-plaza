@@ -1,5 +1,5 @@
 {
-  "name": "BasicInteractions",
+  "name": "basic-interactions",
   "description": "ECS7 ",
   "version": "1.0.0",
   "dependencies": {
@@ -7,7 +7,7 @@
     "@dcl/sdk": "next"
   },
   "devDependencies": {
-    "@dcl/js-runtime": "next"
+    "@dcl/js-runtime": "7.3.6"
   },
   "scripts": {
     "build": "sdk-commands build --skip-install",
