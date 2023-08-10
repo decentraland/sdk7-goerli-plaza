@@ -48,7 +48,7 @@
   "requiredPermissions": [
     "ALLOW_TO_TRIGGER_AVATAR_EMOTE",
     "ALLOW_TO_MOVE_PLAYER_INSIDE_SCENE",
-		"OPEN_EXTERNAL_LINK"
+    "OPEN_EXTERNAL_LINK"
   ],
   "featureToggles": {},
   "name": "BasicInteractions"
