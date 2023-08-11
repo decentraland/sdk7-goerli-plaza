@@ -7,18 +7,16 @@ import './painter'
 import { setupUi } from './ui'
 
 export function main() {
+  setupUi()
 
-	setupUi()
+  utils.addTestCube(
+    { position: Vector3.create(8, 1, 8), scale: Vector3.create(0.5, 0.5, 0.5) },
+    undefined,
+    "You're using ECS7",
+    Color4.Magenta()
+  )
 
-	utils.addTestCube(
-		{ position: Vector3.create(8, 1, 8), scale: Vector3.create(0.5, 0.5, 0.5) },
-		undefined,
-		"You're using ECS7",
-		Color4.Magenta()
-	)
-
-	setupEventOnEntities()
-	setupProximity()
-	setupGlobalEvents()
+  setupEventOnEntities()
+  setupProximity()
+  setupGlobalEvents()
 }
-
