@@ -1,4 +1,14 @@
-import { engine, Transform, Schemas, Animator, GltfContainer, InputAction, pointerEventsSystem, AudioSource, Entity } from '@dcl/sdk/ecs'
+import {
+  engine,
+  Transform,
+  Schemas,
+  Animator,
+  GltfContainer,
+  InputAction,
+  pointerEventsSystem,
+  AudioSource,
+  Entity
+} from '@dcl/sdk/ecs'
 import { Quaternion, Vector3 } from '@dcl/sdk/math'
 import { showUI } from './denyUI'
 import { hasWornPE, isWearingPE } from './peTracking'
@@ -7,16 +17,14 @@ import { hasWornPE, isWearingPE } from './peTracking'
  * Handle door states
  */
 
-
-
 const denySound = engine.addEntity()
 const openClip = engine.addEntity()
 const closeClip = engine.addEntity()
 
 // Create AudioSource component
 AudioSource.create(denySound, {
-    audioClipUrl: 'sounds/navigationBackward.mp3',
-    playing: false
+  audioClipUrl: 'sounds/navigationBackward.mp3',
+  playing: false
 })
 
 AudioSource.create(openClip, {
@@ -28,75 +36,60 @@ AudioSource.create(closeClip, {
   playing: false
 })
 // Define a simple function
-function playSound(entity: Entity){
+function playSound(entity: Entity) {
+  // fetch mutable version of audio source component
+  const audioSource = AudioSource.getMutable(entity)
 
-    // fetch mutable version of audio source component
-    const audioSource = AudioSource.getMutable(entity)
-    
-    // modify its playing value
-    audioSource.playing = true
+  // modify its playing value
+  audioSource.playing = true
 }
 
 export function doorSystem(dt: number) {
-
   const chest = engine.addEntity()
   Transform.create(chest, {
-      position: Vector3.create(6.5, 5, 7.5),
-      scale: Vector3.create(1, 1, 1),
-      rotation: Quaternion.create(0, 0, 0, 1)
+    position: Vector3.create(6.5, 5, 7.5),
+    scale: Vector3.create(1, 1, 1),
+    rotation: Quaternion.create(0, 0, 0, 1)
   })
   GltfContainer.create(chest, {
-      src: 'models/Chest_Pirates.glb'
+    src: 'models/Chest_Pirates.glb'
   })
   Animator.create(chest, {
-    states:[{
-      name: "Close",
-      clip: "close",
-      playing: false,
-      loop: false
-    },
-    {
-        name: "Open",
-        clip: "open",
+    states: [
+      {
+        name: 'Close',
+        clip: 'close',
+        playing: false,
+        loop: false
+      },
+      {
+        name: 'Open',
+        clip: 'open',
         playing: false,
         loop: false,
         shouldReset: true
       }
-      
-
     ]
-    
   })
 
-
-
-
-        pointerEventsSystem.onPointerDown(
-            {
-                entity: chest,
-                opts: {
-                    button: InputAction.IA_POINTER,
-                    hoverText: 'Open'
-                }
-            },
-            () => {
-              if(hasWornPE || isWearingPE){
-              
-               showUI();
-               playSound(denySound)
-              }
-              else{
-                console.log("no PE accepted")
-                Animator.playSingleAnimation(chest, 'Close', true)
-                Animator.playSingleAnimation(chest, 'Open', true)
-                playSound(openClip)
-              
-
-              }
-            
-
-
-            }
-        )
-
+  pointerEventsSystem.onPointerDown(
+    {
+      entity: chest,
+      opts: {
+        button: InputAction.IA_POINTER,
+        hoverText: 'Open'
+      }
+    },
+    () => {
+      if (hasWornPE || isWearingPE) {
+        showUI()
+        playSound(denySound)
+      } else {
+        console.log('no PE accepted')
+        Animator.playSingleAnimation(chest, 'Close', true)
+        Animator.playSingleAnimation(chest, 'Open', true)
+        playSound(openClip)
+      }
+    }
+  )
 }
