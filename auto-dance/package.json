@@ -3,21 +3,11 @@
   "description": "Scene showing how to trigger auto-dancing when players walk into an area",
   "version": "1.0.0",
   "dependencies": {
-    "@dcl-sdk/utils": "next"
-  },
-  "devDependencies": {
-    "@dcl/js-runtime": "next",
+    "@dcl-sdk/utils": "next",
     "@dcl/sdk": "next"
   },
-  "engines": {
-    "node": ">=16.0.0",
-    "npm": ">=6.0.0"
-  },
-  "prettier": {
-    "semi": false,
-    "singleQuote": true,
-    "printWidth": 120,
-    "trailingComma": "none"
+  "devDependencies": {
+    "@dcl/js-runtime": "next"
   },
   "scripts": {
     "build": "sdk-commands build",
