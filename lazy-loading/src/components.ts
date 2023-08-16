@@ -5,9 +5,9 @@ const SubScene = {
   showing: Schemas.Boolean
 }
 const Scene = {
-    originalPos: Schemas.Vector3,
-    showing: Schemas.Boolean
-  }
+  originalPos: Schemas.Vector3,
+  showing: Schemas.Boolean
+}
 
 export const SubSceneComp = engine.defineComponent('Subscene', SubScene)
 export const SceneComp = engine.defineComponent('Scene', Scene)

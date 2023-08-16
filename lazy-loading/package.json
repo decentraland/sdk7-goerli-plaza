@@ -1,17 +1,13 @@
 {
-  "name": "dcl-project",
+  "name": "lazy-loading",
+  "description": "Load certain entities only when near, to save resources",
   "version": "1.0.0",
-  "description": "SDK7 Template scene",
-  "scripts": {
-    "start": "sdk-commands start",
-    "deploy": "sdk-commands deploy",
-    "build": "sdk-commands build",
-    "upgrade-sdk": "npm install --save-dev @dcl/sdk@latest",
-    "upgrade-sdk:next": "npm install --save-dev @dcl/sdk@next"
+  "dependencies": {
+    "@dcl-sdk/utils": "next"
   },
   "devDependencies": {
-    "@dcl/js-runtime": "7.3.8-5812704805.commit-961bb53",
-    "@dcl/sdk": "latest"
+    "@dcl/js-runtime": "next",
+    "@dcl/sdk": "next"
   },
   "engines": {
     "node": ">=16.0.0",
@@ -23,7 +19,11 @@
     "printWidth": 120,
     "trailingComma": "none"
   },
-  "dependencies": {
-    "@dcl-sdk/utils": "^1.1.2"
+  "scripts": {
+    "build": "sdk-commands build",
+    "deploy": "sdk-commands deploy",
+    "start": "sdk-commands start",
+    "upgrade-sdk": "npm install --save-dev @dcl/sdk@latest",
+    "upgrade-sdk:next": "npm install --save-dev @dcl/sdk@next"
   }
 }

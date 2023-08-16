@@ -1,26 +1,33 @@
-import { TextShape, Transform, Billboard, engine, Entity, GltfContainer, pointerEventsSystem, InputAction } from "@dcl/sdk/ecs"
-import { Vector3, Quaternion } from "@dcl/sdk/math"
-import { createBaseScene } from "./baseScene"
-import { nftCollection, createPainting } from "./nft"
-import { createScene } from "./scene1"
-import { SCENE_MGR } from "./global"
-import { hideScene, showScene } from "./modules/SceneMgmt/sceneManager"
-import { createScene2 } from "./scene2"
-import { createScene3 } from "./scene3"
-import { createScene4 } from "./scene4"
-import { movePlayerTo } from "~system/RestrictedActions"
+import {
+  TextShape,
+  Transform,
+  Billboard,
+  engine,
+  Entity,
+  GltfContainer,
+  pointerEventsSystem,
+  InputAction
+} from '@dcl/sdk/ecs'
+import { Vector3, Quaternion } from '@dcl/sdk/math'
+import { createBaseScene } from './baseScene'
+import { nftCollection, createPainting } from './nft'
+import { createScene } from './scene1'
+import { SCENE_MGR } from './global'
+import { hideScene, showScene } from './modules/SceneMgmt/sceneManager'
+import { createScene2 } from './scene2'
+import { createScene3 } from './scene3'
+import { createScene4 } from './scene4'
+import { movePlayerTo } from '~system/RestrictedActions'
 
 export let scene1active = false
 export let scene2active = false
 export function createFullScene() {
   const baseSceneRoot = createBaseScene()
 
-
   const baseSceneId = SCENE_MGR.generateSceneId()
   // const baseScene = SubScene.show(baseSceneId,"baseScene",[],undefined,undefined)
-  // const baseSceneEntity = baseScene.addEntity(baseSceneRoot) 
+  // const baseSceneEntity = baseScene.addEntity(baseSceneRoot)
   // baseSceneEntity.visibilityStrategy = ROOT_SCENE_VISIBILITY_STRATEGY
-
 
   const galleryGroup1 = createScene()
   //const _scene1 = loadStaticScene1()
@@ -33,20 +40,16 @@ export function createFullScene() {
   hideScene(galleryGroup3)
   hideScene(galleryGroup4)
 
-
   // galleryGroup1.enable()
   // galleryGroup1.hide()
   // SCENE_MGR.changeToScene(galleryGroup1)
 
   let toggleCnter = 1
 
-
-
   const toggleEntText = engine.addEntity()
-  TextShape.create(toggleEntText, { text: "Change Scene", fontSize: 2 })
+  TextShape.create(toggleEntText, { text: 'Change Scene', fontSize: 2 })
   Transform.create(toggleEntText, { position: Vector3.create(8, 2, 16) })
   Billboard.create(toggleEntText, {})
-
 
   const toggleEnt = engine.addEntity()
   Transform.create(toggleEnt, {
@@ -56,8 +59,7 @@ export function createFullScene() {
   })
   GltfContainer.create(toggleEnt, {
     src: 'models/KeyboardSciFi_01/KeyboardSciFi_01.glb'
-  }
-  )
+  })
 
   pointerEventsSystem.onPointerDown(
     {
@@ -75,7 +77,6 @@ export function createFullScene() {
         hideScene(galleryGroup4)
         console.log(scene1active)
 
-
         switch (toggleCnter) {
           case 0:
             // SCENE_MGR.changeToScene(galleryGroup1)
@@ -84,9 +85,7 @@ export function createFullScene() {
             scene1active = false
             scene2active = false
 
-
-
-            break;
+            break
           case 1:
             // SCENE_MGR.changeToScene(galleryGroup2)
 
@@ -94,11 +93,7 @@ export function createFullScene() {
             scene1active = true
             scene2active = false
 
-
-
-
-
-            break;
+            break
           case 2:
             // SCENE_MGR.changeToScene(galleryGroup3)
             showScene(galleryGroup2)
@@ -107,8 +102,7 @@ export function createFullScene() {
             scene1active = false
             scene2active = true
 
-
-            break;
+            break
           case 3:
             // SCENE_MGR.changeToScene(galleryGroup4)
             // galleryGroup4.movePlayerHere()
@@ -118,8 +112,7 @@ export function createFullScene() {
             scene1active = false
             scene2active = false
 
-
-            break;
+            break
 
           case 4:
             // SCENE_MGR.changeToScene(galleryGroup5)
@@ -129,10 +122,7 @@ export function createFullScene() {
             scene2active = false
             movePlayerTo({ newRelativePosition: Vector3.create(16, 12, 16) })
 
-
-
-
-            break;
+            break
           case 5:
             //   SCENE_MGR.hideScenes()
             // baseScene.hide()
@@ -141,23 +131,14 @@ export function createFullScene() {
             scene1active = false
             scene2active = false
 
-            break;
-
+            break
         }
 
         toggleCnter++
         if (toggleCnter >= 6) {
           toggleCnter = 0
         }
-
       }
-
-
-
-
     }
   )
-
-
 }
-
