@@ -1,5 +1,6 @@
 import { Entity, Transform, NftFrameType, NftShape, TransformComponent, TransformType, PBNftShape, engine } from "@dcl/sdk/ecs"
 import { Vector3, Quaternion, Color4 } from "@dcl/sdk/math"
+import { scene1active } from "./subSceneSetup"
 
 export type NFTdata = {
     room: number
@@ -252,27 +253,51 @@ export function createPainting(
     contract: string,
     tokenId: string
 ) {
-    const address: string = 'urn:decentraland:ethereum:erc721:0x06012c8cf97bead5deae237070f9587f8e7a266d:1681847'
-    const entity = engine.addEntity()
+    if (scene1active) {
+        const address: string = 'urn:decentraland:ethereum:erc721:0x06012c8cf97bead5deae237070f9587f8e7a266d:1681847'
+        const entity = engine.addEntity()
 
-    const nftShape = NftShape.create(entity, {
-        urn: address,
-        color: Color4.Black(),
-        style: NftFrameType.NFT_GOLD_CARVED
-      })
-
-    Transform.create(entity, {position: position.position, rotation: position.rotation, scale: position.scale})
+        const nftShape = NftShape.create(entity, {
+            urn: address,
+            color: Color4.Black(),
+            style: NftFrameType.NFT_GOLD_CARVED
+        })
 
 
-    if (parent !== undefined) Transform.create(entity,  {
-        position: position.position,
-        parent: parent
-      })
-    //engine.addEntity(entity)
-    return entity
+        Transform.create(entity, { position: position.position, rotation: position.rotation, scale: position.scale })
+        if (parent !== undefined) Transform.create(entity, {
+            position: position.position,
+            parent: parent
+        })
+        //engine.addEntity(entity)
+        return entity
+    }
+    else {
+        const address: string = 'urn:decentraland:ethereum:erc721:0x06012c8cf97bead5deae237070f9587f8e7a266d:1631847'
+        const entity = engine.addEntity()
+
+        const nftShape = NftShape.create(entity, {
+            urn: address,
+            color: Color4.Black(),
+            style: NftFrameType.NFT_GOLD_CARVED
+        })
+
+
+        Transform.create(entity, { position: position.position, rotation: position.rotation, scale: position.scale })
+        if (parent !== undefined) Transform.create(entity, {
+            position: position.position,
+            parent: parent
+        })
+        //engine.addEntity(entity)
+        return entity
+
+    }
+
+
+
 }
 
 
-export function removePaintings(entity: Entity){
+export function removePaintings(entity: Entity) {
     engine.removeEntity(entity)
 }
