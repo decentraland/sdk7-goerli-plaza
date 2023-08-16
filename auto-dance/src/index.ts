@@ -1,10 +1,10 @@
 import { Vector3 } from '@dcl/sdk/math'
-import { createDanceArea } from './autoDance'
+import { createBasicDanceArea, createDanceArea } from './autoDance'
 import { engine, Transform, MeshRenderer, GltfContainer } from '@dcl/sdk/ecs'
 
 export function main() {
   createDanceArea(Vector3.create(4, 1, 4), Vector3.create(4, 1, 4))
-  createDanceArea(Vector3.create(10, 1, 10), Vector3.create(4, 1, 4))
+  createBasicDanceArea(Vector3.create(10, 1, 10), Vector3.create(4, 1, 4))
 
   const base = engine.addEntity()
   // Transform.create(base, {
