@@ -2,8 +2,8 @@
 	"ecs7": true,
 	"runtimeVersion": "7",
 	"display": {
-		"title": "SDK7 Scene Template",
-		"description": "template scene with SDK7",
+		"title": "Push Box Puzzle",
+		"description":  "A puzzle scene where it's necessary to push boxes into a series of tiles.",
 		"favicon": "favicon_asset"
 	},
 	"owner": "",

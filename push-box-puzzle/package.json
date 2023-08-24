@@ -1,7 +1,7 @@
 {
-  "name": "dcl-project",
+  "name": "push-box-puzzle",
   "version": "1.0.0",
-  "description": "SDK7 Template scene",
+  "description": "A puzzle scene where it's necessary to push boxes into a series of tiles.",
   "scripts": {
     "start": "sdk-commands start",
     "deploy": "sdk-commands deploy",
@@ -10,8 +10,8 @@
     "upgrade-sdk:next": "npm install --save-dev @dcl/sdk@next"
   },
   "devDependencies": {
-    "@dcl/js-runtime": "7.3.7",
-    "@dcl/sdk": "latest"
+    "@dcl/js-runtime": "next",
+    "@dcl/sdk": "next"
   },
   "engines": {
     "node": ">=16.0.0",
@@ -24,6 +24,6 @@
     "trailingComma": "none"
   },
   "dependencies": {
-    "@dcl-sdk/utils": "^1.1.2"
+    "@dcl-sdk/utils": "next"
   }
 }
