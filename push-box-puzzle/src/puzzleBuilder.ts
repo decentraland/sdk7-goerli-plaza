@@ -32,6 +32,8 @@ export class PuzzleBuilder {
   static resetFrontTrigger: Entity = engine.addEntity()
   static resetBackTrigger: Entity = engine.addEntity()
 
+  static lastCount: number = 0
+
   constructor() {
     for (let i = 0; i < PuzzleBuilder.restartPos.length; i++) {
       const statue = new Statue(Vector3.create(6, 0.16, 9))
@@ -48,6 +50,7 @@ export class PuzzleBuilder {
       PuzzleBuilder.resetFrontTrigger, utils.NO_LAYERS, utils.LAYER_1,
       [{ type: 'box', position: { x: 8, y: 1.75, z: 1.75 }, scale: { x: 16, y: 3.5, z: 3.5 } }],
       () => {
+        Sound.playStatueMove()
         PuzzleBuilder.restartGame()
       }
     )
@@ -56,6 +59,7 @@ export class PuzzleBuilder {
       PuzzleBuilder.resetBackTrigger, utils.NO_LAYERS, utils.LAYER_1,
       [{ type: 'box', position: { x: 8, y: 1.75, z: 14.25 }, scale: { x: 16, y: 3.5, z: 3.5 } }],
       () => {
+        Sound.playStatueMove()
         PuzzleBuilder.restartGame()
       }
     )
@@ -131,6 +135,14 @@ export class PuzzleBuilder {
         }
       }
     }
+
+    if(count>PuzzleBuilder.lastCount){
+      if(count<4){
+        Sound.playPowerup()
+      }
+    }
+
+    PuzzleBuilder.lastCount = count
     console.log(count)
     if (count === 4) return true
     return false
@@ -145,7 +157,6 @@ export class PuzzleBuilder {
   }
 
   static restartGame() {
-    Sound.play()
     for (let i = 0; i < this.statues.length; i++) {
       Transform.getMutable(this.statues[i].entity).position = this.restartPos[i]
       this.statues[i].toggleGlow(false)
@@ -156,6 +167,7 @@ export class PuzzleBuilder {
     engine.removeEntity(this.exitGlow)
     engine.removeEntity(this.resetFrontTrigger)
     engine.removeEntity(this.resetBackTrigger)
+    Sound.playComplete()
     console.log('You win')
   }
 

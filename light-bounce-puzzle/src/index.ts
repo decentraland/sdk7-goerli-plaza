@@ -13,6 +13,7 @@ const secondNoteSound = new Sound('sounds/secondNote.mp3', false)
 const thirdNoteSound = new Sound('sounds/thirdNote.mp3', false)
 const forthNoteSound = new Sound('sounds/forthNote.mp3', false)
 const lightningOrbSound = new Sound('sounds/lightningOrb.mp3', false)
+const victorySound = new Sound('sounds/complete.mp3', false)
 
 export function main() {
 
@@ -107,7 +108,7 @@ export function main() {
             let forwardVector: Vector3 = Vector3.rotate(Vector3.Forward(), Transform.getMutable(engine.CameraEntity).rotation)
             const cameraTransform = Transform.getMutable(engine.CameraEntity)
             const rayTransform = Transform.getMutable(ray)
-            
+
             lightningOrbSound.stopAudio()
             utils.timers.setTimeout(
                 function () {
@@ -276,6 +277,12 @@ function playNote(reflectCount: number): void {
         case 3:
             forthNoteSound.playAudio()
             console.log('You Win!')
+            utils.timers.setTimeout(
+                function () {
+                    victorySound.playAudio()
+                },
+                2000
+            )
             break
         default:
             break

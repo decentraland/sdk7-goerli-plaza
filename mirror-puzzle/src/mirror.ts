@@ -78,7 +78,7 @@ export class Mirror {
 
     utils.timers.setTimeout(() => {
       this.isBusy = false
-    }, 600)
+    }, 800)
   }
 
   moveMirror(currentPos: Vector3, endPos: Vector3): void {
@@ -98,7 +98,7 @@ export class Mirror {
 
     utils.timers.setTimeout(() => {
       this.isBusy = false
-    }, 600)
+    }, 800)
   }
 
   static GetMirror(id: number): Mirror | null {

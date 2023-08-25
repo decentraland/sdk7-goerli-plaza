@@ -43,8 +43,8 @@ export class Statue {
 
   toggleGlow(isOn: boolean): void {
     if (isOn) {
-      Transform.getMutable(this.symbol).scale = Vector3.create(0, 0, 0)
-      Transform.getMutable(this.symbolGlow).scale = Vector3.create(1, 1, 1)
+        Transform.getMutable(this.symbol).scale = Vector3.create(0, 0, 0)
+        Transform.getMutable(this.symbolGlow).scale = Vector3.create(1, 1, 1)
     } else {
       Transform.getMutable(this.symbol).scale = Vector3.create(1, 1, 1)
       Transform.getMutable(this.symbolGlow).scale = Vector3.create(0, 0, 0)
@@ -55,7 +55,7 @@ export class Statue {
     if (!this.blockMovement) {
       this.blockMovement = true
       
-      Sound.play()
+      Sound.playStatueMove()
       // Slide the statue to its endPos over half a second
       let path: Vector3[] = [
         currentPos,

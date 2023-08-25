@@ -1,5 +1,8 @@
 import { Entity, GltfContainer, RaycastQueryType, Transform, engine, raycastSystem } from "@dcl/sdk/ecs"
 import { Quaternion, Vector3 } from "@dcl/sdk/math"
+import { Sound } from "./sound"
+
+const victorySound = new Sound('sounds/complete.mp3', false)
 
 export class ReflectedRay {
   public static instances: ReflectedRay[] = []
@@ -139,6 +142,7 @@ function reflectRay(hitPoint: Vector3, reflectedVector: Vector3) {
           )
         } else if (meshName === 'rayTarget_collider') {
           console.log('You win') // Win condition
+          victorySound.playAudio()
         }
       }
     })
