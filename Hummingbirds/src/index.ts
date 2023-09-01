@@ -8,15 +8,24 @@ import {
   pointerEventsSystem,
   Transform
 } from '@dcl/sdk/ecs'
+import { getRealm } from '~system/Runtime'
+import { createNetworkTransport } from '@dcl/sdk/network-transport'
+
 import { createHummingBird } from './hummingBird'
 
-export function main() {
+export async function main() {
+  const realm = await getRealm({})
+  const serverUrl = realm.realmInfo?.isPreview ? 'ws://127.0.0.1:3000/ws' : 'wss://scene-state-server.decentraland.org/ws'
+  const networkEntityFactory = await createNetworkTransport(serverUrl)
+
   const ground = engine.addEntity()
+
   Transform.create(ground, {
     position: { x: 8, y: 0, z: 8 },
     rotation: { x: 0, y: 0, z: 0, w: 0 },
     scale: { x: 1.6, y: 1.6, z: 1.6 }
   })
+
   GltfContainer.create(ground, {
     src: 'models/Ground.gltf'
   })
@@ -60,7 +69,7 @@ export function main() {
       }
     },
     function () {
-      createHummingBird()
+      createHummingBird(networkEntityFactory)
       const anim = Animator.getMutable(tree)
       anim.states[0].playing = true
       const audioSource = AudioSource.getMutable(tree)

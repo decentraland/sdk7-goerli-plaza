@@ -50,5 +50,8 @@
       "76,-9"
     ]
   },
-  "name": "Hummingbirds"
+  "name": "Hummingbirds",
+  "worldConfiguration" : {
+    "name": "boedo.dcl.eth"
+  }
 }

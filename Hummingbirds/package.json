@@ -4,9 +4,9 @@
   "version": "1.0.0",
   "dependencies": {
     "@dcl-sdk/utils": "next",
-    "@dcl/sdk": "next"
+    "@dcl/sdk": "https://sdk-team-cdn.decentraland.org/@dcl/js-sdk-toolchain/branch/feat/sync-scenes/dcl-sdk-7.3.13-6050811236.commit-c2a836a.tgz",
+    "@dcl/js-runtime": "latest"
   },
-  "devDependencies": {},
   "scripts": {
     "build": "sdk-commands build --skip-install",
     "deploy": "sdk-commands deploy",

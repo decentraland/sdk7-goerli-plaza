@@ -1,9 +1,11 @@
-import { Animator, CameraMode, engine, Entity, GltfContainer, Schemas, Transform } from '@dcl/sdk/ecs'
+import { Animator, CameraMode, Entity, GltfContainer, Schemas, SyncEntity, Transform } from '@dcl/sdk/ecs'
 import { Quaternion } from '@dcl/sdk/math'
 import * as utils from '@dcl-sdk/utils'
+import { NetworkEntityFactory } from '@dcl/sdk/network-transport/types'
 
-export function createHummingBird() {
+export function createHummingBird(engine: NetworkEntityFactory) {
   const bird = engine.addEntity()
+  SyncEntity.create(bird, { componentIds: [Transform.componentId, Animator.componentId] })
   Transform.create(bird, {
     position: { x: 13, y: 3.5, z: 5 },
     rotation: { x: 0, y: 0, z: 0, w: 1 },
