@@ -30,6 +30,7 @@ jobs:
           script: return require('./package.json').dependencies['@dcl/sdk']
           result-encoding: string
       - name: export-static (permalink)
+        if: github.event.pull_request.head.repo.full_name == github.repository
         run: >
           npm run export-static -- \
             --realmName goerli-plaza-${{ github.sha }} \
@@ -37,6 +38,7 @@ jobs:
             --baseUrl '${{ secrets.SDK_TEAM_S3_BASE_URL }}/ipfs' \
             --destination "$(pwd)/ipfs"
       - name: export-static (branch)
+        if: github.event.pull_request.head.repo.full_name == github.repository
         run: >
           npm run export-static -- \
             --realmName ${{steps.get-branch-realm-name.outputs.result}} \
@@ -44,6 +46,7 @@ jobs:
             --baseUrl '${{ secrets.SDK_TEAM_S3_BASE_URL }}/ipfs' \
             --destination "$(pwd)/ipfs"
       - name: upload to s3
+        if: github.event.pull_request.head.repo.full_name == github.repository
         run: >
           npx @dcl/cdn-uploader@next \
               --bucket ${{ secrets.SDK_TEAM_S3_BUCKET }} \
@@ -54,7 +57,7 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.SDK_TEAM_AWS_SECRET }}
       - name: Find Comment
         uses: peter-evans/find-comment@v1
-        if: ${{ github.event.pull_request.number }}
+        if: ${{ github.event.pull_request.number }} && github.event.pull_request.head.repo.full_name == github.repository
         id: fc
         with:
           issue-number: ${{ github.event.pull_request.number }}
@@ -62,7 +65,7 @@ jobs:
           body-includes: Test this pull request
       - name: Create or update comment
         uses: peter-evans/create-or-update-comment@v1
-        if: ${{ github.event.pull_request.number }}
+        if: ${{ github.event.pull_request.number }} && github.event.pull_request.head.repo.full_name == github.repository
         with:
           comment-id: ${{ steps.fc.outputs.comment-id }}
           issue-number: ${{ github.event.pull_request.number }}
