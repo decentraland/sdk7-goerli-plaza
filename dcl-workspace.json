@@ -34,6 +34,9 @@
       "path": "moving-platforms"
     },
     {
+      "path": "lazy-loading"
+    },
+    {
       "path": "item-pickup"
     },
     {
@@ -89,6 +92,9 @@
     },
     {
       "path": "UiCanvasInformation"
+    },
+    {
+      "path": "Testing-3d-models"
     },
     {
       "path": "Template"
