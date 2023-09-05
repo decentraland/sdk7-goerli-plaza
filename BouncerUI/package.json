@@ -1,14 +1,14 @@
 {
-  "name": "dcl-project",
-  "description": "SDK7 Template scene",
+  "name": "bouncer-ui",
+  "description": "Bouncer UI",
   "version": "1.0.0",
   "dependencies": {
-    "@dcl-sdk/utils": "^1.1.2",
-    "dcl-ui-toolkit": "^0.9.1"
+    "@dcl-sdk/utils": "next",
+    "dcl-ui-toolkit": "next"
   },
   "devDependencies": {
-    "@dcl/js-runtime": "7.3.7",
-    "@dcl/sdk": "latest"
+    "@dcl/js-runtime": "next",
+    "@dcl/sdk": "next"
   },
   "engines": {
     "node": ">=16.0.0",

@@ -3,7 +3,7 @@
   "runtimeVersion": "7",
   "display": {
     "title": "BouncerUI",
-    "description": "template scene with SDK7",
+    "description": "A scene where special allowlisted users have access to a UI that allow them to ban other players, teleporting them outside the building.",
     "navmapThumbnail": "images/scene-thumbnail.png",
     "favicon": "favicon_asset"
   },
@@ -16,9 +16,9 @@
   "tags": [],
   "scene": {
     "parcels": [
-      "0,0"
+      "81,-4"
     ],
-    "base": "0,0"
+    "base": "81,-4"
   },
   "spawnPoints": [
     {
