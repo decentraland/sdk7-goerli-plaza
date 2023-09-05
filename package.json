@@ -71,6 +71,7 @@
     "grab-object-advance",
     "grab-objects",
     "item-pickup",
+    "lazy-loading",
     "moving-platforms",
     "open-door",
     "power-cube",
