@@ -31,6 +31,9 @@
       "path": "rocket-board"
     },
     {
+      "path": "push-box-puzzle"
+    },
+    {
       "path": "power-cube"
     },
     {
@@ -38,6 +41,12 @@
     },
     {
       "path": "moving-platforms"
+    },
+    {
+      "path": "mirror-puzzle"
+    },
+    {
+      "path": "light-bounce-puzzle"
     },
     {
       "path": "lazy-loading"
