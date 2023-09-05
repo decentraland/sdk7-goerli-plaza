@@ -1,0 +1,19 @@
+{
+  "name": "auto-dance",
+  "description": "Scene showing how to trigger auto-dancing when players walk into an area",
+  "version": "1.0.0",
+  "dependencies": {
+    "@dcl-sdk/utils": "next",
+    "@dcl/sdk": "next"
+  },
+  "devDependencies": {
+    "@dcl/js-runtime": "next"
+  },
+  "scripts": {
+    "build": "sdk-commands build",
+    "deploy": "sdk-commands deploy",
+    "start": "sdk-commands start",
+    "upgrade-sdk": "npm install --save-dev @dcl/sdk@latest",
+    "upgrade-sdk:next": "npm install --save-dev @dcl/sdk@next"
+  }
+}
