@@ -2,16 +2,13 @@ import { Statue } from './statue'
 import * as utils from '@dcl-sdk/utils'
 import { Sound } from './sound'
 import { engine, Entity, GltfContainer, Transform } from '@dcl/ecs'
-import { Vector3 } from "@dcl/sdk/math"
+import { Vector3 } from '@dcl/sdk/math'
 import { InputAction, inputSystem, PointerEventType } from '@dcl/sdk/ecs'
 import { Selector } from './selector'
 
 export class PuzzleBuilder {
   // Setup coordinates
-  static blocked: Vector3[] = [
-    Vector3.create(12, 0.16, 9),
-    Vector3.create(4, 0.16, 7)
-  ]
+  static blocked: Vector3[] = [Vector3.create(12, 0.16, 9), Vector3.create(4, 0.16, 7)]
   static solution: Vector3[] = [
     Vector3.create(4, 0.16, 5),
     Vector3.create(12, 0.16, 5),
@@ -41,13 +38,15 @@ export class PuzzleBuilder {
     }
 
     // Create triggers for resetting the game
-    GltfContainer.create(PuzzleBuilder.exitGlow, { src: "models/exitGlow.glb" })
+    GltfContainer.create(PuzzleBuilder.exitGlow, { src: 'models/exitGlow.glb' })
 
     Transform.create(PuzzleBuilder.resetFrontTrigger)
     Transform.create(PuzzleBuilder.resetBackTrigger)
 
     utils.triggers.addTrigger(
-      PuzzleBuilder.resetFrontTrigger, utils.NO_LAYERS, utils.LAYER_1,
+      PuzzleBuilder.resetFrontTrigger,
+      utils.NO_LAYERS,
+      utils.LAYER_1,
       [{ type: 'box', position: { x: 8, y: 1.75, z: 1.75 }, scale: { x: 16, y: 3.5, z: 3.5 } }],
       () => {
         Sound.playStatueMove()
@@ -56,7 +55,9 @@ export class PuzzleBuilder {
     )
 
     utils.triggers.addTrigger(
-      PuzzleBuilder.resetBackTrigger, utils.NO_LAYERS, utils.LAYER_1,
+      PuzzleBuilder.resetBackTrigger,
+      utils.NO_LAYERS,
+      utils.LAYER_1,
       [{ type: 'box', position: { x: 8, y: 1.75, z: 14.25 }, scale: { x: 16, y: 3.5, z: 3.5 } }],
       () => {
         Sound.playStatueMove()
@@ -76,11 +77,11 @@ export class PuzzleBuilder {
 
         let statue: Statue | undefined
 
-        PuzzleBuilder.statues.forEach(element => {
+        PuzzleBuilder.statues.forEach((element) => {
           if (element.entity == Selector.entityID) {
             statue = element
           }
-        });
+        })
 
         if (statue == undefined) {
           return
@@ -91,7 +92,11 @@ export class PuzzleBuilder {
         if (hitNormalPosition == undefined) {
           return
         }
-        const endPos = Vector3.create(statuePos.x - hitNormalPosition.x * 2, statuePos.y - hitNormalPosition.y * 2, statuePos.z - hitNormalPosition.z * 2)
+        const endPos = Vector3.create(
+          statuePos.x - hitNormalPosition.x * 2,
+          statuePos.y - hitNormalPosition.y * 2,
+          statuePos.z - hitNormalPosition.z * 2
+        )
 
         // Checks if anything is blocking the statue's path
         const isOverlapped = PuzzleBuilder.statues.some((statue) => {
@@ -119,9 +124,6 @@ export class PuzzleBuilder {
     PuzzleBuilder.restartGame()
   }
 
-
-
-
   static checkSolution(): boolean {
     let count = 0
     for (let i = 0; i < this.statues.length; i++) {
@@ -136,8 +138,8 @@ export class PuzzleBuilder {
       }
     }
 
-    if(count>PuzzleBuilder.lastCount){
-      if(count<4){
+    if (count > PuzzleBuilder.lastCount) {
+      if (count < 4) {
         Sound.playPowerup()
       }
     }
@@ -170,8 +172,4 @@ export class PuzzleBuilder {
     Sound.playComplete()
     console.log('You win')
   }
-
 }
-
-
-

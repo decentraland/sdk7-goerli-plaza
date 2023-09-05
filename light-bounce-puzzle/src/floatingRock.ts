@@ -1,12 +1,12 @@
-import { Entity, GltfContainer, InputAction, PointerEventType, PointerEvents, Transform, engine } from "@dcl/sdk/ecs"
-import { Quaternion, Vector3 } from "@dcl/sdk/math"
+import { Entity, GltfContainer, InputAction, PointerEventType, PointerEvents, Transform, engine } from '@dcl/sdk/ecs'
+import { Quaternion, Vector3 } from '@dcl/sdk/math'
 import * as utils from '@dcl-sdk/utils'
 
 export interface FloatingRockConfig {
-  modelPath: string,
-  glowPath: string,
-  position?: Vector3,
-  rotation?: Quaternion,
+  modelPath: string
+  glowPath: string
+  position?: Vector3
+  rotation?: Quaternion
   scale?: Vector3
 }
 
@@ -24,7 +24,7 @@ export class FloatingRock {
     const transform = Transform.create(this.floatingRockEntity, {
       position: config.position ?? Vector3.Zero(),
       rotation: config.rotation ?? Quaternion.Identity(),
-      scale: config.scale ?? Vector3.One(),
+      scale: config.scale ?? Vector3.One()
     })
     PointerEvents.create(this.floatingRockEntity, {
       pointerEvents: [
@@ -53,20 +53,12 @@ export class FloatingRock {
 
     const self = this.floatingRockEntity
     utils.toggles.addToggle(self, utils.ToggleState.On, function (value) {
+      let start = value == utils.ToggleState.On ? startPos : endPos
+      let end = value == utils.ToggleState.On ? endPos : startPos
 
-      let start = (value == utils.ToggleState.On) ? startPos : endPos
-      let end = (value == utils.ToggleState.On) ? endPos : startPos
-
-      utils.tweens.startTranslation(
-        self,
-        start,
-        end,
-        Math.random() * 2 + 2,
-        utils.InterpolationType.EASEQUAD,
-        () => {
-          utils.toggles.flip(self)
-        },
-      )
+      utils.tweens.startTranslation(self, start, end, Math.random() * 2 + 2, utils.InterpolationType.EASEQUAD, () => {
+        utils.toggles.flip(self)
+      })
     })
     utils.toggles.flip(this.floatingRockEntity)
 
@@ -89,7 +81,7 @@ export class FloatingRock {
   }
 
   static ToggleGlowAll(isOn: boolean): void {
-    FloatingRock.instances.forEach(floatingRock => {
+    FloatingRock.instances.forEach((floatingRock) => {
       floatingRock.toggleGlow(isOn)
     })
   }

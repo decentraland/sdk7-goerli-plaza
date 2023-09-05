@@ -1,13 +1,9 @@
 {
   "name": "push-box-puzzle",
-  "version": "1.0.0",
   "description": "A puzzle scene where it's necessary to push boxes into a series of tiles.",
-  "scripts": {
-    "start": "sdk-commands start",
-    "deploy": "sdk-commands deploy",
-    "build": "sdk-commands build",
-    "upgrade-sdk": "npm install --save-dev @dcl/sdk@latest",
-    "upgrade-sdk:next": "npm install --save-dev @dcl/sdk@next"
+  "version": "1.0.0",
+  "dependencies": {
+    "@dcl-sdk/utils": "next"
   },
   "devDependencies": {
     "@dcl/js-runtime": "next",
@@ -23,7 +19,11 @@
     "printWidth": 120,
     "trailingComma": "none"
   },
-  "dependencies": {
-    "@dcl-sdk/utils": "next"
+  "scripts": {
+    "build": "sdk-commands build",
+    "deploy": "sdk-commands deploy",
+    "start": "sdk-commands start",
+    "upgrade-sdk": "npm install --save-dev @dcl/sdk@latest",
+    "upgrade-sdk:next": "npm install --save-dev @dcl/sdk@next"
   }
 }

@@ -1,4 +1,4 @@
-import { AudioSource, Entity, Transform, engine } from "@dcl/sdk/ecs"
+import { AudioSource, Entity, Transform, engine } from '@dcl/sdk/ecs'
 
 export class Sound {
   private sourceEntity: Entity | null = null

@@ -8,11 +8,11 @@ import { redrawRays } from './reflectedRay'
 const mirrorMoveSound = new Sound('sounds/mirrorMove.mp3', false)
 
 export interface MirrorConfig {
-  selectorModelPath: string,
-  mirrorModelPath: string,
-  position?: Vector3,
-  rotation?: Quaternion,
-  scale?: Vector3,
+  selectorModelPath: string
+  mirrorModelPath: string
+  position?: Vector3
+  rotation?: Quaternion
+  scale?: Vector3
 }
 
 export class Mirror {
@@ -31,7 +31,7 @@ export class Mirror {
     Transform.create(this.selectorEntity, {
       position: config.position ?? Vector3.Zero(),
       rotation: config.rotation ?? Quaternion.Identity(),
-      scale: config.scale ?? Vector3.One(),
+      scale: config.scale ?? Vector3.One()
     })
 
     this.mirrorEntity = engine.addEntity()
@@ -68,12 +68,9 @@ export class Mirror {
     mirrorMoveSound.playAudio()
 
     utils.tweens.startRotation(this.mirrorEntity, currentRot, endRot, 0.5, utils.InterpolationType.LINEAR, () => {
-      utils.timers.setTimeout(
-        function () {
-          redrawRays() // Redraw
-        },
-        100
-      )
+      utils.timers.setTimeout(function () {
+        redrawRays() // Redraw
+      }, 100)
     })
 
     utils.timers.setTimeout(() => {
@@ -88,12 +85,9 @@ export class Mirror {
     // Slide the mirror to its endPos over half a second
     mirrorMoveSound.playAudio()
     utils.tweens.startTranslation(this.selectorEntity, currentPos, endPos, 0.5, utils.InterpolationType.LINEAR, () => {
-      utils.timers.setTimeout(
-        function () {
-          redrawRays() // Redraw
-        },
-        100
-      )
+      utils.timers.setTimeout(function () {
+        redrawRays() // Redraw
+      }, 100)
     })
 
     utils.timers.setTimeout(() => {

@@ -1,13 +1,12 @@
 {
   "name": "light-bounce-puzzle",
-  "version": "1.0.0",
   "description": "Point a ray so that it bounces correctly and activates all runes.",
-  "scripts": {
-    "start": "sdk-commands start",
-    "deploy": "sdk-commands deploy",
-    "build": "sdk-commands build",
-    "upgrade-sdk": "npm install --save-dev @dcl/sdk@latest",
-    "upgrade-sdk:next": "npm install --save-dev @dcl/sdk@next"
+  "version": "1.0.0",
+  "bundleDependencies": [
+    "@dcl-sdk/utils"
+  ],
+  "dependencies": {
+    "@dcl-sdk/utils": "next"
   },
   "devDependencies": {
     "@dcl/js-runtime": "next",
@@ -23,10 +22,11 @@
     "printWidth": 120,
     "trailingComma": "none"
   },
-  "dependencies": {
-    "@dcl-sdk/utils": "next"
-  },
-  "bundleDependencies": [
-    "@dcl-sdk/utils"
-  ]
+  "scripts": {
+    "build": "sdk-commands build",
+    "deploy": "sdk-commands deploy",
+    "start": "sdk-commands start",
+    "upgrade-sdk": "npm install --save-dev @dcl/sdk@latest",
+    "upgrade-sdk:next": "npm install --save-dev @dcl/sdk@next"
+  }
 }

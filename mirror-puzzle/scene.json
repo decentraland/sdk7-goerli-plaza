@@ -1,49 +1,50 @@
 {
-	"ecs7": true,
-	"runtimeVersion": "7",
-	"display": {
-		"title": "mirror-puzzle",
-		"favicon": "favicon_asset"
-	},
-	"contact": {
-		"name": "author-name",
-		"email": ""
-	},
-	"owner": "",
-	"scene": {
-		"parcels": [
-			"-150,148",
-			"-150,149"
-		],
-		"base": "-150,148"
-	},
-	"communications": {
-		"type": "webrtc",
-		"signalling": "https://signalling-01.decentraland.org"
-	},
-	"policy": {
-		"contentRating": "E",
-		"fly": true,
-		"voiceEnabled": true,
-		"blacklist": []
-	},
-	"requiredPermissions": [],
-	"main": "bin/index.js",
-	"tags": [],
-	"spawnPoints": [
-		{
-			"name": "spawn1",
-			"default": true,
-			"position": {
-				"x": 8,
-				"y": 0,
-				"z": 4
-			},
-			"cameraTarget": {
-				"x": 8,
-				"y": 1,
-				"z": 8
-			}
-		}
-	]
+  "ecs7": true,
+  "runtimeVersion": "7",
+  "display": {
+    "title": "mirror-puzzle",
+    "favicon": "favicon_asset"
+  },
+  "contact": {
+    "name": "author-name",
+    "email": ""
+  },
+  "owner": "",
+  "scene": {
+    "parcels": [
+      "83,-4,83,-3",
+      "82,-4,82,-3"
+    ],
+    "base": "82,-4"
+  },
+  "communications": {
+    "type": "webrtc",
+    "signalling": "https://signalling-01.decentraland.org"
+  },
+  "policy": {
+    "contentRating": "E",
+    "fly": true,
+    "voiceEnabled": true,
+    "blacklist": []
+  },
+  "requiredPermissions": [],
+  "main": "bin/index.js",
+  "tags": [],
+  "spawnPoints": [
+    {
+      "name": "spawn1",
+      "default": true,
+      "position": {
+        "x": 8,
+        "y": 0,
+        "z": 4
+      },
+      "cameraTarget": {
+        "x": 8,
+        "y": 1,
+        "z": 8
+      }
+    }
+  ],
+  "name": "mirror-puzzle"
 }

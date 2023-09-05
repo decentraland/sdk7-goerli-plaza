@@ -6,11 +6,11 @@ import { Selector } from './selector'
 export const MAX_DISTANCE = 5
 
 // Base
-const base:Entity = engine.addEntity()
-GltfContainer.create(base, { src: "models/base.glb"})
+const base: Entity = engine.addEntity()
+GltfContainer.create(base, { src: 'models/base.glb' })
 
-const room:Entity = engine.addEntity()
-GltfContainer.create(room, { src: "models/room.glb"})
+const room: Entity = engine.addEntity()
+GltfContainer.create(room, { src: 'models/room.glb' })
 
 // Preload the sounds
 new Sound()

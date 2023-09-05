@@ -1,6 +1,6 @@
-import { Entity, GltfContainer, RaycastQueryType, Transform, engine, raycastSystem } from "@dcl/sdk/ecs"
-import { Quaternion, Vector3 } from "@dcl/sdk/math"
-import { Sound } from "./sound"
+import { Entity, GltfContainer, RaycastQueryType, Transform, engine, raycastSystem } from '@dcl/sdk/ecs'
+import { Quaternion, Vector3 } from '@dcl/sdk/math'
+import { Sound } from './sound'
 
 const victorySound = new Sound('sounds/complete.mp3', false)
 
@@ -65,28 +65,31 @@ export function redrawRays(): void {
         queryType: RaycastQueryType.RQT_HIT_FIRST,
         direction: Vector3.Forward(),
         originOffset: Vector3.subtract(origin, Transform.getMutable(rayEmitter).position),
-        maxDistance: 100,
-      },
+        maxDistance: 100
+      }
     },
     function (result) {
       // Delete previous ray models
       ReflectedRay.removeAll()
-      if (result.hits && result.hits.length > 0 && result.hits[0] && result.hits[0].position && result.hits[0].normalHit) {
+      if (
+        result.hits &&
+        result.hits.length > 0 &&
+        result.hits[0] &&
+        result.hits[0].position &&
+        result.hits[0].normalHit
+      ) {
         const hitPosition = result.hits[0].position
         const hitNormal: Vector3 = result.hits[0].normalHit
         const meshName: string | undefined = result.hits[0].meshName
 
-        if (meshName === undefined || meshName === "") return
+        if (meshName === undefined || meshName === '') return
 
         if (meshName === 'mirror_collider') {
           const reflectedVector: Vector3 = reflectVector(
             Vector3.Forward(),
             Vector3.create(hitNormal.x, hitNormal.y, hitNormal.z)
           )
-          reflectRay(
-            Vector3.create(hitPosition.x, hitPosition.y, hitPosition.z),
-            reflectedVector
-          )
+          reflectRay(Vector3.create(hitPosition.x, hitPosition.y, hitPosition.z), reflectedVector)
         }
         const distance = Vector3.distance(origin, hitPosition)
         let sourceRayTransform = Transform.getMutableOrNull(sourceRay.reflectedRayEntity as Entity)
@@ -115,11 +118,17 @@ function reflectRay(hitPoint: Vector3, reflectedVector: Vector3) {
       opts: {
         queryType: RaycastQueryType.RQT_HIT_FIRST,
         direction: reflectedVector,
-        maxDistance: 100,
-      },
+        maxDistance: 100
+      }
     },
     function (result) {
-      if (result.hits && result.hits.length > 0 && result.hits[0] && result.hits[0].position && result.hits[0].normalHit) {
+      if (
+        result.hits &&
+        result.hits.length > 0 &&
+        result.hits[0] &&
+        result.hits[0].position &&
+        result.hits[0].normalHit
+      ) {
         const hitPosition = result.hits[0].position
         const hitNormal: Vector3 = result.hits[0].normalHit
         const meshName: string | undefined = result.hits[0].meshName
@@ -129,23 +138,17 @@ function reflectRay(hitPoint: Vector3, reflectedVector: Vector3) {
 
         if (meshName === 'mirror_collider') {
           const nextReflectedVector: Vector3 = reflectVector(
-            Vector3.create(
-              reflectedVector.x,
-              reflectedVector.y,
-              reflectedVector.z
-            ),
+            Vector3.create(reflectedVector.x, reflectedVector.y, reflectedVector.z),
             Vector3.create(hitNormal.x, hitNormal.y, hitNormal.z)
           )
-          reflectRay(
-            Vector3.create(hitPosition.x, hitPosition.y, hitPosition.z),
-            nextReflectedVector
-          )
+          reflectRay(Vector3.create(hitPosition.x, hitPosition.y, hitPosition.z), nextReflectedVector)
         } else if (meshName === 'rayTarget_collider') {
           console.log('You win') // Win condition
           victorySound.playAudio()
         }
       }
-    })
+    }
+  )
 }
 
 // Put in the direction of the previous ray and the normal of the raycast's hitpoint

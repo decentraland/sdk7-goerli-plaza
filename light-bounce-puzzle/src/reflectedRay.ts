@@ -1,4 +1,4 @@
-import { Entity, GltfContainer, Transform, engine } from "@dcl/sdk/ecs"
+import { Entity, GltfContainer, Transform, engine } from '@dcl/sdk/ecs'
 
 export class ReflectedRay {
   public static instances: ReflectedRay[] = []

@@ -1,4 +1,4 @@
-import { Vector3 } from "@dcl/sdk/math";
+import { Vector3 } from '@dcl/sdk/math'
 
 export abstract class Blockers {
   // Blocked coordinates

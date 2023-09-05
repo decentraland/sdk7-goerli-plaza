@@ -1,26 +1,22 @@
 import { engine, Entity, GltfContainer, Transform, raycastSystem, RaycastQueryType } from '@dcl/ecs'
-import { Quaternion, Vector3 } from "@dcl/sdk/math"
+import { Quaternion, Vector3 } from '@dcl/sdk/math'
 import { PuzzleBuilder } from './puzzleBuilder'
 import { MAX_DISTANCE } from '.'
 
 export class Selector {
-
   selectorHand: Entity = engine.addEntity()
   selectorGlow: Entity = engine.addEntity()
   SELECTOR_HAND_Y_OFFSET = 1.35
-  static raycastNormalHit:Vector3
-  static entityID:number = -1
-
+  static raycastNormalHit: Vector3
+  static entityID: number = -1
 
   constructor() {
     // Selector
-    GltfContainer.create(this.selectorHand, { src: "models/selectorHand.glb" })
+    GltfContainer.create(this.selectorHand, { src: 'models/selectorHand.glb' })
     Transform.create(this.selectorHand, { scale: Vector3.create(0, 0, 0) })
 
-    GltfContainer.create(this.selectorGlow, { src: "models/selectorGlow.glb" })
+    GltfContainer.create(this.selectorGlow, { src: 'models/selectorGlow.glb' })
     Transform.create(this.selectorGlow, { scale: Vector3.create(0, 0, 0) })
-
-
 
     let self = this
 
@@ -32,8 +28,8 @@ export class Selector {
           queryType: RaycastQueryType.RQT_QUERY_ALL,
           direction: Vector3.Forward(),
           maxDistance: MAX_DISTANCE,
-          continuous: true,
-        },
+          continuous: true
+        }
       },
       function (raycastResult) {
         if (raycastResult.hits.length > 0) {
@@ -49,22 +45,21 @@ export class Selector {
             Transform.getMutable(self.selectorGlow).scale = Vector3.create(0, 0, 0)
           }
         } else {
-            Transform.getMutable(self.selectorHand).scale = Vector3.create(0, 0, 0)
-            Transform.getMutable(self.selectorGlow).scale = Vector3.create(0, 0, 0)
+          Transform.getMutable(self.selectorHand).scale = Vector3.create(0, 0, 0)
+          Transform.getMutable(self.selectorGlow).scale = Vector3.create(0, 0, 0)
         }
-      })
+      }
+    )
   }
 
-
   selectorFace(entityID: number, hitNormal: Vector3) {
-
     let entity: Entity | undefined
     // Find our Entity from it's ID
-    PuzzleBuilder.statues.forEach(element => {
+    PuzzleBuilder.statues.forEach((element) => {
       if (element.entity == entityID) {
         entity = element.entity
       }
-    });
+    })
 
     if (entity == undefined) {
       return
@@ -72,10 +67,18 @@ export class Selector {
 
     const statuePosition: Vector3 = Transform.get(entity).position // Copy the statue position
 
-    Transform.getMutable(this.selectorGlow).position = Vector3.create(statuePosition.x, statuePosition.y + 0.035, statuePosition.z)
+    Transform.getMutable(this.selectorGlow).position = Vector3.create(
+      statuePosition.x,
+      statuePosition.y + 0.035,
+      statuePosition.z
+    )
     Transform.getMutable(this.selectorGlow).scale = Vector3.create(1, 1, 1)
 
-    Transform.getMutable(this.selectorHand).position = Vector3.create(statuePosition.x, statuePosition.y + this.SELECTOR_HAND_Y_OFFSET, statuePosition.z)
+    Transform.getMutable(this.selectorHand).position = Vector3.create(
+      statuePosition.x,
+      statuePosition.y + this.SELECTOR_HAND_Y_OFFSET,
+      statuePosition.z
+    )
     Transform.getMutable(this.selectorHand).scale = Vector3.create(1, 1, 1)
 
     let selectorRotation = Transform.getMutable(this.selectorHand).rotation
@@ -95,5 +98,4 @@ export class Selector {
     }
     Transform.getMutable(this.selectorHand).rotation = selectorRotation
   }
-
 }

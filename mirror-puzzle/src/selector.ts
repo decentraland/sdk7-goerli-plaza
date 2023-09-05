@@ -1,7 +1,17 @@
-import { Entity, GltfContainer, InputAction, PointerEventType, RaycastQueryType, Transform, engine, inputSystem, raycastSystem } from "@dcl/sdk/ecs"
-import { Quaternion, Vector3 } from "@dcl/sdk/math"
-import { Mirror } from "./mirror"
-import { Blockers } from "./blockers"
+import {
+  Entity,
+  GltfContainer,
+  InputAction,
+  PointerEventType,
+  RaycastQueryType,
+  Transform,
+  engine,
+  inputSystem,
+  raycastSystem
+} from '@dcl/sdk/ecs'
+import { Quaternion, Vector3 } from '@dcl/sdk/math'
+import { Mirror } from './mirror'
+import { Blockers } from './blockers'
 
 export class Selector {
   private static readonly SELECTOR_HAND_Y_OFFSET = 1.5
@@ -28,8 +38,8 @@ export class Selector {
           queryType: RaycastQueryType.RQT_HIT_FIRST,
           direction: Vector3.Forward(),
           maxDistance: 5,
-          continuous: true,
-        },
+          continuous: true
+        }
       },
       function (raycastResult) {
         if (raycastResult.hits.length > 0 && raycastResult.hits[0].meshName === 'mirrorSelector_collider') {
@@ -43,12 +53,11 @@ export class Selector {
             Transform.getMutable(self.selectorGlow).scale = Vector3.Zero()
           }
         }
-      })
+      }
+    )
   }
 
-
   selectorFace(entityID: number, hitNormal: Vector3) {
-
     let mirror = Mirror.GetMirror(entityID)
     if (mirror == null) return
 
@@ -93,14 +102,7 @@ export class Selector {
       })
 
       // Check boundaries
-      if (
-        endPos.x >= 1 &&
-        endPos.x <= 15 &&
-        endPos.z >= 1 &&
-        endPos.z <= 31 &&
-        !mirrorOverlap &&
-        !isBlocked
-      ) {
+      if (endPos.x >= 1 && endPos.x <= 15 && endPos.z >= 1 && endPos.z <= 31 && !mirrorOverlap && !isBlocked) {
         // Slide the mirror to its endPos over half a second
         mirror.moveMirror(currentPos, endPos)
       }
