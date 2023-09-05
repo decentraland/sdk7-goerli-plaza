@@ -40,6 +40,9 @@
       "path": "moving-platforms"
     },
     {
+      "path": "lazy-loading"
+    },
+    {
       "path": "item-pickup"
     },
     {
@@ -74,6 +77,9 @@
     },
     {
       "path": "boids"
+    },
+    {
+      "path": "block-portable-experiences"
     },
     {
       "path": "bird-field"
