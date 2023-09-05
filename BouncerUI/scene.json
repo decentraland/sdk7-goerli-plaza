@@ -2,23 +2,23 @@
   "ecs7": true,
   "runtimeVersion": "7",
   "display": {
-    "title": "block-portable-experiences",
-    "description": "A scene that detects if a player has any portable experiences or smart wearables active. If so, it will warn and won't let the player interact.",
+    "title": "BouncerUI",
+    "description": "A scene where special allowlisted users have access to a UI that allow them to ban other players, teleporting them outside the building.",
     "navmapThumbnail": "images/scene-thumbnail.png",
     "favicon": "favicon_asset"
   },
   "owner": "DOGMAN",
   "contact": {
-    "name": "DOGMAN",
+    "name": "DOGLORT",
     "email": ""
   },
   "main": "bin/index.js",
   "tags": [],
   "scene": {
     "parcels": [
-      "80,-4"
+      "81,-4"
     ],
-    "base": "80,-4"
+    "base": "81,-4"
   },
   "spawnPoints": [
     {
@@ -47,8 +47,12 @@
   ],
   "requiredPermissions": [
     "ALLOW_TO_TRIGGER_AVATAR_EMOTE",
-    "ALLOW_TO_MOVE_PLAYER_INSIDE_SCENE"
+    "ALLOW_TO_MOVE_PLAYER_INSIDE_SCENE",
+    "ALLOW_MEDIA_HOSTNAMES"
+  ],
+  "allowedMediaHostnames": [
+    "decentraland.org"
   ],
   "featureToggles": {},
-  "name": "block-portable-experiences"
+  "name": "BouncerUI"
 }
