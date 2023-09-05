@@ -1,0 +1,73 @@
+{
+  "ecs7": true,
+  "runtimeVersion": "7",
+  "display": {
+    "title": "rocket-board",
+    "description": "template scene with SDK7",
+    "navmapThumbnail": "images/scene-thumbnail.png",
+    "favicon": "favicon_asset"
+  },
+  "owner": "",
+  "contact": {
+    "name": "SDK",
+    "email": ""
+  },
+  "main": "bin/index.js",
+  "tags": [],
+  "scene": {
+    "parcels": [
+      "72,1",
+      "73,1",
+      "74,1",
+      "75,1",
+      "76,1",
+      "72,2",
+      "73,2",
+      "74,2",
+      "75,2",
+      "76,2",
+      "72,3",
+      "73,3",
+      "74,3",
+      "75,3",
+      "76,3",
+      "72,4",
+      "73,4",
+      "74,4",
+      "75,4",
+      "76,4",
+      "72,5",
+      "73,5",
+      "74,5",
+      "75,5",
+      "76,5"
+    ],
+    "base": "72,1"
+  },
+  "spawnPoints": [
+    {
+      "name": "spawn1",
+      "default": true,
+      "position": {
+        "x": 8,
+        "y": 1,
+        "z": 8
+      },
+      "cameraTarget": {
+        "x": 16,
+        "y": 1,
+        "z": 16
+      }
+    }
+  ],
+  "requiredPermissions": [
+    "ALLOW_TO_TRIGGER_AVATAR_EMOTE",
+    "ALLOW_TO_MOVE_PLAYER_INSIDE_SCENE",
+    "ALLOW_MEDIA_HOSTNAMES"
+  ],
+  "allowedMediaHostnames": [
+    "decentraland.org"
+  ],
+  "featureToggles": {},
+  "name": "rocket-board"
+}
