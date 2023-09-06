@@ -1,6 +1,7 @@
 import {
   CameraModeArea,
   CameraType,
+  ColliderLayer,
   Entity,
   GltfContainer,
   InputAction,
@@ -18,6 +19,7 @@ import { ReflectedRay } from './reflectedRay'
 import { movePlayerTo } from '~system/RestrictedActions'
 import { OnFinishCallback } from '@dcl-sdk/utils/dist/tween'
 import * as utils from '@dcl-sdk/utils'
+import { OnlyInScene, onlyInSceneSystem } from './onlyRenderInScene'
 
 // Sounds
 const firstNoteSound = new Sound('sounds/firstNote.mp3', false)
@@ -28,6 +30,8 @@ const lightningOrbSound = new Sound('sounds/lightningOrb.mp3', false)
 const victorySound = new Sound('sounds/complete.mp3', false)
 
 export function main() {
+  engine.addSystem(onlyInSceneSystem)
+
   utils.timers.setTimeout(function () {
     // Ensure player is inside
     movePlayerTo({
@@ -54,11 +58,13 @@ export function main() {
       parent: engine.CameraEntity,
       position: Vector3.create(0, -0.5, 0.75)
     })
+    OnlyInScene.create(lightningOrb)
 
     // Base
     const base = engine.addEntity()
     GltfContainer.create(base, {
-      src: 'models/baseCheckered.glb'
+      src: 'models/baseCheckered.glb',
+      invisibleMeshesCollisionMask: ColliderLayer.CL_NONE
     })
   }, 2000)
 
