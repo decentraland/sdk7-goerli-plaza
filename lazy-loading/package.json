@@ -6,7 +6,7 @@
     "@dcl-sdk/utils": "next"
   },
   "devDependencies": {
-    "@dcl/js-runtime": "next",
+    "@dcl/js-runtime": "7.3.7",
     "@dcl/sdk": "next"
   },
   "engines": {
