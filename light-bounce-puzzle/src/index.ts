@@ -21,6 +21,7 @@ import { OnFinishCallback } from '@dcl-sdk/utils/dist/tween'
 import * as utils from '@dcl-sdk/utils'
 import { OnlyInScene, isInScene, onlyInSceneSystem } from './onlyRenderInScene'
 
+
 // Sounds
 const firstNoteSound = new Sound('sounds/firstNote.mp3', false)
 const secondNoteSound = new Sound('sounds/secondNote.mp3', false)
@@ -193,6 +194,7 @@ export function main() {
 			}, 500)
 		}
 	})
+
 }
 
 // Recursive function for reflecting a ray every time it hits a mirror

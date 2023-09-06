@@ -2,6 +2,7 @@ import { Schemas, VisibilityComponent, engine } from '@dcl/sdk/ecs'
 import * as utils from '@dcl-sdk/utils'
 import { Vector3 } from '~system/EngineApi'
 
+
 const SCENE_SIZE_X = 1
 const SCENE_SIZE_Y = 1
 
