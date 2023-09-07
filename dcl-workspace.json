@@ -10,6 +10,9 @@
       "path": "uv-map"
     },
     {
+      "path": "tin-can-alley"
+    },
+    {
       "path": "testing-gallery"
     },
     {
@@ -25,6 +28,12 @@
       "path": "rotating-platforms"
     },
     {
+      "path": "rocket-board"
+    },
+    {
+      "path": "push-box-puzzle"
+    },
+    {
       "path": "power-cube"
     },
     {
@@ -34,7 +43,19 @@
       "path": "moving-platforms"
     },
     {
+      "path": "mirror-puzzle"
+    },
+    {
+      "path": "light-bounce-puzzle"
+    },
+    {
+      "path": "lazy-loading"
+    },
+    {
       "path": "item-pickup"
+    },
+    {
+      "path": "inflatable-punch-bag"
     },
     {
       "path": "grab-objects"
@@ -61,7 +82,13 @@
       "path": "coin-pickup"
     },
     {
+      "path": "coconut-shy"
+    },
+    {
       "path": "boids"
+    },
+    {
+      "path": "block-portable-experiences"
     },
     {
       "path": "bird-field"
@@ -74,6 +101,9 @@
     },
     {
       "path": "avatar-animations"
+    },
+    {
+      "path": "auto-dance"
     },
     {
       "path": "advanced-avatar-swap"
@@ -152,6 +182,9 @@
     },
     {
       "path": "Cube"
+    },
+    {
+      "path": "BouncerUI"
     },
     {
       "path": "Block-dog"

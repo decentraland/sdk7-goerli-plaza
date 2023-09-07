@@ -57,7 +57,7 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.SDK_TEAM_AWS_SECRET }}
       - name: Find Comment
         uses: peter-evans/find-comment@v1
-        if: ${{ github.event.pull_request.number }} && github.event.pull_request.head.repo.full_name == github.repository
+        if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
         id: fc
         with:
           issue-number: ${{ github.event.pull_request.number }}
@@ -65,7 +65,7 @@ jobs:
           body-includes: Test this pull request
       - name: Create or update comment
         uses: peter-evans/create-or-update-comment@v1
-        if: ${{ github.event.pull_request.number }} && github.event.pull_request.head.repo.full_name == github.repository
+        if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
         with:
           comment-id: ${{ steps.fc.outputs.comment-id }}
           issue-number: ${{ github.event.pull_request.number }}
