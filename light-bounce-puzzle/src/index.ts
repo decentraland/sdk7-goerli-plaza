@@ -19,7 +19,7 @@ import { ReflectedRay } from './reflectedRay'
 import { movePlayerTo } from '~system/RestrictedActions'
 import { OnFinishCallback } from '@dcl-sdk/utils/dist/tween'
 import * as utils from '@dcl-sdk/utils'
-import { OnlyInScene, onlyInSceneSystem } from './onlyRenderInScene'
+import { OnlyInScene, isInScene, onlyInSceneSystem } from './onlyRenderInScene'
 
 // Sounds
 const firstNoteSound = new Sound('sounds/firstNote.mp3', false)
@@ -118,6 +118,9 @@ export function main() {
     // Left mouse button
     const result = inputSystem.getInputCommand(InputAction.IA_POINTER, PointerEventType.PET_DOWN)
     if (result) {
+      // only keep going if the player is inside the scene parcels
+      if (!isInScene(Transform.get(engine.PlayerEntity).position)) return
+
       let forwardVector: Vector3 = Vector3.rotate(Vector3.Forward(), Transform.getMutable(engine.CameraEntity).rotation)
       const cameraTransform = Transform.getMutable(engine.CameraEntity)
       const rayTransform = Transform.getMutable(ray)

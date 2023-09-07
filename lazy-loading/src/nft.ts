@@ -24,7 +24,7 @@ export const nftCollection: NFTdata[] = [
     room: 1,
     id: 1,
     position: {
-      position: Vector3.create(4, 2, 30),
+      position: Vector3.create(5, 2, 29),
       rotation: Quaternion.create(0, 0, 0, 1),
       scale: Vector3.create(2.5, 2.5, 2.5)
     },
@@ -35,7 +35,7 @@ export const nftCollection: NFTdata[] = [
     room: 1,
     id: 2,
     position: {
-      position: Vector3.create(2, 2, 26),
+      position: Vector3.create(3, 2, 26),
       rotation: Quaternion.fromEulerDegrees(0, -90, 0),
       scale: Vector3.create(2.5, 2.5, 2.5)
     },
@@ -46,7 +46,7 @@ export const nftCollection: NFTdata[] = [
     room: 1,
     id: 3,
     position: {
-      position: Vector3.create(6.3, 2, 26),
+      position: Vector3.create(7.3, 2, 26),
       rotation: Quaternion.fromEulerDegrees(0, 90, 0),
       scale: Vector3.create(2.5, 2.5, 2.5)
     },
@@ -57,7 +57,7 @@ export const nftCollection: NFTdata[] = [
     room: 2,
     id: 4,
     position: {
-      position: Vector3.create(4 + 12, 2, 30),
+      position: Vector3.create(4 + 12, 2, 29),
       rotation: Quaternion.create(0, 0, 0, 1),
       scale: Vector3.create(2.5, 2.5, 2.5)
     },
@@ -90,7 +90,7 @@ export const nftCollection: NFTdata[] = [
     room: 3,
     id: 7,
     position: {
-      position: Vector3.create(4 + 22, 2, 30),
+      position: Vector3.create(4 + 22, 2, 29),
       rotation: Quaternion.create(0, 0, 0, 1),
       scale: Vector3.create(2.5, 2.5, 2.5)
     },
@@ -134,7 +134,7 @@ export const nftCollection: NFTdata[] = [
     room: 4,
     id: 11,
     position: {
-      position: Vector3.create(1.7, 2, 26 - 18),
+      position: Vector3.create(1.7, 2, 26 - 19),
       rotation: Quaternion.fromEulerDegrees(0, -90, 0),
       scale: Vector3.create(2.5, 2.5, 2.5)
     },
@@ -145,7 +145,7 @@ export const nftCollection: NFTdata[] = [
     room: 4,
     id: 12,
     position: {
-      position: Vector3.create(6.3, 2, 26 - 18),
+      position: Vector3.create(6.3, 2, 26 - 19),
       rotation: Quaternion.fromEulerDegrees(0, 90, 0),
       scale: Vector3.create(2.5, 2.5, 2.5)
     },
@@ -167,7 +167,7 @@ export const nftCollection: NFTdata[] = [
     room: 5,
     id: 14,
     position: {
-      position: Vector3.create(1.7 + 12, 2, 26 - 18),
+      position: Vector3.create(1.7 + 12, 2, 26 - 19),
       rotation: Quaternion.fromEulerDegrees(0, -90, 0),
       scale: Vector3.create(2.5, 2.5, 2.5)
     },
@@ -178,7 +178,7 @@ export const nftCollection: NFTdata[] = [
     room: 5,
     id: 15,
     position: {
-      position: Vector3.create(6.3 + 12, 2, 26 - 18),
+      position: Vector3.create(6.3 + 12, 2, 26 - 19),
       rotation: Quaternion.fromEulerDegrees(0, 90, 0),
       scale: Vector3.create(2.5, 2.5, 2.5)
     },
@@ -189,7 +189,7 @@ export const nftCollection: NFTdata[] = [
     room: 6,
     id: 16,
     position: {
-      position: Vector3.create(4 + 22, 2, 22 - 18),
+      position: Vector3.create(4 + 23, 2, 22 - 18),
       rotation: Quaternion.fromEulerDegrees(0, 180, 0),
       scale: Vector3.create(2.5, 2.5, 2.5)
     },
@@ -200,7 +200,7 @@ export const nftCollection: NFTdata[] = [
     room: 6,
     id: 17,
     position: {
-      position: Vector3.create(1.7 + 22, 2, 26 - 18),
+      position: Vector3.create(1.7 + 22, 2, 26 - 19),
       rotation: Quaternion.fromEulerDegrees(0, -90, 0),
       scale: Vector3.create(2.5, 2.5, 2.5)
     },
@@ -211,7 +211,7 @@ export const nftCollection: NFTdata[] = [
     room: 6,
     id: 18,
     position: {
-      position: Vector3.create(6.3 + 22, 2, 26 - 18),
+      position: Vector3.create(6.3 + 22, 2, 26 - 19),
       rotation: Quaternion.fromEulerDegrees(0, 90, 0),
       scale: Vector3.create(2.5, 2.5, 2.5)
     },
@@ -224,7 +224,7 @@ export const nftCollection: NFTdata[] = [
     room: 7,
     id: 16,
     position: {
-      position: Vector3.create(4 + 22, 2, 22 - 18),
+      position: Vector3.create(4 + 22, 2, 22 - 19),
       rotation: Quaternion.fromEulerDegrees(0, 180, 0),
       scale: Vector3.create(2.5, 2.5, 2.5)
     },
@@ -235,7 +235,7 @@ export const nftCollection: NFTdata[] = [
     room: 7,
     id: 17,
     position: {
-      position: Vector3.create(1.7 + 22, 2, 26 - 18),
+      position: Vector3.create(1.7 + 22, 2, 26 - 19),
       rotation: Quaternion.fromEulerDegrees(0, -90, 0),
       scale: Vector3.create(2.5, 2.5, 2.5)
     },
@@ -246,7 +246,7 @@ export const nftCollection: NFTdata[] = [
     room: 7,
     id: 18,
     position: {
-      position: Vector3.create(6.3 + 22, 2, 26 - 18),
+      position: Vector3.create(6.3 + 22, 2, 26 - 19),
       rotation: Quaternion.fromEulerDegrees(0, 90, 0),
       scale: Vector3.create(2.5, 2.5, 2.5)
     },
