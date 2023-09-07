@@ -2,12 +2,6 @@ import { engine } from '@dcl/sdk/ecs'
 import { buildScene } from './sceneFactory'
 import { startParty } from './startParty'
 
-// Changelog:
-// renamed builderContent to sceneFactory
-// simplified sign post text element
-// divided startParty into seperate functions
-// using systems
-
 export function main() {
   // Add scene content
   const signpost = buildScene()
