@@ -43,9 +43,9 @@ function createVideoShapes() {
   const floor = engine.addEntity()
   MeshRenderer.setPlane(floor)
   Transform.create(floor, {
-    position: { x: 8, y:0.05 , z: 8},
+    position: { x: 8, y: 0.05, z: 8 },
     rotation: Quaternion.fromEulerDegrees(90, 0, 0),
-    scale: { x: 16, y: 16, z: 16}
+    scale: { x: 16, y: 16, z: 16 }
   })
   Material.setPbrMaterial(floor, videoMaterial)
 

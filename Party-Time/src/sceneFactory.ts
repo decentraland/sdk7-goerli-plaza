@@ -159,5 +159,4 @@ export function buildScene() {
     fontSize: 2
   })
   Name.create(signpostText, { value: 'signpost' })
-
 }
