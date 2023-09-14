@@ -6,40 +6,51 @@ export function main() {
   // Add scene content
   const signpost = buildScene()
 
-  // Time for the party to start in GMT+3
-  // getHours() converts time into players local time
-  const partyStart = new Date('2023-09-20T20:00:00+03:00').getHours()
-  const partyEnd = new Date('2023-09-20T23:59:59+03:00').getHours()
+  // Time for the party to start
+  const partyStart = new Date('2023-09-14T19:00:00+03:00') // GMT+3
+  const partyEnd = new Date('2023-09-15T02:00:00+03:00') // GMT+3
 
   // Function to call the API
   async function checkTime() {
 
-    const response = await fetch('https://worldtimeapi.org/api/timezone/etc/gmt+3')
+    const response = await fetch('https://worldtimeapi.org/api/timezone/etc/gmt+3') // GMT+3
 
     const worldtime = await response.json()
-    const timeNow = new Date(worldtime.datetime).getHours()
+    const timeNow = new Date(worldtime.datetime)
     
     // Debug
-    console.log('\nParty Start: ', partyStart, '\nParty End: ', partyEnd, '\nTime now: ', timeNow)
+    console.log('\nParty Start: ', partyStart, '\nTime now: ', timeNow, '\nParty End: ', partyEnd)
 
     // Before Party
     if (timeNow < partyStart) {
-      updateSignpost('Party starts\n in ' + (partyStart - timeNow) + ' hours.\n' +
-      'At ' + formatAMPM(partyStart))
+      // Calculate the time difference in milliseconds
+      const timeDiff = partyStart.getTime() - timeNow.getTime()
+      // Calculate the number of days
+      const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24))
+      // Calculate the number of hours left after subtracting the days
+      const hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
+      updateSignpost(`Party starts \n in ${days} days \n and ${hours} hours. \n At ${formatAMPM(partyStart.getHours())}`)
     }
     // While Party
     else if (timeNow >= partyStart && timeNow <= partyEnd) {
-      // Note that we compare just hours not date, so party is daily.
       startParty()
       console.log('PARTY TIME!')
-      updateSignpost('PARTY TIME!\n' + formatAMPM(partyStart) + ' to ' + formatAMPM(partyEnd))
+      updateSignpost('PARTY TIME!\n' + formatAMPM(partyStart.getHours()) + ' to ' + formatAMPM(partyEnd.getHours()))
 
       // Stop checking for the party starting, it's already started!
       engine.removeSystem('loopSystem')
     }
     // After Party
     else if (timeNow > partyEnd) {
-      updateSignpost('Party Ended\nNext in ' + (24 - timeNow + partyStart) + ' hours\n At ' + formatAMPM(partyStart))
+      // Calculate the time difference in milliseconds
+      const timeDiff = timeNow.getTime() - partyEnd.getTime()
+      // Calculate the number of days
+      const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24))
+      // Calculate the number of hours left after subtracting the days
+      const hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
+
+      updateSignpost(`Party ended\n${days} days\nand ${hours} hours ago`)
+
     }
 
   }
