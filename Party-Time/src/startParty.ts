@@ -10,7 +10,7 @@ export function startParty() {
 function startMusicStream() {
   const streamEntity = engine.addEntity()
   AudioStream.create(streamEntity, {
-    url: 'https://icecast.ravepartyradio.org/ravepartyradio-192.mp3',
+    url: 'https://edge.singsingmusic.net/MC2.mp3',
     playing: true,
     volume: 0.8
   })
@@ -37,6 +37,16 @@ function createVideoShapes() {
     emissiveIntensity: 1,
     emissiveColor: Color3.White()
   }
+
+  // Floor
+  const floor = engine.addEntity()
+  MeshRenderer.setPlane(floor)
+  Transform.create(floor, {
+    position: { x: 8, y:0.05 , z: 8},
+    rotation: Quaternion.fromEulerDegrees(90, 0, 0),
+    scale: { x: 16, y: 16, z: 16}
+  })
+  Material.setPbrMaterial(floor, videoMaterial)
 
   // Big Cube
   const bigCube = engine.addEntity()
@@ -68,6 +78,7 @@ function createVideoShapes() {
     rotation: Quaternion.fromEulerDegrees(45, 0, 45),
     scale: { x: 1, y: 1, z: 1 }
   })
+  RotationComponent.create(smallCube2, { speed: 0.4 })
   Material.setPbrMaterial(smallCube2, videoMaterial)
 
   // Cone

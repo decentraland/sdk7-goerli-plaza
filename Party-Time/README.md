@@ -26,7 +26,7 @@ This scene shows you:
 
 The RESTful API called is `https://worldtimeapi.org/api`, which returns a JSON file with several fields that can be read.
 
-  
+If you want to change the streaming server you have to update the permission in scene.json
   
 
 ## Try it out
@@ -79,9 +79,6 @@ Once the party starts, the scene starts streaming audio from an internet radio, 
 
 Learn more about how to build your own scenes in our [documentation](https://docs.decentraland.org/) site.
  
- **Note**
-
-If you want to change the streaming server you have to update the permission in scene.json
 
 ## Copyright info
 

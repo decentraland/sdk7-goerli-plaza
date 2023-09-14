@@ -51,7 +51,7 @@
     "ALLOW_MEDIA_HOSTNAMES"
   ],
   "allowedMediaHostnames": [
-    "icecast.ravepartyradio.org",
+    "edge.singsingmusic.net",
     "player.vimeo.com"
   ],
   "featureToggles": {},

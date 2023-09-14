@@ -3,7 +3,7 @@
   "description": "SDK7 Template scene",
   "version": "1.0.0",
   "devDependencies": {
-    "@dcl/js-runtime": "next",
+    "@dcl/js-runtime": "7.3.13-6111470297.commit-612d316",
     "@dcl/sdk": "next"
   },
   "engines": {

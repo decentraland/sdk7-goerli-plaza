@@ -1,4 +1,4 @@
-import { engine, Transform, GltfContainer, TextShape } from '@dcl/sdk/ecs'
+import { engine, Transform, GltfContainer, TextShape, Name } from '@dcl/sdk/ecs'
 import { Quaternion } from '@dcl/sdk/math'
 
 /**
@@ -158,6 +158,6 @@ export function buildScene() {
     text: 'PARTY TIME!',
     fontSize: 2
   })
+  Name.create(signpostText, { value: 'signpost' })
 
-  return TextShape.getMutable(signpostText)
 }
