@@ -71,7 +71,6 @@ export function pickingGlassSystem() {
       })
 
       AvatarAttach.create(parentBeer, {
-        avatarId: currentPlayerId,
         anchorPointId: AvatarAnchorPointType.AAPT_RIGHT_HAND
       })
       Transform.createOrReplace(entity, {
