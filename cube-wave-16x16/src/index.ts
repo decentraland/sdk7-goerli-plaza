@@ -8,7 +8,7 @@ export function main() {
     }
   }
 
-  const sign = engine.addEntity(true)
+  const sign = engine.addEntity()
   Transform.create(sign, {
     position: { x: 8, y: 6, z: 8 },
     scale: { x: 1.2, y: 1.2, z: 1.2 }
@@ -33,7 +33,7 @@ engine.addSystem(CircleHoverSystem)
 // My cube generator
 function createCube(x: number, y: number, z: number) {
   // Dynamic entity because we aren't loading static entities out of this scene code
-  const myEntity = engine.addEntity(true)
+  const myEntity = engine.addEntity()
 
   Transform.create(myEntity, {
     position: { x, y, z }

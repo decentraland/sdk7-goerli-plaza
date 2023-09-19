@@ -168,7 +168,7 @@ export function main() {
   setAsMovingPlatform(audioSourceEntity, [Vector3.create(24, 1, -31), Vector3.create(24, 1, -33)], 10)
 
   // TEXT SHAPE
-  const textShapeEntity = engine.addEntity(true)
+  const textShapeEntity = engine.addEntity()
   TextShape.create(textShapeEntity, {
     text: 'IA IA CTHULHU FHTAGN!',
     fontSize: 2
