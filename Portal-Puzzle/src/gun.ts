@@ -2,6 +2,8 @@ import {
   AudioSource,
   AvatarAnchorPointType,
   AvatarAttach,
+  CameraModeArea,
+  CameraType,
   Entity,
   GltfContainer,
   Transform,
@@ -11,6 +13,7 @@ import { Quaternion, Vector3 } from '@dcl/sdk/math'
 import * as utils from '@dcl-sdk/utils'
 import { colorSystem, gunSystem } from './systems'
 import { GlowColor, PortalColor } from './components'
+import { OnlyInScene, onlyInSceneSystem } from './onlyRenderInScene'
 
 export let HOLDING_GUN = false
 
@@ -46,11 +49,22 @@ export function pickUpGun(gun: Entity) {
   AudioSource.createOrReplace(gun, { audioClipUrl: 'sounds/gunPickup.mp3', playing: true, loop: false })
 
   const gunParent = engine.addEntity()
-  AvatarAttach.create(gunParent, { anchorPointId: AvatarAnchorPointType.AAPT_NAME_TAG })
   const gunTranform = Transform.getMutable(gun)
-  gunTranform.parent = gunParent
-  gunTranform.position = Vector3.create(0.45, -0.625, 0.9)
+  ;(gunTranform.parent = engine.CameraEntity), (gunTranform.position = Vector3.create(0.45, -0.625, 0.9))
   gunTranform.rotation = Quaternion.fromEulerDegrees(0, 0, 0)
-
   utils.triggers.removeTrigger(gun)
+
+  // render gun only in scene
+  OnlyInScene.create(gun)
+  engine.addSystem(onlyInSceneSystem)
+
+  // keep camera in 1st person while in scene
+  const modEntity = engine.addEntity()
+  Transform.create(modEntity, {
+    position: Vector3.create(8, 4, 8)
+  })
+  CameraModeArea.create(modEntity, {
+    area: Vector3.create(16, 8, 16),
+    mode: CameraType.CT_FIRST_PERSON
+  })
 }
