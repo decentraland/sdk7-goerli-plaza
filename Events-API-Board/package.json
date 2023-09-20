@@ -1,0 +1,26 @@
+{
+  "name": "events-api-board",
+  "version": "1.0.0",
+  "description": "Call the Decentraland Events API to display events that are currently going on.",
+  "scripts": {
+    "start": "sdk-commands start",
+    "deploy": "sdk-commands deploy",
+    "build": "sdk-commands build",
+    "upgrade-sdk": "npm install --save-dev @dcl/sdk@latest",
+    "upgrade-sdk:next": "npm install --save-dev @dcl/sdk@next"
+  },
+  "devDependencies": {
+    "@dcl/js-runtime": "7.3.12",
+    "@dcl/sdk": "next"
+  },
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=6.0.0"
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true,
+    "printWidth": 120,
+    "trailingComma": "none"
+  }
+}
