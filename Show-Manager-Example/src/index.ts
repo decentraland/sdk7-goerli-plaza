@@ -1,11 +1,11 @@
-import { GltfContainer, Transform, engine } from "@dcl/sdk/ecs";
-import { setupUi } from "./ui";
-import { Quaternion, Vector3 } from "@dcl/sdk/math";
+import { GltfContainer, Transform, engine } from '@dcl/sdk/ecs'
+import { setupUi } from './ui'
+import { Quaternion, Vector3 } from '@dcl/sdk/math'
 import { createDanceAreas } from './modules/createDanceAreas'
-import { createShowEntities } from "./modules/showMgmt/showEntities";
-import { setupShow } from "./modules/showMgmt/showSetup";
-import { ShowStatusDisplays } from "./modules/showStatusDisplays";
-import { VideoScreens } from "./modules/videoScreens";
+import { createShowEntities } from './modules/showMgmt/showEntities'
+import { setupShow } from './modules/showMgmt/showSetup'
+import { ShowStatusDisplays } from './modules/showStatusDisplays'
+import { VideoScreens } from './modules/videoScreens'
 
 export function main() {
   setupUi()
@@ -22,7 +22,7 @@ export function main() {
     scale: Vector3.One()
   })
   GltfContainer.create(ground, {
-    src: 'models/FloorBaseGrass_01/FloorBaseGrass_01.glb' 
+    src: 'models/FloorBaseGrass_01/FloorBaseGrass_01.glb'
   })
 
   // Static Structure
@@ -34,7 +34,7 @@ export function main() {
     scale: Vector3.One()
   })
   GltfContainer.create(structure, {
-    src: 'models/staticStructure.glb' 
+    src: 'models/staticStructure.glb'
   })
 
   VideoScreens.Initialise()
