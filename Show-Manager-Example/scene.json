@@ -1,57 +1,58 @@
 {
-	"ecs7": true,
-	"runtimeVersion": "7",
-	"display": {
-		"title": "Stage Tutorial",
-		"description": "Stage Tutorial",
-		"navmapThumbnail": "images/scene-thumbnail.jpg",
-		"favicon": "favicon_asset"
-	},
-	"owner": "Vegas City",
-	"contact": {
-		"name": "Vegas City",
-		"email": "info@vegascity.org"
-	},
-	"main": "bin/index.js",
-	"tags": [],
-	"scene": {
-		"parcels": [
-			"0,0"
-		],
-		"base": "0,0"
-	},
-	"spawnPoints": [
-		{
-			"name": "spawn1",
-			"default": true,
-			"position": {
-				"x": [
-					6,
-					10
-				],
-				"y": [
-					1,
-					1
-				],
-				"z": [
-					6,
-					10
-				]
-			},
-			"cameraTarget": {
-				"x": 0,
-				"y": 0,
-				"z": 0
-			}
-		}
-	],
-	"requiredPermissions": [
-		"ALLOW_TO_TRIGGER_AVATAR_EMOTE",
-		"ALLOW_TO_MOVE_PLAYER_INSIDE_SCENE",
-		"ALLOW_MEDIA_HOSTNAMES"
-	],
-	"allowedMediaHostnames": [
-		"player.vimeo.com"
-	],
-	"featureToggles": {}
+  "ecs7": true,
+  "runtimeVersion": "7",
+  "display": {
+    "title": "Show-Manager-Example",
+    "description": "Stage Tutorial",
+    "navmapThumbnail": "images/scene-thumbnail.jpg",
+    "favicon": "favicon_asset"
+  },
+  "owner": "Vegas City",
+  "contact": {
+    "name": "Vegas City",
+    "email": "info@vegascity.org"
+  },
+  "main": "bin/index.js",
+  "tags": [],
+  "scene": {
+    "parcels": [
+      "79,1"
+    ],
+    "base": "79,1"
+  },
+  "spawnPoints": [
+    {
+      "name": "spawn1",
+      "default": true,
+      "position": {
+        "x": [
+          6,
+          10
+        ],
+        "y": [
+          1,
+          1
+        ],
+        "z": [
+          6,
+          10
+        ]
+      },
+      "cameraTarget": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      }
+    }
+  ],
+  "requiredPermissions": [
+    "ALLOW_TO_TRIGGER_AVATAR_EMOTE",
+    "ALLOW_TO_MOVE_PLAYER_INSIDE_SCENE",
+    "ALLOW_MEDIA_HOSTNAMES"
+  ],
+  "allowedMediaHostnames": [
+    "player.vimeo.com"
+  ],
+  "featureToggles": {},
+  "name": "Show-Manager-Example"
 }
