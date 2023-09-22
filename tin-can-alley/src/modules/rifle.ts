@@ -3,6 +3,7 @@ import { Quaternion, Vector3 } from '@dcl/sdk/math'
 import { Position } from '~system/EngineApi'
 import { Cooldown } from '../components'
 import { playshotSilencerSound } from './sound'
+import { OnlyInScene } from './onlyRenderInScene'
 
 export function createRifle(model: string, position: Position, rotation: Vector3) {
   const rifle = engine.addEntity()
@@ -16,6 +17,8 @@ export function createRifle(model: string, position: Position, rotation: Vector3
     invisibleMeshesCollisionMask: ColliderLayer.CL_PHYSICS,
     visibleMeshesCollisionMask: ColliderLayer.CL_POINTER
   })
+
+  OnlyInScene.create(rifle)
 
   Cooldown.create(rifle)
 

@@ -1,6 +1,7 @@
 import {
   CameraModeArea,
   CameraType,
+  ColliderLayer,
   Entity,
   GltfContainer,
   InputAction,
@@ -18,6 +19,7 @@ import { ReflectedRay } from './reflectedRay'
 import { movePlayerTo } from '~system/RestrictedActions'
 import { OnFinishCallback } from '@dcl-sdk/utils/dist/tween'
 import * as utils from '@dcl-sdk/utils'
+import { OnlyInScene, isInScene, onlyInSceneSystem } from './onlyRenderInScene'
 
 // Sounds
 const firstNoteSound = new Sound('sounds/firstNote.mp3', false)
@@ -28,6 +30,8 @@ const lightningOrbSound = new Sound('sounds/lightningOrb.mp3', false)
 const victorySound = new Sound('sounds/complete.mp3', false)
 
 export function main() {
+  engine.addSystem(onlyInSceneSystem)
+
   utils.timers.setTimeout(function () {
     // Ensure player is inside
     movePlayerTo({
@@ -54,11 +58,13 @@ export function main() {
       parent: engine.CameraEntity,
       position: Vector3.create(0, -0.5, 0.75)
     })
+    OnlyInScene.create(lightningOrb)
 
     // Base
     const base = engine.addEntity()
     GltfContainer.create(base, {
-      src: 'models/baseCheckered.glb'
+      src: 'models/baseCheckered.glb',
+      invisibleMeshesCollisionMask: ColliderLayer.CL_NONE
     })
   }, 2000)
 
@@ -112,6 +118,8 @@ export function main() {
     // Left mouse button
     const result = inputSystem.getInputCommand(InputAction.IA_POINTER, PointerEventType.PET_DOWN)
     if (result) {
+      // only keep going if the player is inside the scene parcels
+      if (!isInScene(Transform.get(engine.PlayerEntity).position)) return
       let forwardVector: Vector3 = Vector3.rotate(Vector3.Forward(), Transform.getMutable(engine.CameraEntity).rotation)
       const cameraTransform = Transform.getMutable(engine.CameraEntity)
       const rayTransform = Transform.getMutable(ray)
