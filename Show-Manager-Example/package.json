@@ -5,7 +5,7 @@
   "dependencies": {
     "@dcl-sdk/utils": "next",
     "dcl-ui-toolkit": "next",
-    "show-manager": "next"
+    "show-manager": "latest"
   },
   "devDependencies": {
     "@dcl/js-runtime": "next",
