@@ -13,38 +13,38 @@ import { Quaternion, Vector3 } from '@dcl/sdk/math'
 import { showUI } from './denyUI'
 import { hasWornPE, isWearingPE } from './peTracking'
 
-/**
- * Handle door states
- */
+export function addChest() {
+  /**
+   * Handle door states
+   */
 
-const denySound = engine.addEntity()
-const openClip = engine.addEntity()
-const closeClip = engine.addEntity()
+  const denySound = engine.addEntity()
+  const openClip = engine.addEntity()
+  const closeClip = engine.addEntity()
 
-// Create AudioSource component
-AudioSource.create(denySound, {
-  audioClipUrl: 'sounds/navigationBackward.mp3',
-  playing: false
-})
+  // Create AudioSource component
+  AudioSource.create(denySound, {
+    audioClipUrl: 'sounds/navigationBackward.mp3',
+    playing: false
+  })
 
-AudioSource.create(openClip, {
-  audioClipUrl: 'sounds/open.mp3',
-  playing: false
-})
-AudioSource.create(closeClip, {
-  audioClipUrl: 'sounds/close.mp3',
-  playing: false
-})
-// Define a simple function
-function playSound(entity: Entity) {
-  // fetch mutable version of audio source component
-  const audioSource = AudioSource.getMutable(entity)
+  AudioSource.create(openClip, {
+    audioClipUrl: 'sounds/open.mp3',
+    playing: false
+  })
+  AudioSource.create(closeClip, {
+    audioClipUrl: 'sounds/close.mp3',
+    playing: false
+  })
+  // Define a simple function
+  function playSound(entity: Entity) {
+    // fetch mutable version of audio source component
+    const audioSource = AudioSource.getMutable(entity)
 
-  // modify its playing value
-  audioSource.playing = true
-}
+    // modify its playing value
+    audioSource.playing = true
+  }
 
-export function doorSystem(dt: number) {
   const chest = engine.addEntity()
   Transform.create(chest, {
     position: Vector3.create(6.5, 5, 7.5),
@@ -85,8 +85,7 @@ export function doorSystem(dt: number) {
         showUI()
         playSound(denySound)
       } else {
-        console.log('no PE accepted')
-        Animator.playSingleAnimation(chest, 'Close', true)
+        console.log('ALLOWED: no Portable Experience was detected')
         Animator.playSingleAnimation(chest, 'Open', true)
         playSound(openClip)
       }
