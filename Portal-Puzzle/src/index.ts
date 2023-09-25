@@ -22,6 +22,7 @@ import * as utils from '@dcl-sdk/utils'
 import { gunSystem, colorSystem } from './systems'
 
 import { spawnGun } from './gun'
+import { onlyInSceneSystem } from './onlyRenderInScene'
 
 export function main() {
   const card = engine.getEntityOrNullByName('card.glb')
