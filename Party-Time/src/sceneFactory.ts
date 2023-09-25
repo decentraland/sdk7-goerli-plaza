@@ -148,7 +148,7 @@ export function buildScene() {
   })
 
   // Signpost Text
-  const signpostText = engine.addEntity(true)
+  const signpostText = engine.addEntity()
   Transform.create(signpostText, {
     parent: signpost,
     position: { x: 0, y: 1.3, z: 0.45 },

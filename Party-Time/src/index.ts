@@ -7,8 +7,8 @@ export function main() {
   const signpost = buildScene()
 
   // Time for the party to start
-  const partyStart = new Date('2023-09-14T19:00:00+03:00') // GMT+3
-  const partyEnd = new Date('2023-09-15T02:00:00+03:00') // GMT+3
+  const partyStart = new Date('2023-10-31T19:00:00+03:00') // GMT+3
+  const partyEnd = new Date('2023-11-01T02:00:00+03:00') // GMT+3
 
   // Function to call the API
   async function checkTime() {
