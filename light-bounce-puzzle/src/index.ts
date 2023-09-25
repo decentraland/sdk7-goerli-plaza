@@ -120,7 +120,6 @@ export function main() {
     if (result) {
       // only keep going if the player is inside the scene parcels
       if (!isInScene(Transform.get(engine.PlayerEntity).position)) return
-
       let forwardVector: Vector3 = Vector3.rotate(Vector3.Forward(), Transform.getMutable(engine.CameraEntity).rotation)
       const cameraTransform = Transform.getMutable(engine.CameraEntity)
       const rayTransform = Transform.getMutable(ray)
