@@ -3,7 +3,7 @@
 	"runtimeVersion": "7",
 	"display": {
 		"title": "Block Fountain SDK7",
-		"description": "Block Fountain synced multiplayer SDK7 scene",
+		"description": "Block Fountain synced multiplayer (P2P) SDK7 scene",
 		"navmapThumbnail": "images/scene-thumbnail.png",
 		"favicon": "favicon_asset"
 	},
