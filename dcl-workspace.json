@@ -142,6 +142,9 @@
       "path": "Simple-NFT"
     },
     {
+      "path": "Show-Manager-Example"
+    },
+    {
       "path": "Shooting-range"
     },
     {
@@ -158,6 +161,9 @@
     },
     {
       "path": "Portal-Puzzle"
+    },
+    {
+      "path": "Party-Time"
     },
     {
       "path": "Laser-ray-Casting"
