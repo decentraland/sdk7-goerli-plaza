@@ -54,7 +54,8 @@
     "ALLOW_MEDIA_HOSTNAMES"
   ],
   "allowedMediaHostnames": [
-    "player.vimeo.com"
+    "player.vimeo.com",
+		"https://dcldao.sandstorm.cc"
   ],
   "featureToggles": {},
   "name": "video-streaming"

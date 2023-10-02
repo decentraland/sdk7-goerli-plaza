@@ -3,9 +3,9 @@
   "description": "SDK7 Template scene",
   "version": "1.0.0",
   "dependencies": {
-    "@dcl/sdk": "next"
+    "@dcl/js-runtime": "7.3.17",
+    "@dcl/sdk": "^7.3.17"
   },
-  "devDependencies": {},
   "engines": {
     "node": ">=16.0.0",
     "npm": ">=6.0.0"
