@@ -1,8 +1,8 @@
 /*    SCORE OBJECT
-    contains all functional components of score objects, including file location model's 
+		contains all functional components of score objects, including file location model's 
 	location path, interface for creation calls, on-object component, and management module
 	(used for creating, enabling, disabling, and destroying splat objects). when placed
-    score objects automatically decay after a period of time (get repooled for use later)
+		score objects automatically decay after a period of time (get repooled for use later)
 */
 
 import { Animator, Billboard, Entity, GltfContainer, Schemas, Transform, engine } from '@dcl/sdk/ecs'
@@ -106,7 +106,7 @@ export module ScoreObject {
     })
     //add animator
     Animator.create(entity, {
-      states: [{ name: 'Pop', clip: 'Pop', playing: true, loop: false, shouldReset: true }]
+      states: [{ clip: 'Pop', playing: true, loop: false, shouldReset: true }]
     })
     //  add component
     ScoreComponent.create(entity, { isActive: true, decayTime: 0 })

@@ -28,13 +28,11 @@ export function createRifle(model: string, position: Position, rotation: Vector3
   Animator.create(rifle, {
     states: [
       {
-        name: 'Blank',
         clip: 'Blank',
         playing: true,
         loop: false
       },
       {
-        name: 'Fire',
         clip: 'Fire',
         playing: false,
         loop: false

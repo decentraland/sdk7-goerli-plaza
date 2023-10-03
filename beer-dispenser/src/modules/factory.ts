@@ -30,22 +30,18 @@ export function createBeerGlass(model: string, position: Vector3) {
     states: [
       {
         clip: 'Blank',
-        name: 'Blank',
         playing: true
       },
       {
         clip: 'PourRed',
-        name: 'PourRed',
         loop: false
       },
       {
         clip: 'PourYellow',
-        name: 'PourYellow',
         loop: false
       },
       {
         clip: 'PourGreen',
-        name: 'PourGreen',
         loop: false
       }
     ]
@@ -83,13 +79,11 @@ export function createTap(tapBeerType: BeerType, dispenseEntity: Entity) {
     states: [
       {
         clip: 'Blank',
-        name: 'Blank',
         playing: true,
         loop: false
       },
       {
         clip: 'Pour',
-        name: 'Pour',
         loop: false
       }
     ]

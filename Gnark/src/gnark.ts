@@ -29,7 +29,6 @@ export function createGnark(startingSegment: number = 1): Entity {
   Animator.create(gnark, {
     states: [
       {
-        name: 'walk',
         clip: 'walk',
         playing: true,
         weight: 1,
@@ -38,7 +37,6 @@ export function createGnark(startingSegment: number = 1): Entity {
         shouldReset: false
       },
       {
-        name: 'turnRight',
         clip: 'turnRight',
         playing: false,
         weight: 1,
@@ -47,7 +45,6 @@ export function createGnark(startingSegment: number = 1): Entity {
         shouldReset: true
       },
       {
-        name: 'raiseDead',
         clip: 'raiseDead',
         playing: false,
         weight: 1,
