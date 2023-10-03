@@ -1,11 +1,11 @@
-import { Button } from './button';
-import { Entity, GltfContainer, Transform, engine, pointerEventsSystem, InputAction } from '@dcl/sdk/ecs';
-import { Quaternion, Vector3 } from '@dcl/sdk/math';
-import { MessageBus } from '@dcl/sdk/message-bus';
+import { Button } from './button'
+import { Entity, GltfContainer, Transform, engine, pointerEventsSystem, InputAction } from '@dcl/sdk/ecs'
+import { Quaternion, Vector3 } from '@dcl/sdk/math'
+import { MessageBus } from '@dcl/sdk/message-bus'
 
 export class Console {
-  private consoleEntity: Entity;
-  
+  private consoleEntity: Entity
+
   constructor(
     position: Vector3,
     rotation: Vector3,
@@ -20,33 +20,27 @@ export class Console {
     button3Model: string,
     button3Anim: string,
     messagebus: MessageBus
-) {
-    
+  ) {
     // Create a new entity
-    this.consoleEntity = engine.addEntity();
+    this.consoleEntity = engine.addEntity()
 
     // Create a quaternion rotation from Euler angles
-    const eulerRotation = Quaternion.fromEulerDegrees(
-      rotation.x,
-      rotation.y,
-      rotation.z
-    );
-
+    const eulerRotation = Quaternion.fromEulerDegrees(rotation.x, rotation.y, rotation.z)
 
     // Set the entity's transform and parent
     Transform.create(this.consoleEntity, {
-       position: position,
-       rotation: eulerRotation,
-       scale: scale,
-       parent: parent
-    });
+      position: position,
+      rotation: eulerRotation,
+      scale: scale,
+      parent: parent
+    })
 
     // Add a 3D model to the entity
     GltfContainer.create(this.consoleEntity, {
-        src: model
-    });
+      src: model
+    })
 
-    const audioClipUrl = 'sounds/click.mp3';
+    const audioClipUrl = 'sounds/click.mp3'
 
     // Create three button instances
     const button1 = new Button(button1Model, position, rotation, scale, audioClipUrl, button1Anim, parent)
@@ -55,48 +49,48 @@ export class Console {
 
     // Set up pointer events for each button instance
     pointerEventsSystem.onPointerDown(
-        {
+      {
         entity: button1.buttonEntity,
         opts: {
-            button: InputAction.IA_POINTER,
-            hoverText: 'Click'
-          }
-        },
-        function () {
-          console.log("clicked entity")
-          button1.press()
-          messagebus.emit('fountainAnim', { ring: targetRing, anim: 1 })
+          button: InputAction.IA_POINTER,
+          hoverText: 'Click'
         }
-    );
+      },
+      function () {
+        console.log('clicked entity')
+        button1.press()
+        messagebus.emit('fountainAnim', { ring: targetRing, anim: 1 })
+      }
+    )
 
     pointerEventsSystem.onPointerDown(
-        {
+      {
         entity: button2.buttonEntity,
         opts: {
-            button: InputAction.IA_POINTER,
-            hoverText: 'Click'
-          }
-        },
-        function () {
-          console.log("clicked entity")
-          button2.press()
-          messagebus.emit('fountainAnim', { ring: targetRing, anim: 2 })
+          button: InputAction.IA_POINTER,
+          hoverText: 'Click'
         }
-    );
+      },
+      function () {
+        console.log('clicked entity')
+        button2.press()
+        messagebus.emit('fountainAnim', { ring: targetRing, anim: 2 })
+      }
+    )
 
-  pointerEventsSystem.onPointerDown(
-        {
+    pointerEventsSystem.onPointerDown(
+      {
         entity: button3.buttonEntity,
         opts: {
-            button: InputAction.IA_POINTER,
-            hoverText: 'Click'
-          }
-        },
-        function () {
-          console.log("clicked entity")
-          button3.press()
-          messagebus.emit('fountainAnim', { ring: targetRing, anim: 3 })
+          button: InputAction.IA_POINTER,
+          hoverText: 'Click'
         }
-    );
+      },
+      function () {
+        console.log('clicked entity')
+        button3.press()
+        messagebus.emit('fountainAnim', { ring: targetRing, anim: 3 })
+      }
+    )
   }
 }
