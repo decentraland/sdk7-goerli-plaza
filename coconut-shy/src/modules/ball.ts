@@ -85,7 +85,6 @@ export function createBall(position: Vector3, cannonMaterial: CANNON.Material, c
   Animator.create(ball, {
     states: [
       {
-        name: 'PickUp',
         clip: 'PickUp',
         playing: false,
         loop: false

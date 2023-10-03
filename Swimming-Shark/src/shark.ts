@@ -21,15 +21,13 @@ export function createShark() {
         loop: true,
         playing: true,
         speed: 0.5,
-        weight: 0.5,
-        name: 'swim'
+        weight: 0.5
       },
       {
         clip: 'bite',
         loop: true,
         playing: false,
-        shouldReset: false,
-        name: 'bite'
+        shouldReset: false
       }
     ]
   })
