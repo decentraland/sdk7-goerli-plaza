@@ -1,6 +1,6 @@
 // Coordinates of path to patrol
 import { Animator, engine, Entity, GltfContainer, Transform } from '@dcl/sdk/ecs'
-import { } from '@dcl/sdk/math'
+import {} from '@dcl/sdk/math'
 
 const point1 = { x: 8, y: 0, z: 8 }
 const point2 = { x: 8, y: 0, z: 24 }
@@ -16,72 +16,72 @@ import { PathDataComponent } from './components/pathData'
 import { TimeOutComponent } from './components/timeOut'
 
 export function createGnark(startingSegment: number = 1): Entity {
-	const gnark = engine.addEntity()
+  const gnark = engine.addEntity()
 
-	Transform.create(gnark, {
-		position: point1
-	})
+  Transform.create(gnark, {
+    position: point1
+  })
 
-	GltfContainer.create(gnark, {
-		src: 'models/gnark.glb'
-	})
+  GltfContainer.create(gnark, {
+    src: 'models/gnark.glb'
+  })
 
-	Animator.create(gnark, {
-		states: [
-			{
-				clip: 'walk',
-				playing: true,
-				weight: 1,
-				speed: 1,
-				loop: true,
-				shouldReset: false
-			},
-			{
-				clip: 'turnRight',
-				playing: false,
-				weight: 1,
-				speed: 1,
-				loop: false,
-				shouldReset: true
-			},
-			{
-				clip: 'raiseDead',
-				playing: false,
-				weight: 1,
-				speed: 1,
-				loop: true,
-				shouldReset: true
-			}
-		]
-	})
+  Animator.create(gnark, {
+    states: [
+      {
+        clip: 'walk',
+        playing: true,
+        weight: 1,
+        speed: 1,
+        loop: true,
+        shouldReset: false
+      },
+      {
+        clip: 'turnRight',
+        playing: false,
+        weight: 1,
+        speed: 1,
+        loop: false,
+        shouldReset: true
+      },
+      {
+        clip: 'raiseDead',
+        playing: false,
+        weight: 1,
+        speed: 1,
+        loop: true,
+        shouldReset: true
+      }
+    ]
+  })
 
-	NPComponent.create(gnark, {
-		state: gnarkStates.TURNING,
-		previousState: gnarkStates.WALKING
-	})
+  NPComponent.create(gnark, {
+    state: gnarkStates.TURNING,
+    previousState: gnarkStates.WALKING
+  })
 
-	PathDataComponent.create(gnark, {
-		path: pathArray,
-		paused: false,
-		origin: startingSegment,
-		target: startingSegment + 1
-	})
+  PathDataComponent.create(gnark, {
+    path: pathArray,
+    paused: false,
+    origin: startingSegment,
+    target: startingSegment + 1
+  })
 
-	MoveTransformComponent.create(gnark, {
-		start: pathArray[startingSegment],
-		end: pathArray[startingSegment + 1],
-		normalizedTime: 0,
-		lerpTime: 0,
-		speed: 0.1,
-		hasFinished: false,
-		interpolationType: 0
-	})
+  MoveTransformComponent.create(gnark, {
+    start: pathArray[startingSegment],
+    end: pathArray[startingSegment + 1],
+    normalizedTime: 0,
+    lerpTime: 0,
+    speed: 0.1,
+    hasFinished: false,
+    interpolationType: 0
+  })
 
-	TimeOutComponent.create(gnark, {
-		timeLeft: 0.9,
-		hasFinished: false,
-		paused: false
-	})
+  TimeOutComponent.create(gnark, {
+    timeLeft: 0.9,
+    hasFinished: false,
+    paused: false
+  })
 
-	return gnark
+  return gnark
 }
