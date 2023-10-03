@@ -6,10 +6,7 @@ import { isMenuVisible, onClapMeterFull, setupUi, toggleMenuVisibility } from '.
 import { ClapMeter, START_ANGLE, clapMeterFull, clapMeterNeedle, clapMeterBoard, COOLDOWN_TIME } from './clapMeter';
 import * as utils from '@dcl-sdk/utils'
 
-
-
 export let isClapping: boolean = false;
-
 
 export function main() {
 	// draw UI

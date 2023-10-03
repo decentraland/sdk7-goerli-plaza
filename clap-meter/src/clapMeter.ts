@@ -3,9 +3,6 @@ import { Quaternion, Vector3 } from '@dcl/sdk/math';
 import * as utils from '@dcl-sdk/utils'
 import { isClapping } from '.';
 
-
-
-
 // Config
 export const START_ANGLE = 350;
 const END_ANGLE = 190;
