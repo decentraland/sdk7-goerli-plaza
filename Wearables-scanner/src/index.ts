@@ -29,8 +29,8 @@ export function main() {
     DoorState.create(door)
     Animator.create(door, {
       states: [
-        { name: 'open', clip: 'Open', loop: false, shouldReset: false },
-        { name: 'close', clip: 'Close', loop: false, shouldReset: false }
+        { clip: 'Open', loop: false, shouldReset: false },
+        { clip: 'Close', loop: false, shouldReset: false }
       ]
     })
   }
@@ -39,9 +39,9 @@ export function main() {
   if (scanner && door) {
     Animator.create(scanner, {
       states: [
-        { name: 'Laser_Action', clip: 'Laser_Action', loop: false, shouldReset: true },
-        { name: 'Allow_Action', clip: 'Allow_Action', loop: false, shouldReset: true },
-        { name: 'NotAllow_Action', clip: 'NotAllow_Action', loop: false, shouldReset: true }
+        { clip: 'Laser_Action', loop: false, shouldReset: true },
+        { clip: 'Allow_Action', loop: false, shouldReset: true },
+        { clip: 'NotAllow_Action', loop: false, shouldReset: true }
       ]
     })
     Animator.playSingleAnimation(scanner, 'NotAllow_Action', true)

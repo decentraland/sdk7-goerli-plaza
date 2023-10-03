@@ -115,6 +115,9 @@
       "path": "Zombie-shooter"
     },
     {
+      "path": "Weather-Simulation"
+    },
+    {
       "path": "Wearables-scanner"
     },
     {
@@ -179,6 +182,9 @@
     },
     {
       "path": "Gnark"
+    },
+    {
+      "path": "Events-API-Board"
     },
     {
       "path": "Dance-floor"
