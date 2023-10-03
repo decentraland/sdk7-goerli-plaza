@@ -16,12 +16,6 @@
     "node": ">=16.0.0",
     "npm": ">=6.0.0"
   },
-  "prettier": {
-    "semi": false,
-    "singleQuote": true,
-    "printWidth": 120,
-    "trailingComma": "none"
-  },
   "scripts": {
     "build": "sdk-commands build",
     "deploy": "sdk-commands deploy",
