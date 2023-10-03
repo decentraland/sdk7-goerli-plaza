@@ -85,6 +85,9 @@
       "path": "coconut-shy"
     },
     {
+      "path": "clap-meter"
+    },
+    {
       "path": "boids"
     },
     {
