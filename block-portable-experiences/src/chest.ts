@@ -57,13 +57,11 @@ export function addChest() {
   Animator.create(chest, {
     states: [
       {
-        name: 'Close',
         clip: 'close',
         playing: false,
         loop: false
       },
       {
-        name: 'Open',
         clip: 'open',
         playing: false,
         loop: false,
@@ -86,7 +84,7 @@ export function addChest() {
         playSound(denySound)
       } else {
         console.log('ALLOWED: no Portable Experience was detected')
-        Animator.playSingleAnimation(chest, 'Open', true)
+        Animator.playSingleAnimation(chest, 'open', true)
         playSound(openClip)
       }
     }

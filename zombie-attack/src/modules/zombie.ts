@@ -32,13 +32,11 @@ export function createZombie(position: Vector3) {
   Animator.create(zombieEntity, {
     states: [
       {
-        name: 'Walking',
         clip: 'Walking',
         playing: true,
         loop: true
       },
       {
-        name: 'Attacking',
         clip: 'Attacking',
         loop: true
       }

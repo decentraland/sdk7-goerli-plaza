@@ -47,13 +47,11 @@ export function createZombie(xPos: number): Entity {
       {
         clip: 'Walking',
         loop: true,
-        name: 'Walk',
         playing: true
       },
       {
         clip: 'Attacking',
         loop: true,
-        name: 'Attack',
         playing: false
       }
     ]

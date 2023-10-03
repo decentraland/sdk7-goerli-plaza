@@ -1,0 +1,346 @@
+{
+    "accessors" : [
+        {
+            "bufferView" : 0,
+            "componentType" : 5121,
+            "count" : 225,
+            "max" : [
+                154
+            ],
+            "min" : [
+                0
+            ],
+            "type" : "SCALAR"
+        },
+        {
+            "bufferView" : 1,
+            "componentType" : 5126,
+            "count" : 155,
+            "max" : [
+                0.3249489963054657,
+                0.33965298533439636,
+                1.0127029418945312
+            ],
+            "min" : [
+                -0.0025730000343173742,
+                -0.03000199981033802,
+                -0.5702810287475586
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 2,
+            "componentType" : 5126,
+            "count" : 155,
+            "max" : [
+                0.9207434058189392,
+                0.9951170086860657,
+                0.6750389337539673
+            ],
+            "min" : [
+                -0.9675588011741638,
+                -0.8764000535011292,
+                -0.8341013789176941
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 3,
+            "componentType" : 5126,
+            "count" : 155,
+            "max" : [
+                0.9979526996612549,
+                0.9276025295257568,
+                0.7873107194900513,
+                1.0
+            ],
+            "min" : [
+                -0.9730566143989563,
+                -0.9998889565467834,
+                -0.6490159034729004,
+                1.0
+            ],
+            "type" : "VEC4"
+        },
+        {
+            "bufferView" : 4,
+            "componentType" : 5126,
+            "count" : 155,
+            "max" : [
+                0.9782999753952026,
+                0.9809000007808208
+            ],
+            "min" : [
+                0.08910000324249268,
+                0.014900028705596924
+            ],
+            "type" : "VEC2"
+        },
+        {
+            "bufferView" : 5,
+            "componentType" : 5121,
+            "count" : 165,
+            "max" : [
+                114
+            ],
+            "min" : [
+                0
+            ],
+            "type" : "SCALAR"
+        },
+        {
+            "bufferView" : 6,
+            "componentType" : 5126,
+            "count" : 115,
+            "max" : [
+                1.1696319580078125,
+                0.25817200541496277,
+                0.659246027469635
+            ],
+            "min" : [
+                0.17924800515174866,
+                0.08358500152826309,
+                0.15225200355052948
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 7,
+            "componentType" : 5126,
+            "count" : 115,
+            "max" : [
+                0.8967253565788269,
+                0.9454329013824463,
+                0.9959410429000854
+            ],
+            "min" : [
+                -0.9031342267990112,
+                -0.9350871443748474,
+                -0.8561357259750366
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 8,
+            "componentType" : 5126,
+            "count" : 115,
+            "max" : [
+                0.9255901575088501,
+                0.9976348280906677,
+                0.9449231028556824,
+                1.0
+            ],
+            "min" : [
+                -0.6084433197975159,
+                -0.9923083782196045,
+                -0.8713972568511963,
+                1.0
+            ],
+            "type" : "VEC4"
+        },
+        {
+            "bufferView" : 9,
+            "componentType" : 5126,
+            "count" : 115,
+            "max" : [
+                0.9825999736785889,
+                0.9809000007808208
+            ],
+            "min" : [
+                0.019099999219179153,
+                0.01380002498626709
+            ],
+            "type" : "VEC2"
+        }
+    ],
+    "asset" : {
+        "generator" : "Khronos Blender glTF 2.0 exporter",
+        "version" : "2.0"
+    },
+    "bufferViews" : [
+        {
+            "buffer" : 0,
+            "byteLength" : 225,
+            "byteOffset" : 0,
+            "target" : 34963
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 1860,
+            "byteOffset" : 228,
+            "target" : 34962
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 1860,
+            "byteOffset" : 2088,
+            "target" : 34962
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 2480,
+            "byteOffset" : 3948,
+            "target" : 34962
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 1240,
+            "byteOffset" : 6428,
+            "target" : 34962
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 165,
+            "byteOffset" : 7668,
+            "target" : 34963
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 1380,
+            "byteOffset" : 7836,
+            "target" : 34962
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 1380,
+            "byteOffset" : 9216,
+            "target" : 34962
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 1840,
+            "byteOffset" : 10596,
+            "target" : 34962
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 920,
+            "byteOffset" : 12436,
+            "target" : 34962
+        }
+    ],
+    "buffers" : [
+        {
+            "byteLength" : 13356,
+            "uri" : "ln2.bin"
+        }
+    ],
+    "materials" : [
+        {
+            "emissiveFactor" : [
+                2.8507919311523438,
+                3.0,
+                0.9996901452541351
+            ],
+            "name" : "light",
+            "pbrMetallicRoughness" : {
+                "baseColorFactor" : [
+                    0.76384856655568,
+                    0.8038277626037598,
+                    0.2678595642522197,
+                    1.0
+                ],
+                "metallicFactor" : 0.0
+            }
+        }
+    ],
+    "meshes" : [
+        {
+            "name" : "lightning_bolt.006",
+            "primitives" : [
+                {
+                    "attributes" : {
+                        "NORMAL" : 2,
+                        "POSITION" : 1,
+                        "TANGENT" : 3,
+                        "TEXCOORD_0" : 4
+                    },
+                    "indices" : 0,
+                    "material" : 0
+                }
+            ]
+        },
+        {
+            "name" : "lightning_bolt",
+            "primitives" : [
+                {
+                    "attributes" : {
+                        "NORMAL" : 7,
+                        "POSITION" : 6,
+                        "TANGENT" : 8,
+                        "TEXCOORD_0" : 9
+                    },
+                    "indices" : 5,
+                    "material" : 0
+                }
+            ]
+        }
+    ],
+    "nodes" : [
+        {
+            "name" : "Camera",
+            "rotation" : [
+                0.483536034822464,
+                0.33687159419059753,
+                -0.20870360732078552,
+                0.7804827094078064
+            ],
+            "translation" : [
+                7.481131553649902,
+                5.34366512298584,
+                6.5076398849487305
+            ]
+        },
+        {
+            "name" : "Lamp",
+            "rotation" : [
+                0.16907575726509094,
+                0.7558802962303162,
+                -0.27217137813568115,
+                0.570947527885437
+            ],
+            "scale" : [
+                1.0,
+                1.0,
+                0.9999999403953552
+            ],
+            "translation" : [
+                4.076245307922363,
+                5.903861999511719,
+                -1.0054539442062378
+            ]
+        },
+        {
+            "mesh" : 1,
+            "name" : "lightning_bolt",
+            "rotation" : [
+                0.7071068286895752,
+                0.0,
+                -0.0,
+                0.7071067094802856
+            ]
+        },
+        {
+            "mesh" : 0,
+            "name" : "lightning_bolt.006",
+            "rotation" : [
+                0.7071068286895752,
+                0.0,
+                -0.0,
+                0.7071067094802856
+            ]
+        }
+    ],
+    "scene" : 0,
+    "scenes" : [
+        {
+            "name" : "Scene",
+            "nodes" : [
+                3,
+                2,
+                1,
+                0
+            ]
+        }
+    ]
+}

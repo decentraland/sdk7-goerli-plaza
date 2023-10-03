@@ -45,8 +45,7 @@ export function main() {
         clip: 'Tree_Action',
         loop: false,
         playing: false,
-        shouldReset: true,
-        name: 'Tree_Action'
+        shouldReset: true
       }
     ]
   })
