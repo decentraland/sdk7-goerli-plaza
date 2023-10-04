@@ -85,6 +85,9 @@
       "path": "coconut-shy"
     },
     {
+      "path": "clap-meter"
+    },
+    {
       "path": "boids"
     },
     {
@@ -200,6 +203,9 @@
     },
     {
       "path": "Block-dog"
+    },
+    {
+      "path": "Block-Fountain"
     },
     {
       "path": "BasicInteractions"
