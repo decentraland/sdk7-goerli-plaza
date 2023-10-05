@@ -37,13 +37,11 @@ export function main() {
     states: [
       {
         clip: 'swim',
-        name: 'swim',
         playing: true,
         loop: true
       },
       {
         clip: 'bite',
-        name: 'bite',
         playing: false,
         loop: false,
         shouldReset: true

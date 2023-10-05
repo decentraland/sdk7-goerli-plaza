@@ -10,15 +10,15 @@ export enum TeamModels {
 const santaModel = 'models/Santa_FullBody.glb'
 const krampusModel = 'models/Grinch_FullBody.glb'
 
+export let CURRENT_TEAM: TeamModels = TeamModels.Santa
+
 const santaStates: PBAnimationState[] = [
   {
-    name: 'Idle',
     clip: 'Idle_Santa',
     loop: true,
     shouldReset: false
   },
   {
-    name: 'Running',
     clip: 'Run_Santa',
     loop: true,
     shouldReset: false
@@ -27,13 +27,11 @@ const santaStates: PBAnimationState[] = [
 
 const krampusStates: PBAnimationState[] = [
   {
-    name: 'Idle',
     clip: 'Idle',
     loop: true,
     shouldReset: false
   },
   {
-    name: 'Running',
     clip: 'Run',
     loop: true,
     shouldReset: false
@@ -75,6 +73,8 @@ export function changeModel(targetModel: TeamModels) {
         src: krampusModel
       })
       animator.states = krampusStates
+      CURRENT_TEAM = TeamModels.Krampus
+
       break
     case TeamModels.Santa:
       console.log('Swap model to Santa')
@@ -82,6 +82,8 @@ export function changeModel(targetModel: TeamModels) {
         src: santaModel
       })
       animator.states = santaStates
+      CURRENT_TEAM = TeamModels.Santa
+
       break
   }
 }
@@ -98,11 +100,20 @@ export function playAnimation(animation: AniamtionState) {
   currentAnimation = animation
   switch (currentAnimation) {
     case AniamtionState.Idle:
-      Animator.playSingleAnimation(modelEntity, 'Idle', false)
+      if (CURRENT_TEAM == TeamModels.Krampus) {
+        Animator.playSingleAnimation(modelEntity, 'Idle', false)
+      } else if (CURRENT_TEAM == TeamModels.Santa) {
+        Animator.playSingleAnimation(modelEntity, 'Idle_Santa', false)
+      }
+
       break
 
     case AniamtionState.Run:
-      Animator.playSingleAnimation(modelEntity, 'Running', false)
+      if (CURRENT_TEAM == TeamModels.Krampus) {
+        Animator.playSingleAnimation(modelEntity, 'Run', false)
+      } else if (CURRENT_TEAM == TeamModels.Santa) {
+        Animator.playSingleAnimation(modelEntity, 'Run_Santa', false)
+      }
       break
   }
 }

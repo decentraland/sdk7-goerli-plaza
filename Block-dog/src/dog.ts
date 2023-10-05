@@ -32,35 +32,30 @@ export function createDog(position: Vector3): Entity {
   Animator.create(dog, {
     states: [
       {
-        name: 'Walking',
         clip: 'Walking',
         playing: false,
         loop: true,
         shouldReset: false
       },
       {
-        name: 'Sitting',
         clip: 'Sitting',
         playing: false,
         loop: false,
         shouldReset: true
       },
       {
-        name: 'Standing',
         clip: 'Standing',
         playing: false,
         loop: false,
         shouldReset: true
       },
       {
-        name: 'Drinking',
         clip: 'Drinking',
         playing: false,
         loop: true,
         shouldReset: true
       },
       {
-        name: 'Idle',
         clip: 'Idle',
         playing: false,
         loop: true,

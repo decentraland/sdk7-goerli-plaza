@@ -30,7 +30,6 @@ export function main() {
   Animator.create(trevorNPCEntity, {
     states: [
       {
-        name: 'idle',
         clip: 'Armature_Idle',
         playing: true,
         loop: true
