@@ -1,6 +1,6 @@
-# Pixel API Project
+# Pixel API
 
-This project provides a REST API for managing pixel data. The API allows you to retrieve, add, and update pixel information in a database. The provided examples utilize restdb.io and SQLite databases. Restdb.io offers a straightforward setup, while SQLite offers more control and portability.
+This directory provides a REST API for managing pixel data. The API allows you to retrieve, add, and update pixel information in a database. The provided examples utilize restdb.io and SQLite databases. Restdb.io offers a straightforward setup, while SQLite offers more control and portability.
 
 ## Getting Started
 
@@ -8,8 +8,7 @@ These instructions will guide you through setting up the project on your local m
 
 ### Prerequisites
 
-- Basic knowledge of REST APIs.
-- A code editor like Visual Studio Code.
+- Restdb account or ftp server with php
 - [Postman](https://www.postman.com/) for testing the API.
 
 ### Database Setup
@@ -19,6 +18,14 @@ These instructions will guide you through setting up the project on your local m
 1. Create an account on [restdb.io](https://restdb.io/).
 2. Follow the instructions to set up a new database.
 3. Restdb.io will automatically generate the API code for you.
+
+The pixels table format is:
+```
+posX: number
+posY: number
+hexColor: string
+_id: string (is auto generated)
+```
    
 > **Note:** The free version of restdb.io has a rate limit of 1 request per second.
 
@@ -36,19 +43,12 @@ These instructions will guide you through setting up the project on your local m
 - **Add Pixels:** Send a POST request to the `/pixels` endpoint with pixel data in the request body to add new pixels.
 - **Update Pixel:** Send a PUT request to the `/pixels/{id}` endpoint with updated pixel data in the request body to update an existing pixel.
 
-### Running the API Locally
-
-- For the restdb.io setup, no further action is needed as it's hosted on restdb.io.
-- For the SQLite setup, upload the files to a PHP-enabled server, and access the API via the server's URL.
 
 ### Additional Resources
 
 - [Restdb.io Documentation](https://restdb.io/docs/)
 - [SQLite Documentation](https://www.sqlite.org/docs.html)
 
-### Contributing
-
-Feel free to submit issues or pull requests to improve the project.
 
 ### License
 
