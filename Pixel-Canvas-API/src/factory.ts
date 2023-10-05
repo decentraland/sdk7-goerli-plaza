@@ -90,7 +90,7 @@ export function createPixel(canvas: Entity, posX: number, posY: number, hexColor
       // Write pixel color into database via API
       executeTask(async () => {
         const updatedPixel = await updateDatabase(id, pos.x, pos.y, playersColor)
-        console.log(updatedPixel)
+        console.log('ApiResponse:', updatedPixel)
         if (!updatedPixel) return
 
         // Send new pixel data to all players in scene

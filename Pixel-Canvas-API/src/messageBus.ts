@@ -11,8 +11,7 @@ export const sceneMessageBus = new MessageBus()
 // So everyone can see the most recent pixels,
 // without calling API all the time
 sceneMessageBus.on('updatePixelColor', (newPixel) => {
-  console.log('MessageBus:')
-  console.log(newPixel)
+  console.log('MessageBus :', newPixel)
   // Get  all entities with custom component Pixel
   const pixels = engine.getEntitiesWith(Pixel)
   for (const [entity] of pixels) {

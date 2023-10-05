@@ -1,6 +1,3 @@
-// color pallette
-// Screenshot!
-
 import { Entity, engine } from '@dcl/sdk/ecs'
 import { getDatabase, initDatabase } from './api'
 import { Quaternion } from '@dcl/sdk/math'
@@ -54,8 +51,8 @@ export async function main() {
   console.log(pixelData)
 
   // Fill canvas with pixel from database
-  pixelData.forEach((pixel: { posX: number; posY: number; color: string; _id: string }) => {
-    createPixel(canvas, pixel.posX, pixel.posY, pixel.color, pixel._id)
+  pixelData.forEach((pixel: { posX: number; posY: number; hexColor: string; _id: string }) => {
+    createPixel(canvas, pixel.posX, pixel.posY, pixel.hexColor, pixel._id)
   })
 
   // Create color picker

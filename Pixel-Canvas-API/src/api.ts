@@ -1,6 +1,6 @@
 // API key here
 const apiKey = '6518855968885408010c01fc'
-const urlRestAPI = 'https://goerliplasapixelcanv-9b7d.restdb.io/rest/pixel'
+const urlRestAPI = 'https://goerliplasapixelcanv-9b7d.restdb.io/rest/pixels'
 
 // Gets all pixel from database via GET API call
 export function getDatabase(): Promise<any> {
@@ -37,7 +37,7 @@ export function initDatabase(canvasWidth: number, canvasHeight: number, color: s
       const pixelData = {
         posX: x,
         posY: y,
-        color: color
+        hexColor: color
       }
       pixels.push(pixelData)
     }
@@ -70,7 +70,7 @@ export function updateDatabase(id: string, posX: number, posY: number, color: st
   const data = {
     posX: posX,
     posY: posY,
-    color: color
+    hexColor: color
   }
 
   // PUT overrides the pixel in database selected by id
