@@ -44,6 +44,11 @@ npm  run start
 
 ## Scene Setup
 
+### Self Hosting
+You can host the database yourself. Please refer to the [/server](/server) directory for more details.
+
+### Managed Hosting
+
 1. Create an account on [restdb.io](https://restdb.io/)
 
 2. Set up a table in the database with the required fields. Restdb.io will autogenerate a REST API for your table.
@@ -53,9 +58,8 @@ The table for this scene should have the following format:
 ```javascript
 posX: number
 posY: number
-color: string
+hexColor: string
 ```
-
 ***CORS Configuration***
 To allow access from a Decentraland scene:
 
