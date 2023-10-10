@@ -159,4 +159,4 @@ _Functionality to upload asset directly in Studio dashboard coming in Q3 2022_
 
 This is the cheapest option, but is significantly harder to set up than the others.
 
-See [ADVANCED-SETUP.md](https://github.com/decentraland/sdk7-goerli-plaza/blob/main/AVDANCED-SETUP.md) for detailed instructions for how to deploy a server, configure it, and install all the necessary command-line tools.
+See [ADVANCED-SETUP.md](https://github.com/decentraland/sdk7-goerli-plaza/blob/main/video-streaming/ADVANCED-SETUP.md) for detailed instructions for how to deploy a server, configure it, and install all the necessary command-line tools.
