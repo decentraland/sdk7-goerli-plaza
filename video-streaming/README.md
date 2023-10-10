@@ -12,14 +12,6 @@ This scene shows you:
 
 ## Try it out
 
-**Install the CLI**
-
-Download and install the Decentraland CLI by running the following command:
-
-```bash
-npm i -g decentraland
-```
-
 **Previewing the scene**
 
 1. Download this full repository from [sdk7-goerli-plaza](https://github.com/decentraland/sdk7-goerli-plaza/tree/main), including this and several other example scenes on SDK7.
@@ -53,6 +45,7 @@ This scene is protected with a standard Apache 2 licence. See the terms and cond
 ### _NOTE: These are just brief notes from my meeting with HPrivakos (will tidy up later...)_
 
 ## Choosing a hosting option
+
 There are a number of options for streaming video. The simplest option is to use a managed hosting provider like [Vimeo](https://vimeo.com/) or [Livepeer Studio](https://livepeer.studio/) where you pay a fee to the provider to manage all the streaming infrastructure. The other recommended alternative is to set up your own server, using free software but paying for hosting on a platform like Digital Ocean. All these options have pros and cons for different scenarios. You should evaluate what's best for you taking into account your needs, technical skills and budget.
 
 ### Managed hosted
@@ -93,12 +86,12 @@ Pros:
 - Allows for **live streaming**
 
 Cons:
+
 - No analytics dashboard
 - Streaming of **pre-loaded videos (VODs)** currently requires using Studio API
 - After 1000 free monthly minutes, costs are calculated as:
-    - $0.005 USD/min for transcoding
-    - $0.015 USD/GB for delivery
-
+  - $0.005 USD/min for transcoding
+  - $0.015 USD/GB for delivery
 
 ### Self-hosted
 
@@ -119,7 +112,6 @@ Cons:
 
 ## Set up Vimeo Pro
 
-
 This is the simplest option, but doesn't allow for live streaming.
 
 1. Create a Vimeo account if you don't have one. Then upgrade to any of the [paid tiers](https://vimeo.com/upgrade) offered there.
@@ -130,7 +122,7 @@ This is the simplest option, but doesn't allow for live streaming.
 
 4. Pick **Distribution**, and scroll to the bottom to Video file links. Copy the last one of these links, the one labeled **HTTP live streaming**.
 
-> Note: The other available links on specific resoltuions often don't work when streamed into Decentraland. Always use the **HTTP Live streaming**. This option adjusts the quality of the video dynamically depending on the player's connection, leading to an optimal result. Note that this link is different from performing a streaming of a live event: players will each see the video from start to finish, without necessarily being in sync with what each other is seeing. 
+> Note: The other available links on specific resoltuions often don't work when streamed into Decentraland. Always use the **HTTP Live streaming**. This option adjusts the quality of the video dynamically depending on the player's connection, leading to an optimal result. Note that this link is different from performing a streaming of a live event: players will each see the video from start to finish, without necessarily being in sync with what each other is seeing.
 
 5. Paste the link into your scene, replacing the placeholder on the `VideoClip` object.
 
@@ -152,18 +144,19 @@ This is the most powerful option, but is significantly more expensive than the o
 The first step is to create a [Livepeer Studio account](https://livepeer.studio/register).
 
 **Live streaming**
+
 1. While signed in, go to the [Streams](https://livepeer.studio/dashboard/streams) section
 2. Click the `+ Create stream` button
 3. Give your stream a name in the prompt. Click `Create stream` button when finished.
-4. For broadcasting (via broadcasting software like OBS), use the the `RTMP ingest URL` and `Stream key` found on the newly created stream page. 
+4. For broadcasting (via broadcasting software like OBS), use the the `RTMP ingest URL` and `Stream key` found on the newly created stream page.
 5. For playback in a video player, use the `Playback URL` url.
 
 **Pre-loaded video (VOD) streaming**
 
-*Functionality to upload asset directly in Studio dashboard coming in Q3 2022*
+_Functionality to upload asset directly in Studio dashboard coming in Q3 2022_
 
 ## Custom Server on Digital Ocean (Advanced)
 
 This is the cheapest option, but is significantly harder to set up than the others.
 
-See [ADVANCED-SETUP.md](https://github.com/decentraland-scenes/video-streaming/blob/master/AVDANCED-SETUP.md) for detailed instructions for how to deploy a server, configure it, and install all the necessary command-line tools.
+See [ADVANCED-SETUP.md](https://github.com/decentraland/sdk7-goerli-plaza/blob/main/AVDANCED-SETUP.md) for detailed instructions for how to deploy a server, configure it, and install all the necessary command-line tools.
