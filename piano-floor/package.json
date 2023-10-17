@@ -1,0 +1,19 @@
+{
+  "name": "piano-floor-example-scene-sdk7",
+  "description": "Piano Floor Example Scene SDK7",
+  "version": "1.0.0",
+  "dependencies": {
+    "@dcl-sdk/utils": "next"
+  },
+  "devDependencies": {
+    "@dcl/js-runtime": "next",
+    "@dcl/sdk": "next"
+  },
+  "scripts": {
+    "build": "sdk-commands build",
+    "deploy": "sdk-commands deploy",
+    "start": "sdk-commands start",
+    "upgrade-sdk": "npm install --save-dev @dcl/sdk@latest",
+    "upgrade-sdk:next": "npm install --save-dev @dcl/sdk@next"
+  }
+}
