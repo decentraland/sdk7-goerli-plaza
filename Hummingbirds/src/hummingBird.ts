@@ -1,17 +1,49 @@
-import { Animator, CameraMode, engine, Entity, GltfContainer, Schemas, Transform } from '@dcl/sdk/ecs'
+import {
+  Animator,
+  ColliderLayer,
+  Entity,
+  GltfContainer,
+  InputAction,
+  MeshCollider,
+  PointerEventType,
+  PointerEvents,
+  SyncEntity,
+  Transform,
+  engine,
+  inputSystem
+} from '@dcl/sdk/ecs'
 import { Quaternion } from '@dcl/sdk/math'
 import * as utils from '@dcl-sdk/utils'
+import { NetworkEntityFactory } from '@dcl/sdk/network-transport/types'
 
-export function createHummingBird() {
+export const Bird = engine.defineComponent('bird', {})
+
+engine.addSystem(() => {
+  for (const [entity] of engine.getEntitiesWith(Bird, PointerEvents)) {
+    if (inputSystem.isTriggered(InputAction.IA_POINTER, PointerEventType.PET_DOWN, entity)) {
+      engine.removeEntity(entity)
+    }
+  }
+})
+
+export function createHummingBird(engine: NetworkEntityFactory) {
   const bird = engine.addEntity()
+  Bird.create(bird)
+  SyncEntity.create(bird, { componentIds: [Transform.componentId, Animator.componentId] })
   Transform.create(bird, {
     position: { x: 13, y: 3.5, z: 5 },
     rotation: { x: 0, y: 0, z: 0, w: 1 },
     scale: { x: 0.2, y: 0.2, z: 0.2 }
   })
+
   GltfContainer.create(bird, {
-    src: 'models/hummingbird.glb'
+    src: 'models/hummingbird.glb',
+    visibleMeshesCollisionMask: ColliderLayer.CL_POINTER,
+    invisibleMeshesCollisionMask: ColliderLayer.CL_POINTER
   })
+
+  MeshCollider.setSphere(bird, ColliderLayer.CL_POINTER)
+
   Animator.create(bird, {
     states: [
       {
@@ -36,9 +68,16 @@ export function createHummingBird() {
     ]
   })
 
+  PointerEvents.create(bird, {
+    pointerEvents: [
+      { eventType: PointerEventType.PET_DOWN, eventInfo: { button: InputAction.IA_POINTER, hoverText: 'KILL' } }
+    ]
+  })
+
   // fly pattern
   utils.timers.setInterval(() => {
-    const birdTransform = Transform.getMutable(bird)
+    const birdTransform = Transform.getMutableOrNull(bird)
+    if (!birdTransform) return
 
     // next target
     const nextPos = {
@@ -72,10 +111,12 @@ export function createHummingBird() {
 export function randomHeadMovement(bird: Entity) {
   const anim = Math.random()
   if (anim < 0.2) {
-    const look = Animator.getClip(bird, 'look')
+    const look = Animator.getClipOrNull(bird, 'look')
+    if (!look) return
     look.playing = true
   } else if (anim > 0.8) {
-    const shake = Animator.getClip(bird, 'shake')
+    const shake = Animator.getClipOrNull(bird, 'shake')
+    if (!shake) return
     shake.playing = true
   }
 }

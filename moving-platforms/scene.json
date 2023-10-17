@@ -5,6 +5,9 @@
     "title": "moving-platforms",
     "favicon": "favicon_asset"
   },
+	"worldConfiguration" : {
+		"name": "maximocossetti.dcl.eth"
+	},
   "contact": {
     "name": "decentraland",
     "email": ""
