@@ -112,12 +112,7 @@ export function buildScene() {
   })
   Transform.create(rusticMerchantFishStand, {
     position: Vector3.create(6.51444149017334, 0, 13),
-    rotation: Quaternion.create(
-      -1.5394153601527394e-15,
-      -0.7071068286895752,
-      8.429369557916289e-8,
-      0.7071068286895752
-    ),
+    rotation: Quaternion.create(-1.5394153601527394e-15, -0.7071068286895752, 8.429369557916289e-8, 0.7071068286895752),
     scale: Vector3.create(1.0000107288360596, 1, 1.0000107288360596),
     parent: scene
   })
@@ -137,12 +132,7 @@ export function buildScene() {
   })
   Transform.create(rusticCoveredMerchantStand, {
     position: Vector3.create(6.51444149017334, 0, 11),
-    rotation: Quaternion.create(
-      -1.5394153601527394e-15,
-      -0.7071068286895752,
-      8.429369557916289e-8,
-      0.7071068286895752
-    ),
+    rotation: Quaternion.create(-1.5394153601527394e-15, -0.7071068286895752, 8.429369557916289e-8, 0.7071068286895752),
     scale: Vector3.create(1.0000088214874268, 1, 1.0000088214874268),
     parent: scene
   })
@@ -162,12 +152,7 @@ export function buildScene() {
   })
   Transform.create(rusticCoveredMerchantStand3, {
     position: Vector3.create(2, 0, 12.5),
-    rotation: Quaternion.create(
-      -1.1023608648087421e-15,
-      0.7806753516197205,
-      -9.306374693096586e-8,
-      0.6249369382858276
-    ),
+    rotation: Quaternion.create(-1.1023608648087421e-15, 0.7806753516197205, -9.306374693096586e-8, 0.6249369382858276),
     scale: Vector3.create(1.0000100135803223, 1, 1.0000100135803223),
     parent: scene
   })
@@ -178,12 +163,7 @@ export function buildScene() {
   })
   Transform.create(rusticMerchantStand, {
     position: Vector3.create(1.7751564979553223, 0, 9.83009147644043),
-    rotation: Quaternion.create(
-      1.1038385137852273e-15,
-      0.7071068286895752,
-      -8.429368847373553e-8,
-      0.7071067690849304
-    ),
+    rotation: Quaternion.create(1.1038385137852273e-15, 0.7071068286895752, -8.429368847373553e-8, 0.7071067690849304),
     parent: scene
   })
 
@@ -193,12 +173,7 @@ export function buildScene() {
   })
   Transform.create(cafeStreetSign, {
     position: Vector3.create(10, 0, 3.5),
-    rotation: Quaternion.create(
-      -1.050000167921502e-14,
-      -0.3896034359931946,
-      4.644433104772361e-8,
-      -0.9209827780723572
-    ),
+    rotation: Quaternion.create(-1.050000167921502e-14, -0.3896034359931946, 4.644433104772361e-8, -0.9209827780723572),
     scale: Vector3.create(1.0000003576278687, 1, 1.0000003576278687),
     parent: scene
   })
@@ -240,7 +215,7 @@ export function buildScene() {
     textColor: Color4.White(),
     width: 20,
     height: 10,
-    textAlign: TextAlignMode.TAM_MIDDLE_CENTER,
+    textAlign: TextAlignMode.TAM_MIDDLE_CENTER
   })
 
   const signpost2 = engine.addEntity()
@@ -249,12 +224,7 @@ export function buildScene() {
   })
   Transform.create(signpost2, {
     position: Vector3.create(6.01444149017334, 0, 15),
-    rotation: Quaternion.create(
-      -1.7015905116955343e-15,
-      0,
-      -6.982296401520131e-16,
-      1
-    ),
+    rotation: Quaternion.create(-1.7015905116955343e-15, 0, -6.982296401520131e-16, 1),
     scale: Vector3.create(0.9999994039535522, 1, 0.9999994039535522),
     parent: scene
   })
@@ -271,7 +241,7 @@ export function buildScene() {
     textColor: Color4.White(),
     width: 20,
     height: 10,
-    textAlign: TextAlignMode.TAM_MIDDLE_CENTER,
+    textAlign: TextAlignMode.TAM_MIDDLE_CENTER
   })
 
   const signpostRoot = engine.addEntity()
@@ -280,12 +250,7 @@ export function buildScene() {
   })
   Transform.create(signpostRoot, {
     position: Vector3.create(10.355362892150879, 0, 5),
-    rotation: Quaternion.create(
-      -6.65064594497863e-16,
-      -0.4713967442512512,
-      5.6194867426029305e-8,
-      0.8819212913513184
-    ),
+    rotation: Quaternion.create(-6.65064594497863e-16, -0.4713967442512512, 5.6194867426029305e-8, 0.8819212913513184),
     parent: scene
   })
   const signpostRootText = engine.addEntity()
@@ -296,12 +261,12 @@ export function buildScene() {
     parent: signpostRoot
   })
   TextShape.create(signpostRootText, {
-    text: 'Isn\'t nature incredible?\nJust look at that!\nJust Wow!',
+    text: "Isn't nature incredible?\nJust look at that!\nJust Wow!",
     fontSize: 20,
     textColor: Color4.White(),
     width: 20,
     height: 10,
-    textAlign: TextAlignMode.TAM_MIDDLE_CENTER,
+    textAlign: TextAlignMode.TAM_MIDDLE_CENTER
   })
 
   const signpostRoot2 = engine.addEntity()
@@ -310,17 +275,8 @@ export function buildScene() {
   })
   Transform.create(signpostRoot2, {
     position: Vector3.create(12.355362892150879, 0, 6),
-    rotation: Quaternion.create(
-      -1.10062582369541e-15,
-      -0.6343932747840881,
-      7.562556447737734e-8,
-      0.7730104327201843
-    ),
-    scale: Vector3.create(
-      1.4099667072296143,
-      1.409968376159668,
-      1.4099667072296143
-    ),
+    rotation: Quaternion.create(-1.10062582369541e-15, -0.6343932747840881, 7.562556447737734e-8, 0.7730104327201843),
+    scale: Vector3.create(1.4099667072296143, 1.409968376159668, 1.4099667072296143),
     parent: scene
   })
   const signpostRoot2Text = engine.addEntity()
@@ -336,7 +292,7 @@ export function buildScene() {
     textColor: Color4.White(),
     width: 20,
     height: 10,
-    textAlign: TextAlignMode.TAM_MIDDLE_CENTER,
+    textAlign: TextAlignMode.TAM_MIDDLE_CENTER
   })
 
   const signpostWood = engine.addEntity()
@@ -345,12 +301,7 @@ export function buildScene() {
   })
   Transform.create(signpostWood, {
     position: Vector3.create(10.855362892150879, 0, 9.5),
-    rotation: Quaternion.create(
-      -1.5513695361373393e-15,
-      -0.7997391223907471,
-      9.53363255007389e-8,
-      0.600347638130188
-    ),
+    rotation: Quaternion.create(-1.5513695361373393e-15, -0.7997391223907471, 9.53363255007389e-8, 0.600347638130188),
     scale: Vector3.create(0.9999958276748657, 1, 0.9999958276748657),
     parent: scene
   })
@@ -367,7 +318,7 @@ export function buildScene() {
     textColor: Color4.White(),
     width: 20,
     height: 10,
-    textAlign: TextAlignMode.TAM_MIDDLE_CENTER,
+    textAlign: TextAlignMode.TAM_MIDDLE_CENTER
   })
 
   const signpostGolden = engine.addEntity()
@@ -376,12 +327,7 @@ export function buildScene() {
   })
   Transform.create(signpostGolden, {
     position: Vector3.create(13, 0, 10.5),
-    rotation: Quaternion.create(
-      3.2226755494740985e-15,
-      -0.8135725855827332,
-      9.698539571445508e-8,
-      0.5814635157585144
-    ),
+    rotation: Quaternion.create(3.2226755494740985e-15, -0.8135725855827332, 9.698539571445508e-8, 0.5814635157585144),
     scale: Vector3.create(1.0000009536743164, 1, 1.0000009536743164),
     parent: scene
   })
@@ -398,7 +344,7 @@ export function buildScene() {
     textColor: Color4.White(),
     width: 20,
     height: 10,
-    textAlign: TextAlignMode.TAM_MIDDLE_CENTER,
+    textAlign: TextAlignMode.TAM_MIDDLE_CENTER
   })
 
   const roundSignpost = engine.addEntity()
@@ -431,6 +377,6 @@ export function buildScene() {
     outlineWidth: 0.3,
     width: 20,
     height: 10,
-    textAlign: TextAlignMode.TAM_MIDDLE_CENTER,
+    textAlign: TextAlignMode.TAM_MIDDLE_CENTER
   })
 }

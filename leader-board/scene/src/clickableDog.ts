@@ -1,4 +1,14 @@
-import { engine, GltfContainer, Transform, InputAction, pointerEventsSystem, TransformTypeWithOptionals, AudioSource, Entity, PointerEvents } from '@dcl/sdk/ecs'
+import {
+  engine,
+  GltfContainer,
+  Transform,
+  InputAction,
+  pointerEventsSystem,
+  TransformTypeWithOptionals,
+  AudioSource,
+  Entity,
+  PointerEvents
+} from '@dcl/sdk/ecs'
 import * as ui from 'dcl-ui-toolkit'
 import * as utils from '@dcl-sdk/utils'
 import { ReactEcsRenderer } from '@dcl/sdk/react-ecs'
@@ -15,15 +25,12 @@ export class ClickableDog {
   clickSound: Entity
   bellSound: Entity
 
-  constructor(
-    transform: TransformTypeWithOptionals,
-    endGameCallback: (count: number) => void
-  ) {
+  constructor(transform: TransformTypeWithOptionals, endGameCallback: (count: number) => void) {
     ReactEcsRenderer.setUiRenderer(ui.render)
 
-    this.clickCounter = ui.createComponent(ui.UICounter, { 
+    this.clickCounter = ui.createComponent(ui.UICounter, {
       value: 0,
-      startHidden: false,
+      startHidden: false
     })
 
     this.dogStatue = engine.addEntity()
@@ -56,15 +63,14 @@ export class ClickableDog {
         if (!this.sessionActive) {
           this.clickCounter.set(0)
           this.sessionActive = true
-  
+
           utils.timers.setTimeout(() => {
             this.endGame()
             endGameCallback(this.clickCounter.read())
-  
+
             utils.timers.setTimeout(() => {
               this.restartGame()
             }, restartTime)
-  
           }, timeLimit)
         }
 

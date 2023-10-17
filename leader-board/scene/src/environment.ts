@@ -22,12 +22,7 @@ export function buildScene() {
   })
   Transform.create(classicBench, {
     position: Vector3.create(12.5, 0, 11.5),
-    rotation: Quaternion.create(
-      0,
-      -0.2902846932411194,
-      3.4604628496026635e-8,
-      0.9569403529167175
-    ),
+    rotation: Quaternion.create(0, -0.2902846932411194, 3.4604628496026635e-8, 0.9569403529167175),
     parent: scene
   })
 
@@ -109,12 +104,7 @@ export function buildScene() {
   })
   Transform.create(ballDroid, {
     position: Vector3.create(3.5, 2.4617645740509033, 10.160882949829102),
-    rotation: Quaternion.create(
-      -4.3225023034628926e-15,
-      0.4927974045276642,
-      -5.87460284862118e-8,
-      0.8701441287994385
-    ),
+    rotation: Quaternion.create(-4.3225023034628926e-15, 0.4927974045276642, -5.87460284862118e-8, 0.8701441287994385),
     scale: Vector3.create(1.0000085830688477, 1, 1.0000085830688477),
     parent: scene
   })
@@ -147,7 +137,7 @@ export function buildScene() {
     textColor: Color4.White(),
     width: 20,
     height: 10,
-    textAlign: TextAlignMode.TAM_MIDDLE_CENTER,
+    textAlign: TextAlignMode.TAM_MIDDLE_CENTER
   })
 
   const signpostTree = engine.addEntity()
@@ -155,11 +145,7 @@ export function buildScene() {
     src: 'models/Sign_Arrow.glb'
   })
   Transform.create(signpostTree, {
-    position: Vector3.create(
-      5.163928985595703,
-      0.5730905532836914,
-      12.90584945678711
-    ),
+    position: Vector3.create(5.163928985595703, 0.5730905532836914, 12.90584945678711),
     rotation: Quaternion.create(
       1.2258724139686383e-14,
       0.9999500513076782,
@@ -184,7 +170,7 @@ export function buildScene() {
     outlineWidth: 0.4,
     width: 20,
     height: 10,
-    textAlign: TextAlignMode.TAM_MIDDLE_CENTER,
+    textAlign: TextAlignMode.TAM_MIDDLE_CENTER
   })
 
   const signpostTree2 = engine.addEntity()
@@ -210,14 +196,14 @@ export function buildScene() {
     parent: signpostTree2
   })
   TextShape.create(signpostTree2Text, {
-    text: 'Who\'s a good boy?',
+    text: "Who's a good boy?",
     fontSize: 30,
     textColor: Color4.fromHexString('#8cfdff'),
     outlineColor: Color4.fromHexString('#8cfdff'),
     outlineWidth: 0.4,
     width: 20,
     height: 10,
-    textAlign: TextAlignMode.TAM_MIDDLE_CENTER,
+    textAlign: TextAlignMode.TAM_MIDDLE_CENTER
   })
 
   const indicatorArrow = engine.addEntity()

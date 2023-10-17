@@ -5,7 +5,7 @@ import { signedFetch } from '~system/SignedFetch'
 
 // external servers being used by the project - Please change these to your own if working on something else!
 // const fireBaseServer = 'http://localhost:5001/dcl-guestbook-e4ae4/us-central1/app/'  // running firebase function locally
-const fireBaseServer = 'https://us-central1-dcl-guestbook-e4ae4.cloudfunctions.net/app/'  // after deploy
+const fireBaseServer = 'https://us-central1-dcl-guestbook-e4ae4.cloudfunctions.net/app/' // after deploy
 
 const linesPerGuestBookPage = 8
 var signatureList: any[]
@@ -14,24 +14,24 @@ var signatureList: any[]
 export function fetchSignatures() {
   executeTask(async () => {
     try {
-      const response = await signedFetch({ 
-        url: fireBaseServer + 'get-signatures', 
+      const response = await signedFetch({
+        url: fireBaseServer + 'get-signatures',
         init: {
-          headers: { "Content-Type": "application/json" },
-          method: "GET"
+          headers: { 'Content-Type': 'application/json' },
+          method: 'GET'
         }
       })
 
       if (!response.body) {
-        throw new Error("Invalid response")
+        throw new Error('Invalid response')
       }
-  
+
       let json = await JSON.parse(response.body)
-  
-      console.log("Response received: ", json)
+
+      console.log('Response received: ', json)
 
       if (!json.valid) {
-        throw new Error("Does not pass validation check")
+        throw new Error('Does not pass validation check')
       }
 
       let allSignatures = json.allSignatures
@@ -41,15 +41,13 @@ export function fetchSignatures() {
       let signaturePage = 0
       signatureList = ['']
       for (let i = 0; i < allSignatures.length; i++) {
-        signatureList[signaturePage] = signatureList[signaturePage].concat(
-          allSignatures[i].name
-        )
+        signatureList[signaturePage] = signatureList[signaturePage].concat(allSignatures[i].name)
         signatureList[signaturePage] = signatureList[signaturePage].concat(' - ')
         const lines = signatureList[signaturePage].split('\n')
         if (lines[lines.length - 1].length > 20) {
           signatureList[signaturePage] = signatureList[signaturePage].concat('\n')
         }
-    
+
         if (lines.length >= linesPerGuestBookPage) {
           signaturePage += 1
           signatureList.push('')
@@ -92,11 +90,11 @@ export function signGuestbook() {
     }
 
     try {
-      const response = await signedFetch({ 
-        url: fireBaseServer + 'add-signature', 
+      const response = await signedFetch({
+        url: fireBaseServer + 'add-signature',
         init: {
-          headers: { "Content-Type": "application/json" },
-          method: "POST",
+          headers: { 'Content-Type': 'application/json' },
+          method: 'POST',
           body: JSON.stringify({
             id: (await userData).userId,
             name: (await userData).displayName
@@ -105,15 +103,15 @@ export function signGuestbook() {
       })
 
       if (!response.body) {
-        throw new Error("Invalid response")
+        throw new Error('Invalid response')
       }
-  
+
       let json = await JSON.parse(response.body)
-  
-      console.log("Response received: ", json)
+
+      console.log('Response received: ', json)
 
       if (!json.valid) {
-        throw new Error("Does not pass validation check")
+        throw new Error('Does not pass validation check')
       }
 
       closeUi()

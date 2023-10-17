@@ -1,17 +1,20 @@
-import { Vector3 } from "@dcl/sdk/math";
-import { ClickableDog } from "./clickableDog";
-import { buildScene } from "./environment";
-import { LeaderBoard } from "./leaderboard";
+import { Vector3 } from '@dcl/sdk/math'
+import { ClickableDog } from './clickableDog'
+import { buildScene } from './environment'
+import { LeaderBoard } from './leaderboard'
 import * as utils from '@dcl-sdk/utils'
-import { fetchScores, publishScore } from "./serverHandler";
+import { fetchScores, publishScore } from './serverHandler'
 
 export function main() {
   buildScene()
 
-  const leaderboard = new LeaderBoard({
-    position: Vector3.create(1, 0, 9.5),
-    scale: Vector3.create(1.8453333377838135, 1.8453333377838135, 6)
-  }, 5)
+  const leaderboard = new LeaderBoard(
+    {
+      position: Vector3.create(1, 0, 9.5),
+      scale: Vector3.create(1.8453333377838135, 1.8453333377838135, 6)
+    },
+    5
+  )
 
   fetchScores(leaderboard)
 

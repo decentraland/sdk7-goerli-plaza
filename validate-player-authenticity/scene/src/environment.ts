@@ -1,4 +1,13 @@
-import { ColliderLayer, engine, Entity, GltfContainer, MeshCollider, MeshRenderer, Transform, VisibilityComponent } from '@dcl/sdk/ecs'
+import {
+  ColliderLayer,
+  engine,
+  Entity,
+  GltfContainer,
+  MeshCollider,
+  MeshRenderer,
+  Transform,
+  VisibilityComponent
+} from '@dcl/sdk/ecs'
 import { Quaternion, Vector3 } from '@dcl/sdk/math'
 
 export class Scene {
@@ -47,12 +56,7 @@ export class Scene {
     })
     Transform.create(this.theFountainOfBrokenDreams, {
       position: Vector3.create(8, 0, 7.5),
-      rotation: Quaternion.create(
-        8.860399791456633e-16,
-        0.7071068286895752,
-        -8.429368847373553e-8,
-        0.7071067690849304
-      ),
+      rotation: Quaternion.create(8.860399791456633e-16, 0.7071068286895752, -8.429368847373553e-8, 0.7071067690849304),
       parent: scene
     })
 
@@ -93,7 +97,7 @@ export class Scene {
     VisibilityComponent.create(this.forestMaidenStatue, {
       visible: false
     })
-}
+  }
 
   public passedValidation(): void {
     VisibilityComponent.getMutable(this.forestMaidenStatue).visible = true

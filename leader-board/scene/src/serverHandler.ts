@@ -1,4 +1,4 @@
-import { LeaderBoard } from "./leaderboard";
+import { LeaderBoard } from './leaderboard'
 import { executeTask } from '@dcl/sdk/ecs'
 import { UserData, getUserData } from '~system/UserIdentity'
 import { signedFetch } from '~system/SignedFetch'
@@ -11,24 +11,24 @@ const fireBaseServer = 'https://us-central1-dcl-leaderboard-d4629.cloudfunctions
 export function fetchScores(leaderboard: LeaderBoard) {
   executeTask(async () => {
     try {
-      const response = await signedFetch({ 
-        url: fireBaseServer + 'get-scores', 
+      const response = await signedFetch({
+        url: fireBaseServer + 'get-scores',
         init: {
-          headers: { "Content-Type": "application/json" },
-          method: "GET"
+          headers: { 'Content-Type': 'application/json' },
+          method: 'GET'
         }
       })
 
       if (!response.body) {
-        throw new Error("Invalid response")
+        throw new Error('Invalid response')
       }
-  
+
       let json = await JSON.parse(response.body)
-  
-      console.log("Response received: ", json)
+
+      console.log('Response received: ', json)
 
       if (!json.valid) {
-        throw new Error("Does not pass validation check")
+        throw new Error('Does not pass validation check')
       }
 
       const allScores = await json.topTen
@@ -58,11 +58,11 @@ export function publishScore(score: number, leaderboard: LeaderBoard) {
     }
 
     try {
-      const response = await signedFetch({ 
-        url: fireBaseServer + 'publish-score', 
+      const response = await signedFetch({
+        url: fireBaseServer + 'publish-score',
         init: {
-          headers: { "Content-Type": "application/json" },
-          method: "POST",
+          headers: { 'Content-Type': 'application/json' },
+          method: 'POST',
           body: JSON.stringify({
             id: (await userData).userId,
             name: (await userData).displayName,
@@ -72,15 +72,15 @@ export function publishScore(score: number, leaderboard: LeaderBoard) {
       })
 
       if (!response.body) {
-        throw new Error("Invalid response")
+        throw new Error('Invalid response')
       }
-  
+
       let json = await JSON.parse(response.body)
-  
-      console.log("Response received: ", json)
+
+      console.log('Response received: ', json)
 
       if (!json.valid) {
-        throw new Error("Does not pass validation check")
+        throw new Error('Does not pass validation check')
       }
 
       console.log('published score')

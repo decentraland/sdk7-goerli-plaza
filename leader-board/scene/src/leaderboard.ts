@@ -1,13 +1,18 @@
-import { Entity, GltfContainer, TextAlignMode, TextShape, Transform, TransformTypeWithOptionals, engine } from "@dcl/sdk/ecs"
-import { Color4, Quaternion, Vector3 } from "@dcl/sdk/math"
+import {
+  Entity,
+  GltfContainer,
+  TextAlignMode,
+  TextShape,
+  Transform,
+  TransformTypeWithOptionals,
+  engine
+} from '@dcl/sdk/ecs'
+import { Color4, Quaternion, Vector3 } from '@dcl/sdk/math'
 
 export class LeaderBoard {
   currentData: LeaderBoardRow[] = []
 
-  constructor(
-    transform: TransformTypeWithOptionals,
-    size: number
-  ) {
+  constructor(transform: TransformTypeWithOptionals, size: number) {
     const smallStoneWall = engine.addEntity()
     GltfContainer.create(smallStoneWall, {
       src: 'models/FenceStoneTallSmall_01/FenceStoneTallSmall_01.glb'
@@ -27,7 +32,7 @@ export class LeaderBoard {
       textColor: Color4.White(),
       width: 20,
       height: 10,
-      textAlign: TextAlignMode.TAM_MIDDLE_CENTER,
+      textAlign: TextAlignMode.TAM_MIDDLE_CENTER
     })
 
     for (let i = 0; i < size; i++) {
@@ -52,12 +57,7 @@ export class LeaderBoardRow {
   nameText: Entity
   scoreText: Entity
 
-  constructor(
-    parent: Entity,
-    index: number,
-    name: string,
-    score: string
-  ) {
+  constructor(parent: Entity, index: number, name: string, score: string) {
     this.nameText = engine.addEntity()
     Transform.create(this.nameText, {
       position: Vector3.create(-5, index * -1 - 2.7, -0.5),
@@ -69,7 +69,7 @@ export class LeaderBoardRow {
       textColor: Color4.White(),
       width: 20,
       height: 10,
-      textAlign: TextAlignMode.TAM_MIDDLE_LEFT,
+      textAlign: TextAlignMode.TAM_MIDDLE_LEFT
     })
 
     this.scoreText = engine.addEntity()
@@ -83,10 +83,10 @@ export class LeaderBoardRow {
       textColor: Color4.Green(),
       width: 20,
       height: 10,
-      textAlign: TextAlignMode.TAM_MIDDLE_RIGHT,
+      textAlign: TextAlignMode.TAM_MIDDLE_RIGHT
     })
   }
-  
+
   updateValue(name: string, score: string) {
     TextShape.getMutable(this.nameText).text = name
     TextShape.getMutable(this.scoreText).text = score

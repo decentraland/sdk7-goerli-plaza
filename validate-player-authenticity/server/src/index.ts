@@ -16,18 +16,13 @@ app.use(cors({ origin: true }))
 app.get(
   '/check-validity',
   dclExpress({ expiration: VALID_SIGNATURE_TOLERANCE_INTERVAL_MS }),
-  async (
-    req: Request & dcl.DecentralandSignatureData<Metadata>,
-    res: Response
-  ) => {
+  async (req: Request & dcl.DecentralandSignatureData<Metadata>, res: Response) => {
     try {
       await runChecks(req, VALID_PARCEL)
       return res.status(200).send({ valid: true, msg: 'Valid request' })
     } catch (error) {
       console.log(error)
-      return res
-        .status(400)
-        .send({ valid: false, error: `Can't validate your request` })
+      return res.status(400).send({ valid: false, error: `Can't validate your request` })
     }
   }
 )

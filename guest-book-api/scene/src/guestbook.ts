@@ -1,10 +1,15 @@
-import { engine, GltfContainer, Transform, InputAction, pointerEventsSystem, TransformTypeWithOptionals } from '@dcl/sdk/ecs'
+import {
+  engine,
+  GltfContainer,
+  Transform,
+  InputAction,
+  pointerEventsSystem,
+  TransformTypeWithOptionals
+} from '@dcl/sdk/ecs'
 import { setupUi, showUi } from './ui'
 
 export class GuestBook {
-  constructor(
-    transform: TransformTypeWithOptionals,
-  ) {
+  constructor(transform: TransformTypeWithOptionals) {
     setupUi()
 
     const guestBook = engine.addEntity()
@@ -14,7 +19,7 @@ export class GuestBook {
     Transform.create(guestBook, transform)
 
     pointerEventsSystem.onPointerDown(
-      { entity: guestBook, opts: { button: InputAction.IA_POINTER, hoverText: "Open" } },
+      { entity: guestBook, opts: { button: InputAction.IA_POINTER, hoverText: 'Open' } },
       () => {
         showUi()
       }
