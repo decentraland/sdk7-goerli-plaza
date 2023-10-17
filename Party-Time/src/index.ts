@@ -1,4 +1,13 @@
-import { ColliderLayer, InputAction, MeshCollider, MeshRenderer, TextShape, Transform, engine, pointerEventsSystem } from '@dcl/sdk/ecs'
+import {
+  ColliderLayer,
+  InputAction,
+  MeshCollider,
+  MeshRenderer,
+  TextShape,
+  Transform,
+  engine,
+  pointerEventsSystem
+} from '@dcl/sdk/ecs'
 import { buildScene } from './sceneFactory'
 import { startParty } from './startParty'
 import { Quaternion, Vector3 } from '@dcl/sdk/math'
@@ -23,33 +32,35 @@ async function addStartNowButton() {
   const position = Vector3.create(12, 1.4, 14.5)
   Transform.create(boxEntity, {
     position,
-    scale: Vector3.create(.5, .5, .5),
+    scale: Vector3.create(0.5, 0.5, 0.5),
     rotation: Quaternion.fromLookAt(position, Vector3.create(8, 1, 8))
   })
 
   MeshRenderer.setBox(boxEntity)
   MeshCollider.setBox(boxEntity, ColliderLayer.CL_POINTER)
 
-  pointerEventsSystem.onPointerDown({
-    entity: boxEntity,
-    opts: {
-      button: InputAction.IA_PRIMARY,
-      hoverText: 'Force start the party!',
-      maxDistance: 3,
-      showFeedback: true
+  pointerEventsSystem.onPointerDown(
+    {
+      entity: boxEntity,
+      opts: {
+        button: InputAction.IA_PRIMARY,
+        hoverText: 'Force start the party!',
+        maxDistance: 3,
+        showFeedback: true
+      }
+    },
+    () => {
+      startParty()
+      console.log('PARTY TIME!')
+      updateSignpost('PARTY TIME!\n' + formatAMPM(partyStart.getHours()) + ' to ' + formatAMPM(partyEnd.getHours()))
+
+      // Stop checking for the party starting, it's already started!
+      engine.removeSystem('loopSystem')
+
+      engine.removeEntity(boxEntity)
     }
-  }, () => {
-    startParty()
-    console.log('PARTY TIME!')
-    updateSignpost('PARTY TIME!\n' + formatAMPM(partyStart.getHours()) + ' to ' + formatAMPM(partyEnd.getHours()))
-
-    // Stop checking for the party starting, it's already started!
-    engine.removeSystem('loopSystem')
-
-    engine.removeEntity(boxEntity)
-  })
+  )
 }
-
 
 function updateSignpost(text: string) {
   // We get signpost by name set in sceneFactory.ts
@@ -72,7 +83,6 @@ function formatAMPM(hours: number) {
 export function main() {
   // Add scene content
   const signpost = buildScene()
-
 
   // Function to call the API
   async function checkTime() {
@@ -132,4 +142,3 @@ export function main() {
 
   addStartNowButton().catch(console.error)
 }
-
