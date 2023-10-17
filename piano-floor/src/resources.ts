@@ -1,4 +1,3 @@
-
 export default {
   models: {
     baseSceneModel: 'models/baseScene.glb'
@@ -10,11 +9,5 @@ export default {
     blackKeys: {
       aSharp3: 'sounds/blackKeys/aSharp3.mp3'
     }
-  },
+  }
 }
-
-
-
-
-
-
