@@ -1,9 +1,7 @@
 import { Request, Response } from 'express'
 import * as dcl from 'decentraland-crypto-middleware'
 import { runChecks } from './security/securityChecks'
-import { VALID_SIGNATURE_TOLERANCE_INTERVAL_MS, Metadata } from './security/utils'
-
-export const VALID_PARCEL: number[] = [1, 1]
+import { VALID_SIGNATURE_TOLERANCE_INTERVAL_MS, Metadata, VALID_PARCEL } from './security/utils'
 
 const functions = require('firebase-functions')
 const express = require('express')
