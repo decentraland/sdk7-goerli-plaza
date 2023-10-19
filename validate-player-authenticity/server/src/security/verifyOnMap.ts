@@ -2,7 +2,14 @@ import { MARGIN_OF_ERROR, PeerResponse } from '../utils'
 
 // validate that the player is active in a catalyst server, and in the indicated coordinates, or within a margin of error
 export async function checkPlayer(playerId: string, server: string, parcel: number[]) {
-  const url = server + '/comms/peers/'
+  let url: string = ''
+
+  if (server === 'https://realm-provider.decentraland.org/main') {
+    url = 'https://archipelago-stats.decentraland.org/peers'
+  } else {
+    url = server + '/comms/peers/'
+  }
+
   // const url = `https://peer.decentraland.org/comms/peers`
 
   try {
