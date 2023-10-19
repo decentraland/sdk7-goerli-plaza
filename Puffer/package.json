@@ -3,8 +3,8 @@
   "description": "ECS7 ",
   "version": "1.0.0",
   "dependencies": {
-    "@dcl-sdk/utils": "next",
-    "@dcl/sdk": "next"
+    "@dcl-sdk/utils": "latest",
+    "@dcl/sdk": "latest"
   },
   "engines": {
     "node": ">=16.0.0",
