@@ -1,7 +1,7 @@
 import { Request } from 'express'
 import * as dcl from 'decentraland-crypto-middleware'
 
-import { denyListedIPS, TESTS_ENABLED, Metadata } from './utils'
+import { denyListedIPS, TESTS_ENABLED, Metadata, realmWhiteList } from './utils'
 import { checkCoords, checkPlayer } from './verifyOnMap'
 
 export function checkOrigin(req: Request) {
@@ -12,6 +12,11 @@ export function checkOrigin(req: Request) {
 export function checkBannedIPs(req: Request) {
   const ip = req.header('X-Forwarded-For')
   return denyListedIPS.includes(ip!)
+}
+
+export function checkRealmName(metadata: Metadata) {
+  return (TESTS_ENABLED && (metadata.realm.hostname === 'localhost' || metadata.realm.serverName === 'LocalPreview')) ||
+          realmWhiteList.includes(metadata.realm.serverName!)
 }
 
 export async function runChecks(req: Request & dcl.DecentralandSignatureData<Metadata>, parcel?: number[]) {
@@ -26,7 +31,7 @@ export async function runChecks(req: Request & dcl.DecentralandSignatureData<Met
 
   // check that the request comes from a decentraland domain
   const validOrigin =
-    TESTS_ENABLED && (metadata.realm.hostname === 'localhost' || metadata.realm.hostname === 'LocalPreview')
+    TESTS_ENABLED && (metadata.realm.hostname === 'localhost' || metadata.realm.serverName === 'LocalPreview')
       ? true
       : checkOrigin(req)
   if (!validOrigin) {
@@ -39,10 +44,15 @@ export async function runChecks(req: Request & dcl.DecentralandSignatureData<Met
     throw new Error('INVALID IP')
   }
 
+  const validRealm: boolean = await checkRealmName(metadata)
+  if (!validRealm) {
+    throw new Error('INVALID REALM')
+  }
+
   // Validate that the authchain signature is real
   // validate that the player is in the catalyst & location from the signature
   const validCatalystPos: boolean | undefined =
-    TESTS_ENABLED && (metadata.realm.hostname === 'localhost' || metadata.realm.hostname === 'LocalPreview')
+    TESTS_ENABLED && (metadata.realm.hostname === 'localhost' || metadata.realm.serverName === 'LocalPreview')
       ? true
       : await checkPlayer(userAddress, metadata.realm.domain!, coordinates)
   if (!validCatalystPos) {
