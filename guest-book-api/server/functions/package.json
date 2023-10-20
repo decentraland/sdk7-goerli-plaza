@@ -14,18 +14,18 @@
   },
   "main": "lib/index.js",
   "dependencies": {
-    "cors": "next",
-    "decentraland-crypto-middleware": "next",
-    "express": "next",
-    "firebase-admin": "next",
-    "firebase-functions": "next"
+    "cors": "latest",
+    "decentraland-crypto-middleware": "latest",
+    "express": "latest",
+    "firebase-admin": "latest",
+    "firebase-functions": "latest"
   },
   "devDependencies": {
-    "@types/koa": "next",
-    "@types/passport-strategy": "next",
-    "@well-known-components/interfaces": "next",
-    "firebase-functions-test": "next",
-    "typescript": "next"
+    "@types/koa": "latest",
+    "@types/passport-strategy": "latest",
+    "@well-known-components/interfaces": "latest",
+    "firebase-functions-test": "latest",
+    "typescript": "latest"
   },
   "private": true
 }
