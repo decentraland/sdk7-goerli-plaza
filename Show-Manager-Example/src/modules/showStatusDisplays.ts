@@ -1,4 +1,4 @@
-import * as showMgmt from 'show-manager/dist'
+import * as showMgmt from 'show-manager/src'
 import { Entity, Font, TextShape, Transform, engine } from '@dcl/sdk/ecs'
 import { Color3, Quaternion, Vector3 } from '@dcl/sdk/math'
 import { VideoScreens } from './videoScreens'

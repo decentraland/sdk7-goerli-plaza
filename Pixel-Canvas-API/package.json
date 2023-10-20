@@ -3,8 +3,8 @@
   "description": "Pixel art with friends",
   "version": "1.0.0",
   "devDependencies": {
-    "@dcl/js-runtime": "next",
-    "@dcl/sdk": "next"
+    "@dcl/js-runtime": "latest",
+    "@dcl/sdk": "latest"
   },
   "scripts": {
     "build": "sdk-commands build",
