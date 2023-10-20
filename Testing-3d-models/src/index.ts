@@ -1,10 +1,5 @@
-import { engine, executeTask, GltfContainer, Material, Transform } from '@dcl/sdk/ecs'
-import { Color4, Vector3 } from '@dcl/sdk/math'
-
-import { createCube } from './factory'
-import { bounceScalingSystem, circularSystem, spawnerSystem } from './systems'
-
-import { setupUi } from './ui'
+import { engine, GltfContainer, Transform } from '@dcl/sdk/ecs'
+import { Vector3 } from '@dcl/sdk/math'
 
 // export all the functions required to make the scene work
 export * from '@dcl/sdk'
