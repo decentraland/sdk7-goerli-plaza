@@ -1,4 +1,4 @@
-import * as showMgmt from 'show-manager/dist'
+import * as showMgmt from 'show-manager/src'
 import { Quaternion, Vector3 } from '@dcl/sdk/math'
 import { RunwayAvatar, RunwayCoord, startPositions } from './ext/runwayAvatar'
 import { SHOW_MGR } from './showSetup'
