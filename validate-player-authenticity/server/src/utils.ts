@@ -9,9 +9,7 @@ export const VALID_SIGNATURE_TOLERANCE_INTERVAL_MS = 10 * 1000 * 60
 export const MARGIN_OF_ERROR = 2
 
 // accept any request from these realm
-export const realmWhiteList = [
-  'LocalPreview'
-]
+export const realmWhiteList = ['LocalPreview']
 
 export const VALID_PARCEL: number[] = [80, -8]
 
