@@ -1,4 +1,4 @@
-import { Entity, GltfContainer, InputAction, Transform, engine, pointerEventsSystem } from '@dcl/sdk/ecs'
+import { Entity, GltfContainer, InputAction, Transform, engine, pointerEventsSystem, inputSystem, PointerEventType } from '@dcl/sdk/ecs'
 import { Quaternion, Vector3 } from '@dcl/sdk/math'
 import { Ball } from './ball'
 import { loadColliders } from './wallCollidersSetup'
@@ -28,16 +28,18 @@ export function main() {
   let forwardVector: Vector3 = Vector3.rotate(Vector3.Forward(), Transform.get(engine.CameraEntity).rotation) // Camera's forward vector
   const vectorScale: number = 25
 
+  const randomPositions: any = []
   // Create random balls and positions
   for (let i = 0; i < ballShapes.length; i++) {
     const randomPositionX: number = Math.floor(Math.random() * 3) + 14
     const randomPositionY: number = ballHeight
     const randomPositionZ: number = Math.floor(Math.random() * 3) + 14
+    randomPositions.push({ x: randomPositionX, y: randomPositionY, z: randomPositionZ })
 
     const ball = new Ball(
       ballShapes[i],
       {
-        position: { x: randomPositionX, y: randomPositionY, z: randomPositionZ },
+        position: randomPositions[i],
         rotation: Quaternion.Zero(),
         scale: Vector3.One()
       }
@@ -54,7 +56,7 @@ export function main() {
           hoverText: 'kick'
         }
       },
-      function (cmd) {
+      function (cmd: any) {
         // Apply impulse based on the direction of the camera
         ballBodies[i].applyImpulse(
           new CANNON.Vec3(
@@ -144,14 +146,26 @@ export function main() {
       const ballTransform = Transform.getMutable(balls[i].entity)
       ballTransform.position = ballBodies[i].position
       ballTransform.rotation = ballBodies[i].quaternion
-      // Vector3.copyFrom(ballBodies[i].position, ballTransform.position)
-      // Vector3.copyFrom(ballBodies[i].quaternion, ballTransform.rotation)
     }
 
     // Update forward vector
     forwardVector = Vector3.rotate(Vector3.Forward(), Transform.get(engine.CameraEntity).rotation)
-    console.log('Forward Vector: ', forwardVector)
+    // console.log('Forward Vector: ', forwardVector)
   }
 
   engine.addSystem(updateSystem)
+
+  // Input system
+  engine.addSystem(() => {
+    // Reset with the E key
+    const primaryDown = inputSystem.getInputCommand(
+      InputAction.IA_PRIMARY,
+      PointerEventType.PET_DOWN
+    )
+    if (primaryDown) {
+      for (let i = 0; i < ballBodies.length; i++) {
+        ballBodies[i].position.set(randomPositions[i].x, randomPositions[i].y, randomPositions[i].z)
+      }
+    }
+  })
 }
