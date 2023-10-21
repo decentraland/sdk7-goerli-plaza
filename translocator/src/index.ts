@@ -114,9 +114,6 @@ export function main() {
     const MAX_TIME_STEPS = 3
     const RECALL_SPEED = 10
 
-    // Intermediate variables
-    const player = Transform.get(engine.CameraEntity)
-
     function shootDiscSystem(dt: number) {
         if (translocator.isFired) {
             world.step(FIXED_TIME_STEPS, dt, MAX_TIME_STEPS)
@@ -131,6 +128,7 @@ export function main() {
     function recallDiscSystem(dt: number) {
         if (!translocator.isFired) {
             let transform = Transform.getMutable(translocator.entity)
+            const player = Transform.get(engine.CameraEntity)
             let playerForwardVector = Vector3.subtract(transform.position, Vector3.create(player.position.x, player.position.y - Y_OFFSET, player.position.z))
             let increment = Vector3.scale(playerForwardVector, -dt * RECALL_SPEED)
             transform.position = Vector3.add(
@@ -138,7 +136,6 @@ export function main() {
                 increment
             )
             let distance = Vector3.distanceSquared(transform.position, player.position) // Check distance squared as it's more optimized
-            console.log(distance)
             // Note: Distance is squared so a value of 4.5 is when the translocator is ~2.1m away
             if (distance <= 4.5) {
                 engine.removeSystem(recallDiscSystem)
