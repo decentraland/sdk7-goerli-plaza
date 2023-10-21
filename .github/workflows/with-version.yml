@@ -5,8 +5,8 @@ on:
     inputs:
       dcl-sdk-package:
         type: string
-        description: "@dcl/sdk package"
-        default: "@dcl/sdk@next"
+        description: '@dcl/sdk package'
+        default: '@dcl/sdk@latest'
 
 jobs:
   lint-and-build:
@@ -19,7 +19,7 @@ jobs:
       - name: build
         run: ./build-all.sh
         env:
-          DCL_DISABLE_ANALYTICS: "true"
+          DCL_DISABLE_ANALYTICS: 'true'
           SDK_VERSION: ${{github.event.inputs.dcl-sdk-package}}
       - name: lint
         run: npm run lint

@@ -3,11 +3,11 @@
   "description": "Piano Floor Example Scene SDK7",
   "version": "1.0.0",
   "dependencies": {
-    "@dcl-sdk/utils": "next"
+    "@dcl-sdk/utils": "latest"
   },
   "devDependencies": {
-    "@dcl/js-runtime": "next",
-    "@dcl/sdk": "next"
+    "@dcl/js-runtime": "latest",
+    "@dcl/sdk": "latest"
   },
   "scripts": {
     "build": "sdk-commands build",

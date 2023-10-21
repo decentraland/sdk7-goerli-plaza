@@ -6,9 +6,9 @@ rm -rf node_modules
 
 # first install the parametrized package
 if [ ! -z $SDK_VERSION ]; then
-  npm i $SDK_VERSION @dcl-sdk/utils@next --no-save --legacy-peer-deps
+  npm i $SDK_VERSION @dcl-sdk/utils@latest --no-save --legacy-peer-deps
 else
-  npm i @dcl/sdk@next @dcl-sdk/utils@next --legacy-peer-deps
+  npm i @dcl/sdk@next @dcl-sdk/utils@latest --legacy-peer-deps
 fi
 
 # then the rest of the dependencies

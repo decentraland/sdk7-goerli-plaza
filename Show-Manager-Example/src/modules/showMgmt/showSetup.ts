@@ -1,4 +1,4 @@
-import * as showMgmt from 'show-manager/dist'
+import * as showMgmt from 'show-manager/src'
 import * as ui from 'dcl-ui-toolkit'
 import { showData } from './scheduleSetup'
 import { isPreviewMode } from '~system/EnvironmentApi'

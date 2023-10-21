@@ -3,8 +3,8 @@
   "description": "Call the Decentraland Events API to display events that are currently going on.",
   "version": "1.0.0",
   "devDependencies": {
-    "@dcl/js-runtime": "next",
-    "@dcl/sdk": "next"
+    "@dcl/js-runtime": "latest",
+    "@dcl/sdk": "latest"
   },
   "engines": {
     "node": ">=16.0.0",
