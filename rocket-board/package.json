@@ -7,14 +7,14 @@
     "@dcl-sdk/ui-utils"
   ],
   "dependencies": {
-    "@dcl-sdk/utils": "next",
+    "@dcl-sdk/utils": "latest",
     "@types/cannon": "^0.1.8",
     "cannon": "github:schteppe/cannon.js",
-    "dcl-ui-toolkit": "next"
+    "dcl-ui-toolkit": "latest"
   },
   "devDependencies": {
-    "@dcl/js-runtime": "next",
-    "@dcl/sdk": "next"
+    "@dcl/js-runtime": "latest",
+    "@dcl/sdk": "latest"
   },
   "engines": {
     "node": ">=16.0.0",

@@ -3,7 +3,7 @@
   "description": "Avatar Swap",
   "version": "1.0.0",
   "dependencies": {
-    "@dcl/sdk": "next"
+    "@dcl/sdk": "latest"
   },
   "devDependencies": {},
   "scripts": {

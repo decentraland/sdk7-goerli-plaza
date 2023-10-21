@@ -25,8 +25,8 @@ for (const projectFolder of projects.map(path.dirname)) {
   const packageJsonPath = path.resolve('package.json')
   const packageJson = JSON.parse(fs.readFileSync(packageJsonPath))
   packageJson.workspaces = projects.map(path.dirname).map(_ => path.relative(process.cwd(), _)).sort()
-  packageJson.dependencies['@dcl/sdk'] = 'next'
-  packageJson.dependencies['@dcl-sdk/utils'] = 'next'
+  packageJson.dependencies['@dcl/sdk'] = 'latest'
+  packageJson.dependencies['@dcl-sdk/utils'] = 'latest'
   fs.writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2))
 }
 
