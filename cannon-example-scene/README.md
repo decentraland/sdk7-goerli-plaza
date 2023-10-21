@@ -5,10 +5,12 @@ _demo of cannon-example-scene running in preview._
 ![demo](https://github.com/sdk7-goerli-plaza/cannon-example-scene/blob/master/screenshots/cannon.gif)
 
 ## Description
+
 Simulating a bunch of balls bouncing using the [cannon.js](https://github.com/schteppe/cannon.js) physics engine.
 
 ## Instructions
-Press the <kbd>Left Mouse Button</kbd> to interact with the balls.
+
+Press the <kbd>Left Mouse Button</kbd> to interact with the balls. Press the <kbd>E</kbd> key to reset the scene.
 
 ## Try it out
 
