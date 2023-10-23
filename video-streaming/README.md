@@ -22,7 +22,17 @@ This scene shows you:
 
 4. Open the Decentraland Editor tab, and press **Run Scene**
 
-Alternatively, you can use the command line. Inside this scene root directory run:
+Alternatively, you can use the command line: 
+
+1. Open a command line window and navigate to the scene root directory
+
+2. Run:
+
+```
+npm i
+```
+
+3. Then run:
 
 ```
 npm run start
@@ -41,8 +51,6 @@ If something doesn’t work, please [file an issue](https://github.com/decentral
 This scene is protected with a standard Apache 2 licence. See the terms and conditions in the [LICENSE](/LICENSE) file.
 
 # Setting up the Server for Streaming
-
-### _NOTE: These are just brief notes from my meeting with HPrivakos (will tidy up later...)_
 
 ## Choosing a hosting option
 
