@@ -134,9 +134,9 @@ This is the simplest option, but doesn't allow for live streaming.
 
 > Note: The other available links on specific resoltuions often don't work when streamed into Decentraland. Always use the **HTTP Live streaming**. This option adjusts the quality of the video dynamically depending on the player's connection, leading to an optimal result. Note that this link is different from performing a streaming of a live event: players will each see the video from start to finish, without necessarily being in sync with what each other is seeing.
 
-5. Paste the link into your scene, replacing the placeholder on the `VideoClip` object.
+5. Paste the link into your scene, replacing the placeholder link on the `VideoPlayer` component.
 
-> Tip: If you intend your video to loop, make sure you set the `loop` property on the `VideoTexture` in your scene. Otherwise the video will play just once for each player.
+> Tip: If you intend your video to loop, make sure you set the `loop` property on the `VideoPlayer` component to true in your scene. Otherwise the video will play just once for each player.
 
 <!--
 ## Set up Vimeo Premium
