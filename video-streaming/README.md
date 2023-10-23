@@ -22,6 +22,8 @@ This scene shows you:
 
 4. Open the Decentraland Editor tab, and press **Run Scene**
 
+> Note: When running a preview of the scene inside Visual Studio Code, some video formats may not be supported. If your video doesn't play, try clicking the **Open in browser** button on top of the preview window.
+
 Alternatively, you can use the command line: 
 
 1. Open a command line window and navigate to the scene root directory
