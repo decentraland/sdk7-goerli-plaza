@@ -91,6 +91,9 @@
       "path": "clap-meter"
     },
     {
+      "path": "box2d-ball-example-scene"
+    },
+    {
       "path": "boids"
     },
     {
