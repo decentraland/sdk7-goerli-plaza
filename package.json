@@ -71,6 +71,7 @@
     "bird-field",
     "block-portable-experiences",
     "boids",
+    "box2d-ball-example-scene",
     "clap-meter",
     "coconut-shy",
     "coin-pickup",
@@ -98,6 +99,7 @@
     "switchable-platforms",
     "testing-gallery",
     "tin-can-alley",
+    "translocator",
     "uv-map",
     "video-streaming",
     "zombie-attack"

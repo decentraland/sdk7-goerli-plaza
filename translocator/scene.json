@@ -1,55 +1,62 @@
 {
-	"ecs7": true,
-	"runtimeVersion": "7",
-	"display": {
-		"title": "Translocator (SDK7 Version)",
-		"description": "Example of how to create a projectile with physics and combining that with the new spawn feature to create a translocator disc, which allows a player to teleport to wherever the disc is located.",
-		"navmapThumbnail": "images/scene-thumbnail.png",
-		"favicon": "favicon_asset"
-	},
-	"owner": "",
-	"contact": {
-		"name": "SDK",
-		"email": ""
-	},
-	"main": "bin/index.js",
-	"tags": [],
-	"scene": {
-		"parcels": [
-			"0,2","1,2","2,2",
-			"0,1","1,1","2,1",
-			"0,0","1,0","2,0"
-		],
-		"base": "0,0"
-	},
-	"spawnPoints": [
-		{
-			"name": "spawn1",
-			"default": true,
-			"position": {
-				"x": [
-					0,
-					3
-				],
-				"y": [
-					0,
-					0
-				],
-				"z": [
-					0,
-					3
-				]
-			},
-			"cameraTarget": {
-				"x": 8,
-				"y": 1,
-				"z": 8
-			}
-		}
-	],
-	"requiredPermissions": [
-		"ALLOW_TO_TRIGGER_AVATAR_EMOTE",
-		"ALLOW_TO_MOVE_PLAYER_INSIDE_SCENE"
-	],
-	"featureToggles": {}
+  "ecs7": true,
+  "runtimeVersion": "7",
+  "display": {
+    "title": "translocator",
+    "description": "Example of how to create a projectile with physics and combining that with the new spawn feature to create a translocator disc, which allows a player to teleport to wherever the disc is located.",
+    "navmapThumbnail": "images/scene-thumbnail.png",
+    "favicon": "favicon_asset"
+  },
+  "owner": "",
+  "contact": {
+    "name": "SDK",
+    "email": ""
+  },
+  "main": "bin/index.js",
+  "tags": [],
+  "scene": {
+    "parcels": [
+      "0,2",
+      "1,2",
+      "2,2",
+      "0,1",
+      "1,1",
+      "2,1",
+      "0,0",
+      "1,0",
+      "2,0"
+    ],
+    "base": "0,0"
+  },
+  "spawnPoints": [
+    {
+      "name": "spawn1",
+      "default": true,
+      "position": {
+        "x": [
+          0,
+          3
+        ],
+        "y": [
+          0,
+          0
+        ],
+        "z": [
+          0,
+          3
+        ]
+      },
+      "cameraTarget": {
+        "x": 8,
+        "y": 1,
+        "z": 8
+      }
+    }
+  ],
+  "requiredPermissions": [
+    "ALLOW_TO_TRIGGER_AVATAR_EMOTE",
+    "ALLOW_TO_MOVE_PLAYER_INSIDE_SCENE"
+  ],
+  "featureToggles": {},
+  "name": "translocator"
 }
