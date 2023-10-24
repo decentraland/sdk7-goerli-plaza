@@ -5,7 +5,12 @@ _demo of box2d-ball-example-scene running in preview._
 ![demo](https://github.com/sdk7-goerli-plaza/box2d-ball-example-scene/blob/master/screenshots/bouncing-ball.gif)
 
 ## Description
+
 Simulating a bouncing ball using the [box2d.ts](https://github.com/flyover/box2d.ts) physics engine.
+
+## Instructions
+
+Press the <kbd>E</kbd> key to reset the scene.
 
 ## Try it out
 

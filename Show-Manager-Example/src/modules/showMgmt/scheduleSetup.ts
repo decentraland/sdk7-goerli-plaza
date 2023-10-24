@@ -1,4 +1,4 @@
-import * as showMgmt from 'show-manager/dist'
+import * as showMgmt from 'show-manager/src'
 import { DemoShowSubs } from './subtitle-files/DemoShowSubs'
 import { IntermissionSubs } from './subtitle-files/IntermissionSubs'
 

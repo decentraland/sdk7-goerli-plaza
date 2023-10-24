@@ -15,8 +15,8 @@ jobs:
       - name: build
         run: ./build-all.sh
         env:
-          DCL_DISABLE_ANALYTICS: "true"
-          SDK_VERSION: "@dcl/sdk@next"
+          DCL_DISABLE_ANALYTICS: 'true'
+          SDK_VERSION: '@dcl/sdk@latest'
       - uses: actions/github-script@v6
         id: get-branch-realm-name
         env:

@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "author": "",
   "dependencies": {
-    "@dcl/sdk": "next"
+    "@dcl/sdk": "latest"
   },
   "license": "Apache-2.0",
   "repository": "menduz/menduzlandia.git",

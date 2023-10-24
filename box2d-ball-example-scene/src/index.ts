@@ -1,4 +1,4 @@
-import { engine, GltfContainer, Material, MeshCollider, MeshRenderer, Transform } from '@dcl/sdk/ecs'
+import { engine, GltfContainer, Material, MeshCollider, MeshRenderer, Transform, inputSystem, InputAction, PointerEventType } from '@dcl/sdk/ecs'
 import { Color4, Vector3 } from '@dcl/sdk/math'
 import { b2Vec2 } from '../node_modules/box2d.ts/Box2D/Common/b2Math'
 import { b2World } from '../node_modules/box2d.ts/Box2D/Dynamics/b2World'
@@ -97,4 +97,16 @@ export function main() {
   }
 
   engine.addSystem(updateSystem)
+
+  // Input system
+  engine.addSystem(() => {
+    // Reset with the E key
+    const primaryDown = inputSystem.getInputCommand(
+      InputAction.IA_PRIMARY,
+      PointerEventType.PET_DOWN
+    )
+    if (primaryDown) {
+      body.SetPosition({ x: 8, y: 8 })
+    }
+  })
 }
