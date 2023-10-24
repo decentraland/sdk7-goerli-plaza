@@ -1,0 +1,41 @@
+{
+  "display": {
+    "title": "Smart_Items_Pirate_Island",
+    "favicon": "favicon_asset",
+    "navmapThumbnail": "scene-thumbnail.png"
+  },
+  "owner": "",
+  "contact": {
+    "name": "0xb6e9c0a25aa6b10fa4fe0aa8d1097d2a6136bf98",
+    "email": ""
+  },
+  "main": "bin/index.js",
+  "tags": [],
+  "scene": {
+    "parcels": [
+      "72,6",
+      "72,7",
+      "73,6",
+      "73,7"
+    ],
+    "base": "72,6"
+  },
+  "source": {
+    "version": 1,
+    "origin": "builder",
+    "projectId": "98be4f0f-03c9-41ae-b05b-206cef00e71a",
+    "point": {
+      "x": 0,
+      "y": 0
+    },
+    "rotation": "east",
+    "layout": {
+      "rows": 2,
+      "cols": 2
+    }
+  },
+  "allowedMediaHostnames": [],
+  "ecs7": true,
+  "runtimeVersion": "7",
+  "name": "Smart_Items_Pirate_Island"
+}
