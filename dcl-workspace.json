@@ -91,6 +91,12 @@
       "path": "clap-meter"
     },
     {
+      "path": "cannon-example-scene"
+    },
+    {
+      "path": "box2d-ball-example-scene"
+    },
+    {
       "path": "boids"
     },
     {

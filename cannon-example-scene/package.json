@@ -1,33 +1,23 @@
 {
   "name": "cannon-example-scene",
-  "version": "1.0.0",
   "description": "Cannon Example Scene (SDK7 Version)",
-  "scripts": {
-    "start": "sdk-commands start",
-    "deploy": "sdk-commands deploy",
-    "build": "sdk-commands build",
-    "upgrade-sdk": "npm install --save-dev @dcl/sdk@latest",
-    "upgrade-sdk:next": "npm install --save-dev @dcl/sdk@next"
-  },
-  "devDependencies": {
-    "@dcl/js-runtime": "7.3.18",
-    "@dcl/sdk": "latest"
-  },
-  "engines": {
-    "node": ">=16.0.0",
-    "npm": ">=6.0.0"
-  },
-  "prettier": {
-    "semi": false,
-    "singleQuote": true,
-    "printWidth": 120,
-    "trailingComma": "none"
-  },
+  "version": "1.0.0",
+  "bundleDependencies": [
+    "@types/cannon"
+  ],
   "dependencies": {
     "@types/cannon": "^0.1.10",
     "cannon": "^0.6.2"
   },
-  "bundleDependencies": [
-    "@types/cannon"
-  ]
+  "devDependencies": {
+    "@dcl/js-runtime": "latest",
+    "@dcl/sdk": "latest"
+  },
+  "scripts": {
+    "build": "sdk-commands build",
+    "deploy": "sdk-commands deploy",
+    "start": "sdk-commands start",
+    "upgrade-sdk": "npm install --save-dev @dcl/sdk@latest",
+    "upgrade-sdk:next": "npm install --save-dev @dcl/sdk@next"
+  }
 }

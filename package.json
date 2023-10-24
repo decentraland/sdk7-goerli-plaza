@@ -71,6 +71,8 @@
     "bird-field",
     "block-portable-experiences",
     "boids",
+    "box2d-ball-example-scene",
+    "cannon-example-scene",
     "clap-meter",
     "coconut-shy",
     "coin-pickup",

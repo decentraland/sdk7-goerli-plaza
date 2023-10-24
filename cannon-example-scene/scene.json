@@ -1,54 +1,57 @@
 {
-	"ecs7": true,
-	"runtimeVersion": "7",
-	"display": {
-		"title": "Cannon Example Scene (SDK7 Version)",
-		"description": "Simulating a bunch of balls bouncing using the cannon.js physics engine.",
-		"navmapThumbnail": "images/scene-thumbnail.png",
-		"favicon": "favicon_asset"
-	},
-	"owner": "",
-	"contact": {
-		"name": "SDK",
-		"email": ""
-	},
-	"main": "bin/index.js",
-	"tags": [],
-	"scene": {
-		"parcels": [
-			"1,0","1,1",
-			"0,0","0,1"
-		],
-		"base": "0,0"
-	},
-	"spawnPoints": [
-		{
-			"name": "spawn1",
-			"default": true,
-			"position": {
-				"x": [
-					0,
-					3
-				],
-				"y": [
-					0,
-					0
-				],
-				"z": [
-					0,
-					3
-				]
-			},
-			"cameraTarget": {
-				"x": 8,
-				"y": 1,
-				"z": 8
-			}
-		}
-	],
-	"requiredPermissions": [
-		"ALLOW_TO_TRIGGER_AVATAR_EMOTE",
-		"ALLOW_TO_MOVE_PLAYER_INSIDE_SCENE"
-	],
-	"featureToggles": {}
+  "ecs7": true,
+  "runtimeVersion": "7",
+  "display": {
+    "title": "cannon-example-scene",
+    "description": "Simulating a bunch of balls bouncing using the cannon.js physics engine.",
+    "navmapThumbnail": "images/scene-thumbnail.png",
+    "favicon": "favicon_asset"
+  },
+  "owner": "",
+  "contact": {
+    "name": "SDK",
+    "email": ""
+  },
+  "main": "bin/index.js",
+  "tags": [],
+  "scene": {
+    "parcels": [
+      "77,7",
+      "78,7",
+      "77,6",
+      "78,6"
+    ],
+    "base": "77,6"
+  },
+  "spawnPoints": [
+    {
+      "name": "spawn1",
+      "default": true,
+      "position": {
+        "x": [
+          0,
+          3
+        ],
+        "y": [
+          0,
+          0
+        ],
+        "z": [
+          0,
+          3
+        ]
+      },
+      "cameraTarget": {
+        "x": 8,
+        "y": 1,
+        "z": 8
+      }
+    }
+  ],
+  "requiredPermissions": [
+    "ALLOW_TO_TRIGGER_AVATAR_EMOTE",
+    "ALLOW_TO_MOVE_PLAYER_INSIDE_SCENE"
+  ],
+  "featureToggles": {},
+  "name": "cannon-example-scene"
 }
