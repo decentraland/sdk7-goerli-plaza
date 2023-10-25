@@ -116,6 +116,10 @@ export function addConstraint(constraint: CANNON.Constraint) {
   world.addConstraint(constraint)
 }
 
+export function removeAllConstraints() {
+  world.constraints = []
+}
+
 export function removeConstraint(constraint: CANNON.Constraint) {
   world.removeConstraint(constraint)
 }
@@ -125,5 +129,12 @@ export function getBoxBodyOrNull(id: number) {
 }
 
 export function getConstraintOrNull(id: number) {
-  return world.constraints.find((item) => item.id === id)
+  const constraint = world.constraints.find((item) => item.id === id)
+  if (constraint) return constraint
+  else {
+    console.log('CONSTRAINT NOT FOUND. ID: ', id, ' FULL LIST: ', world)
+    console.log(world)
+  }
+
+  return null
 }
