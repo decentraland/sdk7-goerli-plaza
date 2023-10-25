@@ -21,8 +21,6 @@ export function createRotatingPlatform(model: string, transform: Partial<Transfo
 	let midRotation = Quaternion.fromEulerDegrees(0, 0, 0)
 	let endRotation = Quaternion.fromEulerDegrees(0, 0, 0)
 
-
-	//utils.perpetualMotions.startRotation(entity, rotation)
 	switch (direction) {
 		case Direction.X:
 			midRotation = Quaternion.fromEulerDegrees(180, 0, 0)
