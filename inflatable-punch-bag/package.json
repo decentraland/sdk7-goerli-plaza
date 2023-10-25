@@ -13,7 +13,7 @@
     "dcl-ui-toolkit": "latest"
   },
   "devDependencies": {
-    "@dcl/js-runtime": "latest",
+    "@dcl/js-runtime": "7.3.23",
     "@dcl/sdk": "latest"
   },
   "engines": {
