@@ -1,4 +1,14 @@
-import { engine, GltfContainer, Material, MeshCollider, MeshRenderer, Transform, inputSystem, InputAction, PointerEventType } from '@dcl/sdk/ecs'
+import {
+  engine,
+  GltfContainer,
+  Material,
+  MeshCollider,
+  MeshRenderer,
+  Transform,
+  inputSystem,
+  InputAction,
+  PointerEventType
+} from '@dcl/sdk/ecs'
 import { Color4, Vector3 } from '@dcl/sdk/math'
 import { b2Vec2 } from '../node_modules/box2d.ts/Box2D/Common/b2Math'
 import { b2World } from '../node_modules/box2d.ts/Box2D/Dynamics/b2World'
@@ -11,7 +21,7 @@ export function main() {
   // Create base scene
   const baseScene = engine.addEntity()
   GltfContainer.create(baseScene, {
-    src: 'models/baseScene.glb',
+    src: 'models/baseScene.glb'
   })
   Transform.create(baseScene)
 
@@ -20,7 +30,7 @@ export function main() {
   MeshRenderer.setSphere(ball)
   MeshCollider.setSphere(ball)
   Material.setPbrMaterial(ball, {
-    albedoColor: Color4.Red(),
+    albedoColor: Color4.Red()
   })
   Transform.create(ball, { position: Vector3.create(0, 0, 8), scale: Vector3.create(2, 2, 2) })
 
@@ -101,10 +111,7 @@ export function main() {
   // Input system
   engine.addSystem(() => {
     // Reset with the E key
-    const primaryDown = inputSystem.getInputCommand(
-      InputAction.IA_PRIMARY,
-      PointerEventType.PET_DOWN
-    )
+    const primaryDown = inputSystem.getInputCommand(InputAction.IA_PRIMARY, PointerEventType.PET_DOWN)
     if (primaryDown) {
       body.SetPosition({ x: 8, y: 8 })
     }
