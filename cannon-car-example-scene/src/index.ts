@@ -1,4 +1,16 @@
-import { GltfContainer, InputAction, Transform, engine, Material, Entity, MeshCollider, MeshRenderer, TransformType, inputSystem, PointerEventType } from '@dcl/sdk/ecs'
+import {
+  GltfContainer,
+  InputAction,
+  Transform,
+  engine,
+  Material,
+  Entity,
+  MeshCollider,
+  MeshRenderer,
+  TransformType,
+  inputSystem,
+  PointerEventType
+} from '@dcl/sdk/ecs'
 import { Color4, Vector3 } from '@dcl/sdk/math'
 import * as CANNON from 'cannon/build/cannon'
 
@@ -10,7 +22,7 @@ export function main() {
   // Create base scene
   const baseScene: Entity = engine.addEntity()
   GltfContainer.create(baseScene, {
-    src: 'models/baseScene.glb',
+    src: 'models/baseScene.glb'
   })
   Transform.create(baseScene, { scale: Vector3.create(2.5, 0.05, 2.5) })
 
@@ -29,7 +41,10 @@ export function main() {
       const box: Entity = engine.addEntity()
       MeshRenderer.setBox(box)
       MeshCollider.setBox(box)
-      Transform.create(box, { position: Vector3.create(positionX, positionY, positionZ), scale: Vector3.create(2, 2, 2) })
+      Transform.create(box, {
+        position: Vector3.create(positionX, positionY, positionZ),
+        scale: Vector3.create(2, 2, 2)
+      })
       const blue = Color4.fromInts(21, 105, 195, 255)
       const black = Color4.fromInts(35, 35, 35, 255)
       if (i % 2 == 0) {
@@ -67,22 +82,27 @@ export function main() {
   // Car entities
   const chassis: Entity = engine.addEntity()
   GltfContainer.create(chassis, {
-    src: 'models/carBody.glb',
+    src: 'models/carBody.glb'
   })
   Transform.create(chassis)
 
   const wheels: Entity[] = []
-  const wheelPositions: Vector3[] = [Vector3.create(2, 1.5, 0), Vector3.create(2, -1.5, 0), Vector3.create(-2.1, 1.5, 0), Vector3.create(-2.1, -1.5, 0)]
+  const wheelPositions: Vector3[] = [
+    Vector3.create(2, 1.5, 0),
+    Vector3.create(2, -1.5, 0),
+    Vector3.create(-2.1, 1.5, 0),
+    Vector3.create(-2.1, -1.5, 0)
+  ]
 
   for (let i = 0; i < wheelPositions.length; i++) {
     const wheel: Entity = engine.addEntity()
     if (i % 2 == 0) {
       GltfContainer.create(wheel, {
-        src: 'models/carWheelRight.glb',
+        src: 'models/carWheelRight.glb'
       })
     } else {
       GltfContainer.create(wheel, {
-        src: 'models/carWheelLeft.glb',
+        src: 'models/carWheelLeft.glb'
       })
     }
 
@@ -96,22 +116,22 @@ export function main() {
   world.gravity.set(0, -9.82, 0) // m/s²
   world.defaultContactMaterial.friction = 0
 
-  const groundMaterial: CANNON.Material = new CANNON.Material("groundMaterial")
-  const wheelMaterial: CANNON.Material = new CANNON.Material("wheelMaterial")
+  const groundMaterial: CANNON.Material = new CANNON.Material('groundMaterial')
+  const wheelMaterial: CANNON.Material = new CANNON.Material('wheelMaterial')
   const wheelGroundContactMaterial: CANNON.ContactMaterial = new CANNON.ContactMaterial(wheelMaterial, groundMaterial, {
     friction: 0.3,
     restitution: 0,
-    contactEquationStiffness: 1000,
+    contactEquationStiffness: 1000
   })
 
-  const boxMaterial: CANNON.Material = new CANNON.Material("boxMaterial")
+  const boxMaterial: CANNON.Material = new CANNON.Material('boxMaterial')
   const boxToGroundContactMaterial: CANNON.ContactMaterial = new CANNON.ContactMaterial(groundMaterial, boxMaterial, {
     friction: 0.4,
-    restitution: 0.5,
+    restitution: 0.5
   })
   const boxToBoxContactMaterial: CANNON.ContactMaterial = new CANNON.ContactMaterial(boxMaterial, boxMaterial, {
     friction: 0.5,
-    restitution: 0.5,
+    restitution: 0.5
   })
   world.addContactMaterial(boxToGroundContactMaterial)
   world.addContactMaterial(boxToBoxContactMaterial)
@@ -122,7 +142,7 @@ export function main() {
     const boxBody: CANNON.Body = new CANNON.Body({
       mass: 2, // kg
       position: new CANNON.Vec3(boxTransform.position.x, boxTransform.position.y, boxTransform.position.z), // m
-      shape: new CANNON.Box(new CANNON.Vec3(1, 1, 1)), // m
+      shape: new CANNON.Box(new CANNON.Vec3(1, 1, 1)) // m
     })
 
     boxBody.material = boxMaterial
@@ -138,7 +158,7 @@ export function main() {
 
   // Create a ground plane and apply physics material
   const groundBody: CANNON.Body = new CANNON.Body({
-    mass: 0, // mass == 0 makes the body static
+    mass: 0 // mass == 0 makes the body static
   })
   groundBody.quaternion.setFromAxisAngle(new CANNON.Vec3(1, 0, 0), -Math.PI / 2) // Reorient ground plane to be in the y-axis
 
@@ -167,12 +187,12 @@ export function main() {
     chassisConnectionPointLocal: new CANNON.Vec3(1, 1, 0),
     maxSuspensionTravel: 0.3,
     customSlidingRotationalSpeed: -30,
-    useCustomSlidingRotationalSpeed: true,
+    useCustomSlidingRotationalSpeed: true
   }
 
   // Create the vehicle
   const vehicle: CANNON.RaycastVehicle = new CANNON.RaycastVehicle({
-    chassisBody: chassisBody,
+    chassisBody: chassisBody
   })
 
   // Set the wheel bodies positions
@@ -186,9 +206,14 @@ export function main() {
 
   for (let i = 0; i < vehicle.wheelInfos.length; i++) {
     let wheel = vehicle.wheelInfos[i]
-    let cylinderShape: CANNON.Cylinder = new CANNON.Cylinder(wheel.radius ?? options.radius, wheel.radius ?? options.radius, wheel.radius ?? options.radius / 2, 20)
+    let cylinderShape: CANNON.Cylinder = new CANNON.Cylinder(
+      wheel.radius ?? options.radius,
+      wheel.radius ?? options.radius,
+      wheel.radius ?? options.radius / 2,
+      20
+    )
     let wheelBody: CANNON.Body = new CANNON.Body({
-      mass: 0,
+      mass: 0
     })
     wheelBody.type = CANNON.Body.KINEMATIC
     wheelBody.collisionFilterGroup = 0 // turn off collisions
@@ -273,50 +298,32 @@ export function main() {
 
   // Input system
   engine.addSystem(() => {
-    const pointerDown = inputSystem.getInputCommand(
-      InputAction.IA_POINTER,
-      PointerEventType.PET_DOWN
-    )
+    const pointerDown = inputSystem.getInputCommand(InputAction.IA_POINTER, PointerEventType.PET_DOWN)
     if (pointerDown) {
       isPointerPressed = true
     }
 
-    const pointerUp = inputSystem.getInputCommand(
-      InputAction.IA_POINTER,
-      PointerEventType.PET_UP
-    )
+    const pointerUp = inputSystem.getInputCommand(InputAction.IA_POINTER, PointerEventType.PET_UP)
     if (pointerUp) {
       isPointerPressed = false
     }
 
-    const primaryDown = inputSystem.getInputCommand(
-      InputAction.IA_PRIMARY,
-      PointerEventType.PET_DOWN
-    )
+    const primaryDown = inputSystem.getInputCommand(InputAction.IA_PRIMARY, PointerEventType.PET_DOWN)
     if (primaryDown) {
       isEKeyPressed = true
     }
 
-    const primaryUp = inputSystem.getInputCommand(
-      InputAction.IA_PRIMARY,
-      PointerEventType.PET_UP
-    )
+    const primaryUp = inputSystem.getInputCommand(InputAction.IA_PRIMARY, PointerEventType.PET_UP)
     if (primaryUp) {
       isEKeyPressed = false
     }
 
-    const secondaryDown = inputSystem.getInputCommand(
-      InputAction.IA_SECONDARY,
-      PointerEventType.PET_DOWN
-    )
+    const secondaryDown = inputSystem.getInputCommand(InputAction.IA_SECONDARY, PointerEventType.PET_DOWN)
     if (secondaryDown) {
       isFKeyPressed = true
     }
 
-    const secondaryUp = inputSystem.getInputCommand(
-      InputAction.IA_SECONDARY,
-      PointerEventType.PET_UP
-    )
+    const secondaryUp = inputSystem.getInputCommand(InputAction.IA_SECONDARY, PointerEventType.PET_UP)
     if (secondaryUp) {
       isFKeyPressed = false
     }
