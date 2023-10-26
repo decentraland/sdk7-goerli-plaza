@@ -8,8 +8,8 @@
   ],
   "dependencies": {
     "@dcl-sdk/utils": "latest",
-    "@types/cannon": "^0.1.8",
-    "cannon": "github:schteppe/cannon.js",
+    "@types/cannon": "latest",
+    "cannon": "latest",
     "dcl-ui-toolkit": "latest"
   },
   "devDependencies": {
