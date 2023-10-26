@@ -2,7 +2,7 @@
   "ecs7": true,
   "runtimeVersion": "7",
   "display": {
-    "title": "box2d-ball-example-scene",
+    "title": "box2d-ball",
     "description": "Simulating a bouncing ball using the box2d physics engine.",
     "navmapThumbnail": "images/scene-thumbnail.png",
     "favicon": "favicon_asset"
@@ -50,5 +50,5 @@
     "ALLOW_TO_MOVE_PLAYER_INSIDE_SCENE"
   ],
   "featureToggles": {},
-  "name": "box2d-ball-example-scene"
+  "name": "box2d-ball"
 }
