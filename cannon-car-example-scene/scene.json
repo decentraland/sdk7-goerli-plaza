@@ -2,23 +2,47 @@
   "ecs7": true,
   "runtimeVersion": "7",
   "display": {
-    "title": "Party-Time",
-    "description": "Time API scene with SDK7",
-    "navmapThumbnail": "images/screenshot.png",
+    "title": "cannon-car-example-scene",
+    "description": "Using raycast vehicle from the cannon.js physics engine.",
+    "navmapThumbnail": "images/scene-thumbnail.png",
     "favicon": "favicon_asset"
   },
   "owner": "",
   "contact": {
-    "name": "decentraland",
+    "name": "SDK",
     "email": ""
   },
   "main": "bin/index.js",
   "tags": [],
   "scene": {
     "parcels": [
-      "77,1"
+      "72,6",
+      "72,7",
+      "72,8",
+      "72,9",
+      "72,10",
+      "73,6",
+      "73,7",
+      "73,8",
+      "73,9",
+      "73,10",
+      "74,6",
+      "74,7",
+      "74,8",
+      "74,9",
+      "74,10",
+      "75,6",
+      "75,7",
+      "75,8",
+      "75,9",
+      "75,10",
+      "76,6",
+      "76,7",
+      "76,8",
+      "76,9",
+      "76,10"
     ],
-    "base": "77,1"
+    "base": "72,6"
   },
   "spawnPoints": [
     {
@@ -47,13 +71,8 @@
   ],
   "requiredPermissions": [
     "ALLOW_TO_TRIGGER_AVATAR_EMOTE",
-    "ALLOW_TO_MOVE_PLAYER_INSIDE_SCENE",
-    "ALLOW_MEDIA_HOSTNAMES"
-  ],
-  "allowedMediaHostnames": [
-    "edge.singsingmusic.net",
-    "player.vimeo.com"
+    "ALLOW_TO_MOVE_PLAYER_INSIDE_SCENE"
   ],
   "featureToggles": {},
-  "name": "Party-Time"
+  "name": "cannon-car-example-scene"
 }
