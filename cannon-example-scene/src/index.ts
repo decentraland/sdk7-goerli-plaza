@@ -1,15 +1,23 @@
-import { Entity, GltfContainer, InputAction, Transform, engine, pointerEventsSystem, inputSystem, PointerEventType } from '@dcl/sdk/ecs'
+import {
+  Entity,
+  GltfContainer,
+  InputAction,
+  Transform,
+  engine,
+  pointerEventsSystem,
+  inputSystem,
+  PointerEventType
+} from '@dcl/sdk/ecs'
 import { Quaternion, Vector3 } from '@dcl/sdk/math'
 import { Ball } from './ball'
 import { loadColliders } from './wallCollidersSetup'
 import * as CANNON from 'cannon/build/cannon'
 
-
 export function main() {
   // Create base scene
   const baseScene: Entity = engine.addEntity()
   GltfContainer.create(baseScene, {
-    src: 'models/baseScene.glb',
+    src: 'models/baseScene.glb'
   })
   Transform.create(baseScene)
 
@@ -36,14 +44,11 @@ export function main() {
     const randomPositionZ: number = Math.floor(Math.random() * 3) + 14
     randomPositions.push({ x: randomPositionX, y: randomPositionY, z: randomPositionZ })
 
-    const ball = new Ball(
-      ballShapes[i],
-      {
-        position: randomPositions[i],
-        rotation: Quaternion.Zero(),
-        scale: Vector3.One()
-      }
-    )
+    const ball = new Ball(ballShapes[i], {
+      position: randomPositions[i],
+      rotation: Quaternion.Zero(),
+      scale: Vector3.One()
+    })
     balls.push(ball)
     ballHeight += 2 // To ensure the colliders aren't intersecting when the simulation starts
 
@@ -59,11 +64,7 @@ export function main() {
       function (cmd: any) {
         // Apply impulse based on the direction of the camera
         ballBodies[i].applyImpulse(
-          new CANNON.Vec3(
-            forwardVector.x * vectorScale,
-            forwardVector.y * vectorScale,
-            forwardVector.z * vectorScale
-          ),
+          new CANNON.Vec3(forwardVector.x * vectorScale, forwardVector.y * vectorScale, forwardVector.z * vectorScale),
           // Applies impulse based on the player's position and where they click on the ball
           new CANNON.Vec3(cmd.hit?.position?.x, cmd.hit?.position?.y, cmd.hit?.position?.z)
         )
@@ -79,14 +80,10 @@ export function main() {
   loadColliders(world)
 
   const groundPhysicsMaterial = new CANNON.Material('groundMaterial')
-  const groundPhysicsContactMaterial = new CANNON.ContactMaterial(
-    groundPhysicsMaterial,
-    groundPhysicsMaterial,
-    {
-      friction: 0.5,
-      restitution: 0.33
-    }
-  )
+  const groundPhysicsContactMaterial = new CANNON.ContactMaterial(groundPhysicsMaterial, groundPhysicsMaterial, {
+    friction: 0.5,
+    restitution: 0.33
+  })
   world.addContactMaterial(groundPhysicsContactMaterial)
 
   // Create a ground plane and apply physics material
@@ -101,14 +98,10 @@ export function main() {
   world.addBody(groundBody)
 
   const ballPhysicsMaterial: CANNON.Material = new CANNON.Material('ballMaterial')
-  const ballPhysicsContactMaterial = new CANNON.ContactMaterial(
-    groundPhysicsMaterial,
-    ballPhysicsMaterial,
-    {
-      friction: 0.4,
-      restitution: 0.75
-    }
-  )
+  const ballPhysicsContactMaterial = new CANNON.ContactMaterial(groundPhysicsMaterial, ballPhysicsMaterial, {
+    friction: 0.4,
+    restitution: 0.75
+  })
   world.addContactMaterial(ballPhysicsContactMaterial)
 
   // Create bodies to represent each of the balls
@@ -117,11 +110,7 @@ export function main() {
 
     const ballBody: CANNON.Body = new CANNON.Body({
       mass: 5, // kg
-      position: new CANNON.Vec3(
-        ballTransform.position.x,
-        ballTransform.position.y,
-        ballTransform.position.z
-      ), // m
+      position: new CANNON.Vec3(ballTransform.position.x, ballTransform.position.y, ballTransform.position.z), // m
       shape: new CANNON.Sphere(1) // m (Create sphere shaped body with a radius of 1)
     })
 
@@ -158,10 +147,7 @@ export function main() {
   // Input system
   engine.addSystem(() => {
     // Reset with the E key
-    const primaryDown = inputSystem.getInputCommand(
-      InputAction.IA_PRIMARY,
-      PointerEventType.PET_DOWN
-    )
+    const primaryDown = inputSystem.getInputCommand(InputAction.IA_PRIMARY, PointerEventType.PET_DOWN)
     if (primaryDown) {
       for (let i = 0; i < ballBodies.length; i++) {
         ballBodies[i].position.set(randomPositions[i].x, randomPositions[i].y, randomPositions[i].z)
