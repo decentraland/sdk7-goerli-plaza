@@ -94,6 +94,9 @@
       "path": "clap-meter"
     },
     {
+      "path": "cannon-example-scene"
+    },
+    {
       "path": "cannon-car-example-scene"
     },
     {
