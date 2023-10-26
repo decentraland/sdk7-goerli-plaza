@@ -2,12 +2,9 @@
   "name": "cannon-example-scene",
   "description": "Cannon Example Scene (SDK7 Version)",
   "version": "1.0.0",
-  "bundleDependencies": [
-    "@types/cannon"
-  ],
   "dependencies": {
-    "@types/cannon": "^0.1.10",
-    "cannon": "^0.6.2"
+    "@types/cannon": "latest",
+    "cannon": "latest"
   },
   "devDependencies": {
     "@dcl/js-runtime": "latest",
