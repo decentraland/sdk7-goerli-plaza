@@ -11,7 +11,7 @@ export function main() {
   // Create base scene
   const baseScene = engine.addEntity()
   GltfContainer.create(baseScene, {
-    src: 'models/baseScene.glb',
+    src: 'models/baseScene.glb'
   })
   Transform.create(baseScene)
 
@@ -20,7 +20,7 @@ export function main() {
   MeshRenderer.setSphere(ball)
   MeshCollider.setSphere(ball)
   Material.setPbrMaterial(ball, {
-    albedoColor: Color4.Red(),
+    albedoColor: Color4.Red()
   })
   Transform.create(ball, { position: Vector3.create(0, 0, 8), scale: Vector3.create(2, 2, 2) })
 
