@@ -94,9 +94,6 @@
       "path": "cannon-car-example-scene"
     },
     {
-      "path": "box2d-ball-example-scene"
-    },
-    {
       "path": "boids"
     },
     {
