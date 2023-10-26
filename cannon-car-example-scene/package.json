@@ -1,20 +1,20 @@
 {
   "name": "cannon-car-example-scene",
-  "version": "1.0.0",
   "description": "Cannon Car Example Scene (SDK7 Version)",
-  "scripts": {
-    "start": "sdk-commands start",
-    "deploy": "sdk-commands deploy",
-    "build": "sdk-commands build",
-    "upgrade-sdk": "npm install --save-dev @dcl/sdk@latest",
-    "upgrade-sdk:next": "npm install --save-dev @dcl/sdk@next"
+  "version": "1.0.0",
+  "dependencies": {
+    "@types/cannon": "latest",
+    "cannon": "latest"
   },
   "devDependencies": {
     "@dcl/js-runtime": "latest",
     "@dcl/sdk": "latest"
   },
-  "dependencies": {
-    "@types/cannon": "^0.1.10",
-    "cannon": "^0.6.2"
+  "scripts": {
+    "build": "sdk-commands build",
+    "deploy": "sdk-commands deploy",
+    "start": "sdk-commands start",
+    "upgrade-sdk": "npm install --save-dev @dcl/sdk@latest",
+    "upgrade-sdk:next": "npm install --save-dev @dcl/sdk@next"
   }
 }
