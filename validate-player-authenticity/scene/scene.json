@@ -2,8 +2,8 @@
   "ecs7": true,
   "runtimeVersion": "7",
   "display": {
-    "title": "Pixel-Canvas-API",
-    "description": "Pixel art with friends",
+    "title": "Validate Player Authenticity SDK7",
+    "description": "Demo of Validating Player Authenticity in SDK7",
     "navmapThumbnail": "images/scene-thumbnail.png",
     "favicon": "favicon_asset"
   },
@@ -16,9 +16,9 @@
   "tags": [],
   "scene": {
     "parcels": [
-      "81,-8"
+      "80,-8"
     ],
-    "base": "81,-8"
+    "base": "80,-8"
   },
   "spawnPoints": [
     {
@@ -49,6 +49,5 @@
     "ALLOW_TO_TRIGGER_AVATAR_EMOTE",
     "ALLOW_TO_MOVE_PLAYER_INSIDE_SCENE"
   ],
-  "featureToggles": {},
-  "name": "Pixel-Canvas-API"
+  "featureToggles": {}
 }

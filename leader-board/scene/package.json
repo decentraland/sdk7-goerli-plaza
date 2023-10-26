@@ -1,0 +1,20 @@
+{
+  "name": "leader-board",
+  "version": "1.0.0",
+  "description": "Demo of Leader Board in SDK7",
+  "scripts": {
+    "start": "sdk-commands start",
+    "deploy": "sdk-commands deploy",
+    "build": "sdk-commands build",
+    "upgrade-sdk": "npm install --save-dev @dcl/sdk@latest",
+    "upgrade-sdk:next": "npm install --save-dev @dcl/sdk@next"
+  },
+  "devDependencies": {
+    "@dcl/js-runtime": "latest",
+    "@dcl/sdk": "latest"
+  },
+  "dependencies": {
+    "@dcl-sdk/utils": "latest",
+    "dcl-ui-toolkit": "latest"
+  }
+}
