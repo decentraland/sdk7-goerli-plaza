@@ -2,29 +2,15 @@
   "name": "coconut-shy",
   "description": "A scene that uses physics to handle the throwing of coconuts and falling of piled up items",
   "version": "1.0.0",
-  "bundleDependencies": [
-    "@dcl-sdk/utils",
-    "@dcl-sdk/ui-utils"
-  ],
   "dependencies": {
     "@dcl-sdk/utils": "latest",
-    "@types/cannon": "^0.1.8",
-    "cannon": "github:schteppe/cannon.js",
+    "@types/cannon": "latest",
+    "cannon": "latest",
     "dcl-ui-toolkit": "latest"
   },
   "devDependencies": {
     "@dcl/js-runtime": "latest",
     "@dcl/sdk": "latest"
-  },
-  "engines": {
-    "node": ">=16.0.0",
-    "npm": ">=6.0.0"
-  },
-  "prettier": {
-    "semi": false,
-    "singleQuote": true,
-    "printWidth": 120,
-    "trailingComma": "none"
   },
   "scripts": {
     "build": "sdk-commands build",
