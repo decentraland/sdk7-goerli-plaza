@@ -1,0 +1,32 @@
+{
+  "name": "validate-player-authenticity-server",
+  "version": "1.0.0",
+  "description": "Demo of Validating Player Authenticity Server",
+  "main": "dist/index.js",
+  "scripts": {
+    "prebuild": "tslint -c tslint.json -p tsconfig.json --fix",
+    "build": "tsc",
+    "prestart": "npm run build",
+    "start": "node .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "latest",
+    "decentraland-crypto-middleware": "latest",
+    "express": "latest",
+    "isomorphic-fetch": "latest"
+  },
+  "devDependencies": {
+    "@types/cors": "latest",
+    "@types/express": "latest",
+    "@types/isomorphic-fetch": "latest",
+    "@types/koa": "latest",
+    "@types/passport-strategy": "latest",
+    "@well-known-components/interfaces": "latest",
+    "tslint": "latest",
+    "typescript": "latest"
+  }
+}

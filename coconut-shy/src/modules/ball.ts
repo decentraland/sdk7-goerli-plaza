@@ -175,7 +175,7 @@ function playPickUpAnim(ball: Entity) {
     area: Vector3.create(16, 4, 16),
     mode: CameraType.CT_FIRST_PERSON
   })
-  VisibilityComponent.create(ball, { visible: true })
+  VisibilityComponent.createOrReplace(ball, { visible: true })
   Animator.stopAllAnimations(ball)
   Animator.playSingleAnimation(ball, 'PickUp')
 }
