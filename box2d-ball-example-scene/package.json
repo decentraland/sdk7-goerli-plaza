@@ -1,13 +1,9 @@
 {
   "name": "box2d-ball-example-scene",
-  "version": "1.0.0",
   "description": "Box2D Ball Example Scene (SDK7 Version)",
-  "scripts": {
-    "start": "sdk-commands start",
-    "deploy": "sdk-commands deploy",
-    "build": "sdk-commands build",
-    "upgrade-sdk": "npm install --save-dev @dcl/sdk@latest",
-    "upgrade-sdk:next": "npm install --save-dev @dcl/sdk@next"
+  "version": "1.0.0",
+  "dependencies": {
+    "box2d.ts": "^1.0.2"
   },
   "devDependencies": {
     "@dcl/js-runtime": "7.3.18",
@@ -23,7 +19,11 @@
     "printWidth": 120,
     "trailingComma": "none"
   },
-  "dependencies": {
-    "box2d.ts": "^1.0.2"
+  "scripts": {
+    "build": "sdk-commands build",
+    "deploy": "sdk-commands deploy",
+    "start": "sdk-commands start",
+    "upgrade-sdk": "npm install --save-dev @dcl/sdk@latest",
+    "upgrade-sdk:next": "npm install --save-dev @dcl/sdk@next"
   }
 }
