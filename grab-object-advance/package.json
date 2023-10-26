@@ -3,10 +3,11 @@
   "description": "ECS7 ",
   "version": "1.0.0",
   "dependencies": {
-    "@dcl/sdk": "next"
+    "@dcl/js-runtime": "latest",
+    "@dcl/sdk": "latest"
   },
   "devDependencies": {
-    "cannon": "github:schteppe/cannon.js"
+    "cannon": "latest"
   },
   "scripts": {
     "build": "sdk-commands build --skip-install",

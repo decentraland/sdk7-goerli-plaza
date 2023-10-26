@@ -22,7 +22,19 @@ This scene shows you:
 
 4. Open the Decentraland Editor tab, and press **Run Scene**
 
-Alternatively, you can use the command line. Inside this scene root directory run:
+> Note: When running a preview of the scene inside Visual Studio Code, some video formats may not be supported. If your video doesn't play, try clicking the **Open in browser** button on top of the preview window.
+
+Alternatively, you can use the command line: 
+
+1. Open a command line window and navigate to the scene root directory
+
+2. Run:
+
+```
+npm i
+```
+
+3. Then run:
 
 ```
 npm run start
@@ -41,8 +53,6 @@ If something doesn’t work, please [file an issue](https://github.com/decentral
 This scene is protected with a standard Apache 2 licence. See the terms and conditions in the [LICENSE](/LICENSE) file.
 
 # Setting up the Server for Streaming
-
-### _NOTE: These are just brief notes from my meeting with HPrivakos (will tidy up later...)_
 
 ## Choosing a hosting option
 
@@ -124,9 +134,9 @@ This is the simplest option, but doesn't allow for live streaming.
 
 > Note: The other available links on specific resoltuions often don't work when streamed into Decentraland. Always use the **HTTP Live streaming**. This option adjusts the quality of the video dynamically depending on the player's connection, leading to an optimal result. Note that this link is different from performing a streaming of a live event: players will each see the video from start to finish, without necessarily being in sync with what each other is seeing.
 
-5. Paste the link into your scene, replacing the placeholder on the `VideoClip` object.
+5. Paste the link into your scene, replacing the placeholder link on the `VideoPlayer` component.
 
-> Tip: If you intend your video to loop, make sure you set the `loop` property on the `VideoTexture` in your scene. Otherwise the video will play just once for each player.
+> Tip: If you intend your video to loop, make sure you set the `loop` property on the `VideoPlayer` component to true in your scene. Otherwise the video will play just once for each player.
 
 <!--
 ## Set up Vimeo Premium

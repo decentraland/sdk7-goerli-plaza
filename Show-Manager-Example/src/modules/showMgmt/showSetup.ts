@@ -1,4 +1,4 @@
-import * as showMgmt from 'show-manager/dist'
+import * as showMgmt from 'show-manager/src'
 import * as ui from 'dcl-ui-toolkit'
 import { showData } from './scheduleSetup'
 import { isPreviewMode } from '~system/EnvironmentApi'
@@ -92,16 +92,18 @@ export function setupShow() {
     ShowStatusDisplays.setArtistName(event.showData.artist)
   })
 
-  SHOW_MGR.addVideoStatusChangeListener(
-    new showMgmt.VideoChangeStatusListener((oldStatus: VideoState, newStatus: VideoState) => {
-      logger.debug('SHOW_MGR.addVideoStatusChangeListener', ' fired', oldStatus, newStatus)
+  // TODO FIX TYPE ISSUE HERE!!!!!!!!!!!!
 
-      switch (newStatus) {
-        case VideoState.VS_LOADING:
-          break
-      }
-    })
-  )
+  // SHOW_MGR.addVideoStatusChangeListener(
+  //   new showMgmt.VideoChangeStatusListener((oldStatus: VideoState, newStatus: VideoState) => {
+  //     logger.debug('SHOW_MGR.addVideoStatusChangeListener', ' fired', oldStatus, newStatus)
+
+  //     switch (newStatus) {
+  //       case VideoState.VS_LOADING:
+  //         break
+  //     }
+  //   })
+  // )
 
   //STARTING REGISTERING HANDLERS
 
