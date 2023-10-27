@@ -3,17 +3,23 @@
   "runtimeVersion": "7",
   "display": {
     "title": "Cube",
-    "description": "Test",
+    "description": "template scene with SDK7",
     "navmapThumbnail": "images/scene-thumbnail.png",
     "favicon": "favicon_asset"
   },
   "owner": "",
   "contact": {
-    "name": "Lean",
+    "name": "SDK",
     "email": ""
   },
-  "main": "bin/game.js",
+  "main": "bin/index.js",
   "tags": [],
+  "scene": {
+    "parcels": [
+      "76,-8"
+    ],
+    "base": "76,-8"
+  },
   "spawnPoints": [
     {
       "name": "spawn1",
@@ -44,11 +50,5 @@
     "ALLOW_TO_MOVE_PLAYER_INSIDE_SCENE"
   ],
   "featureToggles": {},
-  "scene": {
-    "base": "76,-8",
-    "parcels": [
-      "76,-8"
-    ]
-  },
   "name": "Cube"
 }

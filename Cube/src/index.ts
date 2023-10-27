@@ -1,67 +1,62 @@
 import {
+  Animator,
+  AudioSource,
+  AvatarAttach,
   engine,
-  Entity,
+  GltfContainer,
   InputAction,
-  inputSystem,
+  Material,
   MeshCollider,
-  MeshRenderer,
-  PointerEventType,
-  PointerEvents,
-  Transform
+  pointerEventsSystem,
+  Transform,
+  VisibilityComponent
 } from '@dcl/sdk/ecs'
-import { Quaternion, Vector3 } from '@dcl/sdk/math'
+import { Color4 } from '@dcl/sdk/math'
+import { initAssetPacks } from '@dcl/asset-packs/dist/scene-entrypoint'
 
-function createCube(x: number, y: number, z: number, spawner = false): Entity {
-  const meshEntity = engine.addEntity()
+// You can remove this if you don't use any asset packs
+initAssetPacks(engine, pointerEventsSystem, {
+  Animator,
+  AudioSource,
+  AvatarAttach,
+  Transform,
+  VisibilityComponent,
+  GltfContainer
+})
 
-  Transform.create(meshEntity, {
-    position: { x, y, z }
-  })
+import { bounceScalingSystem, circularSystem } from './systems'
 
-  MeshRenderer.setBox(meshEntity)
-  MeshCollider.setBox(meshEntity)
+import { setupUi } from './ui'
+import { BounceScaling, Spinner } from './components'
+import { createCube } from './factory'
 
-  if (spawner) {
-    PointerEvents.create(meshEntity, {
-      pointerEvents: [
-        {
-          eventType: PointerEventType.PET_DOWN,
-          eventInfo: {
-            button: InputAction.IA_PRIMARY,
-            hoverText: 'Press E to spawn',
-            maxDistance: 100,
-            showFeedback: true
-          }
-        }
-      ]
-    })
-  }
-
-  return meshEntity
-}
-
-function circularSystem(dt: number) {
-  for (const [entity] of engine.getEntitiesWith(MeshRenderer, Transform)) {
-    const transform = Transform.getMutable(entity)
-    transform.rotation = Quaternion.multiply(transform.rotation, Quaternion.fromAngleAxis(dt * 10, Vector3.Up()))
-  }
-}
+// Defining behavior. See `src/systems.ts` file.
+engine.addSystem(circularSystem)
+engine.addSystem(bounceScalingSystem)
 
 export function main() {
-  function spawnerSystem() {
-    for (const [entity] of engine.getEntitiesWith(PointerEvents)) {
-      if (inputSystem.isTriggered(InputAction.IA_PRIMARY, PointerEventType.PET_DOWN, entity)) {
+  // draw UI
+  setupUi()
+
+  // fetch cube from Inspector
+  const cube = engine.getEntityOrNullByName('Magic Cube')
+  if (cube) {
+    // Give the cube a color
+    Material.setPbrMaterial(cube, { albedoColor: Color4.Blue() })
+
+    // Make the cube spin, with the circularSystem
+    Spinner.create(cube, { speed: 10 })
+
+    // Give the cube a collider, to make it clickable
+    MeshCollider.setBox(cube)
+
+    // Add a click behavior to the cube, spawning new cubes in random places, and adding a bouncy effect for feedback
+    pointerEventsSystem.onPointerDown(
+      { entity: cube, opts: { button: InputAction.IA_POINTER, hoverText: 'spawn' } },
+      () => {
         createCube(1 + Math.random() * 8, Math.random() * 8, 1 + Math.random() * 8, false)
+        BounceScaling.createOrReplace(cube)
       }
-    }
-
-    if (inputSystem.isTriggered(InputAction.IA_SECONDARY, PointerEventType.PET_DOWN)) {
-      const cubeTransform = Transform.getMutable(cube)
-      cubeTransform.scale.y += 0.3
-    }
+    )
   }
-
-  const cube = createCube(8, 1, 8, true)
-  engine.addSystem(circularSystem)
-  engine.addSystem(spawnerSystem)
 }
