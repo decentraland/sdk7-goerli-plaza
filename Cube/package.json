@@ -1,18 +1,17 @@
 {
   "name": "cube",
-  "description": "ECS7 ",
+  "description": "SDK7 Template scene",
   "version": "1.0.0",
-  "dependencies": {
+  "devDependencies": {
+    "@dcl/asset-packs": "latest",
+    "@dcl/js-runtime": "latest",
     "@dcl/sdk": "latest"
   },
-  "devDependencies": {},
-  "engines": {
-    "node": ">=16.0.0",
-    "npm": ">=6.0.0"
-  },
   "scripts": {
-    "build": "sdk-commands build --skip-install",
+    "build": "sdk-commands build",
     "deploy": "sdk-commands deploy",
-    "start": "sdk-commands start"
+    "start": "sdk-commands start",
+    "upgrade-sdk": "npm install --save-dev @dcl/sdk@latest",
+    "upgrade-sdk:next": "npm install --save-dev @dcl/sdk@next"
   }
 }
