@@ -55,6 +55,9 @@
       "path": "light-bounce-puzzle"
     },
     {
+      "path": "leader-board"
+    },
+    {
       "path": "lazy-loading"
     },
     {
@@ -62,6 +65,9 @@
     },
     {
       "path": "inflatable-punch-bag"
+    },
+    {
+      "path": "guest-book-api"
     },
     {
       "path": "grab-objects"
