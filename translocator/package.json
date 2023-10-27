@@ -1,0 +1,20 @@
+{
+  "name": "translocator",
+  "description": "Translocator (SDK7 Version)",
+  "version": "1.0.0",
+  "dependencies": {
+    "@types/cannon": "latest",
+    "cannon": "latest"
+  },
+  "devDependencies": {
+    "@dcl/js-runtime": "latest",
+    "@dcl/sdk": "latest"
+  },
+  "scripts": {
+    "build": "sdk-commands build",
+    "deploy": "sdk-commands deploy",
+    "start": "sdk-commands start",
+    "upgrade-sdk": "npm install --save-dev @dcl/sdk@latest",
+    "upgrade-sdk:next": "npm install --save-dev @dcl/sdk@next"
+  }
+}

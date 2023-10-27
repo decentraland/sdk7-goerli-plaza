@@ -10,6 +10,9 @@
       "path": "uv-map"
     },
     {
+      "path": "translocator"
+    },
+    {
       "path": "tin-can-alley"
     },
     {
@@ -52,6 +55,9 @@
       "path": "light-bounce-puzzle"
     },
     {
+      "path": "leader-board"
+    },
+    {
       "path": "lazy-loading"
     },
     {
@@ -59,6 +65,9 @@
     },
     {
       "path": "inflatable-punch-bag"
+    },
+    {
+      "path": "guest-book-api"
     },
     {
       "path": "grab-objects"
@@ -89,6 +98,12 @@
     },
     {
       "path": "clap-meter"
+    },
+    {
+      "path": "cannon-example-scene"
+    },
+    {
+      "path": "cannon-car-example-scene"
     },
     {
       "path": "boids"
