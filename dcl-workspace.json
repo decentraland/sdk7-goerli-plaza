@@ -10,6 +10,9 @@
       "path": "uv-map"
     },
     {
+      "path": "ui-spritesheet"
+    },
+    {
       "path": "translocator"
     },
     {
