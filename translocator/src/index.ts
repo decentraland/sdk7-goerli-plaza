@@ -15,6 +15,7 @@ import { Teleport } from './teleport'
 import { Translocator } from './translocator'
 import { movePlayerTo } from '~system/RestrictedActions'
 import { Sound } from './sound'
+import { onlyInSceneSystem } from './onlyRenderInScene'
 
 export function main() {
   // Create base scene
@@ -223,4 +224,7 @@ export function main() {
     transform.parent = translatorParent
     transform.position = Vector3.create(X_OFFSET, Y_OFFSET, Z_OFFSET)
   }
+
+  // don't show the translocator outside the scene
+  engine.addSystem(onlyInSceneSystem)
 }

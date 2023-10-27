@@ -1,5 +1,6 @@
 import { Entity, GltfContainer, Transform, TransformType, engine } from '@dcl/sdk/ecs'
 import { Vector3 } from '@dcl/sdk/math'
+import { OnlyInScene } from './onlyRenderInScene'
 
 export class Translocator {
   entity: Entity = engine.addEntity()
@@ -27,6 +28,8 @@ export class Translocator {
     GltfContainer.create(this.orangeGlow, {
       src: 'models/orangeGlow.glb'
     })
+
+    OnlyInScene.create(this.entity)
 
     this.setGlow(false)
   }
