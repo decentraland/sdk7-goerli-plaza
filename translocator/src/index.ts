@@ -171,7 +171,7 @@ export function main() {
   engine.addSystem(() => {
     // Shoot / recall translocator disc
     const pointerDown = inputSystem.getInputCommand(InputAction.IA_POINTER, PointerEventType.PET_DOWN)
-    if (pointerDown) {
+    if (pointerDown && translocator) {
       if (!translocator.isFired) {
         engine.addSystem(shootDiscSystem)
         AudioSource.getMutable(shootSound.entity).playing = true
