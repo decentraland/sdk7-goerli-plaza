@@ -2,7 +2,7 @@
   "ecs7": true,
   "runtimeVersion": "7",
   "display": {
-    "title": "Validate Player Authenticity SDK7",
+    "title": "validate-player-authenticity",
     "description": "Demo of Validating Player Authenticity in SDK7",
     "navmapThumbnail": "images/scene-thumbnail.png",
     "favicon": "favicon_asset"
@@ -49,5 +49,6 @@
     "ALLOW_TO_TRIGGER_AVATAR_EMOTE",
     "ALLOW_TO_MOVE_PLAYER_INSIDE_SCENE"
   ],
-  "featureToggles": {}
+  "featureToggles": {},
+  "name": "validate-player-authenticity"
 }

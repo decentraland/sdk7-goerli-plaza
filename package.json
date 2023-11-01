@@ -106,6 +106,7 @@
     "translocator",
     "ui-spritesheet",
     "uv-map",
+    "validate-player-authenticity",
     "video-streaming",
     "zombie-attack"
   ]

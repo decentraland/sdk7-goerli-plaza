@@ -7,6 +7,9 @@
       "path": "video-streaming"
     },
     {
+      "path": "validate-player-authenticity"
+    },
+    {
       "path": "uv-map"
     },
     {
