@@ -13,8 +13,6 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 18.x
-      - name: change directory
-        run: cd scene
       - name: install dependencies
         run: npm install
       - name: npm run build
