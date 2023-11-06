@@ -9,44 +9,46 @@ const projectPath = "BasicInteractions"
 export const fullPath = "https://github.com/decentraland/sdk7-goerli-plaza/tree/main/" + projectPath
 
 export function setupUi() {
-  ReactEcsRenderer.setUiRenderer(uiComponent)
+	ReactEcsRenderer.setUiRenderer(uiComponent)
 }
 
 
 const uiComponent = () => (
 	<UiEntity
-	uiTransform={{
-	flexDirection: 'column',
-	alignItems: 'center',
-	justifyContent: 'space-between',
-	positionType:'absolute',
-	position:{right:"3%", bottom:'3%'}	
-	}}
+		uiTransform={{
+			flexDirection: 'column',
+			alignItems: 'center',
+			justifyContent: 'space-between',
+			positionType: 'absolute',
+			position: { right: "3%", bottom: '3%' }
+		}}
 	>
 		<UiEntity
-				uiTransform={{
-					width: '50',
-					height: '50',
-				
-				
-				
-				}}
-				uiBackground={{  
-					textureMode: 'stretch',
-					texture: {
-					src: "images/gh.png"
-				} }}
+			uiTransform={{
+				width: '100',
+				height: '100',
 
-				onMouseDown={() => {
-					console.log("OPENING LINK")
-						openExternalUrl({url: fullPath })
-					}}
-					/>
-						<Label
-							value="View code"
-							color={Color4.Black()}
-							textAlign="middle-center"
-					/>
-					</UiEntity>
+
+
+			}}
+			uiBackground={{
+				textureMode: 'stretch',
+				texture: {
+					src: "images/gh.png"
+				}
+			}}
+
+			onMouseDown={() => {
+				console.log("OPENING LINK")
+				openExternalUrl({ url: fullPath })
+			}}
+		/>
+		<Label
+			value="View code"
+			color={Color4.Black()}
+			fontSize={18}
+			textAlign="middle-center"
+		/>
+	</UiEntity>
 )
 
