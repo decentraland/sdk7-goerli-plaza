@@ -10,7 +10,14 @@ import {
 } from '@dcl/sdk/ecs'
 import { Vector3 } from '@dcl/sdk/math'
 import { BoxBody, JointBodyID, Marker, markerMaterial, markerPullMaterial } from './definitions'
-import { addBody, addConstraint, getBoxBodyOrNull, getConstraintOrNull, removeConstraint } from './world'
+import {
+  addBody,
+  addConstraint,
+  getBoxBodyOrNull,
+  getConstraintOrNull,
+  removeAllConstraints,
+  removeConstraint
+} from './world'
 import * as CANNON from 'cannon/build/cannon'
 
 function getMarkerEntity(): Entity {
@@ -78,6 +85,7 @@ function removeJointConstraint() {
   const mouseConstraint = getConstraintOrNull(markerComponent.mouseConstraintId)
   console.log('MARKER REMOVED', markerComponent, mouseConstraint)
   if (mouseConstraint) removeConstraint(mouseConstraint)
+  else removeAllConstraints()
 }
 
 export function _inputSystem() {

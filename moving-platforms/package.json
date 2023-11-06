@@ -3,8 +3,9 @@
   "description": "Moving Platforms",
   "version": "1.0.0",
   "dependencies": {
-    "@dcl-sdk/utils": "next",
-    "@dcl/sdk": "next"
+    "@dcl-sdk/utils": "latest",
+    "@dcl/js-runtime": "latest",
+    "@dcl/sdk": "latest"
   },
   "scripts": {
     "build": "sdk-commands build --skip-install",

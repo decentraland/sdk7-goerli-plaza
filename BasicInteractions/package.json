@@ -3,11 +3,11 @@
   "description": "ECS7 ",
   "version": "1.0.0",
   "dependencies": {
-    "@dcl-sdk/utils": "next",
-    "@dcl/sdk": "next"
+    "@dcl-sdk/utils": "latest",
+    "@dcl/sdk": "latest"
   },
   "devDependencies": {
-    "@dcl/js-runtime": "next"
+    "@dcl/js-runtime": "latest"
   },
   "scripts": {
     "build": "sdk-commands build --skip-install",

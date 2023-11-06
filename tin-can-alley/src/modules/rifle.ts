@@ -3,6 +3,7 @@ import { Quaternion, Vector3 } from '@dcl/sdk/math'
 import { Position } from '~system/EngineApi'
 import { Cooldown } from '../components'
 import { playshotSilencerSound } from './sound'
+import { OnlyInScene } from './onlyRenderInScene'
 
 export function createRifle(model: string, position: Position, rotation: Vector3) {
   const rifle = engine.addEntity()
@@ -17,6 +18,8 @@ export function createRifle(model: string, position: Position, rotation: Vector3
     visibleMeshesCollisionMask: ColliderLayer.CL_POINTER
   })
 
+  OnlyInScene.create(rifle)
+
   Cooldown.create(rifle)
 
   Transform.getMutable(rifle).parent = engine.CameraEntity
@@ -25,13 +28,11 @@ export function createRifle(model: string, position: Position, rotation: Vector3
   Animator.create(rifle, {
     states: [
       {
-        name: 'Blank',
         clip: 'Blank',
         playing: true,
         loop: false
       },
       {
-        name: 'Fire',
         clip: 'Fire',
         playing: false,
         loop: false

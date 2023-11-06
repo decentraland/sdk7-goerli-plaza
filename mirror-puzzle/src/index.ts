@@ -1,4 +1,4 @@
-import { GltfContainer, engine } from '@dcl/sdk/ecs'
+import { ColliderLayer, GltfContainer, engine } from '@dcl/sdk/ecs'
 import { Vector3 } from '@dcl/sdk/math'
 import { Mirror } from './mirror'
 import { Selector } from './selector'
@@ -8,7 +8,8 @@ export function main() {
   // Base
   const base = engine.addEntity()
   GltfContainer.create(base, {
-    src: 'models/baseCheckered.glb'
+    src: 'models/baseCheckered.glb',
+    invisibleMeshesCollisionMask: ColliderLayer.CL_NONE
   })
 
   // Boundaries

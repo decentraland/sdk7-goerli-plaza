@@ -3,7 +3,7 @@
   "description": "SDK7 Template scene",
   "version": "1.0.0",
   "dependencies": {
-    "@dcl/sdk": "next"
+    "@dcl/sdk": "latest"
   },
   "engines": {
     "node": ">=16.0.0",

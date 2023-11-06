@@ -1,4 +1,4 @@
-import { engine, Entity, GltfContainer, Transform } from '@dcl/sdk/ecs'
+import { EasingFunction, engine, Entity, GltfContainer, Transform, Tween, TweenLoop, TweenSequence } from '@dcl/sdk/ecs'
 import { Vector3 } from '@dcl/sdk/math'
 import { createCoin } from './modules/coin'
 import * as utils from '@dcl-sdk/utils'
@@ -24,13 +24,16 @@ export function main() {
     position: Vector3.create(2, 1.5, 8)
   })
 
-  startPath(
-    platform1,
-    [Vector3.create(2, 1.5, 8), Vector3.create(2, 1.5, 10), Vector3.create(2, 1.5, 8)],
-    3,
-    false,
-    true
-  )
+  Tween.create(platform1, {
+    mode: Tween.Mode.Move({
+      start: Vector3.create(2, 1.5, 8),
+      end: Vector3.create(2, 1.5, 10)
+    }),
+    duration: 2000,
+    easingFunction: EasingFunction.EF_LINEAR
+  })
+
+  TweenSequence.create(platform1, { sequence: [], loop: TweenLoop.TL_YOYO })
 
   //// only vertical
   const platform2 = engine.addEntity()
@@ -41,13 +44,16 @@ export function main() {
     position: Vector3.create(4, 1.5, 14)
   })
 
-  startPath(
-    platform2,
-    [Vector3.create(4, 1.5, 14), Vector3.create(4, 4, 14), Vector3.create(4, 1.5, 14)],
-    2,
-    false,
-    true
-  )
+  Tween.create(platform2, {
+    mode: Tween.Mode.Move({
+      start: Vector3.create(4, 1.5, 14),
+      end: Vector3.create(4, 4, 14)
+    }),
+    duration: 2000,
+    easingFunction: EasingFunction.EF_LINEAR
+  })
+
+  TweenSequence.create(platform2, { sequence: [], loop: TweenLoop.TL_YOYO })
 
   //// triggerable platform
   const platform3 = engine.addEntity()
@@ -58,21 +64,45 @@ export function main() {
     position: Vector3.create(14, 4, 12)
   })
 
+  const triggerMarker = engine.addEntity()
+  Transform.create(triggerMarker, {
+    position: Vector3.create(14, 4, 12)
+  })
+
   utils.triggers.addTrigger(
-    platform3,
+    triggerMarker,
     utils.LAYER_1,
     utils.LAYER_1,
     [{ type: 'box', scale: Vector3.create(1, 2, 1) }],
     () => {
-      startPath(
-        platform3,
-        [Vector3.create(14, 4, 12), Vector3.create(14, 4, 4), Vector3.create(14, 4, 12)],
-        20,
-        false,
-        false
-      )
+      console.log('JUMPED ON')
+
+      Tween.createOrReplace(platform3, {
+        mode: Tween.Mode.Move({
+          start: Vector3.create(14, 4, 12),
+          end: Vector3.create(14, 4, 4)
+        }),
+        duration: 2000,
+        easingFunction: EasingFunction.EF_LINEAR,
+        currentTime: 0 // in case it was already moving
+      })
+
+      TweenSequence.createOrReplace(platform3, {
+        sequence: [
+          {
+            mode: Tween.Mode.Move({
+              start: Vector3.create(14, 4, 4),
+              end: Vector3.create(14, 4, 12)
+            }),
+            duration: 2000,
+            easingFunction: EasingFunction.EF_LINEAR
+          }
+        ]
+      }) // non looping
     }
   )
+
+  //utils.triggers.enableDebugDraw(true)
 
   //// path with many waypoints
   const platform4 = engine.addEntity()
@@ -83,27 +113,45 @@ export function main() {
     position: Vector3.create(6.5, 7, 4)
   })
 
-  startPath(
-    platform4,
-    [
-      Vector3.create(6.5, 7, 4),
-      Vector3.create(6.5, 7, 12),
-      Vector3.create(6.5, 10.5, 12),
-      Vector3.create(6.5, 10.5, 4),
-      Vector3.create(6.5, 7, 4)
+  Tween.create(platform4, {
+    mode: Tween.Mode.Move({
+      start: Vector3.create(6.5, 7, 4),
+      end: Vector3.create(6.5, 7, 12)
+    }),
+    duration: 2000,
+    easingFunction: EasingFunction.EF_LINEAR
+  })
+
+  TweenSequence.create(platform4, {
+    sequence: [
+      {
+        mode: Tween.Mode.Move({
+          start: Vector3.create(6.5, 7, 12),
+          end: Vector3.create(6.5, 10.5, 12)
+        }),
+        duration: 2000,
+        easingFunction: EasingFunction.EF_LINEAR
+      },
+      {
+        mode: Tween.Mode.Move({
+          start: Vector3.create(6.5, 10.5, 12),
+          end: Vector3.create(6.5, 10.5, 4)
+        }),
+        duration: 2000,
+        easingFunction: EasingFunction.EF_LINEAR
+      },
+      {
+        mode: Tween.Mode.Move({
+          start: Vector3.create(6.5, 10.5, 4),
+          end: Vector3.create(6.5, 7, 4)
+        }),
+        duration: 2000,
+        easingFunction: EasingFunction.EF_LINEAR
+      }
     ],
-    40,
-    false,
-    true
-  )
+    loop: TweenLoop.TL_RESTART
+  })
 
   // Instantiate pickable coin
   createCoin('models/starCoin.glb', Vector3.create(9, 12.75, 8), Vector3.create(1.5, 3, 1.5), Vector3.create(0, 1, 0))
-}
-
-// function to make path following recursive
-function startPath(entity: Entity, path: Vector3[], duration: number, facePath?: boolean, loop?: boolean) {
-  utils.paths.startStraightPath(entity, path, duration, false, function () {
-    if (loop) startPath(entity, path, duration, facePath, loop)
-  })
 }

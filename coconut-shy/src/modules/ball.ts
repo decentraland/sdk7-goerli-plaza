@@ -85,7 +85,6 @@ export function createBall(position: Vector3, cannonMaterial: CANNON.Material, c
   Animator.create(ball, {
     states: [
       {
-        name: 'PickUp',
         clip: 'PickUp',
         playing: false,
         loop: false
@@ -176,7 +175,7 @@ function playPickUpAnim(ball: Entity) {
     area: Vector3.create(16, 4, 16),
     mode: CameraType.CT_FIRST_PERSON
   })
-  VisibilityComponent.create(ball, { visible: true })
+  VisibilityComponent.createOrReplace(ball, { visible: true })
   Animator.stopAllAnimations(ball)
   Animator.playSingleAnimation(ball, 'PickUp')
 }

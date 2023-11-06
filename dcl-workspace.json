@@ -7,7 +7,16 @@
       "path": "video-streaming"
     },
     {
+      "path": "validate-player-authenticity"
+    },
+    {
       "path": "uv-map"
+    },
+    {
+      "path": "ui-spritesheet"
+    },
+    {
+      "path": "translocator"
     },
     {
       "path": "tin-can-alley"
@@ -37,6 +46,9 @@
       "path": "power-cube"
     },
     {
+      "path": "piano-floor"
+    },
+    {
       "path": "open-door"
     },
     {
@@ -49,6 +61,9 @@
       "path": "light-bounce-puzzle"
     },
     {
+      "path": "leader-board"
+    },
+    {
       "path": "lazy-loading"
     },
     {
@@ -56,6 +71,9 @@
     },
     {
       "path": "inflatable-punch-bag"
+    },
+    {
+      "path": "guest-book-api"
     },
     {
       "path": "grab-objects"
@@ -83,6 +101,15 @@
     },
     {
       "path": "coconut-shy"
+    },
+    {
+      "path": "clap-meter"
+    },
+    {
+      "path": "cannon-example-scene"
+    },
+    {
+      "path": "cannon-car-example-scene"
     },
     {
       "path": "boids"
@@ -115,6 +142,9 @@
       "path": "Zombie-shooter"
     },
     {
+      "path": "Weather-Simulation"
+    },
+    {
       "path": "Wearables-scanner"
     },
     {
@@ -136,10 +166,16 @@
       "path": "Smoke"
     },
     {
+      "path": "Smart_Items_Pirate_Island"
+    },
+    {
       "path": "Simple-NPC"
     },
     {
       "path": "Simple-NFT"
+    },
+    {
+      "path": "Show-Manager-Example"
     },
     {
       "path": "Shooting-range"
@@ -160,6 +196,12 @@
       "path": "Portal-Puzzle"
     },
     {
+      "path": "Pixel-Canvas-API"
+    },
+    {
+      "path": "Party-Time"
+    },
+    {
       "path": "Laser-ray-Casting"
     },
     {
@@ -175,6 +217,9 @@
       "path": "Gnark"
     },
     {
+      "path": "Events-API-Board"
+    },
+    {
       "path": "Dance-floor"
     },
     {
@@ -185,6 +230,9 @@
     },
     {
       "path": "Block-dog"
+    },
+    {
+      "path": "Block-Fountain"
     },
     {
       "path": "BasicInteractions"

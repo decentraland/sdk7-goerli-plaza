@@ -3,7 +3,7 @@ import { engine, Entity, GltfContainer, Transform } from '@dcl/ecs'
 import { Vector3 } from '@dcl/sdk/math'
 import * as utils from '@dcl-sdk/utils'
 import { PuzzleBuilder } from './puzzleBuilder'
-import { InputAction, PointerEvents, PointerEventType } from '@dcl/sdk/ecs'
+import { EasingFunction, InputAction, PointerEvents, PointerEventType, Tween } from '@dcl/sdk/ecs'
 
 export class Statue {
   public entity: Entity
@@ -54,8 +54,15 @@ export class Statue {
 
       Sound.playStatueMove()
       // Slide the statue to its endPos over half a second
-      let path: Vector3[] = [currentPos, endPos]
-      utils.paths.startStraightPath(this.entity, path, 0.5)
+      Tween.createOrReplace(this.entity, {
+        mode: Tween.Mode.Move({
+          start: currentPos,
+          end: endPos
+        }),
+        duration: 500,
+        easingFunction: EasingFunction.EF_EASESINE
+      })
+
       utils.timers.setTimeout(() => {
         this.blockMovement = false
         if (PuzzleBuilder.checkSolution()) {

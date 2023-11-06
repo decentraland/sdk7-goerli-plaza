@@ -16,12 +16,10 @@ export function createArissaCharacter(): Entity {
   Animator.create(entity, {
     states: [
       {
-        name: 'Running',
         clip: 'Running',
         loop: true
       },
       {
-        name: 'Idle',
         clip: 'Idle',
         loop: true
       }
