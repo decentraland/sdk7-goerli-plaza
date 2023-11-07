@@ -45,14 +45,6 @@
       }
     }
   ],
-  "requiredPermissions": [
-    "ALLOW_TO_TRIGGER_AVATAR_EMOTE",
-    "ALLOW_TO_MOVE_PLAYER_INSIDE_SCENE",
-    "ALLOW_MEDIA_HOSTNAMES"
-  ],
-  "allowedMediaHostnames": [
-    "player.vimeo.com"
-  ],
   "featureToggles": {},
   "name": "Show-Manager-Example"
 }
