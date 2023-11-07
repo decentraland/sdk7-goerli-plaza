@@ -4,8 +4,12 @@ import { initializeCharacter, initializeModels } from './modules/modelsHandler'
 import { createAvatarSwappingArea, avatarSwappingSystem, createSeparationWall } from './modules/avatarSwappingArea'
 import { createJoinTeamControl } from './modules/swappingControls'
 import { TeamModels } from './modules/modelsHandler'
+import { setupUi } from './ui'
 
 export function main() {
+  // UI with GH link
+  setupUi()
+
   // Initializing for models to be properly loaded even before usage
   initializeModels()
 

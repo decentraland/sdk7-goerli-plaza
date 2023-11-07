@@ -7,6 +7,7 @@ import { Vector3 } from '@dcl/sdk/math'
 
 import { _inputSystem, setupMarker, updateMarkerSystem } from './marker'
 import { createBoxBody, setupCannon, updatePhysicsSystem } from './world'
+import { setupUi } from './ui'
 
 export function main() {
   // // Base scene
@@ -23,4 +24,7 @@ export function main() {
   engine.addSystem(updatePhysicsSystem)
   engine.addSystem(updateMarkerSystem)
   engine.addSystem(_inputSystem)
+
+  // UI with GitHub link
+  setupUi()
 }

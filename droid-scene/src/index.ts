@@ -10,6 +10,7 @@ import {
 } from '@dcl/sdk/ecs'
 import { Color4, Quaternion, Vector3 } from '@dcl/sdk/math'
 import * as utils from '@dcl-sdk/utils'
+import { setupUi } from './ui'
 
 let DROID_IS_MOVING: boolean = false
 
@@ -29,6 +30,9 @@ export function main() {
       }
     )
   }
+
+  // UI with GitHub link
+  setupUi()
 }
 
 export function moveDroidToRandomPos(droid: Entity) {

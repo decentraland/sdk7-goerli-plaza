@@ -2,6 +2,7 @@ import { engine, GltfContainer, Material, MeshRenderer, Transform } from '@dcl/s
 import { Vector3 } from '@dcl/sdk/math'
 import { Sprite } from './definitions'
 import updateSpriteFrameSystem from './modules/spriteFrames'
+import { setupUi } from './ui'
 
 export function main() {
   // // 3d model of robot
@@ -36,4 +37,7 @@ export function main() {
   })
 
   engine.addSystem(updateSpriteFrameSystem)
+
+  // UI with GitHub link
+  setupUi()
 }

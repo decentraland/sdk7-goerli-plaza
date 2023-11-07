@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "author": "",
   "dependencies": {
+    "@dcl/js-runtime": "latest",
     "@dcl/sdk": "latest"
   },
   "license": "Apache-2.0",

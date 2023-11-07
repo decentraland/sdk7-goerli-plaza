@@ -1,6 +1,7 @@
 import { Animator, AudioSource, engine, Entity, GltfContainer, Material, MeshRenderer, Transform } from '@dcl/sdk/ecs'
 import { Quaternion, Vector3 } from '@dcl/sdk/math'
 import { colors, Beat, Tile } from './definitions'
+import { setupUi } from './ui'
 
 export function main() {
   // Add floor Tiles
@@ -70,6 +71,9 @@ export function main() {
   }
 
   engine.addSystem(tilesColorChangeSystem)
+
+  // UI with GitHub link
+  setupUi()
 }
 
 function randomizeTileColor(entity: Entity) {

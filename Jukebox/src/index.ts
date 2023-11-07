@@ -2,6 +2,7 @@ import { Quaternion, Vector3 } from '@dcl/sdk/math'
 import { engine, GltfContainer, Transform } from '@dcl/sdk/ecs'
 import { songs } from './definitions'
 import { createSongButton } from './modules/songButton'
+import { setupUi } from './ui'
 
 export function main() {
   // ground
@@ -31,4 +32,7 @@ function createJukebox(position: Vector3) {
     const posY = Math.floor(i / 2) === 0 ? 1.9 : 1.77
     createSongButton(jukebox, posX, posY, songs[i])
   }
+
+  // UI with GitHub link
+  setupUi()
 }

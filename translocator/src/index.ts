@@ -16,6 +16,7 @@ import { Translocator } from './translocator'
 import { movePlayerTo } from '~system/RestrictedActions'
 import { Sound } from './sound'
 import { onlyInSceneSystem } from './onlyRenderInScene'
+import { setupUi } from './ui'
 
 export function main() {
   // Create base scene
@@ -227,4 +228,7 @@ export function main() {
 
   // don't show the translocator outside the scene
   engine.addSystem(onlyInSceneSystem)
+
+  // UI with GitHub link
+  setupUi()
 }

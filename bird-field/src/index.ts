@@ -10,6 +10,7 @@ import {
 import { Vector3 } from '@dcl/sdk/math'
 import { spawnBirds } from './modules/birds'
 import { mendezCoroutineRuntime } from './modules/coroutine'
+import { setupUi } from './ui'
 
 // please do not remove this coroutine, it exists to test the compliance of the GltfContainerLoadingState component
 const corountime = mendezCoroutineRuntime(engine)
@@ -75,3 +76,6 @@ function* waitForAllModelsToLoad(engine: IEngine) {
     }
   }
 }
+
+// UI with GitHub link
+setupUi()

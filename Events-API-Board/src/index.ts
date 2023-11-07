@@ -1,5 +1,6 @@
 import { Quaternion } from '@dcl/sdk/math'
 import { createEventBoard } from './eventBoards'
+import { setupUi } from './ui'
 
 export async function main() {
   const board_1 = createEventBoard(0, 4, {
@@ -16,4 +17,7 @@ export async function main() {
     position: { x: 8, y: 3, z: 6.7 },
     rotation: Quaternion.fromEulerDegrees(0, 0, 0)
   })
+
+  // UI with GitHub link
+  setupUi()
 }

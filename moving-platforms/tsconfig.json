@@ -1,5 +1,11 @@
 {
-  "compilerOptions": {},
-  "include": ["src/**/*.ts", "@dcl/ecs"],
-  "extends": "@dcl/sdk/types/tsconfig.ecs7.strict.json"
+	"compilerOptions": {
+		"allowJs": true,
+		"strict": true
+	},
+	"include": [
+		"src/**/*.ts",
+		"src/**/*.tsx"
+	],
+	"extends": "@dcl/sdk/types/tsconfig.ecs7.strict.json"
 }

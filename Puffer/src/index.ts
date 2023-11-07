@@ -11,6 +11,7 @@ import {
 } from '@dcl/sdk/ecs'
 import { Color3, Vector3 } from '@dcl/sdk/math'
 import * as utils from '@dcl-sdk/utils'
+import { setupUi } from './ui'
 
 export function main() {
   // Ground
@@ -94,4 +95,7 @@ export function main() {
       sound.pitch = 0.5 + Math.random()
     }, 2000)
   }
+
+  // UI with GitHub link
+  setupUi()
 }
