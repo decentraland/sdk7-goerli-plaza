@@ -4,8 +4,8 @@
   "version": "1.0.0",
   "dependencies": {
     "@dcl-sdk/utils": "latest",
-    "@dcl/sdk": "latest",
-    "@dcl/js-runtime": "7.3.23"
+    "@dcl/js-runtime": "latest",
+    "@dcl/sdk": "latest"
   },
   "devDependencies": {},
   "scripts": {

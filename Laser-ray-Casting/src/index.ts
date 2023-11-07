@@ -12,6 +12,7 @@ import {
 } from './definitions'
 import movingCubesSystem from './modules/movingCubes'
 import { createRaycast } from './modules/ray'
+import { setupUi } from './ui'
 
 export function main() {
   const floor = engine.addEntity()
@@ -92,4 +93,7 @@ export function main() {
 
     return cube
   }
+
+  // UI with GitHub link
+  setupUi()
 }

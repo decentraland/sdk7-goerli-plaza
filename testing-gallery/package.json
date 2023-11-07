@@ -2,6 +2,7 @@
   "name": "testing-gallery",
   "version": "1.0.0",
   "dependencies": {
+    "@dcl/js-runtime": "latest",
     "@dcl/sdk": "latest"
   },
   "devDependencies": {},

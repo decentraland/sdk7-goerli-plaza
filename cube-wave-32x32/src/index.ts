@@ -1,5 +1,6 @@
 import { CircleHoverSystem } from './circularSystem'
 import { Billboard, engine, MeshRenderer, TextShape, Transform } from '@dcl/sdk/ecs'
+import { setupUi } from './ui'
 
 export function main() {
   for (let x = 0.5; x < 16; x += 0.5) {
@@ -26,6 +27,9 @@ export function main() {
   })
 
   Billboard.create(sign)
+
+  // UI with GitHub link
+  setupUi()
 }
 
 engine.addSystem(CircleHoverSystem)

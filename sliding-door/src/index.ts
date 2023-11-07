@@ -2,6 +2,7 @@ import { engine, InputAction, pointerEventsSystem, Schemas, Transform } from '@d
 import { Vector3 } from '@dcl/sdk/math'
 import { createWall, setMaterial } from './factory'
 import * as utils from '@dcl-sdk/utils'
+import { setupUi } from './ui'
 
 export function main() {
   const leftDoorClosed = Vector3.create(0.5, 0, 0)
@@ -65,4 +66,7 @@ export function main() {
       utils.tweens.startTranslation(rightDoor, rightDoorOpen, rightDoorClosed, 1, utils.InterpolationType.EASEEXPO)
     }
   })
+
+  // UI with GitHub link
+  setupUi()
 }

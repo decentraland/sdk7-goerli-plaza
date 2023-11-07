@@ -4,6 +4,7 @@ import { Vector3 } from '@dcl/sdk/math'
 import { createGnark } from './gnark'
 
 import { distanceSystem, walkAround } from './systems/gnarkAI'
+import { setupUi } from './ui'
 
 export function main() {
   const temple = engine.addEntity()
@@ -19,6 +20,9 @@ export function main() {
 
   createGnark(1)
   createGnark(2)
+
+  // UI with GitHub link
+  setupUi()
 }
 
 engine.addSystem(walkAround)

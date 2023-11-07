@@ -9,6 +9,7 @@ import {
   Transform
 } from '@dcl/sdk/ecs'
 import { createHummingBird } from './hummingBird'
+import { setupUi } from './ui'
 
 export function main() {
   const ground = engine.addEntity()
@@ -66,4 +67,7 @@ export function main() {
       audioSource.playing = true
     }
   )
+
+  // UI with GitHub link
+  setupUi()
 }

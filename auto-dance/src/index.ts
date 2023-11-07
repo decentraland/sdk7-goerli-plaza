@@ -1,8 +1,12 @@
 import { Vector3 } from '@dcl/sdk/math'
 import { createBasicDanceArea, createDanceArea } from './autoDance'
 import { engine, Transform, MeshRenderer, GltfContainer } from '@dcl/sdk/ecs'
+import { setupUi } from './ui'
 
 export function main() {
+  // UI with GH link
+  setupUi()
+
   createDanceArea(Vector3.create(4, 1, 4), Vector3.create(4, 1, 4))
   createBasicDanceArea(Vector3.create(10, 1, 10), Vector3.create(4, 1, 4))
 

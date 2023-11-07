@@ -6,6 +6,7 @@ import { createNft } from './nft'
 import { moveSystem } from './systems/moveZombie'
 import { zombieSpawnSystem } from './systems/zombieSpawner'
 import { createText } from './text'
+import { setupUi } from './ui'
 
 const _LIVES = 5
 const _WINNING_SCORE = 15
@@ -68,6 +69,9 @@ export function main() {
       }
     }
   )
+
+  // UI with GitHub link
+  setupUi()
 }
 
 engine.addSystem(zombieSpawnSystem)

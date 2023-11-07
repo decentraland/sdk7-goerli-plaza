@@ -6,6 +6,7 @@ import { clickedSystem } from './systems/clickable'
 import { enemySpawnSystem } from './systems/enemySpawner'
 import { expire } from './systems/expire'
 import { moveSystem } from './systems/moveEnemy'
+import { setupUi } from './ui'
 
 export function main() {
   // --- ground ---
@@ -64,6 +65,9 @@ export function main() {
     spawnerShape: SpawnerShape.CIRCLE,
     timeToNextSpawn: 1
   })
+
+  // UI with GitHub link
+  setupUi()
 }
 
 engine.addSystem(clickedSystem)

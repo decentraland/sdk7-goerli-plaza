@@ -4,6 +4,7 @@ import { BeerType } from './definitions'
 import { pickingGlassSystem } from './modules/beerGlass'
 import { createBeerGlass, createTap } from './modules/factory'
 import { tapPumpSystem } from './modules/tap'
+import { setupUi } from './ui'
 
 export function main() {
   // Create tables
@@ -70,4 +71,7 @@ export function main() {
 
   engine.addSystem(pickingGlassSystem)
   engine.addSystem(tapPumpSystem)
+
+  // UI with GitHub link
+  setupUi()
 }

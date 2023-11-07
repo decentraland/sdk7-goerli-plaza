@@ -16,6 +16,7 @@ import { doorSystem } from './systems'
 
 import { DoorState } from './components'
 import { getUserData } from '~system/UserIdentity'
+import { setupUi } from './ui'
 
 // Defining behavior. See `src/systems.ts` file.
 engine.addSystem(doorSystem)
@@ -89,6 +90,9 @@ export function main() {
   }
 
   //utils.triggers.enableDebugDraw(true)
+
+  // UI with GitHub link
+  setupUi()
 }
 
 export async function checkWearables(filter: string) {

@@ -3,6 +3,7 @@
   "description": "My new Decentraland project",
   "version": "1.0.0",
   "dependencies": {
+    "@dcl/js-runtime": "latest",
     "@dcl/sdk": "latest"
   },
   "devDependencies": {},

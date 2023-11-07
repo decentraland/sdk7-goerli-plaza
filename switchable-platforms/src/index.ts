@@ -2,6 +2,7 @@ import { engine, executeTask, GltfContainer, Material, Transform } from '@dcl/sd
 import { Vector3 } from '@dcl/sdk/math'
 import { createCoin } from './coin'
 import { createSwitchBoard } from './switchboard'
+import { setupUi } from './ui'
 
 export function main() {
   // platform and rails
@@ -19,4 +20,7 @@ export function main() {
   // Switchboard
 
   const switchboard = createSwitchBoard('models/switchboard.glb', Vector3.create(8, 3, 8), Vector3.create(27, 3, 8))
+
+  // UI with GitHub link
+  setupUi()
 }

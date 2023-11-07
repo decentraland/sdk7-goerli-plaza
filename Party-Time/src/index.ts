@@ -13,6 +13,7 @@ import { startParty } from './startParty'
 import { Quaternion, Vector3 } from '@dcl/sdk/math'
 
 import { getRealm } from '~system/Runtime'
+import { setupUi } from './ui'
 
 // Time for the party to start
 const partyStart = new Date('2023-10-31T19:00:00+03:00') // GMT+3
@@ -141,4 +142,7 @@ export function main() {
   engine.addSystem(LoopSystem, 1, 'loopSystem')
 
   addStartNowButton().catch(console.error)
+
+  // UI with GitHub link
+  setupUi()
 }
