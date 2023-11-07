@@ -92,18 +92,16 @@ export function setupShow() {
     ShowStatusDisplays.setArtistName(event.showData.artist)
   })
 
-  // TODO FIX TYPE ISSUE HERE!!!!!!!!!!!!
+  SHOW_MGR.addVideoStatusChangeListener(
+    new showMgmt.VideoChangeStatusListener((oldStatus: VideoState, newStatus: VideoState) => {
+      logger.debug('SHOW_MGR.addVideoStatusChangeListener', ' fired', oldStatus, newStatus)
 
-  // SHOW_MGR.addVideoStatusChangeListener(
-  //   new showMgmt.VideoChangeStatusListener((oldStatus: VideoState, newStatus: VideoState) => {
-  //     logger.debug('SHOW_MGR.addVideoStatusChangeListener', ' fired', oldStatus, newStatus)
-
-  //     switch (newStatus) {
-  //       case VideoState.VS_LOADING:
-  //         break
-  //     }
-  //   })
-  // )
+      switch (newStatus) {
+        case VideoState.VS_LOADING:
+          break
+      }
+    })
+  )
 
   //STARTING REGISTERING HANDLERS
 
