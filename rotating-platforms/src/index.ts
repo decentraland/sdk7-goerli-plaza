@@ -3,23 +3,10 @@ import { Quaternion, Vector3 } from '@dcl/sdk/math'
 import { createCrown } from './crown'
 import { createRotatingPlatform, Direction } from './rotatingPlatform'
 import { triggers } from '@dcl-sdk/utils'
-
-// enable debug mode by default in preview mode
-executeTask(async () => {
-  try {
-    const { getRealm } = await import('~system/Runtime')
-    const realm = await getRealm({})
-    if (realm.realmInfo?.isPreview) {
-      //triggers.enableDebugDraw(true)
-    }
-  } catch (err) {
-    console.error(err)
-  }
-})
+import { setupUi } from './ui'
 
 // Initial function executed when scene is evaluated and after systems are created
 export function main() {
-  // Create my main cube and color it.
   //create rotating systems
 
   // Stage 1 (Roundabouts)
@@ -130,4 +117,7 @@ export function main() {
     //const platform = platforms[p]
     createRotatingPlatform(platform.model, platform.transformArgs, platform.direction, platform.duration)
   }
+
+  // UI with GitHub link
+  setupUi()
 }

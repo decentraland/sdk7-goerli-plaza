@@ -10,6 +10,7 @@ import {
   rotateSystem,
   spawnSystem
 } from './systems'
+import { setupUi } from './ui'
 
 // Parameters
 const mode: string = 'api' // `api`, `static`, `loop`
@@ -51,4 +52,7 @@ export async function main() {
   engine.addSystem(spawnSystem)
   engine.addSystem(precipitationSystem)
   engine.addSystem(rotateSystem)
+
+  // UI with GitHub link
+  setupUi()
 }

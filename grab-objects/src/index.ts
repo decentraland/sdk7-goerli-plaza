@@ -12,6 +12,7 @@ import {
   CameraType
 } from '@dcl/sdk/ecs'
 import { Quaternion, Vector3 } from '@dcl/sdk/math'
+import { setupUi } from './ui'
 
 // Configuration
 const Z_OFFSET = 1.5
@@ -101,6 +102,9 @@ export function grabbingSystem() {
       }
     }
   }
+
+  // UI with GitHub link
+  setupUi()
 }
 
 engine.addSystem(grabbingSystem)

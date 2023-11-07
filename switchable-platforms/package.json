@@ -4,11 +4,10 @@
   "version": "1.0.0",
   "dependencies": {
     "@dcl-sdk/utils": "latest",
+    "@dcl/js-runtime": "latest",
     "@dcl/sdk": "latest"
   },
-  "devDependencies": {
-    "@dcl/js-runtime": "latest"
-  },
+  "devDependencies": {},
   "engines": {
     "node": ">=16.0.0",
     "npm": ">=6.0.0"

@@ -11,6 +11,7 @@ import {
 } from '@dcl/sdk/ecs'
 import { Quaternion } from '@dcl/sdk/math'
 import { createGLTF } from './factory'
+import { setupUi } from './ui'
 
 export function main() {
   // Base
@@ -86,4 +87,7 @@ export function main() {
       videoPlayer.playing = !videoPlayer.playing
     }
   )
+
+  // UI with GitHub link
+  setupUi()
 }

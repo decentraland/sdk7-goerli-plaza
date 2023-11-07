@@ -3,6 +3,7 @@ import { Vector3 } from '@dcl/sdk/math'
 import { Mirror } from './mirror'
 import { Selector } from './selector'
 import { redrawRays } from './reflectedRay'
+import { setupUi } from './ui'
 
 export function main() {
   // Base
@@ -52,4 +53,7 @@ export function main() {
   new Selector()
 
   redrawRays()
+
+  // UI with GitHub link
+  setupUi()
 }

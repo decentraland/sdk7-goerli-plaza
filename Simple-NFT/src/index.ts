@@ -12,6 +12,7 @@ import {
   Transform
 } from '@dcl/sdk/ecs'
 import { Color4, Quaternion, Vector3 } from '@dcl/sdk/math'
+import { setupUi } from './ui'
 
 export function main() {
   const painting = engine.addEntity()
@@ -41,4 +42,7 @@ export function main() {
   })
   MeshCollider.setBox(wall)
   MeshRenderer.setBox(wall)
+
+  // UI with GitHub link
+  setupUi()
 }

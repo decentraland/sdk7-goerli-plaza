@@ -16,6 +16,7 @@ import {
   Transform
 } from '@dcl/sdk/ecs'
 import { Vector3 } from '@dcl/sdk/math'
+import { setupUi } from './ui'
 
 export function main() {
   // Base
@@ -39,4 +40,7 @@ export function main() {
 
   createPowerBase(Vector3.create(8, 0.024, 3.5), 'models/powerBase.glb')
   const powerCubeEntity = createPowerCube(Vector3.create(8, GROUND_HEIGHT, 3.5), 'models/powerCube.glb')
+
+  // UI with GitHub link
+  setupUi()
 }

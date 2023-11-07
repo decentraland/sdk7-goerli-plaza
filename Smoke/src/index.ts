@@ -4,6 +4,7 @@ import { Vector3 } from '@dcl/sdk/math'
 import { SmokeSource } from './definitions'
 import smokeSystem from './modules/smoke'
 import throwSmokeSystem from './modules/smokeSource'
+import { setupUi } from './ui'
 
 export function main() {
   const fire = engine.addEntity()
@@ -25,4 +26,7 @@ export function main() {
 
   engine.addSystem(throwSmokeSystem)
   engine.addSystem(smokeSystem)
+
+  // UI with GitHub link
+  setupUi()
 }

@@ -4,6 +4,7 @@ import * as utils from '@dcl-sdk/utils'
 import { BlackPianoKey, WhitePianoKey } from './pianoKey'
 import resources from './resources'
 import { AudioController } from './audioController'
+import { setupUi } from './ui'
 
 export function main() {
   const notes = ['c3', 'd3', 'e3', 'f3', 'g3', 'a3', 'b3']
@@ -98,4 +99,7 @@ export function main() {
   createWhiteKeys()
   createBlackKeys()
   //utils.triggers.enableDebugDraw(true); // To debug trigger areas
+
+  // UI with GitHub link
+  setupUi()
 }

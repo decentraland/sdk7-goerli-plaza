@@ -7,6 +7,7 @@ import { createText } from './factory/text'
 import { createZombie } from './factory/zombie'
 import { moveSystem } from './systems/moveZombie'
 import { zombieKiller } from './systems/zombieKiller'
+import { setupUi } from './ui'
 
 const _LIVES = 5
 const _WINNING_SCORE = 15
@@ -115,6 +116,9 @@ export function main() {
     }
   }
   engine.addSystem(gameLogicSystem)
+
+  // UI with GitHub link
+  setupUi()
 }
 
 export function ensureGameController() {

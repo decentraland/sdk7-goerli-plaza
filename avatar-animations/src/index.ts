@@ -18,13 +18,11 @@ import * as utils from '@dcl-sdk/utils'
 //import { setupUi } from './ui'
 import { BounceScaling, Snow, Spinner } from './components'
 import { createCube } from './factory'
+import { setupUi } from './ui'
 
 var HAS_SNOWBALL: boolean = false
 
 export function main() {
-  // draw UI
-  //setupUi()
-
   utils.addTestCube({ position: Vector3.create(8, 1, 5) }, () => {
     triggerSceneEmote({ src: 'animations/Pose.glb', loop: true })
   })
@@ -66,6 +64,9 @@ export function main() {
       }
     )
   }
+
+  // UI with GH link
+  setupUi()
 }
 
 engine.addSystem(() => {

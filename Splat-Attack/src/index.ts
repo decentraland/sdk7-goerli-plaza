@@ -8,6 +8,7 @@
 
 import { Entity, engine, Transform, MeshRenderer } from '@dcl/sdk/ecs'
 import { SplatSurface } from './splat-attack/splat-surface.ui'
+import { setupUi } from './ui'
 
 export function main() {
   //create scene floor object
@@ -21,4 +22,7 @@ export function main() {
   //place splat surface (this lets the player paint the surface)
   SplatSurface.Move({ x: 8, y: 0, z: 8 })
   SplatSurface.Scale({ x: 1, y: 1, z: 1 })
+
+  // UI with GitHub link
+  setupUi()
 }
