@@ -1,35 +1,40 @@
 import { openExternalUrl } from "~system/RestrictedActions"
 import ReactEcs, { Label, ReactEcsRenderer, UiEntity } from '@dcl/sdk/react-ecs'
-import { TextAlignMode, TextureFilterMode, TextureWrapMode } from "@dcl/sdk/ecs"
 import { Color4 } from "@dcl/sdk/math"
 
 
 const projectPath = "cube-wave-16x16"
 
-export const fullPath = "https://github.com/decentraland/sdk7-goerli-plaza/tree/main/" + projectPath
+const uiComponent = () => (
+	[
+		GitHubLinkUi()
+		// Other UI elements
+	]
+)
 
 export function setupUi() {
 	ReactEcsRenderer.setUiRenderer(uiComponent)
 }
 
 
-const uiComponent = () => (
-	<UiEntity
+function GitHubLinkUi() {
+
+	const fullPath = "https://github.com/decentraland/sdk7-goerli-plaza/tree/main/" + projectPath
+
+
+	return <UiEntity
 		uiTransform={{
 			flexDirection: 'column',
 			alignItems: 'center',
 			justifyContent: 'space-between',
 			positionType: 'absolute',
-			position: { right: "3%", bottom: '3%' }
+			position: { right: "8%", bottom: '3%' }
 		}}
 	>
 		<UiEntity
 			uiTransform={{
 				width: '100',
 				height: '100',
-
-
-
 			}}
 			uiBackground={{
 				textureMode: 'stretch',
@@ -50,5 +55,4 @@ const uiComponent = () => (
 			textAlign="middle-center"
 		/>
 	</UiEntity>
-)
-
+}
