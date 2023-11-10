@@ -1,6 +1,6 @@
 import { openExternalUrl } from "~system/RestrictedActions"
 import ReactEcs, { Label, ReactEcsRenderer, UiEntity } from '@dcl/sdk/react-ecs'
-import { TextAlignMode, TextureFilterMode, TextureWrapMode } from "@dcl/sdk/ecs"
+import { AudioStream, TextAlignMode, TextureFilterMode, TextureWrapMode } from "@dcl/sdk/ecs"
 import { Color4 } from "@dcl/sdk/math"
 
 
@@ -8,7 +8,8 @@ const projectPath = "auto-dance"
 
 const uiComponent = () => (
 	[
-		GitHubLinkUi()
+		GitHubLinkUi(),
+		descriptionUI()
 		// Other UI elements
 	]
 )
@@ -57,3 +58,31 @@ function GitHubLinkUi() {
 	</UiEntity>
 }
 
+function descriptionUI() {
+
+	const description = "Play a set of looping emotes when standing on the green patches"
+
+	return <UiEntity
+		uiTransform={{
+			width: "auto",
+			height: "auto",
+			//maxWidth: 300,
+			//maxHeight: 100,
+			//margin: '16px 16px 8px 16px',
+			//padding: 4,
+			positionType: 'absolute',
+			position: { right: "8%", bottom: '20%' }
+		}}
+		uiBackground={{ color: Color4.fromHexString("#70ac76ff") }}
+	>
+		<Label
+			value={description}
+			fontSize={18}
+
+			uiTransform={{ alignSelf: 'center' }}
+		/>
+
+
+	</UiEntity>
+
+}
