@@ -4,6 +4,7 @@ import { BowlPosition, changeState, randomSwitchBehavior } from './systems/dogAI
 import { dogStates } from './components'
 import { moveSystem } from './systems/moveSystem'
 import { Vector3 } from '@dcl/sdk/math'
+import { setupUi } from './ui'
 
 export function main() {
   const garden = engine.addEntity()
@@ -49,4 +50,7 @@ export function main() {
   engine.addSystem(moveSystem)
 
   engine.addSystem(randomSwitchBehavior)
+
+  // UI with GitHub link
+  setupUi()
 }

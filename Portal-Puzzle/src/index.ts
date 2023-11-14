@@ -23,6 +23,7 @@ import { gunSystem, colorSystem } from './systems'
 
 import { spawnGun } from './gun'
 import { onlyInSceneSystem } from './onlyRenderInScene'
+import { setupUi } from './ui'
 
 export function main() {
   const card = engine.getEntityOrNullByName('card.glb')
@@ -43,4 +44,7 @@ export function main() {
 
   engine.addSystem(gunSystem)
   engine.addSystem(colorSystem)
+
+  // UI with GitHub link
+  setupUi()
 }

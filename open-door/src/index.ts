@@ -11,6 +11,7 @@ import {
 } from '@dcl/ecs'
 import { Quaternion, Vector3, Color4 } from '@dcl/ecs-math'
 import * as utils from '@dcl-sdk/utils'
+import { setupUi } from './ui'
 
 const openPos: Quaternion = Quaternion.create(0, 1, 0)
 const closedPos: Quaternion = Quaternion.create(0, 0, 0)
@@ -54,6 +55,9 @@ export function main() {
       utils.toggles.flip(doorPivotEntity)
     }
   )
+
+  // UI with GitHub link
+  setupUi()
 }
 
 function createWall(position: Vector3, scale: Vector3, parent?: Entity) {

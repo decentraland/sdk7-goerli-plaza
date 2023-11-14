@@ -7,7 +7,16 @@
       "path": "video-streaming"
     },
     {
+      "path": "validate-player-authenticity"
+    },
+    {
       "path": "uv-map"
+    },
+    {
+      "path": "ui-spritesheet"
+    },
+    {
+      "path": "translocator"
     },
     {
       "path": "tin-can-alley"
@@ -52,6 +61,9 @@
       "path": "light-bounce-puzzle"
     },
     {
+      "path": "leader-board"
+    },
+    {
       "path": "lazy-loading"
     },
     {
@@ -59,6 +71,9 @@
     },
     {
       "path": "inflatable-punch-bag"
+    },
+    {
+      "path": "guest-book-api"
     },
     {
       "path": "grab-objects"
@@ -92,6 +107,12 @@
     },
     {
       "path": "box2d-ball"
+    },
+    {
+      "path": "cannon-example-scene"
+    },
+    {
+      "path": "cannon-car-example-scene"
     },
     {
       "path": "boids"
@@ -146,6 +167,9 @@
     },
     {
       "path": "Smoke"
+    },
+    {
+      "path": "Smart_Items_Pirate_Island"
     },
     {
       "path": "Simple-NPC"

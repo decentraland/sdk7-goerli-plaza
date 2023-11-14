@@ -1,0 +1,74 @@
+{
+  "ecs7": true,
+  "runtimeVersion": "7",
+  "display": {
+    "title": "cannon-car-example-scene",
+    "description": "Using raycast vehicle from the cannon.js physics engine.",
+    "navmapThumbnail": "images/scene-thumbnail.png",
+    "favicon": "favicon_asset"
+  },
+  "owner": "",
+  "contact": {
+    "name": "SDK",
+    "email": ""
+  },
+  "main": "bin/index.js",
+  "tags": [],
+  "scene": {
+    "parcels": [
+      "72,6",
+      "72,7",
+      "72,8",
+      "72,9",
+      "72,10",
+      "73,6",
+      "73,7",
+      "73,8",
+      "73,9",
+      "73,10",
+      "74,6",
+      "74,7",
+      "74,8",
+      "74,9",
+      "74,10",
+      "75,6",
+      "75,7",
+      "75,8",
+      "75,9",
+      "75,10",
+      "76,6",
+      "76,7",
+      "76,8",
+      "76,9",
+      "76,10"
+    ],
+    "base": "72,6"
+  },
+  "spawnPoints": [
+    {
+      "name": "spawn1",
+      "default": true,
+      "position": {
+        "x": [
+          0,
+          3
+        ],
+        "y": [
+          0,
+          0
+        ],
+        "z": [
+          0,
+          3
+        ]
+      },
+      "cameraTarget": {
+        "x": 8,
+        "y": 1,
+        "z": 8
+      }
+    }
+  ],
+  "featureToggles": {},
+  "name": "cannon-car-example-scene"
+}

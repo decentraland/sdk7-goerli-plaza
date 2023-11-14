@@ -2,17 +2,17 @@ import * as ui from 'dcl-ui-toolkit'
 import { Color4 } from '@dcl/sdk/math'
 
 export const uiBar = ui.createComponent(ui.UIBar, {
-    value: 100,
-    xOffset: -80,
-    yOffset: 80,
+	value: 100,
+	xOffset: -280,
+	yOffset: 80,
 })
 
 const uiIcon = ui.createComponent(ui.SmallIcon, {
-    image:"images/powerIcon.png",
-    width: 90,
-    height: 23,
-    xOffset: -101,
-    yOffset: 85,
+	image: "images/powerIcon.png",
+	width: 90,
+	height: 23,
+	xOffset: -301,
+	yOffset: 85,
 })
 
 uiBar.show()

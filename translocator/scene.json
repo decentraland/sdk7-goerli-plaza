@@ -1,0 +1,58 @@
+{
+  "ecs7": true,
+  "runtimeVersion": "7",
+  "display": {
+    "title": "translocator",
+    "description": "Example of how to create a projectile with physics and combining that with the new spawn feature to create a translocator disc, which allows a player to teleport to wherever the disc is located.",
+    "navmapThumbnail": "images/scene-thumbnail.png",
+    "favicon": "favicon_asset"
+  },
+  "owner": "",
+  "contact": {
+    "name": "SDK",
+    "email": ""
+  },
+  "main": "bin/index.js",
+  "tags": [],
+  "scene": {
+    "parcels": [
+      "79,6",
+      "79,7",
+      "79,8",
+      "80,6",
+      "80,7",
+      "80,8",
+      "81,6",
+      "81,7",
+      "81,8"
+    ],
+    "base": "79,6"
+  },
+  "spawnPoints": [
+    {
+      "name": "spawn1",
+      "default": true,
+      "position": {
+        "x": [
+          0,
+          3
+        ],
+        "y": [
+          0,
+          0
+        ],
+        "z": [
+          0,
+          3
+        ]
+      },
+      "cameraTarget": {
+        "x": 8,
+        "y": 1,
+        "z": 8
+      }
+    }
+  ],
+  "featureToggles": {},
+  "name": "translocator"
+}

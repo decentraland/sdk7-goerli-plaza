@@ -1,6 +1,7 @@
 import { engine, GltfContainer, Transform } from '@dcl/sdk/ecs'
 import { Vector3 } from '@dcl/sdk/math'
 import { createCoin } from './coin'
+import { setupUi } from './ui'
 
 export function main() {
   // Adding base scene models
@@ -36,4 +37,7 @@ export function main() {
   for (const coinPosition of coinPositions) {
     createCoin('models/coin.glb', coinPosition, Vector3.create(1.5, 3, 1.5), Vector3.create(0, 1, 0))
   }
+
+  // UI with GitHub link
+  setupUi()
 }

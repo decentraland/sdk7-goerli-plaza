@@ -1,0 +1,16 @@
+{
+  "name": "guest-book-api",
+  "description": "Demo of Guest Book API in SDK7",
+  "version": "1.0.0",
+  "devDependencies": {
+    "@dcl/js-runtime": "latest",
+    "@dcl/sdk": "latest"
+  },
+  "scripts": {
+    "build": "sdk-commands build",
+    "deploy": "sdk-commands deploy",
+    "start": "sdk-commands start",
+    "upgrade-sdk": "npm install --save-dev @dcl/sdk@latest",
+    "upgrade-sdk:next": "npm install --save-dev @dcl/sdk@next"
+  }
+}

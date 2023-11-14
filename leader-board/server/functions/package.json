@@ -1,0 +1,31 @@
+{
+  "name": "functions",
+  "scripts": {
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "serve": "npm run build && firebase emulators:start --only functions",
+    "shell": "npm run build && firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "18"
+  },
+  "main": "lib/index.js",
+  "dependencies": {
+    "cors": "latest",
+    "decentraland-crypto-middleware": "latest",
+    "express": "latest",
+    "firebase-admin": "latest",
+    "firebase-functions": "latest"
+  },
+  "devDependencies": {
+    "@types/koa": "latest",
+    "@types/passport-strategy": "latest",
+    "@well-known-components/interfaces": "latest",
+    "firebase-functions-test": "latest",
+    "typescript": "latest"
+  },
+  "private": true
+}

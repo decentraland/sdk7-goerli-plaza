@@ -16,9 +16,9 @@
   "tags": [],
   "scene": {
     "parcels": [
-      "76,6"
+      "77,1"
     ],
-    "base": "76,6"
+    "base": "77,1"
   },
   "spawnPoints": [
     {
@@ -44,15 +44,6 @@
         "z": 8
       }
     }
-  ],
-  "requiredPermissions": [
-    "ALLOW_TO_TRIGGER_AVATAR_EMOTE",
-    "ALLOW_TO_MOVE_PLAYER_INSIDE_SCENE",
-    "ALLOW_MEDIA_HOSTNAMES"
-  ],
-  "allowedMediaHostnames": [
-    "edge.singsingmusic.net",
-    "player.vimeo.com"
   ],
   "featureToggles": {},
   "name": "Party-Time"

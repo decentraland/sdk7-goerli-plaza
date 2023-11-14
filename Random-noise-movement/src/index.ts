@@ -2,6 +2,7 @@ import { Noise } from '@dcl/noise-utils'
 import { engine, GltfContainer, Material, Transform } from '@dcl/sdk/ecs'
 import { Color4, Quaternion, Vector3 } from '@dcl/sdk/math'
 import { WaveGrass } from './components'
+import { setupUi } from './ui'
 
 // --- Set up a system ---
 
@@ -89,4 +90,7 @@ export function main() {
   }
 
   let started = false
+
+  // UI with GitHub link
+  setupUi()
 }

@@ -9,18 +9,7 @@
   },
   "devDependencies": {
     "@dcl/js-runtime": "latest",
-    "@dcl/sdk": "latest",
-    "@types/node": "latest"
-  },
-  "engines": {
-    "node": ">=16.0.0",
-    "npm": ">=6.0.0"
-  },
-  "prettier": {
-    "semi": false,
-    "singleQuote": true,
-    "printWidth": 120,
-    "trailingComma": "none"
+    "@dcl/sdk": "latest"
   },
   "scripts": {
     "build": "sdk-commands build",

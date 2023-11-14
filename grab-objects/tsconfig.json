@@ -1,11 +1,12 @@
 {
-  "compilerOptions": {
-    "allowJs": true,
-    "baseUrl": "."
-  },
-  "include": [
-    "src/**/*.ts"
-  ],
-  "extends": "@dcl/sdk/types/tsconfig.ecs7.json",
-  "compileOnSave": false
+	"compilerOptions": {
+		"allowJs": true,
+		"baseUrl": "."
+	},
+	"include": [
+		"src/**/*.ts",
+		"src/**/*.tsx"
+	],
+	"extends": "@dcl/sdk/types/tsconfig.ecs7.json",
+	"compileOnSave": false
 }

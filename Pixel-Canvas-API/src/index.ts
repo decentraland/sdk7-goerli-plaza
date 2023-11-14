@@ -3,6 +3,7 @@ import { getDatabase, initDatabase } from './api'
 import { Quaternion } from '@dcl/sdk/math'
 import { createCanvas, createColor, createColorPicker, createPixel } from './factory'
 import { colorPickerHoverSystem, loadingIndicatorSystem, pixelHoverSystem } from './systems'
+import { setupUi } from './ui'
 
 const canvasWidth = 16
 const canvasHeight = 16
@@ -77,4 +78,7 @@ export async function main() {
   engine.addSystem(pixelHoverSystem)
   engine.addSystem(colorPickerHoverSystem)
   engine.addSystem(loadingIndicatorSystem)
+
+  // UI with GitHub link
+  setupUi()
 }

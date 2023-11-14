@@ -21,6 +21,7 @@ import { createRifle, playFireAnim } from './modules/rifle'
 import { Cooldown } from './components'
 import { playshotWoodSound } from './modules/sound'
 import { onlyInSceneSystem } from './modules/onlyRenderInScene'
+import { setupUi } from './ui'
 
 export function main() {
   engine.addSystem(onlyInSceneSystem)
@@ -120,7 +121,10 @@ export function main() {
         const targetPos = result.hit.position as Vector3
         for (let i = 0; i < cans.length - 1; i++) {
           if (cans[i].can === result.hit?.entityId) {
-            let forwardVector: Vector3 = Vector3.rotate(Vector3.Forward(), Transform.get(engine.CameraEntity).rotation)
+            let forwardVector: Vector3 = Vector3.rotate(
+              Vector3.create(10, 0, 0),
+              Transform.get(engine.CameraEntity).rotation
+            )
             hit(cans[i].body, forwardVector, targetPos)
           } else {
             playshotWoodSound()
@@ -141,4 +145,6 @@ export function main() {
     area: Vector3.create(16, 4, 16),
     mode: CameraType.CT_FIRST_PERSON
   })
+
+  setupUi()
 }
