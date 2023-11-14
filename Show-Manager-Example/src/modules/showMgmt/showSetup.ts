@@ -93,7 +93,7 @@ export function setupShow() {
   })
 
   SHOW_MGR.addVideoStatusChangeListener(
-    new showMgmt.VideoChangeStatusListener((oldStatus: VideoState, newStatus: VideoState) => {
+    new showMgmt.VideoChangeStatusListener((oldStatus: number, newStatus: number) => {
       logger.debug('SHOW_MGR.addVideoStatusChangeListener', ' fired', oldStatus, newStatus)
 
       switch (newStatus) {
