@@ -120,7 +120,6 @@ export function setupShow() {
 		duration?: number
 	}
 
-
 	//action will be used as follows
 	//SAY words {"duration":"1"}
 	SHOW_MGR.actionMgr.registerHandler(
