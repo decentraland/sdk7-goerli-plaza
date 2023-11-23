@@ -60,29 +60,55 @@ function GitHubLinkUi() {
 
 function descriptionUI() {
 
-	const description = "Play a set of looping emotes when standing on the green patches"
-
+	const description = "Play a set of looping emotes when standing on \n the green patches LALALALALALALA  LALALAL ALLALAAL  LALALALAL\n the green patches LALALALALALALA  LALALAL ALLALAAL  LALALALAL\n the green patches LALALALALALALA  LALALAL ALLALAAL  LALALALAL "
+	//\n
 	return <UiEntity
 		uiTransform={{
 			width: "auto",
 			height: "auto",
-			//maxWidth: 300,
-			//maxHeight: 100,
+			display: "flex",
+			flexDirection: 'row',
+			alignSelf: 'stretch',
+			positionType: "absolute",
+			flexShrink: 1,
+
+
+			maxWidth: 600,
+			maxHeight: 300,
+			minWidth: 200,
 			//margin: '16px 16px 8px 16px',
-			//padding: 4,
-			positionType: 'absolute',
-			position: { right: "8%", bottom: '20%' }
+			padding: 4,
+			//positionType: 'absolute',
+			position: { right: "3%", bottom: '20%' }
 		}}
-		uiBackground={{ color: Color4.fromHexString("#70ac76ff") }}
+		uiBackground={{ color: Color4.fromHexString("#4d544e") }}
 	>
-		<Label
-			value={description}
-			fontSize={18}
+		<UiEntity
+			uiTransform={{
+				width: "auto",
+				height: "auto",
+				alignSelf: "center",
+				padding: 4,
+				justifyContent: 'flex-start',
+				alignContent: 'flex-start',
+			}}
+			uiBackground={{ color: Color4.fromHexString("#92b096") }}
+		>
+			<Label
+				value={description}
+				fontSize={18}
+				textAlign="middle-center"
 
-			uiTransform={{ alignSelf: 'center' }}
-		/>
+				uiTransform={{
+					width: "auto",
+					height: "auto",
+					alignSelf: "center",
+					margin: '16px 16px 8px 16px',
 
+				}}
+			/>
 
-	</UiEntity>
+		</UiEntity>
+	</UiEntity >
 
 }
