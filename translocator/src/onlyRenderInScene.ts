@@ -13,7 +13,7 @@ export const OnlyInScene = engine.defineComponent(
 
 // check if entities are inside the scene parcels, even if attached to player
 export function onlyInSceneSystem(dt: number) {
-  for (const [entity, _onlyInScene] of engine.getEntitiesWith(OnlyInScene)) {
+  for (const [entity, _onlyInScene] of engine.getEntitiesWith(OnlyInScene, Transform)) {
     const finalPos = utils.getWorldPosition(entity)
     const MutableTransform = Transform.getMutable(entity)
     if (!isInScene(finalPos)) {
