@@ -35,6 +35,7 @@ export function main() {
   const Z_OFFSET = 1
 
   const translatorParent = engine.addEntity()
+  Transform.create(translatorParent)
   AvatarAttach.create(translatorParent, {
     anchorPointId: AvatarAnchorPointType.AAPT_POSITION
   })
