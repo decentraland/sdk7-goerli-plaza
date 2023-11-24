@@ -5,7 +5,7 @@ import { Color4 } from "@dcl/sdk/math"
 
 
 const projectPath = "leader-board"
-const description = ""
+const description = "A scene that hosts its own server to keep track of player scores. Click on the dog as many times as you can in 10 seconds and register a high score. The server includes some anti-cheating mechanisms."
 const Max_Chars = 45
 
 
