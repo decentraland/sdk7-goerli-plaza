@@ -5,7 +5,7 @@ import { Color4 } from "@dcl/sdk/math"
 
 
 const projectPath = "Pixel-Canvas-API"
-const description = ""
+const description = "A mural made of 16 x 16 pixels that can be painted any color. Changes are stored in a server, so that players can paint together and see the same picture."
 const Max_Chars = 45
 
 

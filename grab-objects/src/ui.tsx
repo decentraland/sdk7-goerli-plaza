@@ -5,7 +5,7 @@ import { Color4 } from "@dcl/sdk/math"
 
 
 const projectPath = "grab-objects"
-const description = ""
+const description = "Click an item to hold it and drop it somewhere else in the scene."
 const Max_Chars = 45
 
 

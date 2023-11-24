@@ -15,7 +15,7 @@ import { movePlayerTo, openExternalUrl } from '~system/RestrictedActions'
 import * as ui from 'dcl-ui-toolkit'
 
 const projectPath = "BouncerUI"
-const description = ""
+const description = "A scene where special allowlisted users have access to a UI that allow them to ban other players, teleporting them outside the building."
 const Max_Chars = 45
 
 

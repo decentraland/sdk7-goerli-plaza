@@ -4,7 +4,7 @@ import { NpcUtilsUi } from 'dcl-npc-toolkit'
 import { openExternalUrl } from '~system/RestrictedActions'
 
 const projectPath = "Simple-NPC"
-const description = ""
+const description = "A simple scene that uses the NPC toolkit library to create NPCs that follow dialogs that can branch out into conversation trees. NPCs can also walk around the scene."
 const Max_Chars = 45
 
 

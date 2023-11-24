@@ -5,7 +5,7 @@ import { Color4 } from "@dcl/sdk/math"
 
 
 const projectPath = "enemy-spawner"
-const description = ""
+const description = "Spawning enemy spaceships from various shaped portals."
 const Max_Chars = 45
 
 

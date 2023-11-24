@@ -5,7 +5,7 @@ import { Color4 } from "@dcl/sdk/math"
 
 
 const projectPath = "Block-Fountain"
-const description = ""
+const description = "A fountain that alternates over a few animations. This scene uses the MessageBus to let players activate different animations that are seen by everyone else there."
 const Max_Chars = 45
 
 

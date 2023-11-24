@@ -5,7 +5,7 @@ import { Color4 } from "@dcl/sdk/math"
 
 
 const projectPath = "Hummingbirds"
-const description = ""
+const description = "A new bird spawns every time you click a tree. Each bird moves on its own to random positions."
 const Max_Chars = 45
 
 

@@ -5,7 +5,7 @@ import { Color4 } from "@dcl/sdk/math"
 
 
 const projectPath = "rotating-platforms"
-const description = ""
+const description = "A simple platformer that demonstrates rotating various platforms using the Tween component."
 const Max_Chars = 45
 
 

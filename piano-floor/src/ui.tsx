@@ -5,7 +5,7 @@ import { Color4 } from "@dcl/sdk/math"
 
 
 const projectPath = "piano-floor"
-const description = ""
+const description = "Play music by walking on this piano. This scene uses the MessageBus so that everyone can hear each other's music."
 const Max_Chars = 45
 
 

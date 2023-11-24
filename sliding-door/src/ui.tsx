@@ -5,7 +5,7 @@ import { Color4 } from "@dcl/sdk/math"
 
 
 const projectPath = "sliding-door"
-const description = ""
+const description = "Use the Utils library to shift the position of a door gradually. Clicks on the door toggle it from open to closed."
 const Max_Chars = 45
 
 

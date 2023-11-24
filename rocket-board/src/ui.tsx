@@ -5,7 +5,7 @@ import { Color4 } from "@dcl/sdk/math"
 
 
 const projectPath = "rocket-board"
-const description = ""
+const description = "Use E and F to control a flying platform. Try to through the hoop!"
 const Max_Chars = 45
 
 

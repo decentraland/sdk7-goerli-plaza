@@ -5,7 +5,7 @@ import { Color4 } from "@dcl/sdk/math"
 
 
 const projectPath = "light-bounce-puzzle"
-const description = ""
+const description = "A puzzle scene where you shoot light from an orb. The light bounces, you need to figure out how to hit all runes and activate them."
 const Max_Chars = 45
 
 

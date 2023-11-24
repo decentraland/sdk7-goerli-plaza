@@ -5,7 +5,7 @@ import { Color4 } from "@dcl/sdk/math"
 
 
 const projectPath = "mirror-puzzle"
-const description = ""
+const description = "A puzzle scene where you have to push and rotate mirrors, so that they reflect a ray of light to the right place."
 const Max_Chars = 45
 
 

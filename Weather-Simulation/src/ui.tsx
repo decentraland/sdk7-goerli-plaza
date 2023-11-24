@@ -5,7 +5,7 @@ import { Color4 } from "@dcl/sdk/math"
 
 
 const projectPath = "Weather-Simulation"
-const description = ""
+const description = "A scene that checks a weather API to know the current weather conditions of a place, and replicates those conditions."
 const Max_Chars = 45
 
 

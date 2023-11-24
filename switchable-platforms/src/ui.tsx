@@ -5,7 +5,7 @@ import { Color4 } from "@dcl/sdk/math"
 
 
 const projectPath = "switchable-platforms"
-const description = ""
+const description = "A platform that moves when the player stands on one of the switches."
 const Max_Chars = 45
 
 

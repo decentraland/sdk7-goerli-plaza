@@ -5,7 +5,7 @@ import { Color4 } from "@dcl/sdk/math"
 
 
 const projectPath = "Simple-NFT"
-const description = ""
+const description = "A scene showing how to display an NFT in a picture frame"
 const Max_Chars = 45
 
 

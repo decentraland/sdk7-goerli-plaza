@@ -5,7 +5,7 @@ import { Color4 } from "@dcl/sdk/math"
 
 
 const projectPath = "Block-dog"
-const description = ""
+const description = "A simple AI character that randomly chooses what action to take: follow you, sit or remain idle. Tell it to sit or stand up by clicking it, or tell it to drink water by clicking its bowl."
 const Max_Chars = 45
 
 

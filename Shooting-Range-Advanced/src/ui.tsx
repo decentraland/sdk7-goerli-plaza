@@ -5,7 +5,7 @@ import { Color4 } from "@dcl/sdk/math"
 
 
 const projectPath = "Shooting-Range-Advanced"
-const description = ""
+const description = "An interactive demo for shooting targets, including bullet-hole sprites."
 const Max_Chars = 45
 
 

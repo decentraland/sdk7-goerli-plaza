@@ -5,7 +5,7 @@ import { Color4 } from "@dcl/sdk/math"
 
 
 const projectPath = "translocator"
-const description = ""
+const description = "Throw this device and teleport to its landing location. It uses physics to control the bouncing of the device with the cannon.js library. Use the mouse button to throw and recover, E to teleport."
 const Max_Chars = 45
 
 

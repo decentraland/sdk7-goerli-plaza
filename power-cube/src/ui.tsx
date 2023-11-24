@@ -5,7 +5,7 @@ import { Color4 } from "@dcl/sdk/math"
 
 
 const projectPath = "power-cube"
-const description = ""
+const description = "Using simple planes to create a force field effect that blocks the player from reaching the access card."
 const Max_Chars = 45
 
 

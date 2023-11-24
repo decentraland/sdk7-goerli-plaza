@@ -5,7 +5,7 @@ import { Color4 } from "@dcl/sdk/math"
 
 
 const projectPath = "Hypno-wheels"
-const description = ""
+const description = "A first encounter with Systems, Custom Components and Component Groups."
 const Max_Chars = 45
 
 

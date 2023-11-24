@@ -5,7 +5,7 @@ import { Color4 } from "@dcl/sdk/math"
 
 
 const projectPath = "Jukebox"
-const description = ""
+const description = "Play different songs by pressing buttons on a jukebox."
 const Max_Chars = 45
 
 

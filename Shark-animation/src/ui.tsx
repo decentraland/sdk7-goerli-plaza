@@ -5,7 +5,7 @@ import { Color4 } from "@dcl/sdk/math"
 
 
 const projectPath = "Shark-animation"
-const description = ""
+const description = "Control animations on a 3D model. Trigger the bite animation by clicking on the shark."
 const Max_Chars = 45
 
 

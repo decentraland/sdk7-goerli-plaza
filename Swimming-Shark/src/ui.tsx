@@ -5,7 +5,7 @@ import { Color4 } from "@dcl/sdk/math"
 
 
 const projectPath = "Swimming-Shark"
-const description = ""
+const description = "Move a shark along the segments of a curve to swim in circles."
 const Max_Chars = 45
 
 

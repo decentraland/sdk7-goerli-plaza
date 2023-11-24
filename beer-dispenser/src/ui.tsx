@@ -5,7 +5,7 @@ import { Color4 } from "@dcl/sdk/math"
 
 
 const projectPath = "beer-dispenser"
-const description = ""
+const description = "A beer dispenser that uses P2P messaging so that you can pour beer for yourself and friends."
 const Max_Chars = 45
 
 

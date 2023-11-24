@@ -5,7 +5,7 @@ import { Color4 } from "@dcl/sdk/math"
 
 
 const projectPath = "BasicInteractions"
-const description = ""
+const description = "A simple example of each way in which players can use button events to interact with the scene. Each shape's color is activated by interacting with it in a different way."
 const Max_Chars = 45
 
 

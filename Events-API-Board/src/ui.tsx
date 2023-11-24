@@ -5,7 +5,7 @@ import { Color4 } from "@dcl/sdk/math"
 
 
 const projectPath = "Events-API-Board"
-const description = ""
+const description = "A scene that fetches current events in Decentraland from the events API, and displays them on a banner."
 const Max_Chars = 45
 
 

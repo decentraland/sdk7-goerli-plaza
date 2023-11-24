@@ -5,7 +5,7 @@ import { Color4 } from "@dcl/sdk/math"
 
 
 const projectPath = "Portal-Puzzle"
-const description = ""
+const description = "A simple Portal clone, the player can create portals in any surface and teleport from one to the other. Press E to switch between portal colors."
 const Max_Chars = 45
 
 

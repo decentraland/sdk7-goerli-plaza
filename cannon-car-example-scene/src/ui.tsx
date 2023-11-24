@@ -5,7 +5,7 @@ import { Color4 } from "@dcl/sdk/math"
 
 
 const projectPath = "cannon-car-example-scene"
-const description = ""
+const description = "This scenes uses physics to control a car and a stack of boxes with the cannon.js library. Use E and F to steer the car, and the left mouse button to advance. Steer the car into the boxes!"
 const Max_Chars = 45
 
 

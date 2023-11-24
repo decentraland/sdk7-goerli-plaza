@@ -5,7 +5,7 @@ import { Color4 } from "@dcl/sdk/math"
 
 
 const projectPath = "moving-platforms"
-const description = ""
+const description = "A simple platformer that demonstrates various platform movements using the tween comopnent."
 const Max_Chars = 45
 
 

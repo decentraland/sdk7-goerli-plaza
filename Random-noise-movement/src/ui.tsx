@@ -5,7 +5,7 @@ import { Color4 } from "@dcl/sdk/math"
 
 
 const projectPath = "Random-noise-movement"
-const description = ""
+const description = "Use noise generation to imitate the kind of randomness you see in nature."
 const Max_Chars = 45
 
 

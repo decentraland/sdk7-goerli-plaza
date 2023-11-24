@@ -5,7 +5,7 @@ import { Color4 } from "@dcl/sdk/math"
 
 
 const projectPath = "item-pickup"
-const description = ""
+const description = "Various items like health packs and ammo that are picked up when players walk over them."
 const Max_Chars = 45
 
 

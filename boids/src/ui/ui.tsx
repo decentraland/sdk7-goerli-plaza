@@ -5,7 +5,7 @@ import { Color4 } from "@dcl/sdk/math"
 
 
 const projectPath = "boids"
-const description = ""
+const description = "Implementation of Boids. Flock behavior of fish or birds."
 const Max_Chars = 45
 
 

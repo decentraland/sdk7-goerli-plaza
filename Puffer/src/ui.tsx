@@ -5,7 +5,7 @@ import { Color4 } from "@dcl/sdk/math"
 
 
 const projectPath = "Puffer"
-const description = ""
+const description = "Use the Utils library to scale items and delay actions. Also include 3D models and sounds."
 const Max_Chars = 45
 
 

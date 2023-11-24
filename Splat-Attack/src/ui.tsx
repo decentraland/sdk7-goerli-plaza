@@ -5,7 +5,7 @@ import { Color4 } from "@dcl/sdk/math"
 
 
 const projectPath = "Splat-Attack"
-const description = ""
+const description = "An interactive painting example. Paint the floor different colors, then calculate the total area covered by your color."
 const Max_Chars = 45
 
 

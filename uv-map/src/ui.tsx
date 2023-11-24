@@ -5,7 +5,7 @@ import { Color4 } from "@dcl/sdk/math"
 
 
 const projectPath = "uv-map"
-const description = ""
+const description = "A simple scene that shows a spritesheet animation of a robot talking. The different expressions of the robot are all stored in the same image."
 const Max_Chars = 45
 
 

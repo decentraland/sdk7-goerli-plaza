@@ -5,7 +5,7 @@ import { Color4 } from "@dcl/sdk/math"
 
 
 const projectPath = "coin-pickup"
-const description = ""
+const description = "Coins are picked up once the player walks over them."
 const Max_Chars = 45
 
 

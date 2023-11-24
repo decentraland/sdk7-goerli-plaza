@@ -5,7 +5,7 @@ import { Color4 } from "@dcl/sdk/math"
 
 
 const projectPath = "Party-Time"
-const description = ""
+const description = "A scene that checks a time API to know what time it is, and starts a party on a specific time and date based on that."
 const Max_Chars = 45
 
 

@@ -5,7 +5,7 @@ import { Color4 } from "@dcl/sdk/math"
 
 
 const projectPath = "cannon-example-scene"
-const description = ""
+const description = "This scenes uses physics to control the bouncing of balls with the cannon.js library"
 const Max_Chars = 45
 
 

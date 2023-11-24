@@ -5,7 +5,7 @@ import { Color4 } from "@dcl/sdk/math"
 
 
 const projectPath = "zombie-attack"
-const description = ""
+const description = "A zombie will chase you around and attack you once it gets near."
 const Max_Chars = 45
 
 

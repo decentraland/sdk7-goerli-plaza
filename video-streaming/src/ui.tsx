@@ -5,7 +5,7 @@ import { Color4 } from "@dcl/sdk/math"
 
 
 const projectPath = "video-streaming"
-const description = ""
+const description = "A video streamed from an external URL. The repo includes instructions for various alternatives for uploading the video content."
 const Max_Chars = 45
 
 

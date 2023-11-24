@@ -5,7 +5,7 @@ import { Color4 } from "@dcl/sdk/math"
 
 
 const projectPath = "Wearables-scanner"
-const description = ""
+const description = "A scanner checks what wearables you have on, and only opens the door if you have a specific one on."
 const Max_Chars = 45
 
 

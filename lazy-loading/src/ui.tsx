@@ -5,7 +5,7 @@ import { Color4 } from "@dcl/sdk/math"
 
 
 const projectPath = "lazy-loading"
-const description = ""
+const description = "Load certain entities only when near, to save resources."
 const Max_Chars = 45
 
 

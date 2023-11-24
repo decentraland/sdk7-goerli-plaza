@@ -5,7 +5,7 @@ import { Color4 } from "@dcl/sdk/math"
 
 
 const projectPath = "inflateable-punch-bag"
-const description = ""
+const description = "Inflatable punch bag using physics. Click to punch."
 const Max_Chars = 45
 
 

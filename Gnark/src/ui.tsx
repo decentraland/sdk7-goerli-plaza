@@ -5,7 +5,7 @@ import { Color4 } from "@dcl/sdk/math"
 
 
 const projectPath = "Gnark"
-const description = ""
+const description = "A character walks along a fixed path, using lerp over each segment of the path. If you approach it, it will switch states to yelling at you."
 const Max_Chars = 45
 
 

@@ -6,7 +6,7 @@ import { openExternalUrl } from '~system/RestrictedActions'
 import { Color4 } from '@dcl/sdk/math'
 
 const projectPath = "coconut-shy"
-const description = ""
+const description = "A scene that uses physics to handle the throwing of coconuts and falling of piled up items"
 const Max_Chars = 45
 
 export function setupUi() {

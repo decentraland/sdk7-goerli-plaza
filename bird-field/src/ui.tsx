@@ -5,7 +5,7 @@ import { Color4 } from "@dcl/sdk/math"
 
 
 const projectPath = "bird-field"
-const description = ""
+const description = "Control a flock of birds so that they each take off when you walk near. They can then land back on uneven terrain."
 const Max_Chars = 45
 
 

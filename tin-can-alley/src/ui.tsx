@@ -4,7 +4,7 @@ import { openExternalUrl } from '~system/RestrictedActions'
 import { Color4 } from '@dcl/sdk/math'
 
 const projectPath = "tin-can-alley"
-const description = ""
+const description = "A scene that uses physics to simulate the falling of piled up items."
 const Max_Chars = 45
 
 export function setupUi() {

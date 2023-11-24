@@ -5,7 +5,7 @@ import { Color4 } from "@dcl/sdk/math"
 
 
 const projectPath = "Dance-floor"
-const description = ""
+const description = "Combines animations, sound, and tiles on the floor that randomly change color to the beat."
 const Max_Chars = 45
 
 

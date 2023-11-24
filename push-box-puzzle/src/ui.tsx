@@ -5,7 +5,7 @@ import { Color4 } from "@dcl/sdk/math"
 
 
 const projectPath = "push-box-puzzle"
-const description = ""
+const description = "A puzzle scene where it's necessary to push boxes into a series of tiles to activate each."
 const Max_Chars = 45
 
 

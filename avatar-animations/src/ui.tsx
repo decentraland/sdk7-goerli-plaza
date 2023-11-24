@@ -5,7 +5,7 @@ import { Color4 } from "@dcl/sdk/math"
 
 
 const projectPath = "avatar-animations"
-const description = ""
+const description = "A simple scene to play avatar animations, triggered by the player's actions. The scene includes these animations as internal assets."
 const Max_Chars = 45
 
 

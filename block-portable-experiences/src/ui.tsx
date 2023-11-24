@@ -5,7 +5,7 @@ import { Color4 } from "@dcl/sdk/math"
 
 
 const projectPath = "advanced-avatar-swap"
-const description = ""
+const description = "A scene that detects if a player has any portable experiences or smart wearables active. If so, it will warn and won't let the player interact."
 const Max_Chars = 45
 
 

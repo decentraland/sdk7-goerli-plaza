@@ -5,7 +5,7 @@ import { Color4 } from "@dcl/sdk/math"
 
 
 const projectPath = "grab-object-advance"
-const description = ""
+const description = "Click an item to hold it in the air and carry it or toss it around the scene using physics."
 const Max_Chars = 45
 
 

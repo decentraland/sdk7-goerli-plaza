@@ -5,7 +5,7 @@ import { Color4 } from "@dcl/sdk/math"
 
 
 const projectPath = "advanced-avatar-swap"
-const description = ""
+const description = "Show animated sprites on the 2D UI of a scene."
 const Max_Chars = 45
 
 

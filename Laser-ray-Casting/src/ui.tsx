@@ -5,7 +5,7 @@ import { Color4 } from "@dcl/sdk/math"
 
 
 const projectPath = "Laser-ray-Casting"
-const description = ""
+const description = "Use ray casting to trace a line in space and check for intersections. Cubes change material when hit by the laser. They also change when being pointed at by the player."
 const Max_Chars = 45
 
 

@@ -5,7 +5,7 @@ import { openExternalUrl } from '~system/RestrictedActions'
 import { Color4 } from '@dcl/sdk/math'
 
 const projectPath = "Show-Manager-Example"
-const description = ""
+const description = "A scene that uses the Show Management Library to schedule and synchronize the playing of streamed videos and animations in the scene."
 const Max_Chars = 45
 
 
