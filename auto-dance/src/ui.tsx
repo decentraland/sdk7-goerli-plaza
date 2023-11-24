@@ -62,7 +62,6 @@ function GitHubLinkUi() {
 
 function descriptionUI() {
 
-
 	const multiLineDescription = breakLines(description, Max_Chars)
 
 	return <UiEntity
@@ -74,8 +73,6 @@ function descriptionUI() {
 			alignSelf: 'stretch',
 			positionType: "absolute",
 			flexShrink: 1,
-
-
 			maxWidth: 600,
 			maxHeight: 300,
 			minWidth: 200,

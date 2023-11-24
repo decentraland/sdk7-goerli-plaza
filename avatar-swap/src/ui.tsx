@@ -5,7 +5,7 @@ import { Color4 } from "@dcl/sdk/math"
 
 
 const projectPath = "avatar-swap"
-const description = ""
+const description = "Swapping out the default avatar for another character model."
 const Max_Chars = 45
 
 
@@ -73,8 +73,6 @@ function descriptionUI() {
 			alignSelf: 'stretch',
 			positionType: "absolute",
 			flexShrink: 1,
-
-
 			maxWidth: 600,
 			maxHeight: 300,
 			minWidth: 200,
