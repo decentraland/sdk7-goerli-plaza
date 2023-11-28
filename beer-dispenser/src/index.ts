@@ -5,6 +5,7 @@ import { pickingGlassSystem } from './modules/beerGlass'
 import { createBeerGlass, createTap, SyncEntityIDs } from './modules/factory'
 import { tapPumpSystem } from './modules/tap'
 import { setupUi } from './ui'
+import { syncEntity } from '@dcl/sdk/network'
 
 export function main() {
 	// Create tables
@@ -74,4 +75,6 @@ export function main() {
 
 	// UI with GitHub link
 	setupUi()
+
+	syncEntity(engine.RootEntity, [])
 }

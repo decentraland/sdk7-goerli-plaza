@@ -13,38 +13,47 @@ import {
 import { Vector3, Quaternion } from '@dcl/sdk/math'
 import { BeerGlass, PickedUp, TapBase } from '../definitions'
 import { playSound } from './factory'
-import { currentPlayerId, getEntityParent, getPlayerPosition } from './helpers'
-import { parentEntity, syncEntity } from '@dcl/sdk/network'
+import { currentPlayerId, getPlayerPosition } from './helpers'
+import { parentEntity, syncEntity, getParent, getFirstChild } from '@dcl/sdk/network'
 
 export function pickingGlassSystem() {
 	// If there is some PickedUp, so the behvior is to listen when this
 	//  can be dropped
 	for (const [entity, pickedUp] of engine.getEntitiesWith(PickedUp)) {
 		const tryToDropCommand = inputSystem.getInputCommand(InputAction.IA_PRIMARY, PointerEventType.PET_DOWN)
+		const pickedUpChild = getFirstChild(entity)
+		if (!pickedUpChild) break
 		if (tryToDropCommand) {
 			const hitPosition = tryToDropCommand.hit?.position || getPlayerPosition()
 			const hitEntity = tryToDropCommand.hit?.entityId as Entity
-			const hitParentEntity = getEntityParent(hitEntity)
+			const hitParentEntity = getParent(hitEntity)
+
 			let drop = false
 
 
+
+
 			// If there is a tap base (the collider)
-			if (TapBase.getOrNull(hitParentEntity)) {
-				Transform.createOrReplace(pickedUp.child, {
+			if (hitParentEntity && TapBase.getOrNull(hitParentEntity)) {
+				Transform.createOrReplace(pickedUpChild, {
 					//parent: hitParentEntity
 				})
-				parentEntity(pickedUp.child, hitParentEntity)
+				parentEntity(pickedUpChild, hitParentEntity)
+				console.log("parented to a tap, ", hitParentEntity, TapBase.getOrNull(hitParentEntity)?.beerType)
 				drop = true
 			} else {
 				// Only it's allowed to hold the beer in surface parallel to floor
 				const diff = Vector3.subtract(Vector3.Up(), tryToDropCommand.hit?.normalHit || Vector3.Zero())
 				if (Vector3.length(diff) < 0.01) {
-					Transform.createOrReplace(pickedUp.child, {
-						position: hitPosition
+					Transform.createOrReplace(pickedUpChild, {
+						position: hitPosition,
+						//parent: engine.RootEntity
 					})
 					drop = true
+					parentEntity(pickedUpChild, engine.RootEntity)
 				}
 			}
+
 
 			// TODO: These line crashes the renderer
 			// AvatarAttach.deleteFrom(entity)
@@ -55,12 +64,13 @@ export function pickingGlassSystem() {
 			}
 		}
 
-		const glass = BeerGlass.get(pickedUp.child)
+
+		const glass = BeerGlass.get(pickedUpChild)
 
 		const tryToDrinkCommand = inputSystem.getInputCommand(InputAction.IA_SECONDARY, PointerEventType.PET_DOWN)
 		if (glass.filled && tryToDrinkCommand) {
-			BeerGlass.getMutable(pickedUp.child).filled = false
-			Animator.playSingleAnimation(pickedUp.child, 'Blank')
+			BeerGlass.getMutable(pickedUpChild).filled = false
+			Animator.playSingleAnimation(pickedUpChild, 'Blank')
 			playSound('sounds/swallow.mp3', false, getPlayerPosition())
 		}
 		return
@@ -70,9 +80,7 @@ export function pickingGlassSystem() {
 	for (const [entity, glass] of engine.getEntitiesWith(BeerGlass)) {
 		if (!glass.beingFilled && inputSystem.isTriggered(InputAction.IA_PRIMARY, PointerEventType.PET_DOWN, entity)) {
 			const parentBeer = engine.addEntity()
-			PickedUp.create(parentBeer, {
-				child: entity as any
-			})
+			PickedUp.create(parentBeer, {})
 
 			AvatarAttach.create(parentBeer, {
 				anchorPointId: AvatarAnchorPointType.AAPT_RIGHT_HAND
