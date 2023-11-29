@@ -14,14 +14,15 @@ import { Vector3, Quaternion } from '@dcl/sdk/math'
 import { BeerGlass, PickedUp, TapBase } from '../definitions'
 import { playSound } from './factory'
 import { currentPlayerId, getPlayerPosition } from './helpers'
-import { parentEntity, syncEntity, getParent, getFirstChild } from '@dcl/sdk/network'
+import { parentEntity, syncEntity, getParent, getChildren, removeParent } from '@dcl/sdk/network'
 
 export function pickingGlassSystem() {
 	// If there is some PickedUp, so the behvior is to listen when this
 	//  can be dropped
 	for (const [entity, pickedUp] of engine.getEntitiesWith(PickedUp)) {
 		const tryToDropCommand = inputSystem.getInputCommand(InputAction.IA_PRIMARY, PointerEventType.PET_DOWN)
-		const pickedUpChild = getFirstChild(entity)
+		if (pickedUp.avatarId !== currentPlayerId) continue
+		const pickedUpChild = Array.from(getChildren(entity))[0]
 		if (!pickedUpChild) break
 		if (tryToDropCommand) {
 			const hitPosition = tryToDropCommand.hit?.position || getPlayerPosition()
@@ -29,9 +30,6 @@ export function pickingGlassSystem() {
 			const hitParentEntity = getParent(hitEntity)
 
 			let drop = false
-
-
-
 
 			// If there is a tap base (the collider)
 			if (hitParentEntity && TapBase.getOrNull(hitParentEntity)) {
@@ -82,7 +80,7 @@ export function pickingGlassSystem() {
 	for (const [entity, glass] of engine.getEntitiesWith(BeerGlass)) {
 		if (!glass.beingFilled && inputSystem.isTriggered(InputAction.IA_PRIMARY, PointerEventType.PET_DOWN, entity)) {
 			const parentBeer = engine.addEntity()
-			PickedUp.create(parentBeer, {})
+			PickedUp.create(parentBeer, { avatarId: currentPlayerId })
 
 			AvatarAttach.create(parentBeer, {
 				avatarId: currentPlayerId,
@@ -102,7 +100,5 @@ export function pickingGlassSystem() {
 		}
 	}
 }
-function removeParent(pickedUpChild: Entity) {
-	throw new Error('Function not implemented.')
-}
+
 
