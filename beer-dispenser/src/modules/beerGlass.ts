@@ -49,8 +49,10 @@ export function pickingGlassSystem() {
 						position: hitPosition,
 						//parent: engine.RootEntity
 					})
+					//NetworkParent.deleteFrom(pickedUpChild)
+					removeParent(pickedUpChild)
 					drop = true
-					parentEntity(pickedUpChild, engine.RootEntity)
+
 				}
 			}
 
@@ -83,6 +85,7 @@ export function pickingGlassSystem() {
 			PickedUp.create(parentBeer, {})
 
 			AvatarAttach.create(parentBeer, {
+				avatarId: currentPlayerId,
 				anchorPointId: AvatarAnchorPointType.AAPT_RIGHT_HAND
 			})
 			Transform.createOrReplace(entity, {
@@ -91,7 +94,7 @@ export function pickingGlassSystem() {
 				//parent: parentBeer
 			})
 
-			syncEntity(parentBeer, [AvatarAttach.componentId, Transform.componentId])
+			syncEntity(parentBeer, [AvatarAttach.componentId, Transform.componentId, PickedUp.componentId])
 
 			parentEntity(entity, parentBeer)
 
@@ -99,3 +102,7 @@ export function pickingGlassSystem() {
 		}
 	}
 }
+function removeParent(pickedUpChild: Entity) {
+	throw new Error('Function not implemented.')
+}
+

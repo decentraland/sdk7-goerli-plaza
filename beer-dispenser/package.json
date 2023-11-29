@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "dependencies": {
     "@dcl/js-runtime": "7.3.30-7005296659.commit-e71b916",
-    "@dcl/sdk": "https://sdk-team-cdn.decentraland.org/@dcl/js-sdk-toolchain/branch/feat/comms-sync/dcl-sdk-7.3.30-7005296659.commit-e71b916.tgz"
+    "@dcl/sdk": "https://sdk-team-cdn.decentraland.org/@dcl/js-sdk-toolchain/branch/feat/comms-sync/dcl-sdk-7.3.30-7034885416.commit-bb7b8e7.tgz"
   },
   "scripts": {
     "build": "sdk-commands build --skip-install",
