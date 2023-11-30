@@ -7,7 +7,7 @@ import { getParent } from '@dcl/sdk/network'
 
 
 function getBeerBehindTap(beerType: BeerType) {
-	for (const [glassEntity, _1, _2, glassTransform] of engine.getEntitiesWith(BeerGlass, Animator, Transform)) {
+	for (const [glassEntity] of engine.getEntitiesWith(BeerGlass)) {
 		const glassParent = getParent(glassEntity)
 
 		if (glassParent && TapBase.getOrNull(glassParent)?.beerType === beerType) {
@@ -23,7 +23,7 @@ export function tapPumpSystem(dt: number) {
 			// At start the pouring, play the sound an animation
 			if (Scalar.withinEpsilon(tapReadonly.pouringTime, 0)) {
 				Animator.playSingleAnimation(entity, `Pour`)
-				playSound('sounds/beerPump.mp3', false, getPlayerPosition())
+				playSound('sounds/beerPump.mp3', false, entity)
 				const glassEntity = getBeerBehindTap(tapReadonly.beerType)
 				if (glassEntity) Animator.playSingleAnimation(glassEntity, `Pour${getTapData(tapReadonly.beerType).name}`)
 			}

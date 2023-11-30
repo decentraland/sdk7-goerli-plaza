@@ -143,6 +143,7 @@ export function createTap(tapBeerType: BeerType, dispenseEntity: Entity, id: Syn
 		scale: Vector3.scale(Vector3.One(), 0.33),
 		rotation: Quaternion.fromEulerDegrees(90, 0, 0)
 	})
+
 	syncEntity(colliderEntity, [], id + 200)
 	parentEntity(colliderEntity, colliderParentEntity)
 
@@ -163,16 +164,12 @@ export function createTap(tapBeerType: BeerType, dispenseEntity: Entity, id: Syn
 	})
 }
 
-export function playSound(audio: string, loop: boolean = false, position?: Vector3) {
-	const entity = engine.addEntity()
-	AudioSource.create(entity, {
+export function playSound(audio: string, loop: boolean = false, entity: Entity) {
+
+	AudioSource.createOrReplace(entity, {
 		audioClipUrl: audio,
 		loop,
 		playing: true
-	})
-
-	Transform.create(entity, {
-		position
 	})
 
 	return entity
