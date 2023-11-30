@@ -43,6 +43,7 @@ export function main() {
 			}
 		]
 	})
+	syncEntity(floor, [], SyncEntityIDs.TABLES)
 
 	// Create dispenser
 	const dispenserEntity = engine.addEntity()
@@ -76,5 +77,4 @@ export function main() {
 	// UI with GitHub link
 	setupUi()
 
-	syncEntity(engine.RootEntity, [])
 }

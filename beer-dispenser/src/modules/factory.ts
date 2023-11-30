@@ -30,6 +30,7 @@ export enum SyncEntityIDs {
 	GLASS7 = 10,
 	GLASS8 = 11,
 	GLASS9 = 12,
+	TABLES = 13,
 }
 
 
@@ -133,8 +134,8 @@ export function createTap(tapBeerType: BeerType, dispenseEntity: Entity, id: Syn
 	TapBase.create(colliderParentEntity, {
 		beerType: tapBeerType
 	})
-	//syncEntity(colliderParentEntity, [], id + 100)
-	//parentEntity(colliderParentEntity, tapEntity)
+	syncEntity(colliderParentEntity, [], id + 100)
+	parentEntity(colliderParentEntity, tapEntity)
 
 	const colliderEntity = engine.addEntity()
 	Transform.create(colliderEntity, {
@@ -142,8 +143,8 @@ export function createTap(tapBeerType: BeerType, dispenseEntity: Entity, id: Syn
 		scale: Vector3.scale(Vector3.One(), 0.33),
 		rotation: Quaternion.fromEulerDegrees(90, 0, 0)
 	})
-	//syncEntity(colliderEntity, [], id + 200)
-	//parentEntity(colliderEntity, colliderParentEntity)
+	syncEntity(colliderEntity, [], id + 200)
+	parentEntity(colliderEntity, colliderParentEntity)
 
 
 	MeshCollider.setPlane(colliderEntity)
