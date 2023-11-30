@@ -80,7 +80,7 @@ export function createBeerGlass(model: string, position: Vector3, id: SyncEntity
 		]
 	})
 
-	syncEntity(glassEntity, [Animator.componentId, AudioSource.componentId, Transform.componentId], id)
+	syncEntity(glassEntity, [Animator.componentId, AudioSource.componentId, Transform.componentId, BeerGlass.componentId], id)
 }
 
 export function createTap(tapBeerType: BeerType, dispenseEntity: Entity, id: SyncEntityIDs) {
