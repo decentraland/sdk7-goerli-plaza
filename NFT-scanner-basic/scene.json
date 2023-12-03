@@ -7,6 +7,9 @@
 		"navmapThumbnail": "images/scene-thumbnail.png",
 		"favicon": "favicon_asset"
 	},
+	"worldConfiguration": {
+		"name": ""
+	  },
 	"owner": "",
 	"contact": {
 		"name": "SDK",

@@ -4,12 +4,13 @@ import { Animator, AudioSource, AvatarAttach, GltfContainer, Transform, Visibili
 import { initAssetPacks } from '@dcl/asset-packs/dist/scene-entrypoint'
 
 import { buildScene } from './builder'
-import { Scanner } from './scanner'
+import { Door } from './door'
 
 
 export function main() {
   buildScene()
-  Scanner
+  Door
+
 }
 
 main()
