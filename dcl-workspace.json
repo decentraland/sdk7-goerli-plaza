@@ -67,6 +67,9 @@
       "path": "lazy-loading"
     },
     {
+      "path": "land-flipper"
+    },
+    {
       "path": "item-pickup"
     },
     {

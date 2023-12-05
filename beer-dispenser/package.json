@@ -1,10 +1,10 @@
 {
   "name": "BeerDispenser",
-  "description": "My new Decentraland project",
+  "description": "A beer dispenser that uses P2P messaging so that you can pour beer for yourself and friends.",
   "version": "1.0.0",
   "dependencies": {
-    "@dcl/js-runtime": "7.3.30-7050336380.commit-697913e",
-    "@dcl/sdk": "https://sdk-team-cdn.decentraland.org/@dcl/js-sdk-toolchain/branch/feat/comms-sync/dcl-sdk-7.3.30-7050336380.commit-697913e.tgz"
+    "@dcl/js-runtime": "latest",
+    "@dcl/sdk": "latest"
   },
   "scripts": {
     "build": "sdk-commands build --skip-install",
