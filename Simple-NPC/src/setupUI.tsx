@@ -3,9 +3,15 @@ import ReactEcs, { Label, ReactEcsRenderer, UiEntity } from '@dcl/sdk/react-ecs'
 import { NpcUtilsUi } from 'dcl-npc-toolkit'
 import { openExternalUrl } from '~system/RestrictedActions'
 
+const projectPath = "Simple-NPC"
+const description = "A simple scene that uses the NPC toolkit library to create NPCs that follow dialogs that can branch out into conversation trees. NPCs can also walk around the scene."
+const Max_Chars = 45
+
+
 const SceneOwnedUi = () => [
 	NpcUtilsUi(),
-	GitHubLinkUi()
+	GitHubLinkUi(),
+	descriptionUI()
 	// other UI elements
 ]
 
@@ -18,8 +24,6 @@ export function setupUi() {
 // GitHub link
 
 function GitHubLinkUi() {
-
-	const projectPath = "coconut-shy"
 
 	const fullPath = "https://github.com/decentraland/sdk7-goerli-plaza/tree/main/" + projectPath
 
@@ -57,4 +61,96 @@ function GitHubLinkUi() {
 			textAlign="middle-center"
 		/>
 	</UiEntity>
+}
+
+
+function descriptionUI() {
+
+	const multiLineDescription = breakLines(description, Max_Chars)
+
+	return <UiEntity
+		uiTransform={{
+			width: "auto",
+			height: "auto",
+			display: "flex",
+			flexDirection: 'row',
+			alignSelf: 'stretch',
+			positionType: "absolute",
+			flexShrink: 1,
+			maxWidth: 600,
+			maxHeight: 300,
+			minWidth: 200,
+			padding: 4,
+			position: { right: "3%", bottom: '20%' }
+		}}
+		uiBackground={{ color: Color4.fromHexString("#4d544e") }}
+	>
+		<UiEntity
+			uiTransform={{
+				width: "auto",
+				height: "auto",
+				alignSelf: "center",
+				padding: 4,
+				justifyContent: 'flex-start',
+				alignContent: 'flex-start',
+			}}
+			uiBackground={{ color: Color4.fromHexString("#92b096") }}
+		>
+			<Label
+				value={multiLineDescription}
+				fontSize={18}
+				textAlign="middle-center"
+
+				uiTransform={{
+					width: "auto",
+					height: "auto",
+					alignSelf: "center",
+					margin: '16px 16px 8px 16px',
+
+				}}
+			/>
+		</UiEntity>
+	</UiEntity >
+}
+
+
+function breakLines(text: string, linelength: number) {
+	const lineBreak = '\n'
+	var counter = 0
+	var line = ''
+	var returnText = ''
+	var bMatchFound = false
+	const lineLen = linelength ? linelength : 50
+
+
+	if (!text) return ''
+	if (text.length < lineLen + 1) { return text }
+
+	while (counter < text.length) {
+		line = text.substring(counter, counter + lineLen);
+		bMatchFound = false
+		if (line.length == lineLen) {
+			for (var i = line.length; i > -1; i--) {
+				if (line.substring(i, i + 1) == ' ') {
+					counter += line.substring(0, i).length
+					line = line.substring(0, i) + lineBreak
+					returnText += line
+					bMatchFound = true
+					break
+				}
+			}
+
+			if (!bMatchFound) {
+				counter += line.length
+				line = line + lineBreak
+				returnText += line
+			}
+		}
+		else {
+			returnText += line
+			break // We're breaking out of the the while(), not the for()
+		}
+	}
+
+	return returnText
 }

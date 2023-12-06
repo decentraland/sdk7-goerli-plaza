@@ -1,11 +1,13 @@
 import { InputAction, executeTask, pointerEventsSystem } from '@dcl/sdk/ecs'
 import { Scene } from './environment'
 import { signedFetch } from '~system/SignedFetch'
-import { Announcement } from './ui'
+import { setupUi } from './ui'
+import * as ui from 'dcl-ui-toolkit'
 
 export function main() {
   const scene = new Scene()
-  const ui = new Announcement()
+
+  setupUi()
 
   pointerEventsSystem.onPointerDown(
     {
@@ -36,12 +38,21 @@ export function main() {
           }
 
           scene.passedValidation()
-          ui.passedAnnouncement.show()
+          const announce = ui.createComponent(ui.Announcement, {
+            value: 'Your intentions are pure',
+            duration: 5,
+            startHidden: false
+          })
+          announce.show()
         } catch (error) {
           console.log(error)
 
           scene.failedValidation()
-          ui.failedAnnouncement.show()
+          const announce = ui.createComponent(ui.Announcement, {
+            value: 'Your dark schemes are not welcome here, be gone!',
+            duration: 5,
+            startHidden: false
+          })
         }
       })
     }
