@@ -4,7 +4,9 @@ import {
   AudioSource,
   AvatarAttach,
   GltfContainer,
+  Material,
   Transform,
+  VideoPlayer,
   VisibilityComponent,
   engine,
   pointerEventsSystem
@@ -18,7 +20,9 @@ initAssetPacks(engine, pointerEventsSystem, {
   AvatarAttach,
   Transform,
   VisibilityComponent,
-  GltfContainer
+  GltfContainer,
+  Material,
+  VideoPlayer
 })
 
 export function main() {
