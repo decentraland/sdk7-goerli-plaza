@@ -15,22 +15,9 @@
     "@dcl/js-runtime": "7.3.30",
     "@dcl/sdk": "^7.3.30"
   },
-  "engines": {
-    "node": ">=16.0.0",
-    "npm": ">=6.0.0"
-  },
-  "prettier": {
-    "semi": false,
-    "singleQuote": true,
-    "printWidth": 120,
-    "trailingComma": "none"
-  },
   "dependencies": {
-    "@dcl-sdk/utils": "^1.1.3",
-    "dcl-npc-toolkit": "^1.1.4",
-    "dcl-ui-toolkit": "^0.9.1"
-  },
-  "bundledDependencies": [
-    "dcl-ui-toolkit"
-  ]
+    "@dcl-sdk/utils": "latest",
+    "dcl-npc-toolkit": "latest",
+    "dcl-ui-toolkit": "latest"
+  }
 }
