@@ -5,6 +5,7 @@ import {
   inputSystem,
   Material,
   MeshCollider,
+  MeshRenderer,
   pointerEventsSystem,
   Transform
 } from '@dcl/sdk/ecs'
@@ -21,7 +22,7 @@ export function main() {
       droid,
       utils.LAYER_1,
       utils.LAYER_1,
-      [{ type: 'box', scale: Vector3.create(4, 4, 4) }],
+      [{ type: 'box', scale: Vector3.create(12, 12, 12) }],
       () => {
         if (DROID_IS_MOVING) return
 
