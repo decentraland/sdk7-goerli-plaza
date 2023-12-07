@@ -47,7 +47,7 @@ export async function createDebugUIButtons() {
     const enableDisableToggle = testButton = testControlsToggle.addButton(
         {
             style: ui.ButtonStyles.RED,
-            text: 'show:true',
+            text: 'show:false',
             xPosition: buttonPosCounter,
             yPosition: buttonPosY,
             onMouseDown: () => {

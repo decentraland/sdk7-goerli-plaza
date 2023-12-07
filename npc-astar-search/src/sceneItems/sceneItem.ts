@@ -177,7 +177,8 @@ export class SceneItem {
             this.openAnimation.playing = false
         }
         if (this.idleAnimation !== undefined) {
-            this.idleAnimation.playing = false
+            this.idleAnimation.playing = true
+            this.lastPlayedAnim = this.idleAnimation
         }
         console.log("play.playIdleAnimation", Transform.get(this.entity).position)
     }
