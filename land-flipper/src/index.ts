@@ -12,6 +12,7 @@ import {
   PointerEventType,
   PointerEvents,
   Transform,
+  VideoPlayer,
   VisibilityComponent,
   engine,
   pointerEventsSystem
