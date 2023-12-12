@@ -6,7 +6,7 @@ import { validateCaptcha } from './claim'
 import { ClaimConfigInstType } from './claimConfig'
 
 const projectPath = "reward-claim"
-const description = ""
+const description = "Claim a wearable by clicking on the dispenser. You must be connected with your wallet to the Sepolia network. After submitting a captcha the wearable will arrive over the next couple of minutes."
 const Max_Chars = 45
 
 
@@ -271,7 +271,6 @@ export function captchaUI(image: string, id: string, campaign: ClaimConfigInstTy
 		xPosition: 0,
 		yPosition: -120,
 		onMouseDown: () => {
-			console.log('Yeah clicked')
 			validateCaptcha(captchaText, id, campaign, campaign_key)
 			customPrompt.hide()
 
