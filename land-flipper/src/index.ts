@@ -31,7 +31,9 @@ initAssetPacks(engine, pointerEventsSystem, {
   AvatarAttach,
   Transform,
   VisibilityComponent,
-  GltfContainer
+  GltfContainer,
+  Material,
+  VideoPlayer
 })
 
 export function main() {
