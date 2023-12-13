@@ -1,15 +1,16 @@
 
-import { Vector3, Quaternion} from '@dcl/sdk/math'
-import { Animator, Entity, executeTask, MeshCollider,
-    MeshRenderer, GltfContainer, Transform, PointerEvents,InputAction,PointerEventType,inputSystem,pointerEventsSystem,
-    engine, AudioSource } from '@dcl/sdk/ecs'
-import { UserData, getUserData } from '~system/UserIdentity'
-import { toggleUIVisibility,setupUi } from './ui';
+import { Vector3, Quaternion } from '@dcl/sdk/math'
+import {
+    Animator, Entity, executeTask, MeshCollider,
+    MeshRenderer, GltfContainer, Transform, PointerEvents, InputAction, PointerEventType, inputSystem, pointerEventsSystem,
+    engine, AudioSource
+} from '@dcl/sdk/ecs'
+import { toggleUIVisibility, setupUi } from './ui';
 
-import crypto from 'dcl-crypto-toolkit'
+import * as crypto from 'dcl-crypto-toolkit'
+
 
 // NFT and token iDs to check 
-
 const NFT_CONTRACT = crypto.contract.mainnet.Halloween2019Collection;
 const TOKEN_IDS = [1, 2, 3, 4, 5];
 
@@ -40,16 +41,16 @@ Animator.create(Door, {
 
 pointerEventsSystem.onPointerDown(
     {
-      entity: Door,
-      opts: { button: InputAction.IA_PRIMARY, hoverText: 'Eneter Club',maxDistance: 10 },
+        entity: Door,
+        opts: { button: InputAction.IA_PRIMARY, hoverText: 'Eneter Club', maxDistance: 10 },
 
     },
     () => {
-      checkNFTAndControlDoor();
+        checkNFTAndControlDoor();
 
-     
+
     }
-  )
+)
 
 
 // Sounds
@@ -94,10 +95,9 @@ async function checkNFTAndControlDoor() {
 
     try {
         await executeTask(async () => {
-            const tokenCheckResult = await crypto.nft.checkTokens(NFT_CONTRACT, TOKEN_IDS);
-            hasNFT = tokenCheckResult.some((result: any) => result);
+            hasNFT = await crypto.nft.checkTokens(NFT_CONTRACT, TOKEN_IDS);
         });
-            } catch (error) {
+    } catch (error) {
         console.log("Error checking NFTs:", error);
         playSound(rejectSound);
         toggleUIVisibility();

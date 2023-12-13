@@ -10,15 +10,17 @@ import {
 
 import { Color4, Vector3, Quaternion } from '@dcl/sdk/math'
 import ReactEcs, { Button, Input, Label, ReactEcsRenderer, UiEntity } from '@dcl/sdk/react-ecs'
-import * as ui from 'dcl-ui-toolkit'
-import crypto from 'dcl-crypto-toolkit'
-//import * as crypto from 'dcl-crypto-toolkit';  //this works
+
+import * as crypto from 'dcl-crypto-toolkit'
 
 // set your wallet address here 
 
-let myWallet = `0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee`
+const myWallet = `0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee`
 
-let donationAmount = ''; // variable, donation amount set by the player
+const defaultDonationAmount = "10"
+
+let donationAmount = defaultDonationAmount; // variable, donation amount set by the player
+
 
 // Animation delay setup to trigger coin heart in time
 
@@ -53,17 +55,17 @@ Transform.create(donationsBoxModel, {
 
 Animator.create(donationsBoxModel, {
 
-// Animator states idle and donation state
-  states:[{
-     clip: "Donation_Action", 
-     playing: false,
-     loop: false,
+  // Animator states idle and donation state
+  states: [{
+    clip: "Donation_Action",
+    playing: false,
+    loop: false,
 
   }, {
-     clip: "DonationIdle_Action",
-     playing: true,
-     loop: true,
-     shouldReset: true,
+    clip: "DonationIdle_Action",
+    playing: true,
+    loop: true,
+    shouldReset: true,
   }]
 })
 
@@ -74,7 +76,7 @@ pointerEventsSystem.onPointerDown(
     entity: donationsBoxModel,
     opts: { button: InputAction.IA_PRIMARY, hoverText: 'Donate' },
   },
-  () => { 
+  () => {
     toggleDonationUIVisibility();
   }
 );
@@ -94,8 +96,8 @@ export function setupUi() {
 }
 
 const uiComponent = () => (
- 
-    <UiEntity
+
+  <UiEntity
     uiTransform={{
       flexDirection: 'column',
       alignItems: 'center',
@@ -104,10 +106,10 @@ const uiComponent = () => (
       width: '35%', // Use percentage to make it responsive
       height: '32%', // Use percentage to make it responsive
       position: { left: '40%', top: '40%' }, // Adjust to center the UI
-      display: isDonationUIVisible ? 'flex': 'none'
+      display: isDonationUIVisible ? 'flex' : 'none'
     }}
     uiBackground={{ color: Color4.Gray() }}
-    >
+  >
     <Label
       value="Are you sure?\nYou are about to donate:"
       fontSize={24}
@@ -117,28 +119,28 @@ const uiComponent = () => (
     <UiEntity
       uiTransform={{
         flexDirection: 'row', // Set to 'row' to align children (Input, Label) side by side
-        width: '100%', 
+        width: '100%',
         alignItems: 'center',
         justifyContent: 'center'
       }}
     >
-    <Input
-      onChange={(value) => {
-        donationAmount = value;
-      }}
-      fontSize={24}
-      placeholder={'10'}
-      placeholderColor={Color4.Black()}
-      uiTransform={{ width: '18%', height: '50px', margin: '10px 0' }}
-    />
-    <Label
-      value="MANA"
-      fontSize={24}
-      color={Color4.Red()}
-      uiTransform={{ width: '15%', height: 30, margin: '4px 10px 4px 10px' }}
-    />
-    </UiEntity> 
-    
+      <Input
+        onChange={(value) => {
+          donationAmount = value;
+        }}
+        fontSize={24}
+        placeholder={defaultDonationAmount}
+        placeholderColor={Color4.Black()}
+        uiTransform={{ width: '18%', height: '50px', margin: '10px 0' }}
+      />
+      <Label
+        value="MANA"
+        fontSize={24}
+        color={Color4.Red()}
+        uiTransform={{ width: '15%', height: 30, margin: '4px 10px 4px 10px' }}
+      />
+    </UiEntity>
+
     <Label
       value="Do you want to proceed?"
       fontSize={24}
@@ -146,20 +148,20 @@ const uiComponent = () => (
       uiTransform={{ width: '100%', height: 60, alignContent: 'center', margin: '10px 10px 10px 0' }}
     />
 
-      <UiEntity
+    <UiEntity
       uiTransform={{
         flexDirection: 'row', // Set to 'row' to align children side by side
-        width: '100%', 
+        width: '100%',
         alignItems: 'center',
         justifyContent: 'center'
       }}
     >
 
-    <Button
-      value="PROCEED"
-      variant="primary"
-      fontSize={22}
-      uiTransform={{ width: '35%', height: 50, margin: '4px' }}
+      <Button
+        value="PROCEED"
+        variant="primary"
+        fontSize={22}
+        uiTransform={{ width: '35%', height: 50, margin: '4px' }}
 
         // Implement the donation functionality
 
@@ -176,7 +178,7 @@ const uiComponent = () => (
 
               // Start animation timer
               donationAnimationTimeElapsed = 0.00001;
-              console.log(donationAmount,'Mana');  /// log amount to be sent 
+              console.log(donationAmount, 'Mana');  /// log amount to be sent 
 
             } else {
               console.error('Invalid donation amount');
@@ -189,19 +191,19 @@ const uiComponent = () => (
           toggleDonationUIVisibility();
 
         }}
-    />
-        
-    <Button
-      value="CANCEL"
-      variant="secondary"
-      fontSize={22}
-      uiTransform={{ width: '35%', height: 50, margin: '10px' }}
-      onMouseDown={() => {
-        console.log('Cancel the donation')
-        // hide the UI 
-        toggleDonationUIVisibility();
-      }}
-    />
-     </UiEntity> 
+      />
+
+      <Button
+        value="CANCEL"
+        variant="secondary"
+        fontSize={22}
+        uiTransform={{ width: '35%', height: 50, margin: '10px' }}
+        onMouseDown={() => {
+          console.log('Cancel the donation')
+          // hide the UI 
+          toggleDonationUIVisibility();
+        }}
+      />
+    </UiEntity>
   </UiEntity>
 )

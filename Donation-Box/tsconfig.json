@@ -5,9 +5,7 @@
   },
   "include": [
     "src/**/*.ts",
-    "src/**/*.tsx",
-    "dcl-crypto-toolkit.d.ts"
-
+    "src/**/*.tsx"
   ],
   "extends": "@dcl/sdk/types/tsconfig.ecs7.json"
 }

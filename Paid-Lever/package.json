@@ -11,29 +11,12 @@
   },
   "devDependencies": {
     "@dcl/asset-packs": "latest",
-    "@dcl/js-runtime": "7.3.29",
+    "@dcl/js-runtime": "7.3.33",
     "@dcl/sdk": "latest"
   },
-  "engines": {
-    "node": ">=16.0.0",
-    "npm": ">=6.0.0"
-  },
-  "prettier": {
-    "semi": false,
-    "singleQuote": true,
-    "printWidth": 120,
-    "trailingComma": "none"
-  },
   "dependencies": {
-    "@dcl-sdk/utils": "^1.1.3",
-    "@dcl/crypto-scene-utils": "^1.1.2",
-    "@dcl/ecs-scene-utils": "^1.7.5",
-    "dcl-crypto-toolkit": "^1.0.0-20231102170834.commit-63c4be6",
-    "eth-connect": "^6.2.1"
-  },
-  "bundleDependencies": [
-    "@dcl/crypto-scene-utils",
-    "@dcl/ecs-scene-utils",
-    "eth-connect"
-  ]
+    "@dcl-sdk/utils": "latest",
+    "dcl-crypto-toolkit": "latest",
+    "eth-connect": "latest"
+  }
 }
