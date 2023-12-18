@@ -5,7 +5,7 @@ import { Color4 } from "@dcl/sdk/math"
 
 
 const projectPath = "droid-scene"
-const description = ""
+const description = "A simple scene built combining the graphical editor with the Utils library. The floating droid flees from the player to a random location every time the player gets near."
 const Max_Chars = 45
 
 

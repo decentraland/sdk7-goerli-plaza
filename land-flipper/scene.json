@@ -1,0 +1,65 @@
+{
+  "ecs7": true,
+  "runtimeVersion": "7",
+  "display": {
+    "title": "land-flipper",
+    "description": "template scene with SDK7",
+    "navmapThumbnail": "images/scene-thumbnail.png",
+    "favicon": "favicon_asset"
+  },
+  "owner": "",
+  "contact": {
+    "name": "SDK",
+    "email": ""
+  },
+  "main": "bin/index.js",
+  "tags": [],
+  "scene": {
+    "parcels": [
+      "82,-9",
+      "82,-8",
+      "82,-7",
+      "83,-9",
+      "83,-8",
+      "83,-7",
+      "84,-9",
+      "84,-8",
+      "84,-7"
+    ],
+    "base": "82,-9"
+  },
+  "spawnPoints": [
+    {
+      "name": "spawn1",
+      "default": true,
+      "position": {
+        "x": [
+          20,
+          25
+        ],
+        "y": [
+          1,
+          1
+        ],
+        "z": [
+          60,
+          65
+        ]
+      },
+      "cameraTarget": {
+        "x": 8,
+        "y": 1,
+        "z": 8
+      }
+    }
+  ],
+  "requiredPermissions": [
+    "ALLOW_TO_TRIGGER_AVATAR_EMOTE",
+    "ALLOW_TO_MOVE_PLAYER_INSIDE_SCENE"
+  ],
+  "featureToggles": {},
+  "worldConfiguration": {
+    "name": "boedo.dcl.eth"
+  },
+  "name": "land-flipper"
+}
