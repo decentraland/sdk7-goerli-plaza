@@ -223,6 +223,9 @@
       "path": "Events-API-Board"
     },
     {
+      "path": "Editor-actions"
+    },
+    {
       "path": "Dance-floor"
     },
     {
