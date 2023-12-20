@@ -1,48 +1,26 @@
-import {
-  engine,
-  GltfContainer,
-  InputAction,
-  inputSystem,
-  Material,
-  MeshCollider,
-  MeshRenderer,
-  NftFrameType,
-  NftShape,
-  pointerEventsSystem,
-  Transform
-} from '@dcl/sdk/ecs'
-import { Color4, Quaternion, Vector3 } from '@dcl/sdk/math'
-import { setupUi } from './ui'
+import { InputAction, MeshCollider, MeshRenderer, Transform, engine, pointerEventsSystem } from "@dcl/sdk/ecs";
+import { Vector3 } from "@dcl/sdk/math";
+import { MakeNFTFrame, createFullNFT, displayNFTUI } from "./Resources/nftUI";
 
-export function main() {
-  const painting = engine.addEntity()
-  Transform.create(painting, {
-    position: Vector3.create(4, 1.5, 4)
-  })
+const cube = engine.addEntity()
+Transform.create(cube , {
+    position : Vector3.create(5,1,5)
+})
+MeshRenderer.setBox(cube)
+MeshCollider.setBox(cube)
 
-  NftShape.create(painting, {
-    urn: 'urn:decentraland:ethereum:erc721:0x06012c8cf97bead5deae237070f9587f8e7a266d:229795',
-    color: Color4.Red(),
-    style: NftFrameType.NFT_GOLD_CARVED
-  })
+pointerEventsSystem.onPointerDown(
+    {
+        entity : cube ,
+        opts : {
+            button : InputAction.IA_POINTER,
+            hoverText : "Click Here"
+        }
+    }, 
+    function () {
+        displayNFTUI("0x07ccfd0fbada4ac3c22ecd38037ca5e5c0ad8cfa","48")
+    }
+)
 
-  const floor = engine.addEntity()
-  Transform.create(floor, {
-    position: Vector3.create(8, 0, 8),
-    scale: Vector3.create(1.6, 0.1, 1.6)
-  })
-  GltfContainer.create(floor, {
-    src: 'assets/models/FloorBaseGrass.glb'
-  })
-
-  const wall = engine.addEntity()
-  Transform.create(wall, {
-    position: Vector3.create(4.5, 1, 4.1),
-    scale: Vector3.create(4, 3, 0.05)
-  })
-  MeshCollider.setBox(wall)
-  MeshRenderer.setBox(wall)
-
-  // UI with GitHub link
-  setupUi()
-}
+MakeNFTFrame("0x07ccfd0fbada4ac3c22ecd38037ca5e5c0ad8cfa","48",8,1,8,1,1,1,0,0,0)
+createFullNFT("0x07ccfd0fbada4ac3c22ecd38037ca5e5c0ad8cfa","48",10,1,10,1,1,1,0,0,0)
