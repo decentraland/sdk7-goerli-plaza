@@ -19,7 +19,7 @@ export function main() {
   MakeNFTFrame('0x07ccfd0fbada4ac3c22ecd38037ca5e5c0ad8cfa', '48', 8, 1, 8, 1, 1, 1, 0, 0, 0)
 
   // Shortcut to make an NFT picture frame that is also clickable and includes a UI
-  createFullNFT('0x07ccfd0fbada4ac3c22ecd38037ca5e5c0ad8cfa', '48', 10, 1, 10, 1, 1, 1, 0, 0, 0)
+  createFullNFT('0xc1f4b0eea2bd6690930e6c66efd3e197d620b9c2', '4068', 10, 1, 10, 1, 1, 1, 0, 0, 0)
 
   // Manually create an NFT picture frame that is also clickable and includes a UI
   const manualNFT = engine.addEntity()
