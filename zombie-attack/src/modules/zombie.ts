@@ -12,9 +12,11 @@ import {
   PointerEvents,
   Billboard,
   VisibilityComponent,
-  TextShape
+  TextShape,
+  DeepReadonlyObject
 } from '@dcl/sdk/ecs'
 import { Zombie } from '../definitions'
+import { isInScene } from './onlyRenderInScene'
 
 const ZOMBIE_MODEL_PATH = 'models/zombie.glb'
 const ATTACK_DISTANCE = 2
@@ -69,6 +71,8 @@ export function createZombie(position: Vector3) {
 function zombieMovementSystem(deltaTime: number) {
   if (!Transform.has(engine.PlayerEntity)) return
   const playerPos = Transform.get(engine.PlayerEntity).position
+
+  if (!isInScene(playerPos)) return
 
   for (const [entity] of engine.getEntitiesWith(Zombie)) {
     const transform = Transform.getMutable(entity)
