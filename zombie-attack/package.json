@@ -3,7 +3,7 @@
   "description": "Zombie Attack",
   "version": "1.0.0",
   "dependencies": {
-    "@dcl/js-runtime": "7.3.29",
+    "@dcl/js-runtime": "latest",
     "@dcl/sdk": "latest"
   },
   "devDependencies": {},
