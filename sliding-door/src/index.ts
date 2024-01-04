@@ -1,4 +1,4 @@
-import { engine, InputAction, pointerEventsSystem, Schemas, Transform } from '@dcl/sdk/ecs'
+import { EasingFunction, engine, InputAction, pointerEventsSystem, Schemas, Transform, Tween } from '@dcl/sdk/ecs'
 import { Vector3 } from '@dcl/sdk/math'
 import { createWall, setMaterial } from './factory'
 import * as utils from '@dcl-sdk/utils'
@@ -53,17 +53,39 @@ export function main() {
   // Add toggle actions to door
   utils.toggles.addToggle(parentDoor, utils.ToggleState.Off, (value) => {
     if (value == utils.ToggleState.On) {
-      utils.tweens.startTranslation(leftDoor, leftDoorClosed, leftDoorOpen, 1, utils.InterpolationType.EASEOUTEBOUNCE)
-      utils.tweens.startTranslation(
-        rightDoor,
-        rightDoorClosed,
-        rightDoorOpen,
-        1,
-        utils.InterpolationType.EASEOUTEBOUNCE
-      )
+      Tween.createOrReplace(leftDoor, {
+        mode: Tween.Mode.Move({
+          start: leftDoorClosed,
+          end: leftDoorOpen,
+        }),
+        duration: 1000,
+        easingFunction: EasingFunction.EF_EASEOUTQUART,
+      })
+      Tween.createOrReplace(rightDoor, {
+        mode: Tween.Mode.Move({
+          start: rightDoorClosed,
+          end: rightDoorOpen,
+        }),
+        duration: 1000,
+        easingFunction: EasingFunction.EF_EASEOUTQUART,
+      })
     } else {
-      utils.tweens.startTranslation(leftDoor, leftDoorOpen, leftDoorClosed, 1, utils.InterpolationType.EASEEXPO)
-      utils.tweens.startTranslation(rightDoor, rightDoorOpen, rightDoorClosed, 1, utils.InterpolationType.EASEEXPO)
+      Tween.createOrReplace(leftDoor, {
+        mode: Tween.Mode.Move({
+          start: leftDoorOpen,
+          end: leftDoorClosed,
+        }),
+        duration: 1000,
+        easingFunction: EasingFunction.EF_EASEOUTBOUNCE,
+      })
+      Tween.createOrReplace(rightDoor, {
+        mode: Tween.Mode.Move({
+          start: rightDoorOpen,
+          end: rightDoorClosed,
+        }),
+        duration: 1000,
+        easingFunction: EasingFunction.EF_EASEOUTBOUNCE,
+      })
     }
   })
 
