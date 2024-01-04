@@ -64,7 +64,6 @@ export class Statue {
         easingFunction: EasingFunction.EF_EASESINE
       })
 
-
       utils.timers.setTimeout(() => {
         this.blockMovement = false
         if (PuzzleBuilder.checkSolution()) {
