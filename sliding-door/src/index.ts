@@ -56,35 +56,35 @@ export function main() {
       Tween.createOrReplace(leftDoor, {
         mode: Tween.Mode.Move({
           start: leftDoorClosed,
-          end: leftDoorOpen,
+          end: leftDoorOpen
         }),
         duration: 1000,
-        easingFunction: EasingFunction.EF_EASEOUTQUART,
+        easingFunction: EasingFunction.EF_EASEOUTQUART
       })
       Tween.createOrReplace(rightDoor, {
         mode: Tween.Mode.Move({
           start: rightDoorClosed,
-          end: rightDoorOpen,
+          end: rightDoorOpen
         }),
         duration: 1000,
-        easingFunction: EasingFunction.EF_EASEOUTQUART,
+        easingFunction: EasingFunction.EF_EASEOUTQUART
       })
     } else {
       Tween.createOrReplace(leftDoor, {
         mode: Tween.Mode.Move({
           start: leftDoorOpen,
-          end: leftDoorClosed,
+          end: leftDoorClosed
         }),
         duration: 1000,
-        easingFunction: EasingFunction.EF_EASEOUTBOUNCE,
+        easingFunction: EasingFunction.EF_EASEOUTBOUNCE
       })
       Tween.createOrReplace(rightDoor, {
         mode: Tween.Mode.Move({
           start: rightDoorOpen,
-          end: rightDoorClosed,
+          end: rightDoorClosed
         }),
         duration: 1000,
-        easingFunction: EasingFunction.EF_EASEOUTBOUNCE,
+        easingFunction: EasingFunction.EF_EASEOUTBOUNCE
       })
     }
   })

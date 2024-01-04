@@ -32,10 +32,10 @@ function play(entity: Entity) {
   Tween.createOrReplace(entity, {
     mode: Tween.Mode.Move({
       start: buttonPositionReleased,
-      end: buttonPositionClicked,
+      end: buttonPositionClicked
     }),
     duration: 300,
-    easingFunction: EasingFunction.EF_LINEAR,
+    easingFunction: EasingFunction.EF_LINEAR
   })
 }
 
@@ -49,10 +49,10 @@ function stop(entity: Entity) {
   Tween.createOrReplace(entity, {
     mode: Tween.Mode.Move({
       start: buttonPositionClicked,
-      end: buttonPositionReleased,
+      end: buttonPositionReleased
     }),
     duration: 300,
-    easingFunction: EasingFunction.EF_LINEAR,
+    easingFunction: EasingFunction.EF_LINEAR
   })
 }
 

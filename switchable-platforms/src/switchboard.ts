@@ -1,4 +1,15 @@
-import { AudioSource, EasingFunction, engine, Entity, executeTask, GltfContainer, Transform, Tween, TweenLoop, TweenSequence } from '@dcl/sdk/ecs'
+import {
+  AudioSource,
+  EasingFunction,
+  engine,
+  Entity,
+  executeTask,
+  GltfContainer,
+  Transform,
+  Tween,
+  TweenLoop,
+  TweenSequence
+} from '@dcl/sdk/ecs'
 import { Color3, Quaternion, Vector3 } from '@dcl/sdk/math'
 import * as utils from '@dcl-sdk/utils'
 
@@ -90,7 +101,6 @@ export function createSwitchBoard(model: string, startPos: Vector3, endPos: Vect
 }
 
 function movePlatform(platform: Entity, gear: Entity, rotationSpeed: number, targetPos: Vector3, backwards?: boolean) {
-
   Tween.createOrReplace(gear, {
     mode: Tween.Mode.Rotate({
       start: Quaternion.fromEulerDegrees(0, 0, 0),
@@ -113,17 +123,16 @@ function movePlatform(platform: Entity, gear: Entity, rotationSpeed: number, tar
     ]
   })
 
-
   const currentPos = Transform.get(platform).position
   const speed = Math.abs(targetPos.x - currentPos.x) * 0.25 * 1000
 
   Tween.createOrReplace(platform, {
     mode: Tween.Mode.Move({
       start: currentPos,
-      end: targetPos,
+      end: targetPos
     }),
     duration: speed,
-    easingFunction: EasingFunction.EF_LINEAR,
+    easingFunction: EasingFunction.EF_LINEAR
   })
 
   utils.timers.setTimeout(() => {
@@ -132,8 +141,6 @@ function movePlatform(platform: Entity, gear: Entity, rotationSpeed: number, tar
     Transform.getMutable(switchSound).position = Transform.get(engine.PlayerEntity).position
     AudioSource.getMutable(switchSound).playing = true
   }, speed)
-
-
 }
 
 // enable debug mode by default in preview mode
