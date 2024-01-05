@@ -1,10 +1,43 @@
-import { GltfContainer, InputAction, MeshCollider, MeshRenderer, Transform, engine, pointerEventsSystem } from '@dcl/sdk/ecs'
+import {
+  Animator,
+  AudioSource,
+  AvatarAttach,
+  ColliderLayer,
+  EasingFunction,
+  Entity,
+  GltfContainer,
+  InputAction,
+  Material,
+  MeshCollider,
+  MeshRenderer,
+  Transform,
+  Tween,
+  TweenLoop,
+  TweenSequence,
+  VideoPlayer,
+  VisibilityComponent,
+  engine,
+  pointerEventsSystem
+} from '@dcl/sdk/ecs'
 import { CONFIG } from './config'
-import { Vector3 } from '@dcl/sdk/math'
+import { Quaternion, Vector3 } from '@dcl/sdk/math'
 import { claimToken } from './claim/claim'
 import { ClaimConfig } from './claim/claimConfig'
 import { setupUi } from './claim/ui'
 import { randomCrateSpawn } from './crate'
+import { initAssetPacks } from '@dcl/asset-packs/dist/scene-entrypoint'
+import { getActionEvents } from '@dcl/asset-packs/dist/events'
+
+initAssetPacks(engine, pointerEventsSystem, {
+  Animator,
+  AudioSource,
+  AvatarAttach,
+  Transform,
+  VisibilityComponent,
+  GltfContainer,
+  Material,
+  VideoPlayer
+})
 
 export function main() {
   CONFIG.init()
@@ -16,11 +49,15 @@ export function main() {
 
   let dispenser = engine.addEntity()
   Transform.create(dispenser, {
-    position: Vector3.create(8, 1, 8)
+    position: Vector3.create(8, 0, 8)
   })
 
-  MeshRenderer.setBox(dispenser)
-  MeshCollider.setBox(dispenser)
+  GltfContainer.create(dispenser, {
+    src: 'models/dispenser_DCLMF23.glb',
+    invisibleMeshesCollisionMask: ColliderLayer.CL_POINTER
+  })
+
+  Animator.create(dispenser)
 
   pointerEventsSystem.onPointerDown(
     {
@@ -34,39 +71,63 @@ export function main() {
       let camp = ClaimConfig.campaign.CAMPAIGN_TEST
 
       claimToken(camp, camp.campaignKeys.KEY_0)
+      Animator.playSingleAnimation(dispenser, 'Animation')
     }
   )
 
+  const wearablePlaceholder = engine.addEntity()
 
-
-  let airDropTrigger = engine.addEntity()
-  Transform.create(airDropTrigger, {
-    position: Vector3.create(12, 1, 8)
+  Transform.create(wearablePlaceholder, {
+    position: Vector3.create(0, 1.75, 0),
+    scale: Vector3.create(0.75, 0.75, 0.75),
+    parent: dispenser
   })
 
-  MeshRenderer.setBox(airDropTrigger)
-  MeshCollider.setBox(airDropTrigger)
+  GltfContainer.create(wearablePlaceholder, {
+    src: 'models/wearable/MANA_Eyewear.glb',
+    visibleMeshesCollisionMask: undefined,
+    invisibleMeshesCollisionMask: undefined
+  })
 
-  pointerEventsSystem.onPointerDown(
-    {
-      entity: airDropTrigger,
-      opts: {
-        button: InputAction.IA_POINTER,
-        hoverText: 'Air Drop'
-      }
-    },
-    function () {
+  spinInPlace(wearablePlaceholder, 3000)
+
+  const lever = engine.getEntityOrNullByName('Lever')
+
+  if (lever) {
+    const lever_actions = getActionEvents(lever)
+    lever_actions.on('Activate', () => {
       let camp = ClaimConfig.campaign.CAMPAIGN_TEST
       randomCrateSpawn(camp, camp.campaignKeys.KEY_0)
-
-    }
-  )
-
+    })
+  }
 
   // floor
 
   let floor = engine.addEntity()
 
   GltfContainer.create(floor, { src: 'models/baseLight.glb' })
+}
 
+export function spinInPlace(entity: Entity, duration: number) {
+  Tween.create(entity, {
+    mode: Tween.Mode.Rotate({
+      start: Quaternion.fromEulerDegrees(0, 0, 0),
+      end: Quaternion.fromEulerDegrees(0, 180, 0)
+    }),
+    duration: duration,
+    easingFunction: EasingFunction.EF_LINEAR
+  })
+  TweenSequence.create(entity, {
+    loop: TweenLoop.TL_RESTART,
+    sequence: [
+      {
+        mode: Tween.Mode.Rotate({
+          start: Quaternion.fromEulerDegrees(0, 180, 0),
+          end: Quaternion.fromEulerDegrees(0, 360, 0)
+        }),
+        duration: duration,
+        easingFunction: EasingFunction.EF_LINEAR
+      }
+    ]
+  })
 }

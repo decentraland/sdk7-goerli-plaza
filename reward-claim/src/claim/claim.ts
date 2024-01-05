@@ -15,9 +15,10 @@ export async function setUserData() {
   userData = await getUserData({})
   console.log('user data is', userData)
   if (!userData || !userData.data || !userData.data.publicKey) {
-    errorUI('You must be connected with an Ethereum wallet to claim rewards.')
-    return
+    errorUI('You must be\nconnected with an Ethereum wallet\nto claim rewards.')
+    return false
   }
+  return true
 }
 
 export async function claimToken(campaign: ClaimConfigInstType, campaign_key: string) {
@@ -116,7 +117,7 @@ export async function validateCaptcha(
   let realm = await getRealm({})
   console.log('realm is', realm.realmInfo)
   if (!user || !user.data || !user.data.publicKey || !realm) {
-    errorUI('You must be connected with an Ethereum wallet to claim rewards.')
+    errorUI('You must be\nconnected with an Ethereum wallet\nto claim rewards.')
     return
   }
 
