@@ -4,6 +4,8 @@ import *  as  ui from 'dcl-ui-toolkit'
 import { openExternalUrl } from '~system/RestrictedActions'
 import { validateCaptcha } from './claim'
 import { ClaimConfigInstType } from './claimConfig'
+import { Transform, engine } from '@dcl/sdk/ecs'
+import * as utils from '@dcl-sdk/utils'
 
 const projectPath = "reward-claim"
 const description = "Claim a wearable by clicking on the dispenser. You must be connected with your wallet to the Sepolia network. After submitting a captcha the wearable will arrive over the next couple of minutes."
@@ -206,6 +208,8 @@ export function confirmationUI(thumbnail: string, wearableName: string) {
   })
 
   customPrompt.show()
+
+  utils.playSound('sounds/star-collect.mp3', false, Transform.get(engine.PlayerEntity).position)
 }
 
 

@@ -119,10 +119,24 @@ export function SpawnCrate(
 }
 
 export function VanishCrate(crate: Entity) {
-  utils.tweens.startScaling(crate, Vector3.One(), Vector3.Zero(), 1, utils.InterpolationType.EASEINBOUNCE, () => {
-    engine.removeEntity(crate)
-    //PlayCoinSound()
+  Tween.createOrReplace(crate, {
+    mode: Tween.Mode.Scale({
+      start: Vector3.One(),
+      end: Vector3.Zero()
+    }),
+    duration: 1000,
+    easingFunction: EasingFunction.EF_EASEINBOUNCE
   })
+
+  utils.timers.setTimeout(() => {
+    utils.playSound('sounds/star-collect.mp3', false, Transform.get(crate).position)
+    engine.removeEntity(crate)
+  }, 1000)
+
+  // utils.tweens.startScaling(crate, Vector3.One(), Vector3.Zero(), 1, utils.InterpolationType.EASEINBOUNCE, () => {
+  //   engine.removeEntity(crate)
+  //   //PlayCoinSound()
+  // })
 }
 
 export function DropCrate(crate: Entity, parachute: Entity, speed?: number) {
