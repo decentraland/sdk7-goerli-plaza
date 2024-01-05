@@ -49,9 +49,7 @@ export const BeerGlass = engine.defineComponent('BeerGlass', {
   beerType: Schemas.EnumNumber<BeerType>(BeerType, BeerType.NONE),
   drinking: Schemas.Boolean
 })
-export const PickedUp = engine.defineComponent('PickedUp', {
-  child: Schemas.Entity
-})
+export const PickedUp = engine.defineComponent('PickedUp', { avatarId: Schemas.String })
 
 export const TapComponent = engine.defineComponent('TapComponent', {
   pouringTime: Schemas.Number,

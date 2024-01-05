@@ -70,6 +70,9 @@
       "path": "lazy-loading"
     },
     {
+      "path": "land-flipper"
+    },
+    {
       "path": "item-pickup"
     },
     {
@@ -221,6 +224,9 @@
     },
     {
       "path": "Events-API-Board"
+    },
+    {
+      "path": "Editor-actions"
     },
     {
       "path": "Dance-floor"
