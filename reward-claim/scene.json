@@ -3,7 +3,7 @@
   "runtimeVersion": "7",
   "display": {
     "title": "reward-claim",
-    "description": "template scene with SDK7",
+    "description": "Let players claim wearable rewards by interacting with a scene",
     "navmapThumbnail": "images/scene-thumbnail.png",
     "favicon": "favicon_asset"
   },
@@ -16,9 +16,9 @@
   "tags": [],
   "scene": {
     "parcels": [
-      "0,0"
+      "82,-6"
     ],
-    "base": "0,0"
+    "base": "82,-6"
   },
   "spawnPoints": [
     {
