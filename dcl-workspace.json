@@ -40,6 +40,9 @@
       "path": "rocket-board"
     },
     {
+      "path": "reward-claim"
+    },
+    {
       "path": "push-box-puzzle"
     },
     {
