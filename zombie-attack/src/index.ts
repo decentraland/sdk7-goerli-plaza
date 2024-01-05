@@ -15,6 +15,8 @@ export function main() {
 
   createZombie(Vector3.create(1 + Math.random() * 30, 0.933, 1 + Math.random() * 30))
 
+  createZombie(Vector3.create(1 + Math.random() * 30, 0.933, 1 + Math.random() * 30))
+
   // UI with GitHub link
   setupUi()
 }

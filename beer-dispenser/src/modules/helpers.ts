@@ -13,15 +13,3 @@ void executeTask(async () => {
   if (!user.data) return
   currentPlayerId = user.data?.userId
 })
-
-export function* getEntitiesWithParent(parent: Entity) {
-  for (const [entity, transform] of engine.getEntitiesWith(Transform)) {
-    if (transform.parent === parent) {
-      yield [entity, transform]
-    }
-  }
-}
-
-export function getEntityParent(entity: Entity) {
-  return Transform.getOrNull(entity)?.parent || engine.RootEntity
-}
