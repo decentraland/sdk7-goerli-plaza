@@ -54,6 +54,7 @@ export class Statue {
 
       Sound.playStatueMove()
       // Slide the statue to its endPos over half a second
+
       Tween.createOrReplace(this.entity, {
         mode: Tween.Mode.Move({
           start: currentPos,

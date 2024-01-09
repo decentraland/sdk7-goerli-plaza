@@ -65,13 +65,8 @@ export function main() {
     position: Vector3.create(14, 4, 12)
   })
 
-  const triggerMarker = engine.addEntity()
-  Transform.create(triggerMarker, {
-    position: Vector3.create(14, 4, 12)
-  })
-
   utils.triggers.addTrigger(
-    triggerMarker,
+    platform3,
     utils.LAYER_1,
     utils.LAYER_1,
     [{ type: 'box', scale: Vector3.create(1, 2, 1) }],
