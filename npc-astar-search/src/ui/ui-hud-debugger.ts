@@ -8,9 +8,9 @@ import { PromptButton } from 'dcl-ui-toolkit/dist/ui-entities/prompts/Prompt/com
 import { Transform, engine } from '@dcl/sdk/ecs'
 
 
-const buttonPosSTART = -350
+const buttonPosSTART = -600
 let buttonPosCounter = buttonPosSTART
-let buttonPosY = -30 //350
+let buttonPosY = 350
 const buttonWidth = 121
 const changeButtonWidth = 120
 const changeButtonHeight = 16
