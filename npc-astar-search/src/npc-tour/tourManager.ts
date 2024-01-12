@@ -28,7 +28,7 @@ function drawBreadcrumbPath(result: AstarResult, pathSeedPointsRel: GridPosition
 
 export class TourManager implements ITourManager {
     triesToday: number = 0
-    day: number = -1
+    day: number = 0 // default day to 0
     npc: Entity
     npcLerpData: NPCLerpData | null = null
     tourState: TourState = TourState.NOT_INIT
