@@ -9,6 +9,7 @@ import {
   MeshCollider,
   pointerEventsSystem,
   Transform,
+  VideoPlayer,
   VisibilityComponent
 } from '@dcl/sdk/ecs'
 import { Color4 } from '@dcl/sdk/math'
@@ -21,7 +22,9 @@ initAssetPacks(engine, pointerEventsSystem, {
   AvatarAttach,
   Transform,
   VisibilityComponent,
-  GltfContainer
+  GltfContainer,
+  Material,
+  VideoPlayer
 })
 
 import { bounceScalingSystem, circularSystem } from './systems'

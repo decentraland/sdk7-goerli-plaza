@@ -35,5 +35,8 @@
       }
     }
   ],
-  "name": "beer-dispenser"
+  "name": "beer-dispenser",
+  "worldConfiguration": {
+    "name": "boedo.dcl.eth"
+  }
 }

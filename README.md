@@ -11,7 +11,7 @@ Visit the collection of all the scenes in this repo deployed at [sdk-test-scenes
 You will need to make sure the workspace is in good shape for the CI. TO do so, run:
 
 1. `npm run update-parcels && npm run sync && npm run test && npm run format`
-1. Then commit
+2. Then commit
 
 This project uses NPM workspaces, that means all scenes must have their own package.json with an unique name
 

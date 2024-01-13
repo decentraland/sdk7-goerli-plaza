@@ -17,6 +17,7 @@ const uiComponent = () => (
 	]
 )
 
+
 export function setupUi() {
 	ReactEcsRenderer.setUiRenderer(uiComponent)
 }
@@ -58,6 +59,7 @@ function GitHubLinkUi() {
 			textAlign="middle-center"
 		/>
 	</UiEntity>
+	ReactEcsRenderer.setUiRenderer(uiComponent)
 }
 
 function descriptionUI() {
@@ -102,7 +104,6 @@ function descriptionUI() {
 					height: "auto",
 					alignSelf: "center",
 					margin: '16px 16px 8px 16px',
-
 				}}
 			/>
 		</UiEntity>

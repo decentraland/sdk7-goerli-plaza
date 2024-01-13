@@ -1,0 +1,20 @@
+{
+  "name": "land-flipper",
+  "description": "This scene uses P2P to sync changes between all players. Each player has their own color, tiles change color when stepping on them.",
+  "version": "1.0.0",
+  "dependencies": {
+    "@dcl-sdk/utils": "latest"
+  },
+  "devDependencies": {
+    "@dcl/asset-packs": "latest",
+    "@dcl/js-runtime": "latest",
+    "@dcl/sdk": "latest"
+  },
+  "scripts": {
+    "build": "sdk-commands build",
+    "deploy": "sdk-commands deploy",
+    "start": "sdk-commands start",
+    "upgrade-sdk": "npm install --save-dev @dcl/sdk@latest",
+    "upgrade-sdk:next": "npm install --save-dev @dcl/sdk@next"
+  }
+}

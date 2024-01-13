@@ -151,7 +151,7 @@ export class PuzzleBuilder {
   }
 
   static compareVector3(a: Vector3, b: Vector3): boolean {
-    if (a.x == b.x && a.y == b.y && a.z == b.z) {
+    if (Math.abs(a.x - b.x) < 0.1 && Math.abs(a.y - b.y) < 0.1 && Math.abs(a.z - b.z) < 0.1) {
       return true
     } else {
       return false

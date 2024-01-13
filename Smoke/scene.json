@@ -3,7 +3,7 @@
   "runtimeVersion": "7",
   "display": {
     "title": "Smoke",
-    "description": "Test",
+    "description": "Use transparent planes to create smoke effects.",
     "navmapThumbnail": "images/scene-thumbnail.png",
     "favicon": "favicon_asset"
   },
