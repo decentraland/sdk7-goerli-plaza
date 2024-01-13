@@ -25,7 +25,7 @@ export function setupNPC() {
     myNPC = npc.create(
         { position: Vector3.create(1, 0.1, 1) },
         {
-            type: npc.NPCType.AVATAR,
+            type: npc.NPCType.CUSTOM,
             model: 'models/whiteRabbit_Anim.glb',//'models/Placeholder_NPC_02.glb',
             onActivate: () => {
                 console.log('NPC activated!', REGISTRY.tourManager.tourState)
