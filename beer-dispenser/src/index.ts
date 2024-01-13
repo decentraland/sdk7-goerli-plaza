@@ -2,9 +2,10 @@ import { engine, GltfContainer, PointerEvents, PointerEventType, Transform } fro
 import { Vector3, Quaternion } from '@dcl/sdk/math'
 import { BeerType } from './definitions'
 import { pickingGlassSystem } from './modules/beerGlass'
-import { createBeerGlass, createTap } from './modules/factory'
+import { createBeerGlass, createTap, SyncEntityIDs } from './modules/factory'
 import { tapPumpSystem } from './modules/tap'
 import { setupUi } from './ui'
+import { syncEntity } from '@dcl/sdk/network'
 
 export function main() {
   // Create tables
@@ -42,6 +43,7 @@ export function main() {
       }
     ]
   })
+  syncEntity(floor, [], SyncEntityIDs.TABLES)
 
   // Create dispenser
   const dispenserEntity = engine.addEntity()
@@ -53,25 +55,25 @@ export function main() {
   })
 
   // Create taps
-  createTap(BeerType.RED, dispenserEntity)
-  createTap(BeerType.GREEN, dispenserEntity)
-  createTap(BeerType.YELLOW, dispenserEntity)
+  createTap(BeerType.RED, dispenserEntity, SyncEntityIDs.RED)
+  createTap(BeerType.GREEN, dispenserEntity, SyncEntityIDs.GREEN)
+  createTap(BeerType.YELLOW, dispenserEntity, SyncEntityIDs.YELLOW)
 
   // Beer glasses
   const beerGlassModel = 'models/beerGlass.glb'
-  createBeerGlass(beerGlassModel, Vector3.create(8.3, 1.25, 8))
-  createBeerGlass(beerGlassModel, Vector3.create(7.8, 1.25, 8.3))
-  createBeerGlass(beerGlassModel, Vector3.create(1.86, 0.8, 13.4))
-  createBeerGlass(beerGlassModel, Vector3.create(2.3, 0.8, 14))
-  createBeerGlass(beerGlassModel, Vector3.create(13.7, 0.8, 13.8))
-  createBeerGlass(beerGlassModel, Vector3.create(13.9, 0.8, 14.3))
-  createBeerGlass(beerGlassModel, Vector3.create(14.5, 0.8, 2.5))
-  createBeerGlass(beerGlassModel, Vector3.create(13.7, 0.8, 1.9))
-  createBeerGlass(beerGlassModel, Vector3.create(2.4, 0.8, 1.5))
+  createBeerGlass(beerGlassModel, Vector3.create(8.3, 1.25, 8), SyncEntityIDs.GLASS1)
+  createBeerGlass(beerGlassModel, Vector3.create(7.8, 1.25, 8.3), SyncEntityIDs.GLASS2)
+  createBeerGlass(beerGlassModel, Vector3.create(1.86, 0.8, 13.4), SyncEntityIDs.GLASS3)
+  createBeerGlass(beerGlassModel, Vector3.create(2.3, 0.8, 14), SyncEntityIDs.GLASS4)
+  createBeerGlass(beerGlassModel, Vector3.create(13.7, 0.8, 13.8), SyncEntityIDs.GLASS5)
+  createBeerGlass(beerGlassModel, Vector3.create(13.9, 0.8, 14.3), SyncEntityIDs.GLASS6)
+  createBeerGlass(beerGlassModel, Vector3.create(14.5, 0.8, 2.5), SyncEntityIDs.GLASS7)
+  createBeerGlass(beerGlassModel, Vector3.create(13.7, 0.8, 1.9), SyncEntityIDs.GLASS8)
+  createBeerGlass(beerGlassModel, Vector3.create(2.4, 0.8, 1.5), SyncEntityIDs.GLASS9)
 
   engine.addSystem(pickingGlassSystem)
   engine.addSystem(tapPumpSystem)
 
   // UI with GitHub link
-  setupUi()
+  //setupUi()
 }

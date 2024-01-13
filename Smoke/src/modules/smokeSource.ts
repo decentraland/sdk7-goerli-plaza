@@ -1,12 +1,19 @@
 import { Entity, MeshRenderer, Material, Transform, Billboard, BillboardMode, engine } from '@dcl/sdk/ecs'
-import { Vector3 } from '@dcl/sdk/math'
-import { smokeMaterial, SmokeParticle, SmokeSource } from '../definitions'
+import { Color4, Vector3 } from '@dcl/sdk/math'
+import { smokeTexture, SmokeParticle, SmokeSource } from '../definitions'
 
 function spawnSmokePuff(entity: Entity, parent: Entity) {
-  const size = Math.random() / 2 + 0.2
+  const size = Math.random() / 2 + 0.4
 
   MeshRenderer.setPlane(entity)
-  Material.setPbrMaterial(entity, smokeMaterial)
+
+  Material.setPbrMaterial(entity, {
+    texture: smokeTexture,
+    alphaTexture: smokeTexture,
+    roughness: 1,
+    metallic: 0,
+    alphaTest: 0.2
+  })
 
   Transform.createOrReplace(entity, {
     scale: Vector3.create(size, size, size),
