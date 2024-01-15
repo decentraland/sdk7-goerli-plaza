@@ -12,6 +12,7 @@ import {
 import { Quaternion, Vector3, Color4 } from '@dcl/ecs-math'
 import * as utils from '@dcl-sdk/utils'
 import { setupUi } from './ui'
+import { EasingFunction, Tween } from '@dcl/sdk/ecs'
 
 const openPos: Quaternion = Quaternion.create(0, 1, 0)
 const closedPos: Quaternion = Quaternion.create(0, 0, 0)
@@ -37,9 +38,27 @@ export function main() {
   // Add toggle actions to door
   utils.toggles.addToggle(doorPivotEntity, utils.ToggleState.Off, (value) => {
     if (value == utils.ToggleState.On) {
-      utils.tweens.startRotation(doorPivotEntity, closedPos, openPos, 0.5)
+
+      // open
+      Tween.createOrReplace(doorPivotEntity, {
+        mode: Tween.Mode.Rotate({
+          start: closedPos,
+          end: openPos,
+        }),
+        duration: 500,
+        easingFunction: EasingFunction.EF_EASEINSINE,
+      })
     } else {
-      utils.tweens.startRotation(doorPivotEntity, openPos, closedPos, 0.5)
+
+      // close
+      Tween.createOrReplace(doorPivotEntity, {
+        mode: Tween.Mode.Rotate({
+          start: openPos,
+          end: closedPos,
+        }),
+        duration: 500,
+        easingFunction: EasingFunction.EF_EASEINSINE,
+      })
     }
   })
 
