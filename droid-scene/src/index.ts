@@ -1,4 +1,5 @@
 import {
+  EasingFunction,
   engine,
   Entity,
   InputAction,
@@ -7,7 +8,8 @@ import {
   MeshCollider,
   MeshRenderer,
   pointerEventsSystem,
-  Transform
+  Transform,
+  Tween
 } from '@dcl/sdk/ecs'
 import { Color4, Quaternion, Vector3 } from '@dcl/sdk/math'
 import * as utils from '@dcl-sdk/utils'
@@ -45,14 +47,47 @@ export function moveDroidToRandomPos(droid: Entity) {
   let startRot = Transform.get(droid).rotation
   let endRot = Quaternion.fromLookAt(Transform.get(droid).position, endPos)
 
-  // Rotate a droid
-  utils.tweens.startRotation(droid, startRot, endRot, 2, utils.InterpolationType.EASEOUTELASTIC, () => {
-    utils.tweens.startTranslation(droid, startPos, endPos, 2, utils.InterpolationType.EASEOUTQUAD, () => {
-      DROID_IS_MOVING = false
-      const droid_last_rot_start = Transform.get(droid).rotation
-      const droid_last_rot_end = Quaternion.fromLookAt(endPos, Transform.get(engine.PlayerEntity).position)
-
-      utils.tweens.startRotation(droid, droid_last_rot_start, droid_last_rot_end, 2, utils.InterpolationType.EASEINEXPO)
-    })
+  // rotate
+  Tween.createOrReplace(droid, {
+    mode: Tween.Mode.Rotate({
+      start: startRot,
+      end: endRot
+    }),
+    duration: 2000,
+    easingFunction: EasingFunction.EF_EASEELASTIC
   })
+
+  // after rotating
+  utils.timers.setTimeout(() => {
+
+    // move
+    Tween.createOrReplace(droid, {
+      mode: Tween.Mode.Move({
+        start: startPos,
+        end: endPos
+      }),
+      duration: 2000,
+      easingFunction: EasingFunction.EF_EASEOUTQUAD
+    })
+  }, 2000)
+
+  // after moving
+  utils.timers.setTimeout(() => {
+
+    DROID_IS_MOVING = false
+    const droid_last_rot_start = Transform.get(droid).rotation
+    const droid_last_rot_end = Quaternion.fromLookAt(endPos, Transform.get(engine.PlayerEntity).position)
+
+    // rotate to look at player
+    Tween.createOrReplace(droid, {
+      mode: Tween.Mode.Rotate({
+        start: droid_last_rot_start,
+        end: droid_last_rot_end
+      }),
+      duration: 2000,
+      easingFunction: EasingFunction.EF_EASEINEXPO
+    })
+  }, 4200)
+
+
 }
