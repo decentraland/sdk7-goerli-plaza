@@ -1,4 +1,14 @@
-import { Animator, CameraMode, engine, Entity, GltfContainer, Schemas, Transform } from '@dcl/sdk/ecs'
+import {
+  Animator,
+  CameraMode,
+  EasingFunction,
+  engine,
+  Entity,
+  GltfContainer,
+  Schemas,
+  Transform,
+  Tween
+} from '@dcl/sdk/ecs'
 import { Quaternion } from '@dcl/sdk/math'
 import * as utils from '@dcl-sdk/utils'
 
@@ -50,12 +60,26 @@ export function createHummingBird() {
     const nextRot = Quaternion.fromLookAt(birdTransform.position, nextPos)
 
     // face new pos
-    utils.tweens.startRotation(bird, birdTransform.rotation, nextRot, 0.3, utils.InterpolationType.EASEINSINE)
+    Tween.createOrReplace(bird, {
+      mode: Tween.Mode.Rotate({
+        start: birdTransform.rotation,
+        end: nextRot,
+      }),
+      duration: 300,
+      easingFunction: EasingFunction.EF_EASEINSINE,
+    })
 
     // move to next pos (after rotating)
     utils.timers.setTimeout(
       () => {
-        utils.tweens.startTranslation(bird, birdTransform.position, nextPos, 2, utils.InterpolationType.EASEINEXPO)
+        Tween.createOrReplace(bird, {
+          mode: Tween.Mode.Move({
+            start: birdTransform.position,
+            end: nextPos
+          }),
+          duration: 2000,
+          easingFunction: EasingFunction.EF_EASESINE
+        })
       },
       300 // after rotation is over
     )
