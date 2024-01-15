@@ -1,5 +1,5 @@
 import { Sound } from './sound'
-import { Entity, GltfContainer, InputAction, PointerEventType, PointerEvents, Transform, engine } from '@dcl/sdk/ecs'
+import { EasingFunction, Entity, GltfContainer, InputAction, PointerEventType, PointerEvents, Transform, Tween, engine } from '@dcl/sdk/ecs'
 import { Quaternion, Vector3 } from '@dcl/sdk/math'
 import * as utils from '@dcl-sdk/utils'
 import { redrawRays } from './reflectedRay'
@@ -67,11 +67,22 @@ export class Mirror {
     const endRot = Quaternion.multiply(currentRot, Quaternion.fromEulerDegrees(0, clockwise ? 45 : -45, 0))
     mirrorMoveSound.playAudio()
 
-    utils.tweens.startRotation(this.mirrorEntity, currentRot, endRot, 0.5, utils.InterpolationType.LINEAR, () => {
-      utils.timers.setTimeout(function () {
-        redrawRays() // Redraw
-      }, 100)
+    Tween.createOrReplace(this.mirrorEntity, {
+      mode: Tween.Mode.Rotate({
+        start: currentRot,
+        end: endRot,
+      }),
+      duration: 500,
+      easingFunction: EasingFunction.EF_LINEAR,
     })
+
+
+    utils.timers.setTimeout(
+      () => {
+        redrawRays() // Redraw
+      },
+      600 // after rotation is over + 100 ms
+    )
 
     utils.timers.setTimeout(() => {
       this.isBusy = false
@@ -84,15 +95,24 @@ export class Mirror {
     this.isBusy = true
     // Slide the mirror to its endPos over half a second
     mirrorMoveSound.playAudio()
-    utils.tweens.startTranslation(this.selectorEntity, currentPos, endPos, 0.5, utils.InterpolationType.LINEAR, () => {
-      utils.timers.setTimeout(function () {
-        redrawRays() // Redraw
-      }, 100)
+
+    Tween.createOrReplace(this.selectorEntity, {
+      mode: Tween.Mode.Move({
+        start: currentPos,
+        end: endPos
+      }),
+      duration: 500,
+      easingFunction: EasingFunction.EF_LINEAR
     })
+
+    utils.timers.setTimeout(function () {
+      redrawRays() // Redraw
+    }, 600)
 
     utils.timers.setTimeout(() => {
       this.isBusy = false
     }, 800)
+
   }
 
   static GetMirror(id: number): Mirror | null {
