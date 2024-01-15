@@ -1,4 +1,4 @@
-import { Entity, GltfContainer, InputAction, PointerEventType, PointerEvents, Transform, engine } from '@dcl/sdk/ecs'
+import { EasingFunction, Entity, GltfContainer, InputAction, PointerEventType, PointerEvents, Transform, Tween, engine } from '@dcl/sdk/ecs'
 import { Quaternion, Vector3 } from '@dcl/sdk/math'
 import * as utils from '@dcl-sdk/utils'
 
@@ -56,9 +56,21 @@ export class FloatingRock {
       let start = value == utils.ToggleState.On ? startPos : endPos
       let end = value == utils.ToggleState.On ? endPos : startPos
 
-      utils.tweens.startTranslation(self, start, end, Math.random() * 2 + 2, utils.InterpolationType.EASEQUAD, () => {
-        utils.toggles.flip(self)
+      let duration = Math.random() * 2000 + 2000
+
+      Tween.createOrReplace(self, {
+        mode: Tween.Mode.Move({
+          start: start,
+          end: end
+        }),
+        duration: duration,
+        easingFunction: EasingFunction.EF_EASEQUAD
       })
+
+      utils.timers.setTimeout(() => {
+        utils.toggles.flip(self)
+      }, duration)
+
     })
     utils.toggles.flip(this.floatingRockEntity)
 
