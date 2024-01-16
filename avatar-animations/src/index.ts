@@ -94,10 +94,10 @@ engine.addSystem(() => {
           Tween.createOrReplace(entity, {
             mode: Tween.Mode.Move({
               start: start,
-              end: end,
+              end: end
             }),
             duration: 1000,
-            easingFunction: EasingFunction.EF_LINEAR,
+            easingFunction: EasingFunction.EF_LINEAR
           })
 
           // move to next pos (after rotating)
@@ -108,8 +108,6 @@ engine.addSystem(() => {
               engine.removeEntity(entity)
             }, 300)
           }, 1000)
-
-
 
           const mutableSnow = Snow.getMutable(entity)
           mutableSnow.holding = false

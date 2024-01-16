@@ -86,10 +86,10 @@ export function main() {
     Tween.createOrReplace(fish, {
       mode: Tween.Mode.Scale({
         start: deflatedScale,
-        end: inflatedScale,
+        end: inflatedScale
       }),
       duration: 1000,
-      easingFunction: EasingFunction.EF_EASEINQUAD,
+      easingFunction: EasingFunction.EF_EASEINQUAD
     })
 
     // Wait, then shrink back
@@ -97,12 +97,11 @@ export function main() {
       Tween.createOrReplace(fish, {
         mode: Tween.Mode.Scale({
           start: inflatedScale,
-          end: deflatedScale,
+          end: deflatedScale
         }),
         duration: 3000,
-        easingFunction: EasingFunction.EF_EASEINQUAD,
+        easingFunction: EasingFunction.EF_EASEINQUAD
       })
-
 
       const sound = AudioSource.getMutable(fish)
       sound.playing = true
@@ -114,7 +113,6 @@ export function main() {
       isInflating = false
     }, 5000)
   }
-
 
   // UI with GitHub link
   setupUi()

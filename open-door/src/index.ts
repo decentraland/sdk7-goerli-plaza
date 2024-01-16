@@ -38,26 +38,24 @@ export function main() {
   // Add toggle actions to door
   utils.toggles.addToggle(doorPivotEntity, utils.ToggleState.Off, (value) => {
     if (value == utils.ToggleState.On) {
-
       // open
       Tween.createOrReplace(doorPivotEntity, {
         mode: Tween.Mode.Rotate({
           start: closedPos,
-          end: openPos,
+          end: openPos
         }),
         duration: 500,
-        easingFunction: EasingFunction.EF_EASEINSINE,
+        easingFunction: EasingFunction.EF_EASEINSINE
       })
     } else {
-
       // close
       Tween.createOrReplace(doorPivotEntity, {
         mode: Tween.Mode.Rotate({
           start: openPos,
-          end: closedPos,
+          end: closedPos
         }),
         duration: 500,
-        easingFunction: EasingFunction.EF_EASEINSINE,
+        easingFunction: EasingFunction.EF_EASEINSINE
       })
     }
   })

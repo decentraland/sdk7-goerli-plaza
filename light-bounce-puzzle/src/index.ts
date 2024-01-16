@@ -136,7 +136,7 @@ export function main() {
       FloatingRock.ToggleGlowAll(false)
 
       let distance: number = 4
-      let onFinish: OnFinishCallback = () => { }
+      let onFinish: OnFinishCallback = () => {}
       if (result.hit && result.hit.position && result.hit.normalHit) {
         const hitPosition: Vector3 = result.hit.position
         const hitNormal: Vector3 = result.hit.normalHit
@@ -201,7 +201,6 @@ export function main() {
 
       // Ray dissipates after half a second
       utils.timers.setTimeout(function () {
-
         Tween.createOrReplace(ray, {
           mode: Tween.Mode.Scale({
             start: endSize,
@@ -243,7 +242,7 @@ function reflectRay(hitPoint: Vector3, reflectedVector: Vector3, reflectCount: n
     },
     function (result) {
       let distance: number = 5
-      let onFinish: OnFinishCallback = () => { }
+      let onFinish: OnFinishCallback = () => {}
       if (
         result.hits &&
         result.hits.length > 0 &&
@@ -291,7 +290,6 @@ function reflectRay(hitPoint: Vector3, reflectedVector: Vector3, reflectCount: n
         onFinish()
       }, timeToTravel)
 
-
       // Reflected ray dissipates after a period proportional to the travelled distance
       utils.timers.setTimeout(function () {
         if (!reflectedRay.reflectedRayEntity) return
@@ -304,7 +302,6 @@ function reflectRay(hitPoint: Vector3, reflectedVector: Vector3, reflectCount: n
           duration: 500,
           easingFunction: EasingFunction.EF_LINEAR
         })
-
       }, 2000 * timeToTravel)
     }
   )

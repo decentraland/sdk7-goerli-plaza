@@ -1,4 +1,14 @@
-import { EasingFunction, Entity, GltfContainer, InputAction, PointerEventType, PointerEvents, Transform, Tween, engine } from '@dcl/sdk/ecs'
+import {
+  EasingFunction,
+  Entity,
+  GltfContainer,
+  InputAction,
+  PointerEventType,
+  PointerEvents,
+  Transform,
+  Tween,
+  engine
+} from '@dcl/sdk/ecs'
 import { Quaternion, Vector3 } from '@dcl/sdk/math'
 import * as utils from '@dcl-sdk/utils'
 
@@ -70,7 +80,6 @@ export class FloatingRock {
       utils.timers.setTimeout(() => {
         utils.toggles.flip(self)
       }, duration)
-
     })
     utils.toggles.flip(this.floatingRockEntity)
 

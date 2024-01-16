@@ -59,7 +59,6 @@ export function moveDroidToRandomPos(droid: Entity) {
 
   // after rotating
   utils.timers.setTimeout(() => {
-
     // move
     Tween.createOrReplace(droid, {
       mode: Tween.Mode.Move({
@@ -73,7 +72,6 @@ export function moveDroidToRandomPos(droid: Entity) {
 
   // after moving
   utils.timers.setTimeout(() => {
-
     DROID_IS_MOVING = false
     const droid_last_rot_start = Transform.get(droid).rotation
     const droid_last_rot_end = Quaternion.fromLookAt(endPos, Transform.get(engine.PlayerEntity).position)
@@ -88,6 +86,4 @@ export function moveDroidToRandomPos(droid: Entity) {
       easingFunction: EasingFunction.EF_EASEINEXPO
     })
   }, 4200)
-
-
 }

@@ -1,4 +1,12 @@
-import { CameraModeArea, CameraType, engine, GltfContainer, PointerEvents, PointerEventType, Transform } from '@dcl/sdk/ecs'
+import {
+  CameraModeArea,
+  CameraType,
+  engine,
+  GltfContainer,
+  PointerEvents,
+  PointerEventType,
+  Transform
+} from '@dcl/sdk/ecs'
 import { Vector3, Quaternion } from '@dcl/sdk/math'
 import { BeerType } from './definitions'
 import { pickingGlassSystem } from './modules/beerGlass'
@@ -52,9 +60,8 @@ export function main() {
 
   CameraModeArea.create(cameraMod, {
     area: Vector3.create(5, 2, 5),
-    mode: CameraType.CT_FIRST_PERSON,
+    mode: CameraType.CT_FIRST_PERSON
   })
-
 
   // Create dispenser
   const dispenserEntity = engine.addEntity()

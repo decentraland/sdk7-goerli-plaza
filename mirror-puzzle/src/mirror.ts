@@ -1,5 +1,15 @@
 import { Sound } from './sound'
-import { EasingFunction, Entity, GltfContainer, InputAction, PointerEventType, PointerEvents, Transform, Tween, engine } from '@dcl/sdk/ecs'
+import {
+  EasingFunction,
+  Entity,
+  GltfContainer,
+  InputAction,
+  PointerEventType,
+  PointerEvents,
+  Transform,
+  Tween,
+  engine
+} from '@dcl/sdk/ecs'
 import { Quaternion, Vector3 } from '@dcl/sdk/math'
 import * as utils from '@dcl-sdk/utils'
 import { redrawRays } from './reflectedRay'
@@ -70,12 +80,11 @@ export class Mirror {
     Tween.createOrReplace(this.mirrorEntity, {
       mode: Tween.Mode.Rotate({
         start: currentRot,
-        end: endRot,
+        end: endRot
       }),
       duration: 500,
-      easingFunction: EasingFunction.EF_LINEAR,
+      easingFunction: EasingFunction.EF_LINEAR
     })
-
 
     utils.timers.setTimeout(
       () => {
@@ -112,7 +121,6 @@ export class Mirror {
     utils.timers.setTimeout(() => {
       this.isBusy = false
     }, 800)
-
   }
 
   static GetMirror(id: number): Mirror | null {

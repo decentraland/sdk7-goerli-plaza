@@ -2,25 +2,12 @@
   "name": "light-bounce-puzzle",
   "description": "Point a ray so that it bounces correctly and activates all runes.",
   "version": "1.0.0",
-  "bundleDependencies": [
-    "@dcl-sdk/utils"
-  ],
   "dependencies": {
     "@dcl-sdk/utils": "latest"
   },
   "devDependencies": {
-    "@dcl/js-runtime": "7.3.35",
+    "@dcl/js-runtime": "latest",
     "@dcl/sdk": "latest"
-  },
-  "engines": {
-    "node": ">=16.0.0",
-    "npm": ">=6.0.0"
-  },
-  "prettier": {
-    "semi": false,
-    "singleQuote": true,
-    "printWidth": 120,
-    "trailingComma": "none"
   },
   "scripts": {
     "build": "sdk-commands build",

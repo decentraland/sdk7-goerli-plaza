@@ -63,10 +63,10 @@ export function createHummingBird() {
     Tween.createOrReplace(bird, {
       mode: Tween.Mode.Rotate({
         start: birdTransform.rotation,
-        end: nextRot,
+        end: nextRot
       }),
       duration: 300,
-      easingFunction: EasingFunction.EF_EASEINSINE,
+      easingFunction: EasingFunction.EF_EASEINSINE
     })
 
     // move to next pos (after rotating)
