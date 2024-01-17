@@ -1,4 +1,15 @@
-import { AudioSource, engine, Entity, executeTask, GltfContainer, Transform } from '@dcl/sdk/ecs'
+import {
+  AudioSource,
+  EasingFunction,
+  engine,
+  Entity,
+  executeTask,
+  GltfContainer,
+  Transform,
+  Tween,
+  TweenLoop,
+  TweenSequence
+} from '@dcl/sdk/ecs'
 import { Color3, Quaternion, Vector3 } from '@dcl/sdk/math'
 import * as utils from '@dcl-sdk/utils'
 
@@ -63,7 +74,7 @@ export function createSwitchBoard(model: string, startPos: Vector3, endPos: Vect
     [{ type: 'box', scale: Vector3.create(2.5, 2.5, 2.5), position: Vector3.create(1.5, 2, 0) }],
     () => {
       utils.toggles.set(buttonA, utils.ToggleState.On)
-      movePlatform(entity, gear, -180, endPos)
+      movePlatform(entity, gear, 1800, endPos)
     },
     () => {
       utils.toggles.set(buttonA, utils.ToggleState.Off)
@@ -78,7 +89,7 @@ export function createSwitchBoard(model: string, startPos: Vector3, endPos: Vect
     [{ type: 'box', scale: Vector3.create(2.5, 2.5, 2.5), position: Vector3.create(-1.5, 2, 0) }],
     () => {
       utils.toggles.set(buttonB, utils.ToggleState.On)
-      movePlatform(entity, gear, 180, startPos)
+      movePlatform(entity, gear, 1800, startPos, true)
     },
     () => {
       utils.toggles.set(buttonB, utils.ToggleState.Off)
@@ -89,19 +100,47 @@ export function createSwitchBoard(model: string, startPos: Vector3, endPos: Vect
   return entity
 }
 
-function movePlatform(platform: Entity, gear: Entity, rotationSpeed: number, targetPos: Vector3) {
-  utils.tweens.stopTranslation(platform)
-
-  utils.perpetualMotions.startRotation(gear, Quaternion.fromEulerDegrees(0, 0, rotationSpeed))
+function movePlatform(platform: Entity, gear: Entity, rotationSpeed: number, targetPos: Vector3, backwards?: boolean) {
+  Tween.createOrReplace(gear, {
+    mode: Tween.Mode.Rotate({
+      start: Quaternion.fromEulerDegrees(0, 0, 0),
+      end: backwards ? Quaternion.fromEulerDegrees(0, 0, 180) : Quaternion.fromEulerDegrees(0, 0, -180)
+    }),
+    duration: rotationSpeed,
+    easingFunction: EasingFunction.EF_LINEAR
+  })
+  TweenSequence.createOrReplace(gear, {
+    loop: TweenLoop.TL_RESTART,
+    sequence: [
+      {
+        mode: Tween.Mode.Rotate({
+          start: backwards ? Quaternion.fromEulerDegrees(0, 0, 180) : Quaternion.fromEulerDegrees(0, 0, -180),
+          end: backwards ? Quaternion.fromEulerDegrees(0, 0, 360) : Quaternion.fromEulerDegrees(0, 0, -360)
+        }),
+        duration: rotationSpeed,
+        easingFunction: EasingFunction.EF_LINEAR
+      }
+    ]
+  })
 
   const currentPos = Transform.get(platform).position
-  const speed = Math.abs(targetPos.x - currentPos.x) * 0.25
+  const speed = Math.abs(targetPos.x - currentPos.x) * 0.25 * 1000
 
-  utils.tweens.startTranslation(platform, currentPos, targetPos, speed, utils.InterpolationType.LINEAR, () => {
-    utils.perpetualMotions.stopRotation(gear)
+  Tween.createOrReplace(platform, {
+    mode: Tween.Mode.Move({
+      start: currentPos,
+      end: targetPos
+    }),
+    duration: speed,
+    easingFunction: EasingFunction.EF_LINEAR
+  })
+
+  utils.timers.setTimeout(() => {
+    Tween.deleteFrom(gear)
+    TweenSequence.deleteFrom(gear)
     Transform.getMutable(switchSound).position = Transform.get(engine.PlayerEntity).position
     AudioSource.getMutable(switchSound).playing = true
-  })
+  }, speed)
 }
 
 // enable debug mode by default in preview mode

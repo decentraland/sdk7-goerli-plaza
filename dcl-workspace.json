@@ -40,6 +40,9 @@
       "path": "rocket-board"
     },
     {
+      "path": "reward-claim"
+    },
+    {
       "path": "push-box-puzzle"
     },
     {
@@ -221,6 +224,9 @@
     },
     {
       "path": "Events-API-Board"
+    },
+    {
+      "path": "Editor-actions"
     },
     {
       "path": "Dance-floor"
