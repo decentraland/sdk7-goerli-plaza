@@ -1,0 +1,16 @@
+{
+  "name": "party-time",
+  "description": "SDK7 Template scene",
+  "version": "1.0.0",
+  "devDependencies": {
+    "@dcl/js-runtime": "7.3.35",
+    "@dcl/sdk": "latest"
+  },
+  "scripts": {
+    "build": "sdk-commands build",
+    "deploy": "sdk-commands deploy",
+    "start": "sdk-commands start",
+    "upgrade-sdk": "npm install --save-dev @dcl/sdk@next",
+    "upgrade-sdk:next": "npm install --save-dev @dcl/sdk@next"
+  }
+}
