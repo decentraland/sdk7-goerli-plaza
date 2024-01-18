@@ -1,7 +1,7 @@
 {
-  "name": "dcl-project",
+  "name": "uv-projector",
   "version": "1.0.0",
-  "description": "SDK7 Template scene",
+  "description": "UV Projector",
   "scripts": {
     "start": "sdk-commands start",
     "deploy": "sdk-commands deploy",
@@ -11,17 +11,7 @@
   },
   "devDependencies": {
     "@dcl/asset-packs": "latest",
-    "@dcl/js-runtime": "7.3.28",
-    "@dcl/sdk": "^7.3.28"
-  },
-  "engines": {
-    "node": ">=16.0.0",
-    "npm": ">=6.0.0"
-  },
-  "prettier": {
-    "semi": false,
-    "singleQuote": true,
-    "printWidth": 120,
-    "trailingComma": "none"
+    "@dcl/js-runtime": "latest",
+    "@dcl/sdk": "latest"
   }
 }

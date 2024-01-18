@@ -1,0 +1,17 @@
+{
+  "name": "sdk7-uv-archways",
+  "version": "1.0.0",
+  "description": "Span video/images across multiple planes",
+  "scripts": {
+    "start": "sdk-commands start",
+    "deploy": "sdk-commands deploy",
+    "build": "sdk-commands build",
+    "upgrade-sdk": "npm install --save-dev @dcl/sdk@latest",
+    "upgrade-sdk:next": "npm install --save-dev @dcl/sdk@next"
+  },
+  "devDependencies": {
+    "@dcl/asset-packs": "latest",
+    "@dcl/js-runtime": "latest",
+    "@dcl/sdk": "latest"
+  }
+}
