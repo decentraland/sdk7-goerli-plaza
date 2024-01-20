@@ -150,9 +150,9 @@ export function UIProgressBar(props:  ProgressBarProps){
                     },
                     textureSlices: {
                         top: 0.49,
-              bottom: 0.49,
-              left: 0.49,
-              right: 0.49
+                        bottom: 0.49,
+                        left: 0.49,
+                        right: 0.49
                     },
             
           }}

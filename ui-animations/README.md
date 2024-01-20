@@ -1,4 +1,4 @@
-# SDK7 Template scene
+# SDK7 UI Animations Examples
 
 ## Try it out
 
@@ -18,23 +18,39 @@ Alternatively, you can use the command line. Inside this scene root directory ru
 npm run start
 ```
 
-## What's new on SDK 7
+## What's this for
 
-Below are some basic concepts about the SDK 7 syntax. For more details, see the [Documentation site](https://docs.decentraland.org/creator/).
+Below are some examples of SDK7 UI's animation capabilities . For more details, see the [Documentation site](https://docs.decentraland.org/creator/).
 
-### Entities
+###  Sprite from Atlas
 
-An Entity is just an ID. It is an abstract concept not represented by any data structure. There is no "class Entity". Just a number that is used as a reference to group different components.
+Add a single sprite from a larger texture atlas to your UI
+
+1. Add the required imports to your file:
 
 ```ts
-const myEntity = engine.addEntity()
-console.console.log(myEntity) // 100
-
-// Remove Entity
-engine.removeEntity(myEntity)
+import { Sprite } from "../ui_components/SpriteAtlas"
+import ReactEcs from "@dcl/sdk/react-ecs"
 ```
 
-> Note: Note that it's no longer necessary to separately create an entity and then add it to the engine, this is all done in a single act.
+2. Anywhere in your UI code add a Sprite tag, where you can define the image texture’s path and the UV coordinates ( top, bottom, left, right ) of the specific sprite on the texture:
+
+```ts
+<UISprite 
+    texture='images/cardFlip/card-atlas.png' 
+    top={1} 
+    bottom={0} 
+    left={0} 
+    right={0.5}
+    uiTransform={{
+        width: 200,
+        height: 200,  
+        positionType:'absolute',
+        position : {top: 100, left: 300}  
+    }}
+/>
+```
+
 
 ### Components
 
