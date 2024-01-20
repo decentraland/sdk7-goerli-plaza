@@ -9,9 +9,14 @@ export class ProgressBar {
   startColor: Color4 = Color4.fromHexString('#ff5511ff')
   endColor: Color4 = Color4.fromHexString('#22bb33ff')
   barColor: Color4 = Color4.fromHexString('#ff5511ff')
-  constructor(_startColor: Color4, _endColor: Color4) {
+  frameImage: string
+  barImage: string
+
+  constructor(_frameImage: string, _barImage: string, _startColor: Color4, _endColor: Color4) {
     this.startColor = _startColor
     this.endColor = _endColor
+    this.frameImage = _frameImage
+    this.barImage = _barImage
   }
   setProgressBar(value: number) {
     this.progressValue = value
@@ -68,7 +73,7 @@ export function UIProgressBar(props: ProgressBarProps) {
         uiBackground={{
           textureMode: 'nine-slices',
           texture: {
-            src: "images/progressBar/bar_bg.png",
+            src: props.progressBar.frameImage,
           },
           textureSlices: {
             top: 0.49,
@@ -84,7 +89,7 @@ export function UIProgressBar(props: ProgressBarProps) {
         uiTransform={{
           width: (props.progressBar.loadingProgress + '%') as PositionUnit,
           height: '100%',
-          minWidth: 100,
+          minWidth: 32,
           flexDirection: 'row',
           alignItems: 'center',
           justifyContent: 'space-between',
@@ -94,7 +99,7 @@ export function UIProgressBar(props: ProgressBarProps) {
           color: props.progressBar.barColor,
           textureMode: 'nine-slices',
           texture: {
-            src: "images/progressBar/bar_rounded.png"
+            src: props.progressBar.barImage
           },
           textureSlices: {
             top: 0.49,
@@ -105,6 +110,7 @@ export function UIProgressBar(props: ProgressBarProps) {
         }}
       >
       </UiEntity>
+      {props.children}
     </UiEntity>
   )
 }

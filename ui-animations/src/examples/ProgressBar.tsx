@@ -2,19 +2,23 @@ import ReactEcs, { UiEntity } from "@dcl/sdk/react-ecs"
 import { ProgressBar, UIProgressBar } from "../ui_components/UIProgressBar";
 import { Color4 } from "@dcl/sdk/math";
 
-export let myProgressBar = new ProgressBar(Color4.Green(), Color4.Red())
+export let myProgressBar = new ProgressBar(
+    "images/progressBar/bar_bg.png",
+    "images/progressBar/bar_rounded.png",
+    Color4.Green(),
+    Color4.Red())
 
 export function createProgressBarUI() {
     return (
         <UIProgressBar
             progressBar={myProgressBar}
             uiTransform={{
-                width: '20%',
-                height: '15%',
-                minHeight: '5%',
+                width: '16%',
+                height: 48,
+                minHeight: 32,
                 maxHeight: 128,
                 positionType: 'absolute',
-                position: { left: '80%', bottom: '13%' }
+                position: { left: '82%', bottom: '18%' }
             }}
         />
     )
