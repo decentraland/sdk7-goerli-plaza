@@ -8,6 +8,8 @@ export let counter = new CustomCounter(4, 4, 64, 'center', "images/customCounter
 // system to test the custom counter
 export function CounterTestSystem(dt: number) {
     counter.increaseNumberBy(8)
+
+    if (counter.currentNumber > 9999) counter.setNumber(0)
 }
 
 export function createCustomCounterUI() {
@@ -17,7 +19,7 @@ export function createCustomCounterUI() {
                 width: '20%',
                 height: '10%',
                 positionType: 'absolute',
-                position: { left: '40%', bottom: "18%" }
+                position: { left: '36%', top: "10%" }
             }}
         />
     )

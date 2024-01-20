@@ -12,30 +12,34 @@ import { createButtonUI } from "./examples/AnimatedButton";
 import { createEasingPopupUI } from "./examples/AnimatedPopup";
 import { createParticleTestButton, createParticleUI } from "./examples/ParticleSystem";
 import { ProgressBarTestSystem, createProgressBarUI } from "./examples/ProgressBar";
+import { exampleLabelsUI } from "./examples/exampleLabeling";
 
 
 export function setupUi() {
-    ReactEcsRenderer.setUiRenderer( uiComponent )
+    ReactEcsRenderer.setUiRenderer(uiComponent)
     engine.addSystem(SpriteAnimSystem)
-    engine.addSystem(ProgressBarTestSystem)    
+    engine.addSystem(ProgressBarTestSystem)
     engine.addSystem(ColorChangeSystem),
-    engine.addSystem(RotatorSystem)
+        engine.addSystem(RotatorSystem)
     engine.addSystem(CounterTestSystem)
 }
 
 const uiComponent = () => [
-    
+
     createProgressBarUI(),
-    createSingleSpriteUI(), 
+    createSingleSpriteUI(),
     createSpriteAnimationUI(),
     createEasingPopupUI(),
     createParticleUI(),
-    createSpinnerAnimationUI(),    
-    createCardFlipUI(),    
+    createSpinnerAnimationUI(),
+    createCardFlipUI(),
     createCustomCounterUI(),
     createButtonUI(),
-    createParticleTestButton()
-    
+    createParticleTestButton(),
+
+    //show labels for each example
+    exampleLabelsUI()
+
     //customCounter.createCounterUI(),
-    
-  ]
+
+]

@@ -47,7 +47,7 @@ export class CustomCounter {
     spriteSheet: string = "images/customCounter/number_sheet.png"
     rows: number
     cols: number
-    currentDigit: number = 0
+    currentNumber: number = 0
     digits: DigitSprite[]
     size: number = 64
     justifyCounter: JustifyType = "center"
@@ -109,7 +109,7 @@ export class CustomCounter {
     setNumber(_num: number) {
 
         this.digits = []
-        this.currentDigit = _num
+        this.currentNumber = _num
 
         let digits = _num.toString().split('');
         let realDigits = digits.map(Number)
@@ -140,7 +140,7 @@ export class CustomCounter {
     }
 
     increaseNumberBy(_increment: number) {
-        this.setNumber(this.currentDigit + _increment)
+        this.setNumber(this.currentNumber + _increment)
     }
 
     generateCounterDigitsUI() {
