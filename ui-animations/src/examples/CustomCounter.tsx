@@ -19,7 +19,7 @@ export function createCustomCounterUI() {
                 width: '20%',
                 height: '10%',
                 positionType: 'absolute',
-                position: { left: '36%', top: "10%" }
+                position: { left: '36%', top: "8%" }
             }}
         />
     )

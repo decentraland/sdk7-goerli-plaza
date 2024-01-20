@@ -26,6 +26,11 @@ export function setupUi() {
 
 const uiComponent = () => [
 
+
+
+    //show labels for each example
+    exampleLabelsUI(),
+
     createProgressBarUI(),
     createSingleSpriteUI(),
     createSpriteAnimationUI(),
@@ -36,10 +41,5 @@ const uiComponent = () => [
     createCustomCounterUI(),
     createButtonUI(),
     createParticleTestButton(),
-
-    //show labels for each example
-    exampleLabelsUI()
-
-    //customCounter.createCounterUI(),
 
 ]

@@ -39,7 +39,7 @@ let buttonSpawn = new AnimatedButton(
   Color4.Black(),
   () => {
     buttonSpawn.successAnimation()
-    coinEmitter.spawnSingle(85, 45, 50, 80)
+    coinEmitter.spawnSingle(85, 45, 45, 80)
   }
 )
 

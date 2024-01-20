@@ -12,7 +12,12 @@ export function exampleLabelsUI() {
                 width: "100%",
                 height: "100%",
                 positionType: "absolute"
-            }} >
+            }}
+            uiBackground={{
+                color: Color4.fromHexString("#222222bb")
+
+            }}
+        >
 
             <UiEntity uiText={{ value: "Sprite", fontSize: lableFontSize, textAlign: 'middle-center' }} uiTransform={{ positionType: 'absolute', width: '5%', height: "3%", position: { top: '3%', left: '15%' } }} />
             <UiEntity uiText={{ value: "AnimatedSprite", fontSize: lableFontSize, textAlign: 'middle-center' }} uiTransform={{ positionType: 'absolute', width: '5%', height: "3%", position: { top: '3%', left: '23%' } }} />
