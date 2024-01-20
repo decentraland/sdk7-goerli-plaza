@@ -7,35 +7,35 @@ import { UISprite } from './UISprite'
 import { rotateUVs } from '../utilities'
 
 
-export const SpinnerComponent = engine.defineComponent('spinner-id', {  
-  angle: Schemas.Number,     
+export const SpinnerComponent = engine.defineComponent('spinner-id', {
+  angle: Schemas.Number,
   speed: Schemas.Number,
-  timeout: Schemas.Number        
+  timeout: Schemas.Number
 })
 
 
-export function RotatorSystem(dt:number){
+export function RotatorSystem(dt: number) {
 
   const spinnerGroup = engine.getEntitiesWith(SpinnerComponent)
 
-  for(const [entity] of spinnerGroup){
+  for (const [entity] of spinnerGroup) {
 
     const spinnerInfo = SpinnerComponent.getMutable(entity)
 
     spinnerInfo.angle -= dt * spinnerInfo.speed
-    if ( spinnerInfo.angle  < 0) spinnerInfo.angle +=  360
+    if (spinnerInfo.angle < 0) spinnerInfo.angle += 360
   }
 }
 
 export class Spinner {
-  spinner:Entity
-  texture:string
-  visible:boolean = false
+  spinner: Entity
+  texture: string
+  visible: boolean = false
 
-  constructor(_texture:string, _speed:number){
+  constructor(_texture: string, _speed: number) {
     this.spinner = engine.addEntity()
     SpinnerComponent.create(this.spinner, {
-      angle:0,
+      angle: 0,
       speed: _speed,
       timeout: 3
     })
@@ -43,54 +43,47 @@ export class Spinner {
     this.texture = _texture
   }
 
-  getAngle():number{
+  getAngle(): number {
     return SpinnerComponent.get(this.spinner).angle
   }
 
-  show(){
+  show() {
     this.visible = true
   }
-  hide(){
+  hide() {
     this.visible = false
   }
 
 }
 
-export type SpinnerAnimProps = Omit<EntityPropTypes, 'uiTransform' | 'uiBackground'> & {
-  children?: ReactEcs.JSX.Component[] 
-  spinner:Spinner   
-  uiTransform?: Omit<
-      NonNullable<EntityPropTypes['uiTransform']>,
-      '' 
-    > 
-    uiBackground?: Omit<
-      NonNullable<EntityPropTypes['uiBackground']>,
-      '' 
-    >  
+export type SpinnerAnimProps = EntityPropTypes & {
+  children?: ReactEcs.JSX.Component[]
+  spinner: Spinner
+
 }
 
 export function UISpinner(props: SpinnerAnimProps) {
 
   return <UiEntity
-          uiTransform={props.uiTransform}  
-          >
-            <UiEntity
-              uiTransform={{
-                width:"100%",
-                height: "100%",
-                display: props.spinner.visible? 'flex':'none'
-              }} 
-              uiBackground={{ 
-                textureMode: 'stretch',
-                uvs: rotateUVs(props.spinner.getAngle()),
-                texture: {
-                  src: props.spinner.texture,
-                  wrapMode:'clamp'
-                },
-                }}>
-                {props.children}
-              </UiEntity> 
-          </UiEntity>
+    uiTransform={props.uiTransform}
+  >
+    <UiEntity
+      uiTransform={{
+        width: "100%",
+        height: "100%",
+        display: props.spinner.visible ? 'flex' : 'none'
+      }}
+      uiBackground={{
+        textureMode: 'stretch',
+        uvs: rotateUVs(props.spinner.getAngle()),
+        texture: {
+          src: props.spinner.texture,
+          wrapMode: 'clamp'
+        },
+      }}>
+      {props.children}
+    </UiEntity>
+  </UiEntity>
 }
 
 

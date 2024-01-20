@@ -36,17 +36,9 @@ export class ProgressBar {
   }
 }
 
-export type ProgressBarProps = Omit<EntityPropTypes, 'uiTransform' | 'uiBackground'> & {
+export type ProgressBarProps = EntityPropTypes & {
   children?: ReactEcs.JSX.Component[]
   progressBar: ProgressBar
-  uiTransform?: Omit<
-    NonNullable<EntityPropTypes['uiTransform']>,
-    ''
-  >
-  uiBackground?: Omit<
-    NonNullable<EntityPropTypes['uiBackground']>,
-    ''
-  >
 }
 
 export function UIProgressBar(props: ProgressBarProps) {

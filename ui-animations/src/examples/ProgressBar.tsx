@@ -13,11 +13,8 @@ export function createProgressBarUI() {
                 height: '15%',
                 minHeight: '5%',
                 maxHeight: 128,
-                alignItems: 'center',
-                alignSelf: 'center',
                 positionType: 'absolute',
-                position: { left: '80%', bottom: '13%' },
-                display: 'flex'
+                position: { left: '80%', bottom: '13%' }
             }}
         />
     )

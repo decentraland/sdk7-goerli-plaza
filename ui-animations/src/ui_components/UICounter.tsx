@@ -13,11 +13,10 @@ type DigitSprite = {
 export type CounterJustifyType = 'left' | 'center' | 'right'
 
 
-export type CustomCounterProps = Omit<EntityPropTypes, 'uiTransform' | 'uiBackground'> & {
+export type CustomCounterProps = EntityPropTypes & {
     children?: ReactEcs.JSX.Component
     customCounter: CustomCounter
-    uiTransform?: Omit<NonNullable<EntityPropTypes['uiTransform']>, ''>
-    uiBackground?: Omit<NonNullable<EntityPropTypes['uiBackground']>, ''>
+
 }
 export function UICounter(props: CustomCounterProps) {
     return (
