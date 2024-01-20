@@ -24,18 +24,13 @@ export function createProgressBarUI() {
     )
 }
 
-let progress = 0
 
 // system to step along each sprite in each row with the given frequency
 export function ProgressBarTestSystem(dt: number) {
-
-    if (progress < 1) {
-        progress += dt * 0.25
+    if (myProgressBar.progressValue < 1) {
+        myProgressBar.incrementProgressBAr(dt * 0.25)
     }
     else {
-        progress = 0
+        myProgressBar.setProgressBar(0)
     }
-
-    myProgressBar.setProgressBar(progress)
-
 }
