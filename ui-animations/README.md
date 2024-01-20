@@ -22,6 +22,8 @@ npm run start
 
 Below are some examples of SDK7 UI's animation capabilities . For more details, see the [Documentation site](https://docs.decentraland.org/creator/).
 
+
+
 ###  Sprite from Atlas
 
 Add a single sprite from a larger texture atlas to your UI
@@ -33,9 +35,9 @@ import { Sprite } from "../ui_components/SpriteAtlas"
 import ReactEcs from "@dcl/sdk/react-ecs"
 ```
 
-2. Anywhere in your UI code add a Sprite tag, where you can define the image texture’s path and the UV coordinates ( top, bottom, left, right ) of the specific sprite on the texture:
+2. Anywhere in your UI code add a `<UISprite>` tag, where you can define the image texture’s path and the UV coordinates ( top, bottom, left, right ) of the specific sprite on the texture:
 
-```ts
+```tsx
 <UISprite 
     texture='images/cardFlip/card-atlas.png' 
     top={1} 
@@ -52,230 +54,331 @@ import ReactEcs from "@dcl/sdk/react-ecs"
 ```
 
 
-### Components
-
-The component is just a data container, WITHOUT any functions.
-
-To add a component to an entity, the entry point is now the component type, not the entity.
-
+###  Sprite Animation
+To add a sprite-sheet animation from a texture to your UI:
+1. Add the required imports to your file:
 ```ts
-Transform.create(myEntity, <params>)
+import {UIAnimatedSprite, SpriteAnimation } from "../ui_components/SpriteAnimation"
+import ReactEcs from "@dcl/sdk/react-ecs"
 ```
 
-This is different from how the syntax was in SDK6:
+2. In your code create a SpriteAnimation object. When creating this object you can define:
+- The Sprite Sheet texture
+- How many rows is the texture is split into
+- How many columns is the texture is split into
+- The frame/sec speed of the animation
 
 ```ts
-// OLD Syntax
-myEntity.addComponent(Transform)
+let mySprite= new SpriteAnimation("images/spriteAnimation/walk_anim_sprite.png", 4, 2, 20)
+```
+3. In your UI code add a <UIAnimatedSprite> tag and pass along your newly created SpriteAnimation (mySprite in this example):
+```tsx
+<UIAnimatedSprite 
+  spriteAnimator={mySprite} 
+  uiTransform={{ 
+		width: 120,
+    height: 240,
+    positionType:'absolute',
+    position: { bottom: '15%', left: '28%' }}}        
+/>
 ```
 
-#### Base Components
 
-Base components already come packed as part of the SDK. Most of them interact directly with the renderer in some way. This is the full list of currently supported base components:
-
-- Transform
-- Animator
-- Material
-- MeshRenderer
-- MeshCollider
-- AudioSource
-- AudioStream
-- AvatarAttach
-- AvatarModifierArea
-- AvatarShape
-- Billboard
-- CameraMode
-- CameraModeArea
-- GltfContainer
-- NftShape
-- PointerEventsResult
-- PointerHoverFeedback
-- PointerLock
-- Raycast
-- RaycastResult
-- TextShape
-- VisibilityComponent
-
+### Spinner Animation
+Add a spinner that you can show while something is loading
+1.  Add the required imports to your file:
 ```ts
-const entity = engine.addEntity()
-Transfrom.create(entity, {
-  position: Vector3.create(12, 1, 12)
-  scale: Vector3.One(),
-  rotation: Quaternion.Identity()
-})
-GltfContainer.create(zombie, {
-  withCollisions: true,
-  isPointerBlocker: true,
-  visible: true,
-  src: 'models/zombie.glb'
-})
+import ReactEcs from "@dcl/sdk/react-ecs"
+import { LoadingSpinner, Spinner } from "../ui_components/LoadingAnimation"
+```
+2.  Create a Spinner object and set the texture and rotation speed (angles per second):
+```ts
+let spinner = new Spinner('images/loadingAnimation/loader_static.png', 1000)
+```
+3. In you UI code add a <LoadingSpinner> tag , pass along the spinner object created above and specify the dimensions/placement:
+```tsx
+<LoadingSpinner 
+      spinner={spinner}
+      uiTransform={{
+          width: 128,
+          height: 128,
+          positionType:"absolute",
+          position: {top: '50%', left:'50%' },
+          margin: {left: -128/2, top:-128/2}, // makes it centered around the cursor, by offsetting with half its dimensions
+      }}                    
+  />
+```
+4. The spinner object has a .show() and a .hide() method to handle when to display it:
+```ts
+spinner.show()
 ```
 
-#### Custom Components
 
-Each component must have a unique number ID. If a number is repeated, the engine or another player receiving updates might apply changes to the wrong component. Note that numbers 1-2000 are reserved for the base components.
-
-When creating a custom component you declare the schema of the data to be stored in it. Every field in a component MUST belong to one of the built-in special schemas provided as part of the SDK. These special schemas include extra functionality that allows them to be serialized/deserialized.
-
-Currently, the names of these special schemas are:
-
-##### Primitives
-
-1. `Schemas.Boolean`: true or false (serialized as a Byte)
-2. `Schemas.String`: UTF8 strings (serialized length and content)
-3. `Schemas.Float`: single precission float
-4. `Schemas.Double`: double precision float
-5. `Schemas.Byte`: a single byte, integer with range 0..255
-6. `Schemas.Short`: 16 bits signed-integer with range -32768..32767
-7. `Schemas.Int`: 32 bits signed-integer with range -2³¹..(2³¹-1)
-8. `Schemas.Int64`: 64 bits signed-integer
-9. `Schemas.Number`: an alias to Schemas.Float
-
-##### Specials
-
-10. `Schemas.Entity`: a wrapper to int32 that casts the type to `Entity`
-11. `Schemas.Vector3`: a Vector3 with { x, y, z }
-12. `Schemas.Quaternion`: a Quaternion with { x, y, z, w}
-13. `Schemas.Color3`: a Color3 with { r, g, b }
-14. `Schemas.Color4`: a Colo4 with { r, g, b, a }
-
-##### Schema generator
-
-15. `Schemas.Enum`: passing the serialization Schema and the original Enum as generic
-16. `Schemas.Array`: passing the item Schema
-17. `Schemas.Map`: passing a Map with Schemas as values
-18. `Schemas.Optional`: passing the schema to serialize
-
-Below are some examples of how these schemas can be declared.
-
+### Custom Counter
+Create a counter with custom fonts for the number digits:
+1.   Create you custom sprite atlas with the digits 0-9:
+   - Each number digit should be centered in square grid cells
+   - Texture sides should be power of 2
+2. Add the required imports to your file:
 ```ts
-const object = Schemas.Map({ x: Schemas.Int }) // { x: 1 }
-
-const array = Schemas.Map(Schemas.Int) // [1,2,3,4]
-
-const objectArray = Schemas.Array(Schemas.Map({ x: Schemas.Int })) // [{ x: 1 }, { x: 2 }]
-
-const BasicSchemas = Schemas.Map({
-  x: Schemas.Int,
-  y: Schemas.Float,
-  text: Schemas.String,
-  flag: Schemas.Boolean
-}) // { x: 1, y: 1.412, text: 'ecs 7 text', flag: true }
-
-const VelocitySchema = Schemas.Map({
-  x: Schemas.Float,
-  y: Schemas.Float,
-  z: Schemas.Float
-})
+import ReactEcs from '@dcl/sdk/react-ecs'
+import { UICounter, CustomCounter } from '../ui_components/CustomCounter'
 ```
-
-To then create a custom component using one of these schemas, use the following syntax:
-
+3.   Create a CustomCounter object and set :
+   - The number of rows of the number sprite-sheet
+  - The number of columnsof the number sprite-sheet
+  - The pixel resolution of each digit (all digits should be squares in the texture)
+  - Alignment of the counter ( ‘left’, ‘right’ or ‘center’)
+  - The path to the sprite-sheet texture
+    
 ```ts
-export const myCustomComponent = engine.defineComponent(MyDataSchema, ComponentID)
+export let counter = new CustomCounter( 4, 4, 100, 'center', "images/customCounter/number_sheet.png")
 ```
-
-For contrast, below is an example of how components were constructed prior to SDK 7.
-
+4.In your UI code add a <UICounter> tag , pass along the CustomCounter object created above
+```tsx
+<UICounter customCounter={counter}  />
+```
+5. (optional) To test if the counter is working you can add a quick test system to increate the count:
 ```ts
-/**
- * OLD SDK
- */
-
-// Define Component
-@Component('velocity')
-export class Velocity extends Vector3 {
-  constructor(x: number, y: number, z: number) {
-    super(x, y, z)
-  }
+export function CounterTestSystem(dt: number) {    
+    counter.increaseNumberBy(8)      
 }
-// Create entity
-const wheel = new Entity()
-
-// Create instance of component with default values
-wheel.addComponent(new WheelSpin())
-
-/**
- * ECS 7
- */
-// Define Component
-const VelocitySchema = Schemas.Map({
-  x: Schemas.Float,
-  y: Schemas.Float,
-  z: Schemas.Float
-})
-const COMPONENT_ID = 2008
-const VelocityComponent = engine.defineComponent(Velocity, COMPONENT_ID)
-// Create Entity
-const entity = engine.addEntity()
-
-// Create instance of component
-VelocityComponent.create(entity, { x: 1, y: 2.3, z: 8 })
-
-// Remove instance of a component
-VelocityComponent.deleteFrom(entity)
+engine.addSystem(CounterTestSystem)
 ```
 
-### Systems
 
-Systems are pure & simple functions.
-All your logic comes here.
-A system might hold data which is relevant to the system itself, but no data about the entities it processes.
+### Animated Button
+Quickly create buttons that react with small animations:
 
-To add a system, all you need to do is define a function and add it to the engine. The function may optionally include a `dt` parameter with the delay since last frame, just like in prior versions of the SDK.
-
+1. Add the required imports to your file:
 ```ts
-// Basic system
-function mySystem() {
-  console.log('my system is running')
-}
-
-engine.addSystem(mySystem)
-
-// System with dt
-function mySystemDT(dt: number) {
-  console.log('time since last frame:  ', dt)
-}
-
-engine.addSystem(mySystemDT)
+import ReactEcs, { UiEntity } from "@dcl/sdk/react-ecs"
+import { AnimatedButton, UIButton } from "../ui_components/UIButton"
+import { Color4 } from "@dcl/sdk/math"
 ```
-
-#### Query components
-
-The way to group/query the components inside systems is using the method getEntitiesWith.
-`engine.getEntitiesWith(...components)`.
-
+2. Create an AnimatedButton object and specify:
+- The text label
+- The font size
+- The font color
+- And what should happen when it is clicked
 ```ts
-function physicsSystem(dt: number) {
-  for (const [entity, transform, velocity] of engine.getEntitiesWith(Transform, Velocity)) {
-    // transform & velocity are read only components.
-    if (transform.position.x === 10) {
-      // To update a component, you need to call the `.mutable` method
-      const mutableVelocity = VelocityComponent.getMutable(entity)
-      mutableVelocity.x += 1
+let buttonSuccess = new AnimatedButton(
+    "Right", // text label
+    20, // font size
+    Color4.Black(), //font color
+    ()=>{
+				//what should happen when clicked
+				//...
+
+				//play the default success buttonpress animation
+        buttonSuccess.successAnimation()    
     }
-  }
-}
-
-// Add system to the engine
-engine.addSystem(physicsSystem)
-
-// Remove system
-engine.removeSystem(physicsSystem)
+  )
 ```
+3. In your UI code add the <UIButton> tag, pass the AnimatedButton object created above and customize the button further if needed:
+```tsx
+<UIButton 
+    button={buttonSuccess}           
+    uiTransform={{
+        width:'16%',
+        height:64,
+        positionType: 'absolute',
+        position:{left: '34%', bottom: '60%'}            
+    }}            
+    uiBackground={{
+        textureMode:'nine-slices',
+        texture: {src: 'images/easingPopup/stone_ui_bg.png'},
+        textureSlices: {
+            top: 0.42,
+            bottom: 0.52,
+            left: 0.42,
+            right: 0.48
+        }
+    }}
+/>
+```
+### Animated Popup
+Create UI panels that can move and/or scale from one state to the other:
 
-### Mutability
+1. Add the required imports to your file:
+```ts
+import ReactEcs from "@dcl/sdk/react-ecs"
+import { UIPopup, UIPopupAnimation } from "../ui_components/UIPopup"
+import { Color4 } from "@dcl/sdk/math"
+```
+2. Create an UIPopup object and specify:
 
-Mutability is now an important distinction. We can choose to deal with mutable or with immutable versions of a component. We should use `getMutable` only when we plan to make changes to a component. Dealing with immutable versions of components results in a huge gain in performance.
-
-The `.get()` function in a component returns an immutable version of the component. You can only read its values, but can't change any of the properties on it.
+- The starting positions and scale (in %), which is the ‘closed’ state
+- The target positions and scale (in %), which will be the ‘open’ state
+- And what should happen when it is clicked (default is toggle() between open and closed states
 
 ```ts
-const immutableTransform = Transform.get(myEntity)
+let popupAnimator = new UIPopupAnimation( 
+    {
+      startPosX: 98,
+      startPosY: 10,
+      startScaleX: 10,
+      startScaleY: 7,
+      endPosX: 78,
+      endPosY: 10,
+      endScaleX: 20,
+      endScaleY: 70,
+    },  ()=>{
+      popupAnimator.toggle()
+  })
 ```
+3. In your UI code add the <UIPopup > tag, pass the UIPopupAnimation object created above and customize the panel, or add contents inside:
+```tsx
+<UIPopup 
+  popupAnim={popupAnimator}
+  uiBackground={{
+    color: Color4.create(1.0, 1.0, 1.0, 0.8),
+        textureMode:'nine-slices',
+        texture: {src: 'images/easingPopup/stone_ui_bg.png'},
+        textureSlices: {
+          top: 0.42,
+          bottom: 0.52,
+          left: 0.42,
+          right: 0.48
+        }                 
+  }}
+>
+</UIPopup>
+```
+Note : Any other UI content that you add within the `<UIPopup>` `</UIPopup>` tags will only be visible once the panel is fully open
 
-To fetch the mutable version of a component, call it via `ComponentDefinition.getMutable()`. For example:
 
+### Card Flip Animation
+You can add a flippable card to the UI and set images for both sides
+
+1. Create an atlas texture with two or more card faces, or create separate textures
+2. Add the required imports to your file:
 ```ts
-const mutableTransform = Transform.getMutable(myEntity)
+import ReactEcs, { UiEntity } from "@dcl/sdk/react-ecs"
+import { CardFlipAnimation, UICardFlip } from "../ui_components/CardFlip"
+import { UISprite } from "../ui_components/UISprite"
 ```
+3. Create a `CardFlipAnimation` object:
+```ts
+export let cardFlipAnim = new CardFlipAnimation()
+```
+4. In your UI code add a <UICardFlip> tag , pass along the spinner object created above and specify the sprites for both side A and side B of the card:
+```tsx
+<UICardFlip       
+    cardFlipAnimator={cardFlipAnim}
+    uiTransform={{
+        width:180,
+        height: 240,
+        positionType:'absolute',
+        position: { top: '5%', left: '47%' }
+    }}
+    sideA={
+        <UISprite texture='images/cardFlip/card-atlas.png' 
+                top={1} bottom={0} left={0} right={0.5}
+                uiTransform={{
+                    width: '100%',
+                    height: '100%',                                
+                }}
+        />
+    }
+    sideB={
+        <UISprite texture='images/cardFlip/card-atlas.png' 
+                top={1} bottom={0} left={0.5} right={1}
+                uiTransform={{
+                    width: '100%',
+                    height: '100%',                                
+                }}
+        />
+    }
+>
+</UICardFlip>
+```
+5. Clicking on the card now flips it back and forth between side A and side B content
+
+
+### Particle System
+Create a particle emitter on the UI and make it spawn and move custom UI elements across the canvas:
+
+1. Add the required imports to your file:
+```ts
+import ReactEcs, { UiEntity } from "@dcl/sdk/react-ecs"
+import { SpriteAnimation, UIAnimatedSprite } from "../ui_components/UIAnimatedSprite"
+import { ParticleEmitter } from "../ui_components/UIParticle"
+import { AnimatedButton, UIButton } from "../ui_components/UIButton"
+import { Color4 } from "@dcl/sdk/math"
+```
+2. Create an `ParticleEmitter` object
+```ts
+export let coinEmitter = new ParticleEmitter()
+``` 
+3. Create an animated sprite that we will use for the individual particles
+```ts
+let coinSprite = new SpriteAnimation("images/moveAcross/coin-sprite.png", 4,2, 20)
+``` 
+4.  In your UI code  create a UIEntity section that covers the area you’ll want the particles to move inside (in the example we use the whole canvas, 100%). Within that UIEnity call the newly created ParticleEmitter’s `generateParticleUI()` function and add any single UI element as a parameter. The UI element you pass to this function will be repeated on every particle spawned by the emitter.
+```tsx
+UiEntity
+    uiTransform={{
+      width:"100%",
+      height: "100%"               
+    }}      
+  >
+    {coinEmitter.generateParticleUI(
+      <UIAnimatedSprite 
+          spriteAnimator={coinSprite} 
+          uiTransform={{
+          width: '100%',
+          height:'100%',
+          positionType:'absolute'
+          }}
+      />        
+    )}      
+</UiEntity>
+```
+5. (optional) Test the emitter by adding a button to spawn particles:
+
+- The emitter’s **spawnSingle(startPositionX, startPositionY, endPositionX, endPositionY)** function will spawn a single particle and move it from the start position to the end position passed as parameters. The particles will follow a slightly curved and random motion path towards the endPosition.
+
+- Create a `AnomatedButton` obejct and add the `coinEmitter` 's `spawnSingle()`  to the button's click action. Set the spawn position and the target position as parameters `spawnSingle(startPosX, startPosY, endPosX, endPosY)`
+```ts
+let buttonSpawn = new AnimatedButton(
+    "Spawn Particle",
+    20,
+    Color4.Black(),
+    ()=>{
+        buttonSpawn.successAnimation() 
+        coinEmitter.spawnSingle(64,80,50,10)   
+    }
+  )
+``` 
+- Add the button to the UI:
+```tsx
+<UIButton 
+  button={buttonSpawn}
+  uiTransform={{
+      width:'10%',
+      height:64,
+      positionType: 'absolute',
+      position:{left: '64%', bottom: '80%'}            
+      }}            
+      uiBackground={{
+          textureMode:'nine-slices',
+          texture: {src: 'images/easingPopup/stone_ui_bg.png'},
+          textureSlices: {
+              top: 0.42,
+              bottom: 0.52,
+              left: 0.42,
+              right: 0.48
+          }
+      }}
+/>
+```
+
+### Progress Bar
+Add a progress bar to your UI with custom frame, custom bar and animated colors
+
+
+
+
+
+
