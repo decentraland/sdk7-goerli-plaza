@@ -2,23 +2,23 @@
   "ecs7": true,
   "runtimeVersion": "7",
   "display": {
-    "title": "media-streaming",
-    "description": "Time API scene with SDK7",
-    "navmapThumbnail": "images/screenshot.png",
+    "title": "ui-animations",
+    "description": "SDK 7 Animated UI Elements and examples",
+    "navmapThumbnail": "images/scene-thumbnail.png",
     "favicon": "favicon_asset"
   },
   "owner": "",
   "contact": {
-    "name": "decentraland",
+    "name": "SDK",
     "email": ""
   },
   "main": "bin/index.js",
   "tags": [],
   "scene": {
     "parcels": [
-      "70,-70"
+      "72,-1"
     ],
-    "base": "70,-70"
+    "base": "72,-1"
   },
   "spawnPoints": [
     {
@@ -45,6 +45,5 @@
       }
     }
   ],
-  "featureToggles": {},
-  "name": "media-streaming"
+  "name": "ui-animations"
 }

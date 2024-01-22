@@ -16,6 +16,9 @@
       "path": "ui-spritesheet"
     },
     {
+      "path": "ui-animations"
+    },
+    {
       "path": "translocator"
     },
     {
