@@ -1,9 +1,6 @@
 import { ReactEcsRenderer } from "@dcl/sdk/react-ecs";
 import { createSpriteAnimationUI } from "./examples/AnimatedSprite";
 import { engine } from "@dcl/sdk/ecs";
-import { SpriteAnimSystem } from "./ui_components/spriteComponent";
-import { ColorChangeSystem } from "./ui_components/colorChangeComponent";
-import { RotatorSystem } from "./ui_components/UISpinner";
 import { createCardFlipUI } from "./examples/CardFlip";
 import { createSingleSpriteUI } from "./examples/StaticSprite";
 import { createSpinnerAnimationUI } from "./examples/Spinner";
@@ -17,10 +14,9 @@ import { exampleLabelsUI } from "./examples/exampleLabeling";
 
 export function setupUi() {
     ReactEcsRenderer.setUiRenderer(uiComponent)
-    engine.addSystem(SpriteAnimSystem)
+
+    // add these  systems only for testing the functionality of the examples 
     engine.addSystem(ProgressBarTestSystem)
-    engine.addSystem(ColorChangeSystem),
-        engine.addSystem(RotatorSystem)
     engine.addSystem(CounterTestSystem)
 }
 
@@ -31,6 +27,7 @@ const uiComponent = () => [
     //show labels for each example
     exampleLabelsUI(),
 
+    // add the UI of each example file to the UI rendering engine
     createProgressBarUI(),
     createSingleSpriteUI(),
     createSpriteAnimationUI(),

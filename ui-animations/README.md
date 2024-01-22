@@ -22,6 +22,45 @@ npm run start
 
 Below are some examples of SDK7 UI's animation capabilities . For more details, see the [Documentation site](https://docs.decentraland.org/creator/).
 
+# How to test these examples
+
+1) You should check out (download) the example scene for GitHub here:
+
+https://github.com/decentraland/sdk7-goerli-plaza
+
+2) Open the sdk7-goerli-plaza folder in VS Code
+
+3) Open a terminal Window in VS Code and navigate to the /ui-animations folder
+
+```jsx
+cd ui-animations
+```
+
+4) In the ui-animations folder install the required packages for this example:
+
+```jsx
+npm install
+```
+
+5) After the package installation has finished you can run `npm run start` to see all the examples running in a single scene
+
+
+# How to use/copy the examples
+
+In order to use the any of the examples in your own project you will need to do the following:
+
+1) Make sure that in your project you have installed the sdk-utils library:
+
+```jsx
+npm i --save @dcl-sdk/utils
+```
+
+2) Copy the entire `/ui_components` from the ui-animations repo to your projects `src` folder
+
+3) Check any of the sections below to see what to import into your project’s UI code file in order to use each animated UI element.
+
+4) Also make sure that you have the textures in your project’s `images` folder (these can be either your own custom textures, or the ones copied from the ui-animations repo)
+
 
 
 ###  Sprite from Atlas

@@ -87,3 +87,4 @@ export function UISpinner(props: SpinnerAnimProps) {
 }
 
 
+engine.addSystem(RotatorSystem)

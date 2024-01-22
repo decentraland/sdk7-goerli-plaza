@@ -1,6 +1,6 @@
 import { Animator, Entity, Transform, engine } from '@dcl/sdk/ecs'
 import ReactEcs, { EntityPropTypes, PositionUnit, UiEntity } from '@dcl/sdk/react-ecs'
-import { SpriteAnim } from './spriteComponent'
+import { SpriteAnim, SpriteAnimSystem } from './spriteComponent'
 
 export type SpriteAnimProps = Omit<EntityPropTypes, 'uiBackground'> & {
   children?: ReactEcs.JSX.Component[]
@@ -61,3 +61,4 @@ export class SpriteAnimation {
   }
 }
 
+engine.addSystem(SpriteAnimSystem)

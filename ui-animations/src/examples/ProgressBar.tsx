@@ -18,7 +18,7 @@ export function createProgressBarUI() {
                 minHeight: 32,
                 maxHeight: 128,
                 positionType: 'absolute',
-                position: { left: '82%', bottom: '18%' }
+                position: { left: '82%', bottom: '22%' }
             }}
         />
     )

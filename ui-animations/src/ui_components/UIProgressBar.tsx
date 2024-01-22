@@ -28,7 +28,7 @@ export class ProgressBar {
   }
 
   setProgressValues(value: number) {
-    this.loadingProgress = (0.2 + value * 0.8) * 100
+    this.loadingProgress = (0.1 + value * 0.9) * 100
     this.barColor = Color4.lerp(this.startColor, this.endColor, value)
   }
 
