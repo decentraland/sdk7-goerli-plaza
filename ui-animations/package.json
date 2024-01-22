@@ -1,18 +1,18 @@
 {
   "name": "ui-animations",
-  "version": "1.0.0",
   "description": "SDK7 Animated UI elements",
-  "scripts": {
-    "start": "sdk-commands start",
-    "deploy": "sdk-commands deploy",
-    "build": "sdk-commands build",
-    "upgrade-sdk": "npm install --save-dev @dcl/sdk@latest",
-    "upgrade-sdk:next": "npm install --save-dev @dcl/sdk@next",
-    "link-sdk": "cd node_modules/@dcl/sdk && npm link && cd ../js-runtime"
-  },
+  "version": "1.0.0",
   "devDependencies": {
     "@dcl/asset-packs": "latest",
     "@dcl/js-runtime": "latest",
     "@dcl/sdk": "latest"
+  },
+  "scripts": {
+    "build": "sdk-commands build",
+    "deploy": "sdk-commands deploy",
+    "link-sdk": "cd node_modules/@dcl/sdk && npm link && cd ../js-runtime",
+    "start": "sdk-commands start",
+    "upgrade-sdk": "npm install --save-dev @dcl/sdk@latest",
+    "upgrade-sdk:next": "npm install --save-dev @dcl/sdk@next"
   }
 }

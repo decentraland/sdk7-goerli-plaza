@@ -1,4 +1,4 @@
-import {  setupUi } from './uiMain'
+import { setupUi } from './uiMain'
 
 export function main() {
   // draw UI

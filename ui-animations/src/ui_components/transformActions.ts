@@ -1,7 +1,7 @@
-import { Entity, Transform } from "@dcl/sdk/ecs"
-import { Vector3 } from "@dcl/sdk/math"
+import { Entity, Transform } from '@dcl/sdk/ecs'
+import { Vector3 } from '@dcl/sdk/math'
 import * as utils from '@dcl-sdk/utils'
-import { Callback } from "@dcl/sdk/react-ecs"
+import { Callback } from '@dcl/sdk/react-ecs'
 
 // Use IAction to define action for scaling
 export class MoveScaleAction implements utils.actions.IAction {
@@ -12,7 +12,15 @@ export class MoveScaleAction implements utils.actions.IAction {
   duration: number = 1
   interpolationType: utils.InterpolationType = utils.InterpolationType.EASEINQUAD
 
-  constructor(entity: Entity, nextPosX: number, nextPosY: number, nextScaleX: number, nextScaleY: number, duration: number, interpolationType?: utils.InterpolationType) {
+  constructor(
+    entity: Entity,
+    nextPosX: number,
+    nextPosY: number,
+    nextScaleX: number,
+    nextScaleY: number,
+    duration: number,
+    interpolationType?: utils.InterpolationType
+  ) {
     this.entity = entity
     this.scale = Vector3.create(nextScaleX, nextScaleY, 0)
     this.position = Vector3.create(nextPosX, nextPosY, 0)
@@ -28,16 +36,9 @@ export class MoveScaleAction implements utils.actions.IAction {
     const transform = Transform.get(this.entity)
     this.hasFinished = false
 
-    utils.tweens.startScaling(
-      this.entity,
-      transform.scale,
-      this.scale,
-      this.duration,
-      this.interpolationType,
-      () => {
-        this.hasFinished = true
-      }
-    )
+    utils.tweens.startScaling(this.entity, transform.scale, this.scale, this.duration, this.interpolationType, () => {
+      this.hasFinished = true
+    })
 
     utils.tweens.startTranslation(
       this.entity,
@@ -51,9 +52,9 @@ export class MoveScaleAction implements utils.actions.IAction {
     )
   }
   // Method to run on every frame
-  update(dt: number): void { }
+  update(dt: number): void {}
   // Method to run at the end
-  onFinish(): void { }
+  onFinish(): void {}
 }
 
 // Use IAction to define action for scaling
@@ -71,9 +72,7 @@ export class CallbackAction implements utils.actions.IAction {
     this.hasFinished = true
   }
   // Method to run on every frame
-  update(dt: number): void { }
+  update(dt: number): void {}
   // Method to run at the end
-  onFinish(): void { }
+  onFinish(): void {}
 }
-
-
