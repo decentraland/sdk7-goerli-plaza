@@ -5,6 +5,7 @@ import { Ring } from './ring'
 import { Console } from './console'
 import { RandomFountain } from './randomizer'
 import * as utils from '@dcl-sdk/utils'
+import { setupUi } from './ui'
 
 export function main() {
   // Create a message bus to sync animations between players
@@ -165,4 +166,7 @@ export function main() {
   engine.addSystem((dt) => {
     fountainPlayer.update(dt)
   })
+
+  // UI with GitHub link
+  setupUi()
 }

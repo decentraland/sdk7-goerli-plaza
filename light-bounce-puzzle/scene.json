@@ -26,9 +26,6 @@
     "voiceEnabled": true,
     "blacklist": []
   },
-  "requiredPermissions": [
-    "ALLOW_TO_MOVE_PLAYER_INSIDE_SCENE"
-  ],
   "main": "bin/index.js",
   "tags": [],
   "spawnPoints": [

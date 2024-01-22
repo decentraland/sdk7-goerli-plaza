@@ -16,6 +16,7 @@ import { Translocator } from './translocator'
 import { movePlayerTo } from '~system/RestrictedActions'
 import { Sound } from './sound'
 import { onlyInSceneSystem } from './onlyRenderInScene'
+import { setupUi } from './ui'
 
 export function main() {
   // Create base scene
@@ -34,6 +35,7 @@ export function main() {
   const Z_OFFSET = 1
 
   const translatorParent = engine.addEntity()
+  Transform.create(translatorParent)
   AvatarAttach.create(translatorParent, {
     anchorPointId: AvatarAnchorPointType.AAPT_POSITION
   })
@@ -171,7 +173,7 @@ export function main() {
   engine.addSystem(() => {
     // Shoot / recall translocator disc
     const pointerDown = inputSystem.getInputCommand(InputAction.IA_POINTER, PointerEventType.PET_DOWN)
-    if (pointerDown) {
+    if (pointerDown && translocator) {
       if (!translocator.isFired) {
         engine.addSystem(shootDiscSystem)
         AudioSource.getMutable(shootSound.entity).playing = true
@@ -227,4 +229,7 @@ export function main() {
 
   // don't show the translocator outside the scene
   engine.addSystem(onlyInSceneSystem)
+
+  // UI with GitHub link
+  setupUi()
 }

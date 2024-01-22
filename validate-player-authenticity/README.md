@@ -34,7 +34,7 @@ When you use the `signedFetch()` function in a scene, you're sending additional 
 
 2. Install the [Decentraland Editor](https://docs.decentraland.org/creator/development-guide/sdk7/editor/)
 
-3. Open a Visual Studio Code window on `scene` directory. Not on the root folder of the whole repo, but instead on this sub-folder that belongs to the scene.
+3. Open a Visual Studio Code window on the scene's directory. Not on the root folder of the whole repo.
 
 4. Open the Decentraland Editor tab, and press **Run Scene**
 

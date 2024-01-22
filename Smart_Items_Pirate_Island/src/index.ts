@@ -4,11 +4,14 @@ import {
   AudioSource,
   AvatarAttach,
   GltfContainer,
+  Material,
   Transform,
+  VideoPlayer,
   VisibilityComponent,
   engine,
   pointerEventsSystem
 } from '@dcl/sdk/ecs'
+import { setupUi } from './ui'
 
 // You can remove this if you don't use any asset packs
 initAssetPacks(engine, pointerEventsSystem, {
@@ -17,7 +20,12 @@ initAssetPacks(engine, pointerEventsSystem, {
   AvatarAttach,
   Transform,
   VisibilityComponent,
-  GltfContainer
+  GltfContainer,
+  Material,
+  VideoPlayer
 })
 
-export function main() {}
+export function main() {
+  // UI with GitHub link
+  setupUi()
+}

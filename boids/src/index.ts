@@ -5,6 +5,7 @@ import { engine, GltfContainer, Transform } from '@dcl/sdk/ecs'
 import { Vector3, Quaternion } from '@dcl/sdk/math'
 import { createShark } from './shark'
 import { PatrolPath } from './systems/move'
+import { setupUi } from './ui/ui'
 
 export function main() {
   const seaBed = engine.addEntity()
@@ -40,4 +41,7 @@ export function main() {
   createShark()
 
   engine.addSystem(PatrolPath)
+
+  // UI with GitHub link
+  setupUi()
 }

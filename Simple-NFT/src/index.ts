@@ -1,44 +1,46 @@
 import {
-  engine,
-  GltfContainer,
   InputAction,
-  inputSystem,
-  Material,
   MeshCollider,
   MeshRenderer,
   NftFrameType,
   NftShape,
-  pointerEventsSystem,
-  Transform
+  Transform,
+  engine,
+  pointerEventsSystem
 } from '@dcl/sdk/ecs'
-import { Color4, Quaternion, Vector3 } from '@dcl/sdk/math'
+import { Color4, Vector3 } from '@dcl/sdk/math'
+import { MakeNFTFrame, createFullNFT, displayNFTUI } from './Resources/nftUI'
+import { setupUi } from './ui'
 
 export function main() {
-  const painting = engine.addEntity()
-  Transform.create(painting, {
-    position: Vector3.create(4, 1.5, 4)
-  })
+  setupUi()
 
-  NftShape.create(painting, {
+  // Shortcut to make an NFT picture frame
+  MakeNFTFrame('0x07ccfd0fbada4ac3c22ecd38037ca5e5c0ad8cfa', '48', 8, 1, 8, 1, 1, 1, 0, 0, 0)
+
+  // Shortcut to make an NFT picture frame that is also clickable and includes a UI
+  createFullNFT('0xc1f4b0eea2bd6690930e6c66efd3e197d620b9c2', '4068', 10, 1, 10, 1, 1, 1, 0, 0, 0)
+
+  // Manually create an NFT picture frame that is also clickable and includes a UI
+  const manualNFT = engine.addEntity()
+  Transform.create(manualNFT, {
+    position: Vector3.create(5, 1, 5)
+  })
+  NftShape.create(manualNFT, {
     urn: 'urn:decentraland:ethereum:erc721:0x06012c8cf97bead5deae237070f9587f8e7a266d:229795',
     color: Color4.Red(),
     style: NftFrameType.NFT_GOLD_CARVED
   })
-
-  const floor = engine.addEntity()
-  Transform.create(floor, {
-    position: Vector3.create(8, 0, 8),
-    scale: Vector3.create(1.6, 0.1, 1.6)
-  })
-  GltfContainer.create(floor, {
-    src: 'assets/models/FloorBaseGrass.glb'
-  })
-
-  const wall = engine.addEntity()
-  Transform.create(wall, {
-    position: Vector3.create(4.5, 1, 4.1),
-    scale: Vector3.create(4, 3, 0.05)
-  })
-  MeshCollider.setBox(wall)
-  MeshRenderer.setBox(wall)
+  pointerEventsSystem.onPointerDown(
+    {
+      entity: manualNFT,
+      opts: {
+        button: InputAction.IA_POINTER,
+        hoverText: 'Click Here'
+      }
+    },
+    function () {
+      displayNFTUI('0x06012c8cf97bead5deae237070f9587f8e7a266d', '229795')
+    }
+  )
 }

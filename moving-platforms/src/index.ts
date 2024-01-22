@@ -2,6 +2,7 @@ import { EasingFunction, engine, Entity, GltfContainer, Transform, Tween, TweenL
 import { Vector3 } from '@dcl/sdk/math'
 import { createCoin } from './modules/coin'
 import * as utils from '@dcl-sdk/utils'
+import { setupUi } from './ui'
 
 export function main() {
   // Instantiate base models
@@ -64,13 +65,8 @@ export function main() {
     position: Vector3.create(14, 4, 12)
   })
 
-  const triggerMarker = engine.addEntity()
-  Transform.create(triggerMarker, {
-    position: Vector3.create(14, 4, 12)
-  })
-
   utils.triggers.addTrigger(
-    triggerMarker,
+    platform3,
     utils.LAYER_1,
     utils.LAYER_1,
     [{ type: 'box', scale: Vector3.create(1, 2, 1) }],
@@ -154,4 +150,7 @@ export function main() {
 
   // Instantiate pickable coin
   createCoin('models/starCoin.glb', Vector3.create(9, 12.75, 8), Vector3.create(1.5, 3, 1.5), Vector3.create(0, 1, 0))
+
+  // UI with GitHub link
+  setupUi()
 }

@@ -10,12 +10,30 @@ import {
   MeshCollider,
   MeshRenderer,
   AudioSource,
-  ColliderLayer
+  ColliderLayer,
+  AvatarAttach
 } from '@dcl/sdk/ecs'
 import { Vector3, Quaternion } from '@dcl/sdk/math'
 import { BeerGlass, BeerType, getTapData, TapBase, TapComponent } from '../definitions'
+import { parentEntity, syncEntity } from '@dcl/sdk/network'
 
-export function createBeerGlass(model: string, position: Vector3) {
+export enum SyncEntityIDs {
+  RED = 1,
+  GREEN = 2,
+  YELLOW = 3,
+  GLASS1 = 4,
+  GLASS2 = 5,
+  GLASS3 = 6,
+  GLASS4 = 7,
+  GLASS5 = 8,
+  GLASS6 = 9,
+  GLASS7 = 10,
+  GLASS8 = 11,
+  GLASS9 = 12,
+  TABLES = 13
+}
+
+export function createBeerGlass(model: string, position: Vector3, id: SyncEntityIDs) {
   const glassEntity = engine.addEntity()
 
   GltfContainer.create(glassEntity, {
@@ -60,9 +78,15 @@ export function createBeerGlass(model: string, position: Vector3) {
       }
     ]
   })
+
+  syncEntity(
+    glassEntity,
+    [Animator.componentId, AudioSource.componentId, Transform.componentId, BeerGlass.componentId],
+    id
+  )
 }
 
-export function createTap(tapBeerType: BeerType, dispenseEntity: Entity) {
+export function createTap(tapBeerType: BeerType, dispenseEntity: Entity, id: SyncEntityIDs) {
   const tapEntity = engine.addEntity()
   const tapData = getTapData(tapBeerType)
 
@@ -102,22 +126,29 @@ export function createTap(tapBeerType: BeerType, dispenseEntity: Entity) {
     ]
   })
 
+  syncEntity(tapEntity, [Animator.componentId, AudioSource.componentId], id)
+
   const tapColliderPosition = Vector3.add(tapData.position, Vector3.create(0, 0.05, 0))
   const colliderParentEntity = engine.addEntity()
   Transform.create(colliderParentEntity, {
-    parent: tapEntity,
+    //parent: tapEntity,
     position: tapColliderPosition
   })
   TapBase.create(colliderParentEntity, {
     beerType: tapBeerType
   })
+  syncEntity(colliderParentEntity, [], id + 100)
+  parentEntity(colliderParentEntity, tapEntity)
 
   const colliderEntity = engine.addEntity()
   Transform.create(colliderEntity, {
-    parent: colliderParentEntity,
+    //parent: colliderParentEntity,
     scale: Vector3.scale(Vector3.One(), 0.33),
     rotation: Quaternion.fromEulerDegrees(90, 0, 0)
   })
+
+  syncEntity(colliderEntity, [], id + 200)
+  parentEntity(colliderEntity, colliderParentEntity)
 
   MeshCollider.setPlane(colliderEntity)
   // Debug to see the collider
@@ -135,16 +166,11 @@ export function createTap(tapBeerType: BeerType, dispenseEntity: Entity) {
   })
 }
 
-export function playSound(audio: string, loop: boolean = false, position?: Vector3) {
-  const entity = engine.addEntity()
-  AudioSource.create(entity, {
+export function playSound(audio: string, loop: boolean = false, entity: Entity) {
+  AudioSource.createOrReplace(entity, {
     audioClipUrl: audio,
     loop,
     playing: true
-  })
-
-  Transform.create(entity, {
-    position
   })
 
   return entity

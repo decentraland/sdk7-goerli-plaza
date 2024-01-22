@@ -12,6 +12,7 @@ import { Quaternion, Vector3 } from '@dcl/sdk/math'
 import { Ball } from './ball'
 import { loadColliders } from './wallCollidersSetup'
 import * as CANNON from 'cannon/build/cannon'
+import { setupUi } from './ui'
 
 export function main() {
   // Create base scene
@@ -154,4 +155,7 @@ export function main() {
       }
     }
   })
+
+  // UI with GitHub link
+  setupUi()
 }

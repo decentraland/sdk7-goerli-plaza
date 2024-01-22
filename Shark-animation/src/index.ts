@@ -8,6 +8,7 @@ import {
   Transform
 } from '@dcl/sdk/ecs'
 import { Vector3 } from '@dcl/sdk/math'
+import { setupUi } from './ui'
 
 export function main() {
   const seaBed = engine.addEntity()
@@ -63,4 +64,7 @@ export function main() {
       mutableAnimator.states[1].playing = true
     }
   )
+
+  // UI with GitHub link
+  setupUi()
 }

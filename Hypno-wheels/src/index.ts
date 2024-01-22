@@ -12,6 +12,7 @@ import { Quaternion, Vector3 } from '@dcl/sdk/math'
 
 import { WheelSpin } from './definitions'
 import rotatorSystem from './modules/rotator'
+import { setupUi } from './ui'
 
 export function main() {
   // Environment
@@ -63,4 +64,7 @@ function createWheel(position: Vector3, speed: number, direction: Vector3) {
       spin.speed += speed
     }
   )
+
+  // UI with GitHub link
+  setupUi()
 }

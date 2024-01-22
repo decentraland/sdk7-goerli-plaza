@@ -7,7 +7,13 @@
       "path": "video-streaming"
     },
     {
+      "path": "validate-player-authenticity"
+    },
+    {
       "path": "uv-map"
+    },
+    {
+      "path": "ui-spritesheet"
     },
     {
       "path": "translocator"
@@ -34,6 +40,9 @@
       "path": "rocket-board"
     },
     {
+      "path": "reward-claim"
+    },
+    {
       "path": "push-box-puzzle"
     },
     {
@@ -52,6 +61,9 @@
       "path": "mirror-puzzle"
     },
     {
+      "path": "media-streaming"
+    },
+    {
       "path": "light-bounce-puzzle"
     },
     {
@@ -59,6 +71,9 @@
     },
     {
       "path": "lazy-loading"
+    },
+    {
+      "path": "land-flipper"
     },
     {
       "path": "item-pickup"
@@ -212,6 +227,9 @@
     },
     {
       "path": "Events-API-Board"
+    },
+    {
+      "path": "Editor-actions"
     },
     {
       "path": "Dance-floor"

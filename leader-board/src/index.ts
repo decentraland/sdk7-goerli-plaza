@@ -4,6 +4,7 @@ import { buildScene } from './environment'
 import { LeaderBoard } from './leaderboard'
 import * as utils from '@dcl-sdk/utils'
 import { fetchScores, publishScore } from './serverHandler'
+import { setupUi } from './ui'
 
 export function main() {
   buildScene()
@@ -31,4 +32,7 @@ export function main() {
       publishScore(count, leaderboard)
     }
   )
+
+  // UI with GitHub link
+  setupUi()
 }

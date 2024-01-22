@@ -4,8 +4,9 @@ import { onSceneReadyObservable } from '@dcl/sdk/observables'
 import CANNON from 'cannon'
 import { createRing } from './ring'
 import { playrocketBoosterSound, stoprocketBoosterSound } from './sound'
+import { setupUi } from './ui'
 
-onSceneReadyObservable.add(() => {
+export function main() {
   // Create base
   const base = engine.addEntity()
   // Create base shape
@@ -158,4 +159,7 @@ onSceneReadyObservable.add(() => {
       Transform.getMutable(rocketFlames).scale = Vector3.Zero()
     }
   }
-})
+
+  // UI with GitHub link
+  setupUi()
+}

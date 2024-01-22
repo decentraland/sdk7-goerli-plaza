@@ -9,7 +9,9 @@ import {
   GltfContainer,
   InputAction,
   pointerEventsSystem,
-  ColliderLayer
+  ColliderLayer,
+  Tween,
+  EasingFunction
 } from '@dcl/sdk/ecs'
 import { Vector3, Quaternion, Color4 } from '@dcl/sdk/math'
 import { Song, SongButton } from '../definitions'
@@ -27,7 +29,14 @@ function play(entity: Entity) {
 
   let initialPosition = 0
 
-  utils.tweens.startTranslation(entity, buttonPositionReleased, buttonPositionClicked, 0.3)
+  Tween.createOrReplace(entity, {
+    mode: Tween.Mode.Move({
+      start: buttonPositionReleased,
+      end: buttonPositionClicked
+    }),
+    duration: 300,
+    easingFunction: EasingFunction.EF_LINEAR
+  })
 }
 
 function stop(entity: Entity) {
@@ -37,9 +46,14 @@ function stop(entity: Entity) {
 
   AudioSource.getMutable(entity).playing = false
 
-  let initialPosition = 0
-
-  utils.tweens.startTranslation(entity, buttonPositionClicked, buttonPositionReleased, 0.3)
+  Tween.createOrReplace(entity, {
+    mode: Tween.Mode.Move({
+      start: buttonPositionClicked,
+      end: buttonPositionReleased
+    }),
+    duration: 300,
+    easingFunction: EasingFunction.EF_LINEAR
+  })
 }
 
 export function createSongButton(parent: Entity, x: number, y: number, song: Song) {

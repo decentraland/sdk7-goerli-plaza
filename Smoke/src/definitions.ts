@@ -11,21 +11,6 @@ export const SmokeSource = engine.defineComponent('SmokeSource', {
   nextSmoke: Schemas.Number
 })
 
-export const smokeMaterial: PBMaterial_PbrMaterial = {
-  texture: Material.Texture.Common({
-    src: 'textures/smoke-puff2.png'
-  }),
-  // TODO: this is not working as ecs6 is
-  // alphaTexture: {
-  //   tex: {
-  //     $case: 'texture',
-  //     texture: {
-  //       src: 'textures/smoke-puff2.png'
-  //     }
-  //   }
-  // },
-  metallic: 0,
-  roughness: 1
-  // TODO: set the alpha mode uncomment next line
-  // transparencyMode: MaterialTransparencyMode.MTM_ALPHA_BLEND
-}
+export const smokeTexture = Material.Texture.Common({
+  src: 'assets/textures/smoke-puff.png'
+})

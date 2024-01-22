@@ -1,7 +1,7 @@
 /**   ADVANCED SHOOTING TARGET DEMO
-    this file outlines the standard use of the shooting target module & all included
-    components. the target shooting module allows you to create targets around your scene
-   	(both static and rotating) based on given styles that can be shot by the player. players 
+		this file outlines the standard use of the shooting target module & all included
+		components. the target shooting module allows you to create targets around your scene
+			(both static and rotating) based on given styles that can be shot by the player. players 
 	can only shoot targets when they are within the bounds of the firing range area. you can 
 	find a detailed description of each component within its file.
  */
@@ -9,6 +9,7 @@
 import { PlayerShootingArea } from './shooting-range-advanced/player-shooting-area'
 import { TargetObject } from './shooting-range-advanced/target-object'
 import { PLATFORM_STYLE_TYPE } from './shooting-range-advanced/target-data'
+import { setupUi } from './ui'
 
 export function main() {
   //NOTE: all that is required for you to set up shooting targets in your scene is:
@@ -68,4 +69,7 @@ export function main() {
     pos: { x: 20.5, y: 0, z: 17 },
     rot: { x: 0, y: 0, z: 0 }
   })
+
+  // UI with GitHub link
+  setupUi()
 }

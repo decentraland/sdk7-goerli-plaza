@@ -9,8 +9,7 @@
   },
   "devDependencies": {
     "@dcl/js-runtime": "latest",
-    "@dcl/sdk": "latest",
-    "@types/node": "latest"
+    "@dcl/sdk": "latest"
   },
   "scripts": {
     "build": "sdk-commands build",

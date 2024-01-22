@@ -1,8 +1,9 @@
 {
   "name": "smoke",
-  "description": "ECS7 ",
+  "description": "Use transparent planes to create smoke effects.",
   "version": "1.0.0",
   "dependencies": {
+    "@dcl/js-runtime": "latest",
     "@dcl/sdk": "latest"
   },
   "devDependencies": {},

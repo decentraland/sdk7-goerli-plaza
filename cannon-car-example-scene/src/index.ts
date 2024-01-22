@@ -13,6 +13,7 @@ import {
 } from '@dcl/sdk/ecs'
 import { Color4, Vector3 } from '@dcl/sdk/math'
 import * as CANNON from 'cannon/build/cannon'
+import { setupUi } from './ui'
 
 export function main() {
   /// >>>>>>>>>> TODO: Reorient the car and wheels <<<<<<<<<<
@@ -353,4 +354,7 @@ export function main() {
   }
 
   engine.addSystem(ButtonChecker)
+
+  // UI with GitHub link
+  setupUi()
 }

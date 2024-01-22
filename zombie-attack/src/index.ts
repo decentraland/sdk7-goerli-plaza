@@ -1,6 +1,7 @@
 import { engine, GltfContainer, Transform } from '@dcl/sdk/ecs'
 import { Vector3 } from '@dcl/sdk/math'
 import { createZombie } from './modules/zombie'
+import { setupUi } from './ui'
 
 export function main() {
   // Instantiate base model
@@ -13,4 +14,9 @@ export function main() {
   })
 
   createZombie(Vector3.create(1 + Math.random() * 30, 0.933, 1 + Math.random() * 30))
+
+  createZombie(Vector3.create(1 + Math.random() * 30, 0.933, 1 + Math.random() * 30))
+
+  // UI with GitHub link
+  setupUi()
 }
