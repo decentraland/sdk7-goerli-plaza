@@ -5,11 +5,11 @@ import { Color4 } from "@dcl/sdk/math"
 let popupAnimator = new UIPopupAnimation(
   {
     startPosX: 70,
-    startPosY: 10,
+    startPosY: 83,
     startScaleX: 10,
     startScaleY: 7,
     endPosX: 66,
-    endPosY: 10,
+    endPosY: 40,
     endScaleX: 18,
     endScaleY: 50,
   }, () => {

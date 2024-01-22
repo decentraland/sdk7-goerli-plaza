@@ -1,7 +1,7 @@
 import ReactEcs, { UiEntity } from "@dcl/sdk/react-ecs"
 import { AnimatedButton, UIButton } from "../ui_components/UIButton"
 import { Color4 } from "@dcl/sdk/math"
-import { coinEmitter } from "./ParticleSystem"
+import { coinEmitter } from "./UIParticle_example"
 
 
 

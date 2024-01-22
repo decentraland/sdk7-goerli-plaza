@@ -1,5 +1,5 @@
 import ReactEcs, { UiEntity } from "@dcl/sdk/react-ecs"
-import { UIPopup, UIPopupAnimation } from "../ui_components/UIPopup"
+import { UIPopup, UIPopupAnimation } from "./ui_components/UIPopup"
 import { Color4 } from "@dcl/sdk/math"
 
 

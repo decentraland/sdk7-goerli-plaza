@@ -1,6 +1,6 @@
 import { Entity, Schemas, engine } from '@dcl/sdk/ecs'
 import ReactEcs, { EntityPropTypes, UiEntity } from '@dcl/sdk/react-ecs'
-import { rotateUVs } from '../utilities'
+import { rotateUVs } from './utilities'
 
 export const SpinnerComponent = engine.defineComponent('spinner-id', {
   angle: Schemas.Number,

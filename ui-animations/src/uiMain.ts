@@ -1,15 +1,15 @@
 import { ReactEcsRenderer } from "@dcl/sdk/react-ecs";
-import { createSpriteAnimationUI } from "./examples/AnimatedSprite";
+import { createSpriteAnimationUI } from "./examples/UIAnimatedSprite_example";
 import { engine } from "@dcl/sdk/ecs";
-import { createCardFlipUI } from "./examples/CardFlip";
-import { createSingleSpriteUI } from "./examples/StaticSprite";
-import { createSpinnerAnimationUI } from "./examples/Spinner";
-import { CounterTestSystem, createCustomCounterUI } from "./examples/CustomCounter";
-import { createButtonUI } from "./examples/AnimatedButton";
-import { createEasingPopupUI } from "./examples/AnimatedPopup";
-import { createParticleTestButton, createParticleUI } from "./examples/ParticleSystem";
-import { ProgressBarTestSystem, createProgressBarUI } from "./examples/ProgressBar";
-import { exampleLabelsUI } from "./examples/exampleLabeling";
+import { createCardFlipUI } from "./examples/UICardFlip_example";
+import { createSingleSpriteUI } from "./examples/UISprite_example";
+import { createSpinnerAnimationUI } from "./examples/UISpinner_example";
+import { CounterTestSystem, createCustomCounterUI } from "./examples/UICounter_example";
+import { createButtonUI } from "./examples/UIButton_example";
+import { createEasingPopupUI } from "./examples/UIPopup_example";
+import { createParticleTestButton, createParticleUI } from "./examples/UIParticle_example";
+import { ProgressBarTestSystem, createProgressBarUI } from "./examples/UIProgressBar_example";
+import { exampleLabelsUI } from "./exampleLabeling";
 
 
 export function setupUi() {
