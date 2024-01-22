@@ -132,7 +132,7 @@ export function breakLines(text: string, linelength: number) {
     bMatchFound = false
     if (line.length == lineLen) {
       for (var i = line.length; i > -1; i--) {
-        if (line.substring(i, i + 1) == ' ') {
+        if (line[i] == ' ' || line[i] == '-' || line[i] == '_') {
           counter += line.substring(0, i).length
           line = line.substring(0, i) + lineBreak
           returnText += line
