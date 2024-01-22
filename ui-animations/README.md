@@ -94,7 +94,8 @@ import ReactEcs from "@dcl/sdk/react-ecs"
 
 
 ###  Sprite Animation
-To add a sprite-sheet animation from a texture to your UI:
+To add a sprite-sheet animation from a texture to your UI first you need to create/download a spritesheet that has a single animation loop and is distributed into even sized cells, like the example here:
+![](screenshots/animatedSprite.png)
 1. Add the required imports to your file:
 ```ts
 import {UIAnimatedSprite, SpriteAnimation } from "../ui_components/SpriteAnimation"
