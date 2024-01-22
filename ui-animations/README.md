@@ -66,7 +66,7 @@ npm i --save @dcl-sdk/utils
 ###  Sprite from Atlas
 
 Add a single sprite from a larger texture atlas to your UI
-
+![](screenshots/spriteUV.png)
 1. Add the required imports to your file:
 
 ```ts
@@ -110,7 +110,7 @@ import ReactEcs from "@dcl/sdk/react-ecs"
 ```ts
 let mySprite= new SpriteAnimation("images/spriteAnimation/walk_anim_sprite.png", 4, 2, 20)
 ```
-3. In your UI code add a <UIAnimatedSprite> tag and pass along your newly created SpriteAnimation (mySprite in this example):
+3. In your UI code add a `<UIAnimatedSprite>` tag and pass along your newly created SpriteAnimation (mySprite in this example):
 ```tsx
 <UIAnimatedSprite 
   spriteAnimator={mySprite} 
@@ -125,6 +125,9 @@ let mySprite= new SpriteAnimation("images/spriteAnimation/walk_anim_sprite.png",
 
 ### Spinner Animation
 Add a spinner that you can show while something is loading
+
+![](screenshots/spinner.png)
+
 1.  Add the required imports to your file:
 ```ts
 import ReactEcs from "@dcl/sdk/react-ecs"
@@ -134,7 +137,7 @@ import { LoadingSpinner, Spinner } from "../ui_components/LoadingAnimation"
 ```ts
 let spinner = new Spinner('images/loadingAnimation/loader_static.png', 1000)
 ```
-3. In you UI code add a <LoadingSpinner> tag , pass along the spinner object created above and specify the dimensions/placement:
+3. In you UI code add a `<LoadingSpinner>` tag , pass along the spinner object created above and specify the dimensions/placement:
 ```tsx
 <LoadingSpinner 
       spinner={spinner}
@@ -147,7 +150,7 @@ let spinner = new Spinner('images/loadingAnimation/loader_static.png', 1000)
       }}                    
   />
 ```
-4. The spinner object has a .show() and a .hide() method to handle when to display it:
+4. The spinner object has a `.show()` and a `.hide()` method to handle when to display it:
 ```ts
 spinner.show()
 ```
@@ -155,6 +158,9 @@ spinner.show()
 
 ### Custom Counter
 Create a counter with custom fonts for the number digits:
+
+![](screenshots/customCounter.png)
+
 1.   Create you custom sprite atlas with the digits 0-9:
    - Each number digit should be centered in square grid cells
    - Texture sides should be power of 2
@@ -173,7 +179,7 @@ import { UICounter, CustomCounter } from '../ui_components/CustomCounter'
 ```ts
 export let counter = new CustomCounter( 4, 4, 100, 'center', "images/customCounter/number_sheet.png")
 ```
-4.In your UI code add a <UICounter> tag , pass along the CustomCounter object created above
+4.In your UI code add a `<UICounter>` tag , pass along the CustomCounter object created above
 ```tsx
 <UICounter customCounter={counter}  />
 ```
@@ -214,7 +220,7 @@ let buttonSuccess = new AnimatedButton(
     }
   )
 ```
-3. In your UI code add the <UIButton> tag, pass the AnimatedButton object created above and customize the button further if needed:
+3. In your UI code add the `<UIButton>` tag, pass the AnimatedButton object created above and customize the button further if needed:
 ```tsx
 <UIButton 
     button={buttonSuccess}           
@@ -266,7 +272,7 @@ let popupAnimator = new UIPopupAnimation(
       popupAnimator.toggle()
   })
 ```
-3. In your UI code add the <UIPopup > tag, pass the UIPopupAnimation object created above and customize the panel, or add contents inside:
+3. In your UI code add the `<UIPopup >` tag, pass the UIPopupAnimation object created above and customize the panel, or add contents inside:
 ```tsx
 <UIPopup 
   popupAnim={popupAnimator}
@@ -301,7 +307,7 @@ import { UISprite } from "../ui_components/UISprite"
 ```ts
 export let cardFlipAnim = new CardFlipAnimation()
 ```
-4. In your UI code add a <UICardFlip> tag , pass along the spinner object created above and specify the sprites for both side A and side B of the card:
+4. In your UI code add a `<UICardFlip>` tag , pass along the spinner object created above and specify the sprites for both side A and side B of the card:
 ```tsx
 <UICardFlip       
     cardFlipAnimator={cardFlipAnim}
@@ -337,7 +343,7 @@ export let cardFlipAnim = new CardFlipAnimation()
 
 ### Particle System
 Create a particle emitter on the UI and make it spawn and move custom UI elements across the canvas:
-
+![](screenshots/particles.png)
 1. Add the required imports to your file:
 ```ts
 import ReactEcs, { UiEntity } from "@dcl/sdk/react-ecs"
@@ -354,7 +360,7 @@ export let coinEmitter = new ParticleEmitter()
 ```ts
 let coinSprite = new SpriteAnimation("images/moveAcross/coin-sprite.png", 4,2, 20)
 ``` 
-4.  In your UI code  create a UIEntity section that covers the area you’ll want the particles to move inside (in the example we use the whole canvas, 100%). Within that UIEnity call the newly created ParticleEmitter’s `generateParticleUI()` function and add any single UI element as a parameter. The UI element you pass to this function will be repeated on every particle spawned by the emitter.
+4.  In your UI code  create a `<UIEntity>` section that covers the area you’ll want the particles to move inside (in the example we use the whole canvas, 100%). Within that UIEnity call the newly created ParticleEmitter’s `generateParticleUI()` function and add any single UI element as a parameter. The UI element you pass to this function will be repeated on every particle spawned by the emitter.
 ```tsx
 UiEntity
     uiTransform={{
@@ -415,9 +421,56 @@ let buttonSpawn = new AnimatedButton(
 
 ### Progress Bar
 Add a progress bar to your UI with custom frame, custom bar and animated colors
+![](screenshots/progressBar.png)
+1. Add the required imports to your file:
+```ts
+import ReactEcs, { UiEntity } from "@dcl/sdk/react-ecs"
+import { ProgressBar, UIProgressBar } from "../ui_components/UIProgressBar";
+import { Color4 } from "@dcl/sdk/math";
+``` 
 
+2. Create an ProgresBar object and specify:
 
+- The background/frame nine-slice image for your bar
+- The nine-slice image for the colored, scaling part of the bar
+- Color overlay when progress is 0
+- Color overlay when progress is 100%
+```ts
+export let myProgressBar = new ProgressBar(
+    "images/progressBar/bar_bg.png",
+    "images/progressBar/bar_rounded.png",
+    Color4.Green(),
+    Color4.Red()
+)
+``` 
+3. In your UI code add a UIProgressBar tag, pass the ProgressBar object created above and specify its dimensions and position
+```tsx
+<UIProgressBar
+    progressBar={myProgressBar}
+    uiTransform={{
+        width: '16%',
+        height: 48,
+        minHeight: 32,
+        maxHeight: 128,
+        positionType: 'absolute',
+        position: { left: '82%', bottom: '18%' }
+    }}
+/>
+```
+4. You can change the progressbar’s value by calling `myProgressBar.setProgressBar(number)` or increment it by any amount by calling `myProgressBar.incerementProgressBar(number)`
 
+**Value number is always between 0-1, so 0.5 would set the progress bar to 50% completion.**
 
-
+5. (Optionally) Add a test system to move the progressbar:
+```ts
+export function ProgressBarTestSystem(dt: number) {
+    if (myProgressBar.progressValue < 1) {
+        myProgressBar.incrementProgressBar(dt * 0.25)
+    }
+    else {
+        myProgressBar.setProgressBar(0)
+    }
+}
+engine.addSystem(ProgressBarTestSystem)
+``` 
 
