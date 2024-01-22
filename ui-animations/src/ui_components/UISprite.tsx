@@ -1,4 +1,14 @@
+import { Schemas, engine } from "@dcl/sdk/ecs"
 import ReactEcs, { EntityPropTypes, UiEntity } from "@dcl/sdk/react-ecs"
+
+export const SpriteAtlas = engine.defineComponent('sprite-atlas-id', {
+  countU: Schemas.Number,
+  countV: Schemas.Number,
+  stepU: Schemas.Number,
+  stepV: Schemas.Number,
+  currentSpriteU: Schemas.Number,
+  currentSpriteV: Schemas.Number,
+})
 
 
 export type SpriteAtlasProps = Omit<EntityPropTypes, 'uiBackground'> & {

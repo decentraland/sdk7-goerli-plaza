@@ -2,12 +2,12 @@ import { AudioSource, Entity, Schemas, Transform, VisibilityComponent, engine } 
 import { Color4, Vector3 } from '@dcl/sdk/math'
 import ReactEcs, { EntityPropTypes, PositionUnit, UiEntity } from '@dcl/sdk/react-ecs'
 import * as utils from '@dcl-sdk/utils'
-import { SpriteAnim } from './spriteComponent'
+import { SpriteAnim } from './UIAnimatedSprite'
 import { pitchShift, smoothPath } from '../utilities'
 import { SpriteAnimation, UIAnimatedSprite } from './UIAnimatedSprite'
 
 export const Particle = engine.defineComponent('particle-id', {})
-
+// export class Tween {
 export class ParticleEmitter {
   particles: Entity[]
   MAX_POOL_SIZE: number = 32
