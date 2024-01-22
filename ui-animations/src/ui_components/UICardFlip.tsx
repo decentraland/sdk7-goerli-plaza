@@ -14,7 +14,7 @@ export class CardFlipAnimation {
     this.animator.addAnimationSequence(
       "flip",
       new utils.actions.SequenceBuilder()
-        .then(new MoveScaleAction(this.animator.entity, 50, -20, 0, 110, 0.1, utils.InterpolationType.EASEINQUAD))
+        .then(new MoveScaleAction(this.animator.entity, 50, 20, 0, 110, 0.1, utils.InterpolationType.EASEINQUAD))
         .then(new CallbackAction(() => { this.cardVisible = !this.cardVisible }))
         .then(new MoveScaleAction(this.animator.entity, 0, 0, 100, 100, 0.2, utils.InterpolationType.EASEOUTQUAD))
     )
