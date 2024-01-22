@@ -1,5 +1,5 @@
 import { Quaternion, Vector3 } from '@dcl/sdk/math'
-import { engine, GltfContainer, Transform, AudioSource, Entity, VisibilityComponent } from '@dcl/sdk/ecs'
+import { engine, GltfContainer, Transform, AudioSource, Entity, VisibilityComponent, Tween, TweenSequence, EasingFunction, TweenLoop } from '@dcl/sdk/ecs'
 import { PickableItem } from '../components'
 import * as utils from '@dcl-sdk/utils'
 
@@ -32,7 +32,6 @@ export function instantiatePickableItem(
     respawnTimer: -1
   })
 
-  utils.perpetualMotions.startRotation(entity, Quaternion.fromEulerDegrees(0, 1, 0))
 
   utils.triggers.addTrigger(entity, 1, 1, [{ type: 'box', scale: Vector3.create(1.5, 3, 1.5) }], () => {
     const visibilityComp = VisibilityComponent.getMutable(entity)

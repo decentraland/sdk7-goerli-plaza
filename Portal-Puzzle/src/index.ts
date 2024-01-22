@@ -28,7 +28,7 @@ import { setupUi } from './ui'
 export function main() {
   const card = engine.getEntityOrNullByName('card.glb')
   if (card) {
-    utils.perpetualMotions.startRotation(card, Quaternion.fromEulerDegrees(0, 15, 0))
+    utils.perpetualMotions.smoothRotation(card, 5000)
 
     utils.triggers.addTrigger(card, 1, 1, [{ type: 'box' }], () => {
       const cardTransform = Transform.getMutable(card)

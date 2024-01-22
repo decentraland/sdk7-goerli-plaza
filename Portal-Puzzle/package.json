@@ -6,10 +6,10 @@
     "@dcl-sdk/utils"
   ],
   "dependencies": {
-    "@dcl-sdk/utils": "latest"
+    "@dcl-sdk/utils": "^1.2.2"
   },
   "devDependencies": {
-    "@dcl/js-runtime": "latest",
+    "@dcl/js-runtime": "7.3.35",
     "@dcl/sdk": "latest"
   },
   "engines": {
