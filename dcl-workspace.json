@@ -16,6 +16,9 @@
       "path": "ui-spritesheet"
     },
     {
+      "path": "ui-animations"
+    },
+    {
       "path": "translocator"
     },
     {
@@ -59,6 +62,9 @@
     },
     {
       "path": "mirror-puzzle"
+    },
+    {
+      "path": "media-streaming"
     },
     {
       "path": "light-bounce-puzzle"
