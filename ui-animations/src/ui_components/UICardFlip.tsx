@@ -8,15 +8,20 @@ import { UISprite } from './UISprite'
 export class CardFlipAnimation {
   animator: UIAnimator
   cardVisible: boolean = false
+  duration: number = 0.1
 
-  constructor() {
+  constructor(_duration?: number) {
+
+    if (_duration) {
+      this.duration = _duration
+    }
     this.animator = new UIAnimator(0, 0, 100, 100)
     this.animator.addAnimationSequence(
       "flip",
       new utils.actions.SequenceBuilder()
-        .then(new MoveScaleAction(this.animator.entity, 50, 20, 0, 110, 0.1, utils.InterpolationType.EASEINQUAD))
+        .then(new MoveScaleAction(this.animator.entity, 50, 20, 0, 110, this.duration, utils.InterpolationType.EASEINQUAD))
         .then(new CallbackAction(() => { this.cardVisible = !this.cardVisible }))
-        .then(new MoveScaleAction(this.animator.entity, 0, 0, 100, 100, 0.2, utils.InterpolationType.EASEOUTQUAD))
+        .then(new MoveScaleAction(this.animator.entity, 0, 0, 100, 100, this.duration, utils.InterpolationType.EASEOUTQUAD))
     )
   }
 

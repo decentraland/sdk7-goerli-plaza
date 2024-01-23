@@ -1,5 +1,6 @@
 import ReactEcs, { UiEntity } from "@dcl/sdk/react-ecs"
 import { UIPopup, UIPopupAnimation } from "../ui_components/UIPopup"
+import * as utils from '@dcl-sdk/utils'
 import { Color4 } from "@dcl/sdk/math"
 
 let popupAnimator = new UIPopupAnimation(
@@ -12,9 +13,13 @@ let popupAnimator = new UIPopupAnimation(
     endPosY: 40,
     endScaleX: 18,
     endScaleY: 50,
-  }, () => {
+    duration: 0.2
+  },
+  () => {
     popupAnimator.toggle()
-  })
+  },
+  utils.InterpolationType.EASEOUTEBOUNCE
+)
 
 
 export function createEasingPopupUI() {

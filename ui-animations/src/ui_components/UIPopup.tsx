@@ -14,6 +14,7 @@ export type StartEndTransform = {
   endPosY: number
   endScaleX: number
   endScaleY: number
+  duration: number
 }
 
 export class UIPopupAnimation {
@@ -21,27 +22,31 @@ export class UIPopupAnimation {
   transform: StartEndTransform
   isOpen: boolean = false
   isContentVisible: boolean = false
+  interpolationType: utils.InterpolationType = utils.InterpolationType.EASEOUTQUAD
   onClick: Callback
 
-  constructor(startEndTransform: StartEndTransform, onClick: Callback) {
+  constructor(startEndTransform: StartEndTransform, onClick: Callback, interpolationType?: utils.InterpolationType) {
 
     this.transform = startEndTransform
 
 
+    if (interpolationType) {
+      this.interpolationType = interpolationType
+    }
     this.animator = new UIAnimator(this.transform.startPosX, this.transform.startPosY, this.transform.startScaleX, this.transform.startScaleY)
     this.onClick = onClick
 
     this.animator.addAnimationSequence(
       "scale-up",
       new utils.actions.SequenceBuilder()
-        .then(new MoveScaleAction(this.animator.entity, this.transform.endPosX, this.transform.endPosY, this.transform.endScaleX, this.transform.endScaleY, 0.4, utils.InterpolationType.EASEOUTEBOUNCE))
+        .then(new MoveScaleAction(this.animator.entity, this.transform.endPosX, this.transform.endPosY, this.transform.endScaleX, this.transform.endScaleY, this.transform.duration, utils.InterpolationType.EASEOUTEBOUNCE))
     )
 
     this.animator.addAnimationSequence(
       "open",
       new utils.actions.SequenceBuilder()
         //.then(new MoveScaleAction(this.animator.entity, this.transform.endPosX, this.transform.endPosY, this.transform.endScaleX, this.transform.startScaleY,  0.2,  utils.InterpolationType.EASEOUTQUAD))
-        .then(new MoveScaleAction(this.animator.entity, this.transform.endPosX, this.transform.endPosY, this.transform.endScaleX, this.transform.endScaleY, 0.3, utils.InterpolationType.EASEOUTQUAD))
+        .then(new MoveScaleAction(this.animator.entity, this.transform.endPosX, this.transform.endPosY, this.transform.endScaleX, this.transform.endScaleY, this.transform.duration, this.interpolationType))
         .then(new CallbackAction(() => { this.isContentVisible = true }))
     )
 
@@ -50,7 +55,7 @@ export class UIPopupAnimation {
       new utils.actions.SequenceBuilder()
         .then(new CallbackAction(() => { this.isContentVisible = false }))
         //.then(new MoveScaleAction(this.animator.entity, this.transform.endPosX, this.transform.endPosY, this.transform.endScaleX, this.transform.startScaleY,  0.2,  utils.InterpolationType.EASEOUTQUAD))
-        .then(new MoveScaleAction(this.animator.entity, this.transform.startPosX, this.transform.startPosY, this.transform.startScaleX, this.transform.startScaleY, 0.3, utils.InterpolationType.EASEOUTQUAD))
+        .then(new MoveScaleAction(this.animator.entity, this.transform.startPosX, this.transform.startPosY, this.transform.startScaleX, this.transform.startScaleY, 0.3, this.interpolationType))
     )
 
     this.animator.addAnimationSequence(
