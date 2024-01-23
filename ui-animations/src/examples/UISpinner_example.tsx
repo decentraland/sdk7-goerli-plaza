@@ -29,8 +29,8 @@ export function createSpinnerRaysUI() {
             spinner={spinRays}
             uiBackground={{ color: Color4.fromHexString("#ffeebbff") }}
             uiTransform={{
-                width: '40%',
-                height: '40%',
+                width: 512,
+                height: 512,
                 positionType: "absolute",
                 position: { top: '50%', left: '50%' },
                 margin: { left: -512 / 2, top: -512 / 2 }, // makes it centered around the cursor, by offsetting with half its dimensions

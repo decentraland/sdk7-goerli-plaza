@@ -21,7 +21,7 @@ export function setupUi() {
 
 const uiComponent = () => [
   //show labels for each example
-  exampleLabelsUI(),
+  //exampleLabelsUI(),
 
   // add the UI of each example file to the UI rendering engine
   createProgressBarUI(),
@@ -30,7 +30,7 @@ const uiComponent = () => [
   createEasingPopupUI(),
   createParticleUI(),
   createSpinnerAnimationUI(),
-  // createSpinnerRaysUI(),
+  //createSpinnerRaysUI(),
   createCardFlipUI(),
   createCustomCounterUI(),
   createButtonUI(),
