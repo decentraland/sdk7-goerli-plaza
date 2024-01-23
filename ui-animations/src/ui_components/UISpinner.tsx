@@ -70,6 +70,7 @@ export function UISpinner(props: SpinnerAnimProps) {
       }}
       uiBackground={{
         textureMode: 'stretch',
+        color: props.uiBackground?.color,
         uvs: rotateUVs(props.spinner.getAngle()),
         texture: {
           src: props.spinner.texture,

@@ -3,7 +3,7 @@ import { createSpriteAnimationUI } from './examples/UIAnimatedSprite_example'
 import { engine } from '@dcl/sdk/ecs'
 import { createCardFlipUI } from './examples/UICardFlip_example'
 import { createSingleSpriteUI } from './examples/UISprite_example'
-import { createSpinnerAnimationUI } from './examples/UISpinner_example'
+import { createSpinnerAnimationUI, createSpinnerRaysUI } from './examples/UISpinner_example'
 import { CounterTestSystem, createCustomCounterUI } from './examples/UICounter_example'
 import { createButtonUI } from './examples/UIButton_example'
 import { createEasingPopupUI } from './examples/UIPopup_example'
@@ -30,6 +30,7 @@ const uiComponent = () => [
   createEasingPopupUI(),
   createParticleUI(),
   createSpinnerAnimationUI(),
+  // createSpinnerRaysUI(),
   createCardFlipUI(),
   createCustomCounterUI(),
   createButtonUI(),
