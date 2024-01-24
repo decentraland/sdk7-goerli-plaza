@@ -22,16 +22,21 @@ export class UIPopupAnimation {
   transform: StartEndTransform
   isOpen: boolean = false
   isContentVisible: boolean = false
+  showContentWhileScaling: boolean = false
   interpolationType: utils.InterpolationType = utils.InterpolationType.EASEOUTQUAD
   onClick: Callback
 
-  constructor(startEndTransform: StartEndTransform, onClick: Callback, interpolationType?: utils.InterpolationType) {
+  constructor(startEndTransform: StartEndTransform, onClick: Callback, interpolationType?: utils.InterpolationType, showContentWhileScaling?: boolean) {
 
     this.transform = startEndTransform
 
 
     if (interpolationType) {
       this.interpolationType = interpolationType
+    }
+
+    if (showContentWhileScaling) {
+      this.showContentWhileScaling = showContentWhileScaling
     }
     this.animator = new UIAnimator(this.transform.startPosX, this.transform.startPosY, this.transform.startScaleX, this.transform.startScaleY)
     this.onClick = onClick

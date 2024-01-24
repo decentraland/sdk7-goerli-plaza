@@ -30,9 +30,11 @@ const uiComponent = () => [
   createEasingPopupUI(),
   createParticleUI(),
   createSpinnerAnimationUI(),
-  //createSpinnerRaysUI(),
+  createSpinnerRaysUI(),
   createCardFlipUI(),
   createCustomCounterUI(),
   createButtonUI(),
   createParticleTestButton()
 ]
+
+
