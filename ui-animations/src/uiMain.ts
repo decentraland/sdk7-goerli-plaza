@@ -10,6 +10,7 @@ import { createEasingPopupUI } from './examples/UIPopup_example'
 import { createParticleTestButton, createParticleUI } from './examples/UIParticle_example'
 import { ProgressBarTestSystem, createProgressBarUI } from './examples/UIProgressBar_example'
 import { exampleLabelsUI } from './exampleLabeling'
+import { complexParticleUI } from './test_ui_complex'
 
 export function setupUi() {
   ReactEcsRenderer.setUiRenderer(uiComponent)
@@ -34,7 +35,10 @@ const uiComponent = () => [
   createCardFlipUI(),
   createCustomCounterUI(),
   createButtonUI(),
-  createParticleTestButton()
+  createParticleTestButton(),
+
+  //complex example
+  complexParticleUI()
 ]
 
 

@@ -12,7 +12,7 @@ export class ParticleEmitter {
   particles: Entity[]
   MAX_POOL_SIZE: number = 32
   interpolationType = utils.InterpolationType.LINEAR
-
+  spawnCount: number = 0
   constructor() {
     this.particles = []
   }
@@ -39,6 +39,8 @@ export class ParticleEmitter {
   }
 
   spawnSingle(_startPosX: number, _startPosY: number, _endPosX: number, _endPosY: number) {
+    this.spawnCount += 1
+    console.log("Spawned so far: " + this.spawnCount)
 
     let particle = this.getParticleFromPool()
     Transform.createOrReplace(particle, { scale: Vector3.create(60, 60, 10) })

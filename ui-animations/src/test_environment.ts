@@ -1,7 +1,7 @@
 import { GltfContainer, InputAction, MeshCollider, MeshRenderer, PointerEvents, Transform, engine, pointerEventsSystem } from "@dcl/sdk/ecs";
 import { Vector3 } from "@dcl/sdk/math";
 import { Callback } from "@dcl/sdk/react-ecs";
-import { coinEmitter } from "./examples/UIParticle_example";
+import { coinParticleEmitter } from "./test_ui_complex";
 
 
 let tablePositions = [
@@ -20,7 +20,7 @@ let tablePositions = [
 
 function createUIBox(label: string, pos: Vector3, callback: Callback, modelGLB: string) {
     let testObject = engine.addEntity()
-    let model = modelGLB
+
 
     Transform.create(testObject,
         {
@@ -52,7 +52,7 @@ export function addEnvironment() {
 
     //MeshCollider.setBox(particleTestObject)
 
-    createUIBox("Particle System", tablePositions[0], () => { coinEmitter.spawnSingle(49, 48, 43, 85) }, 'models/box.glb')
+    createUIBox("Particle System", tablePositions[0], () => { coinParticleEmitter.spawnSingle(49, 48, 43, 85) }, 'models/box.glb')
     createUIBox("Particle System", tablePositions[1], () => { }, 'models/box.glb')
     createUIBox("Particle System", tablePositions[2], () => { }, 'models/box.glb')
     createUIBox("Particle System", tablePositions[3], () => { }, 'models/box.glb')
