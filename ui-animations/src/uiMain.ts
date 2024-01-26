@@ -25,17 +25,17 @@ const uiComponent = () => [
   //exampleLabelsUI(),
 
   // add the UI of each example file to the UI rendering engine
-  createProgressBarUI(),
-  createSingleSpriteUI(),
-  createSpriteAnimationUI(),
-  createEasingPopupUI(),
-  createParticleUI(),
-  createSpinnerAnimationUI(),
-  createSpinnerRaysUI(),
-  createCardFlipUI(),
-  createCustomCounterUI(),
-  createButtonUI(),
-  createParticleTestButton(),
+  // createProgressBarUI(),
+  // createSingleSpriteUI(),
+  // createSpriteAnimationUI(),
+  // createEasingPopupUI(),
+  // createParticleUI(),
+  // createSpinnerAnimationUI(),
+  // createSpinnerRaysUI(),
+  // createCardFlipUI(),
+  // createCustomCounterUI(),
+  // createButtonUI(),
+  // createParticleTestButton(),
 
   //complex example
   complexParticleUI()

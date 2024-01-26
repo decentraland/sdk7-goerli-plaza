@@ -1,5 +1,5 @@
 import { Color4 } from '@dcl/sdk/math'
-import ReactEcs, { EntityPropTypes, PositionUnit, UiEntity } from '@dcl/sdk/react-ecs'
+import ReactEcs, { Callback, EntityPropTypes, PositionUnit, UiEntity } from '@dcl/sdk/react-ecs'
 import { UICounter, CustomCounter } from './UICounter'
 
 
@@ -11,18 +11,32 @@ export class ProgressBar {
   barColor: Color4 = Color4.fromHexString('#ff5511ff')
   frameImage: string
   barImage: string
+  isFull: boolean = false
+  onFull: Callback = () => { }
 
-  constructor(_frameImage: string, _barImage: string, _startColor: Color4, _endColor: Color4) {
+  constructor(_frameImage: string, _barImage: string, _startColor: Color4, _endColor: Color4, _onFull?: Callback) {
     this.startColor = _startColor
     this.endColor = _endColor
     this.frameImage = _frameImage
     this.barImage = _barImage
+
+
+    if (_onFull) {
+      this.onFull = _onFull
+    }
   }
   setProgressBar(value: number) {
     this.progressValue = value
 
     if (this.progressValue > 1) {
-      this.progressValue = 0
+      this.progressValue = 1
+      if (!this.isFull) {
+        this.isFull = true
+        this.onFull()
+      }
+    }
+    else {
+      this.isFull = false
     }
     this.setProgressValues(this.progressValue)
   }
@@ -32,10 +46,18 @@ export class ProgressBar {
     this.barColor = Color4.lerp(this.startColor, this.endColor, value)
   }
 
-  incrementProgressBAr(deltaValue: number) {
+  incrementProgressBar(deltaValue: number) {
     this.progressValue += deltaValue
     if (this.progressValue > 1) {
       this.progressValue = 1
+
+      if (!this.isFull) {
+        this.isFull = true
+        this.onFull()
+      }
+    }
+    else {
+      this.isFull = false
     }
     this.setProgressValues(this.progressValue)
   }
