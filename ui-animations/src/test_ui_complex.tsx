@@ -21,10 +21,12 @@ export let progressDemo = new ProgressBar(
     Color4.Red(),
     () => {
         progressDemo.setProgressBar(0)
+        counterBarDemo.setNumber(0)
         counterDemo.increaseNumberBy(1)
     }
 )
 export let counterDemo = new CustomCounter(4, 4, 64, 'center', "images/customCounter/number_sheet.png")
+export let counterBarDemo = new CustomCounter(4, 4, 32, 'center', "images/customCounter/number_sheet.png")
 
 export let progressBounceAnimator = new UIAnimator(37, 90, 25, 5)
 progressBounceAnimator.addAnimationSequence(
@@ -61,7 +63,16 @@ export function complexParticleUI() {
                         //position: { left: '37%', bottom: '90%' }
                     }}
                 />
+                <UICounter customCounter={counterBarDemo}
+                    uiTransform={{
+                        width: '100%',
+                        height: '100%',
+                        positionType: 'absolute',
+                        position: { left: '0%', top: "0%" }
+                    }}
+                />
             </AnimatedContainer>
+
             <UICounter customCounter={counterDemo}
                 uiTransform={{
                     width: '20%',

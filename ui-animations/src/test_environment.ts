@@ -1,7 +1,7 @@
 import { GltfContainer, InputAction, MeshCollider, MeshRenderer, PointerEvents, Transform, engine, pointerEventsSystem } from "@dcl/sdk/ecs";
 import { Vector3 } from "@dcl/sdk/math";
 import { Callback } from "@dcl/sdk/react-ecs";
-import { animSpriteDemo, coinEmitterDemo, coinSpriteDemo, counterDemo, progressBounceAnimator, progressDemo, spinRaysDemo, spinnerDemo } from "./test_ui_complex";
+import { animSpriteDemo, coinEmitterDemo, coinSpriteDemo, counterBarDemo, counterDemo, progressBounceAnimator, progressDemo, spinRaysDemo, spinnerDemo } from "./test_ui_complex";
 import { spinRays, spinner } from "./examples/UISpinner_example";
 
 
@@ -47,9 +47,11 @@ function createUIBox(label: string, pos: Vector3, callback: Callback, modelGLB: 
 
 export function hideAll() {
     counterDemo.hide()
+    counterBarDemo.hide()
     spinnerDemo.hide()
     animSpriteDemo.hide()
     spinRaysDemo.hide()
+    progressDemo.hide()
 }
 export function addEnvironment() {
     let ground = engine.addEntity()
@@ -62,14 +64,20 @@ export function addEnvironment() {
     createUIBox("Particle System", tablePositions[0], () => {
         hideAll()
         counterDemo.show()
+        counterBarDemo.show()
+        progressDemo.show()
         coinSpriteDemo.show()
-        coinEmitterDemo.spawnMultiple(3, 49, 48, 50, 89,
+        coinEmitterDemo.spawnMultiple(2, 49, 48, 50, 89,
             () => {
                 progressDemo.incrementProgressBar(0.02)
                 progressBounceAnimator.playAnimation('bounce')
+                counterBarDemo.increaseNumberBy(2)
             })
     }, 'models/box.glb')
-    createUIBox("Complex Example", tablePositions[1], () => { }, 'models/box.glb')
+    createUIBox("Progressbar", tablePositions[1], () => {
+        hideAll()
+        progressDemo.show()
+    }, 'models/box.glb')
     createUIBox("Pop-up", tablePositions[2], () => { }, 'models/box.glb')
     createUIBox("Counter", tablePositions[3], () => {
         hideAll()
@@ -89,7 +97,9 @@ export function addEnvironment() {
         animSpriteDemo.show()
     }, 'models/box.glb')
 
-    createUIBox("Particle System", tablePositions[7], () => { }, 'models/box.glb')
+    createUIBox("Card Flip", tablePositions[7], () => {
+
+    }, 'models/box.glb')
     createUIBox("Particle System", tablePositions[8], () => { }, 'models/box.glb')
     createUIBox("Particle System", tablePositions[9], () => { }, 'models/box.glb')
 
