@@ -33,7 +33,9 @@ export function UICounter(props: CustomCounterProps) {
                     flexDirection: 'row-reverse',
                     alignItems: 'center',
                     alignContent: 'center',
-                    justifyContent: props.customCounter.justifyCounter
+                    justifyContent: props.customCounter.justifyCounter,
+                    display: props.customCounter.visible ? 'flex' : 'none'
+
                 }}
             >
                 {props.customCounter.generateCounterDigitsUI()}
@@ -50,6 +52,7 @@ export class CustomCounter {
     digits: DigitSprite[]
     size: number = 64
     justifyCounter: JustifyType = "center"
+    visible: boolean = false
 
     constructor(_rows: number, _cols: number, _size: number, _justifyType: CounterJustifyType, _imgPath: string,) {
         this.digits = []
@@ -170,6 +173,17 @@ export class CustomCounter {
         >
         </UiEntity>
         )
+    }
+
+    show() {
+        this.visible = true
+    }
+    hide() {
+        this.visible = false
+    }
+
+    toggle() {
+        this.visible = !this.visible
     }
 
     // createCounterUI(){ 

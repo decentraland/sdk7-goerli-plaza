@@ -1,7 +1,7 @@
 import { UIAnimatedSprite, SpriteAnimation } from "../ui_components/UIAnimatedSprite"
 import ReactEcs from "@dcl/sdk/react-ecs"
 
-let mySprite = new SpriteAnimation("images/spriteAnimation/walk_anim_sprite.png", 4, 2, 20)
+export let mySprite = new SpriteAnimation("images/spriteAnimation/walk_anim_sprite.png", 4, 2, 20)
 
 export function createSpriteAnimationUI() {
   return (
@@ -15,4 +15,5 @@ export function createSpriteAnimationUI() {
       }}
     />
   )
-} 
+}
+

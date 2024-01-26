@@ -49,6 +49,10 @@ export class Spinner {
     this.visible = false
   }
 
+  toggle() {
+    this.visible = !this.visible
+  }
+
 }
 
 export type SpinnerAnimProps = EntityPropTypes & {

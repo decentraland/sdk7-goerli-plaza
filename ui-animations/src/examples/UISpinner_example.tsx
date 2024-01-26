@@ -2,7 +2,7 @@ import ReactEcs from "@dcl/sdk/react-ecs"
 import { UISpinner, Spinner } from "../ui_components/UISpinner"
 import { Color4 } from "@dcl/sdk/math"
 
-let spinner = new Spinner('images/loadingAnimation/spinner.png', 600)
+export let spinner = new Spinner('images/loadingAnimation/spinner.png', 600)
 
 export function createSpinnerAnimationUI() {
     return (
@@ -19,9 +19,9 @@ export function createSpinnerAnimationUI() {
     )
 }
 
-spinner.show()
+//spinner.show()
 
-let spinRays = new Spinner('images/loadingAnimation/rays.png', 10)
+export let spinRays = new Spinner('images/loadingAnimation/rays.png', 10)
 
 export function createSpinnerRaysUI() {
     return (
@@ -39,4 +39,4 @@ export function createSpinnerRaysUI() {
     )
 }
 
-spinRays.show()  
+//spinRays.show()  

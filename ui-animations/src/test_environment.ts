@@ -1,7 +1,8 @@
 import { GltfContainer, InputAction, MeshCollider, MeshRenderer, PointerEvents, Transform, engine, pointerEventsSystem } from "@dcl/sdk/ecs";
 import { Vector3 } from "@dcl/sdk/math";
 import { Callback } from "@dcl/sdk/react-ecs";
-import { coinEmitterDemo, progressDemo } from "./test_ui_complex";
+import { animSpriteDemo, coinEmitterDemo, coinSpriteDemo, counterDemo, progressBounceAnimator, progressDemo, spinRaysDemo, spinnerDemo } from "./test_ui_complex";
+import { spinRays, spinner } from "./examples/UISpinner_example";
 
 
 let tablePositions = [
@@ -33,7 +34,7 @@ function createUIBox(label: string, pos: Vector3, callback: Callback, modelGLB: 
             entity: testObject,
             opts: {
                 button: InputAction.IA_POINTER,
-                hoverText: 'Click'
+                hoverText: label
             }
         },
         function () {
@@ -44,6 +45,12 @@ function createUIBox(label: string, pos: Vector3, callback: Callback, modelGLB: 
 
 }
 
+export function hideAll() {
+    counterDemo.hide()
+    spinnerDemo.hide()
+    animSpriteDemo.hide()
+    spinRaysDemo.hide()
+}
 export function addEnvironment() {
     let ground = engine.addEntity()
     Transform.create(ground)
@@ -52,13 +59,36 @@ export function addEnvironment() {
 
     //MeshCollider.setBox(particleTestObject)
 
-    createUIBox("Particle System", tablePositions[0], () => { coinEmitterDemo.spawnMultiple(3, 49, 48, 50, 90, () => { progressDemo.incrementProgressBar(0.05) }) }, 'models/box.glb')
-    createUIBox("Particle System", tablePositions[1], () => { }, 'models/box.glb')
-    createUIBox("Particle System", tablePositions[2], () => { }, 'models/box.glb')
-    createUIBox("Particle System", tablePositions[3], () => { }, 'models/box.glb')
-    createUIBox("Particle System", tablePositions[4], () => { }, 'models/box.glb')
-    createUIBox("Particle System", tablePositions[5], () => { }, 'models/box.glb')
-    createUIBox("Particle System", tablePositions[6], () => { }, 'models/box.glb')
+    createUIBox("Particle System", tablePositions[0], () => {
+        hideAll()
+        counterDemo.show()
+        coinSpriteDemo.show()
+        coinEmitterDemo.spawnMultiple(3, 49, 48, 50, 89,
+            () => {
+                progressDemo.incrementProgressBar(0.02)
+                progressBounceAnimator.playAnimation('bounce')
+            })
+    }, 'models/box.glb')
+    createUIBox("Complex Example", tablePositions[1], () => { }, 'models/box.glb')
+    createUIBox("Pop-up", tablePositions[2], () => { }, 'models/box.glb')
+    createUIBox("Counter", tablePositions[3], () => {
+        hideAll()
+        counterDemo.show()
+    }, 'models/box.glb')
+
+    createUIBox("Spinner Rays", tablePositions[4], () => {
+        hideAll()
+        spinRaysDemo.show()
+    }, 'models/box.glb')
+    createUIBox("Spinner", tablePositions[5], () => {
+        hideAll()
+        spinnerDemo.show()
+    }, 'models/box.glb')
+    createUIBox("Sprite Animation", tablePositions[6], () => {
+        hideAll()
+        animSpriteDemo.show()
+    }, 'models/box.glb')
+
     createUIBox("Particle System", tablePositions[7], () => { }, 'models/box.glb')
     createUIBox("Particle System", tablePositions[8], () => { }, 'models/box.glb')
     createUIBox("Particle System", tablePositions[9], () => { }, 'models/box.glb')
