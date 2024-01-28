@@ -10,7 +10,7 @@ import { createEasingPopupUI } from './examples/UIPopup_example'
 import { createParticleTestButton, createParticleUI } from './examples/UIParticle_example'
 import { ProgressBarTestSystem, createProgressBarUI } from './examples/UIProgressBar_example'
 import { exampleLabelsUI } from './exampleLabeling'
-import { complexParticleUI } from './test_ui_complex'
+import { blackFadeUI, complexParticleUI } from './test_ui_complex'
 
 export function setupUi() {
   ReactEcsRenderer.setUiRenderer(uiComponent)
@@ -23,7 +23,7 @@ export function setupUi() {
 const uiComponent = () => [
   //show labels for each example
   //exampleLabelsUI(),
-
+  blackFadeUI(),
   // add the UI of each example file to the UI rendering engine
   // createProgressBarUI(),
   // createSingleSpriteUI(),

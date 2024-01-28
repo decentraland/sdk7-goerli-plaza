@@ -1,7 +1,7 @@
-import { GltfContainer, InputAction, MeshCollider, MeshRenderer, PointerEvents, Transform, engine, pointerEventsSystem } from "@dcl/sdk/ecs";
+import { Billboard, BillboardMode, GltfContainer, InputAction, MeshCollider, MeshRenderer, PointerEventType, PointerEvents, TextAlignMode, TextShape, Transform, engine, inputSystem, pointerEventsSystem } from "@dcl/sdk/ecs";
 import { Vector3 } from "@dcl/sdk/math";
 import { Callback } from "@dcl/sdk/react-ecs";
-import { animSpriteDemo, coinEmitterDemo, coinSpriteDemo, counterBarDemo, counterDemo, progressBounceAnimator, progressDemo, spinRaysDemo, spinnerDemo } from "./test_ui_complex";
+import { animSpriteDemo, blackFadeActive, buttonErrorDemo, buttonSuccessDemo, cardFlipAnimDemo, coinEmitterDemo, coinSpriteDemo, counterBarDemo, counterDemo, popupAnimatorDemo, popupInstructionDemo, progressBounceAnimator, progressDemo, screenFade, spinRaysDemo, spinnerDemo } from "./test_ui_complex";
 import { spinRays, spinner } from "./examples/UISpinner_example";
 
 
@@ -22,6 +22,16 @@ let tablePositions = [
 function createUIBox(label: string, pos: Vector3, callback: Callback, modelGLB: string) {
     let testObject = engine.addEntity()
 
+    TextShape.create(testObject, {
+        text: label,
+        fontSize: 1,
+        textAlign: TextAlignMode.TAM_BOTTOM_CENTER,
+        paddingBottom: 0.6
+    })
+
+    Billboard.create(testObject, {
+        billboardMode: BillboardMode.BM_Y
+    })
 
     Transform.create(testObject,
         {
@@ -45,6 +55,16 @@ function createUIBox(label: string, pos: Vector3, callback: Callback, modelGLB: 
 
 }
 
+engine.addSystem((dt: number) => {
+
+    if (inputSystem.isTriggered(InputAction.IA_SECONDARY, PointerEventType.PET_DOWN)) {
+
+        hideAll()
+
+    }
+
+})
+
 export function hideAll() {
     counterDemo.hide()
     counterBarDemo.hide()
@@ -52,6 +72,13 @@ export function hideAll() {
     animSpriteDemo.hide()
     spinRaysDemo.hide()
     progressDemo.hide()
+    cardFlipAnimDemo.hide()
+    buttonErrorDemo.hide()
+    buttonSuccessDemo.hide()
+    popupAnimatorDemo.hide()
+    popupInstructionDemo.hide()
+    screenFade.hide()
+
 }
 export function addEnvironment() {
     let ground = engine.addEntity()
@@ -61,47 +88,75 @@ export function addEnvironment() {
 
     //MeshCollider.setBox(particleTestObject)
 
-    createUIBox("Particle System", tablePositions[0], () => {
+    createUIBox("Complex Example", tablePositions[9], () => {
         hideAll()
+        popupInstructionDemo.show()
+        screenFade.show()
         counterDemo.show()
         counterBarDemo.show()
         progressDemo.show()
         coinSpriteDemo.show()
-        coinEmitterDemo.spawnMultiple(2, 49, 48, 50, 89,
+        coinEmitterDemo.spawnMultiple(2, 49, 48, 50, 84,
             () => {
                 progressDemo.incrementProgressBar(0.02)
                 progressBounceAnimator.playAnimation('bounce')
                 counterBarDemo.increaseNumberBy(2)
             })
     }, 'models/box.glb')
-    createUIBox("Progressbar", tablePositions[1], () => {
+    createUIBox("Progressbar", tablePositions[7], () => {
         hideAll()
+        popupInstructionDemo.show()
+        screenFade.show()
         progressDemo.show()
-    }, 'models/box.glb')
-    createUIBox("Pop-up", tablePositions[2], () => { }, 'models/box.glb')
-    createUIBox("Counter", tablePositions[3], () => {
-        hideAll()
-        counterDemo.show()
+        progressDemo.incrementProgressBar(0.1)
     }, 'models/box.glb')
 
-    createUIBox("Spinner Rays", tablePositions[4], () => {
+    createUIBox("Counter", tablePositions[6], () => {
         hideAll()
+        screenFade.show()
+        popupInstructionDemo.show()
+        counterDemo.show()
+        counterDemo.increaseNumberBy(1)
+    }, 'models/box.glb')
+
+    createUIBox("Spinner Rays", tablePositions[5], () => {
+        hideAll()
+        screenFade.show()
+        popupInstructionDemo.show()
         spinRaysDemo.show()
     }, 'models/box.glb')
-    createUIBox("Spinner", tablePositions[5], () => {
+    createUIBox("Spinner", tablePositions[4], () => {
         hideAll()
+        screenFade.show()
+        popupInstructionDemo.show()
         spinnerDemo.show()
     }, 'models/box.glb')
-    createUIBox("Sprite Animation", tablePositions[6], () => {
+    createUIBox("Sprite Animation", tablePositions[3], () => {
         hideAll()
+        screenFade.show()
+        popupInstructionDemo.show()
         animSpriteDemo.show()
     }, 'models/box.glb')
 
-    createUIBox("Card Flip", tablePositions[7], () => {
-
+    createUIBox("Card Flip", tablePositions[2], () => {
+        hideAll()
+        screenFade.show()
+        popupInstructionDemo.show()
+        cardFlipAnimDemo.show()
     }, 'models/box.glb')
-    createUIBox("Particle System", tablePositions[8], () => { }, 'models/box.glb')
-    createUIBox("Particle System", tablePositions[9], () => { }, 'models/box.glb')
+    createUIBox("Buttons", tablePositions[1], () => {
+        hideAll()
+        screenFade.show()
+        popupInstructionDemo.show()
+        buttonErrorDemo.show()
+        buttonSuccessDemo.show()
+    }, 'models/box.glb')
+    createUIBox("Pop-up", tablePositions[0], () => {
+        hideAll()
+        screenFade.show()
+        popupInstructionDemo.show()
+        popupAnimatorDemo.show()
+    }, 'models/box.glb')
 
 }
 

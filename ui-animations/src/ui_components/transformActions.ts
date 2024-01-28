@@ -31,14 +31,21 @@ export class MoveScaleAction implements utils.actions.IAction {
     }
   }
 
+
   // Method when action starts
   onStart(): void {
     const transform = Transform.get(this.entity)
     this.hasFinished = false
 
-    utils.tweens.startScaling(this.entity, transform.scale, this.scale, this.duration, this.interpolationType, () => {
-      this.hasFinished = true
-    })
+
+    utils.tweens.startScaling(
+      this.entity,
+      transform.scale,
+      this.scale,
+      this.duration,
+      this.interpolationType, () => {
+        this.hasFinished = true
+      })
 
     utils.tweens.startTranslation(
       this.entity,
@@ -52,9 +59,9 @@ export class MoveScaleAction implements utils.actions.IAction {
     )
   }
   // Method to run on every frame
-  update(dt: number): void {}
+  update(dt: number): void { }
   // Method to run at the end
-  onFinish(): void {}
+  onFinish(): void { }
 }
 
 // Use IAction to define action for scaling
@@ -72,7 +79,7 @@ export class CallbackAction implements utils.actions.IAction {
     this.hasFinished = true
   }
   // Method to run on every frame
-  update(dt: number): void {}
+  update(dt: number): void { }
   // Method to run at the end
-  onFinish(): void {}
+  onFinish(): void { }
 }
