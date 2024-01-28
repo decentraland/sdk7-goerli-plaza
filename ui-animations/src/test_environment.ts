@@ -1,7 +1,7 @@
 import { Billboard, BillboardMode, GltfContainer, InputAction, MeshCollider, MeshRenderer, PointerEventType, PointerEvents, TextAlignMode, TextShape, Transform, engine, inputSystem, pointerEventsSystem } from "@dcl/sdk/ecs";
 import { Vector3 } from "@dcl/sdk/math";
 import { Callback } from "@dcl/sdk/react-ecs";
-import { animSpriteDemo, blackFadeActive, buttonErrorDemo, buttonSuccessDemo, cardFlipAnimDemo, coinEmitterDemo, coinSpriteDemo, counterBarDemo, counterDemo, popupAnimatorDemo, popupInstructionDemo, progressBounceAnimator, progressDemo, screenFade, spinRaysDemo, spinnerDemo } from "./test_ui_complex";
+import { animSpriteDemo, blackFadeActive, buttonErrorDemo, buttonSuccessDemo, cardFlipAnimDemo, cardFlipRewardDemo, coinEmitterDemo, coinSpriteDemo, counterBarDemo, counterDemo, popupAnimatorDemo, popupInstructionDemo, popupRewardDemo, progressBounceAnimator, progressDemo, progressRewardDemo, screenFade, spinRaysDemo, spinRaysRewardDemo, spinnerDemo } from "./test_ui_complex";
 import { spinRays, spinner } from "./examples/UISpinner_example";
 
 
@@ -78,6 +78,10 @@ export function hideAll() {
     popupAnimatorDemo.hide()
     popupInstructionDemo.hide()
     screenFade.hide()
+    popupRewardDemo.hide()
+    spinRaysRewardDemo.hide()
+    cardFlipRewardDemo.hide()
+    progressRewardDemo.hide()
 
 }
 export function addEnvironment() {
@@ -94,11 +98,11 @@ export function addEnvironment() {
         screenFade.show()
         counterDemo.show()
         counterBarDemo.show()
-        progressDemo.show()
+        progressRewardDemo.show()
         coinSpriteDemo.show()
         coinEmitterDemo.spawnMultiple(2, 49, 48, 50, 84,
             () => {
-                progressDemo.incrementProgressBar(0.02)
+                progressRewardDemo.incrementProgressBar(0.02)
                 progressBounceAnimator.playAnimation('bounce')
                 counterBarDemo.increaseNumberBy(2)
             })

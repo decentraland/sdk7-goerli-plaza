@@ -23,7 +23,6 @@ export let spinRaysDemo = new Spinner('images/loadingAnimation/rays.png', 10)
 //////////////////////////
 
 
-
 export let coinSpriteDemo = new SpriteAnimation("images/particleSystem/coin-sprite.png", 4, 2, 20)
 export let coinEmitterDemo = new ParticleEmitter()
 
@@ -34,8 +33,23 @@ export let progressDemo = new ProgressBar(
     Color4.Red(),
     () => {
         progressDemo.setProgressBar(0)
+        //counterBarDemo.setNumber(0)
+        counterDemo.increaseNumberBy(1)
+    }
+)
+
+export let progressRewardDemo = new ProgressBar(
+    "images/progressBar/bar_bg.png",
+    "images/progressBar/bar_rounded.png",
+    Color4.Green(),
+    Color4.Red(),
+    () => {
+        progressRewardDemo.setProgressBar(0)
         counterBarDemo.setNumber(0)
         counterDemo.increaseNumberBy(1)
+        popupRewardDemo.show()
+        spinRaysRewardDemo.show()
+        cardFlipRewardDemo.show()
     }
 )
 export let counterDemo = new CustomCounter(4, 4, 100, 'center', "images/customCounter/number_sheet.png")
@@ -49,9 +63,7 @@ progressBounceAnimator.addAnimationSequence(
         .then(new MoveScaleAction(progressBounceAnimator.entity, 37, 85, 25, 5, 0.25, utils.InterpolationType.EASEOUTQUAD))
 )
 
-
 export let animSpriteDemo = new SpriteAnimation("images/spriteAnimation/walk_anim_sprite.png", 4, 2, 10)
-
 export let cardFlipAnimDemo = new CardFlipAnimation(0.2)
 
 export let blackFadeActive: boolean = true
@@ -91,6 +103,28 @@ export let popupAnimatorDemo = new UIPopupAnimation(
         popupAnimatorDemo.toggle()
     },
     utils.InterpolationType.EASEOUTQUAD
+)
+
+
+export let spinRaysRewardDemo = new Spinner('images/loadingAnimation/rays.png', 10)
+export let cardFlipRewardDemo = new CardFlipAnimation(0.15)
+export let popupRewardDemo = new UIPopupAnimation(
+    {
+        startPosX: 50,
+        startPosY: 50,
+        startScaleX: 0,
+        startScaleY: 0,
+        endPosX: 40,
+        endPosY: 40,
+        endScaleX: 20,
+        endScaleY: 35,
+        duration: 1.5
+    },
+    () => {
+        //popupRewardDemo.toggle()
+    },
+    utils.InterpolationType.EASEOUTELASTIC,
+    true
 )
 
 export let popupInstructionDemo = new UIPopupAnimation(
@@ -134,10 +168,24 @@ export function complexParticleUI() {
                 positionType: 'absolute'
             }}
         >
+            <UIProgressBar
+                //BASIC PROGRESS BAR EXAMPLE
+                progressBar={progressDemo}
+                uiTransform={{
+                    width: '25%',
+                    height: '5%',
+                    positionType: 'absolute',
+                    minHeight: 32,
+                    //positionType: 'absolute',
+                    position: { left: '37%', bottom: '85%' }
+                }}
+            />
             <AnimatedContainer
+                // BOUNCE SCALING CONTAINER FOR THE COMPLEXPROGRESS BAR
                 animator={progressBounceAnimator} >
                 <UIProgressBar
-                    progressBar={progressDemo}
+                    //COMPLEX PROGRESS BAR
+                    progressBar={progressRewardDemo}
                     uiTransform={{
                         width: '100%',
                         height: '100%',
@@ -157,6 +205,7 @@ export function complexParticleUI() {
             </AnimatedContainer>
 
             <UICounter customCounter={counterDemo}
+                // CUSTOM COUNTER
                 uiTransform={{
                     width: '20%',
                     height: '10%',
@@ -225,6 +274,7 @@ export function complexParticleUI() {
             />
 
             <UICardFlip
+                // CARD FLIP SINGE EXAMPLE
                 cardFlipAnimator={cardFlipAnimDemo}
                 uiTransform={{
                     width: 180,
@@ -255,6 +305,7 @@ export function complexParticleUI() {
             </UICardFlip>
 
             <UIButton
+                //SUCCESS BUTTON
                 button={buttonSuccessDemo}
                 uiTransform={{
                     width: '8%',
@@ -274,6 +325,7 @@ export function complexParticleUI() {
                 }}
             />
             <UIButton
+                // ERROR ANIMATION BUTTON
                 button={buttonErrorDemo}
                 uiTransform={{
                     width: "8%",
@@ -293,6 +345,7 @@ export function complexParticleUI() {
                 }}
             />
             <UIPopup
+                //SEPARATE POPUP EXAMPLE
                 popupAnim={popupAnimatorDemo}
                 uiBackground={{
                     color: Color4.create(1.0, 1.0, 1.0, 0.8),
@@ -315,6 +368,79 @@ export function complexParticleUI() {
                         position: { top: '50%', left: '10%' }
                     }}
                     uiText={{ value: "PANEL TEST CONTENT", fontSize: 20, color: Color4.Black() }} />
+            </UIPopup>
+
+            <UIPopup
+                //REWARD POPUP (FOR COMPLEX EXAMPLE)
+                popupAnim={popupRewardDemo}
+                uiBackground={{
+                    color: Color4.create(1.0, 1.0, 1.0, 0.8),
+                    textureMode: 'nine-slices',
+                    texture: { src: 'images/easingPopup/dark_ui_bg.png' },
+                    textureSlices: {
+                        top: 0.42,
+                        bottom: 0.52,
+                        left: 0.42,
+                        right: 0.48
+                    }
+                }}
+            >
+
+
+                <UISpinner
+                    //spinning rays
+                    spinner={spinRaysRewardDemo}
+                    uiBackground={{ color: Color4.fromHexString("#ffeebbff") }}
+                    uiTransform={{
+                        width: '160%',
+                        height: '160%',
+                        positionType: "absolute",
+                        position: { top: '-30%', left: '-30%' }
+
+
+                    }}
+                />
+                <UiEntity
+                    uiTransform={{
+                        width: '80%',
+                        height: '10%',
+                        positionType: 'absolute',
+                        position: { top: '10%', left: '10%' }
+                    }}
+                    uiText={{ value: "LEVEL UP", fontSize: 38, color: Color4.White() }} />
+                <UICardFlip
+                    // CARD FLIP REWARD COMPLEX
+                    cardFlipAnimator={cardFlipRewardDemo}
+                    uiTransform={{
+                        width: '30%',
+                        height: '50%',
+                        positionType: 'absolute',
+                        position: { top: '25%', left: '35%' },
+                        //margin: { top: -100, left: -90 }
+                    }}
+                    sideA={
+                        <UISprite texture='images/cardFlip/card-atlas.png'
+                            top={1} bottom={0} left={0} right={0.5}
+                            uiTransform={{
+                                width: '100%',
+                                height: '100%',
+                            }}
+                        />
+                    }
+                    sideB={
+                        <UISprite texture='images/cardFlip/card-atlas.png'
+                            top={1} bottom={0} left={0.5} right={1}
+                            uiTransform={{
+                                width: '100%',
+                                height: '100%',
+                            }}
+                        />
+                    }
+                >
+                </UICardFlip>
+
+
+
             </UIPopup>
 
             <UIPopup
