@@ -386,7 +386,6 @@ export function complexParticleUI() {
                 }}
             >
 
-
                 <UISpinner
                     //spinning rays
                     spinner={spinRaysRewardDemo}
@@ -401,13 +400,19 @@ export function complexParticleUI() {
                     }}
                 />
                 <UiEntity
+                    //LEVELUP TEXT
                     uiTransform={{
                         width: '80%',
-                        height: '10%',
+                        height: '20%',
                         positionType: 'absolute',
-                        position: { top: '10%', left: '10%' }
+                        position: { top: '2%', left: '10%' }
                     }}
-                    uiText={{ value: "LEVEL UP", fontSize: 38, color: Color4.White() }} />
+                    uiBackground={{
+                        textureMode: 'stretch',
+                        texture: { src: 'images/cardFlip/levelup.png' },
+
+                    }}
+                />
                 <UICardFlip
                     // CARD FLIP REWARD COMPLEX
                     cardFlipAnimator={cardFlipRewardDemo}

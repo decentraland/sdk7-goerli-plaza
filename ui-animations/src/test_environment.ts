@@ -4,27 +4,21 @@ import { Callback } from "@dcl/sdk/react-ecs";
 import { animSpriteDemo, blackFadeActive, buttonErrorDemo, buttonSuccessDemo, cardFlipAnimDemo, cardFlipRewardDemo, coinEmitterDemo, coinSpriteDemo, counterBarDemo, counterDemo, popupAnimatorDemo, popupInstructionDemo, popupRewardDemo, progressBounceAnimator, progressDemo, progressRewardDemo, screenFade, spinRaysDemo, spinRaysRewardDemo, spinnerDemo } from "./test_ui_complex";
 import { spinRays, spinner } from "./examples/UISpinner_example";
 
+let spacing = 1.2
+let startX = 3.2
+let tablePositions: Vector3[] = []
 
-let tablePositions = [
-    Vector3.create(3.2, 1.05, 8),
-    Vector3.create(4.2, 1.05, 8),
-    Vector3.create(5.2, 1.05, 8),
-    Vector3.create(6.2, 1.05, 8),
-    Vector3.create(7.2, 1.05, 8),
-    Vector3.create(8.2, 1.05, 8),
-    Vector3.create(9.2, 1.05, 8),
-    Vector3.create(10.2, 1.05, 8),
-    Vector3.create(11.2, 1.05, 8),
-    Vector3.create(12.2, 1.05, 8),
+for (let i = 0; i < 10; i++) {
+    tablePositions.push(Vector3.create(startX + i * spacing, 1.05, 8))
+}
 
-]
 
 function createUIBox(label: string, pos: Vector3, callback: Callback, modelGLB: string) {
     let testObject = engine.addEntity()
 
     TextShape.create(testObject, {
         text: label,
-        fontSize: 1,
+        fontSize: 1.5,
         textAlign: TextAlignMode.TAM_BOTTOM_CENTER,
         paddingBottom: 0.6
     })
@@ -92,7 +86,7 @@ export function addEnvironment() {
 
     //MeshCollider.setBox(particleTestObject)
 
-    createUIBox("Complex Example", tablePositions[9], () => {
+    createUIBox("Complex Example", tablePositions[8], () => {
         hideAll()
         popupInstructionDemo.show()
         screenFade.show()
