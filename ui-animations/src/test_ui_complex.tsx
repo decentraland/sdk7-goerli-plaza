@@ -20,8 +20,7 @@ import { ScreenFade, UIScreenFade } from "./ui_components/UIScreenFade"
 export let spinnerDemo = new Spinner('images/loadingAnimation/spinner.png', 600)
 export let spinRaysDemo = new Spinner('images/loadingAnimation/rays.png', 10)
 
-//////////////////////////
-
+///////////
 
 export let coinSpriteDemo = new SpriteAnimation("images/particleSystem/coin-sprite.png", 4, 2, 20)
 export let coinEmitterDemo = new ParticleEmitter()
