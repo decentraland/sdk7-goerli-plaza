@@ -29,18 +29,18 @@ export class AnimatedButton {
     this.animator.addAnimationSequence(
       "push",
       new utils.actions.SequenceBuilder()
-        .then(new MoveScaleAction(this.animator.entity, 2.5, -10, 95, 93, 0.05, utils.InterpolationType.EASESINE))
-        .then(new MoveScaleAction(this.animator.entity, 0, 0, 100, 100, 0.05, utils.InterpolationType.EASESINE))
+        .then(new MoveScaleAction(this.animator, 2.5, -10, 95, 93, 0.05, utils.InterpolationType.EASESINE))
+        .then(new MoveScaleAction(this.animator, 0, 0, 100, 100, 0.05, utils.InterpolationType.EASESINE))
     )
 
 
     this.animator.addAnimationSequence(
       "shake",
       new utils.actions.SequenceBuilder()
-        .then(new MoveScaleAction(this.animator.entity, 5, 0, 100, 100, 0.05, utils.InterpolationType.EASESINE))
-        .then(new MoveScaleAction(this.animator.entity, -5, 0, 100, 100, 0.05, utils.InterpolationType.EASESINE))
-        .then(new MoveScaleAction(this.animator.entity, 2, 0, 100, 100, 0.05, utils.InterpolationType.EASESINE))
-        .then(new MoveScaleAction(this.animator.entity, 0, 0, 100, 100, 0.05, utils.InterpolationType.EASESINE))
+        .then(new MoveScaleAction(this.animator, 5, 0, 100, 100, 0.05, utils.InterpolationType.EASESINE))
+        .then(new MoveScaleAction(this.animator, -5, 0, 100, 100, 0.05, utils.InterpolationType.EASESINE))
+        .then(new MoveScaleAction(this.animator, 2, 0, 100, 100, 0.05, utils.InterpolationType.EASESINE))
+        .then(new MoveScaleAction(this.animator, 0, 0, 100, 100, 0.05, utils.InterpolationType.EASESINE))
     )
 
 

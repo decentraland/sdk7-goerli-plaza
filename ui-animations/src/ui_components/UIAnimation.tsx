@@ -30,21 +30,25 @@ export function AnimatedContainer(props: AnimProps) {
 
 
 export class UIAnimator {
-  entity: Entity
+  scaleEntity: Entity
+  posEntity: Entity
   runner: utils.actions.SequenceRunner
   sequences: Map<string, utils.actions.SequenceBuilder>
 
   constructor(posX: number, posY: number, scaleX: number, scaleY: number) {
-    this.entity = engine.addEntity()
-    Transform.create(this.entity, {
-      position: Vector3.create(posX, posY, 0),
+    this.scaleEntity = engine.addEntity()
+    this.posEntity = engine.addEntity()
+    Transform.create(this.scaleEntity, {
       scale: Vector3.create(scaleX, scaleY, 0),
+    })
+    Transform.create(this.posEntity, {
+      position: Vector3.create(posX, posY, 0),
     })
     this.sequences = new Map<string, utils.actions.SequenceBuilder>
     this.addAnimationSequence(
       "idle",
       new utils.actions.SequenceBuilder()
-        .then(new MoveScaleAction(this.entity, posX, posY, scaleX, scaleY, 0.1, utils.InterpolationType.LINEAR)))
+        .then(new MoveScaleAction(this, posX, posY, scaleX, scaleY, 0.1, utils.InterpolationType.LINEAR)))
 
     this.runner = new utils.actions.SequenceRunner(engine, this.sequences.get("idle"), () => { })
   }
@@ -67,15 +71,15 @@ export class UIAnimator {
   }
 
   width(): PositionUnit {
-    return (Transform.get(this.entity).scale.x + '%' as PositionUnit)
+    return (Transform.get(this.scaleEntity).scale.x + '%' as PositionUnit)
   }
   height(): PositionUnit {
-    return (Transform.get(this.entity).scale.y + '%' as PositionUnit)
+    return (Transform.get(this.scaleEntity).scale.y + '%' as PositionUnit)
   }
   positionLeft(): PositionUnit {
-    return (Transform.get(this.entity).position.x + '%' as PositionUnit)
+    return (Transform.get(this.posEntity).position.x + '%' as PositionUnit)
   }
   positionBottom(): PositionUnit {
-    return (Transform.get(this.entity).position.y + '%' as PositionUnit)
+    return (Transform.get(this.posEntity).position.y + '%' as PositionUnit)
   }
 }
