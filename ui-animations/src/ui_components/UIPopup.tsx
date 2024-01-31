@@ -63,7 +63,7 @@ export class UIPopupAnimation {
       new utils.actions.SequenceBuilder()
         .then(new CallbackAction(() => { if (!this.showContentWhileScaling) this.isContentVisible = false }))
         //.then(new MoveScaleAction(this.animator.entity, this.transform.endPosX, this.transform.endPosY, this.transform.endScaleX, this.transform.startScaleY,  0.2,  utils.InterpolationType.EASEOUTQUAD))
-        .then(new MoveScaleAction(this.animator, this.transform.startPosX, this.transform.startPosY, this.transform.startScaleX, this.transform.startScaleY, 0.3, this.interpolationType))
+        .then(new MoveScaleAction(this.animator, this.transform.startPosX, this.transform.startPosY, this.transform.startScaleX, this.transform.startScaleY, this.transform.duration, this.interpolationType))
         .then(new CallbackAction(() => { this.visible = false }))
     )
 

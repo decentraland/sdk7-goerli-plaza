@@ -58,12 +58,12 @@ export let progressBounceAnimator = new UIAnimator(37, 85, 25, 5)
 progressBounceAnimator.addAnimationSequence(
     'bounce',
     new utils.actions.SequenceBuilder()
-        .then(new MoveScaleAction(progressBounceAnimator, 36, 84.8, 27, 5.5, 0.07, utils.InterpolationType.EASEOUTQUAD))
-        .then(new MoveScaleAction(progressBounceAnimator, 37, 85, 25, 5, 0.25, utils.InterpolationType.EASEOUTQUAD))
+        .then(new MoveScaleAction(progressBounceAnimator, 36, 84.8, 27, 5.5, 40, utils.InterpolationType.EASEOUTQUAD))
+        .then(new MoveScaleAction(progressBounceAnimator, 37, 85, 25, 5, 250, utils.InterpolationType.EASEOUTQUAD))
 )
 
 export let animSpriteDemo = new SpriteAnimation("images/spriteAnimation/walk_anim_sprite.png", 4, 2, 10)
-export let cardFlipAnimDemo = new CardFlipAnimation(1000)
+export let cardFlipAnimDemo = new CardFlipAnimation(400)
 
 export let blackFadeActive: boolean = true
 
@@ -96,7 +96,7 @@ export let popupAnimatorDemo = new UIPopupAnimation(
         endPosY: 60,
         endScaleX: 40,
         endScaleY: 30,
-        duration: 500
+        duration: 300
     },
     () => {
         popupAnimatorDemo.toggle()
@@ -106,7 +106,7 @@ export let popupAnimatorDemo = new UIPopupAnimation(
 
 
 export let spinRaysRewardDemo = new Spinner('images/loadingAnimation/rays.png', 10)
-export let cardFlipRewardDemo = new CardFlipAnimation(0.15)
+export let cardFlipRewardDemo = new CardFlipAnimation(400)
 export let popupRewardDemo = new UIPopupAnimation(
     {
         startPosX: 50,
@@ -117,12 +117,12 @@ export let popupRewardDemo = new UIPopupAnimation(
         endPosY: 40,
         endScaleX: 20,
         endScaleY: 35,
-        duration: 1.5
+        duration: 400
     },
     () => {
         //popupRewardDemo.toggle()
     },
-    utils.InterpolationType.EASEOUTELASTIC,
+    utils.InterpolationType.EASEOUTQUAD,
     true
 )
 
@@ -136,7 +136,7 @@ export let popupInstructionDemo = new UIPopupAnimation(
         endPosY: 8,
         endScaleX: 20,
         endScaleY: 7,
-        duration: 0.4
+        duration: 400
     },
     () => {
         popupInstructionDemo.toggle()

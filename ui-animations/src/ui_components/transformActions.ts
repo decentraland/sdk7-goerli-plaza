@@ -50,6 +50,8 @@ export class MoveScaleAction implements utils.actions.IAction {
     console.log('Scale   : ' + transformScale.scale.x + " , " + transformScale.scale.y)
     this.hasFinished = false
 
+    utils.tweens.stopScaling(this.entityScale)
+    utils.tweens.stopTranslation(this.entityTransform)
 
     utils.tweens.startScaling(
       this.entityScale,
