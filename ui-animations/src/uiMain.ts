@@ -40,5 +40,3 @@ const uiComponent = () => [
   //complex example
   complexParticleUI()
 ]
-
-
