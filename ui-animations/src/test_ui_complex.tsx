@@ -15,77 +15,7 @@ import { UIPopup, UIPopupAnimation } from "./ui_components/UIPopup"
 import { ScreenFade, UIScreenFade } from "./ui_components/UIScreenFade"
 
 
-///SPINNERS
-
-export let spinnerDemo = new Spinner('images/loadingAnimation/spinner.png', 600)
-export let spinRaysDemo = new Spinner('images/loadingAnimation/rays.png', 10)
-
-///////////
-
-export let coinSpriteDemo = new SpriteAnimation("images/particleSystem/coin-sprite.png", 4, 2, 20)
-export let coinEmitterDemo = new ParticleEmitter()
-
-export let progressDemo = new ProgressBar(
-    "images/progressBar/bar_bg.png",
-    "images/progressBar/bar_rounded.png",
-    Color4.Green(),
-    Color4.Red(),
-    () => {
-        progressDemo.setProgressBar(0)
-        //counterBarDemo.setNumber(0)
-        counterDemo.increaseNumberBy(1)
-    }
-)
-
-export let progressRewardDemo = new ProgressBar(
-    "images/progressBar/bar_bg.png",
-    "images/progressBar/bar_rounded.png",
-    Color4.Green(),
-    Color4.Red(),
-    () => {
-        progressRewardDemo.setProgressBar(0)
-        counterBarDemo.setNumber(0)
-        counterDemo.increaseNumberBy(1)
-        popupRewardDemo.show()
-        spinRaysRewardDemo.show()
-        cardFlipRewardDemo.show()
-    }
-)
-export let counterDemo = new CustomCounter(4, 4, 100, 'center', "images/customCounter/number_sheet.png")
-export let counterBarDemo = new CustomCounter(4, 4, 40, 'center', "images/customCounter/number_sheet.png")
-
-export let progressBounceAnimator = new UIAnimator(37, 85, 25, 5)
-progressBounceAnimator.addAnimationSequence(
-    'bounce',
-    new utils.actions.SequenceBuilder()
-        .then(new MoveScaleAction(progressBounceAnimator, 36, 84.8, 27, 5.5, 40, utils.InterpolationType.EASEOUTQUAD))
-        .then(new MoveScaleAction(progressBounceAnimator, 37, 85, 25, 5, 250, utils.InterpolationType.EASEOUTQUAD))
-)
-
-export let animSpriteDemo = new SpriteAnimation("images/spriteAnimation/walk_anim_sprite.png", 4, 2, 10)
-export let cardFlipAnimDemo = new CardFlipAnimation(400)
-
-export let blackFadeActive: boolean = true
-
-export let buttonSuccessDemo = new AnimatedButton(
-    "Right Button",
-    22,
-    Color4.Black(),
-    () => {
-        buttonSuccessDemo.successAnimation()
-        //coinEmitter.spawnSingle(50,70,50,10)   
-    }
-)
-
-export let buttonErrorDemo = new AnimatedButton(
-    "Wrong Button",
-    22,
-    Color4.Red(),
-    () => {
-        buttonErrorDemo.errorAnimation()
-    }
-)
-
+// POPUP EXAMPLE
 export let popupAnimatorDemo = new UIPopupAnimation(
     {
         startPosX: 50,
@@ -104,9 +34,89 @@ export let popupAnimatorDemo = new UIPopupAnimation(
     utils.InterpolationType.EASEOUTQUAD
 )
 
+// BUTTONS EXAMPLE
+// PUSHABLE BUTTON ANIMATION
+export let buttonSuccessDemo = new AnimatedButton(
+    "Right Button",
+    22,
+    Color4.Black(),
+    () => {
+        buttonSuccessDemo.successAnimation()
+    }
+)
+// ERROR BUTTON ANIMATION
+export let buttonErrorDemo = new AnimatedButton(
+    "Wrong Button",
+    22,
+    Color4.Red(),
+    () => {
+        buttonErrorDemo.errorAnimation()
+    }
+)
 
-export let spinRaysRewardDemo = new Spinner('images/loadingAnimation/rays.png', 10)
-export let cardFlipRewardDemo = new CardFlipAnimation(400)
+// CARD FLIP EXAMPLE
+export let cardFlipAnimDemo = new CardFlipAnimation(400)
+
+// SPRITE ANIMATION EXAMPLE (WALKING ANIM)
+export let animSpriteDemo = new SpriteAnimation("images/spriteAnimation/walk_anim_sprite.png", 4, 2, 10)
+
+// SPINNERS
+// LOADING SPINNER
+export let spinnerDemo = new Spinner('images/loadingAnimation/spinner.png', 600)
+// GLOWING RAYS SPINNER
+export let spinRaysDemo = new Spinner('images/loadingAnimation/rays.png', 10)
+
+// CUSTOM COUNTER EXAMPLE
+export let counterDemo = new CustomCounter(4, 4, 100, 'center', "images/customCounter/number_sheet.png")
+
+// PROGRESS BAR EXAMPLE
+export let progressDemo = new ProgressBar(
+    "images/progressBar/bar_bg.png",
+    "images/progressBar/bar_rounded.png",
+    Color4.Green(),
+    Color4.Red(),
+    () => {
+        progressDemo.setProgressBar(0)
+        counterDemo.increaseNumberBy(1)
+    }
+)
+
+///////////////////////
+// COMPLEX DEMO EXAMPLE
+///////////////////////
+
+// SPRITE ANIMATION FOR COIN PARTICLES
+export let coinSpriteDemo = new SpriteAnimation("images/particleSystem/coin-sprite.png", 4, 2, 20)
+// PARTICLE EMITTER
+export let coinEmitterDemo = new ParticleEmitter()
+// PROGRES BAR
+export let progressRewardDemo = new ProgressBar(
+    "images/progressBar/bar_bg.png",
+    "images/progressBar/bar_rounded.png",
+    Color4.Green(),
+    Color4.Red(),
+    () => {
+        progressRewardDemo.setProgressBar(0)
+        counterBarDemo.setNumber(0)
+        counterDemo.increaseNumberBy(1)
+        popupRewardDemo.show()
+        spinRaysRewardDemo.show()
+        cardFlipRewardDemo.show()
+    }
+)
+// COUNTER FOR THE PROGRESS BAR
+export let counterBarDemo = new CustomCounter(4, 4, 40, 'center', "images/customCounter/number_sheet.png")
+
+// CUSTOM ANIMATION SEQUENCE FOR BOUNCING THE PROGRESS BAR
+export let progressBounceAnimator = new UIAnimator(37, 85, 25, 5)
+progressBounceAnimator.addAnimationSequence(
+    'bounce',
+    new utils.actions.SequenceBuilder()
+        .then(new MoveScaleAction(progressBounceAnimator, 36, 84.8, 27, 5.5, 40, utils.InterpolationType.EASEOUTQUAD))
+        .then(new MoveScaleAction(progressBounceAnimator, 37, 85, 25, 5, 250, utils.InterpolationType.EASEOUTQUAD))
+)
+
+// REWARD POPUP ON LEVEL UP (APPEARS WHEN PROGRESS BAR IS FILLED)
 export let popupRewardDemo = new UIPopupAnimation(
     {
         startPosX: 50,
@@ -126,6 +136,13 @@ export let popupRewardDemo = new UIPopupAnimation(
     true
 )
 
+// SPINNING RAYS IN CARD'S BACKGROUND
+export let spinRaysRewardDemo = new Spinner('images/loadingAnimation/rays.png', 10)
+// CARD FLIP ON REWARD POPUP
+export let cardFlipRewardDemo = new CardFlipAnimation(400)
+
+
+// Instruction popup at the bottom of the UI ('PRESS F TO CLOSE')
 export let popupInstructionDemo = new UIPopupAnimation(
     {
         startPosX: 40,
@@ -145,10 +162,9 @@ export let popupInstructionDemo = new UIPopupAnimation(
     true
 )
 
+// fullscreen black transparent fade
 export let screenFade = new ScreenFade(Color4.fromHexString("#222222bb"))
-
 export function blackFadeUI() {
-
     return (
         <UIScreenFade
             fadeObject={screenFade}>
@@ -156,6 +172,7 @@ export function blackFadeUI() {
 
     )
 }
+
 
 export function complexParticleUI() {
     return (
@@ -189,8 +206,6 @@ export function complexParticleUI() {
                         width: '100%',
                         height: '100%',
                         minHeight: 32,
-                        //positionType: 'absolute',
-                        //position: { left: '37%', bottom: '90%' }
                     }}
                 />
                 <UICounter customCounter={counterBarDemo}
@@ -225,6 +240,7 @@ export function complexParticleUI() {
             >
                 {coinEmitterDemo.generateParticleUI(
                     <UIAnimatedSprite
+                        // INDIVIDUAL PARTICLE'S SPRITE ANIM
                         spriteAnimator={coinSpriteDemo}
                         uiTransform={{
                             width: '100%',
@@ -360,6 +376,7 @@ export function complexParticleUI() {
             >
 
                 <UiEntity
+                    // PLACEHOLDER TEXT FOR POPUP PANEL CONTENT
                     uiTransform={{
                         width: '80%',
                         height: '10%',

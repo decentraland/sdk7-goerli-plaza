@@ -1,7 +1,7 @@
 import { Billboard, BillboardMode, GltfContainer, InputAction, MeshCollider, MeshRenderer, PointerEventType, PointerEvents, TextAlignMode, TextShape, Transform, engine, inputSystem, pointerEventsSystem } from "@dcl/sdk/ecs";
 import { Vector3 } from "@dcl/sdk/math";
 import { Callback } from "@dcl/sdk/react-ecs";
-import { animSpriteDemo, blackFadeActive, buttonErrorDemo, buttonSuccessDemo, cardFlipAnimDemo, cardFlipRewardDemo, coinEmitterDemo, coinSpriteDemo, counterBarDemo, counterDemo, popupAnimatorDemo, popupInstructionDemo, popupRewardDemo, progressBounceAnimator, progressDemo, progressRewardDemo, screenFade, spinRaysDemo, spinRaysRewardDemo, spinnerDemo } from "./test_ui_complex";
+import { animSpriteDemo, buttonErrorDemo, buttonSuccessDemo, cardFlipAnimDemo, cardFlipRewardDemo, coinEmitterDemo, coinSpriteDemo, counterBarDemo, counterDemo, popupAnimatorDemo, popupInstructionDemo, popupRewardDemo, progressBounceAnimator, progressDemo, progressRewardDemo, screenFade, spinRaysDemo, spinRaysRewardDemo, spinnerDemo } from "./test_ui_complex";
 import { spinRays, spinner } from "./examples/UISpinner_example";
 
 let spacing = 1.2

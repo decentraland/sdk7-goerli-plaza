@@ -13,7 +13,7 @@ let popupAnimator = new UIPopupAnimation(
     endPosY: 40,
     endScaleX: 18,
     endScaleY: 50,
-    duration: 0.2
+    duration: 200
   },
   () => {
     popupAnimator.toggle()

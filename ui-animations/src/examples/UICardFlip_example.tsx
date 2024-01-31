@@ -3,7 +3,7 @@ import { CardFlipAnimation, UICardFlip } from "../ui_components/UICardFlip"
 import { UISprite } from "../ui_components/UISprite"
 
 
-export let cardFlipAnim = new CardFlipAnimation(0.2)
+export let cardFlipAnim = new CardFlipAnimation(400)
 
 export function createCardFlipUI() {
 
