@@ -4,6 +4,7 @@ import * as utils from '@dcl-sdk/utils'
 import { Callback } from '@dcl/sdk/react-ecs'
 
 // Use IAction to define action for scaling
+
 export class MoveScaleAction implements utils.actions.IAction {
   hasFinished: boolean = false
   entity: Entity
@@ -47,16 +48,16 @@ export class MoveScaleAction implements utils.actions.IAction {
         this.hasFinished = true
       })
 
-    utils.tweens.startTranslation(
-      this.entity,
-      transform.position,
-      this.position,
-      this.duration,
-      this.interpolationType,
-      () => {
-        this.hasFinished = true
-      }
-    )
+    // utils.tweens.startTranslation(
+    //   this.entity,
+    //   transform.position,
+    //   this.position,
+    //   this.duration,
+    //   this.interpolationType,
+    //   () => {
+    //     this.hasFinished = true
+    //   }
+    // )
   }
   // Method to run on every frame
   update(dt: number): void { }

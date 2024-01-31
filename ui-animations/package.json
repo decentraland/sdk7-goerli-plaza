@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "devDependencies": {
     "@dcl/asset-packs": "latest",
-    "@dcl/js-runtime": "7.3.36",
+    "@dcl/js-runtime": "7.3.37",
     "@dcl/sdk": "latest"
   },
   "scripts": {
@@ -14,5 +14,8 @@
     "start": "sdk-commands start",
     "upgrade-sdk": "npm install --save-dev @dcl/sdk@latest",
     "upgrade-sdk:next": "npm install --save-dev @dcl/sdk@next"
+  },
+  "dependencies": {
+    "@dcl-sdk/utils": "^1.2.4"
   }
 }
