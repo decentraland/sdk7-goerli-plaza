@@ -58,21 +58,32 @@ export function UIAnimatedSprite(props: SpriteAnimProps) {
   return <UiEntity
     uiTransform={
       props.uiTransform
-    }
-    uiBackground={{
-      textureMode: 'stretch',
-      uvs: props.spriteAnimator.uvs(),
-      texture: {
-        src: props.spriteAnimator.texture,
-      },
-    }}>
-    {props.children}
+    }>
+
+    <UiEntity uiTransform={{
+      width: '100%',
+      height: '100%',
+      positionType: 'absolute',
+      display: props.spriteAnimator.visible ? 'flex' : 'none'
+    }}
+      uiBackground={{
+        textureMode: 'stretch',
+        uvs: props.spriteAnimator.uvs(),
+        texture: {
+          src: props.spriteAnimator.texture,
+        },
+      }}>
+
+      {props.children}
+    </UiEntity>
+
   </UiEntity>
 }
 
 export class SpriteAnimation {
   entity: Entity
   texture: string
+  visible: boolean = false
 
   constructor(texture: string, rows: number, columns: number, fps: number) {
     this.entity = engine.addEntity()
@@ -101,6 +112,17 @@ export class SpriteAnimation {
       (spriteInfo.currentSpriteU + 1) * spriteInfo.stepU, 1 - (spriteInfo.currentSpriteV * spriteInfo.stepV),
       (spriteInfo.currentSpriteU + 1) * spriteInfo.stepU, 1 - ((spriteInfo.currentSpriteV + 1) * spriteInfo.stepV)
     ]
+  }
+
+  show() {
+    this.visible = true
+  }
+  hide() {
+    this.visible = false
+  }
+
+  toggle() {
+    this.visible = !this.visible
   }
 }
 

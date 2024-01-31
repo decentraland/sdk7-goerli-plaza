@@ -14,6 +14,7 @@ export type StartEndTransform = {
   endPosY: number
   endScaleX: number
   endScaleY: number
+  duration: number
 }
 
 export class UIPopupAnimation {
@@ -21,45 +22,58 @@ export class UIPopupAnimation {
   transform: StartEndTransform
   isOpen: boolean = false
   isContentVisible: boolean = false
+  visible: boolean = false
+  showContentWhileScaling: boolean = false
+  interpolationType: utils.InterpolationType = utils.InterpolationType.EASEOUTQUAD
   onClick: Callback
 
-  constructor(startEndTransform: StartEndTransform, onClick: Callback) {
+  constructor(startEndTransform: StartEndTransform, onClick: Callback, interpolationType?: utils.InterpolationType, showContentWhileScaling?: boolean) {
 
     this.transform = startEndTransform
 
 
+    if (interpolationType) {
+      this.interpolationType = interpolationType
+    }
+
+    if (showContentWhileScaling) {
+      this.showContentWhileScaling = showContentWhileScaling
+      this.isContentVisible = this.showContentWhileScaling
+    }
     this.animator = new UIAnimator(this.transform.startPosX, this.transform.startPosY, this.transform.startScaleX, this.transform.startScaleY)
     this.onClick = onClick
 
     this.animator.addAnimationSequence(
       "scale-up",
       new utils.actions.SequenceBuilder()
-        .then(new MoveScaleAction(this.animator.entity, this.transform.endPosX, this.transform.endPosY, this.transform.endScaleX, this.transform.endScaleY, 0.4, utils.InterpolationType.EASEOUTEBOUNCE))
+        .then(new MoveScaleAction(this.animator, this.transform.endPosX, this.transform.endPosY, this.transform.endScaleX, this.transform.endScaleY, this.transform.duration, utils.InterpolationType.EASEOUTEBOUNCE))
     )
 
     this.animator.addAnimationSequence(
       "open",
       new utils.actions.SequenceBuilder()
+        .then(new CallbackAction(() => { if (this.showContentWhileScaling) this.isContentVisible = true }))
         //.then(new MoveScaleAction(this.animator.entity, this.transform.endPosX, this.transform.endPosY, this.transform.endScaleX, this.transform.startScaleY,  0.2,  utils.InterpolationType.EASEOUTQUAD))
-        .then(new MoveScaleAction(this.animator.entity, this.transform.endPosX, this.transform.endPosY, this.transform.endScaleX, this.transform.endScaleY, 0.3, utils.InterpolationType.EASEOUTQUAD))
+        .then(new MoveScaleAction(this.animator, this.transform.endPosX, this.transform.endPosY, this.transform.endScaleX, this.transform.endScaleY, this.transform.duration, this.interpolationType))
         .then(new CallbackAction(() => { this.isContentVisible = true }))
     )
 
     this.animator.addAnimationSequence(
       "close",
       new utils.actions.SequenceBuilder()
-        .then(new CallbackAction(() => { this.isContentVisible = false }))
+        .then(new CallbackAction(() => { if (!this.showContentWhileScaling) this.isContentVisible = false }))
         //.then(new MoveScaleAction(this.animator.entity, this.transform.endPosX, this.transform.endPosY, this.transform.endScaleX, this.transform.startScaleY,  0.2,  utils.InterpolationType.EASEOUTQUAD))
-        .then(new MoveScaleAction(this.animator.entity, this.transform.startPosX, this.transform.startPosY, this.transform.startScaleX, this.transform.startScaleY, 0.3, utils.InterpolationType.EASEOUTQUAD))
+        .then(new MoveScaleAction(this.animator, this.transform.startPosX, this.transform.startPosY, this.transform.startScaleX, this.transform.startScaleY, this.transform.duration, this.interpolationType))
+        .then(new CallbackAction(() => { this.visible = false }))
     )
 
     this.animator.addAnimationSequence(
       "shake",
       new utils.actions.SequenceBuilder()
-        .then(new MoveScaleAction(this.animator.entity, 80, 10, 20, 70, 0.05, utils.InterpolationType.EASESINE))
-        .then(new MoveScaleAction(this.animator.entity, 77, 10, 20, 70, 0.05, utils.InterpolationType.EASESINE))
-        .then(new MoveScaleAction(this.animator.entity, 80, 10, 20, 70, 0.05, utils.InterpolationType.EASESINE))
-        .then(new MoveScaleAction(this.animator.entity, 77, 10, 20, 70, 0.05, utils.InterpolationType.EASESINE))
+        .then(new MoveScaleAction(this.animator, 80, 10, 20, 70, 0.05, utils.InterpolationType.EASESINE))
+        .then(new MoveScaleAction(this.animator, 77, 10, 20, 70, 0.05, utils.InterpolationType.EASESINE))
+        .then(new MoveScaleAction(this.animator, 80, 10, 20, 70, 0.05, utils.InterpolationType.EASESINE))
+        .then(new MoveScaleAction(this.animator, 77, 10, 20, 70, 0.05, utils.InterpolationType.EASESINE))
     )
   }
 
@@ -75,11 +89,13 @@ export class UIPopupAnimation {
   show() {
     this.animator.playAnimation('open')
     this.isOpen = true
+    this.visible = true
   }
 
   hide() {
     this.animator.playAnimation('close')
     this.isOpen = false
+
   }
 }
 
@@ -98,6 +114,7 @@ export function UIPopup(props: AnimatedPopupProps) {
         uiTransform={{
           width: '100%',
           height: '100%',
+          display: props.popupAnim.visible ? 'flex' : 'none'
         }}
 
         uiBackground={props.uiBackground}
