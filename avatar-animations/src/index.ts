@@ -1,6 +1,7 @@
 import {
   AvatarAnchorPointType,
   AvatarAttach,
+  EasingFunction,
   engine,
   GltfContainer,
   InputAction,
@@ -9,7 +10,8 @@ import {
   MeshCollider,
   pointerEventsSystem,
   PointerEventType,
-  Transform
+  Transform,
+  Tween
 } from '@dcl/sdk/ecs'
 import { Quaternion, Vector3 } from '@dcl/sdk/math'
 import { triggerSceneEmote } from '~system/RestrictedActions'
@@ -89,13 +91,23 @@ engine.addSystem(() => {
         if (elf) {
           const end = Vector3.create(Transform.get(elf).position.x, 1, Transform.get(elf).position.z)
 
-          utils.tweens.startTranslation(entity, start, end, 1, utils.InterpolationType.LINEAR, () => {
+          Tween.createOrReplace(entity, {
+            mode: Tween.Mode.Move({
+              start: start,
+              end: end
+            }),
+            duration: 1000,
+            easingFunction: EasingFunction.EF_LINEAR
+          })
+
+          // move to next pos (after rotating)
+          utils.timers.setTimeout(() => {
             Transform.getMutable(entity).rotation = Quaternion.fromEulerDegrees(-90, 0, 0)
             GltfContainer.createOrReplace(entity, { src: 'assets/models/splat.glb' })
             utils.timers.setTimeout(() => {
               engine.removeEntity(entity)
             }, 300)
-          })
+          }, 1000)
 
           const mutableSnow = Snow.getMutable(entity)
           mutableSnow.holding = false
