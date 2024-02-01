@@ -40,14 +40,13 @@ export class MoveScaleAction implements utils.actions.IAction {
     }
   }
 
-
   // Method when action starts
   onStart(): void {
     const transformScale = Transform.get(this.entityScale)
     const transformPosition = Transform.get(this.entityTransform)
     console.log('CICA')
-    console.log('Position: ' + transformPosition.position.x + " , " + transformPosition.position.y)
-    console.log('Scale   : ' + transformScale.scale.x + " , " + transformScale.scale.y)
+    console.log('Position: ' + transformPosition.position.x + ' , ' + transformPosition.position.y)
+    console.log('Scale   : ' + transformScale.scale.x + ' , ' + transformScale.scale.y)
     this.hasFinished = false
 
     utils.tweens.stopScaling(this.entityScale)
@@ -61,7 +60,8 @@ export class MoveScaleAction implements utils.actions.IAction {
       this.interpolationType,
       () => {
         this.hasFinished = true
-      })
+      }
+    )
 
     utils.tweens.startTranslation(
       this.entityTransform,
@@ -76,12 +76,9 @@ export class MoveScaleAction implements utils.actions.IAction {
     //this.hasFinished = true
   }
   // Method to run on every frame
-  update(dt: number): void {
-  }
+  update(dt: number): void {}
   // Method to run at the end
-  onFinish(): void {
-
-  }
+  onFinish(): void {}
 }
 
 // Use IAction to define action for scaling
@@ -99,7 +96,7 @@ export class CallbackAction implements utils.actions.IAction {
     this.hasFinished = true
   }
   // Method to run on every frame
-  update(dt: number): void { }
+  update(dt: number): void {}
   // Method to run at the end
-  onFinish(): void { }
+  onFinish(): void {}
 }

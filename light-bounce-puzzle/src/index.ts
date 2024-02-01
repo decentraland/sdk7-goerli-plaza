@@ -2,12 +2,14 @@ import {
   CameraModeArea,
   CameraType,
   ColliderLayer,
+  EasingFunction,
   Entity,
   GltfContainer,
   InputAction,
   PointerEventType,
   RaycastQueryType,
   Transform,
+  Tween,
   engine,
   inputSystem,
   raycastSystem
@@ -184,11 +186,29 @@ export function main() {
       // Scale the ray to size
       const endSize = Vector3.create(startSize.x, startSize.y, distance)
 
-      utils.tweens.startScaling(ray, startSize, endSize, 0.1, utils.InterpolationType.LINEAR, onFinish)
+      Tween.createOrReplace(ray, {
+        mode: Tween.Mode.Scale({
+          start: startSize,
+          end: endSize
+        }),
+        duration: 100,
+        easingFunction: EasingFunction.EF_LINEAR
+      })
+
+      utils.timers.setTimeout(function () {
+        onFinish()
+      }, 100)
 
       // Ray dissipates after half a second
       utils.timers.setTimeout(function () {
-        utils.tweens.startScaling(ray, endSize, Vector3.create(0, 0, endSize.z), 0.2)
+        Tween.createOrReplace(ray, {
+          mode: Tween.Mode.Scale({
+            start: endSize,
+            end: Vector3.create(0, 0, endSize.z)
+          }),
+          duration: 200,
+          easingFunction: EasingFunction.EF_LINEAR
+        })
       }, 500)
     }
   })
@@ -255,23 +275,33 @@ function reflectRay(hitPoint: Vector3, reflectedVector: Vector3, reflectCount: n
       const endSize = Vector3.create(startSize.x, startSize.y, distance)
       const timeToTravel = distance * 0.05
 
-      utils.tweens.startScaling(
-        reflectedRay.reflectedRayEntity as Entity,
-        startSize,
-        endSize,
-        timeToTravel,
-        utils.InterpolationType.LINEAR,
-        onFinish
-      )
+      if (!reflectedRay.reflectedRayEntity) return
+
+      Tween.createOrReplace(reflectedRay.reflectedRayEntity, {
+        mode: Tween.Mode.Scale({
+          start: startSize,
+          end: endSize
+        }),
+        duration: timeToTravel,
+        easingFunction: EasingFunction.EF_LINEAR
+      })
+
+      utils.timers.setTimeout(function () {
+        onFinish()
+      }, timeToTravel)
 
       // Reflected ray dissipates after a period proportional to the travelled distance
       utils.timers.setTimeout(function () {
-        utils.tweens.startScaling(
-          reflectedRay.reflectedRayEntity as Entity,
-          endSize,
-          Vector3.create(0, 0, endSize.z),
-          0.5
-        )
+        if (!reflectedRay.reflectedRayEntity) return
+
+        Tween.createOrReplace(reflectedRay.reflectedRayEntity, {
+          mode: Tween.Mode.Scale({
+            start: endSize,
+            end: Vector3.create(0, 0, endSize.z)
+          }),
+          duration: 500,
+          easingFunction: EasingFunction.EF_LINEAR
+        })
       }, 2000 * timeToTravel)
     }
   )

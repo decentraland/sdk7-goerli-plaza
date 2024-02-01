@@ -3,7 +3,7 @@
   "description": "My new Decentraland project",
   "version": "1.0.0",
   "dependencies": {
-    "@dcl-sdk/utils": "^1.2.4",
+    "@dcl-sdk/utils": "latest",
     "@dcl/sdk": "latest",
     "glob": "^9.3.4",
     "prettier": "^2.8.8",
