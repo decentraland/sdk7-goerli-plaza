@@ -3,7 +3,7 @@ import { SpriteAnimation, UIAnimatedSprite } from "./ui_components/UIAnimatedSpr
 import { ParticleEmitter } from "./ui_components/UIParticle"
 import { AnimatedButton, UIButton } from "./ui_components/UIButton"
 import { Color4 } from "@dcl/sdk/math"
-import { ProgressBar, UIProgressBar } from "./ui_components/UIProgressBar"
+import { ProgressBar, UIImageBar, UIProgressBar } from "./ui_components/UIProgressBar"
 import { CustomCounter, UICounter } from "./ui_components/UICounter"
 import { AnimatedContainer, UIAnimator } from "./ui_components/UIAnimation"
 import * as utils from '@dcl-sdk/utils'
@@ -75,12 +75,35 @@ export let progressDemo = new ProgressBar(
     "images/progressBar/bar_rounded.png",
     Color4.Green(),
     Color4.Red(),
+    true,
     () => {
         progressDemo.setProgressBar(0)
         counterDemo.increaseNumberBy(1)
     }
 )
+export let myHealthBar = new ProgressBar(
+    "images/progressBar/image_avatar_bg.png",
+    "images/progressBar/image_avatar_scaling.png",
+    Color4.Red(),
+    Color4.Green(),
+    false,
+    () => {
+        myHealthBar.setProgressBar(0)
 
+    },
+    // "images/progressBar/image_bar_fg.png"
+)
+
+export let myManaBar = new ProgressBar(
+    "images/progressBar/image_bar_bg.png",
+    "images/progressBar/image_bar_scaling.png",
+    Color4.Blue(),
+    Color4.Blue(),
+    true,
+    () => {
+        myManaBar.setProgressBar(0)
+    },
+    "images/progressBar/image_bar_fg.png")
 ///////////////////////
 // COMPLEX DEMO EXAMPLE
 ///////////////////////
@@ -95,6 +118,7 @@ export let progressRewardDemo = new ProgressBar(
     "images/progressBar/bar_rounded.png",
     Color4.Green(),
     Color4.Red(),
+    true,
     () => {
         progressRewardDemo.setProgressBar(0)
         counterBarDemo.setNumber(0)
@@ -217,6 +241,31 @@ export function complexParticleUI() {
                     }}
                 />
             </AnimatedContainer>
+            <UiEntity uiTransform={{
+                width: '100%',
+                height: '100%',
+                positionType: 'absolute'
+            }}>
+                <UIImageBar
+                    progressBar={myHealthBar}
+                    uiTransform={{
+                        width: 512,
+                        height: 512,
+                        positionType: 'absolute',
+                        position: { left: '60%', bottom: '15%' }
+                    }}
+                />
+                <UIImageBar
+                    progressBar={myManaBar}
+                    uiTransform={{
+                        width: 512,
+                        height: 512,
+                        positionType: 'absolute',
+                        position: { left: '15%', bottom: '15%' }
+                    }}
+                />
+            </UiEntity>
+
 
             <UICounter customCounter={counterDemo}
                 // CUSTOM COUNTER
@@ -250,7 +299,6 @@ export function complexParticleUI() {
                     />
                 )}
             </UiEntity>
-
             <UIAnimatedSprite
                 //walking man sprite anim
                 spriteAnimator={animSpriteDemo}

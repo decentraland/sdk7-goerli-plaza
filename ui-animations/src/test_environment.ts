@@ -1,8 +1,9 @@
 import { Billboard, BillboardMode, GltfContainer, InputAction, MeshCollider, MeshRenderer, PointerEventType, PointerEvents, TextAlignMode, TextShape, Transform, engine, inputSystem, pointerEventsSystem } from "@dcl/sdk/ecs";
 import { Vector3 } from "@dcl/sdk/math";
 import { Callback } from "@dcl/sdk/react-ecs";
-import { animSpriteDemo, buttonErrorDemo, buttonSuccessDemo, cardFlipAnimDemo, cardFlipRewardDemo, coinEmitterDemo, coinSpriteDemo, counterBarDemo, counterDemo, popupAnimatorDemo, popupInstructionDemo, popupRewardDemo, progressBounceAnimator, progressDemo, progressRewardDemo, screenFade, spinRaysDemo, spinRaysRewardDemo, spinnerDemo } from "./test_ui_complex";
+import { animSpriteDemo, buttonErrorDemo, buttonSuccessDemo, cardFlipAnimDemo, cardFlipRewardDemo, coinEmitterDemo, coinSpriteDemo, counterBarDemo, counterDemo, myHealthBar, myManaBar, popupAnimatorDemo, popupInstructionDemo, popupRewardDemo, progressBounceAnimator, progressDemo, progressRewardDemo, screenFade, spinRaysDemo, spinRaysRewardDemo, spinnerDemo } from "./test_ui_complex";
 import { spinRays, spinner } from "./examples/UISpinner_example";
+
 
 let spacing = 1.2
 let startX = 3.2
@@ -55,6 +56,7 @@ engine.addSystem((dt: number) => {
 
         hideAll()
 
+
     }
 
 })
@@ -76,6 +78,9 @@ export function hideAll() {
     spinRaysRewardDemo.hide()
     cardFlipRewardDemo.hide()
     progressRewardDemo.hide()
+    myHealthBar.hide()
+    myManaBar.hide()
+
 
 }
 export function addEnvironment() {
@@ -107,6 +112,10 @@ export function addEnvironment() {
         screenFade.show()
         progressDemo.show()
         progressDemo.incrementProgressBar(0.1)
+        myHealthBar.show()
+        myHealthBar.incrementProgressBar(0.1)
+        myManaBar.show()
+        myManaBar.incrementProgressBar(0.1)
     }, 'models/box.glb')
 
     createUIBox("Counter", tablePositions[6], () => {

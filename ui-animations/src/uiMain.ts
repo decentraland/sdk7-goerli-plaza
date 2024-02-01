@@ -11,6 +11,7 @@ import { createParticleTestButton, createParticleUI } from './examples/UIParticl
 import { ProgressBarTestSystem, createProgressBarUI } from './examples/UIProgressBar_example'
 import { exampleLabelsUI } from './exampleLabeling'
 import { blackFadeUI, complexParticleUI } from './test_ui_complex'
+import { ImageBarTestSystem, createImageBarUI, myHealthBar } from './examples/UIImageBar_example'
 
 export function setupUi() {
   ReactEcsRenderer.setUiRenderer(uiComponent)
@@ -18,12 +19,14 @@ export function setupUi() {
   // add these  systems only for testing the functionality of the examples
   engine.addSystem(ProgressBarTestSystem)
   engine.addSystem(CounterTestSystem)
+  engine.addSystem(ImageBarTestSystem)
 }
 
 const uiComponent = () => [
   //show labels for each example
   //exampleLabelsUI(),
   blackFadeUI(),
+  //createImageBarUI(),
   // add the UI of each example file to the UI rendering engine
   // createProgressBarUI(),
   // createSingleSpriteUI(),

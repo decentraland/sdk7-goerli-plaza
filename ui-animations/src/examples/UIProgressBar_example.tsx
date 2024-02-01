@@ -6,7 +6,8 @@ export let myProgressBar = new ProgressBar(
     "images/progressBar/bar_bg.png",
     "images/progressBar/bar_rounded.png",
     Color4.Green(),
-    Color4.Red())
+    Color4.Red(),
+    true)
 
 export function createProgressBarUI() {
     return (
