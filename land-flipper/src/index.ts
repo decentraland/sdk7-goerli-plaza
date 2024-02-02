@@ -24,7 +24,7 @@ import { createTile } from './factory'
 import { myProfile, syncEntity } from '@dcl/sdk/network'
 import * as utils from '@dcl-sdk/utils'
 import { setupUi } from './ui'
-import { createMarker } from './playerMarker'
+import { createMarker, markAllPlayers } from './playerMarker'
 
 // You can remove this if you don't use any asset packs
 initAssetPacks(engine, pointerEventsSystem, {
@@ -72,5 +72,6 @@ export function main() {
 
   setupUi()
 
-  createMarker(myProfile.userId)
+  markAllPlayers()
+  //createMarker(myProfile.userId)
 }

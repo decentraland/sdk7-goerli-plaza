@@ -3,6 +3,7 @@ import { Color4 } from '@dcl/sdk/math'
 import { Tile } from './components'
 import { generateHexColor } from './utils'
 import { myProfile } from '@dcl/sdk/network'
+import { getPlayer } from '@dcl/sdk/src/players'
 
 export let MY_COLOR: Color4
 export function colorTiles(dt: number) {
@@ -28,8 +29,12 @@ export function colorTiles(dt: number) {
   }
 }
 
+
+
 export function setMyColor() {
-  MY_COLOR = MY_COLOR ?? Color4.fromHexString(generateHexColor(myProfile.networkId))
+  const playerId = getPlayer()?.userId
+  if (!playerId) return
+  MY_COLOR = MY_COLOR ?? Color4.fromHexString(generateHexColor(Number(playerId)))
 }
 
 export function changeTileColor(tile: Entity, color: Color4 | undefined) {
