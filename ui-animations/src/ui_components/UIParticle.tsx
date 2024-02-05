@@ -57,10 +57,7 @@ export class ParticleEmitter {
       countV: 2,
       stepU: 1 / 4,
       stepV: 1 / 2,
-      currentSpriteU: 0,
-      currentSpriteV: 0,
-      elapsed: 0,
-      freq: 1 / 100,
+      freq: 1 / 100
     })
 
     utils.paths.startSmoothPath(
@@ -101,7 +98,9 @@ export class ParticleEmitter {
     return Array.from(engine.getEntitiesWith(
       Particle,
       Transform
-    )).map(([entity]) => <UIParticle particleUI={particleUI} emitter={this} entity={entity} key={entity} />)
+    ))
+    .filter(([entity]) => this.particles.includes(entity))
+    .map(([entity]) => <UIParticle particleUI={particleUI} emitter={this} entity={entity} key={entity} />)
   }
 
 }

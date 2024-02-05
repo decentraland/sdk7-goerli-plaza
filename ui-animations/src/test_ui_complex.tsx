@@ -58,7 +58,7 @@ export let buttonErrorDemo = new AnimatedButton(
 export let cardFlipAnimDemo = new CardFlipAnimation(400)
 
 // SPRITE ANIMATION EXAMPLE (WALKING ANIM)
-export let animSpriteDemo = new SpriteAnimation("images/spriteAnimation/walk_anim_sprite.png", 4, 2, 10)
+export let animSpriteDemo = new SpriteAnimation("images/spriteAnimation/walk_anim_sprite.png", 4, 2, 10, undefined, undefined, false, true)
 
 // SPINNERS
 // LOADING SPINNER
@@ -306,10 +306,32 @@ export function complexParticleUI() {
                     width: 240,
                     height: 480,
                     positionType: 'absolute',
-                    position: { top: '50%', left: '50%' },
+                    position: { top: '60%', left: '50%' },
                     margin: { top: -500, left: -120 }
                 }}
-            />
+            >
+
+                <UiEntity
+                    uiTransform={{
+                        width: '80%',
+                        height: '10%',
+                        positionType: 'relative',
+                        position: { top: '100%', right: '10%' },
+
+                    }}
+                    uiText={{ value: "Start", fontSize: 28, color: Color4.White() }}
+                    onMouseDown={() => animSpriteDemo.start()} />
+                <UiEntity
+                    uiTransform={{
+                        width: '80%',
+                        height: '10%',
+                        positionType: 'relative',
+                        position: { top: '100%', left: '10%' },
+
+                    }}
+                    uiText={{ value: "Stop", fontSize: 28, color: Color4.White() }}
+                    onMouseDown={() => animSpriteDemo.stop()} />
+            </UIAnimatedSprite>
 
             <UISpinner
                 //spinning loading circle
