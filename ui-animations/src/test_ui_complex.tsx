@@ -13,6 +13,7 @@ import { CardFlipAnimation, UICardFlip } from "./ui_components/UICardFlip"
 import { UISprite } from "./ui_components/UISprite"
 import { UIPopup, UIPopupAnimation } from "./ui_components/UIPopup"
 import { ScreenFade, UIScreenFade } from "./ui_components/UIScreenFade"
+import { hideAll } from "./test_environment"
 
 
 // POPUP EXAMPLE
@@ -41,8 +42,9 @@ export let buttonSuccessDemo = new AnimatedButton(
     22,
     Color4.Black(),
     () => {
-        buttonSuccessDemo.successAnimation()
-    }
+        const animation = buttonSuccessDemo.successAnimation()
+    },
+    () => hideAll()
 )
 // ERROR BUTTON ANIMATION
 export let buttonErrorDemo = new AnimatedButton(
@@ -51,7 +53,8 @@ export let buttonErrorDemo = new AnimatedButton(
     Color4.Red(),
     () => {
         buttonErrorDemo.errorAnimation()
-    }
+    },
+    () => console.log('this text is displayed when animation ends')
 )
 
 // CARD FLIP EXAMPLE

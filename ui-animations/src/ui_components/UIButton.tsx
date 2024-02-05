@@ -3,7 +3,7 @@ import { AnimatedContainer, UIAnimator } from "./UIAnimation"
 import { Color4 } from "@dcl/sdk/math"
 import { Entity } from "@dcl/sdk/ecs"
 import * as utils from '@dcl-sdk/utils'
-import { MoveScaleAction } from "./transformActions"
+import { CallbackAction, MoveScaleAction } from "./transformActions"
 
 
 export type AnimatedButtonProps = EntityPropTypes & {
@@ -18,29 +18,33 @@ export class AnimatedButton {
   textColor: Color4
   visible: boolean = false
   onClick: Callback
+  callOnFinish?: Callback
 
-  constructor(label: string, fontSize: number, textColor: Color4, onClick: Callback) {
+  constructor(label: string, fontSize: number, textColor: Color4, onClick: Callback, callOnFinish?: Callback) {
     this.animator = new UIAnimator(0, 0, 100, 100)
     this.label = label
     this.fontSize = fontSize
     this.textColor = textColor
     this.onClick = onClick
+    this.callOnFinish = callOnFinish && callOnFinish
 
     this.animator.addAnimationSequence(
       "push",
       new utils.actions.SequenceBuilder()
         .then(new MoveScaleAction(this.animator, 2.5, -10, 95, 93, 50, utils.InterpolationType.EASESINE))
         .then(new MoveScaleAction(this.animator, 0, 0, 100, 100, 50, utils.InterpolationType.EASESINE))
-    )
-
-
-    this.animator.addAnimationSequence(
-      "shake",
-      new utils.actions.SequenceBuilder()
-        .then(new MoveScaleAction(this.animator, 5, 0, 100, 100, 50, utils.InterpolationType.EASESINE))
-        .then(new MoveScaleAction(this.animator, -5, 0, 100, 100, 50, utils.InterpolationType.EASESINE))
-        .then(new MoveScaleAction(this.animator, 2, 0, 100, 100, 50, utils.InterpolationType.EASESINE))
-        .then(new MoveScaleAction(this.animator, 0, 0, 100, 100, 50, utils.InterpolationType.EASESINE))
+        .then(new CallbackAction(() => this.callOnFinish && this.callOnFinish()))
+        )
+        
+        
+        this.animator.addAnimationSequence(
+          "shake",
+          new utils.actions.SequenceBuilder()
+          .then(new MoveScaleAction(this.animator, 5, 0, 100, 100, 50, utils.InterpolationType.EASESINE))
+          .then(new MoveScaleAction(this.animator, -5, 0, 100, 100, 50, utils.InterpolationType.EASESINE))
+          .then(new MoveScaleAction(this.animator, 2, 0, 100, 100, 50, utils.InterpolationType.EASESINE))
+          .then(new MoveScaleAction(this.animator, 0, 0, 100, 100, 50, utils.InterpolationType.EASESINE))
+          .then(new CallbackAction(() => this.callOnFinish && this.callOnFinish()))
     )
 
 
