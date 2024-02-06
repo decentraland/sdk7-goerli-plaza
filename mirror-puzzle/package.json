@@ -2,9 +2,6 @@
   "name": "mirror-puzzle",
   "description": "A puzzle scene where it's necessary to align mirrors for a ray to reach a destination",
   "version": "1.0.0",
-  "bundleDependencies": [
-    "@dcl-sdk/utils"
-  ],
   "dependencies": {
     "@dcl-sdk/utils": "latest"
   },
