@@ -14,12 +14,12 @@ export function exampleLabelsUI() {
                 positionType: "absolute"
             }}
             uiBackground={{
-                color: Color4.fromHexString("#222222bb")
+                color: Color4.fromHexString("#222222ee")
 
             }}
         >
 
-            <UiEntity uiText={{ value: "Sprite", fontSize: lableFontSize, textAlign: 'middle-center' }} uiTransform={{ positionType: 'absolute', width: '5%', height: "3%", position: { top: '3%', left: '15%' } }} />
+            {/* <UiEntity uiText={{ value: "Sprite", fontSize: lableFontSize, textAlign: 'middle-center' }} uiTransform={{ positionType: 'absolute', width: '5%', height: "3%", position: { top: '3%', left: '15%' } }} />
             <UiEntity uiText={{ value: "AnimatedSprite", fontSize: lableFontSize, textAlign: 'middle-center' }} uiTransform={{ positionType: 'absolute', width: '5%', height: "3%", position: { top: '3%', left: '23%' } }} />
             <UiEntity uiText={{ value: "Spinner", fontSize: lableFontSize, textAlign: 'middle-center' }} uiTransform={{ positionType: 'absolute', width: '5%', height: "3%", position: { top: '3%', left: '32%' } }} />
             <UiEntity uiText={{ value: "Custom Counter", fontSize: lableFontSize, textAlign: 'middle-center' }} uiTransform={{ positionType: 'absolute', width: '5%', height: "3%", position: { top: '3%', left: '43%' } }} />
@@ -28,7 +28,7 @@ export function exampleLabelsUI() {
             <UiEntity uiText={{ value: "Card Flip", fontSize: lableFontSize, textAlign: 'middle-center' }} uiTransform={{ positionType: 'absolute', width: '5%', height: "3%", position: { top: '3%', left: '87%' } }} />
             <UiEntity uiText={{ value: "Particle System", fontSize: lableFontSize, textAlign: 'middle-center' }} uiTransform={{ positionType: 'absolute', width: '5%', height: "3%", position: { top: '40%', left: '87%' } }} />
             <UiEntity uiText={{ value: "Progress Bar", fontSize: lableFontSize, textAlign: 'middle-center' }} uiTransform={{ positionType: 'absolute', width: '5%', height: "3%", position: { top: '70%', left: '87%' } }} />
-
+ */}
 
         </UiEntity>
     )

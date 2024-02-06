@@ -13,7 +13,8 @@ export function createParticleUI() {
     <UiEntity
       uiTransform={{
         width: "100%",
-        height: "100%"
+        height: "100%",
+        //positionType: 'absolute'
       }}
     >
       {coinEmitter.generateParticleUI(

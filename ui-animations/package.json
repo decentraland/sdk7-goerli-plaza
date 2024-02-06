@@ -2,6 +2,9 @@
   "name": "ui-animations",
   "description": "SDK7 Animated UI elements",
   "version": "1.0.0",
+  "dependencies": {
+    "@dcl-sdk/utils": "latest"
+  },
   "devDependencies": {
     "@dcl/asset-packs": "latest",
     "@dcl/js-runtime": "latest",

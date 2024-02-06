@@ -1,6 +1,6 @@
 import { AudioSource, Entity, Schemas, Transform, VisibilityComponent, engine } from '@dcl/sdk/ecs'
 import { Color4, Vector3 } from '@dcl/sdk/math'
-import ReactEcs, { EntityPropTypes, PositionUnit, UiEntity } from '@dcl/sdk/react-ecs'
+import ReactEcs, { Callback, EntityPropTypes, PositionUnit, UiEntity } from '@dcl/sdk/react-ecs'
 import * as utils from '@dcl-sdk/utils'
 import { SpriteAnim } from './UIAnimatedSprite'
 import { pitchShift, smoothPath } from './utilities'
@@ -12,7 +12,7 @@ export class ParticleEmitter {
   particles: Entity[]
   MAX_POOL_SIZE: number = 32
   interpolationType = utils.InterpolationType.LINEAR
-
+  spawnCount: number = 0
   constructor() {
     this.particles = []
   }
@@ -37,8 +37,16 @@ export class ParticleEmitter {
     let particle = engine.addEntity()
     return particle
   }
+  spawnMultiple(count: number, _startPosX: number, _startPosY: number, _endPosX: number, _endPosY: number, _callback?: Callback) {
 
-  spawnSingle(_startPosX: number, _startPosY: number, _endPosX: number, _endPosY: number) {
+    for (let i = 0; i < count; i++) {
+      this.spawnSingle(_startPosX, _startPosY, _endPosX, _endPosY, _callback)
+    }
+  }
+
+  spawnSingle(_startPosX: number, _startPosY: number, _endPosX: number, _endPosY: number, _callback?: Callback) {
+    this.spawnCount += 1
+    console.log("Spawned so far: " + this.spawnCount)
 
     let particle = this.getParticleFromPool()
     Transform.createOrReplace(particle, { scale: Vector3.create(60, 60, 10) })
@@ -62,11 +70,15 @@ export class ParticleEmitter {
         Vector3.create(((_endPosX + _startPosX) / 2) + Math.random() * 20 - 10, ((_endPosY + _startPosY) / 2) + Math.random() * 10 - 5, 0),
         Vector3.create(_endPosX, _endPosY, 0),
       ],
-      2,
+      1 + Math.random(),
       20,
       false,
       () => {
         //this.coins = this.coins.filter((object) => this.coins.indexOf(object) !== this.coins.indexOf(coin))
+
+        if (_callback) {
+          _callback()
+        }
         Particle.deleteFrom(particle)
       }
     )
