@@ -21,9 +21,10 @@ import { initAssetPacks } from '@dcl/asset-packs/dist/scene-entrypoint'
 
 import { colorTiles, resetAllTiles } from './systems'
 import { createTile } from './factory'
-import { syncEntity } from '@dcl/sdk/network'
+import { myProfile, syncEntity } from '@dcl/sdk/network'
 import * as utils from '@dcl-sdk/utils'
 import { setupUi } from './ui'
+import { createMarker, markAllPlayers } from './playerMarker'
 
 // You can remove this if you don't use any asset packs
 initAssetPacks(engine, pointerEventsSystem, {
@@ -70,4 +71,7 @@ export function main() {
   )
 
   setupUi()
+
+  markAllPlayers()
+  //createMarker(myProfile.userId)
 }

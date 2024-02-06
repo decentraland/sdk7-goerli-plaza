@@ -3,10 +3,11 @@ import { Color4 } from '@dcl/sdk/math'
 import { Tile } from './components'
 import { generateHexColor } from './utils'
 import { myProfile } from '@dcl/sdk/network'
+import { getPlayer } from '@dcl/sdk/src/players'
 
-let MY_COLOR: Color4
+export let MY_COLOR: Color4
 export function colorTiles(dt: number) {
-  MY_COLOR = MY_COLOR ?? Color4.fromHexString(generateHexColor(myProfile.networkId))
+  setMyColor()
   const PlayerPos = Transform.get(engine.PlayerEntity).position
 
   for (const [entity, _tile, _transform, _material] of engine.getEntitiesWith(Tile, Transform, Material)) {
@@ -26,6 +27,12 @@ export function colorTiles(dt: number) {
       changeTileColor(entity, MY_COLOR)
     }
   }
+}
+
+export function setMyColor() {
+  const playerId = getPlayer()?.userId
+  if (!playerId) return
+  MY_COLOR = MY_COLOR ?? Color4.fromHexString(generateHexColor(Number(playerId)))
 }
 
 export function changeTileColor(tile: Entity, color: Color4 | undefined) {
