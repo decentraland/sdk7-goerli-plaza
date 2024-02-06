@@ -1,16 +1,16 @@
 import * as showMgmt from 'show-manager/src'
 import * as ui from 'dcl-ui-toolkit'
 import { showData } from './scheduleSetup'
-import { isPreviewMode } from '~system/EnvironmentApi'
 import { RunwayAvatar } from './ext/runwayAvatar'
 import { Material, PBMaterial_PbrMaterial, PBVideoPlayer, VideoState } from '@dcl/sdk/ecs'
 import { ShowStatusDisplays } from '../showStatusDisplays'
 import { VideoScreens } from '../videoScreens'
 import { Color3 } from '@dcl/sdk/math'
+import { getRealm } from '~system/Runtime'
 
 export const SHOW_MGR = new showMgmt.ShowManager()
 
-export function setupShow() {
+export async function setupShow() {
   //creating a logger for this file
   const logger: showMgmt.Logger = showMgmt.LoggerFactory.getLogger('MyScene.ShowSetup.ts')
   //set logger for a specific logger
@@ -230,11 +230,9 @@ export function setupShow() {
   const runOfShow = new showMgmt.RunOfShowSystem(SHOW_MGR)
 
   //STARTING DEBUGGER
-
-  isPreviewMode({}).then((result) => {
-    if (result && result.isPreview) {
-      SHOW_MGR.enableDebugUI(result.isPreview)
-      showMgmt.registerWithDebugUI(SHOW_MGR.manageShowDebugUI, SHOW_MGR, runOfShow)
-    }
-  })
+  const { realmInfo } = await getRealm({})
+  if (realmInfo && realmInfo.isPreview) {
+    SHOW_MGR.enableDebugUI(realmInfo.isPreview)
+    showMgmt.registerWithDebugUI(SHOW_MGR.manageShowDebugUI, SHOW_MGR, runOfShow)
+  }
 }

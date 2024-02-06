@@ -1,7 +1,7 @@
 import { engine, GltfContainer, CameraMode, CameraType, Transform } from '@dcl/sdk/ecs'
 import { Vector3 } from '@dcl/sdk/math'
 import { MessageBus } from '@dcl/sdk/message-bus'
-import { onPlayerExpressionObservable } from '@dcl/sdk/observables'
+import { AvatarEmoteCommand } from '@dcl/sdk/ecs'
 import { isMenuVisible, onClapMeterFull, setupUi, toggleMenuVisibility } from './ui'
 import { ClapMeter, START_ANGLE, clapMeterFull, clapMeterNeedle, clapMeterBoard, COOLDOWN_TIME } from './clapMeter'
 import * as utils from '@dcl-sdk/utils'
@@ -32,8 +32,10 @@ export function main() {
   let clapCooldownTimer: ReturnType<typeof utils.timers.setTimeout> | null = null
 
   // Listen for claps
-  onPlayerExpressionObservable.add(({ expressionId }) => {
-    if (expressionId == 'clap') {
+  AvatarEmoteCommand.onChange(engine.PlayerEntity, (emote) => {
+    if (!emote) return
+    console.log('Emote played: ', emote)
+    if (emote.emoteUrn == 'clap') {
       console.log('clap detected')
       isClapping = true
       sceneMessageBus.emit('updateClapMeter', {})
@@ -66,13 +68,13 @@ export function main() {
     let cameraEntity = CameraMode.get(engine.CameraEntity)
 
     if (cameraEntity.mode == CameraType.CT_THIRD_PERSON) {
-      console.log('The player is using the 3rd person camera')
+      // console.log('The player is using the 3rd person camera')
 
       if (isMenuVisible && !clapMeterFull) {
         toggleMenuVisibility() // Hide the UI
       }
     } else {
-      console.log('The player is using the 1st person camera')
+      // console.log('The player is using the 1st person camera')
 
       if (!isMenuVisible && !clapMeterFull) {
         toggleMenuVisibility() // Display the UI

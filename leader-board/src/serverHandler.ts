@@ -1,6 +1,6 @@
 import { LeaderBoard } from './leaderboard'
 import { executeTask } from '@dcl/sdk/ecs'
-import { UserData, getUserData } from '~system/UserIdentity'
+import { getPlayer } from '@dcl/sdk/src/players'
 import { signedFetch } from '~system/SignedFetch'
 
 // external servers being used by the project - Please change these to your own if working on something else!
@@ -41,20 +41,20 @@ export function fetchScores(leaderboard: LeaderBoard) {
 }
 
 // get player data
-var userData: UserData
+var userData: any
 
-export async function setUserData() {
-  let response = await getUserData({})
-  userData = response.data!
+export function setUserData() {
+  let response = getPlayer()
+  userData = response!
 }
 
-executeTask(setUserData)
+setUserData()
 
 // add data in guestbook
 export function publishScore(score: number, leaderboard: LeaderBoard) {
   executeTask(async () => {
     if (!userData) {
-      await setUserData()
+      setUserData()
     }
 
     try {
@@ -64,8 +64,8 @@ export function publishScore(score: number, leaderboard: LeaderBoard) {
           headers: { 'Content-Type': 'application/json' },
           method: 'POST',
           body: JSON.stringify({
-            id: (await userData).userId,
-            name: (await userData).displayName,
+            id: userData.userId,
+            name: userData.name,
             score: score
           })
         }

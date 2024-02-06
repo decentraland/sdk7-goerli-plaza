@@ -2,9 +2,6 @@
   "name": "block-fountain-sdk7",
   "description": "Block Fountain synced multiplayer SDK7 scene",
   "version": "1.0.0",
-  "bundleDependencies": [
-    "@dcl-sdk/utils"
-  ],
   "dependencies": {
     "@dcl-sdk/utils": "latest"
   },

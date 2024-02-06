@@ -1,18 +1,19 @@
-import { getUserData } from '~system/UserIdentity'
+import { getPlayer } from '@dcl/sdk/src/players'
 import { spawn, getPortableExperiencesLoaded, kill } from '~system/PortableExperiences'
-import { executeTask } from '@dcl/sdk/ecs'
+import { PlayerIdentityData, engine, executeTask } from '@dcl/sdk/ecs'
 import { hideUI, showUI } from './denyUI'
-import { getPlayersInScene } from '~system/Players'
-import { onEnterSceneObservable, onLeaveSceneObservable } from '@dcl/sdk/observables'
+import { onEnterScene, onLeaveScene } from '@dcl/sdk/src/players'
 
 export let isWearingPE: boolean = false
 export let hasWornPE: boolean = false
 
+let MyPlayer = getPlayer()
+
 export async function checkPortableExperience() {
   const { loaded } = await getPortableExperiencesLoaded({})
-  const userData = await getUserData({})
+  const userData = getPlayer()
 
-  if (!userData || !userData.data || !userData.data.avatar || !userData.data.avatar.wearables) return false
+  if (!userData || !userData.avatar || !userData.wearables) return false
 
   console.log('PORTABLE EXPERIENCES: ', loaded)
   console.log(loaded.length)
@@ -35,15 +36,14 @@ export async function checkPortableExperience() {
 }
 
 // Get all players already in scene
-executeTask(async () => {
-  let connectedPlayers = await getPlayersInScene({})
-  connectedPlayers.players.forEach((player) => {
-    console.log('player is nearby: ', player.userId)
-  })
-})
+for (const [entity, data] of engine.getEntitiesWith(PlayerIdentityData)) {
+  let player = getPlayer({ userId: data.address })
+  console.log('player is nearby: ', player?.name)
+}
 
 // Event when player enters scene
-onEnterSceneObservable.add(async (player) => {
+onEnterScene(async (player) => {
+  if (!player) return
   console.log('player entered scene: ', player.userId)
   if (player.userId === player?.userId) {
     await checkPortableExperience()
@@ -57,10 +57,16 @@ onEnterSceneObservable.add(async (player) => {
     }
   }
 })
-// Event when player enters scene
-onLeaveSceneObservable.add((player) => {
-  console.log('player left scene: ', player.userId)
-  if (player.userId === player?.userId) {
+
+// Event when player leaves scene
+onLeaveScene(async (userId) => {
+  if (!userId) return
+  if (!MyPlayer) {
+    MyPlayer = getPlayer()
+    if (!MyPlayer) return
+  }
+  console.log('player left scene: ', userId)
+  if (userId === MyPlayer.userId) {
     hideUI()
   }
 })

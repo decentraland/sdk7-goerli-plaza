@@ -2,10 +2,6 @@
   "name": "rocket-board",
   "description": "A floating platform that uses physics, you can control it with E and F keys to move up and forwards.",
   "version": "1.0.0",
-  "bundleDependencies": [
-    "@dcl-sdk/utils",
-    "@dcl-sdk/ui-utils"
-  ],
   "dependencies": {
     "@dcl-sdk/utils": "latest",
     "@types/cannon": "latest",
@@ -15,16 +11,6 @@
   "devDependencies": {
     "@dcl/js-runtime": "latest",
     "@dcl/sdk": "latest"
-  },
-  "engines": {
-    "node": ">=16.0.0",
-    "npm": ">=6.0.0"
-  },
-  "prettier": {
-    "semi": false,
-    "singleQuote": true,
-    "printWidth": 120,
-    "trailingComma": "none"
   },
   "scripts": {
     "build": "sdk-commands build",

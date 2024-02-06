@@ -2,9 +2,6 @@
   "name": "item-pickup",
   "description": "Item Pickup",
   "version": "1.0.0",
-  "bundleDependencies": [
-    "@dcl-sdk/utils"
-  ],
   "dependencies": {
     "@dcl-sdk/utils": "latest",
     "@dcl/js-runtime": "latest",

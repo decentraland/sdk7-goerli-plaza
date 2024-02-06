@@ -9,7 +9,6 @@ import {
   pointerEventsSystem
 } from '@dcl/sdk/ecs'
 import { Quaternion, Vector3 } from '@dcl/sdk/math'
-import { onSceneReadyObservable } from '@dcl/sdk/observables'
 import CANNON from 'cannon'
 import { playpunchSound } from './sound'
 import { setupUi } from './ui'

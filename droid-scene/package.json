@@ -1,9 +1,6 @@
 {
   "name": "droid-scene",
   "version": "1.0.0",
-  "bundleDependencies": [
-    "@dcl-sdk/utils"
-  ],
   "dependencies": {
     "@dcl-sdk/utils": "latest"
   },
@@ -16,16 +13,6 @@
     "description": "Simple scene that uses the Utils library to show basic mechanics",
     "navmapThumbnail": "images/scene-thumbnail.png",
     "favicon": "favicon_asset"
-  },
-  "engines": {
-    "node": ">=16.0.0",
-    "npm": ">=6.0.0"
-  },
-  "prettier": {
-    "semi": false,
-    "singleQuote": true,
-    "printWidth": 120,
-    "trailingComma": "none"
   },
   "scripts": {
     "build": "sdk-commands build",

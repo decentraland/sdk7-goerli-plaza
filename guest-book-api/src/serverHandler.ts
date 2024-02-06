@@ -1,5 +1,5 @@
 import { executeTask } from '@dcl/sdk/ecs'
-import { UserData, getUserData } from '~system/UserIdentity'
+import { getPlayer } from '@dcl/sdk/src/players'
 import { closeUi, displaySignature } from './ui'
 import { signedFetch } from '~system/SignedFetch'
 
@@ -73,20 +73,20 @@ export function getSignatureTotalPage() {
 }
 
 // get player data
-var userData: UserData
+var userData: any
 
-export async function setUserData() {
-  let response = await getUserData({})
-  userData = response.data!
+export function setUserData() {
+  let response = getPlayer()
+  userData = response!
 }
 
-executeTask(setUserData)
+setUserData()
 
 // add data in guestbook
 export function signGuestbook() {
   executeTask(async () => {
     if (!userData) {
-      await setUserData()
+      setUserData()
     }
 
     try {
@@ -96,8 +96,8 @@ export function signGuestbook() {
           headers: { 'Content-Type': 'application/json' },
           method: 'POST',
           body: JSON.stringify({
-            id: (await userData).userId,
-            name: (await userData).displayName
+            id: userData.userId,
+            name: userData.name
           })
         }
       })

@@ -37,15 +37,15 @@ To integrate similar functionality into your Decentraland projects, follow these
 Instantiate a `ClapMeter` object to manage the clap meter functionality:
 
 ```typescript
-import { ClapMeter } from './clapMeter';
-import { Vector3 } from '@dcl/sdk/math';
+import { ClapMeter } from './clapMeter'
+import { Vector3 } from '@dcl/sdk/math'
 
 const clapMeter = new ClapMeter(
-    new Vector3(x, y, z),       // Position
-    new Vector3(0, 0, 0),       // Rotation
-    new Vector3(1, 1, 1),       // Scale
-    undefined                   // Parent entity
-);
+  new Vector3(x, y, z), // Position
+  new Vector3(0, 0, 0), // Rotation
+  new Vector3(1, 1, 1), // Scale
+  undefined // Parent entity
+)
 ```
 
 #### Handling Clap Events
@@ -53,24 +53,26 @@ const clapMeter = new ClapMeter(
 Listen for clap events and trigger corresponding actions:
 
 ```typescript
-import { onPlayerExpressionObservable } from '@dcl/sdk/observables';
+import { AvatarEmoteCommand } from '@dcl/sdk/ecs'
 
-  onPlayerExpressionObservable.add(({ expressionId }) => {
-    if (expressionId == "clap") {
-      console.log('clap detected')
-      isClapping = true;
-      sceneMessageBus.emit("updateClapMeter", {});
+AvatarEmoteCommand.onChange(engine.PlayerEntity, (emote) => {
+  if (!emote) return
+  console.log('Emote played: ', emote)
+  if (emote.emoteUrn == 'clap') {
+    console.log('clap detected')
+    isClapping = true
+    sceneMessageBus.emit('updateClapMeter', {})
 
-      // Set a timer to reset isClapping after a certain duration
-      clapCooldownTimer = utils.timers.setTimeout(() => {
-        isClapping = false;
-        clapCooldownTimer = 0;
+    // Set a timer to reset isClapping after a certain duration
+    clapCooldownTimer = utils.timers.setTimeout(() => {
+      isClapping = false
+      clapCooldownTimer = 0
 
-        // Update needle when the timer expires
-        sceneMessageBus.emit("updateClapMeter", {});
-      }, COOLDOWN_TIME);
-    }
-  });
+      // Update needle when the timer expires
+      sceneMessageBus.emit('updateClapMeter', {})
+    }, COOLDOWN_TIME)
+  }
+})
 ```
 
 ### Customizing the Scene
@@ -81,7 +83,7 @@ Modify the `updateNeedle` method in the `ClapMeter` class to fine-tune the coold
 ```typescript
  public updateNeedle: SystemFn = (dt: number) => {
         const clapsNeeded = 4; // Number of claps needed to reach the end, higher number = more difficult / lower number = easier
-        
+
         if (this.cooldownRemaining > 0) {
            this.currentNeedleRotation += COOLDOWN_INCREMENT;
 
@@ -111,7 +113,7 @@ Modify the `updateNeedle` method in the `ClapMeter` class to fine-tune the coold
         if (this.currentNeedleRotation <= END_ANGLE) {
             this.currentNeedleRotation = END_ANGLE;
             clapMeterFull = true;
-            
+
 
         }
     } else if (this.currentNeedleRotation < START_ANGLE) {
@@ -123,7 +125,7 @@ Modify the `updateNeedle` method in the `ClapMeter` class to fine-tune the coold
             this.currentNeedleRotation = START_ANGLE;
         }
     }
-``` 
+```
 
 ## Copyright info
 

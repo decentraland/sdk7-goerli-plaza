@@ -1,6 +1,6 @@
 import { Transform, engine, executeTask, Entity, Animator } from '@dcl/sdk/ecs'
 import { Vector3 } from '@dcl/sdk/math'
-import { getUserData } from '~system/UserIdentity'
+import { getPlayer } from '@dcl/sdk/src/players'
 
 export function getPlayerPosition() {
   return Transform.getOrNull(engine.PlayerEntity)?.position || Vector3.create()
@@ -9,7 +9,7 @@ export function getPlayerPosition() {
 export let currentPlayerId: string
 
 void executeTask(async () => {
-  const user = await getUserData({})
-  if (!user.data) return
-  currentPlayerId = user.data?.userId
+  const user = getPlayer()
+  if (!user) return
+  currentPlayerId = user.userId
 })

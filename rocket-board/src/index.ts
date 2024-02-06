@@ -1,6 +1,5 @@
 import { GltfContainer, InputAction, PointerEventType, Transform, engine, inputSystem } from '@dcl/sdk/ecs'
 import { Vector3 } from '@dcl/sdk/math'
-import { onSceneReadyObservable } from '@dcl/sdk/observables'
 import CANNON from 'cannon'
 import { createRing } from './ring'
 import { playrocketBoosterSound, stoprocketBoosterSound } from './sound'
