@@ -16,6 +16,6 @@ export function generateHexColor(seed: number): string {
 
   // Ensure the hex color has exactly 6 characters
   const paddedColor = color.padStart(6, '0')
-  console.log("GENERATING COLOR: ", paddedColor)
+  console.log('GENERATING COLOR: ', paddedColor)
   return `#${paddedColor}`
 }

@@ -29,8 +29,6 @@ export function colorTiles(dt: number) {
   }
 }
 
-
-
 export function setMyColor() {
   const playerId = getPlayer()?.userId
   if (!playerId) return

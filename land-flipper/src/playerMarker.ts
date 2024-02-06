@@ -1,13 +1,22 @@
-import { Color4 } from "@dcl/sdk/math";
-import { MY_COLOR, setMyColor } from "./systems";
-import { generateHexColor } from "./utils";
-import { myProfile, parentEntity, syncEntity } from "@dcl/sdk/network";
-import { AvatarAnchorPointType, AvatarAttach, Entity, Material, MeshRenderer, PBAvatarAttach, TextShape, Transform, engine } from "@dcl/sdk/ecs";
+import { Color4 } from '@dcl/sdk/math'
+import { MY_COLOR, setMyColor } from './systems'
+import { generateHexColor } from './utils'
+import { myProfile, parentEntity, syncEntity } from '@dcl/sdk/network'
+import {
+  AvatarAnchorPointType,
+  AvatarAttach,
+  Entity,
+  Material,
+  MeshRenderer,
+  PBAvatarAttach,
+  TextShape,
+  Transform,
+  engine
+} from '@dcl/sdk/ecs'
 import { PlayerIdentityData } from '@dcl/sdk/ecs'
 import { onEnterScene, onLeaveScene } from '@dcl/sdk/src/players'
 
 export function createMarker(player: string) {
-
   const color = Color4.fromHexString(generateHexColor(Number(player)))
 
   const markerParent = engine.addEntity()
@@ -32,20 +41,12 @@ export function createMarker(player: string) {
   // TextShape.create(idText, { text: player, textColor: color })
 }
 
-
-
 export function markAllPlayers() {
-
-
   // add markers to all players on load
-  for (const [entity, data] of engine.getEntitiesWith(
-    PlayerIdentityData,
-    Transform
-  )) {
+  for (const [entity, data] of engine.getEntitiesWith(PlayerIdentityData, Transform)) {
     if (!data) return
     console.log('Player marker added: ', data.address)
     createMarker(data.address)
-
   }
 
   // add markers to all players that come in later
@@ -53,6 +54,4 @@ export function markAllPlayers() {
     console.log('ENTERED SCENE', player)
     createMarker(player.userId)
   })
-
-
 }
