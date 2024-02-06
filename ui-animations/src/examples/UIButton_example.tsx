@@ -10,7 +10,7 @@ let buttonSuccess = new AnimatedButton(
     20,
     Color4.Black(),
     () => {
-        buttonSuccess.successAnimation()
+        buttonSuccess.pushAnimation()
         //coinEmitter.spawnSingle(50,70,50,10)   
     }
 )
@@ -20,7 +20,7 @@ let buttonError = new AnimatedButton(
     20,
     Color4.Red(),
     () => {
-        buttonError.errorAnimation()
+        buttonError.shakeAnimation()
     }
 )
 

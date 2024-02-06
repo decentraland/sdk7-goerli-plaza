@@ -42,19 +42,26 @@ export let buttonSuccessDemo = new AnimatedButton(
     22,
     Color4.Black(),
     () => {
-        const animation = buttonSuccessDemo.successAnimation()
+        buttonSuccessDemo.pushAnimation()
+        console.log('onClick text')
     },
-    () => hideAll()
-)
-// ERROR BUTTON ANIMATION
-export let buttonErrorDemo = new AnimatedButton(
-    "Wrong Button",
-    22,
-    Color4.Red(),
     () => {
-        buttonErrorDemo.errorAnimation()
-    },
-    () => console.log('this text is displayed when animation ends')
+            console.log('onAnimationFinish text')
+            // hideAll()
+    }
+    )
+    // ERROR BUTTON ANIMATION
+    export let buttonErrorDemo = new AnimatedButton(
+        "Wrong Button",
+        22,
+        Color4.Red(),
+        () => {
+            buttonErrorDemo.shakeAnimation()
+            console.log('onClick text')
+        },
+        () => {
+            console.log('onAnimationFinish text')
+    }
 )
 
 // CARD FLIP EXAMPLE
