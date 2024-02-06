@@ -1,22 +1,9 @@
-import {
-  Animator,
-  AudioSource,
-  engine,
-  Entity,
-  InputAction,
-  inputSystem,
-  Material,
-  MeshCollider,
-  pointerEventsSystem
-} from '@dcl/sdk/ecs'
+import { Animator, AudioSource, engine } from '@dcl/sdk/ecs'
 import { Color4, Vector3 } from '@dcl/sdk/math'
 import * as utils from '@dcl-sdk/utils'
 import { getPlayer } from '@dcl/sdk/src/players'
-
 import { doorSystem } from './systems'
-
 import { DoorState } from './components'
-import { getUserData } from '~system/UserIdentity'
 import { setupUi } from './ui'
 
 // Defining behavior. See `src/systems.ts` file.

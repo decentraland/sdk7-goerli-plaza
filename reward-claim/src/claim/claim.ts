@@ -2,19 +2,19 @@ import { getRealm } from '~system/Runtime'
 import { signedFetch } from '~system/SignedFetch'
 // import { GAME_STATE } from "../gameData"
 import { ClaimConfig, ClaimConfigInstType, USE_CAPTCHA } from './claimConfig'
-import { getUserData } from '~system/UserIdentity'
 import { confirmationUI, alreadyClaimedUI, errorUI, breakLines, captchaUI } from './ui'
 import * as utils from '@dcl-sdk/utils'
+import { getPlayer } from '@dcl/sdk/src/players'
 
 let inTimeOut: boolean = false
 
 let alreadyClaimed: string[] = []
 
 let userData: any
-export async function setUserData() {
-  userData = await getUserData({})
+export function setUserData() {
+  userData = getPlayer()
   console.log('user data is', userData)
-  if (!userData || !userData.data || !userData.data.publicKey) {
+  if (!userData || userData.isGuest) {
     errorUI('You must be\nconnected with an Ethereum wallet\nto claim rewards.')
     return false
   }
@@ -113,10 +113,10 @@ export async function validateCaptcha(
   campaign: ClaimConfigInstType,
   campaign_key: string
 ) {
-  const user = await getUserData({})
+  const user = await getPlayer()
   let realm = await getRealm({})
   console.log('realm is', realm.realmInfo)
-  if (!user || !user.data || !user.data.publicKey || !realm) {
+  if (!user || user.isGuest || !realm) {
     errorUI('You must be\nconnected with an Ethereum wallet\nto claim rewards.')
     return
   }
