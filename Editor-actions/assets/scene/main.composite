@@ -97,16 +97,16 @@
               "y": 0,
               "z": 5
             },
+            "scale": {
+              "x": 1,
+              "y": 1,
+              "z": 1
+            },
             "rotation": {
               "x": 0,
               "y": 0,
               "z": 0,
               "w": 1
-            },
-            "scale": {
-              "x": 1,
-              "y": 1,
-              "z": 1
             },
             "parent": 0
           }
@@ -139,16 +139,16 @@
               "y": 0,
               "z": 5.059994220733643
             },
+            "scale": {
+              "x": 1,
+              "y": 1,
+              "z": 1
+            },
             "rotation": {
               "x": 0,
               "y": 0,
               "z": 0,
               "w": 1
-            },
-            "scale": {
-              "x": 1,
-              "y": 1,
-              "z": 1
             },
             "parent": 0
           }
@@ -160,16 +160,16 @@
               "y": 0,
               "z": 4.75
             },
+            "scale": {
+              "x": 1,
+              "y": 1,
+              "z": 1
+            },
             "rotation": {
               "x": 0,
               "y": 0,
               "z": 0,
               "w": 1
-            },
-            "scale": {
-              "x": 1,
-              "y": 1,
-              "z": 1
             },
             "parent": 0
           }
@@ -223,16 +223,16 @@
               "y": 0,
               "z": 4.987593650817871
             },
+            "scale": {
+              "x": 1,
+              "y": 1,
+              "z": 1
+            },
             "rotation": {
               "x": 0,
               "y": 0,
               "z": 0,
               "w": 1
-            },
-            "scale": {
-              "x": 1,
-              "y": 1,
-              "z": 1
             },
             "parent": 0
           }
@@ -244,16 +244,16 @@
               "y": 0,
               "z": 5.176239967346191
             },
+            "scale": {
+              "x": 1,
+              "y": 1,
+              "z": 1
+            },
             "rotation": {
               "x": 0,
               "y": 0,
               "z": 0,
               "w": 1
-            },
-            "scale": {
-              "x": 1,
-              "y": 1,
-              "z": 1
             },
             "parent": 0
           }
@@ -265,16 +265,16 @@
               "y": 0,
               "z": 5.007978439331055
             },
+            "scale": {
+              "x": 1,
+              "y": 1,
+              "z": 1
+            },
             "rotation": {
               "x": 0,
               "y": 0,
               "z": 0,
               "w": 1
-            },
-            "scale": {
-              "x": 1,
-              "y": 1,
-              "z": 1
             },
             "parent": 0
           }
@@ -286,16 +286,16 @@
               "y": 0,
               "z": 5.07065486907959
             },
+            "scale": {
+              "x": 1,
+              "y": 1,
+              "z": 1
+            },
             "rotation": {
               "x": 0,
               "y": 0,
               "z": 0,
               "w": 1
-            },
-            "scale": {
-              "x": 1,
-              "y": 1,
-              "z": 1
             },
             "parent": 0
           }
@@ -391,16 +391,16 @@
               "y": 0.0000011618488997555687,
               "z": 4.78572416305542
             },
+            "scale": {
+              "x": 1,
+              "y": 1,
+              "z": 1
+            },
             "rotation": {
               "x": 0,
               "y": 0,
               "z": 0,
               "w": 1
-            },
-            "scale": {
-              "x": 1,
-              "y": 1,
-              "z": 1
             },
             "parent": 0
           }
@@ -412,16 +412,16 @@
               "y": 0,
               "z": 5.0716872215271
             },
+            "scale": {
+              "x": 1,
+              "y": 1,
+              "z": 1
+            },
             "rotation": {
               "x": 0,
               "y": 0,
               "z": 0,
               "w": 1
-            },
-            "scale": {
-              "x": 1,
-              "y": 1,
-              "z": 1
             },
             "parent": 0
           }
@@ -454,16 +454,16 @@
               "y": 0,
               "z": 4.942244052886963
             },
+            "scale": {
+              "x": 1,
+              "y": 1,
+              "z": 1
+            },
             "rotation": {
               "x": 0,
               "y": 0,
               "z": 0,
               "w": 1
-            },
-            "scale": {
-              "x": 1,
-              "y": 1,
-              "z": 1
             },
             "parent": 0
           }
@@ -475,16 +475,16 @@
               "y": 0,
               "z": 4.930286407470703
             },
+            "scale": {
+              "x": 1,
+              "y": 1,
+              "z": 1
+            },
             "rotation": {
               "x": 0,
               "y": 0,
               "z": 0,
               "w": 1
-            },
-            "scale": {
-              "x": 1,
-              "y": 1,
-              "z": 1
             },
             "parent": 0
           }
@@ -496,16 +496,16 @@
               "y": 0,
               "z": 5.063713550567627
             },
+            "scale": {
+              "x": 1,
+              "y": 1,
+              "z": 1
+            },
             "rotation": {
               "x": 0,
               "y": 0,
               "z": 0,
               "w": 1
-            },
-            "scale": {
-              "x": 1,
-              "y": 1,
-              "z": 1
             },
             "parent": 0
           }
@@ -580,16 +580,16 @@
               "y": 0.7900000214576721,
               "z": 8.630000114440918
             },
+            "scale": {
+              "x": 0.09000000357627869,
+              "y": 0.10000000149011612,
+              "z": 0.09000000357627869
+            },
             "rotation": {
               "x": 0,
               "y": 1,
               "z": 0,
               "w": 6.123234262925839e-17
-            },
-            "scale": {
-              "x": 0.09000000357627869,
-              "y": 0.10000000149011612,
-              "z": 0.09000000357627869
             },
             "parent": 0
           }
@@ -601,16 +601,16 @@
               "y": 0.09000000357627869,
               "z": 3.4800000190734863
             },
+            "scale": {
+              "x": 1,
+              "y": 0.9999999403953552,
+              "z": 0.9999999403953552
+            },
             "rotation": {
               "x": 0.7071067690849304,
               "y": 0,
               "z": 0,
               "w": 0.7071067690849304
-            },
-            "scale": {
-              "x": 1,
-              "y": 0.9999999403953552,
-              "z": 0.9999999403953552
             },
             "parent": 0
           }
@@ -622,16 +622,16 @@
               "y": 0.09000000357627869,
               "z": 3.4800000190734863
             },
+            "scale": {
+              "x": 1,
+              "y": 0.9999998807907104,
+              "z": 0.9999998807907104
+            },
             "rotation": {
               "x": 0.7071067690849304,
               "y": 0,
               "z": 0,
               "w": 0.7071067690849304
-            },
-            "scale": {
-              "x": 1,
-              "y": 0.9999998807907104,
-              "z": 0.9999998807907104
             },
             "parent": 0
           }
@@ -748,16 +748,16 @@
               "y": 0.09000000357627869,
               "z": 3.384713888168335
             },
+            "scale": {
+              "x": 1,
+              "y": 0.9999998211860657,
+              "z": 0.9999998211860657
+            },
             "rotation": {
               "x": 0.7071067690849304,
               "y": 0,
               "z": 0,
               "w": 0.7071067690849304
-            },
-            "scale": {
-              "x": 1,
-              "y": 0.9999998211860657,
-              "z": 0.9999998211860657
             },
             "parent": 0
           }
@@ -832,16 +832,16 @@
               "y": 0.09000000357627869,
               "z": 3.321528434753418
             },
+            "scale": {
+              "x": 1,
+              "y": 0.9999997615814209,
+              "z": 0.9999997615814209
+            },
             "rotation": {
               "x": 0.7071067690849304,
               "y": 0,
               "z": 0,
               "w": 0.7071067690849304
-            },
-            "scale": {
-              "x": 1,
-              "y": 0.9999997615814209,
-              "z": 0.9999997615814209
             },
             "parent": 0
           }
@@ -853,16 +853,16 @@
               "y": 0.09000000357627869,
               "z": 3.4800000190734863
             },
+            "scale": {
+              "x": 1,
+              "y": 0.9999997019767761,
+              "z": 0.9999997019767761
+            },
             "rotation": {
               "x": 0.7071067690849304,
               "y": 0,
               "z": 0,
               "w": 0.7071067690849304
-            },
-            "scale": {
-              "x": 1,
-              "y": 0.9999997019767761,
-              "z": 0.9999997019767761
             },
             "parent": 0
           }
@@ -874,16 +874,16 @@
               "y": 0.09000000357627869,
               "z": 3.4800000190734863
             },
+            "scale": {
+              "x": 1,
+              "y": 0.9999996423721313,
+              "z": 0.9999996423721313
+            },
             "rotation": {
               "x": 0.7071067690849304,
               "y": 0,
               "z": 0,
               "w": 0.7071067690849304
-            },
-            "scale": {
-              "x": 1,
-              "y": 0.9999996423721313,
-              "z": 0.9999996423721313
             },
             "parent": 0
           }
@@ -895,16 +895,16 @@
               "y": 0.09000000357627869,
               "z": 3.4800000190734863
             },
+            "scale": {
+              "x": 1,
+              "y": 0.9999996423721313,
+              "z": 0.9999996423721313
+            },
             "rotation": {
               "x": 0.7071067690849304,
               "y": 0,
               "z": 0,
               "w": 0.7071067690849304
-            },
-            "scale": {
-              "x": 1,
-              "y": 0.9999996423721313,
-              "z": 0.9999996423721313
             },
             "parent": 0
           }
@@ -916,16 +916,16 @@
               "y": 0.09000000357627869,
               "z": 3.4800000190734863
             },
+            "scale": {
+              "x": 1,
+              "y": 0.9999995827674866,
+              "z": 0.9999995827674866
+            },
             "rotation": {
               "x": 0.7071067690849304,
               "y": 0,
               "z": 0,
               "w": 0.7071067690849304
-            },
-            "scale": {
-              "x": 1,
-              "y": 0.9999995827674866,
-              "z": 0.9999995827674866
             },
             "parent": 0
           }
@@ -937,16 +937,16 @@
               "y": 0.09000000357627869,
               "z": 3.355435371398926
             },
+            "scale": {
+              "x": 1,
+              "y": 0.9999995231628418,
+              "z": 0.9999995231628418
+            },
             "rotation": {
               "x": 0.7071067690849304,
               "y": 0,
               "z": 0,
               "w": 0.7071067690849304
-            },
-            "scale": {
-              "x": 1,
-              "y": 0.9999995231628418,
-              "z": 0.9999995231628418
             },
             "parent": 0
           }
@@ -958,16 +958,16 @@
               "y": 0.09000000357627869,
               "z": 3.355435371398926
             },
+            "scale": {
+              "x": 1,
+              "y": 0.999999463558197,
+              "z": 0.999999463558197
+            },
             "rotation": {
               "x": 0.7071067690849304,
               "y": 0,
               "z": 0,
               "w": 0.7071067690849304
-            },
-            "scale": {
-              "x": 1,
-              "y": 0.999999463558197,
-              "z": 0.999999463558197
             },
             "parent": 0
           }
@@ -979,18 +979,43 @@
               "y": 0.09000000357627869,
               "z": 3.355435371398926
             },
+            "scale": {
+              "x": 1,
+              "y": 0.9999994039535522,
+              "z": 0.9999994039535522
+            },
             "rotation": {
               "x": 0.7071067690849304,
               "y": 0,
               "z": 0,
               "w": 0.7071067690849304
             },
-            "scale": {
-              "x": 1,
-              "y": 0.9999994039535522,
-              "z": 0.9999994039535522
-            },
             "parent": 0
+          }
+        }
+      }
+    },
+    {
+      "name": "core::Animator",
+      "jsonSchema": {
+        "type": "object",
+        "properties": {},
+        "serializationType": "protocol-buffer",
+        "protocolBuffer": "PBAnimator"
+      },
+      "data": {
+        "523": {
+          "json": {
+            "states": [
+              {
+                "clip": "trigger",
+                "playing": false,
+                "weight": 1,
+                "speed": 1,
+                "loop": false,
+                "shouldReset": false
+              }
+            ]
           }
         }
       }
@@ -1951,31 +1976,6 @@
       }
     },
     {
-      "name": "core::Animator",
-      "jsonSchema": {
-        "type": "object",
-        "properties": {},
-        "serializationType": "protocol-buffer",
-        "protocolBuffer": "PBAnimator"
-      },
-      "data": {
-        "523": {
-          "json": {
-            "states": [
-              {
-                "clip": "trigger",
-                "playing": false,
-                "weight": 1,
-                "speed": 1,
-                "loop": false,
-                "shouldReset": false
-              }
-            ]
-          }
-        }
-      }
-    },
-    {
       "name": "inspector::Selection",
       "jsonSchema": {
         "type": "object",
@@ -1988,7 +1988,7 @@
         "serializationType": "map"
       },
       "data": {
-        "544": {
+        "524": {
           "json": {
             "gizmo": 0
           }
@@ -2068,6 +2068,324 @@
                 "y": 0
               }
             }
+          }
+        }
+      }
+    },
+    {
+      "name": "inspector::SceneMetadata",
+      "jsonSchema": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "serializationType": "optional",
+            "optionalJsonSchema": {
+              "type": "string",
+              "serializationType": "utf8-string"
+            }
+          },
+          "description": {
+            "type": "string",
+            "serializationType": "optional",
+            "optionalJsonSchema": {
+              "type": "string",
+              "serializationType": "utf8-string"
+            }
+          },
+          "thumbnail": {
+            "type": "string",
+            "serializationType": "optional",
+            "optionalJsonSchema": {
+              "type": "string",
+              "serializationType": "utf8-string"
+            }
+          },
+          "ageRating": {
+            "type": "string",
+            "serializationType": "optional",
+            "optionalJsonSchema": {
+              "type": "string",
+              "enum": [
+                "T",
+                "A"
+              ],
+              "default": "T",
+              "serializationType": "enum-string",
+              "enumObject": {
+                "Teen": "T",
+                "Adult": "A"
+              }
+            }
+          },
+          "categories": {
+            "type": "array",
+            "serializationType": "optional",
+            "optionalJsonSchema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "art",
+                  "game",
+                  "casino",
+                  "social",
+                  "music",
+                  "fashion",
+                  "crypto",
+                  "education",
+                  "shop",
+                  "business",
+                  "sports"
+                ],
+                "default": "game",
+                "serializationType": "enum-string",
+                "enumObject": {
+                  "ART": "art",
+                  "GAME": "game",
+                  "CASINO": "casino",
+                  "SOCIAL": "social",
+                  "MUSIC": "music",
+                  "FASHION": "fashion",
+                  "CRYPTO": "crypto",
+                  "EDUCATION": "education",
+                  "SHOP": "shop",
+                  "BUSINESS": "business",
+                  "SPORTS": "sports"
+                }
+              },
+              "serializationType": "array"
+            }
+          },
+          "author": {
+            "type": "string",
+            "serializationType": "optional",
+            "optionalJsonSchema": {
+              "type": "string",
+              "serializationType": "utf8-string"
+            }
+          },
+          "email": {
+            "type": "string",
+            "serializationType": "optional",
+            "optionalJsonSchema": {
+              "type": "string",
+              "serializationType": "utf8-string"
+            }
+          },
+          "tags": {
+            "type": "array",
+            "serializationType": "optional",
+            "optionalJsonSchema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "serializationType": "utf8-string"
+              },
+              "serializationType": "array"
+            }
+          },
+          "layout": {
+            "type": "object",
+            "properties": {
+              "base": {
+                "type": "object",
+                "properties": {
+                  "x": {
+                    "type": "integer",
+                    "serializationType": "int32"
+                  },
+                  "y": {
+                    "type": "integer",
+                    "serializationType": "int32"
+                  }
+                },
+                "serializationType": "map"
+              },
+              "parcels": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "x": {
+                      "type": "integer",
+                      "serializationType": "int32"
+                    },
+                    "y": {
+                      "type": "integer",
+                      "serializationType": "int32"
+                    }
+                  },
+                  "serializationType": "map"
+                },
+                "serializationType": "array"
+              }
+            },
+            "serializationType": "map"
+          },
+          "silenceVoiceChat": {
+            "type": "boolean",
+            "serializationType": "optional",
+            "optionalJsonSchema": {
+              "type": "boolean",
+              "serializationType": "boolean"
+            }
+          },
+          "disablePortableExperiences": {
+            "type": "boolean",
+            "serializationType": "optional",
+            "optionalJsonSchema": {
+              "type": "boolean",
+              "serializationType": "boolean"
+            }
+          },
+          "spawnPoints": {
+            "type": "array",
+            "serializationType": "optional",
+            "optionalJsonSchema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "serializationType": "utf8-string"
+                  },
+                  "default": {
+                    "type": "boolean",
+                    "serializationType": "optional",
+                    "optionalJsonSchema": {
+                      "type": "boolean",
+                      "serializationType": "boolean"
+                    }
+                  },
+                  "position": {
+                    "type": "object",
+                    "properties": {
+                      "x": {
+                        "type": "object",
+                        "properties": {
+                          "single": {
+                            "type": "integer",
+                            "serializationType": "int32"
+                          },
+                          "range": {
+                            "type": "array",
+                            "items": {
+                              "type": "integer",
+                              "serializationType": "int32"
+                            },
+                            "serializationType": "array"
+                          }
+                        },
+                        "serializationType": "one-of"
+                      },
+                      "y": {
+                        "type": "object",
+                        "properties": {
+                          "single": {
+                            "type": "integer",
+                            "serializationType": "int32"
+                          },
+                          "range": {
+                            "type": "array",
+                            "items": {
+                              "type": "integer",
+                              "serializationType": "int32"
+                            },
+                            "serializationType": "array"
+                          }
+                        },
+                        "serializationType": "one-of"
+                      },
+                      "z": {
+                        "type": "object",
+                        "properties": {
+                          "single": {
+                            "type": "integer",
+                            "serializationType": "int32"
+                          },
+                          "range": {
+                            "type": "array",
+                            "items": {
+                              "type": "integer",
+                              "serializationType": "int32"
+                            },
+                            "serializationType": "array"
+                          }
+                        },
+                        "serializationType": "one-of"
+                      }
+                    },
+                    "serializationType": "map"
+                  },
+                  "cameraTarget": {
+                    "type": "object",
+                    "serializationType": "optional",
+                    "optionalJsonSchema": {
+                      "type": "object",
+                      "properties": {
+                        "x": {
+                          "type": "integer",
+                          "serializationType": "int32"
+                        },
+                        "y": {
+                          "type": "integer",
+                          "serializationType": "int32"
+                        },
+                        "z": {
+                          "type": "integer",
+                          "serializationType": "int32"
+                        }
+                      },
+                      "serializationType": "map"
+                    }
+                  }
+                },
+                "serializationType": "map"
+              },
+              "serializationType": "array"
+            }
+          }
+        },
+        "serializationType": "map"
+      },
+      "data": {
+        "0": {
+          "json": {
+            "name": "Editor-actions",
+            "thumbnail": "scene-thumbnail.png",
+            "ageRating": "T",
+            "categories": [],
+            "author": "0xe2b6024873d218b2e83b462d3658d8d7c3f55a18",
+            "tags": [
+              ""
+            ],
+            "layout": {
+              "base": {
+                "x": 85,
+                "y": -12
+              },
+              "parcels": [
+                {
+                  "x": 85,
+                  "y": -9
+                },
+                {
+                  "x": 85,
+                  "y": -10
+                },
+                {
+                  "x": 85,
+                  "y": -11
+                },
+                {
+                  "x": 85,
+                  "y": -12
+                }
+              ]
+            },
+            "spawnPoints": []
           }
         }
       }
