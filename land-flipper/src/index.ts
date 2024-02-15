@@ -73,5 +73,6 @@ export function main() {
   setupUi()
 
   markAllPlayers()
+
   //createMarker(myProfile.userId)
 }

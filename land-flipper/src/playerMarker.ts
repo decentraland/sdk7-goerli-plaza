@@ -16,6 +16,7 @@ import {
 import { PlayerIdentityData } from '@dcl/sdk/ecs'
 import { onEnterScene, onLeaveScene } from '@dcl/sdk/src/players'
 
+
 export function createMarker(player: string) {
   const color = Color4.fromHexString(generateHexColor(Number(player)))
 
@@ -30,6 +31,12 @@ export function createMarker(player: string) {
   })
   MeshRenderer.setCylinder(marker, 0, 1)
   Material.setPbrMaterial(marker, { albedoColor: color })
+
+  onLeaveScene((player) => {
+    console.log("PLAYER LEFT", player)
+    engine.removeEntityWithChildren(marker)
+
+  })
 
   // const idText = engine.addEntity()
   // Transform.create(idText, {
