@@ -63,7 +63,7 @@ async function requestToken(campaign: ClaimConfigInstType, campaign_key: string)
   let body = JSON.stringify({
     campaign_key: campaign_key,
     catalyst: realm.realmInfo ? realm.realmInfo.baseUrl : '',
-    beneficiary: userData.data.hasConnectedWeb3 ? userData.data.userId : ''
+    beneficiary: !userData.isGuest ? userData.userId : ''
   })
 
   try {
@@ -131,7 +131,7 @@ export async function validateCaptcha(
       body: JSON.stringify({
         campaign_key: campaign_key,
         catalyst: realm.realmInfo ? realm.realmInfo.baseUrl : '',
-        beneficiary: userData.data.hasConnectedWeb3 ? userData.data.userId : '',
+        beneficiary: !userData.isGuest ? userData.userId : '',
         captcha_id: captcha_id,
         captcha_value: captcha
       })
