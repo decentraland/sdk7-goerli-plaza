@@ -93,5 +93,5 @@ export function main() {
   engine.addSystem(tapPumpSystem)
 
   // UI with GitHub link
-  //setupUi()
+  setupUi()
 }
