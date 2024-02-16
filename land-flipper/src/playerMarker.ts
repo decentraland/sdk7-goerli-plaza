@@ -1,4 +1,4 @@
-import { Color4 } from '@dcl/sdk/math'
+import { Color4, Vector3 } from '@dcl/sdk/math'
 import { MY_COLOR, setMyColor } from './systems'
 import { generateHexColor } from './utils'
 import { myProfile, parentEntity, syncEntity } from '@dcl/sdk/network'
@@ -14,13 +14,26 @@ import {
   engine
 } from '@dcl/sdk/ecs'
 import { PlayerIdentityData } from '@dcl/sdk/ecs'
-import { onEnterScene, onLeaveScene } from '@dcl/sdk/src/players'
+import { getPlayer, onEnterScene, onLeaveScene } from '@dcl/sdk/src/players'
+import { OnlyInScene } from './onlyRenderInScene'
 
 export function createMarker(player: string) {
   const color = Color4.fromHexString(generateHexColor(Number(player)))
 
   const markerParent = engine.addEntity()
-  AvatarAttach.create(markerParent, { avatarId: player, anchorPointId: AvatarAnchorPointType.AAPT_POSITION })
+
+  if (isCurrentPlayer(player)) {
+    console.log("I'm the player")
+    Transform.create(markerParent, { parent: engine.PlayerEntity, position: Vector3.create(0, -1.5, 0) })
+    OnlyInScene.create(markerParent)
+  } else {
+    AvatarAttach.create(markerParent, { avatarId: player, anchorPointId: AvatarAnchorPointType.AAPT_POSITION })
+
+    onLeaveScene((player) => {
+      console.log('PLAYER LEFT', player)
+      engine.removeEntityWithChildren(markerParent)
+    })
+  }
 
   const marker = engine.addEntity()
   Transform.create(marker, {
@@ -29,7 +42,7 @@ export function createMarker(player: string) {
     parent: markerParent
   })
   MeshRenderer.setCylinder(marker, 0, 1)
-  Material.setPbrMaterial(marker, { albedoColor: color })
+  Material.setPbrMaterial(marker, { albedoColor: color, metallic: 0, roughness: 1 })
 
   // const idText = engine.addEntity()
   // Transform.create(idText, {
@@ -54,4 +67,12 @@ export function markAllPlayers() {
     console.log('ENTERED SCENE', player)
     createMarker(player.userId)
   })
+}
+
+export function isCurrentPlayer(player: string) {
+  const myPlayer = getPlayer()?.userId
+
+  if (myPlayer === player) {
+    return true
+  } else return false
 }

@@ -2,7 +2,8 @@
   "display": {
     "title": "Editor-actions",
     "favicon": "favicon_asset",
-    "navmapThumbnail": "scene-thumbnail.png"
+    "navmapThumbnail": "scene-thumbnail.png",
+    "description": ""
   },
   "owner": "",
   "contact": {
@@ -14,9 +15,9 @@
   "scene": {
     "parcels": [
       "85,-9",
-      "85,-10",
-      "85,-11",
-      "85,-12"
+      "86,-9",
+      "87,-9",
+      "88,-9"
     ],
     "base": "85,-9"
   },
@@ -32,5 +33,11 @@
   "allowedMediaHostnames": [],
   "ecs7": true,
   "runtimeVersion": "7",
-  "name": "Editor-actions"
+  "name": "Editor-actions",
+  "spawnPoints": [],
+  "featureToggles": {
+    "voiceChat": "enabled",
+    "portableExperiences": "enabled"
+  },
+  "rating": "T"
 }
