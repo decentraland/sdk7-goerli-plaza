@@ -9,6 +9,9 @@ import {
   MeshCollider,
   pointerEventsSystem,
   Transform,
+  UiBackground,
+  UiText,
+  UiTransform,
   VideoPlayer,
   VisibilityComponent
 } from '@dcl/sdk/ecs'
@@ -24,7 +27,10 @@ initAssetPacks(engine, pointerEventsSystem, {
   VisibilityComponent,
   GltfContainer,
   Material,
-  VideoPlayer
+  VideoPlayer,
+  UiTransform,
+  UiText,
+  UiBackground
 })
 
 import { bounceScalingSystem, circularSystem } from './systems'
