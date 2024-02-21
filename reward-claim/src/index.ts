@@ -14,6 +14,9 @@ import {
   Tween,
   TweenLoop,
   TweenSequence,
+  UiBackground,
+  UiText,
+  UiTransform,
   VideoPlayer,
   VisibilityComponent,
   engine,
@@ -36,7 +39,10 @@ initAssetPacks(engine, pointerEventsSystem, {
   VisibilityComponent,
   GltfContainer,
   Material,
-  VideoPlayer
+  VideoPlayer,
+  UiTransform,
+  UiText,
+  UiBackground
 })
 
 export function main() {
