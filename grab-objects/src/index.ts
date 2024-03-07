@@ -88,6 +88,7 @@ export function grabbingSystem() {
         mutableTransform.position = Vector3.Zero()
         mutableTransform.rotation = Quaternion.Zero()
         mutableTransform.position.z += Z_OFFSET
+        mutableTransform.position.y = GROUND_HEIGHT
         mutableTransform.parent = engine.PlayerEntity
       } else {
         mutableTransform.parent = undefined

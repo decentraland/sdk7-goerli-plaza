@@ -16,7 +16,7 @@ export function createPortal(color: PortalColor, pos: TransformType) {
     src: color == PortalColor.Blue ? 'assets/models/portalBlue.glb' : 'assets/models/portalOrange.glb'
   })
   Animator.create(portal, {
-    states: [{ clip: 'Expand', loop: false, shouldReset: true, playing: true }]
+    states: [{ clip: 'Expand', loop: false, shouldReset: false, playing: true }]
   })
   Portal.create(portal, { color: activePortal })
 
