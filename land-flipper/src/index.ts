@@ -1,49 +1,13 @@
 // We define the empty imports so the auto-complete feature works as expected.
 import { Color4, Quaternion, Vector3 } from '@dcl/sdk/math'
-import {
-  Animator,
-  AudioSource,
-  AvatarAttach,
-  CameraModeArea,
-  CameraType,
-  GltfContainer,
-  Material,
-  MeshRenderer,
-  PointerEventType,
-  PointerEvents,
-  Transform,
-  UiBackground,
-  UiText,
-  UiTransform,
-  VideoPlayer,
-  VisibilityComponent,
-  engine,
-  pointerEventsSystem
-} from '@dcl/sdk/ecs'
-import { initAssetPacks } from '@dcl/asset-packs/dist/scene-entrypoint'
+import { Material, MeshRenderer, Transform, engine } from '@dcl/sdk/ecs'
 
 import { colorTiles, resetAllTiles } from './systems'
 import { createTile } from './factory'
-import { myProfile, syncEntity } from '@dcl/sdk/network'
 import * as utils from '@dcl-sdk/utils'
 import { setupUi } from './ui'
 import { createMarker, markAllPlayers } from './playerMarker'
 import { onlyInSceneSystem } from './onlyRenderInScene'
-
-// You can remove this if you don't use any asset packs
-initAssetPacks(engine, pointerEventsSystem, {
-  Animator,
-  AudioSource,
-  AvatarAttach,
-  Transform,
-  VisibilityComponent,
-  GltfContainer,
-  Material,
-  VideoPlayer,
-  UiTransform,
-  UiText,
-  UiBackground
-})
 
 export function main() {
   // id counter for the tiles
