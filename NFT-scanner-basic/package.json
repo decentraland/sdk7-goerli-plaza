@@ -1,0 +1,21 @@
+{
+  "name": "dcl-project",
+  "version": "1.0.0",
+  "description": "SDK7 Template scene",
+  "scripts": {
+    "start": "sdk-commands start",
+    "deploy": "sdk-commands deploy",
+    "build": "sdk-commands build",
+    "upgrade-sdk": "npm install --save-dev @dcl/sdk@latest",
+    "upgrade-sdk:next": "npm install --save-dev @dcl/sdk@next"
+  },
+  "devDependencies": {
+    "@dcl/asset-packs": "latest",
+    "@dcl/js-runtime": "7.3.33",
+    "@dcl/sdk": "latest"
+  },
+  "dependencies": {
+    "dcl-crypto-toolkit": "^1.0.0-20231102183838.commit-5873fdd",
+    "eth-connect": "latest"
+  }
+}
