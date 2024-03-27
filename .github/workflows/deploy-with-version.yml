@@ -1,0 +1,111 @@
+name: deploy-with-version
+
+on:
+  workflow_dispatch:
+    inputs:
+      dcl-sdk-package:
+        type: string
+        description: '@dcl/sdk package'
+        default: '@dcl/sdk@latest'
+  workflow_call:
+    inputs:
+      dcl-sdk-package:
+        type: string
+        description: '@dcl/sdk package'
+        default: '@dcl/sdk@latest'
+    secrets:
+      SDK_TEAM_S3_BUCKET:
+        required: true
+      SDK_TEAM_AWS_ID:
+        required: true
+      SDK_TEAM_AWS_SECRET:
+        required: true
+      SDK_TEAM_S3_BASE_URL:
+        required: true
+      AB_TOKEN:
+        required: true
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - uses: actions/github-script@v7
+        id: extract_version
+        env:
+          VERSION: ${{ inputs.dcl-sdk-package }}
+        with:
+          script: return `${process.env.VERSION.split('@').slice(-1)[0]}`
+          result-encoding: string
+
+      - uses: actions/github-script@v7
+        id: get-branch-realm-name
+        env:
+          BRANCH: ${{ github.head_ref || github.ref }}
+        with:
+          script: return `goerli-plaza-${process.env.BRANCH.replaceAll('/', '-').replaceAll('refs-heads-', '').substr(0, 28)}-${{ steps.extract_version.outputs.result }}`
+          result-encoding: string
+
+      - name: install sdk version
+        run: npm i ${{inputs.dcl-sdk-package}} --workspaces
+
+      - name: install dependencies
+        run: npm i --workspaces
+
+      - name: build
+        run: npm run build
+
+      - name: export-static (branch)
+        run: >
+          npm run export-static -- \
+            --realmName ${{steps.get-branch-realm-name.outputs.result}} \
+            --commsAdapter ws-room:ws-room-service.decentraland.org/rooms/${{steps.get-branch-realm-name.outputs.result}} \
+            --baseUrl '${{ secrets.SDK_TEAM_S3_BASE_URL }}/ipfs' \
+            --destination "$(pwd)/ipfs"
+
+      - name: upload to s3
+        run: >
+          npx @dcl/cdn-uploader@next \
+              --bucket ${{ secrets.SDK_TEAM_S3_BUCKET }} \
+              --local-folder "$(pwd)/ipfs" \
+              --bucket-folder 'ipfs'
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.SDK_TEAM_AWS_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.SDK_TEAM_AWS_SECRET }}
+
+      - name: Asset Bundle converter queue
+        if: github.event_name != 'pull_request'
+        run: >
+          npx @dcl/opscli queue-ab-conversion-about \
+            --token ${{ secrets.AB_TOKEN }} \
+            --about-url ${{ secrets.SDK_TEAM_S3_BASE_URL }}/ipfs/${{steps.get-branch-realm-name.outputs.result}}/about
+
+      - name: Find Comment
+        uses: peter-evans/find-comment@v1
+        if: github.event_name == 'pull_request'
+        id: fc
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          comment-author: 'github-actions[bot]'
+          body-includes: Test this pull request
+
+      - name: Create or update comment
+        uses: peter-evans/create-or-update-comment@v1
+        if: github.event_name == 'pull_request'
+        with:
+          comment-id: ${{ steps.fc.outputs.comment-id }}
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            ## Test this pull request
+            - [Test in-world](https://play.decentraland.zone/?realm=${{ secrets.SDK_TEAM_S3_BASE_URL }}/ipfs/${{steps.get-branch-realm-name.outputs.result}})
+            - Or use this command to switch the realm
+              ```bash
+              /changerealm ${{ secrets.SDK_TEAM_S3_BASE_URL }}/ipfs/${{steps.get-branch-realm-name.outputs.result}}
+              ```
+            This PR has been published using the `@dcl/sdk` version `${{ inputs.dcl-sdk-package }}`
+          edit-mode: replace
