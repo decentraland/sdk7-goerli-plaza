@@ -102,7 +102,7 @@ jobs:
           issue-number: ${{ github.event.pull_request.number }}
           body: |
             ## How to test
-            - [Test in-world](https://play.decentraland.zone/?realm=${{ secrets.SDK_TEAM_S3_BASE_URL }}/ipfs/${{steps.get-branch-realm-name.outputs.result}})
+            - [Test in-world](https://play.decentraland.org/?realm=${{ secrets.SDK_TEAM_S3_BASE_URL }}/ipfs/${{steps.get-branch-realm-name.outputs.result}})
             - Or use this command to switch the realm
               ```bash
               /changerealm ${{ secrets.SDK_TEAM_S3_BASE_URL }}/ipfs/${{steps.get-branch-realm-name.outputs.result}}
