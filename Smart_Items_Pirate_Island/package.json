@@ -2,9 +2,6 @@
   "name": "pirate-island",
   "description": "Pirate Island - Smart Items",
   "version": "1.0.0",
-  "dependencies": {
-    "@dcl/asset-packs": "latest"
-  },
   "devDependencies": {
     "@dcl/js-runtime": "latest",
     "@dcl/sdk": "latest"
