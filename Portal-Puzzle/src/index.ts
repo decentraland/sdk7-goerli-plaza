@@ -30,7 +30,7 @@ export function main() {
   if (card) {
     utils.perpetualMotions.startRotation(card, Quaternion.fromEulerDegrees(0, 15, 0))
 
-    utils.triggers.addTrigger(card, 1, 1, [{ type: 'box' }], () => {
+    utils.triggers.oneTimeTrigger(card, 1, 1, [{ type: 'box' }], () => {
       const cardTransform = Transform.getMutable(card)
       cardTransform.scale = Vector3.Zero()
       AudioSource.createOrReplace(card, { audioClipUrl: 'sounds/cardPickup.mp3', playing: true, loop: false })

@@ -132,8 +132,8 @@ export function getConstraintOrNull(id: number) {
   const constraint = world.constraints.find((item) => item.id === id)
   if (constraint) return constraint
   else {
-    console.log('CONSTRAINT NOT FOUND. ID: ', id, ' FULL LIST: ', world)
-    console.log(world)
+    // console.log('CONSTRAINT NOT FOUND. ID: ', id, ' FULL LIST: ', world)
+    // console.log(world)
   }
 
   return null
