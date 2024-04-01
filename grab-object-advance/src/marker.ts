@@ -8,7 +8,7 @@ import {
   PointerEventType,
   inputSystem
 } from '@dcl/sdk/ecs'
-import { Vector3 } from '@dcl/sdk/math'
+import { Scalar, Vector3 } from '@dcl/sdk/math'
 import { BoxBody, JointBodyID, Marker, markerMaterial, markerPullMaterial } from './definitions'
 import {
   addBody,
@@ -137,13 +137,14 @@ export function updateMarkerSystem(dt: number) {
   // Grab the object
   if (marker.isPointerPressed && marker.markerDistance !== 0) {
     const marker = getMarkerEntity()
-    const camera = Transform.get(engine.CameraEntity)
+    const player = Transform.get(engine.PlayerEntity)
     const forwardVector = Vector3.rotate(
       Vector3.scale(Vector3.Forward(), Marker.getMutable(marker).markerDistance),
-      camera.rotation
+      player.rotation
     )
+    forwardVector.y += 1.5
 
-    const forwardVectorTransformed = Vector3.add(camera.position, forwardVector)
+    const forwardVectorTransformed = Vector3.add(player.position, forwardVector)
     Transform.getMutable(marker).position = forwardVectorTransformed
 
     const position = Transform.get(marker).position
@@ -152,6 +153,7 @@ export function updateMarkerSystem(dt: number) {
 
   // Pull in the object
   if (marker.isEKeyPressed && marker.markerDistance !== 0 && marker.markerDistance > 1) {
-    Marker.getMutable(getMarkerEntity()).markerDistance -= 5 * dt
+    const marker = Marker.getMutable(getMarkerEntity())
+    marker.markerDistance = Math.max(marker.markerDistance - 5 * dt, 1)
   }
 }
