@@ -6,7 +6,6 @@
     "@dcl-sdk/utils": "latest"
   },
   "devDependencies": {
-    "@dcl/asset-packs": "latest",
     "@dcl/js-runtime": "latest",
     "@dcl/sdk": "latest"
   },
