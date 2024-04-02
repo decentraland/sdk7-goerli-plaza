@@ -4,7 +4,7 @@ import { signedFetch } from '~system/SignedFetch'
 import { ClaimConfig, ClaimConfigInstType, USE_CAPTCHA } from './claimConfig'
 import { confirmationUI, alreadyClaimedUI, errorUI, breakLines, captchaUI } from './ui'
 import * as utils from '@dcl-sdk/utils'
-import { getPlayer } from '@dcl/sdk/src/players'
+import { getPlayer } from '@dcl/sdk/players'
 
 let inTimeOut: boolean = false
 

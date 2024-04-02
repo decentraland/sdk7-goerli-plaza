@@ -1,24 +1,14 @@
 import {
   Animator,
-  AudioSource,
-  AvatarAttach,
   ColliderLayer,
   EasingFunction,
   Entity,
   GltfContainer,
   InputAction,
-  Material,
-  MeshCollider,
-  MeshRenderer,
   Transform,
   Tween,
   TweenLoop,
   TweenSequence,
-  UiBackground,
-  UiText,
-  UiTransform,
-  VideoPlayer,
-  VisibilityComponent,
   engine,
   pointerEventsSystem
 } from '@dcl/sdk/ecs'
@@ -28,22 +18,7 @@ import { claimToken } from './claim/claim'
 import { ClaimConfig } from './claim/claimConfig'
 import { setupUi } from './claim/ui'
 import { randomCrateSpawn } from './crate'
-import { initAssetPacks } from '@dcl/asset-packs/dist/scene-entrypoint'
 import { getActionEvents } from '@dcl/asset-packs/dist/events'
-
-initAssetPacks(engine, pointerEventsSystem, {
-  Animator,
-  AudioSource,
-  AvatarAttach,
-  Transform,
-  VisibilityComponent,
-  GltfContainer,
-  Material,
-  VideoPlayer,
-  UiTransform,
-  UiText,
-  UiBackground
-})
 
 export function main() {
   CONFIG.init()
