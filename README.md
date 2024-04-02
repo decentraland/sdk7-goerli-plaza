@@ -4,7 +4,7 @@
 
 Check the parcel usage running `node scripts/checkParcelsCollision.js`. The plaza is a rect from 72,-9 to 81,10.
 
-Visit the collection of all the scenes in this repo deployed at [decentraland.org/play/?position=72%2C-10](https://decentraland.org/play/?realm=sdk-team-cdn.decentraland.org%252Fipfs%252Fgoerli-plaza-main-latest&position=72%252C-10)
+Visit the collection of all the scenes in this repo deployed at [decentraland.org/play/?position=72%2C-10](https://decentraland.org/play/?realm=sdk-team-cdn.decentraland.org%2Fipfs%2Fgoerli-plaza-main-latest&position=72%2C-10)
 
 ## Before commit
 
