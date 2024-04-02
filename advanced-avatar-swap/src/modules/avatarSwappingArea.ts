@@ -79,7 +79,8 @@ export function avatarSwappingSystem(dt: number) {
   if (!intervalUtil.update(dt)) return
 
   const playerPos = Transform.get(engine.PlayerEntity).position
-  const moved = Vector3.length(Vector3.add(playerPos, Vector3.scale(lastPlayerPos ?? Vector3.Zero(), -1))) > Number.EPSILON
+  const moved =
+    Vector3.length(Vector3.add(playerPos, Vector3.scale(lastPlayerPos ?? Vector3.Zero(), -1))) > Number.EPSILON
 
   let animation = moved ? AnimationState.Run : AnimationState.Idle
   playAnimation(animation, false)
