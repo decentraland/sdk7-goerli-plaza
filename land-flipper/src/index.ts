@@ -1,11 +1,6 @@
 // We define the empty imports so the auto-complete feature works as expected.
 import { Color4, Quaternion, Vector3 } from '@dcl/sdk/math'
-import {
-  Material,
-  MeshRenderer,
-  Transform,
-  engine,
-} from '@dcl/sdk/ecs'
+import { Material, MeshRenderer, Transform, engine } from '@dcl/sdk/ecs'
 
 import { colorTiles, resetAllTiles } from './systems'
 import { createTile } from './factory'
