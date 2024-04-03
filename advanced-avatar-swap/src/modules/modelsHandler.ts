@@ -51,7 +51,7 @@ export function initializeCharacter(): Entity {
     src: santaModel
   })
   Transform.create(modelEntity, {
-    position: Vector3.create(0, 0, 0),
+    position: Vector3.create(0, 0.75, 0),
     scale: Vector3.create(1, 1, 1),
     parent: parentEntity
   })
