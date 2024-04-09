@@ -97,16 +97,16 @@
               "y": 0,
               "z": 6.25
             },
+            "scale": {
+              "x": 1,
+              "y": 1,
+              "z": 1
+            },
             "rotation": {
               "x": 0,
               "y": 0,
               "z": 0,
               "w": 1
-            },
-            "scale": {
-              "x": 1,
-              "y": 1,
-              "z": 1
             },
             "parent": 0
           }
@@ -118,18 +118,59 @@
               "y": 1.9900201559066772,
               "z": 6.859252452850342
             },
+            "scale": {
+              "x": 1,
+              "y": 1,
+              "z": 1
+            },
             "rotation": {
               "x": 0,
               "y": 0,
               "z": 0,
               "w": 1
             },
-            "scale": {
-              "x": 1,
-              "y": 1,
-              "z": 1
-            },
             "parent": 0
+          }
+        }
+      }
+    },
+    {
+      "name": "core::Animator",
+      "jsonSchema": {
+        "type": "object",
+        "properties": {},
+        "serializationType": "protocol-buffer",
+        "protocolBuffer": "PBAnimator"
+      },
+      "data": {
+        "513": {
+          "json": {
+            "states": [
+              {
+                "clip": "main",
+                "playing": false,
+                "weight": 1,
+                "speed": 1,
+                "loop": false,
+                "shouldReset": false
+              },
+              {
+                "clip": "activate",
+                "playing": false,
+                "weight": 1,
+                "speed": 1,
+                "loop": false,
+                "shouldReset": false
+              },
+              {
+                "clip": "deactivate",
+                "playing": false,
+                "weight": 1,
+                "speed": 1,
+                "loop": false,
+                "shouldReset": false
+              }
+            ]
           }
         }
       }
@@ -227,47 +268,6 @@
       }
     },
     {
-      "name": "core::Animator",
-      "jsonSchema": {
-        "type": "object",
-        "properties": {},
-        "serializationType": "protocol-buffer",
-        "protocolBuffer": "PBAnimator"
-      },
-      "data": {
-        "513": {
-          "json": {
-            "states": [
-              {
-                "clip": "main",
-                "playing": false,
-                "weight": 1,
-                "speed": 1,
-                "loop": false,
-                "shouldReset": false
-              },
-              {
-                "clip": "activate",
-                "playing": false,
-                "weight": 1,
-                "speed": 1,
-                "loop": false,
-                "shouldReset": false
-              },
-              {
-                "clip": "deactivate",
-                "playing": false,
-                "weight": 1,
-                "speed": 1,
-                "loop": false,
-                "shouldReset": false
-              }
-            ]
-          }
-        }
-      }
-    },
-    {
       "name": "inspector::Selection",
       "jsonSchema": {
         "type": "object",
@@ -353,6 +353,346 @@
       }
     },
     {
+      "name": "inspector::SceneMetadata",
+      "jsonSchema": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "serializationType": "optional",
+            "optionalJsonSchema": {
+              "type": "string",
+              "serializationType": "utf8-string"
+            }
+          },
+          "description": {
+            "type": "string",
+            "serializationType": "optional",
+            "optionalJsonSchema": {
+              "type": "string",
+              "serializationType": "utf8-string"
+            }
+          },
+          "thumbnail": {
+            "type": "string",
+            "serializationType": "optional",
+            "optionalJsonSchema": {
+              "type": "string",
+              "serializationType": "utf8-string"
+            }
+          },
+          "ageRating": {
+            "type": "string",
+            "serializationType": "optional",
+            "optionalJsonSchema": {
+              "type": "string",
+              "enum": [
+                "T",
+                "A"
+              ],
+              "default": "T",
+              "serializationType": "enum-string",
+              "enumObject": {
+                "Teen": "T",
+                "Adult": "A"
+              }
+            }
+          },
+          "categories": {
+            "type": "array",
+            "serializationType": "optional",
+            "optionalJsonSchema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "art",
+                  "game",
+                  "casino",
+                  "social",
+                  "music",
+                  "fashion",
+                  "crypto",
+                  "education",
+                  "shop",
+                  "business",
+                  "sports"
+                ],
+                "default": "game",
+                "serializationType": "enum-string",
+                "enumObject": {
+                  "ART": "art",
+                  "GAME": "game",
+                  "CASINO": "casino",
+                  "SOCIAL": "social",
+                  "MUSIC": "music",
+                  "FASHION": "fashion",
+                  "CRYPTO": "crypto",
+                  "EDUCATION": "education",
+                  "SHOP": "shop",
+                  "BUSINESS": "business",
+                  "SPORTS": "sports"
+                }
+              },
+              "serializationType": "array"
+            }
+          },
+          "author": {
+            "type": "string",
+            "serializationType": "optional",
+            "optionalJsonSchema": {
+              "type": "string",
+              "serializationType": "utf8-string"
+            }
+          },
+          "email": {
+            "type": "string",
+            "serializationType": "optional",
+            "optionalJsonSchema": {
+              "type": "string",
+              "serializationType": "utf8-string"
+            }
+          },
+          "tags": {
+            "type": "array",
+            "serializationType": "optional",
+            "optionalJsonSchema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "serializationType": "utf8-string"
+              },
+              "serializationType": "array"
+            }
+          },
+          "layout": {
+            "type": "object",
+            "properties": {
+              "base": {
+                "type": "object",
+                "properties": {
+                  "x": {
+                    "type": "integer",
+                    "serializationType": "int32"
+                  },
+                  "y": {
+                    "type": "integer",
+                    "serializationType": "int32"
+                  }
+                },
+                "serializationType": "map"
+              },
+              "parcels": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "x": {
+                      "type": "integer",
+                      "serializationType": "int32"
+                    },
+                    "y": {
+                      "type": "integer",
+                      "serializationType": "int32"
+                    }
+                  },
+                  "serializationType": "map"
+                },
+                "serializationType": "array"
+              }
+            },
+            "serializationType": "map"
+          },
+          "silenceVoiceChat": {
+            "type": "boolean",
+            "serializationType": "optional",
+            "optionalJsonSchema": {
+              "type": "boolean",
+              "serializationType": "boolean"
+            }
+          },
+          "disablePortableExperiences": {
+            "type": "boolean",
+            "serializationType": "optional",
+            "optionalJsonSchema": {
+              "type": "boolean",
+              "serializationType": "boolean"
+            }
+          },
+          "spawnPoints": {
+            "type": "array",
+            "serializationType": "optional",
+            "optionalJsonSchema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "serializationType": "utf8-string"
+                  },
+                  "default": {
+                    "type": "boolean",
+                    "serializationType": "optional",
+                    "optionalJsonSchema": {
+                      "type": "boolean",
+                      "serializationType": "boolean"
+                    }
+                  },
+                  "position": {
+                    "type": "object",
+                    "properties": {
+                      "x": {
+                        "type": "object",
+                        "properties": {
+                          "single": {
+                            "type": "integer",
+                            "serializationType": "int32"
+                          },
+                          "range": {
+                            "type": "array",
+                            "items": {
+                              "type": "integer",
+                              "serializationType": "int32"
+                            },
+                            "serializationType": "array"
+                          }
+                        },
+                        "serializationType": "one-of"
+                      },
+                      "y": {
+                        "type": "object",
+                        "properties": {
+                          "single": {
+                            "type": "integer",
+                            "serializationType": "int32"
+                          },
+                          "range": {
+                            "type": "array",
+                            "items": {
+                              "type": "integer",
+                              "serializationType": "int32"
+                            },
+                            "serializationType": "array"
+                          }
+                        },
+                        "serializationType": "one-of"
+                      },
+                      "z": {
+                        "type": "object",
+                        "properties": {
+                          "single": {
+                            "type": "integer",
+                            "serializationType": "int32"
+                          },
+                          "range": {
+                            "type": "array",
+                            "items": {
+                              "type": "integer",
+                              "serializationType": "int32"
+                            },
+                            "serializationType": "array"
+                          }
+                        },
+                        "serializationType": "one-of"
+                      }
+                    },
+                    "serializationType": "map"
+                  },
+                  "cameraTarget": {
+                    "type": "object",
+                    "serializationType": "optional",
+                    "optionalJsonSchema": {
+                      "type": "object",
+                      "properties": {
+                        "x": {
+                          "type": "integer",
+                          "serializationType": "int32"
+                        },
+                        "y": {
+                          "type": "integer",
+                          "serializationType": "int32"
+                        },
+                        "z": {
+                          "type": "integer",
+                          "serializationType": "int32"
+                        }
+                      },
+                      "serializationType": "map"
+                    }
+                  }
+                },
+                "serializationType": "map"
+              },
+              "serializationType": "array"
+            }
+          }
+        },
+        "serializationType": "map"
+      },
+      "data": {
+        "0": {
+          "json": {
+            "name": "reward-claim",
+            "description": "Let players claim wearable rewards by interacting with a scene",
+            "thumbnail": "images/scene-thumbnail.png",
+            "categories": [],
+            "author": "SDK",
+            "email": "",
+            "tags": [],
+            "layout": {
+              "parcels": [
+                {
+                  "x": 82,
+                  "y": -6
+                }
+              ],
+              "base": {
+                "x": 82,
+                "y": -6
+              }
+            },
+            "silenceVoiceChat": false,
+            "disablePortableExperiences": false,
+            "spawnPoints": [
+              {
+                "name": "spawn1",
+                "default": true,
+                "position": {
+                  "x": {
+                    "$case": "range",
+                    "value": [
+                      0,
+                      3
+                    ]
+                  },
+                  "y": {
+                    "$case": "range",
+                    "value": [
+                      0,
+                      0
+                    ]
+                  },
+                  "z": {
+                    "$case": "range",
+                    "value": [
+                      0,
+                      3
+                    ]
+                  }
+                },
+                "cameraTarget": {
+                  "x": 8,
+                  "y": 1,
+                  "z": 8
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
       "name": "inspector::Nodes",
       "jsonSchema": {
         "type": "object",
@@ -408,6 +748,14 @@
               },
               {
                 "entity": 514,
+                "children": []
+              },
+              {
+                "entity": 1,
+                "children": []
+              },
+              {
+                "entity": 2,
                 "children": []
               }
             ]
@@ -467,11 +815,11 @@
               },
               {
                 "type": "increment_counter",
-                "jsonSchema": "{\"type\":\"object\",\"properties\":{},\"serializationType\":\"map\"}"
+                "jsonSchema": "{\"type\":\"object\",\"properties\":{\"amount\":{\"type\":\"integer\",\"serializationType\":\"optional\",\"optionalJsonSchema\":{\"type\":\"integer\",\"serializationType\":\"int32\"}}},\"serializationType\":\"map\"}"
               },
               {
                 "type": "decrease_counter",
-                "jsonSchema": "{\"type\":\"object\",\"properties\":{},\"serializationType\":\"map\"}"
+                "jsonSchema": "{\"type\":\"object\",\"properties\":{\"amount\":{\"type\":\"integer\",\"serializationType\":\"optional\",\"optionalJsonSchema\":{\"type\":\"integer\",\"serializationType\":\"int32\"}}},\"serializationType\":\"map\"}"
               },
               {
                 "type": "play_sound",
@@ -568,6 +916,62 @@
               {
                 "type": "hide_image",
                 "jsonSchema": "{\"type\":\"object\",\"properties\":{\"imageEntity\":{\"type\":\"integer\",\"serializationType\":\"optional\",\"optionalJsonSchema\":{\"type\":\"integer\",\"serializationType\":\"int32\"}}},\"serializationType\":\"map\"}"
+              },
+              {
+                "type": "damage",
+                "jsonSchema": "{\"type\":\"object\",\"properties\":{\"radius\":{\"type\":\"number\",\"serializationType\":\"float32\"},\"layer\":{\"type\":\"string\",\"serializationType\":\"optional\",\"optionalJsonSchema\":{\"type\":\"string\",\"enum\":[\"all\",\"player\",\"non_player\"],\"default\":\"all\",\"serializationType\":\"enum-string\",\"enumObject\":{\"ALL\":\"all\",\"PLAYER\":\"player\",\"NON_PLAYER\":\"non_player\"}}},\"hits\":{\"type\":\"integer\",\"serializationType\":\"optional\",\"optionalJsonSchema\":{\"type\":\"integer\",\"serializationType\":\"int32\"}}},\"serializationType\":\"map\"}"
+              },
+              {
+                "type": "move_player_here",
+                "jsonSchema": "{\"type\":\"object\",\"properties\":{},\"serializationType\":\"map\"}"
+              },
+              {
+                "type": "place_on_player",
+                "jsonSchema": "{\"type\":\"object\",\"properties\":{},\"serializationType\":\"map\"}"
+              },
+              {
+                "type": "rotate_as_player",
+                "jsonSchema": "{\"type\":\"object\",\"properties\":{},\"serializationType\":\"map\"}"
+              },
+              {
+                "type": "place_on_camera",
+                "jsonSchema": "{\"type\":\"object\",\"properties\":{},\"serializationType\":\"map\"}"
+              },
+              {
+                "type": "rotate_as_camera",
+                "jsonSchema": "{\"type\":\"object\",\"properties\":{},\"serializationType\":\"map\"}"
+              },
+              {
+                "type": "set_position",
+                "jsonSchema": "{\"type\":\"object\",\"properties\":{\"x\":{\"type\":\"number\",\"serializationType\":\"float32\"},\"y\":{\"type\":\"number\",\"serializationType\":\"float32\"},\"z\":{\"type\":\"number\",\"serializationType\":\"float32\"},\"relative\":{\"type\":\"boolean\",\"serializationType\":\"optional\",\"optionalJsonSchema\":{\"type\":\"boolean\",\"serializationType\":\"boolean\"}}},\"serializationType\":\"map\"}"
+              },
+              {
+                "type": "set_rotation",
+                "jsonSchema": "{\"type\":\"object\",\"properties\":{\"x\":{\"type\":\"number\",\"serializationType\":\"float32\"},\"y\":{\"type\":\"number\",\"serializationType\":\"float32\"},\"z\":{\"type\":\"number\",\"serializationType\":\"float32\"},\"relative\":{\"type\":\"boolean\",\"serializationType\":\"optional\",\"optionalJsonSchema\":{\"type\":\"boolean\",\"serializationType\":\"boolean\"}}},\"serializationType\":\"map\"}"
+              },
+              {
+                "type": "set_scale",
+                "jsonSchema": "{\"type\":\"object\",\"properties\":{\"x\":{\"type\":\"number\",\"serializationType\":\"float32\"},\"y\":{\"type\":\"number\",\"serializationType\":\"float32\"},\"z\":{\"type\":\"number\",\"serializationType\":\"float32\"},\"relative\":{\"type\":\"boolean\",\"serializationType\":\"optional\",\"optionalJsonSchema\":{\"type\":\"boolean\",\"serializationType\":\"boolean\"}}},\"serializationType\":\"map\"}"
+              },
+              {
+                "type": "follow_player",
+                "jsonSchema": "{\"type\":\"object\",\"properties\":{\"speed\":{\"type\":\"number\",\"serializationType\":\"float32\"},\"x\":{\"type\":\"boolean\",\"serializationType\":\"boolean\"},\"y\":{\"type\":\"boolean\",\"serializationType\":\"boolean\"},\"z\":{\"type\":\"boolean\",\"serializationType\":\"boolean\"},\"minDistance\":{\"type\":\"number\",\"serializationType\":\"float32\"}},\"serializationType\":\"map\"}"
+              },
+              {
+                "type": "stop_following_player",
+                "jsonSchema": "{\"type\":\"object\",\"properties\":{},\"serializationType\":\"map\"}"
+              },
+              {
+                "type": "random",
+                "jsonSchema": "{\"type\":\"object\",\"properties\":{\"actions\":{\"type\":\"array\",\"items\":{\"type\":\"string\",\"serializationType\":\"utf8-string\"},\"serializationType\":\"array\"}},\"serializationType\":\"map\"}"
+              },
+              {
+                "type": "batch",
+                "jsonSchema": "{\"type\":\"object\",\"properties\":{\"actions\":{\"type\":\"array\",\"items\":{\"type\":\"string\",\"serializationType\":\"utf8-string\"},\"serializationType\":\"array\"}},\"serializationType\":\"map\"}"
+              },
+              {
+                "type": "heal_player",
+                "jsonSchema": "{\"type\":\"object\",\"properties\":{\"multiplier\":{\"type\":\"integer\",\"serializationType\":\"int32\"}},\"serializationType\":\"map\"}"
               }
             ]
           }
@@ -599,6 +1003,14 @@
                 "jsonPayload": {
                   "type": "string",
                   "serializationType": "utf8-string"
+                },
+                "allowedInBasicView": {
+                  "type": "boolean",
+                  "serializationType": "optional",
+                  "optionalJsonSchema": {
+                    "type": "boolean",
+                    "serializationType": "boolean"
+                  }
                 }
               },
               "serializationType": "map"
@@ -682,6 +1094,7 @@
                   "type": "string",
                   "enum": [
                     "on_click",
+                    "on_input_action",
                     "on_state_change",
                     "on_spawn",
                     "on_tween_end",
@@ -691,12 +1104,19 @@
                     "on_delay",
                     "on_loop",
                     "on_clone",
-                    "on_click_image"
+                    "on_click_image",
+                    "on_damage",
+                    "on_global_click",
+                    "on_global_primary",
+                    "on_global_secondary",
+                    "on_tick",
+                    "on_heal_player"
                   ],
-                  "default": "on_click",
+                  "default": "on_input_action",
                   "serializationType": "enum-string",
                   "enumObject": {
                     "ON_CLICK": "on_click",
+                    "ON_INPUT_ACTION": "on_input_action",
                     "ON_STATE_CHANGE": "on_state_change",
                     "ON_SPAWN": "on_spawn",
                     "ON_TWEEN_END": "on_tween_end",
@@ -706,7 +1126,13 @@
                     "ON_DELAY": "on_delay",
                     "ON_LOOP": "on_loop",
                     "ON_CLONE": "on_clone",
-                    "ON_CLICK_IMAGE": "on_click_image"
+                    "ON_CLICK_IMAGE": "on_click_image",
+                    "ON_DAMAGE": "on_damage",
+                    "ON_GLOBAL_CLICK": "on_global_click",
+                    "ON_GLOBAL_PRIMARY": "on_global_primary",
+                    "ON_GLOBAL_SECONDARY": "on_global_secondary",
+                    "ON_TICK": "on_tick",
+                    "ON_HEAL_PLAYER": "on_heal_player"
                   }
                 },
                 "conditions": {
@@ -732,7 +1158,11 @@
                             "when_state_is_not",
                             "when_counter_equals",
                             "when_counter_is_greater_than",
-                            "when_counter_is_less_than"
+                            "when_counter_is_less_than",
+                            "when_distance_to_player_less_than",
+                            "when_distance_to_player_greater_than",
+                            "when_previous_state_is",
+                            "when_previous_state_is_not"
                           ],
                           "default": "when_state_is",
                           "serializationType": "enum-string",
@@ -741,7 +1171,11 @@
                             "WHEN_STATE_IS_NOT": "when_state_is_not",
                             "WHEN_COUNTER_EQUALS": "when_counter_equals",
                             "WHEN_COUNTER_IS_GREATER_THAN": "when_counter_is_greater_than",
-                            "WHEN_COUNTER_IS_LESS_THAN": "when_counter_is_less_than"
+                            "WHEN_COUNTER_IS_LESS_THAN": "when_counter_is_less_than",
+                            "WHEN_DISTANCE_TO_PLAYER_LESS_THAN": "when_distance_to_player_less_than",
+                            "WHEN_DISTANCE_TO_PLAYER_GREATER_THAN": "when_distance_to_player_greater_than",
+                            "WHEN_PREVIOUS_STATE_IS": "when_previous_state_is",
+                            "WHEN_PREVIOUS_STATE_IS_NOT": "when_previous_state_is_not"
                           }
                         },
                         "value": {
@@ -796,6 +1230,14 @@
                     "serializationType": "map"
                   },
                   "serializationType": "array"
+                },
+                "basicViewId": {
+                  "type": "string",
+                  "serializationType": "optional",
+                  "optionalJsonSchema": {
+                    "type": "string",
+                    "serializationType": "utf8-string"
+                  }
                 }
               },
               "serializationType": "map"
@@ -912,6 +1354,14 @@
             }
           },
           "currentValue": {
+            "type": "string",
+            "serializationType": "optional",
+            "optionalJsonSchema": {
+              "type": "string",
+              "serializationType": "utf8-string"
+            }
+          },
+          "previousValue": {
             "type": "string",
             "serializationType": "optional",
             "optionalJsonSchema": {
