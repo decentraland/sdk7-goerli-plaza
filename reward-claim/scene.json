@@ -50,7 +50,10 @@
     "ALLOW_TO_MOVE_PLAYER_INSIDE_SCENE",
     "ALLOW_MEDIA_HOSTNAMES"
   ],
-  "featureToggles": {},
+  "featureToggles": {
+    "voiceChat": "enabled",
+    "portableExperiences": "enabled"
+  },
   "allowedMediaHostnames": [
     "decentraland.org",
     "decentraland.zone",

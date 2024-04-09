@@ -2,7 +2,8 @@
   "display": {
     "title": "Smart_Items_Pirate_Island",
     "favicon": "favicon_asset",
-    "navmapThumbnail": "scene-thumbnail.png"
+    "navmapThumbnail": "scene-thumbnail.png",
+    "description": ""
   },
   "owner": "",
   "contact": {
@@ -37,5 +38,10 @@
   "allowedMediaHostnames": [],
   "ecs7": true,
   "runtimeVersion": "7",
-  "name": "Smart_Items_Pirate_Island"
+  "name": "Smart_Items_Pirate_Island",
+  "spawnPoints": [],
+  "featureToggles": {
+    "voiceChat": "enabled",
+    "portableExperiences": "enabled"
+  }
 }
