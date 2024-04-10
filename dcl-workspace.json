@@ -130,6 +130,9 @@
       "path": "block-portable-experiences"
     },
     {
+      "path": "block-fountain"
+    },
+    {
       "path": "bird-field"
     },
     {
@@ -214,6 +217,9 @@
       "path": "Party-Time"
     },
     {
+      "path": "NFT-Museum"
+    },
+    {
       "path": "Laser-ray-Casting"
     },
     {
@@ -245,9 +251,6 @@
     },
     {
       "path": "Block-dog"
-    },
-    {
-      "path": "Block-Fountain"
     },
     {
       "path": "BasicInteractions"
