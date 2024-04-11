@@ -1,8 +1,8 @@
-import { engine, Entity, GltfContainer, Material, MeshRenderer, TextShape, Transform } from "@dcl/sdk/ecs"
-import { Color4, Quaternion, Vector3 } from "@dcl/sdk/math"
-import { gameController } from "../controllers/game.controller"
+import { engine, Entity, GltfContainer, Material, MeshRenderer, TextShape, Transform } from '@dcl/sdk/ecs'
+import { Color4, Quaternion, Vector3 } from '@dcl/sdk/math'
+import { gameController } from '../controllers/game.controller'
 import * as utils from '@dcl-sdk/utils'
-import { onEnterScene, onLeaveScene } from "@dcl/sdk/src/players"
+import { onEnterScene, onLeaveScene } from '@dcl/sdk/src/players'
 
 export class setUpScenes {
   private FloorBaseDirt: Entity
@@ -25,7 +25,7 @@ export class setUpScenes {
     })
     Transform.createOrReplace(this.sign, {
       position: Vector3.create(8, 0, 8),
-      scale: Vector3.create(4, 4, 4),
+      scale: Vector3.create(4, 4, 4)
     })
 
     const text = 'Free Wearables \n HERE!'
@@ -33,7 +33,6 @@ export class setUpScenes {
       text: text,
       textColor: Color4.White(),
       fontSize: 4
-
     })
     Transform.create(this.signText, {
       position: Vector3.create(8, 3.8, 9.3),

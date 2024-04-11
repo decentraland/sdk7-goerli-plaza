@@ -1,11 +1,10 @@
-
-import { getUserData } from "~system/UserIdentity";
-import { airdropWearable } from "../classes/airdrop.class";
-import { addUser, getPlayerData, updatePlayerData } from "../functions/server.function";
-import { UI } from "../classes/ui.class";
-import { Claim } from "../classes/claim.class";
-import { ClaimConfig } from "../config/claim.config";
-import { setUpScenes } from "../classes/scene.class";
+import { getUserData } from '~system/UserIdentity'
+import { airdropWearable } from '../classes/airdrop.class'
+import { addUser, getPlayerData, updatePlayerData } from '../functions/server.function'
+import { UI } from '../classes/ui.class'
+import { Claim } from '../classes/claim.class'
+import { ClaimConfig } from '../config/claim.config'
+import { setUpScenes } from '../classes/scene.class'
 
 export class gameController {
   public ui: UI
@@ -21,9 +20,27 @@ export class gameController {
   constructor() {
     this.ui = new UI(this)
     //Create as many airdrops you want
-    this.airdrop_1 = new airdropWearable(this, 'assets/scene/models/crate_eth.glb', 'assets/scene/models/parachute_jungle.glb', this.camp, this.camp.campaignKeys.KEY_0)
-    this.airdrop_2 = new airdropWearable(this, 'assets/scene/models/crate_eth.glb', 'assets/scene/models/parachute_jelly.glb', this.camp, this.camp.campaignKeys.KEY_0) //Replace Key from Nico E
-    this.airdrop_3 = new airdropWearable(this, 'assets/scene/models/crate_eth.glb', 'assets/scene/models/parachute_meta.glb', this.camp, this.camp.campaignKeys.KEY_0) //Replace Key from Nico E
+    this.airdrop_1 = new airdropWearable(
+      this,
+      'assets/scene/models/crate_eth.glb',
+      'assets/scene/models/parachute_jungle.glb',
+      this.camp,
+      this.camp.campaignKeys.KEY_0
+    )
+    this.airdrop_2 = new airdropWearable(
+      this,
+      'assets/scene/models/crate_eth.glb',
+      'assets/scene/models/parachute_jelly.glb',
+      this.camp,
+      this.camp.campaignKeys.KEY_0
+    ) //Replace Key from Nico E
+    this.airdrop_3 = new airdropWearable(
+      this,
+      'assets/scene/models/crate_eth.glb',
+      'assets/scene/models/parachute_meta.glb',
+      this.camp,
+      this.camp.campaignKeys.KEY_0
+    ) //Replace Key from Nico E
     this.claim = new Claim(this)
     this.scene = new setUpScenes(this)
   }
@@ -45,5 +62,4 @@ export class gameController {
     this.playerData = await getPlayerData(this.userId)
     return this.playerData
   }
-
 }
