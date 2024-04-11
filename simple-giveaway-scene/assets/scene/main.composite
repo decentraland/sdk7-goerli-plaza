@@ -1,0 +1,510 @@
+{
+  "version": 1,
+  "components": [
+    {
+      "name": "core::Transform",
+      "jsonSchema": {
+        "type": "object",
+        "properties": {
+          "position": {
+            "type": "object",
+            "properties": {
+              "x": {
+                "type": "number"
+              },
+              "y": {
+                "type": "number"
+              },
+              "z": {
+                "type": "number"
+              }
+            }
+          },
+          "scale": {
+            "type": "object",
+            "properties": {
+              "x": {
+                "type": "number"
+              },
+              "y": {
+                "type": "number"
+              },
+              "z": {
+                "type": "number"
+              }
+            }
+          },
+          "rotation": {
+            "type": "object",
+            "properties": {
+              "x": {
+                "type": "number"
+              },
+              "y": {
+                "type": "number"
+              },
+              "z": {
+                "type": "number"
+              },
+              "w": {
+                "type": "number"
+              }
+            }
+          },
+          "parent": {
+            "type": "integer"
+          }
+        },
+        "serializationType": "transform"
+      },
+      "data": {
+        "512": {
+          "json": {
+            "position": {
+              "x": 8,
+              "y": 1,
+              "z": 8
+            },
+            "scale": {
+              "x": 1,
+              "y": 1,
+              "z": 1
+            },
+            "rotation": {
+              "x": 0,
+              "y": 0,
+              "z": 0,
+              "w": 1
+            },
+            "parent": 0
+          }
+        }
+      }
+    },
+    {
+      "name": "core::MeshRenderer",
+      "jsonSchema": {
+        "type": "object",
+        "properties": {},
+        "serializationType": "protocol-buffer",
+        "protocolBuffer": "PBMeshRenderer"
+      },
+      "data": {
+        "512": {
+          "json": {
+            "mesh": {
+              "$case": "box",
+              "box": {
+                "uvs": []
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "core-schema::Name",
+      "jsonSchema": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string",
+            "serializationType": "utf8-string"
+          }
+        },
+        "serializationType": "map"
+      },
+      "data": {
+        "512": {
+          "json": {
+            "value": "Magic Cube"
+          }
+        }
+      }
+    },
+    {
+      "name": "inspector::SceneMetadata",
+      "jsonSchema": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "serializationType": "optional",
+            "optionalJsonSchema": {
+              "type": "string",
+              "serializationType": "utf8-string"
+            }
+          },
+          "description": {
+            "type": "string",
+            "serializationType": "optional",
+            "optionalJsonSchema": {
+              "type": "string",
+              "serializationType": "utf8-string"
+            }
+          },
+          "thumbnail": {
+            "type": "string",
+            "serializationType": "optional",
+            "optionalJsonSchema": {
+              "type": "string",
+              "serializationType": "utf8-string"
+            }
+          },
+          "ageRating": {
+            "type": "string",
+            "serializationType": "optional",
+            "optionalJsonSchema": {
+              "type": "string",
+              "enum": [
+                "T",
+                "A"
+              ],
+              "default": "T",
+              "serializationType": "enum-string",
+              "enumObject": {
+                "Teen": "T",
+                "Adult": "A"
+              }
+            }
+          },
+          "categories": {
+            "type": "array",
+            "serializationType": "optional",
+            "optionalJsonSchema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "art",
+                  "game",
+                  "casino",
+                  "social",
+                  "music",
+                  "fashion",
+                  "crypto",
+                  "education",
+                  "shop",
+                  "business",
+                  "sports"
+                ],
+                "default": "game",
+                "serializationType": "enum-string",
+                "enumObject": {
+                  "ART": "art",
+                  "GAME": "game",
+                  "CASINO": "casino",
+                  "SOCIAL": "social",
+                  "MUSIC": "music",
+                  "FASHION": "fashion",
+                  "CRYPTO": "crypto",
+                  "EDUCATION": "education",
+                  "SHOP": "shop",
+                  "BUSINESS": "business",
+                  "SPORTS": "sports"
+                }
+              },
+              "serializationType": "array"
+            }
+          },
+          "author": {
+            "type": "string",
+            "serializationType": "optional",
+            "optionalJsonSchema": {
+              "type": "string",
+              "serializationType": "utf8-string"
+            }
+          },
+          "email": {
+            "type": "string",
+            "serializationType": "optional",
+            "optionalJsonSchema": {
+              "type": "string",
+              "serializationType": "utf8-string"
+            }
+          },
+          "tags": {
+            "type": "array",
+            "serializationType": "optional",
+            "optionalJsonSchema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "serializationType": "utf8-string"
+              },
+              "serializationType": "array"
+            }
+          },
+          "layout": {
+            "type": "object",
+            "properties": {
+              "base": {
+                "type": "object",
+                "properties": {
+                  "x": {
+                    "type": "integer",
+                    "serializationType": "int32"
+                  },
+                  "y": {
+                    "type": "integer",
+                    "serializationType": "int32"
+                  }
+                },
+                "serializationType": "map"
+              },
+              "parcels": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "x": {
+                      "type": "integer",
+                      "serializationType": "int32"
+                    },
+                    "y": {
+                      "type": "integer",
+                      "serializationType": "int32"
+                    }
+                  },
+                  "serializationType": "map"
+                },
+                "serializationType": "array"
+              }
+            },
+            "serializationType": "map"
+          },
+          "silenceVoiceChat": {
+            "type": "boolean",
+            "serializationType": "optional",
+            "optionalJsonSchema": {
+              "type": "boolean",
+              "serializationType": "boolean"
+            }
+          },
+          "disablePortableExperiences": {
+            "type": "boolean",
+            "serializationType": "optional",
+            "optionalJsonSchema": {
+              "type": "boolean",
+              "serializationType": "boolean"
+            }
+          },
+          "spawnPoints": {
+            "type": "array",
+            "serializationType": "optional",
+            "optionalJsonSchema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "serializationType": "utf8-string"
+                  },
+                  "default": {
+                    "type": "boolean",
+                    "serializationType": "optional",
+                    "optionalJsonSchema": {
+                      "type": "boolean",
+                      "serializationType": "boolean"
+                    }
+                  },
+                  "position": {
+                    "type": "object",
+                    "properties": {
+                      "x": {
+                        "type": "object",
+                        "properties": {
+                          "single": {
+                            "type": "integer",
+                            "serializationType": "int32"
+                          },
+                          "range": {
+                            "type": "array",
+                            "items": {
+                              "type": "integer",
+                              "serializationType": "int32"
+                            },
+                            "serializationType": "array"
+                          }
+                        },
+                        "serializationType": "one-of"
+                      },
+                      "y": {
+                        "type": "object",
+                        "properties": {
+                          "single": {
+                            "type": "integer",
+                            "serializationType": "int32"
+                          },
+                          "range": {
+                            "type": "array",
+                            "items": {
+                              "type": "integer",
+                              "serializationType": "int32"
+                            },
+                            "serializationType": "array"
+                          }
+                        },
+                        "serializationType": "one-of"
+                      },
+                      "z": {
+                        "type": "object",
+                        "properties": {
+                          "single": {
+                            "type": "integer",
+                            "serializationType": "int32"
+                          },
+                          "range": {
+                            "type": "array",
+                            "items": {
+                              "type": "integer",
+                              "serializationType": "int32"
+                            },
+                            "serializationType": "array"
+                          }
+                        },
+                        "serializationType": "one-of"
+                      }
+                    },
+                    "serializationType": "map"
+                  },
+                  "cameraTarget": {
+                    "type": "object",
+                    "serializationType": "optional",
+                    "optionalJsonSchema": {
+                      "type": "object",
+                      "properties": {
+                        "x": {
+                          "type": "integer",
+                          "serializationType": "int32"
+                        },
+                        "y": {
+                          "type": "integer",
+                          "serializationType": "int32"
+                        },
+                        "z": {
+                          "type": "integer",
+                          "serializationType": "int32"
+                        }
+                      },
+                      "serializationType": "map"
+                    }
+                  }
+                },
+                "serializationType": "map"
+              },
+              "serializationType": "array"
+            }
+          }
+        },
+        "serializationType": "map"
+      },
+      "data": {
+        "0": {
+          "json": {
+            "name": "Test Scene",
+            "description": "This is a test scene",
+            "thumbnail": "assets/scene/thumbnail.png",
+            "ageRating": "T",
+            "categories": [],
+            "author": "",
+            "email": "",
+            "tags": [],
+            "layout": {
+              "base": {
+                "x": 0,
+                "y": 0
+              },
+              "parcels": [
+                {
+                  "x": 0,
+                  "y": 0
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "inspector::Nodes",
+      "jsonSchema": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "entity": {
+                  "type": "integer",
+                  "serializationType": "entity"
+                },
+                "open": {
+                  "type": "boolean",
+                  "serializationType": "optional",
+                  "optionalJsonSchema": {
+                    "type": "boolean",
+                    "serializationType": "boolean"
+                  }
+                },
+                "children": {
+                  "type": "array",
+                  "items": {
+                    "type": "integer",
+                    "serializationType": "entity"
+                  },
+                  "serializationType": "array"
+                }
+              },
+              "serializationType": "map"
+            },
+            "serializationType": "array"
+          }
+        },
+        "serializationType": "map"
+      },
+      "data": {
+        "0": {
+          "json": {
+            "value": [
+              {
+                "entity": 0,
+                "children": [
+                  512
+                ],
+                "open": true
+              },
+              {
+                "entity": 1,
+                "children": []
+              },
+              {
+                "entity": 2,
+                "children": []
+              },
+              {
+                "entity": 512,
+                "children": []
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "cube-id",
+      "jsonSchema": {
+        "type": "object",
+        "properties": {},
+        "serializationType": "map"
+      },
+      "data": {
+        "512": {
+          "json": {}
+        }
+      }
+    }
+  ]
+}
