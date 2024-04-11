@@ -405,7 +405,6 @@ export class UI {
     updateUI(id: string) {
         switch (id) {
             case 'welcome':
-                this.startTimer()
                 this.master_ui_visible = true
                 this.welcome_ui_visible = true
                 this.timer_label_visible = true
@@ -473,7 +472,7 @@ export class UI {
                 } if (this.data_wearablesAmount == 2) {
                     this.gameController.airdrop_3.randomCrateSpawn()
                 }
-            }else{
+            } else {
                 this.errorUI(this.gameController.ui.breakLines('Less than 24 hours have passed since the last time the wearable was delivered', 20))
             }
         }
