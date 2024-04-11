@@ -1,5 +1,5 @@
-import { Billboard, BillboardMode, engine, GltfContainer, TextShape, Transform } from "@dcl/sdk/ecs"
-import { Color4, Quaternion, Vector3 } from "@dcl/sdk/math"
+import { Billboard, BillboardMode, engine, GltfContainer, TextShape, Transform } from '@dcl/sdk/ecs'
+import { Color4, Quaternion, Vector3 } from '@dcl/sdk/math'
 
 export function setUpScene() {
   //MainBase
@@ -15,7 +15,7 @@ export function setUpScene() {
   })
   Transform.createOrReplace(sign, {
     position: Vector3.create(8, 0, 8),
-    scale: Vector3.create(4, 4, 4),
+    scale: Vector3.create(4, 4, 4)
   })
 
   const text = 'Free Wearables \n HERE!'
@@ -23,7 +23,6 @@ export function setUpScene() {
     text: text,
     textColor: Color4.White(),
     fontSize: 4
-
   })
   Transform.create(signText, {
     position: Vector3.create(8, 3.8, 9.3),

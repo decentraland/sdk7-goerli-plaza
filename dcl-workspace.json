@@ -34,6 +34,9 @@
       "path": "sliding-door"
     },
     {
+      "path": "simple-giveaway-scene"
+    },
+    {
       "path": "scene-bounds-check"
     },
     {

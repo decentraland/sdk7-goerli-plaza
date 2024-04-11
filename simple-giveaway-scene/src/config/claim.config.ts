@@ -1,4 +1,4 @@
-import { CONFIG } from "../classes/config.class"
+import { CONFIG } from '../classes/config.class'
 
 export type ClaimConfigInstType = {
   campaign: string
