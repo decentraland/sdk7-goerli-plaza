@@ -19,7 +19,7 @@ export function playlistUI() {
     if (Playlist) {
         return (
             <UiEntity
-                key={'main'}
+                key={'playlist-main'}
                 uiTransform={{
                     height: `${canvasHeight * 0.18}`,
                     width: `${canvasHeight * 0.08}`,
@@ -39,6 +39,8 @@ export function playlistUI() {
                 }}
             >
                 <Button
+                    key={'playlist-button'}
+
                     uiTransform={{
                         width: `${canvasHeight * 0.07}`,
                         height: `${canvasHeight * 0.038}`,
@@ -52,6 +54,8 @@ export function playlistUI() {
                     onMouseDown={openMixcloud}
                 />
                 <UiEntity
+                    key={'playlist-space'}
+
                     uiTransform={{
                         margin: '5 0 0 0',
                         flexDirection: 'row',
@@ -60,6 +64,8 @@ export function playlistUI() {
                     }}
                 >
                     <Button
+                        key={'playlist-button2'}
+
                         uiTransform={{
                             width: `${canvasHeight * 0.025}`,
                             height: `${canvasHeight * 0.025}`,
@@ -84,6 +90,8 @@ export function playlistUI() {
                         onMouseDown={togglePlaylist}
                     />
                     <Button
+                        key={'playlist-button3'}
+
                         uiTransform={{
                             width: `${canvasHeight * 0.025}`,
                             height: `${canvasHeight * 0.025}`,
@@ -113,7 +121,5 @@ export function playlistUI() {
                 </UiEntity>
             </UiEntity>
         );
-    } else {
-        return null; // Return null if Playlist is false
     }
 }

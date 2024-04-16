@@ -2,6 +2,7 @@ import { Color4 } from '@dcl/sdk/math'
 import *  as  ui from 'dcl-ui-toolkit'
 import { reward } from '../Rewards/rewards'
 
+let rewardValue = reward
 
 export function rewardUI(thumbnail: string, wearableName: string) {
 
@@ -48,6 +49,7 @@ export function rewardUI(thumbnail: string, wearableName: string) {
 			onMouseDown: () => {
 				console.log('Yeah clicked')
 				customPrompt.hide()
+				rewardValue = false
 			},
 		})
 

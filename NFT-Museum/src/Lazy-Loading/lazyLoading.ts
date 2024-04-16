@@ -5,13 +5,13 @@ import { createVideoArt, videoCollection } from '../Art/videoArt'
 import { createKineticArt, kineticArtCollection } from '../Art/kineticArt'
 import { createImageArt, imageArtCollection } from '../Art/imageArt'
 import { createNFT, nftCollection } from '../Art/nftArt'
-import { createWearableReward, reward } from '../Rewards/rewards'
+import { createWearableReward, reward, rewardEntity } from '../Rewards/rewards'
 
 
 export let scene1active = true
 
 
-export async function createLazyArea(position: Vector3, scale: Vector3, parentPos: Entity, id: number,) {
+export function createLazyArea(position: Vector3, scale: Vector3, parentPos: Entity, id: number,) {
   const entity = engine.addEntity()
 
   Transform.create(entity, {
@@ -32,7 +32,7 @@ export async function createLazyArea(position: Vector3, scale: Vector3, parentPo
 
   let createdImages: Entity[] = []
 
-  await utils.triggers.addTrigger(
+  utils.triggers.addTrigger(
     box,
     utils.LAYER_2,
     utils.LAYER_1,
@@ -59,8 +59,18 @@ export async function createLazyArea(position: Vector3, scale: Vector3, parentPo
         }
         for (const video of videoCollection) {
           if (video.room === id) {
-            const videoArt = await createVideoArt(video.position, video.rotation, video.scale, video.image, video.video, video.hoverText, video.website, video.triggerScale, video.triggerPosition)
-            createdVideos.push(videoArt)
+            try {
+              const videoArt = await createVideoArt(video);
+              if (videoArt) {
+                createdVideos.push(videoArt);
+              } else {
+                console.error('Failed to create video art entity.');
+                return null
+              }
+            } catch (error) {
+              console.error('Error creating video art entity:', error);
+              return null
+            }
           }
         }
         for (const kineticArt of kineticArtCollection) {
@@ -76,7 +86,7 @@ export async function createLazyArea(position: Vector3, scale: Vector3, parentPo
           }
         }
         if (id === 3) {
-          const reward = createWearableReward()
+          const theRewardEntity = createWearableReward()
         }
 
       }
@@ -96,7 +106,7 @@ export async function createLazyArea(position: Vector3, scale: Vector3, parentPo
         engine.removeEntity(image)
       }
       if (reward) {
-        engine.removeEntity(entity)
+        engine.removeEntity(rewardEntity)
       }
 
       createdNfts = [] // Clear the array

@@ -4,11 +4,11 @@ import { playPlaylist, togglePlaylist } from "./playlist";
 import { playRadio, toggleRadio } from "./radio";
 
 /// This is the Playlist, set to false to remove it
-export let Playlist: Boolean = true;
+export let Playlist: Boolean = false;
 
 
 // This is the radio, set to true to play it 
-export let radioPlaying: boolean = false;
+export let radioPlaying: boolean = true;
 
 
 // Function to set the radio state
@@ -43,21 +43,22 @@ export function togglePlay() {
     prevRadio = false;
     console.log(`playlist playing: ${streamPlaying}`);
   }
-
-  if (radioPlaying) {
+  
+  else if (radioPlaying) {
+    console.log('bug')
     toggleRadio();
     prevRadio = true;
     prevPlaylist = false;
   }
-
+  
   // If neither stream nor radio were playing, play the previously active source
-  if (!streamPlaying && !radioPlaying) {
+  else if (!streamPlaying && !radioPlaying) {
     if (prevPlaylist) {
       playPlaylist();
     } else if (prevRadio) {
       playRadio();
     }
-  }
+  } else return null
 }
 
 // Global function to play an audio clip at the player's location

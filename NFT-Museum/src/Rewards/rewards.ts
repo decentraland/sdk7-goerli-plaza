@@ -16,6 +16,7 @@ let dispenserHoverText = 'Claim Reward'
 export let reward = false
 export let rewardClaimed = false
 
+export let rewardEntity = engine.addEntity()
 
 export function createWearableReward() {
 
@@ -24,13 +25,12 @@ export function createWearableReward() {
     console.log('creating wearable reward')
     CONFIG.init()
 
-    let entity = engine.addEntity()
-    Transform.create(entity, {
+    Transform.create(rewardEntity, {
       position: dispenserPosition,
       scale: dispenserScale
     })
 
-    GltfContainer.create(entity, {
+    GltfContainer.create(rewardEntity, {
       src: dispenserModel,
       invisibleMeshesCollisionMask: ColliderLayer.CL_PHYSICS,
       visibleMeshesCollisionMask: ColliderLayer.CL_POINTER,
@@ -38,12 +38,12 @@ export function createWearableReward() {
 
 
     // Remove line below to stop the dispenser from spinning
-    utils.perpetualMotions.startRotation(entity, Quaternion.fromEulerDegrees(0, 25, 0))
+    utils.perpetualMotions.startRotation(rewardEntity, Quaternion.fromEulerDegrees(0, 25, 0))
 
 
     pointerEventsSystem.onPointerDown(
       {
-        entity: entity,
+        entity: rewardEntity,
         opts: {
           button: InputAction.IA_POINTER,
           hoverText: dispenserHoverText,
@@ -55,12 +55,12 @@ export function createWearableReward() {
         let camp = ClaimConfig.campaign.CAMPAIGN_TEST
         claimToken(camp, camp.campaignKeys.KEY_0)
         console.log('claimed Wearable gift')
-        utils.timers.setTimeout(() => { engine.removeEntity(entity), reward = false }, 1000)
+        utils.timers.setTimeout(() => { engine.removeEntity(rewardEntity), reward = false }, 1000)
         rewardClaimed = true
 
       }
     )
-    return entity
+    return rewardEntity
   }
   else {
     console.log('reward already collected')

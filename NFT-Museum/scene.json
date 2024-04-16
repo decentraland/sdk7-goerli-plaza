@@ -23,7 +23,9 @@
     ],
     "base": "0,0"
   },
-
+  "worldConfiguration": {
+    "name": "kjwalker.dcl.eth"
+  },
   "spawnPoints": [
     {
       "name": "spawn1",

@@ -14,12 +14,12 @@ export function toggleRadio() {
 
   radioPlaying = !radioPlaying;
 
-  if (radioPlaying) {
-    playRadio();
-  } else {
+  if (!radioPlaying) {
     const audioStream = AudioStream.getMutable(streamEntity);
     audioStream.url = radioStation;
     audioStream.playing = false;
+  } else {
+    playRadio();
   }
 }
 

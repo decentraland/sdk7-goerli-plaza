@@ -6,7 +6,8 @@ import { artPos14, artPos15, artPos2, artPos25, artPos26, artRot14, artRot15, ar
 import { togglePlay } from '../Audio/audio';
 import { homepageUrl, linktreeURL } from '../social';
 
-let videoPlayer: any = null;
+let videoPlayer: any;
+let isImage = true
 
 let verticalVideo = 'https://player.vimeo.com/external/931742718.m3u8?s=efbe1b55804e4ba10b2e8c17e241d1809d324f36&logging=false'
 let verticalVideoPlaceholder = 'https://bafkreicuvnybcylixwtpxslw4cvwmtwg566z2d6cinxshqbg25lhojkqtq.ipfs.nftstorage.link/' // image placeholder
@@ -24,19 +25,134 @@ let horizontalVideoIndieVillage = 'https://player.vimeo.com/external/931792879.m
 let horizontalVideoIndieVillagePlaceholder = 'https://bafkreie2rucyrbnl5en7bccthydcxsmddhffp4oincu7afc2jt53u4eb6e.ipfs.nftstorage.link/' // image placeholder
 
 export type VideoData = {
-  room: number
-  id: number
-  position: Vector3,
-  rotation: Vector3,
-  scale: Vector3,
-  image: string,
-  video: string,
-  hoverText: string,
-  website: string,
-  triggerScale: Vector3,
-  triggerPosition: Vector3,
-  audio?: boolean,
-  hasAlpha?: boolean // optional parameter, add 'hasAlpha: true' to a videoCollection array for videos with alpha
+  room: number;
+  id: number;
+  position: Vector3;
+  rotation: Vector3;
+  scale: Vector3;
+  image: string;
+  video: string;
+  hoverText: string;
+  website: string;
+  triggerScale: Vector3;
+  triggerPosition: Vector3;
+  audio?: boolean;
+  hasAlpha?: boolean;
+};
+
+export async function createVideoArt(videoData: VideoData): Promise<Entity | null> {
+  const { position, rotation, scale, image, video, hoverText, website, triggerScale, triggerPosition, audio = true, hasAlpha = false } = videoData;
+
+  try {
+    const entity = engine.addEntity();
+    MeshRenderer.setPlane(entity);
+    MeshCollider.setPlane(entity);
+
+    Transform.createOrReplace(entity, {
+      position: position,
+      rotation: Quaternion.fromEulerDegrees(rotation.x, rotation.y, rotation.z),
+      scale: scale,
+    });
+
+    const imageMaterial = Material.Texture.Common({ src: image });
+    const videoTexture = Material.Texture.Video({ videoPlayerEntity: entity });
+
+    Material.setPbrMaterial(entity, {
+      texture: hasAlpha ? videoTexture : imageMaterial,
+      roughness: 1,
+      specularIntensity: 0,
+      metallic: 0,
+      emissiveColor: Color3.White(),
+      emissiveIntensity: 1,
+      emissiveTexture: hasAlpha ? videoTexture : imageMaterial,
+      transparencyMode: hasAlpha ? 1 : undefined,
+      alphaTexture: hasAlpha ? videoTexture : undefined,
+      alphaTest: hasAlpha ? 0.5 : undefined,
+    });
+
+    pointerEventsSystem.onPointerDown(
+      {
+        entity: entity,
+        opts: {
+          button: InputAction.IA_POINTER,
+          hoverText: hoverText,
+        },
+      },
+      () => {
+        console.log('Clicked artwork');
+        openExternalUrl({ url: website });
+      }
+    );
+
+    const videoPlayer = VideoPlayer.create(entity, {
+      src: video,
+      playing: false,
+      loop: true,
+    });
+
+    if (!videoPlayer) {
+      console.error('Failed to create video player.');
+      return null;
+    }
+
+    utils.triggers.addTrigger(
+      utils.addTestCube({ position: triggerPosition, scale: triggerScale }, undefined, undefined, Color4.create(1, 1, 1, 0), undefined, true),
+      utils.NO_LAYERS,
+      utils.LAYER_1,
+      [{ type: 'box', scale: triggerScale }],
+      (otherEntity) => {
+        if (!otherEntity || !videoPlayer) return;
+        isImage = true
+        videoPlayer.playing = true
+        Material.setPbrMaterial(entity, {
+          texture: isImage ? videoTexture : imageMaterial,
+          roughness: 1,
+          specularIntensity: 0,
+          metallic: 0,
+          emissiveColor: Color3.White(),
+          emissiveIntensity: 1,
+          emissiveTexture: isImage ? videoTexture : imageMaterial,
+          transparencyMode: hasAlpha ? 1 : undefined,
+          alphaTexture: hasAlpha ? videoTexture : undefined,
+          alphaTest: hasAlpha ? 0.5 : undefined,
+        });
+        VideoPlayer.createOrReplace(entity, {
+          src: video,
+          playing: true,
+          loop: true
+        })
+        if (audio) {
+          togglePlay();}
+      },
+      (onExit) => {
+        if (videoPlayer) {
+          VideoPlayer.getMutable(entity).playing = false
+        }
+        if (!videoPlayer) return;
+        isImage = false
+        videoPlayer.playing = false;
+        Material.setPbrMaterial(entity, {
+          texture: isImage ? videoTexture : imageMaterial,
+          roughness: 1,
+          specularIntensity: 0,
+          metallic: 0,
+          emissiveColor: Color3.White(),
+          emissiveIntensity: 1,
+          emissiveTexture: isImage ? videoTexture : imageMaterial,
+          transparencyMode: hasAlpha ? 1 : undefined,
+          alphaTexture: hasAlpha ? videoTexture : undefined,
+          alphaTest: hasAlpha ? 0.5 : undefined,
+        });
+        if (audio) {
+          togglePlay();}
+      }
+    );
+
+    return entity;
+  } catch (error) {
+    console.error('Error creating video art:', error);
+    return null;
+  }
 }
 
 export const videoCollection: VideoData[] = [
@@ -53,6 +169,7 @@ export const videoCollection: VideoData[] = [
     triggerScale: Vector3.create(4, 2, 10),
     triggerPosition: Vector3.create(artPos2.x + 2, artPos2.y - 1, artPos2.z),
     audio: true,
+    hasAlpha: false
   },
   {
     room: 2,
@@ -66,7 +183,9 @@ export const videoCollection: VideoData[] = [
     website: linktreeURL,
     triggerScale: Vector3.create(2, 2, 2),
     triggerPosition: Vector3.create(artPos14.x + 2, artPos14.y - 1, artPos14.z),
-    audio: true
+    audio: true,
+    hasAlpha: false
+
   },
   {
     room: 2,
@@ -80,7 +199,9 @@ export const videoCollection: VideoData[] = [
     website: linktreeURL,
     triggerScale: Vector3.create(2, 2, 2),
     triggerPosition: Vector3.create(artPos15.x + 2, artPos15.y - 1, artPos15.z),
-    audio: true
+    audio: true,
+    hasAlpha: false
+
   },
   {
     room: 2,
@@ -94,7 +215,8 @@ export const videoCollection: VideoData[] = [
     website: linktreeURL,
     triggerScale: Vector3.create(8, 6, 6),
     triggerPosition: Vector3.create(artPos25.x, artPos25.y - 1, artPos25.z - 2),
-    audio: false
+    audio: false,
+    hasAlpha: false
   },
   {
     room: 2,
@@ -108,191 +230,8 @@ export const videoCollection: VideoData[] = [
     website: linktreeURL,
     triggerScale: Vector3.create(8, 6, 8),
     triggerPosition: Vector3.create(artPos26.x, artPos26.y - 1, artPos26.z + 2),
-    audio: true
+    audio: true,
+    hasAlpha: false
   }
 ]
 
-export async function createVideoArt(
-  position: Vector3,
-  rotation: Vector3,
-  scale: Vector3,
-  image: string,
-  video: string,
-  hoverText: string,
-  website: string,
-  triggerScale: Vector3,
-  triggerPosition: Vector3,
-  audio: boolean = true,
-  hasAlpha: boolean = false
-) {
-
-  const entity = engine.addEntity();
-  MeshRenderer.setPlane(entity);
-  MeshCollider.setPlane(entity);
-
-  let isImage = true;
-
-  Transform.createOrReplace(entity, {
-    position: position,
-    rotation: Quaternion.fromEulerDegrees(rotation.x, rotation.y, rotation.z),
-    scale: scale,
-
-  });
-
-
-
-  const imageMaterial = Material.Texture.Common({ src: image });
-  Material.setPbrMaterial(entity, {
-    texture: imageMaterial,
-    roughness: 1,
-    specularIntensity: 0,
-    metallic: 0,
-    emissiveColor: Color3.White(),
-    emissiveIntensity: 1,
-    emissiveTexture: imageMaterial,
-  });
-
-  if (hasAlpha) {
-    Material.setPbrMaterial(entity, {
-      texture: imageMaterial,
-      roughness: 1,
-      specularIntensity: 0,
-      metallic: 0,
-      emissiveColor: Color3.White(),
-      emissiveIntensity: 1,
-      emissiveTexture: imageMaterial,
-      transparencyMode: 1,
-      alphaTexture: imageMaterial,
-      alphaTest: 0.5
-    });
-  }
-
-  pointerEventsSystem.onPointerDown(
-    {
-      entity: entity,
-      opts: {
-        button: InputAction.IA_POINTER,
-        hoverText: hoverText,
-      },
-    },
-    function () {
-      console.log('clicked artwork');
-      openExternalUrl({
-        url: website,
-      });
-    }
-  );
-
-
-  try {
-    videoPlayer = await VideoPlayer.create(entity, {
-      src: video,
-      playing: false,
-      loop: true,
-    });
-  } catch (error) {
-    console.error('Error creating video player:', error);
-  }
-
-  const artTrigger = utils.addTestCube(
-    {
-      position: triggerPosition,
-      scale: triggerScale,
-    },
-    undefined,
-    undefined,
-    Color4.create(1, 1, 1, 0),
-    undefined,
-    true
-  );
-  utils.triggers.addTrigger(
-    artTrigger,
-    utils.NO_LAYERS,
-    utils.LAYER_1,
-    [
-      {
-        type: 'box',
-        scale: triggerScale,
-      },
-    ],
-    function (otherEntity) {
-      if (otherEntity) {
-        // Toggle between image and video
-        const videoTexture = Material.Texture.Video({ videoPlayerEntity: entity });
-        if (isImage) {
-          VideoPlayer.createOrReplace(entity, {
-            src: video,
-            playing: true,
-            loop: true,
-          });
-          Material.deleteFrom(entity);
-          Material.setPbrMaterial(entity, {
-            texture: videoTexture,
-            roughness: 1,
-            specularIntensity: 0,
-            metallic: 0,
-            emissiveColor: Color3.White(),
-            emissiveIntensity: 1,
-            emissiveTexture: videoTexture,
-          });
-          if (hasAlpha) {
-            Material.setPbrMaterial(entity, {
-              texture: videoTexture,
-              roughness: 1,
-              specularIntensity: 0,
-              metallic: 0,
-              emissiveColor: Color3.White(),
-              emissiveIntensity: 1,
-              emissiveTexture: videoTexture,
-              transparencyMode: 1,
-              alphaTexture: videoTexture,
-              alphaTest: 0.5
-            });
-          }
-          isImage = false;
-          if (audio === true) {
-            togglePlay(); // Toggle audio play state
-          }
-        }
-      }
-    },
-    function (onExit) {
-      if (onExit) {
-        if (!isImage) {
-          Material.deleteFrom(entity);
-          VideoPlayer.deleteFrom(entity);
-          let mat = Material.Texture.Common({
-            src: image,
-          });
-          isImage = true;
-          Material.setPbrMaterial(entity, {
-            texture: Material.Texture.Common({
-              src: image,
-            }),
-            roughness: 1,
-            specularIntensity: 0,
-            metallic: 0,
-            emissiveColor: Color3.White(),
-            emissiveIntensity: 1,
-            emissiveTexture: mat,
-          });
-          if (audio === true) {
-            togglePlay(); // Toggle audio play state
-          }
-        }
-      }
-    }
-  );
-
-
-
-  return entity;
-
-}
-
-export function removeVideos(entity: Entity) {
-  if (entity != null) {
-
-    engine.removeEntity(entity)
-  }
-}

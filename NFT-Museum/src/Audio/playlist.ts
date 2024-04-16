@@ -111,7 +111,7 @@ export function playCurrentSong() {
     audioStream.playing = true;
 
     utils.timers.setTimeout(() => {
-      //audioStream.playing = false;
+      audioStream.playing = false;
       currentSongIndex++;
       if (currentSongIndex >= playlist.length) {
         currentSongIndex = 0;
