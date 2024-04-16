@@ -6,7 +6,7 @@ import { openExternalUrl } from "~system/RestrictedActions";
 
 
 /// This is the Playlist, set to false to remove it
-export let streamPlayingRef: { value: boolean } = { value: true }; // Set an initial value
+export let streamPlayingRef: { value: boolean } = { value: false }; // Set an initial value
 
 ///// PLAYLIST
 
@@ -111,7 +111,7 @@ export function playCurrentSong() {
     audioStream.playing = true;
 
     utils.timers.setTimeout(() => {
-      audioStream.playing = false;
+      //audioStream.playing = false;
       currentSongIndex++;
       if (currentSongIndex >= playlist.length) {
         currentSongIndex = 0;
@@ -121,7 +121,6 @@ export function playCurrentSong() {
 
     }, currentSong.duration * 1000);
   }
-  console.log('play song')
 }
 
 

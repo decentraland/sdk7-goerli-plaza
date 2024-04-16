@@ -29,11 +29,11 @@ export function main() {
 
     /// AUDIO
     // Use these functions to trigger the playlist (also toggle playlist and radio booleans in audio.ts and ui.tsx)
-    shufflePlaylist(playlist)
-    playCurrentSong()
+    //shufflePlaylist(playlist)
+    //playCurrentSong()
 
     // Use this function to trigger the radio (also toggle playlist and radio booleans in audio.ts and ui.tsx)
-    //playRadio()
+    playRadio()
 
 
     /// TEXT

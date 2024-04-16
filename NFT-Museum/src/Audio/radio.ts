@@ -4,7 +4,7 @@ import { streamEntity } from "./playlist";
 
 
 // This is the radio, set to true to play it 
-export let radioPlaying: boolean = false;
+export let radioPlaying: boolean = true;
 
 // House Radio (24 House Radio)
 let radioStation = 'https://strw3.openstream.co/1487?aw_0_1st.collectionid%3D4682%26stationId%3D4682%26publisherId%3D1511%26k%3D1708457720'
