@@ -7,6 +7,7 @@ import { wordWrap, tieredModalTextWrapScale, breakLines, tieredFontScale } from 
 
 
 const Max_Chars = 38
+const Max_Lines = 3
 const titleFontSize = 22;
 const descriptionFontSize = 12
 
@@ -26,7 +27,7 @@ export function artDetailsUI() {
     const artwork = findArtworkById(currentArtworkId);
     if (artwork && artwork.visible) {
       const { title, description } = artwork;
-      const artTitleWrap = wordWrap(title, 12 * tieredModalTextWrapScale, 6)
+      const artTitleWrap = wordWrap(title, Max_Chars * tieredModalTextWrapScale, Max_Lines)
       const artDescriptionWrap = breakLines(description, Max_Chars)
 
 
