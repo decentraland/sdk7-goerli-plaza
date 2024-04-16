@@ -54,6 +54,9 @@ const elevator2rot = Quaternion.fromEulerDegrees(0, -90, 0)
 let isMoving = false
 let pathComplete = true;
 
+function calculateDuration(distance: number): number {
+    return distance / 2.5; // Adjust as needed
+  }
 
 function createElevator(position: Vector3, rotation: Quaternion) {
     const elevator = engine.addEntity();
@@ -86,16 +89,25 @@ function moveToFloor(entity: Entity, floorIndex: number) {
     setCurrentFloor(floorIndex);
 
     // Move both elevators simultaneously
-    utils.tweens.startTranslation(elevator, currentPosition1, targetPosition1, 5, utils.InterpolationType.LINEAR, () => {
+    utils.tweens.startTranslation(elevator, currentPosition1, targetPosition1, 5, utils.InterpolationType.EASEOUTQUAD, () => {
         pathComplete = true;
         console.log('path complete');
         setCurrentFloor(floorIndex);
         console.log(`current floor: ${currentFloor} index: ${floorIndex}`);
         playAudioAtPlayer(elevatorArrivalSound);
         isMoving = false;
+        utils.timers.setTimeout(() => {
+            Transform.createOrReplace(elevator, {position: targetPosition1, rotation: elevator1rot})
+            Transform.createOrReplace(elevator2, {position: targetPosition2, rotation: elevator2rot})
+        }, 100)
+        
     });
 
-    utils.tweens.startTranslation(elevator2, currentPosition2, targetPosition2, 5, utils.InterpolationType.LINEAR, () => { });
+    utils.tweens.startTranslation(elevator2, currentPosition2, targetPosition2, 5, utils.InterpolationType.EASEOUTQUAD, () => { 
+    });
+ 
+    if (pathComplete) {
+    }
 }
 
 function createElevatorButton(parent: Entity, position: Vector3, modelSrc: string, yOffset: number, index: number, doorsShouldOpen: boolean) {
