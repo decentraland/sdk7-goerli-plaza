@@ -2,7 +2,7 @@
   "ecs7": true,
   "runtimeVersion": "7",
   "display": {
-    "title": "NFT-Museum",
+    "title": "NFT Museum SDK7 Scene Template",
     "description": "NFT Museum template scene with SDK7",
     "navmapThumbnail": "images/scene-thumbnail.png",
     "favicon": "favicon_asset"
@@ -23,6 +23,7 @@
     ],
     "base": "0,0"
   },
+
   "spawnPoints": [
     {
       "name": "spawn1",
@@ -64,6 +65,5 @@
   "featureToggles": {
     "voiceChat": "enabled",
     "portableExperiences": "enabled"
-  },
-  "name": "NFT-Museum"
+  }
 }

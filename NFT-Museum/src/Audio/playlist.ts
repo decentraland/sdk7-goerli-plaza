@@ -121,6 +121,7 @@ export function playCurrentSong() {
 
     }, currentSong.duration * 1000);
   }
+  console.log('play song')
 }
 
 
