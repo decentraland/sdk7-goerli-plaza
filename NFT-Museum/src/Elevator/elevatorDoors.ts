@@ -1,5 +1,5 @@
 import { Quaternion, Vector3 } from "@dcl/sdk/math";
-import { closeDoorOffset, createDoorEntity, createSlidingDoors, doorLmodel, doorRmodel, doorSound, openDoorOffset } from "../doors";
+import { closeDoorOffset, createDoorEntity, createSlidingDoors, doorLmodel, doorRmodel, fastDoorSound, openDoorOffset } from "../doors";
 import { engine, Transform, AudioSource } from "@dcl/sdk/ecs";
 import { playAudioAtPlayer } from "../Audio/audio";
 import * as utils from '@dcl-sdk/utils';
@@ -44,7 +44,7 @@ export function createElevatorDoors(
 
         if (currentFloor === floorIndex) {
 
-            utils.timers.setTimeout(() => playAudioAtPlayer(doorSound), 100)
+            utils.timers.setTimeout(() => playAudioAtPlayer(fastDoorSound, 100), 100)
             console.log('sound played')
 
 
@@ -70,8 +70,6 @@ export function createElevatorDoors(
     function openDoors() {
         if (!isOpen && !isMoving && doorsShouldOpen) {
             isOpen = true;
-
-            let triggerAudio = AudioSource.playSound(doorParent, doorSound)
 
             let currentDoorLPos = Transform.get(doorL).position;
             let currentDoorRPos = Transform.get(doorR).position;
@@ -147,7 +145,7 @@ export function initializeElevatorDoors() {
         doorRmodel,
         openDoorOffset,
         closeDoorOffset,
-        0,
+        0
     );
 
     // Elevator doors, west first floor

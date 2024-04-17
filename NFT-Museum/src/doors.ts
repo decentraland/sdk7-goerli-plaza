@@ -11,7 +11,16 @@ export let doorRmodel = 'models/slidingDoor2.glb'
 export let singleDoor = 'models/slidingDoor-big.glb'
 export let closeDoorOffset = 0
 export let openDoorOffset = 1
-export let doorSound = 'sounds/slidingDoors.mp3'
+
+export let fastDoorSound = 'sounds/slidingDoors_fast.mp3'
+let doorSound = 'sounds/slidingDoors.mp3'
+
+// Change door movement speed
+let doorDuration = 1
+let bigDoorDuration = 2
+
+// Change when the door closes 
+let cooldownTime = 1000 // 1000 miliseconds or 1 second
 
 
 // Regular double glass sliding doors
@@ -28,23 +37,18 @@ export function createSlidingDoors(
     let isMoving = false;
     let isOpen = false;
     let lastDoorInteractionTime = 0;
+    let r = Quaternion.fromEulerDegrees(rotation.x, rotation.y, rotation.z)
 
     Transform.create(doorParent, {
         position: position,
-        rotation: Quaternion.fromEulerDegrees(rotation.x, rotation.y, rotation.z),
+        rotation: r,
     });
 
     let doorL = createDoorEntity(doorLmodel, -closeDoorOffset, doorParent);
     let doorR = createDoorEntity(doorRmodel, closeDoorOffset, doorParent);
 
-    AudioSource.create(doorParent, {
-        audioClipUrl: doorSound,
-        loop: false,
-        playing: false
-    })
-    // General door movement 
     function moveDoors(offset: number) {
-        isMoving = true; // Set isMoving to true when translation starts
+        isMoving = true; 
 
         let currentDoorLPos = Transform.get(doorL).position;
         let currentDoorRPos = Transform.get(doorR).position;
@@ -52,14 +56,12 @@ export function createSlidingDoors(
         let targetDoorLPos = Vector3.add(currentDoorLPos, Vector3.create(offset + 0.0001, 0, 0));
         let targetDoorRPos = Vector3.subtract(currentDoorRPos, Vector3.create(offset + 0.0001, 0, 0));
 
-        // Play door sound
-        let triggerAudio = AudioSource.playSound(doorParent, doorSound)
-        utils.timers.setTimeout(() => playAudioAtPlayer(doorSound), 100)
+        utils.timers.setTimeout(() => playAudioAtPlayer(fastDoorSound, 100), 200)
         console.log('sound played')
 
-        utils.tweens.startTranslation(doorL, currentDoorLPos, targetDoorLPos, 2, utils.InterpolationType.EASEINSINE);
-        utils.tweens.startTranslation(doorR, currentDoorRPos, targetDoorRPos, 2, utils.InterpolationType.EASEINSINE, () => {
-            isMoving = false; // Set isMoving to false when translation ends
+        utils.tweens.startTranslation(doorL, currentDoorLPos, targetDoorLPos, doorDuration, utils.InterpolationType.EASEINSINE);
+        utils.tweens.startTranslation(doorR, currentDoorRPos, targetDoorRPos, doorDuration, utils.InterpolationType.EASEINSINE, () => {
+            isMoving = false; 
         });
     }
 
@@ -85,9 +87,8 @@ export function createSlidingDoors(
             moveDoors(openDoorOffset);
 
             utils.timers.setTimeout(() => {
-                utils.tweens.startTranslation(doorL, currentDoorLPos, targetDoorLPos, 2, utils.InterpolationType.EASEINSINE);
-                utils.tweens.startTranslation(doorR, currentDoorRPos, targetDoorRPos, 2, utils.InterpolationType.EASEINSINE, () => {
-                    // After opening, start closing animation
+                utils.tweens.startTranslation(doorL, currentDoorLPos, targetDoorLPos, doorDuration, utils.InterpolationType.EASEINSINE);
+                utils.tweens.startTranslation(doorR, currentDoorRPos, targetDoorRPos, doorDuration, utils.InterpolationType.EASEINSINE, () => {
                     utils.timers.setTimeout(closeDoors, 2000);
                 });
             }, 100); // Delay the starting of the animation slightly to ensure consistency
@@ -125,7 +126,7 @@ export function createSlidingDoors(
     //utils.triggers.enableDebugDraw(true);
 }
 
-// Single sliding door
+// Single sliding door (big one)
 export function createSlidingDoor(
     position: Vector3,
     rotation: Vector3,
@@ -154,19 +155,13 @@ export function createSlidingDoor(
     })
 
     function moveDoor(offset: number) {
-        isMovingSingle = true; // Set isMoving to true when translation starts
-
+        isMovingSingle = true;
         let currentDoorPos = Transform.get(door).position;
-
         let targetDoorPos = Vector3.add(currentDoorPos, Vector3.create(offset - 0.01, 0, 0));
-
-        // Play door sound
-        let triggerAudio = AudioSource.playSound(doorParent, doorSound)
-        utils.timers.setTimeout(() => playAudioAtPlayer(doorSound), 100)
+        playAudioAtPlayer(doorSound, 1)
         console.log('sound played')
-
-        utils.tweens.startTranslation(door, currentDoorPos, targetDoorPos, 2, utils.InterpolationType.EASEINSINE, () => {
-            isMovingSingle = false; // Set isMoving to false when translation ends
+        utils.tweens.startTranslation(door, currentDoorPos, targetDoorPos, bigDoorDuration, utils.InterpolationType.EASEINSINE, () => {
+            isMovingSingle = false; 
         });
     }
 
@@ -181,16 +176,13 @@ export function createSlidingDoor(
     function openDoor() {
         if (!isOpenSingle && !isMovingSingle && doorShouldOpen) {
             isOpenSingle = true;
-
             let currentDoorPos = Transform.get(door).position;
-
             let targetDoorPos = Vector3.add(currentDoorPos, Vector3.create(openDoorOffset, 0, 0));
 
             moveDoor(openDoorOffset);
 
             utils.timers.setTimeout(() => {
-                utils.tweens.startTranslation(door, currentDoorPos, targetDoorPos, 4, utils.InterpolationType.EASEINSINE, () => {
-                    // After opening, start closing animation
+                utils.tweens.startTranslation(door, currentDoorPos, targetDoorPos, bigDoorDuration, utils.InterpolationType.EASEINSINE, () => {
                     utils.timers.setTimeout(closeDoor, 2000);
                 });
             }, 100); // Delay the starting of the animation slightly to ensure consistency
@@ -224,16 +216,13 @@ export function createSlidingDoor(
     );
 }
 
-// General door creation
 export function createDoorEntity(model: string, offsetX: number, parent: Entity) {
     let doorEntity = engine.addEntity();
-
     Transform.create(doorEntity, {
         position: Vector3.create(offsetX, 0, 0),
         rotation: Quaternion.Identity(),
         parent: parent
     });
-
     GltfContainer.create(doorEntity, {
         src: model,
         invisibleMeshesCollisionMask: ColliderLayer.CL_PHYSICS

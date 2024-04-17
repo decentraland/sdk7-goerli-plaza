@@ -33,7 +33,7 @@ export function main() {
     //playCurrentSong()
 
     // Use this function to trigger the radio (also toggle playlist and radio booleans in audio.ts and ui.tsx)
-    playRadio()
+    //playRadio()
 
 
     /// TEXT

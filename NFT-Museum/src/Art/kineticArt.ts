@@ -155,7 +155,7 @@ export function createKineticArt(
         function (otherEntity) {
             if (audio) {
                 togglePlay()
-                playAudioAtPlayer(audio)
+                playAudioAtPlayer(audio, 1)
             }
             if (animationClip !== null) {
                 let animateArt = Animator.playSingleAnimation(entity, animationClip, false)

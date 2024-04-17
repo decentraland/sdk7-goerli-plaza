@@ -62,18 +62,31 @@ export function togglePlay() {
 }
 
 // Global function to play an audio clip at the player's location
-export function playAudioAtPlayer(audioClipUrl: string, volume: number = 1) {
-  if (!audioEntity) {
+export function playAudioAtPlayer(audioClipUrl: string, volume: number) {
+  if (audioEntity === null) {
     audioEntity = engine.addEntity();
-    AvatarAttach.create(audioEntity, {
-      anchorPointId: AvatarAnchorPointType.AAPT_NAME_TAG
-    });
-    AudioSource.createOrReplace(audioEntity, {
-      audioClipUrl: audioClipUrl,
-      loop: false,
-      volume: volume
-    });
+   createNewAudioEntity(audioEntity, audioClipUrl, volume)
   }
   AudioSource.playSound(audioEntity, audioClipUrl, true);
-  console.log('Audio played at player location:', audioClipUrl);
+    console.log('Audio played at player location:', audioClipUrl)
+  if (audioEntity) {
+    let newAudioEntity = engine.addEntity()
+    createNewAudioEntity(newAudioEntity, audioClipUrl, volume)
+    AudioSource.playSound(newAudioEntity, audioClipUrl, true);
+    console.log('Audio played at player location:', audioClipUrl);
+  }
+  
+}
+
+function createNewAudioEntity(entity: Entity, audioClipUrl: string, volume: number) {
+//entity = engine.addEntity()
+AvatarAttach.createOrReplace(entity, {
+  anchorPointId: AvatarAnchorPointType.AAPT_NAME_TAG
+});
+AudioSource.createOrReplace(entity, {
+  audioClipUrl: audioClipUrl, 
+  loop: false, 
+  volume: volume,
+  
+})
 }

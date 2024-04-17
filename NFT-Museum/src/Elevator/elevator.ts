@@ -84,7 +84,7 @@ function moveToFloor(entity: Entity, floorIndex: number) {
     const targetPosition1 = Vector3.create(currentPosition1.x, targetHeight, currentPosition1.z);
     const targetPosition2 = Vector3.create(currentPosition2.x, targetHeight, currentPosition2.z);
 
-    playAudioAtPlayer(elevatorSound);
+    playAudioAtPlayer(elevatorSound, 100);
     pathComplete = false;
     setCurrentFloor(floorIndex);
 
@@ -94,7 +94,7 @@ function moveToFloor(entity: Entity, floorIndex: number) {
         console.log('path complete');
         setCurrentFloor(floorIndex);
         console.log(`current floor: ${currentFloor} index: ${floorIndex}`);
-        playAudioAtPlayer(elevatorArrivalSound);
+        playAudioAtPlayer(elevatorArrivalSound, 1);
         isMoving = false;
         utils.timers.setTimeout(() => {
             Transform.createOrReplace(elevator, {position: targetPosition1, rotation: elevator1rot})
@@ -152,7 +152,7 @@ function createElevatorButton(parent: Entity, position: Vector3, modelSrc: strin
             },
         },
         () => {
-            playAudioAtPlayer(buttonSound);
+            playAudioAtPlayer(buttonSound, 1);
             const animateButton = Animator.getClip(button, 'Push1');
             animateButton.playing = true;
             animateButton.loop = false;
@@ -229,7 +229,7 @@ function createCallButton(position: Vector3, rotation: Vector3, floorIndex: numb
             },
         },
         () => {
-            playAudioAtPlayer(callButtonSound)
+            playAudioAtPlayer(callButtonSound, 1)
             console.log('play call button sound')
 
             moveToFloor(elevator, floorIndex);
