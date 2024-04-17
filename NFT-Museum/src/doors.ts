@@ -1,4 +1,4 @@
-import { AudioSource, ColliderLayer, GltfContainer, Transform, engine } from "@dcl/ecs"
+import { ColliderLayer, GltfContainer, Transform, engine } from "@dcl/ecs"
 import { Quaternion, Vector3 } from "@dcl/ecs-math"
 import * as utils from '@dcl-sdk/utils';
 import { Entity } from "@dcl/sdk/ecs";
@@ -19,8 +19,8 @@ let doorSound = 'sounds/slidingDoors.mp3'
 let doorDuration = 1
 let bigDoorDuration = 2
 
-// Change when the door closes 
-let cooldownTime = 1000 // 1000 miliseconds or 1 second
+// Change when the door closes and cooldown duration
+let cooldownTime = 2000 // 2000 miliseconds or 2 seconds
 
 
 // Regular double glass sliding doors
@@ -48,50 +48,50 @@ export function createSlidingDoors(
     let doorR = createDoorEntity(doorRmodel, closeDoorOffset, doorParent);
 
     function moveDoors(offset: number) {
-        isMoving = true; 
+       /// instead of fetching the transforms use fixed start and end pos / open and closed pos based on offset and parent pos
+       
+        isMoving = true;
+        if (isOpen) {
+            //close it
+        } else if (!isOpen) {
+            // open it
+        }
 
         let currentDoorLPos = Transform.get(doorL).position;
         let currentDoorRPos = Transform.get(doorR).position;
+        let targetDoorLPos = Vector3.create(currentDoorLPos.x + offset, currentDoorLPos.y, currentDoorLPos.z);
+        let targetDoorRPos = Vector3.create(currentDoorRPos.x - offset, currentDoorRPos.y, currentDoorRPos.z);
 
-        let targetDoorLPos = Vector3.add(currentDoorLPos, Vector3.create(offset + 0.0001, 0, 0));
-        let targetDoorRPos = Vector3.subtract(currentDoorRPos, Vector3.create(offset + 0.0001, 0, 0));
+        playAudioAtPlayer(fastDoorSound, 1)
 
-        utils.timers.setTimeout(() => playAudioAtPlayer(fastDoorSound, 100), 200)
-        console.log('sound played')
-
-        utils.tweens.startTranslation(doorL, currentDoorLPos, targetDoorLPos, doorDuration, utils.InterpolationType.EASEINSINE);
-        utils.tweens.startTranslation(doorR, currentDoorRPos, targetDoorRPos, doorDuration, utils.InterpolationType.EASEINSINE, () => {
-            isMoving = false; 
+        utils.tweens.startTranslation(doorL, currentDoorLPos, targetDoorLPos, doorDuration, utils.InterpolationType.EASEINQUAD);
+        utils.tweens.startTranslation(doorR, currentDoorRPos, targetDoorRPos, doorDuration, utils.InterpolationType.EASEINQUAD, () => {
+            Transform.createOrReplace(doorL, {
+                position: targetDoorLPos,
+                parent: doorParent
+            })
+            Transform.createOrReplace(doorR, {
+                position: targetDoorRPos,
+                parent: doorParent
+            })
+            isMoving = false;
         });
     }
 
 
     function closeDoors() {
         if (isOpen) {
-            isOpen = false;
             moveDoors(-openDoorOffset);
+            isOpen = false;
         }
     }
 
 
     function openDoors() {
-        if (!isOpen && !isMoving && doorsShouldOpen) {
-            isOpen = true;
-
-            let currentDoorLPos = Transform.get(doorL).position;
-            let currentDoorRPos = Transform.get(doorR).position;
-
-            let targetDoorLPos = Vector3.add(currentDoorLPos, Vector3.create(openDoorOffset, 0, 0));
-            let targetDoorRPos = Vector3.subtract(currentDoorRPos, Vector3.create(openDoorOffset, 0, 0));
-
+        if (!isOpen && !isMoving) {
             moveDoors(openDoorOffset);
-
-            utils.timers.setTimeout(() => {
-                utils.tweens.startTranslation(doorL, currentDoorLPos, targetDoorLPos, doorDuration, utils.InterpolationType.EASEINSINE);
-                utils.tweens.startTranslation(doorR, currentDoorRPos, targetDoorRPos, doorDuration, utils.InterpolationType.EASEINSINE, () => {
-                    utils.timers.setTimeout(closeDoors, 2000);
-                });
-            }, 100); // Delay the starting of the animation slightly to ensure consistency
+            isOpen = true;
+            utils.timers.setTimeout(closeDoors, cooldownTime)
         }
     }
 
@@ -106,7 +106,7 @@ export function createSlidingDoors(
         }],
         function (otherEntity) {
 
-            if (Date.now() - lastDoorInteractionTime < 2000) return; // Adjust the cooldown time as needed
+            if (Date.now() - lastDoorInteractionTime < cooldownTime) return; // Adjust the cooldown time as needed
             lastDoorInteractionTime = Date.now();
 
             doorsShouldOpen = true;
@@ -148,20 +148,19 @@ export function createSlidingDoor(
 
     let door = createDoorEntity(doormodel, -closeDoorOffset, doorParent);
 
-    AudioSource.create(doorParent, {
-        audioClipUrl: doorSound,
-        loop: false,
-        playing: false
-    })
-
     function moveDoor(offset: number) {
         isMovingSingle = true;
         let currentDoorPos = Transform.get(door).position;
-        let targetDoorPos = Vector3.add(currentDoorPos, Vector3.create(offset - 0.01, 0, 0));
+        let targetDoorPos = Vector3.create(currentDoorPos.x + offset, currentDoorPos.y, currentDoorPos.z);
         playAudioAtPlayer(doorSound, 1)
         console.log('sound played')
         utils.tweens.startTranslation(door, currentDoorPos, targetDoorPos, bigDoorDuration, utils.InterpolationType.EASEINSINE, () => {
-            isMovingSingle = false; 
+            Transform.createOrReplace(door, {
+                position: targetDoorPos,
+                parent: doorParent
+            })
+            isMovingSingle = false;
+
         });
     }
 
@@ -174,18 +173,11 @@ export function createSlidingDoor(
 
 
     function openDoor() {
-        if (!isOpenSingle && !isMovingSingle && doorShouldOpen) {
+        if (!isOpenSingle && !isMovingSingle) {
             isOpenSingle = true;
-            let currentDoorPos = Transform.get(door).position;
-            let targetDoorPos = Vector3.add(currentDoorPos, Vector3.create(openDoorOffset, 0, 0));
-
+            //let currentDoorPos = Transform.get(door).position;
             moveDoor(openDoorOffset);
-
-            utils.timers.setTimeout(() => {
-                utils.tweens.startTranslation(door, currentDoorPos, targetDoorPos, bigDoorDuration, utils.InterpolationType.EASEINSINE, () => {
-                    utils.timers.setTimeout(closeDoor, 2000);
-                });
-            }, 100); // Delay the starting of the animation slightly to ensure consistency
+            utils.timers.setTimeout(closeDoor, cooldownTime);
         }
     }
 
@@ -200,10 +192,10 @@ export function createSlidingDoor(
         }],
         function (otherEntity) {
 
-            if (Date.now() - lastDoorInteractionTime < 2000) return; // Adjust the cooldown time as needed
+            if (Date.now() - lastDoorInteractionTime < cooldownTime) return; // Adjust the cooldown time as needed
             lastDoorInteractionTime = Date.now();
 
-            doorShouldOpen = true;
+            //doorShouldOpen = true;
             console.log('trigger doors');
             if (doorShouldOpen && !isOpenSingle) {
                 openDoor();

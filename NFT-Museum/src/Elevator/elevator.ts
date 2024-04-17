@@ -94,11 +94,11 @@ function moveToFloor(entity: Entity, floorIndex: number) {
         console.log('path complete');
         setCurrentFloor(floorIndex);
         console.log(`current floor: ${currentFloor} index: ${floorIndex}`);
-        playAudioAtPlayer(elevatorArrivalSound, 1);
         isMoving = false;
         utils.timers.setTimeout(() => {
             Transform.createOrReplace(elevator, {position: targetPosition1, rotation: elevator1rot})
             Transform.createOrReplace(elevator2, {position: targetPosition2, rotation: elevator2rot})
+            playAudioAtPlayer(elevatorArrivalSound, 1);
         }, 100)
         
     });
@@ -106,8 +106,7 @@ function moveToFloor(entity: Entity, floorIndex: number) {
     utils.tweens.startTranslation(elevator2, currentPosition2, targetPosition2, 5, utils.InterpolationType.EASEOUTQUAD, () => { 
     });
  
-    if (pathComplete) {
-    }
+    if (pathComplete) { return }
 }
 
 function createElevatorButton(parent: Entity, position: Vector3, modelSrc: string, yOffset: number, index: number, doorsShouldOpen: boolean) {
