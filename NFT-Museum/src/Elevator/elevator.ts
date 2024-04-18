@@ -1,7 +1,6 @@
 import { Animator, engine, Transform, GltfContainer, ColliderLayer, Entity, pointerEventsSystem, InputAction, AudioSource, VisibilityComponent, CameraModeArea, PBCameraMode, CameraType, CameraMode } from "@dcl/sdk/ecs";
 import { Vector3, Quaternion } from "@dcl/sdk/math";
 import * as utils from '@dcl-sdk/utils';
-import { playAudioAtPlayer } from "../Audio/audio";
 import { setCurrentFloor, currentFloor } from "./elevatorState";
 
 
@@ -77,7 +76,7 @@ function moveToFloor(entity: Entity, floorIndex: number) {
     const targetPosition1 = Vector3.create(currentPosition1.x, targetHeight, currentPosition1.z);
     const targetPosition2 = Vector3.create(currentPosition2.x, targetHeight, currentPosition2.z);
 
-    playAudioAtPlayer(elevatorSound, 100);
+	utils.playSound(elevatorSound, false, Transform.get(engine.PlayerEntity).position)
     pathComplete = false;
     setCurrentFloor(floorIndex);
 
@@ -90,14 +89,15 @@ function moveToFloor(entity: Entity, floorIndex: number) {
         isMoving = false;
         utils.timers.setTimeout(() => {
             Transform.createOrReplace(elevator, {position: targetPosition1, rotation: elevator1rot})
-            playAudioAtPlayer(elevatorArrivalSound, 1);
+            utils.playSound(elevatorArrivalSound, false, Transform.get(engine.PlayerEntity).position)
         }, 100)
         
     });
 
     utils.tweens.startTranslation(elevator2, currentPosition2, targetPosition2, 5, utils.InterpolationType.EASEOUTQUAD, () => { 
         Transform.createOrReplace(elevator2, {position: targetPosition2, rotation: elevator2rot})
-        playAudioAtPlayer(elevatorArrivalSound, 1); 
+        utils.playSound(elevatorArrivalSound, false, Transform.get(engine.PlayerEntity).position)
+        ; 
     });
  
     if (pathComplete) { return }
@@ -144,7 +144,7 @@ function createElevatorButton(parent: Entity, position: Vector3, modelSrc: strin
             },
         },
         () => {
-            playAudioAtPlayer(buttonSound, 1);
+            utils.playSound(buttonSound, false, Transform.get(engine.PlayerEntity).position);
             const animateButton = Animator.getClip(button, 'Push1');
             animateButton.playing = true;
             animateButton.loop = false;
@@ -221,7 +221,7 @@ function createCallButton(position: Vector3, rotation: Vector3, floorIndex: numb
             },
         },
         () => {
-            playAudioAtPlayer(callButtonSound, 1)
+            utils.playSound(callButtonSound, false, Transform.get(engine.PlayerEntity).position)
             console.log('play call button sound')
 
             moveToFloor(elevator, floorIndex);

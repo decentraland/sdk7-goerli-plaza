@@ -4,14 +4,16 @@ import { CONFIG } from './config';
 import { claimToken } from "./claim";
 import { ClaimConfig } from "./claimConfig";
 import * as utils from '@dcl-sdk/utils'
+import { confirmationUI } from '../UI/reward.ui';
 
 // Lazy Loading: room: 3
-let dispenserModel = 'models/dispenser.glb'
-let dispenserPosition = Vector3.create(14.55, 19.53, 16)
-let dispenserScale = Vector3.create(0.8, 0.8, 0.8)
-let dispenserHoverText = 'Claim Reward'
+const dispenserModel = 'models/dispenser.glb'
+const dispenserPosition = Vector3.create(14.55, 19.53, 16)
+const dispenserScale = Vector3.create(0.8, 0.8, 0.8)
+const dispenserHoverText = 'Claim Reward'
 
-
+export const rewardImage = 'images/wearable.png'
+export const rewardName = 'Patch Pants'
 
 export let reward = false
 export let rewardClaimed = false
@@ -51,7 +53,7 @@ export function createWearableReward() {
         }
       },
       function () {
-        reward = true
+        confirmationUI(rewardImage, rewardName);
         let camp = ClaimConfig.campaign.CAMPAIGN_TEST
         claimToken(camp, camp.campaignKeys.KEY_0)
         console.log('claimed Wearable gift')

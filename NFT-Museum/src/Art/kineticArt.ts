@@ -1,7 +1,7 @@
 import { Quaternion, Vector3 } from "@dcl/sdk/math";
 import { Animator, engine, Transform, GltfContainer, ColliderLayer, pointerEventsSystem, InputAction, TransformType } from "@dcl/sdk/ecs";
 import * as utils from '@dcl-sdk/utils';
-import { playAudioAtPlayer, togglePlay } from "../Audio/audio";
+import { togglePlay } from "../Audio/audio";
 import { artPosA, artPosB, artPosC, artPosD, artRotA, artRotB, artRotC, artRotD } from "./artPositions";
 import { openExternalUrl } from "~system/RestrictedActions";
 import { linktreeURL } from "../social";
@@ -155,7 +155,7 @@ export function createKineticArt(
         function (otherEntity) {
             if (audio) {
                 togglePlay()
-                playAudioAtPlayer(audio, 1)
+                utils.playSound(audio, false, Transform.get(engine.PlayerEntity).position)
             }
             if (animationClip !== null) {
                 let animateArt = Animator.playSingleAnimation(entity, animationClip, false)

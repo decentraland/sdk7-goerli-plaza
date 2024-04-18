@@ -1,7 +1,6 @@
 import { Quaternion, Vector3 } from "@dcl/sdk/math";
 import { closeDoorOffset, cooldownTime, createDoorEntity, doorDuration, doorLmodel, doorRmodel, fastDoorSound, openDoorOffset } from "../doors";
 import { engine, Transform } from "@dcl/sdk/ecs";
-import { playAudioAtPlayer } from "../Audio/audio";
 import * as utils from '@dcl-sdk/utils';
 import { currentFloor } from "./elevatorState";
 
@@ -54,7 +53,7 @@ export function createElevatorDoors(
         isMoving = true;
 
         if (currentFloor === floorIndex) {
-            playAudioAtPlayer(fastDoorSound, 1)
+            utils.playSound(fastDoorSound, false, Transform.get(engine.PlayerEntity).position)
             utils.tweens.startTranslation(doorL, closedDoorLPos, openDoorLPos, doorDuration, utils.InterpolationType.EASEINQUAD);
             utils.tweens.startTranslation(doorR, closedDoorRPos, openDoorRPos, doorDuration, utils.InterpolationType.EASEINQUAD, () => {
                 Transform.createOrReplace(doorL, { position: openDoorLPos, parent: doorParent })

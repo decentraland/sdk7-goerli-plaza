@@ -2,7 +2,6 @@ import { ColliderLayer, GltfContainer, Transform, engine } from "@dcl/ecs"
 import { Quaternion, Vector3 } from "@dcl/ecs-math"
 import * as utils from '@dcl-sdk/utils';
 import { Entity } from "@dcl/sdk/ecs";
-import { playAudioAtPlayer } from "./Audio/audio";
 
 
 // Audio for the sliding doors depends on audio.ts
@@ -66,7 +65,7 @@ export function createSlidingDoors(
         const openDoorRPos = Vector3.create(closedDoorRPos.x - offset, closedDoorRPos.y, closedDoorRPos.z);
         isMoving = true;
 
-        playAudioAtPlayer(fastDoorSound, 1)
+        utils.playSound(fastDoorSound, false, Transform.get(engine.PlayerEntity).position)
 
         utils.tweens.startTranslation(doorL, closedDoorLPos, openDoorLPos, doorDuration, utils.InterpolationType.EASEINQUAD);
         utils.tweens.startTranslation(doorR, closedDoorRPos, openDoorRPos, doorDuration, utils.InterpolationType.EASEINQUAD, () => {
@@ -128,7 +127,8 @@ export function createSlidingDoor(
         isMovingSingle = true;
         let currentDoorPos = Transform.get(door).position;
         let targetDoorPos = Vector3.create(currentDoorPos.x + offset, currentDoorPos.y, currentDoorPos.z);
-        playAudioAtPlayer(doorSound, 1)
+        utils.playSound(fastDoorSound, false, Transform.get(engine.PlayerEntity).position)
+
         utils.tweens.startTranslation(door, currentDoorPos, targetDoorPos, bigDoorDuration, utils.InterpolationType.EASEINSINE, () => {
             Transform.createOrReplace(door, { position: targetDoorPos, parent: doorParent })
             isMovingSingle = false;

@@ -234,8 +234,8 @@ export const videoCollection: VideoData[] = [
     video: verticalVideo,
     hoverText: 'Click',
     website: linktreeURL,
-    triggerScale: Vector3.create(8, 6, 8),
-    triggerPosition: Vector3.create(artPos26.x, artPos26.y - 1, artPos26.z + 2),
+    triggerScale: Vector3.create(8, 6, 6),
+    triggerPosition: Vector3.create(artPos26.x, artPos26.y - 1, artPos26.z + 4),
     audio: true,
     hasAlpha: false
   }
