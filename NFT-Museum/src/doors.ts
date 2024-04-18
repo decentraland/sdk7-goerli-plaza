@@ -32,13 +32,12 @@ export function createSlidingDoors(
     openDoorOffset: number,
     closeDoorOffset: number,
 ) {
-    let doorParent = engine.addEntity();
-    let doorsShouldOpen = false;
     let isMoving = false;
     let isOpen = false;
     let lastDoorInteractionTime = 0;
     let r = Quaternion.fromEulerDegrees(rotation.x, rotation.y, rotation.z)
-
+    
+    let doorParent = engine.addEntity();
     Transform.create(doorParent, {
         position: position,
         rotation: r,
@@ -46,32 +45,25 @@ export function createSlidingDoors(
 
     let doorL = createDoorEntity(doorLmodel, -closeDoorOffset, doorParent);
     let doorR = createDoorEntity(doorRmodel, closeDoorOffset, doorParent);
-
-    function moveDoors(offset: number) {
-       /// instead of fetching the transforms use fixed start and end pos / open and closed pos based on offset and parent pos
-       
+    
+    function moveDoors(offset: number) { 
+        let closedDoorLPos = Transform.get(doorL).position
+        let closedDoorRPos = Transform.get(doorR).position
+        let openDoorLPos = Vector3.create(closedDoorLPos.x + offset, closedDoorLPos.y, closedDoorLPos.z);
+        let openDoorRPos = Vector3.create(closedDoorRPos.x - offset, closedDoorRPos.y, closedDoorRPos.z);
         isMoving = true;
-        if (isOpen) {
-            //close it
-        } else if (!isOpen) {
-            // open it
-        }
-
-        let currentDoorLPos = Transform.get(doorL).position;
-        let currentDoorRPos = Transform.get(doorR).position;
-        let targetDoorLPos = Vector3.create(currentDoorLPos.x + offset, currentDoorLPos.y, currentDoorLPos.z);
-        let targetDoorRPos = Vector3.create(currentDoorRPos.x - offset, currentDoorRPos.y, currentDoorRPos.z);
+        
 
         playAudioAtPlayer(fastDoorSound, 1)
 
-        utils.tweens.startTranslation(doorL, currentDoorLPos, targetDoorLPos, doorDuration, utils.InterpolationType.EASEINQUAD);
-        utils.tweens.startTranslation(doorR, currentDoorRPos, targetDoorRPos, doorDuration, utils.InterpolationType.EASEINQUAD, () => {
+        utils.tweens.startTranslation(doorL, closedDoorLPos, openDoorLPos, doorDuration, utils.InterpolationType.EASEINQUAD);
+        utils.tweens.startTranslation(doorR, closedDoorRPos, openDoorRPos, doorDuration, utils.InterpolationType.EASEINQUAD, () => {
             Transform.createOrReplace(doorL, {
-                position: targetDoorLPos,
+                position: openDoorLPos,
                 parent: doorParent
             })
             Transform.createOrReplace(doorR, {
-                position: targetDoorRPos,
+                position: openDoorRPos,
                 parent: doorParent
             })
             isMoving = false;
@@ -80,7 +72,7 @@ export function createSlidingDoors(
 
 
     function closeDoors() {
-        if (isOpen) {
+        if (isOpen && !isMoving) {
             moveDoors(-openDoorOffset);
             isOpen = false;
         }
@@ -108,17 +100,10 @@ export function createSlidingDoors(
 
             if (Date.now() - lastDoorInteractionTime < cooldownTime) return; // Adjust the cooldown time as needed
             lastDoorInteractionTime = Date.now();
-
-            doorsShouldOpen = true;
-            console.log('trigger doors');
-            if (doorsShouldOpen && !isOpen) {
-                openDoors();
-                doorsShouldOpen = false;
-            }
+            openDoors();
+      
         },
-        function (anotherEntity) {
-            console.log('close doors')
-        }
+      
     );
 
 
