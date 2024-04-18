@@ -1,19 +1,18 @@
 
 import { engine, Entity, AvatarAttach, AvatarAnchorPointType, AudioSource } from "@dcl/sdk/ecs";
 import { playPlaylist, togglePlaylist } from "./playlist";
-import { playRadio, toggleRadio } from "./radio";
+import { playRadio, radioPlaying, toggleRadio } from "./radio";
 
 /// This is the Playlist, set to false to remove it
 export let Playlist: Boolean = false;
 
 
-// This is the radio, set to true to play it 
-export let radioPlaying: boolean = true;
+
 
 
 // Function to set the radio state
 export function setRadioPlaying(value: boolean) {
-  radioPlaying = value;
+  value = radioPlaying;
 }
 
 

@@ -10,10 +10,10 @@ export let radioPlaying: boolean = true;
 let radioStation = 'https://strw3.openstream.co/1487?aw_0_1st.collectionid%3D4682%26stationId%3D4682%26publisherId%3D1511%26k%3D1708457720'
 
 export function toggleRadio() {
-  console.log('Radio playing', radioPlaying);
-
+  
   radioPlaying = !radioPlaying;
-
+  console.log('Radio playing', radioPlaying);
+  
   if (!radioPlaying) {
     const audioStream = AudioStream.getMutable(streamEntity);
     audioStream.url = radioStation;

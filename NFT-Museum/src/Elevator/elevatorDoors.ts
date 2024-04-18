@@ -1,14 +1,28 @@
 import { Quaternion, Vector3 } from "@dcl/sdk/math";
-import { closeDoorOffset, createDoorEntity, createSlidingDoors, doorLmodel, doorRmodel, fastDoorSound, openDoorOffset } from "../doors";
-import { engine, Transform, AudioSource } from "@dcl/sdk/ecs";
+import { closeDoorOffset, cooldownTime, createDoorEntity, doorDuration, doorLmodel, doorRmodel, fastDoorSound, openDoorOffset } from "../doors";
+import { engine, Transform } from "@dcl/sdk/ecs";
 import { playAudioAtPlayer } from "../Audio/audio";
 import * as utils from '@dcl-sdk/utils';
-import { currentFloor, setCurrentFloor } from "./elevatorState";
+import { currentFloor } from "./elevatorState";
 
 
+// Elevator doors, west ground floor
+const doorsPos1 = Vector3.create(26.9, 2.1, 19.635)
+const doorsRot1 = Vector3.create(0, 90, 0)
+
+// Elevator doors, west first floor
+const doorsPos2 = Vector3.create(26.9, 10.3, 19.635)
+const doorsRot2 = Vector3.create(0, 90, 0)
+
+// Elevator doors, east ground floor
+const doorsPos3 = Vector3.create(26.9, 2.1, 12.36)
+const doorsRot3 = Vector3.create(0, 90, 0)
+
+// Elevator doors, east first floor
+const doorsPos4 = Vector3.create(26.9, 10.3, 12.36)
+const doorsRot4 = Vector3.create(0, 90, 0)
 
 
-// Elevator doors 
 export function createElevatorDoors(
     position: Vector3,
     rotation: Vector3,
@@ -18,118 +32,73 @@ export function createElevatorDoors(
     closeDoorOffset: number,
     floorIndex: number,
 ) {
-    let doorParent = engine.addEntity();
-    let doorsShouldOpen = false;
     let isMoving = false;
     let isOpen = false;
     let lastDoorInteractionTime = 0;
+    let doorsShouldOpen = false;
+    const r = Quaternion.fromEulerDegrees(rotation.x, rotation.y, rotation.z)
 
-    Transform.create(doorParent, {
-        position: position,
-        rotation: Quaternion.fromEulerDegrees(rotation.x, rotation.y, rotation.z),
-    });
+    const doorParent = engine.addEntity();
+    Transform.create(doorParent, { position: position, rotation: r });
 
-    let doorL = createDoorEntity(doorLmodel, -closeDoorOffset, doorParent);
-    let doorR = createDoorEntity(doorRmodel, closeDoorOffset, doorParent);
+    const doorL = createDoorEntity(doorLmodel, -closeDoorOffset, doorParent);
+    const doorR = createDoorEntity(doorRmodel, closeDoorOffset, doorParent);
 
-    // General door movement 
     function moveDoors(offset: number) {
-        isMoving = true; // Set isMoving to true when translation starts
-
-        let currentDoorLPos = Transform.get(doorL).position;
-        let currentDoorRPos = Transform.get(doorR).position;
-
-        let targetDoorLPos = Vector3.add(currentDoorLPos, Vector3.create(offset + 0.0001, 0, 0));
-        let targetDoorRPos = Vector3.subtract(currentDoorRPos, Vector3.create(offset + 0.0001, 0, 0));
+        const closedDoorLPos = Transform.get(doorL).position
+        const closedDoorRPos = Transform.get(doorR).position
+        const openDoorLPos = Vector3.create(closedDoorLPos.x + offset, closedDoorLPos.y, closedDoorLPos.z);
+        const openDoorRPos = Vector3.create(closedDoorRPos.x - offset, closedDoorRPos.y, closedDoorRPos.z);
+        isMoving = true;
 
         if (currentFloor === floorIndex) {
-
-            utils.timers.setTimeout(() => playAudioAtPlayer(fastDoorSound, 100), 100)
-            console.log('sound played')
-
-
-            utils.tweens.startTranslation(doorL, currentDoorLPos, targetDoorLPos, 2, utils.InterpolationType.EASEINSINE);
-            utils.tweens.startTranslation(doorR, currentDoorRPos, targetDoorRPos, 2, utils.InterpolationType.EASEINSINE, () => {
-                isMoving = false; // Set isMoving to false when translation ends
+            playAudioAtPlayer(fastDoorSound, 1)
+            utils.tweens.startTranslation(doorL, closedDoorLPos, openDoorLPos, doorDuration, utils.InterpolationType.EASEINQUAD);
+            utils.tweens.startTranslation(doorR, closedDoorRPos, openDoorRPos, doorDuration, utils.InterpolationType.EASEINQUAD, () => {
+                Transform.createOrReplace(doorL, { position: openDoorLPos, parent: doorParent })
+                Transform.createOrReplace(doorR, { position: openDoorRPos, parent: doorParent })
+                isMoving = false;
             });
-
-
         }
     }
 
-
     function closeDoors() {
         if (isOpen) {
-            console.log('close doors')
             moveDoors(-openDoorOffset);
             isOpen = false;
         }
     }
 
-
     function openDoors() {
         if (!isOpen && !isMoving && doorsShouldOpen) {
-            isOpen = true;
-
-            let currentDoorLPos = Transform.get(doorL).position;
-            let currentDoorRPos = Transform.get(doorR).position;
-
-            let targetDoorLPos = Vector3.add(currentDoorLPos, Vector3.create(openDoorOffset, 0, 0));
-            let targetDoorRPos = Vector3.subtract(currentDoorRPos, Vector3.create(openDoorOffset, 0, 0));
-
             moveDoors(openDoorOffset);
-
-            utils.timers.setTimeout(() => {
-                utils.tweens.startTranslation(doorL, currentDoorLPos, targetDoorLPos, 2, utils.InterpolationType.EASEINSINE);
-                utils.tweens.startTranslation(doorR, currentDoorRPos, targetDoorRPos, 2, utils.InterpolationType.EASEINSINE, () => {
-                });
-            }, 100); // Delay the starting of the animation slightly to ensure consistency
-            utils.timers.setTimeout(closeDoors, 4000);
-
+            isOpen = true;
+            utils.timers.setTimeout(closeDoors, cooldownTime)
         }
     }
-
-
 
     utils.triggers.addTrigger(
         doorParent,
         utils.NO_LAYERS,
         utils.LAYER_1,
-        [{
-            type: 'box',
-            position: { x: 0, y: 0, z: 0 },
-            scale: { x: 3, y: 3.5, z: 3 }
-        }],
+        [{ type: 'box', position: { x: 0, y: 0, z: 0 }, scale: { x: 5, y: 2, z: 5 } }],
         function (otherEntity) {
-
-            if (Date.now() - lastDoorInteractionTime < 2000) return; // Adjust the cooldown time as needed
-            lastDoorInteractionTime = Date.now();
-
             console.log(`floor index: ${floorIndex}, current floor: ${currentFloor}`);
 
-            // Check if the elevator is present at the current floor
+            if (Date.now() - lastDoorInteractionTime < cooldownTime) return; // Adjust the cooldown time as needed
+            lastDoorInteractionTime = Date.now();
+
             if (floorIndex !== currentFloor) {
                 console.log('cant open doors')
                 return; // Do not open the doors if the elevator is not at the current floor
+            } else {
+                doorsShouldOpen = true
             }
-
-            doorsShouldOpen = true;
-            setCurrentFloor(floorIndex)
             if (doorsShouldOpen && !isOpen) {
-                openDoors();
-                doorsShouldOpen = false;
-            }
-        },
-        function (anotherEntity) {
-
-            if (!isOpen && floorIndex == currentFloor) {
-                openDoors();
-                console.log('open doors')
-                doorsShouldOpen = false;
+                utils.timers.setTimeout(() => {openDoors(), doorsShouldOpen = false }, 300);
             }
         }
     );
-
 
     // Uncomment line below to see the trigger box
     // utils.triggers.enableDebugDraw(true);
@@ -137,10 +106,9 @@ export function createElevatorDoors(
 
 
 export function initializeElevatorDoors() {
-    // Elevator doors, west ground floor
     createElevatorDoors(
-        Vector3.create(26.9, 2.1, 19.635),
-        Vector3.create(0, 90, 0),
+        doorsPos1,
+        doorsRot1,
         doorLmodel,
         doorRmodel,
         openDoorOffset,
@@ -148,10 +116,10 @@ export function initializeElevatorDoors() {
         0
     );
 
-    // Elevator doors, west first floor
+    
     createElevatorDoors(
-        Vector3.create(26.9, 10.3, 19.635),
-        Vector3.create(0, 90, 0),
+        doorsPos2,
+        doorsRot2,
         doorLmodel,
         doorRmodel,
         openDoorOffset,
@@ -159,10 +127,10 @@ export function initializeElevatorDoors() {
         1,
     );
 
-    // Elevator doors, east ground floor
+    
     createElevatorDoors(
-        Vector3.create(26.9, 2.1, 12.36),
-        Vector3.create(0, 90, 0),
+        doorsPos3,
+        doorsRot3,
         doorLmodel,
         doorRmodel,
         openDoorOffset,
@@ -170,17 +138,14 @@ export function initializeElevatorDoors() {
         0,
     );
 
-    // Elevator doors, east first floor
+    
     createElevatorDoors(
-        Vector3.create(26.9, 10.3, 12.36),
-        Vector3.create(0, 90, 0),
+        doorsPos4,
+        doorsRot4,
         doorLmodel,
         doorRmodel,
         openDoorOffset,
         closeDoorOffset,
         1,
     );
-
-
-
 }
