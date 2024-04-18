@@ -1,4 +1,4 @@
-import { Animator, engine, Transform, GltfContainer, ColliderLayer, Entity, pointerEventsSystem, InputAction, AudioSource, VisibilityComponent } from "@dcl/sdk/ecs";
+import { Animator, engine, Transform, GltfContainer, ColliderLayer, Entity, pointerEventsSystem, InputAction, AudioSource, VisibilityComponent, CameraModeArea, PBCameraMode, CameraType, CameraMode } from "@dcl/sdk/ecs";
 import { Vector3, Quaternion } from "@dcl/sdk/math";
 import * as utils from '@dcl-sdk/utils';
 import { playAudioAtPlayer } from "../Audio/audio";
@@ -50,32 +50,25 @@ const elevator1rot = Quaternion.fromEulerDegrees(0, -90, 0)
 const elevator2pos = Vector3.create(28.95, 3.1, 12.35)
 const elevator2rot = Quaternion.fromEulerDegrees(0, -90, 0)
 
-
 let isMoving = false
 let pathComplete = true;
 
-function calculateDuration(distance: number): number {
-    return distance / 2.5; // Adjust as needed
-  }
-
 function createElevator(position: Vector3, rotation: Quaternion) {
     const elevator = engine.addEntity();
-    Transform.create(elevator, {
-        position: position,
-        rotation: rotation
-    });
-    GltfContainer.create(elevator, {
-        src: elevatorModel,
-        invisibleMeshesCollisionMask: ColliderLayer.CL_PHYSICS
-    });
+    Transform.create(elevator, { position: position, rotation: rotation });
+    GltfContainer.create(elevator, { src: elevatorModel, invisibleMeshesCollisionMask: ColliderLayer.CL_PHYSICS });
+    CameraModeArea.create(elevator, {
+        area: Vector3.create(10, 30, 10),
+        mode: CameraType.CT_FIRST_PERSON
+    })
     return elevator;
 }
 
 
 function moveToFloor(entity: Entity, floorIndex: number) {
-    if (isMoving) return; // Ensure that both elevators are not already moving
-
-    isMoving = true; // Mark both elevators as moving
+   
+    if (isMoving) return; 
+    isMoving = true; 
 
     const targetHeight = floors[floorIndex].height;
     const currentPosition1 = Transform.get(elevator).position;
@@ -97,13 +90,14 @@ function moveToFloor(entity: Entity, floorIndex: number) {
         isMoving = false;
         utils.timers.setTimeout(() => {
             Transform.createOrReplace(elevator, {position: targetPosition1, rotation: elevator1rot})
-            Transform.createOrReplace(elevator2, {position: targetPosition2, rotation: elevator2rot})
             playAudioAtPlayer(elevatorArrivalSound, 1);
         }, 100)
         
     });
 
     utils.tweens.startTranslation(elevator2, currentPosition2, targetPosition2, 5, utils.InterpolationType.EASEOUTQUAD, () => { 
+        Transform.createOrReplace(elevator2, {position: targetPosition2, rotation: elevator2rot})
+        playAudioAtPlayer(elevatorArrivalSound, 1); 
     });
  
     if (pathComplete) { return }
@@ -117,7 +111,6 @@ function createElevatorButton(parent: Entity, position: Vector3, modelSrc: strin
         position: Vector3.create(buttonPosition.x, buttonPosition.y + yOffset, buttonPosition.z),
         parent: parent
     });
-
 
     GltfContainer.create(button, {
         src: modelSrc,

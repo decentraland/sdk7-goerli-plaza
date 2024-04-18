@@ -6,23 +6,23 @@ import { artPos14, artPos15, artPos2, artPos25, artPos26, artRot14, artRot15, ar
 import { togglePlay } from '../Audio/audio';
 import { homepageUrl, linktreeURL } from '../social';
 
-let videoPlayer: any;
+//let videoPlayer: any;
 let isImage = true
 
-let verticalVideo = 'https://player.vimeo.com/external/931742718.m3u8?s=efbe1b55804e4ba10b2e8c17e241d1809d324f36&logging=false'
-let verticalVideoPlaceholder = 'https://bafkreicuvnybcylixwtpxslw4cvwmtwg566z2d6cinxshqbg25lhojkqtq.ipfs.nftstorage.link/' // image placeholder
+const verticalVideo = 'https://player.vimeo.com/external/931742718.m3u8?s=efbe1b55804e4ba10b2e8c17e241d1809d324f36&logging=false'
+const verticalVideoPlaceholder = 'https://bafkreicuvnybcylixwtpxslw4cvwmtwg566z2d6cinxshqbg25lhojkqtq.ipfs.nftstorage.link/' 
 
-let verticalVarbarianVid = 'https://player.vimeo.com/external/931794663.m3u8?s=3a78fb41c8f6e7f39962465441abecbe7a056262&logging=false'
-let verticalVarbarianPlaceholder = 'https://bafkreibuzswvpnmmvux3b6vfwfeggbmakubxwdztrqmqerjjm7ba6efcpu.ipfs.nftstorage.link/'
+const verticalVarbarianVid = 'https://player.vimeo.com/external/931794663.m3u8?s=3a78fb41c8f6e7f39962465441abecbe7a056262&logging=false'
+const verticalVarbarianPlaceholder = 'https://bafkreibuzswvpnmmvux3b6vfwfeggbmakubxwdztrqmqerjjm7ba6efcpu.ipfs.nftstorage.link/'
 
-let horizontalVideoMVFW23 = 'https://player.vimeo.com/external/931744777.m3u8?s=2a274c3898d4aa78fdb7cddf0a0329d25693b056&logging=false'
-let horizontalVideoMVFW23placeholder = 'https://bafybeigpiynyk563o5rd4wzz62lx7gkncdrnozhzit4l7s4maxc5mffgbm.ipfs.nftstorage.link/' // image placeholder
+const horizontalVideoMVFW23 = 'https://player.vimeo.com/external/931744777.m3u8?s=2a274c3898d4aa78fdb7cddf0a0329d25693b056&logging=false'
+const horizontalVideoMVFW23placeholder = 'https://bafybeigpiynyk563o5rd4wzz62lx7gkncdrnozhzit4l7s4maxc5mffgbm.ipfs.nftstorage.link/' 
 
-let horizontalVideoLPMxSOA = 'https://player.vimeo.com/external/711197011.m3u8?s=1fe29a85f3c1455580a070eee4fb93abcb2ed5a2&logging=false'
-let horizontalVideoLPMxSOAplaceholder = 'https://bafkreigpeshmzddtlhw5tpxa55z3lfv7yjyzpkoj3s7vc5wxyuy367o5ji.ipfs.nftstorage.link/' // image placeholder
+const horizontalVideoLPMxSOA = 'https://player.vimeo.com/external/711197011.m3u8?s=1fe29a85f3c1455580a070eee4fb93abcb2ed5a2&logging=false'
+const horizontalVideoLPMxSOAplaceholder = 'https://bafkreigpeshmzddtlhw5tpxa55z3lfv7yjyzpkoj3s7vc5wxyuy367o5ji.ipfs.nftstorage.link/' 
 
-let horizontalVideoIndieVillage = 'https://player.vimeo.com/external/931792879.m3u8?s=fa7ece24dfd2899ddac2112250092c4be5dbdff0&logging=false'
-let horizontalVideoIndieVillagePlaceholder = 'https://bafkreie2rucyrbnl5en7bccthydcxsmddhffp4oincu7afc2jt53u4eb6e.ipfs.nftstorage.link/' // image placeholder
+const horizontalVideoIndieVillage = 'https://player.vimeo.com/external/931792879.m3u8?s=fa7ece24dfd2899ddac2112250092c4be5dbdff0&logging=false'
+const horizontalVideoIndieVillagePlaceholder = 'https://bafkreie2rucyrbnl5en7bccthydcxsmddhffp4oincu7afc2jt53u4eb6e.ipfs.nftstorage.link/' 
 
 export type VideoData = {
   room: number;
@@ -40,10 +40,22 @@ export type VideoData = {
   hasAlpha?: boolean;
 };
 
-export async function createVideoArt(videoData: VideoData): Promise<Entity | null> {
-  const { position, rotation, scale, image, video, hoverText, website, triggerScale, triggerPosition, audio = true, hasAlpha = false } = videoData;
 
-  try {
+
+export function createVideoArt(
+  position: Vector3,
+  rotation: Vector3,
+  scale: Vector3,
+  image: string,
+  video: string,
+  hoverText: string,
+  website: string,
+  triggerScale: Vector3,
+  triggerPosition: Vector3,
+  audio?: boolean,
+  hasAlpha?: boolean
+) {
+
     const entity = engine.addEntity();
     MeshRenderer.setPlane(entity);
     MeshCollider.setPlane(entity);
@@ -58,17 +70,37 @@ export async function createVideoArt(videoData: VideoData): Promise<Entity | nul
     const videoTexture = Material.Texture.Video({ videoPlayerEntity: entity });
 
     Material.setPbrMaterial(entity, {
-      texture: hasAlpha ? videoTexture : imageMaterial,
+      texture: imageMaterial,
       roughness: 1,
       specularIntensity: 0,
       metallic: 0,
       emissiveColor: Color3.White(),
       emissiveIntensity: 1,
-      emissiveTexture: hasAlpha ? videoTexture : imageMaterial,
-      transparencyMode: hasAlpha ? 1 : undefined,
-      alphaTexture: hasAlpha ? videoTexture : undefined,
-      alphaTest: hasAlpha ? 0.5 : undefined,
+      emissiveTexture: imageMaterial,
+      transparencyMode: hasAlpha ? undefined : 1,
+      alphaTexture: hasAlpha ? videoTexture : imageMaterial,
+      alphaTest: hasAlpha ? undefined : 0.5,
     });
+
+
+    function setMaterial(isImage: boolean) {
+
+      Material.setPbrMaterial(entity, {
+        texture: isImage ? videoTexture : imageMaterial,
+        roughness: 1,
+        specularIntensity: 0,
+        metallic: 0,
+        emissiveColor: Color3.White(),
+        emissiveIntensity: 1,
+        emissiveTexture: isImage ? videoTexture : imageMaterial,
+        transparencyMode: hasAlpha ? undefined : 1,
+        alphaTexture: hasAlpha ? videoTexture : imageMaterial,
+        alphaTest: hasAlpha ? undefined : 0.5,
+      });
+
+      isImage = !isImage
+    
+    }
 
     pointerEventsSystem.onPointerDown(
       {
@@ -92,7 +124,6 @@ export async function createVideoArt(videoData: VideoData): Promise<Entity | nul
 
     if (!videoPlayer) {
       console.error('Failed to create video player.');
-      return null;
     }
 
     utils.triggers.addTrigger(
@@ -102,57 +133,32 @@ export async function createVideoArt(videoData: VideoData): Promise<Entity | nul
       [{ type: 'box', scale: triggerScale }],
       (otherEntity) => {
         if (!otherEntity || !videoPlayer) return;
-        isImage = true
         videoPlayer.playing = true
-        Material.setPbrMaterial(entity, {
-          texture: isImage ? videoTexture : imageMaterial,
-          roughness: 1,
-          specularIntensity: 0,
-          metallic: 0,
-          emissiveColor: Color3.White(),
-          emissiveIntensity: 1,
-          emissiveTexture: isImage ? videoTexture : imageMaterial,
-          transparencyMode: hasAlpha ? 1 : undefined,
-          alphaTexture: hasAlpha ? videoTexture : undefined,
-          alphaTest: hasAlpha ? 0.5 : undefined,
-        });
+    setMaterial(isImage)
         VideoPlayer.createOrReplace(entity, {
           src: video,
           playing: true,
           loop: true
         })
         if (audio) {
-          togglePlay();}
+          togglePlay()}
+          else { return }
       },
       (onExit) => {
         if (videoPlayer) {
           VideoPlayer.getMutable(entity).playing = false
         }
         if (!videoPlayer) return;
-        isImage = false
+        //isImage = false
         videoPlayer.playing = false;
-        Material.setPbrMaterial(entity, {
-          texture: isImage ? videoTexture : imageMaterial,
-          roughness: 1,
-          specularIntensity: 0,
-          metallic: 0,
-          emissiveColor: Color3.White(),
-          emissiveIntensity: 1,
-          emissiveTexture: isImage ? videoTexture : imageMaterial,
-          transparencyMode: hasAlpha ? 1 : undefined,
-          alphaTexture: hasAlpha ? videoTexture : undefined,
-          alphaTest: hasAlpha ? 0.5 : undefined,
-        });
+    setMaterial(isImage)
         if (audio) {
-          togglePlay();}
+          togglePlay()} 
+          else { return }
       }
     );
-
-    return entity;
-  } catch (error) {
-    console.error('Error creating video art:', error);
-    return null;
-  }
+    console.error('Error creating video art');
+    return entity
 }
 
 export const videoCollection: VideoData[] = [
@@ -181,7 +187,7 @@ export const videoCollection: VideoData[] = [
     video: horizontalVideoLPMxSOA,
     hoverText: 'Click',
     website: linktreeURL,
-    triggerScale: Vector3.create(2, 2, 2),
+    triggerScale: Vector3.create(4, 2, 4),
     triggerPosition: Vector3.create(artPos14.x + 2, artPos14.y - 1, artPos14.z),
     audio: true,
     hasAlpha: false
@@ -197,7 +203,7 @@ export const videoCollection: VideoData[] = [
     video: horizontalVideoIndieVillage,
     hoverText: 'Click',
     website: linktreeURL,
-    triggerScale: Vector3.create(2, 2, 2),
+    triggerScale: Vector3.create(4, 2, 4),
     triggerPosition: Vector3.create(artPos15.x + 2, artPos15.y - 1, artPos15.z),
     audio: true,
     hasAlpha: false

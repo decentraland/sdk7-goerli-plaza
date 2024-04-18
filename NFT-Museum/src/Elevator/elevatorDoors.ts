@@ -44,6 +44,8 @@ export function createElevatorDoors(
     const doorL = createDoorEntity(doorLmodel, -closeDoorOffset, doorParent);
     const doorR = createDoorEntity(doorRmodel, closeDoorOffset, doorParent);
 
+
+    
     function moveDoors(offset: number) {
         const closedDoorLPos = Transform.get(doorL).position
         const closedDoorRPos = Transform.get(doorR).position
@@ -81,7 +83,7 @@ export function createElevatorDoors(
         doorParent,
         utils.NO_LAYERS,
         utils.LAYER_1,
-        [{ type: 'box', position: { x: 0, y: 0, z: 0 }, scale: { x: 5, y: 2, z: 5 } }],
+        [{ type: 'box', position: { x: 0, y: 0, z: 0 }, scale: { x: 4, y: 2, z: 4 } }],
         function (otherEntity) {
             console.log(`floor index: ${floorIndex}, current floor: ${currentFloor}`);
 
