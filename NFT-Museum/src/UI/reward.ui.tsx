@@ -12,7 +12,6 @@ export function confirmationUI(thumbnail: string, wearableName: string) {
 	  height: 350,
 	})
   
-  
 	const promptTitle = customPrompt.addText({
 	  value: 'Wearable incoming!',
 	  xPosition: 0,
@@ -27,7 +26,6 @@ export function confirmationUI(thumbnail: string, wearableName: string) {
 	  yPosition: 100,
 	  size: 10
 	})
-  
   
 	const promptButtonE = customPrompt.addButton({
 	  style: ui.ButtonStyles.E,
@@ -47,7 +45,6 @@ export function confirmationUI(thumbnail: string, wearableName: string) {
 	  height: 125,
 	  width: 125
 	})
-  
   
 	const name = customPrompt.addText({
 	  value: wearableName,

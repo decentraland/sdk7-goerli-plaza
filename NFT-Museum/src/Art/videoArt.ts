@@ -10,19 +10,19 @@ import { homepageUrl, linktreeURL } from '../social';
 let isImage = true
 
 const verticalVideo = 'https://player.vimeo.com/external/931742718.m3u8?s=efbe1b55804e4ba10b2e8c17e241d1809d324f36&logging=false'
-const verticalVideoPlaceholder = 'https://bafkreicuvnybcylixwtpxslw4cvwmtwg566z2d6cinxshqbg25lhojkqtq.ipfs.nftstorage.link/' 
+const verticalVideoPlaceholder = 'https://bafkreicuvnybcylixwtpxslw4cvwmtwg566z2d6cinxshqbg25lhojkqtq.ipfs.nftstorage.link/'
 
 const verticalVarbarianVid = 'https://player.vimeo.com/external/931794663.m3u8?s=3a78fb41c8f6e7f39962465441abecbe7a056262&logging=false'
 const verticalVarbarianPlaceholder = 'https://bafkreibuzswvpnmmvux3b6vfwfeggbmakubxwdztrqmqerjjm7ba6efcpu.ipfs.nftstorage.link/'
 
 const horizontalVideoMVFW23 = 'https://player.vimeo.com/external/931744777.m3u8?s=2a274c3898d4aa78fdb7cddf0a0329d25693b056&logging=false'
-const horizontalVideoMVFW23placeholder = 'https://bafybeigpiynyk563o5rd4wzz62lx7gkncdrnozhzit4l7s4maxc5mffgbm.ipfs.nftstorage.link/' 
+const horizontalVideoMVFW23placeholder = 'https://bafybeigpiynyk563o5rd4wzz62lx7gkncdrnozhzit4l7s4maxc5mffgbm.ipfs.nftstorage.link/'
 
 const horizontalVideoLPMxSOA = 'https://player.vimeo.com/external/711197011.m3u8?s=1fe29a85f3c1455580a070eee4fb93abcb2ed5a2&logging=false'
-const horizontalVideoLPMxSOAplaceholder = 'https://bafkreigpeshmzddtlhw5tpxa55z3lfv7yjyzpkoj3s7vc5wxyuy367o5ji.ipfs.nftstorage.link/' 
+const horizontalVideoLPMxSOAplaceholder = 'https://bafkreigpeshmzddtlhw5tpxa55z3lfv7yjyzpkoj3s7vc5wxyuy367o5ji.ipfs.nftstorage.link/'
 
 const horizontalVideoIndieVillage = 'https://player.vimeo.com/external/931792879.m3u8?s=fa7ece24dfd2899ddac2112250092c4be5dbdff0&logging=false'
-const horizontalVideoIndieVillagePlaceholder = 'https://bafkreie2rucyrbnl5en7bccthydcxsmddhffp4oincu7afc2jt53u4eb6e.ipfs.nftstorage.link/' 
+const horizontalVideoIndieVillagePlaceholder = 'https://bafkreie2rucyrbnl5en7bccthydcxsmddhffp4oincu7afc2jt53u4eb6e.ipfs.nftstorage.link/'
 
 export type VideoData = {
   room: number;
@@ -56,109 +56,115 @@ export function createVideoArt(
   hasAlpha?: boolean
 ) {
 
-    const entity = engine.addEntity();
-    MeshRenderer.setPlane(entity);
-    MeshCollider.setPlane(entity);
+  const entity = engine.addEntity();
+  MeshRenderer.setPlane(entity);
+  MeshCollider.setPlane(entity);
 
-    Transform.createOrReplace(entity, {
-      position: position,
-      rotation: Quaternion.fromEulerDegrees(rotation.x, rotation.y, rotation.z),
-      scale: scale,
-    });
+  Transform.createOrReplace(entity, {
+    position: position,
+    rotation: Quaternion.fromEulerDegrees(rotation.x, rotation.y, rotation.z),
+    scale: scale,
+  });
 
-    const imageMaterial = Material.Texture.Common({ src: image });
-    const videoTexture = Material.Texture.Video({ videoPlayerEntity: entity });
+  const imageMaterial = Material.Texture.Common({ src: image });
+  const videoTexture = Material.Texture.Video({ videoPlayerEntity: entity });
+
+  Material.setPbrMaterial(entity, {
+    texture: imageMaterial,
+    roughness: 1,
+    specularIntensity: 0,
+    metallic: 0,
+    emissiveColor: Color3.White(),
+    emissiveIntensity: 1,
+    emissiveTexture: imageMaterial,
+    transparencyMode: hasAlpha ? undefined : 1,
+    alphaTexture: hasAlpha ? videoTexture : imageMaterial,
+    alphaTest: hasAlpha ? undefined : 0.5,
+  });
+
+
+  function setMaterial(isImage: boolean) {
 
     Material.setPbrMaterial(entity, {
-      texture: imageMaterial,
+      texture: isImage ? videoTexture : imageMaterial,
       roughness: 1,
       specularIntensity: 0,
       metallic: 0,
       emissiveColor: Color3.White(),
       emissiveIntensity: 1,
-      emissiveTexture: imageMaterial,
+      emissiveTexture: isImage ? videoTexture : imageMaterial,
       transparencyMode: hasAlpha ? undefined : 1,
       alphaTexture: hasAlpha ? videoTexture : imageMaterial,
       alphaTest: hasAlpha ? undefined : 0.5,
     });
 
+    isImage = !isImage
 
-    function setMaterial(isImage: boolean) {
+  }
 
-      Material.setPbrMaterial(entity, {
-        texture: isImage ? videoTexture : imageMaterial,
-        roughness: 1,
-        specularIntensity: 0,
-        metallic: 0,
-        emissiveColor: Color3.White(),
-        emissiveIntensity: 1,
-        emissiveTexture: isImage ? videoTexture : imageMaterial,
-        transparencyMode: hasAlpha ? undefined : 1,
-        alphaTexture: hasAlpha ? videoTexture : imageMaterial,
-        alphaTest: hasAlpha ? undefined : 0.5,
-      });
-
-      isImage = !isImage
-    
-    }
-
-    pointerEventsSystem.onPointerDown(
-      {
-        entity: entity,
-        opts: {
-          button: InputAction.IA_POINTER,
-          hoverText: hoverText,
-        },
+  pointerEventsSystem.onPointerDown(
+    {
+      entity: entity,
+      opts: {
+        button: InputAction.IA_POINTER,
+        hoverText: hoverText,
       },
-      () => {
-        console.log('Clicked artwork');
-        openExternalUrl({ url: website });
-      }
-    );
-
-    const videoPlayer = VideoPlayer.create(entity, {
-      src: video,
-      playing: false,
-      loop: true,
-    });
-
-    if (!videoPlayer) {
-      console.error('Failed to create video player.');
+    },
+    () => {
+      console.log('Clicked artwork');
+      openExternalUrl({ url: website });
     }
+  );
 
-    utils.triggers.addTrigger(
-      utils.addTestCube({ position: triggerPosition, scale: triggerScale }, undefined, undefined, Color4.create(1, 1, 1, 0), undefined, true),
-      utils.NO_LAYERS,
-      utils.LAYER_1,
-      [{ type: 'box', scale: triggerScale }],
-      (otherEntity) => {
-        if (!otherEntity || !videoPlayer) return;
-        videoPlayer.playing = true
-    setMaterial(isImage)
-        VideoPlayer.createOrReplace(entity, {
-          src: video,
-          playing: true,
-          loop: true
-        })
-        if (audio) {
-          togglePlay()}
-          else { return }
-      },
-      (onExit) => {
-        if (videoPlayer) {
-          VideoPlayer.getMutable(entity).playing = false
-        }
-        if (!videoPlayer) return;
-        //isImage = false
-        videoPlayer.playing = false;
-    setMaterial(isImage)
-        if (audio) {
-          togglePlay()} 
-          else { return }
+  const videoPlayer = VideoPlayer.create(entity, {
+    src: video,
+    playing: false,
+    loop: true,
+  });
+
+  if (!videoPlayer) {
+    console.error('Failed to create video player.');
+  }
+
+  utils.triggers.addTrigger(
+
+    utils.addTestCube({ position: triggerPosition, scale: triggerScale }, undefined, undefined, Color4.create(1, 1, 1, 0), undefined, true),
+    utils.NO_LAYERS,
+    utils.LAYER_1,
+    [{ type: 'box', scale: triggerScale }],
+
+    (otherEntity) => {
+      if (!otherEntity || !videoPlayer) return;
+      videoPlayer.playing = true
+
+      setMaterial(isImage)
+
+      VideoPlayer.createOrReplace(entity, {
+        src: video,
+        playing: true,
+        loop: true,
+        volume: 0.5
+      })
+
+      if (audio) {
+        togglePlay()
       }
-    );
-    console.error('Error creating video art');
-    return entity
+      else { return }
+    },
+
+    (onExit) => {
+
+      if (!videoPlayer) return;
+
+      VideoPlayer.getMutable(entity).playing = false;
+      setMaterial(isImage)
+
+      if (audio) {
+        togglePlay()
+      }
+    }
+  );
+  return entity
 }
 
 export const videoCollection: VideoData[] = [

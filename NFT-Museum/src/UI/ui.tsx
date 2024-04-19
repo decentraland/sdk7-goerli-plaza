@@ -22,9 +22,9 @@ export function setupUi() {
 }
 
 export const uiComponent = () => [
+    artDetailsUI(),
     ui.render(),
    // confirmationUI(rewardImage, rewardName),
-    artDetailsUI(),
     playlistUI(),
     radioUI(),
 ]
