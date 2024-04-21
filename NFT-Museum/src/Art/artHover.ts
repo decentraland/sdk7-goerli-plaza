@@ -1,7 +1,6 @@
 import { engine, Transform, Entity, InputAction, PointerEventType, PointerEvents, Schemas, inputSystem, MeshCollider, MeshRenderer, Material } from "@dcl/sdk/ecs";
 import * as utils from '@dcl-sdk/utils';
 import { Quaternion, Vector3 } from "@dcl/sdk/math";
-//import { getRandomHexColor } from "../helperFunctions";
 import { artTitle1, artDescription1, artTitle2, artDescription2, artDescription10, artDescription11, artDescription12, artDescription13, artDescription14, artDescription15, artDescription16, artDescription17, artDescription18, artDescription19, artDescription20, artDescription21, artDescription22, artDescription23, artDescription24, artDescription3, artDescription4, artDescription5, artDescription6, artDescription7, artDescription8, artDescription9, artTitle10, artTitle11, artTitle12, artTitle13, artTitle14, artTitle15, artTitle16, artTitle17, artTitle18, artTitle19, artTitle20, artTitle21, artTitle22, artTitle23, artTitle24, artTitle3, artTitle4, artTitle5, artTitle6, artTitle7, artTitle8, artTitle9, artTitle25, artDescription25, artTitle26, artDescription26, artTitleA, artDescriptionA, artTitleB, artDescriptionB, artTitleC, artDescriptionC, artTitleD, artDescriptionD } from "./artData";
 import { artPos1, artRot1, artPos2, artRot2, artPos3, artRot3, artPos4, artRot4, artPos5, artRot5, artPos6, artRot6, artPos7, artPos8, artRot8, artPos9, artRot9, artPos10, artRot10, artPos11, artRot11, artPos12, artRot12, artPos13, artRot13, artPos14, artRot14, artPos15, artRot15, artPos16, artRot16, artPos17, artRot17, artPos18, artRot18, artPos19, artRot19, artPos20, artRot20, artPos21, artRot21, artPos22, artRot22, artPos23, artRot23, artPos24, artRot24, artPos25, artRot25, artPos26, artRot26, artPosA, artRotA, artPosB, artRotB, artPosC, artRotC, artPosD, artRotD, artRot7 } from "./artPositions";
 
@@ -32,7 +31,7 @@ export function createArtID(position: Vector3, rotation: Vector3, artworkId: num
         scale: defaultScale
     })
 
-    MeshRenderer.setBox(entity) // handy for debugging
+   // MeshRenderer.setBox(entity) // handy for debugging
     MeshCollider.setBox(entity)
     ArtHover.create(entity, { visible: false })
     PointerEvents.create(entity, {
@@ -62,11 +61,10 @@ export function changeArtHoverSystem() {
         const artworkId = getArtworkId(entity);
 
         if (inputSystem.isTriggered(InputAction.IA_POINTER, PointerEventType.PET_HOVER_ENTER, entity)) {
-            //Material.setPbrMaterial(entity, { albedoColor: Color4.fromHexString(getRandomHexColor()) }); // handy for debugging
+
             if (artworkId !== undefined) {
                 changeCurrentArtworkId(artworkId);
                 console.log('hover?', hoverVisible);
-                console.log('should work');
             }
 
             hoverVisible = true;
@@ -100,15 +98,12 @@ export function findArtworkById(id: number): ArtworkData | undefined {
 }
 
 
-// Create a map to store artwork IDs associated with entities
 export const ArtworkIdMap = new Map<Entity, number>();
 
-// Function to set artwork ID for an entity
 export function setArtworkId(entity: Entity, artworkId: number) {
     ArtworkIdMap.set(entity, artworkId);
 }
 
-// Function to get artwork ID for an entity
 export function getArtworkId(entity: Entity): number | undefined {
     return ArtworkIdMap.get(entity);
 }
@@ -176,7 +171,6 @@ export function createArtHovers() {
         const entity = createArtID(Vector3.create(artwork.position.x, artwork.position.y + yOffset, artwork.position.z), artwork.rotation, artwork.index, artwork.title, artwork.description);
         addArtworkData(entity, artwork.index, artwork.title, artwork.description, true);
     
-        // Store entity data in arrays
         entityID[i] = entity;
         entityPositions[i] = Vector3.create(artwork.position.x, artwork.position.y + yOffset, artwork.position.z);
         entityRotations[i] = artwork.rotation;

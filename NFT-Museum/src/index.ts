@@ -1,15 +1,17 @@
 import { createBaseScene } from './structures'
 import { ElevatorModule } from './Elevator/elevator'
-import { createAllDoors } from './doors'
+import { createAllDoors, fastDoorSound } from './doors'
 import { initializeElevatorDoors } from './Elevator/elevatorDoors'
 import { setupUi } from './UI/ui'
 import { artHoverSystem, changeArtHoverSystem, createArtHovers } from './Art/artHover'
-import { engine } from '@dcl/sdk/ecs'
+import { Transform, engine } from '@dcl/sdk/ecs'
 import { creatAllLazyAreas } from './Lazy-Loading/lazyLoading'
 import { createSocials } from './social'
 import { createCustomTextPanels, createCustomTextTitles, createDefaultTexts } from './text'
-import { shufflePlaylist, playlist, playCurrentSong } from './Audio/playlist'
-import { playRadio } from './Audio/radio'
+import { audioConfig, createStream, radioStation, toggleAudio } from './Audio/audio'
+import * as utils from '@dcl-sdk/utils';
+
+
 
 
 
@@ -25,7 +27,19 @@ export function main() {
     setupUi()
     engine.addSystem(changeArtHoverSystem)
     engine.addSystem(artHoverSystem)
+    //createStream(radioStation)
+toggleAudio('radio')
 
+
+    //audioConfig['radio']
+   //toggleAudio('radio')
+    /*
+    if (audioConfig['radio']) {
+        toggleAudio('radio')
+    } else if (audioConfig['playlist']) {
+        toggleAudio('playlist')
+    }
+    */
 
     /// AUDIO
     // Use these functions to trigger the playlist (also toggle playlist and radio booleans in audio.ts and ui.tsx)

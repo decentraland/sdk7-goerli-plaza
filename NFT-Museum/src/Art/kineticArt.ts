@@ -1,10 +1,10 @@
 import { Quaternion, Vector3 } from "@dcl/sdk/math";
 import { Animator, engine, Transform, GltfContainer, ColliderLayer, pointerEventsSystem, InputAction, TransformType } from "@dcl/sdk/ecs";
 import * as utils from '@dcl-sdk/utils';
-import { togglePlay } from "../Audio/audio";
 import { artPosA, artPosB, artPosC, artPosD, artRotA, artRotB, artRotC, artRotD } from "./artPositions";
 import { openExternalUrl } from "~system/RestrictedActions";
 import { linktreeURL } from "../social";
+import { audioConfig, toggleAudio } from "../Audio/audio";
 
 // Paths to 3D models and animation names
 const kineticArtCircles = 'models/3d-art/kineticArt-threeCircles.glb';
@@ -153,18 +153,24 @@ export function createKineticArt(
             scale: triggerScale
         }],
         function (otherEntity) {
-            if (audio) {
-                togglePlay()
-                utils.playSound(audio, false, Transform.get(engine.PlayerEntity).position)
-            }
+           
+      if (audioConfig['playlist']) {
+        toggleAudio('playlist')
+      } 
+      else if (audioConfig['radio']) {
+        toggleAudio('radio')
+      }
             if (animationClip !== null) {
                 let animateArt = Animator.playSingleAnimation(entity, animationClip, false)
             }
         },
         function (anotherEntity) {
-            if (audio) {
-                togglePlay()
-            }
+            if (audioConfig['playlist']) {
+                toggleAudio('playlist')
+              } 
+              else if (audioConfig['radio']) {
+                toggleAudio('radio')
+              }
             if (animationClip !== null) {
                 let stopAnim = Animator.stopAllAnimations(entity, false)
             }

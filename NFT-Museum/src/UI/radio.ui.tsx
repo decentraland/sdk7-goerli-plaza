@@ -1,13 +1,13 @@
 import { UiCanvasInformation, engine } from "@dcl/sdk/ecs";
 import { Color4 } from "@dcl/sdk/math";
 import ReactEcs, { UiEntity, Button } from "@dcl/sdk/react-ecs";
-import { openRadio, toggleRadio } from "../Audio/radio";
+import { openRadio } from "../Audio/radio";
 import { tieredFontScale, wordWrap } from "../helperFunctions";
 import { pauseIcon, playIcon } from "./ui";
-import { radioPlaying } from "../Audio/radio";
+import { audioConfig, isPlaying, toggleAudio } from '../Audio/audio';
+
 
 // Set Radio to 'true' to show the radio UI:
-let RadioUI: Boolean = true
 
 let radioStationName = '24 House Radio'
 let radioStationNameWrap = wordWrap(radioStationName, 14, 3)
@@ -15,7 +15,7 @@ let textColor = Color4.White()
 let smallFont = 10
 
 export function radioUI() {
-    if (RadioUI) {
+    if (audioConfig['radio']) {
         const canvasHeight = UiCanvasInformation.get(engine.RootEntity).height;
 
         return (
@@ -72,7 +72,7 @@ export function radioUI() {
                         uiBackground={{
                             textureMode: 'nine-slices',
                             texture: {
-                                src: radioPlaying ? pauseIcon : playIcon,
+                                src: isPlaying('radio') ? pauseIcon : playIcon,
                             },
                             textureSlices: {
                                 top: -0.0,
@@ -81,7 +81,7 @@ export function radioUI() {
                                 right: -0.0,
                             },
                         }}
-                        onMouseDown={toggleRadio}
+                        onMouseDown={() => toggleAudio('radio')}
                     />
                 </UiEntity>
             </UiEntity>

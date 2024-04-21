@@ -1,91 +1,83 @@
-
-import { engine, Entity, AvatarAttach, AvatarAnchorPointType, AudioSource } from "@dcl/sdk/ecs";
-import { playPlaylist, togglePlaylist } from "./playlist";
-import { playRadio, radioPlaying, toggleRadio } from "./radio";
-
-/// This is the Playlist, set to false to remove it
-export let Playlist: Boolean = false;
+import { AudioStream, engine } from "@dcl/sdk/ecs";
+import { playlist } from "./playlist";
+import * as utils from '@dcl-sdk/utils';
 
 
+export const radioStation = 'https://strw3.openstream.co/1487?aw_0_1st.collectionid%3D4682%26stationId%3D4682%26publisherId%3D1511%26k%3D1708457720'
 
 
+export function createStream(streamUrl: string): Promise<void> {
+  return new Promise((resolve) => {
+    const audioEntity = engine.addEntity();
+    AudioStream.create(audioEntity, {
+      url: streamUrl,
+      playing: true,
+    });
+    console.log('stream created');
 
-// Function to set the radio state
-export function setRadioPlaying(value: boolean) {
-  value = radioPlaying;
+    utils.timers.setTimeout(() => {
+      resolve();
+    }, 1000); 
+  });
 }
 
 
 
-// Global variable to store the audio entity
-let audioEntity: Entity | null = null;
 
-// Function to get the state of stream playing
-let isStreamPlaying = () => Playlist;
+interface AudioConfig {
+  volume: number;
+  isPlaying: boolean;
+  streamUrl: string;
+  currentSongIndex?: number;
+}
 
-// Function to get the state of radio playing
-let isRadioPlaying = () => radioPlaying;
-
-// Variables to store the previous state of playlist and radio
-let prevPlaylist: boolean = false;
-let prevRadio: boolean = false;
-
-// Function to toggle between stream and radio playing
-export function togglePlay() {
-  const streamPlaying = isStreamPlaying();
-  const radioPlaying = isRadioPlaying();
-  console.log('toggle audio');
-
-  if (streamPlaying) {
-    togglePlaylist();
-    prevPlaylist = true;
-    prevRadio = false;
-    console.log(`playlist playing: ${streamPlaying}`);
+export const audioConfig: { [key: string]: AudioConfig } = {
+  radio: {
+    volume: 0.5,
+    isPlaying: false,
+    streamUrl: "https://strw3.openstream.co/1487?aw_0_1st.collectionid%3D4682%26stationId%3D4682%26publisherId%3D1511%26k%3D1708457720"
+  },
+  playlist: {
+    volume: 0.3,
+    isPlaying: false,
+    streamUrl: ""
   }
-  
-  else if (radioPlaying) {
-    console.log('bug')
-    toggleRadio();
-    prevRadio = true;
-    prevPlaylist = false;
-  }
-  
-  // If neither stream nor radio were playing, play the previously active source
-  else if (!streamPlaying && !radioPlaying) {
-    if (prevPlaylist) {
-      playPlaylist();
-    } else if (prevRadio) {
-      playRadio();
+};
+
+export async function toggleAudio(name: string) {
+  const config = audioConfig[name];
+  config.isPlaying = !config.isPlaying;
+
+  if (config.isPlaying) {
+    config.currentSongIndex = 0;
+
+    if (name === 'playlist' && playlist.length > 0) {
+      config.streamUrl = playlist[0].url;
     }
-  } else return null
+
+    if (name === 'radio') {
+      config.streamUrl = radioStation;
+      await createStream(radioStation); // Wait for the stream to be ready
+      console.log(`audio config is playing ${config.isPlaying}`);
+    }
+  } else {
+    delete config.currentSongIndex;
+    config.streamUrl = '';
+    console.log(`audio config is playing ${config.isPlaying}`);
+    
+    let audioEntities = engine.getEntitiesWith(AudioStream);
+    for (const [entity] of audioEntities) {
+      engine.removeEntity(entity);
+    }
+  }
 }
 
-// Global function to play an audio clip at the player's location
-export function playAudioAtPlayer(audioClipUrl: string, volume: number) {
-  if (audioEntity === null) {
-    audioEntity = engine.addEntity();
-   createNewAudioEntity(audioEntity, audioClipUrl, volume)
-  }
-  AudioSource.playSound(audioEntity, audioClipUrl, true);
-    console.log('Audio played at player location:', audioClipUrl)
-  if (audioEntity) {
-    let newAudioEntity = engine.addEntity()
-    createNewAudioEntity(newAudioEntity, audioClipUrl, volume)
-    AudioSource.playSound(newAudioEntity, audioClipUrl, true);
-    console.log('Audio played at player location:', audioClipUrl);
-  }
-  
+
+
+export function setVolume(name: string, volume: number) {
+  audioConfig[name].volume = volume;
 }
 
-function createNewAudioEntity(entity: Entity, audioClipUrl: string, volume: number) {
-//entity = engine.addEntity()
-AvatarAttach.createOrReplace(entity, {
-  anchorPointId: AvatarAnchorPointType.AAPT_NAME_TAG
-});
-AudioSource.createOrReplace(entity, {
-  audioClipUrl: audioClipUrl, 
-  loop: false, 
-  volume: volume,
-  
-})
+export function isPlaying(name: string): boolean {
+  return audioConfig[name].isPlaying;
 }

@@ -3,8 +3,9 @@ import * as utils from '@dcl-sdk/utils';
 import { openExternalUrl } from '~system/RestrictedActions';
 import { Quaternion, Color3, Color4, Vector3 } from '@dcl/sdk/math';
 import { artPos14, artPos15, artPos2, artPos25, artPos26, artRot14, artRot15, artRot2, artRot25, artRot26 } from './artPositions';
-import { togglePlay } from '../Audio/audio';
 import { homepageUrl, linktreeURL } from '../social';
+import { audioConfig, toggleAudio } from '../Audio/audio';
+import { playlist } from '../Audio/playlist';
 
 //let videoPlayer: any;
 let isImage = true
@@ -39,7 +40,6 @@ export type VideoData = {
   audio?: boolean;
   hasAlpha?: boolean;
 };
-
 
 
 export function createVideoArt(
@@ -146,8 +146,11 @@ export function createVideoArt(
         volume: 0.5
       })
 
-      if (audio) {
-        togglePlay()
+      if (audioConfig['playlist']) {
+        toggleAudio('playlist')
+      } 
+      else if (audioConfig['radio']) {
+        toggleAudio('radio')
       }
       else { return }
     },
@@ -159,9 +162,14 @@ export function createVideoArt(
       VideoPlayer.getMutable(entity).playing = false;
       setMaterial(isImage)
 
-      if (audio) {
-        togglePlay()
+    
+      if (audioConfig['playlist']) {
+        toggleAudio('playlist')
+      } 
+      else if (audioConfig['radio']) {
+        toggleAudio('radio')
       }
+      else { return }
     }
   );
   return entity
