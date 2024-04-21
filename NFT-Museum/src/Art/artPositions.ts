@@ -1,7 +1,5 @@
 import { Vector3 } from "@dcl/ecs-math";
 
-///// ARTWORK POSITIONS AND ROTATIONS
-
 
 // Ground floor gallery:
 
@@ -92,6 +90,7 @@ export const artRot17 = Vector3.create(0, 0, 0)
 export const artPos18 = Vector3.create(21.55, 15.43, 23.73)
 export const artRot18 = Vector3.create(0, 0, 0)
 
+
 // East wall three artworks north to south
 // room: 2
 export const artPos19 = Vector3.create(26.29, 15.43, 21.28)
@@ -102,6 +101,7 @@ export const artRot20 = Vector3.create(0, 90, 0)
 // room: 2
 export const artPos21 = Vector3.create(26.29, 15.43, 10.7)
 export const artRot21 = Vector3.create(0, 90, 0)
+
 
 //South wall three artworks east to west
 // room: 2
@@ -133,7 +133,7 @@ export const artRot26 = Vector3.create(0, 180, 0)
 export const artPosA = Vector3.create(8.3, 1.9, 13)
 export const artRotA = Vector3.create(0, 180, 0)
 
-// room: 2
+// room: 1
 export const artPosB = Vector3.create(8.3, 1.9, 19)
 export const artRotB = Vector3.create(0, 180, 0)
 

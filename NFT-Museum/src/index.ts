@@ -10,6 +10,7 @@ import { createSocials } from './social'
 import { createCustomTextPanels, createDefaultTexts } from './text'
 import { toggleAudio } from './Audio/audio'
 import * as utils from '@dcl-sdk/utils';
+import { initializeArtDetails } from './Art/artData'
 
 
 
@@ -24,10 +25,10 @@ export function main() {
     creatAllLazyAreas()
     createSocials()
     setupUi()
-    //engine.addSystem(changeArtHoverSystem)
-    //engine.addSystem(artHoverSystem)
+    engine.addSystem(changeArtHoverSystem)
+    engine.addSystem(artHoverSystem)
     toggleAudio('playlist')
-    
+    initializeArtDetails()
     
     
     

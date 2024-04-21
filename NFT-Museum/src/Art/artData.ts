@@ -1,5 +1,8 @@
 import { GltfContainer, Transform, engine } from "@dcl/sdk/ecs";
 import { sceneCentrePosition } from "../structures";
+import { Vector2 } from "~system/EngineApi";
+import { Vector3 } from "@dcl/sdk/math";
+import { artPos1, artPos2, artRot1 } from "./artPositions";
 
 
 
@@ -16,11 +19,11 @@ import { sceneCentrePosition } from "../structures";
 interface Artwork {
     title: string;
     description: string;
-  }
+}
 
-  export const artDetails: Artwork[] = []
+export const artDetails: Artwork[] = []
 
-  export function initializeArtDetails() {
+export function initializeArtDetails() {
     artDetails.push(
         { title: 'Artwork 1', description: 'Description 1' },
         { title: 'Artwork 2', description: 'Description 2' },
@@ -54,13 +57,82 @@ interface Artwork {
         { title: 'Artwork D', description: 'Description D' },
     )
 
-  }
-   
-    
+}
 
 
-    // Add more artworks as needed
-    // The artwork id matches the title and description number
-    // Change titles and descriptions here to match your art :) 
-  
+// Add more artworks as needed
+// The artwork id matches the title and description number
+// Change titles and descriptions here to match your art :) 
+
+
+
+
+
+interface ArtPostions {
+    position: Vector3;
+    rotation: Vector3;
+}
+
+export const artPositions: ArtPostions[] = [
+    // Ground floor gallery:
+
+    //////////////////
+    // Back wall three artworks south to north (room: 1)
+    { position: Vector3.create(2.79, 3, 9.8), rotation: Vector3.create(0, -90, 0) },
+    { position: Vector3.create(2.8, 3.25, 16), rotation: Vector3.create(0, -90, 0) },
+    { position: Vector3.create(2.82, 3, 22.19), rotation: Vector3.create(0, -90, 0) },
+    // South door
+    { position: Vector3.create(12.15, 3, 7.75), rotation: Vector3.create(0, 180, 0) },
+    // North door
+    { position: Vector3.create(12.18, 3, 24.2), rotation: Vector3.create(0, 0, 0) },
+
+
+    // First floor gallery: 
+
+    ////////////////
+    // South wall three artworks east to west (room: 2)
+    { position: Vector3.create(24.15, 10.9, 8.27), rotation: Vector3.create(0, 180, 0) },
+    { position: Vector3.create(20.6, 10.9, 8.27), rotation: Vector3.create(0, 180, 0) },
+    { position: Vector3.create(17.09, 10.9, 8.27), rotation: Vector3.create(0, 180, 0) },
+    // West wall two artworks south to north
+    { position: Vector3.create(3.57, 11.1, 11.2), rotation: Vector3.create(0, -90, 0) },
+    { position: Vector3.create(3.57, 11.1, 20.8), rotation: Vector3.create(0, -90, 0) },
+    // North wall three artworks west to east
+    { position: Vector3.create(17.07, 10.9, 23.71), rotation: Vector3.create(0, 0, 0) },
+    { position: Vector3.create(20.6, 10.9, 23.71), rotation: Vector3.create(0, 0, 0) },
+    { position: Vector3.create(24.17, 10.9, 23.71), rotation: Vector3.create(0, 0, 0) },
+
+    // Mezzanine level:
+
+    ///////////
+    // West wall two artworks south to north (room: 2)
+    { position: Vector3.create(3.5, 15.43, 12), rotation: Vector3.create(0, -90, 0) },
+    { position: Vector3.create(3.5, 15.43, 20.15), rotation: Vector3.create(0, -90, 0) },
+    { position: Vector3.create(8.44, 15.43, 23.73), rotation: Vector3.create(0, 0, 0) },
+    { position: Vector3.create(15, 15.43, 23.73), rotation: Vector3.create(0, 0, 0) },
+    { position: Vector3.create(21.55, 15.43, 23.73), rotation: Vector3.create(0, 0, 0) },
+    // East wall three artworks north to south
+    { position: Vector3.create(26.29, 15.43, 21.28), rotation: Vector3.create(0, 90, 0) },
+    { position: Vector3.create(26.29, 15.43, 16.13), rotation: Vector3.create(0, 90, 0) },
+    { position: Vector3.create(26.29, 15.43, 10.7), rotation: Vector3.create(0, 90, 0) },
+    //South wall three artworks east to west
+    { position: Vector3.create(21.5, 15.43, 8.34), rotation: Vector3.create(0, 180, 0) },
+    { position: Vector3.create(15, 15.43, 8.34), rotation: Vector3.create(0, 180, 0) },
+    { position: Vector3.create(8.4, 15.43, 8.34), rotation: Vector3.create(0, 180, 0) },
+    /// Exterior Video south 
+    { position: Vector3.create(21.75, 13.25, 7.5), rotation: Vector3.create(0, 0, 0) },
+    /// Exterior Video north
+    { position: Vector3.create(21.75, 13.25, 24.5), rotation: Vector3.create(0, 180, 0) },
+
+    /// 3D Art / Animated Sculptures: 
+    // room: 1
+    { position: Vector3.create(8.3, 1.9, 13), rotation: Vector3.create(0, 180, 0) },
+    { position: Vector3.create(8.3, 1.9, 19), rotation: Vector3.create(0, 180, 0) },
+    // room: 2
+    { position: Vector3.create(21.65, 10.5, 16), rotation: Vector3.create(0, 0, 0) },
+    { position: Vector3.create(6.5, 9.72, 16), rotation: Vector3.create(0, 0, 0) },
+
+
+]
+
 

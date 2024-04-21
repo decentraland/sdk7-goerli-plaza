@@ -4,7 +4,7 @@ import * as utils from '@dcl-sdk/utils';
 import { artPosA, artPosB, artPosC, artPosD, artRotA, artRotB, artRotC, artRotD } from "./artPositions";
 import { openExternalUrl } from "~system/RestrictedActions";
 import { linktreeURL } from "../social";
-import { audioConfig, audioType, toggleAudio } from "../Audio/audio";
+import { audioType, toggleAudio } from "../Audio/audio";
 
 
 
@@ -16,7 +16,6 @@ const kineticArtCircuit = 'models/3d-art/kineticArt-circuit.glb'
 const kineticArtCircuitClip = 'play3'
 
 const truck = 'models/3d-art/truck.glb'
-
 const cone = 'models/3d-art/cone.glb'
 
 export type KineticData = {
@@ -120,16 +119,10 @@ export function createKineticArt(
     pointerEventsSystem.onPointerDown(
         {
             entity: entity,
-            opts: {
-                button: InputAction.IA_POINTER,
-                hoverText: hoverText,
-            },
+            opts: { button: InputAction.IA_POINTER, hoverText: hoverText },
         },
         function () {
-            console.log('clicked artwork');
-            openExternalUrl({
-                url: url,
-            });
+            openExternalUrl({ url: url });
         }
     );
     if (animationClip !== null) {
@@ -149,27 +142,14 @@ export function createKineticArt(
         entity,
         utils.NO_LAYERS,
         utils.LAYER_1,
-        [{
-            type: 'box',
-            position: triggerPosition,
-            scale: triggerScale
-        }],
+        [{  type: 'box', position: triggerPosition, scale: triggerScale }],
         function (otherEntity) {
-
-            if (audio) {
-                toggleAudio(audioType)
-              }
-            if (animationClip !== null) {
-                let animateArt = Animator.playSingleAnimation(entity, animationClip, false)
-            }
+            if (audio) { toggleAudio(audioType) }
+            if (animationClip !== null) { Animator.playSingleAnimation(entity, animationClip, false) }
         },
         function (anotherEntity) {
-            if (audio) {
-                toggleAudio(audioType)
-              }
-            if (animationClip !== null) {
-                let stopAnim = Animator.stopAllAnimations(entity, false)
-            }
+            if (audio) { toggleAudio(audioType) }
+            if (animationClip !== null) { Animator.stopAllAnimations(entity, false) }
         })
     //utils.triggers.enableDebugDraw(true)
     return entity

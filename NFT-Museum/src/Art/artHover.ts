@@ -126,7 +126,7 @@ export function addArtworkData(entity: Entity, artworkId: number, title: string,
 
 const yOffset = -0.5
 
-
+/*
 export function createArtHovers() {
 
     if (artDetails.length === 0) {
@@ -178,9 +178,10 @@ export function createArtHovers() {
         entityData.entityDescription.push(artDetail.description);
     }
 }
+*/
 
 
-/*
+
 export function createArtHovers() {
 
     const entityID: number[] = []
@@ -217,10 +218,10 @@ export function createArtHovers() {
         { position: Vector3.create(artPos24.x, artPos24.y, artPos24.z), rotation: artRot24, index: 24, title: artDetails[23].title, description: artDetails[23].description },
         { position: Vector3.create(artPos25.x - 4.5, artPos25.y - 2.1, artPos25.z), rotation: artRot25, index: 25, title: artDetails[24].title, description: artDetails[24].description },
         { position: Vector3.create(artPos26.x - 4.5, artPos26.y - 2.1, artPos26.z), rotation: artRot26, index: 26, title: artDetails[25].title, description: artDetails[25].description },
-        { position: artPosA, rotation: artRotA, index: 27, title: artDetails[26].title, description: artDetails[26].description },
-        { position: artPosB, rotation: artRotB, index: 28, title: artDetails[27].title, description: artDetails[27].description },
-        { position: artPosC, rotation: artRotC, index: 29, title: artDetails[28].title, description: artDetails[28].description },
-        { position: Vector3.create(artPosD.x + 1, artPosD.y + 1, artPosD.z), rotation: artRotD, index: 30, title: artDetails[29].title, description: artDetails[29].description }
+        { position: Vector3.create(artPosA.x, artPosA.y + 1, artPosA.z), rotation: artRotA, index: 27, title: artDetails[26].title, description: artDetails[26].description },
+        { position: Vector3.create(artPosB.x, artPosB.y + 1, artPosB.z), rotation: artRotB, index: 28, title: artDetails[27].title, description: artDetails[27].description },
+        { position: Vector3.create(artPosC.x + 1, artPosC.y + 2, artPosC.z), rotation: artRotC, index: 29, title: artDetails[28].title, description: artDetails[28].description },
+        { position: Vector3.create(artPosD.x + 1, artPosD.y + 2, artPosD.z), rotation: artRotD, index: 30, title: artDetails[29].title, description: artDetails[29].description }
     ]
 
     artworkData.forEach((artwork, i) => {
@@ -235,4 +236,4 @@ export function createArtHovers() {
         entityDescription[i] = artwork.description;
     });
 }
-*/
+
