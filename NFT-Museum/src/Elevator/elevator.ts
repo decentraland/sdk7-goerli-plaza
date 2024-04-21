@@ -3,10 +3,6 @@ import { Vector3, Quaternion } from "@dcl/sdk/math";
 import * as utils from '@dcl-sdk/utils';
 import { setCurrentFloor, currentFloor } from "./elevatorState";
 
-
-/// This file relies on audio code present in audio.ts
-
-
 // 3D models
 const arrowsButton = 'models/elevator/arrows.glb';
 const elevatorModel = 'models/elevator/elevator.glb';

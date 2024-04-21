@@ -5,7 +5,6 @@ import { Quaternion, Color3, Color4, Vector3 } from '@dcl/sdk/math';
 import { artPos14, artPos15, artPos2, artPos25, artPos26, artRot14, artRot15, artRot2, artRot25, artRot26 } from './artPositions';
 import { homepageUrl, linktreeURL } from '../social';
 import { audioConfig, toggleAudio } from '../Audio/audio';
-import { playlist } from '../Audio/playlist';
 
 //let videoPlayer: any;
 let isImage = true

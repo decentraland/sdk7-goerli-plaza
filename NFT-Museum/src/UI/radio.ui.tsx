@@ -1,21 +1,18 @@
 import { UiCanvasInformation, engine } from "@dcl/sdk/ecs";
 import { Color4 } from "@dcl/sdk/math";
 import ReactEcs, { UiEntity, Button } from "@dcl/sdk/react-ecs";
-import { openRadio } from "../Audio/radio";
+import { audioType, openRadio } from "../Audio/audio";
 import { tieredFontScale, wordWrap } from "../helperFunctions";
 import { pauseIcon, playIcon } from "./ui";
 import { audioConfig, isPlaying, toggleAudio } from '../Audio/audio';
 
-
-// Set Radio to 'true' to show the radio UI:
-
-let radioStationName = '24 House Radio'
-let radioStationNameWrap = wordWrap(radioStationName, 14, 3)
-let textColor = Color4.White()
-let smallFont = 10
+const radioStationName = '24 House Radio'
+const radioStationNameWrap = wordWrap(radioStationName, 14, 3)
+const textColor = Color4.White()
+const smallFont = 10
 
 export function radioUI() {
-    if (audioConfig['radio']) {
+    if (audioType === 'radio') {
         const canvasHeight = UiCanvasInformation.get(engine.RootEntity).height;
 
         return (

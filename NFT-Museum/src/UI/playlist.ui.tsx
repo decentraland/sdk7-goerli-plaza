@@ -3,10 +3,7 @@ import { Color4 } from "@dcl/sdk/math";
 import ReactEcs, { UiEntity, Button } from "@dcl/sdk/react-ecs";
 import { tieredFontScale, tieredModalTextWrapScale, wordWrap } from "../helperFunctions";
 import { pauseIcon, playIcon, skipIcon } from "./ui";
-import { nowPlayingElement, openMixcloud, playingArtist, skipSong, streamPlayingRef, togglePlaylist, updateNowPlayingTitle } from "../Audio/playlist";
-
-// Set Playlist to 'false' to hide the playlist UI:
-let Playlist: Boolean = false;
+import { audioConfig, audioType, isPlaying, nowPlayingElement, openMixcloud, playingArtist, skipSong, toggleAudio, updateNowPlayingTitle } from "../Audio/audio";
 
 let songData = 'RED ALBERT Playlist';
 let songDataWrap = wordWrap(songData, 8 * tieredModalTextWrapScale, 6);
@@ -16,7 +13,7 @@ let playlistFontSize = 12;
 export function playlistUI() {
     const canvasHeight = UiCanvasInformation.get(engine.RootEntity).height;
 
-    if (Playlist) {
+    if (audioType == 'playlist') {
         return (
             <UiEntity
                 key={'playlist-main'}
@@ -78,7 +75,7 @@ export function playlistUI() {
                         uiBackground={{
                             textureMode: 'nine-slices',
                             texture: {
-                                src: streamPlayingRef.value ? pauseIcon : playIcon,
+                                src: isPlaying('playlist') ? pauseIcon : playIcon,
                             },
                             textureSlices: {
                                 top: -0.0,
@@ -87,7 +84,7 @@ export function playlistUI() {
                                 right: -0.0,
                             },
                         }}
-                        onMouseDown={togglePlaylist}
+                        onMouseDown={() => toggleAudio('playlist')}
                     />
                     <Button
                         key={'playlist-button3'}
@@ -113,10 +110,7 @@ export function playlistUI() {
                                 right: -0.0,
                             },
                         }}
-                        onMouseDown={() => {
-                            skipSong();
-                            updateNowPlayingTitle(nowPlayingElement, playingArtist);
-                        }}
+                        onMouseDown={skipSong}
                     />
                 </UiEntity>
             </UiEntity>

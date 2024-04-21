@@ -8,7 +8,7 @@ import { Transform, engine } from '@dcl/sdk/ecs'
 import { creatAllLazyAreas } from './Lazy-Loading/lazyLoading'
 import { createSocials } from './social'
 import { createCustomTextPanels, createCustomTextTitles, createDefaultTexts } from './text'
-import { audioConfig, createStream, radioStation, toggleAudio } from './Audio/audio'
+import { audioConfig, audioType, createStream, currentSong, customPlaylist, radioStation, toggleAudio } from './Audio/audio'
 import * as utils from '@dcl-sdk/utils';
 
 
@@ -28,26 +28,9 @@ export function main() {
     engine.addSystem(changeArtHoverSystem)
     engine.addSystem(artHoverSystem)
     //createStream(radioStation)
-toggleAudio('radio')
+toggleAudio('playlist')
 
 
-    //audioConfig['radio']
-   //toggleAudio('radio')
-    /*
-    if (audioConfig['radio']) {
-        toggleAudio('radio')
-    } else if (audioConfig['playlist']) {
-        toggleAudio('playlist')
-    }
-    */
-
-    /// AUDIO
-    // Use these functions to trigger the playlist (also toggle playlist and radio booleans in audio.ts and ui.tsx)
-    //shufflePlaylist(playlist)
-    //playCurrentSong()
-
-    // Use this function to trigger the radio (also toggle playlist and radio booleans in audio.ts and ui.tsx)
-    //playRadio()
 
 
     /// TEXT
