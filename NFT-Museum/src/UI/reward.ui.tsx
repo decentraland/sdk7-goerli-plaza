@@ -8,55 +8,55 @@ import { Transform, engine } from '@dcl/sdk/ecs'
 export function confirmationUI(thumbnail: string, wearableName: string) {
 
 	const customPrompt = ui.createComponent(ui.CustomPrompt, {
-	  style: ui.PromptStyles.DARK,
-	  height: 350,
+		style: ui.PromptStyles.DARK,
+		height: 350,
 	})
-  
+
 	const promptTitle = customPrompt.addText({
-	  value: 'Wearable incoming!',
-	  xPosition: 0,
-	  yPosition: 135,
-	  color: Color4.Green(),
-	  size: 30,
+		value: 'Wearable incoming!',
+		xPosition: 0,
+		yPosition: 135,
+		color: Color4.Green(),
+		size: 30,
 	})
-  
+
 	const promptText = customPrompt.addText({
-	  value: "It will arrive in your backpack in a few minutes.",
-	  xPosition: 0,
-	  yPosition: 100,
-	  size: 10
+		value: "It will arrive in your backpack in a few minutes.",
+		xPosition: 0,
+		yPosition: 100,
+		size: 10
 	})
-  
+
 	const promptButtonE = customPrompt.addButton({
-	  style: ui.ButtonStyles.E,
-	  text: 'Ok',
-	  xPosition: -15,
-	  yPosition: -150,
-	  onMouseDown: () => {
-		console.log('Yeah clicked')
-		customPrompt.hide()
-	  },
+		style: ui.ButtonStyles.E,
+		text: 'Ok',
+		xPosition: -15,
+		yPosition: -150,
+		onMouseDown: () => {
+			console.log('Yeah clicked')
+			customPrompt.hide()
+		},
 	})
-  
+
 	const promptIcon = customPrompt.addIcon({
-	  image: thumbnail,
-	  xPosition: 0,
-	  yPosition: 0,
-	  height: 125,
-	  width: 125
+		image: thumbnail,
+		xPosition: 0,
+		yPosition: 0,
+		height: 125,
+		width: 125
 	})
-  
+
 	const name = customPrompt.addText({
-	  value: wearableName,
-	  xPosition: 0,
-	  yPosition: -70,
-	  size: 20,
+		value: wearableName,
+		xPosition: 0,
+		yPosition: -70,
+		size: 20,
 	})
-  
+
 	customPrompt.show()
-  
+
 	utils.playSound('sounds/star-collect.mp3', false, Transform.get(engine.PlayerEntity).position)
-  }
+}
 
 export function alreadyClaimedUI() {
 

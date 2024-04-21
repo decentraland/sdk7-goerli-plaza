@@ -6,7 +6,6 @@ export let tieredModalScale = 1
 export let tieredFontScale = 1
 export let tieredModalTextWrapScale = 2
 
-const fontSize = 28 * tieredFontScale;
 let devicePixelRatioScale: number = 1
 
 

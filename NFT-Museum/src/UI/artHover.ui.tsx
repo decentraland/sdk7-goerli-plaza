@@ -1,5 +1,5 @@
 import { UiCanvasInformation, engine } from "@dcl/ecs";
-import { Color4, Vector3 } from "@dcl/ecs-math";
+import { Color4 } from "@dcl/ecs-math";
 import ReactEcs, { UiEntity, Label } from "@dcl/react-ecs";
 import { currentArtworkId, findArtworkById, hoverVisible, toggleHover } from "../Art/artHover";
 import { wordWrap, tieredModalTextWrapScale, breakLines, tieredFontScale } from "../helperFunctions";

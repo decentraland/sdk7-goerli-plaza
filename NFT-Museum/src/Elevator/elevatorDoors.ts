@@ -44,7 +44,7 @@ export function createElevatorDoors(
     const doorR = createDoorEntity(doorRmodel, closeDoorOffset, doorParent);
 
 
-    
+
     function moveDoors(offset: number) {
         const closedDoorLPos = Transform.get(doorL).position
         const closedDoorRPos = Transform.get(doorR).position
@@ -96,12 +96,10 @@ export function createElevatorDoors(
                 doorsShouldOpen = true
             }
             if (doorsShouldOpen && !isOpen) {
-                utils.timers.setTimeout(() => {openDoors(), doorsShouldOpen = false }, 300);
+                utils.timers.setTimeout(() => { openDoors(), doorsShouldOpen = false }, 300);
             }
         }
     );
-
-    // Uncomment line below to see the trigger box
     // utils.triggers.enableDebugDraw(true);
 }
 
@@ -117,7 +115,7 @@ export function initializeElevatorDoors() {
         0
     );
 
-    
+
     createElevatorDoors(
         doorsPos2,
         doorsRot2,
@@ -128,7 +126,7 @@ export function initializeElevatorDoors() {
         1,
     );
 
-    
+
     createElevatorDoors(
         doorsPos3,
         doorsRot3,
@@ -139,7 +137,7 @@ export function initializeElevatorDoors() {
         0,
     );
 
-    
+
     createElevatorDoors(
         doorsPos4,
         doorsRot4,

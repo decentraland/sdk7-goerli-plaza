@@ -42,7 +42,7 @@ export function createLazyArea(position: Vector3, scale: Vector3, parentPos: Ent
       scale: scale
     }],
     function (onenter) {
-  
+
       if (scene1active) {
         console.log(`ACTIVE`)
         console.log(`ENTERED ` + id)
@@ -60,14 +60,14 @@ export function createLazyArea(position: Vector3, scale: Vector3, parentPos: Ent
         }
         for (const video of videoCollection) {
           if (video.room === id) {
-              const videoData = (video.position, video.rotation, video.scale, video.image, video.video, video.hoverText, video.website, video.triggerScale, video.triggerPosition, video.audio, video.hasAlpha)
-              const videoArt = createVideoArt(video.position, video.rotation, video.scale, video.image, video.video, video.hoverText, video.website, video.triggerScale, video.triggerPosition, video.audio, video.hasAlpha);
-              if (videoArt !== null) {
-                createdVideos.push(videoArt);
-              } else {
-                console.error('Failed to create video art entity.');
-                return null
-              }       
+            const videoData = (video.position, video.rotation, video.scale, video.image, video.video, video.hoverText, video.website, video.triggerScale, video.triggerPosition, video.audio, video.hasAlpha)
+            const videoArt = createVideoArt(video.position, video.rotation, video.scale, video.image, video.video, video.hoverText, video.website, video.triggerScale, video.triggerPosition, video.audio, video.hasAlpha);
+            if (videoArt !== null) {
+              createdVideos.push(videoArt);
+            } else {
+              console.error('Failed to create video art entity.');
+              return null
+            }
           }
         }
         for (const kineticArt of kineticArtCollection) {

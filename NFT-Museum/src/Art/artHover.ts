@@ -31,7 +31,7 @@ export function createArtID(position: Vector3, rotation: Vector3, artworkId: num
         scale: defaultScale
     })
 
-   // MeshRenderer.setBox(entity) // handy for debugging
+    // MeshRenderer.setBox(entity) // handy for debugging
     MeshCollider.setBox(entity)
     ArtHover.create(entity, { visible: false })
     PointerEvents.create(entity, {
@@ -159,7 +159,7 @@ export function createArtHovers() {
         { position: Vector3.create(artPos22.x, artPos22.y, artPos22.z), rotation: artRot22, index: 22, title: artTitle22, description: artDescription22 },
         { position: Vector3.create(artPos23.x, artPos23.y, artPos23.z), rotation: artRot23, index: 23, title: artTitle23, description: artDescription23 },
         { position: Vector3.create(artPos24.x, artPos24.y, artPos24.z), rotation: artRot24, index: 24, title: artTitle24, description: artDescription24 },
-        { position: Vector3.create(artPos25.x - 4.5, artPos25.y -2.1, artPos25.z), rotation: artRot25, index: 25, title: artTitle25, description: artDescription25 },
+        { position: Vector3.create(artPos25.x - 4.5, artPos25.y - 2.1, artPos25.z), rotation: artRot25, index: 25, title: artTitle25, description: artDescription25 },
         { position: Vector3.create(artPos26.x - 4.5, artPos26.y - 2.1, artPos26.z), rotation: artRot26, index: 26, title: artTitle26, description: artDescription26 },
         { position: artPosA, rotation: artRotA, index: 27, title: artTitleA, description: artDescriptionA },
         { position: artPosB, rotation: artRotB, index: 28, title: artTitleB, description: artDescriptionB },
@@ -170,7 +170,7 @@ export function createArtHovers() {
     artworkData.forEach((artwork, i) => {
         const entity = createArtID(Vector3.create(artwork.position.x, artwork.position.y + yOffset, artwork.position.z), artwork.rotation, artwork.index, artwork.title, artwork.description);
         addArtworkData(entity, artwork.index, artwork.title, artwork.description, true);
-    
+
         entityID[i] = entity;
         entityPositions[i] = Vector3.create(artwork.position.x, artwork.position.y + yOffset, artwork.position.z);
         entityRotations[i] = artwork.rotation;

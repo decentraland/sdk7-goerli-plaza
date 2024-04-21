@@ -6,6 +6,8 @@ import { openExternalUrl } from "~system/RestrictedActions";
 import { linktreeURL } from "../social";
 import { audioConfig, toggleAudio } from "../Audio/audio";
 
+
+
 // Paths to 3D models and animation names
 const kineticArtCircles = 'models/3d-art/kineticArt-threeCircles.glb';
 const kineticArtCirclesClip = 'play2'
@@ -153,13 +155,13 @@ export function createKineticArt(
             scale: triggerScale
         }],
         function (otherEntity) {
-           
-      if (audioConfig['playlist']) {
-        toggleAudio('playlist')
-      } 
-      else if (audioConfig['radio']) {
-        toggleAudio('radio')
-      }
+
+            if (audioConfig['playlist']) {
+                toggleAudio('playlist')
+            }
+            else if (audioConfig['radio']) {
+                toggleAudio('radio')
+            }
             if (animationClip !== null) {
                 let animateArt = Animator.playSingleAnimation(entity, animationClip, false)
             }
@@ -167,10 +169,10 @@ export function createKineticArt(
         function (anotherEntity) {
             if (audioConfig['playlist']) {
                 toggleAudio('playlist')
-              } 
-              else if (audioConfig['radio']) {
+            }
+            else if (audioConfig['radio']) {
                 toggleAudio('radio')
-              }
+            }
             if (animationClip !== null) {
                 let stopAnim = Animator.stopAllAnimations(entity, false)
             }

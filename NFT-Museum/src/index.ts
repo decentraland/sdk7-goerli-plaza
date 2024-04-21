@@ -1,14 +1,14 @@
 import { createBaseScene } from './structures'
 import { ElevatorModule } from './Elevator/elevator'
-import { createAllDoors, fastDoorSound } from './doors'
+import { createAllDoors } from './doors'
 import { initializeElevatorDoors } from './Elevator/elevatorDoors'
 import { setupUi } from './UI/ui'
 import { artHoverSystem, changeArtHoverSystem, createArtHovers } from './Art/artHover'
-import { Transform, engine } from '@dcl/sdk/ecs'
+import { engine } from '@dcl/sdk/ecs'
 import { creatAllLazyAreas } from './Lazy-Loading/lazyLoading'
 import { createSocials } from './social'
-import { createCustomTextPanels, createCustomTextTitles, createDefaultTexts } from './text'
-import { audioConfig, audioType, createStream, currentSong, customPlaylist, radioStation, toggleAudio } from './Audio/audio'
+import { createCustomTextPanels, createDefaultTexts } from './text'
+import { toggleAudio } from './Audio/audio'
 import * as utils from '@dcl-sdk/utils';
 
 
@@ -27,13 +27,13 @@ export function main() {
     setupUi()
     engine.addSystem(changeArtHoverSystem)
     engine.addSystem(artHoverSystem)
-    //createStream(radioStation)
-toggleAudio('playlist')
+    toggleAudio('playlist')
 
 
 
 
     /// TEXT
+
     // Change the active function below to toggle between default and custom title texts
     createDefaultTexts()
     //createCustomTextTitles()

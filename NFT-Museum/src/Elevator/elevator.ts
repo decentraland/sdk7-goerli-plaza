@@ -1,4 +1,4 @@
-import { Animator, engine, Transform, GltfContainer, ColliderLayer, Entity, pointerEventsSystem, InputAction, AudioSource, VisibilityComponent, CameraModeArea, PBCameraMode, CameraType, CameraMode } from "@dcl/sdk/ecs";
+import { Animator, engine, Transform, GltfContainer, ColliderLayer, Entity, pointerEventsSystem, InputAction, AudioSource, CameraModeArea, CameraType } from "@dcl/sdk/ecs";
 import { Vector3, Quaternion } from "@dcl/sdk/math";
 import * as utils from '@dcl-sdk/utils';
 import { setCurrentFloor, currentFloor } from "./elevatorState";
@@ -61,9 +61,9 @@ function createElevator(position: Vector3, rotation: Quaternion) {
 
 
 function moveToFloor(entity: Entity, floorIndex: number) {
-   
-    if (isMoving) return; 
-    isMoving = true; 
+
+    if (isMoving) return;
+    isMoving = true;
 
     const targetHeight = floors[floorIndex].height;
     const currentPosition1 = Transform.get(elevator).position;
@@ -72,11 +72,10 @@ function moveToFloor(entity: Entity, floorIndex: number) {
     const targetPosition1 = Vector3.create(currentPosition1.x, targetHeight, currentPosition1.z);
     const targetPosition2 = Vector3.create(currentPosition2.x, targetHeight, currentPosition2.z);
 
-	utils.playSound(elevatorSound, false, Transform.get(engine.PlayerEntity).position)
+    utils.playSound(elevatorSound, false, Transform.get(engine.PlayerEntity).position)
     pathComplete = false;
     setCurrentFloor(floorIndex);
 
-    // Move both elevators simultaneously
     utils.tweens.startTranslation(elevator, currentPosition1, targetPosition1, 5, utils.InterpolationType.EASEOUTQUAD, () => {
         pathComplete = true;
         console.log('path complete');
@@ -84,18 +83,18 @@ function moveToFloor(entity: Entity, floorIndex: number) {
         console.log(`current floor: ${currentFloor} index: ${floorIndex}`);
         isMoving = false;
         utils.timers.setTimeout(() => {
-            Transform.createOrReplace(elevator, {position: targetPosition1, rotation: elevator1rot})
+            Transform.createOrReplace(elevator, { position: targetPosition1, rotation: elevator1rot })
             utils.playSound(elevatorArrivalSound, false, Transform.get(engine.PlayerEntity).position)
         }, 100)
-        
+
     });
 
-    utils.tweens.startTranslation(elevator2, currentPosition2, targetPosition2, 5, utils.InterpolationType.EASEOUTQUAD, () => { 
-        Transform.createOrReplace(elevator2, {position: targetPosition2, rotation: elevator2rot})
+    utils.tweens.startTranslation(elevator2, currentPosition2, targetPosition2, 5, utils.InterpolationType.EASEOUTQUAD, () => {
+        Transform.createOrReplace(elevator2, { position: targetPosition2, rotation: elevator2rot })
         utils.playSound(elevatorArrivalSound, false, Transform.get(engine.PlayerEntity).position)
-        ; 
+            ;
     });
- 
+
     if (pathComplete) { return }
 }
 

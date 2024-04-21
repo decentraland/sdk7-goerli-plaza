@@ -38,10 +38,7 @@ export function createWearableReward() {
       visibleMeshesCollisionMask: ColliderLayer.CL_POINTER,
     })
 
-
-    // Remove line below to stop the dispenser from spinning
     utils.perpetualMotions.startRotation(rewardEntity, Quaternion.fromEulerDegrees(0, 25, 0))
-
 
     pointerEventsSystem.onPointerDown(
       {
@@ -59,7 +56,6 @@ export function createWearableReward() {
         console.log('claimed Wearable gift')
         utils.timers.setTimeout(() => { engine.removeEntity(rewardEntity), reward = false }, 1000)
         rewardClaimed = true
-
       }
     )
     return rewardEntity
@@ -67,6 +63,5 @@ export function createWearableReward() {
   else {
     console.log('reward already collected')
   }
-
 }
 

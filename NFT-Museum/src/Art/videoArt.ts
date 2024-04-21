@@ -147,7 +147,7 @@ export function createVideoArt(
 
       if (audioConfig['playlist']) {
         toggleAudio('playlist')
-      } 
+      }
       else if (audioConfig['radio']) {
         toggleAudio('radio')
       }
@@ -161,10 +161,10 @@ export function createVideoArt(
       VideoPlayer.getMutable(entity).playing = false;
       setMaterial(isImage)
 
-    
+
       if (audioConfig['playlist']) {
         toggleAudio('playlist')
-      } 
+      }
       else if (audioConfig['radio']) {
         toggleAudio('radio')
       }

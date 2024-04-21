@@ -4,7 +4,7 @@ import ReactEcs, { UiEntity, Button } from "@dcl/sdk/react-ecs";
 import { audioType, openRadio } from "../Audio/audio";
 import { tieredFontScale, wordWrap } from "../helperFunctions";
 import { pauseIcon, playIcon } from "./ui";
-import { audioConfig, isPlaying, toggleAudio } from '../Audio/audio';
+import { isPlaying, toggleAudio } from '../Audio/audio';
 
 const radioStationName = '24 House Radio'
 const radioStationNameWrap = wordWrap(radioStationName, 14, 3)
@@ -84,6 +84,6 @@ export function radioUI() {
             </UiEntity>
         );
     } else {
-        return null; 
+        return null;
     }
 }

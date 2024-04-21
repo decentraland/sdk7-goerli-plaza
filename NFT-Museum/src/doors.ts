@@ -123,11 +123,11 @@ export function createSlidingDoor(
     let door = createDoorEntity(doormodel, -closeDoorOffset, doorParent);
 
     function moveDoor(offset: number) {
-       
+
         isMovingSingle = true;
         let currentDoorPos = Transform.get(door).position;
         let targetDoorPos = Vector3.create(currentDoorPos.x + offset, currentDoorPos.y, currentDoorPos.z);
-        utils.playSound(fastDoorSound, false, Transform.get(engine.PlayerEntity).position)
+        utils.playSound(doorSound, false, Transform.get(engine.PlayerEntity).position)
 
         utils.tweens.startTranslation(door, currentDoorPos, targetDoorPos, bigDoorDuration, utils.InterpolationType.EASEINSINE, () => {
             Transform.createOrReplace(door, { position: targetDoorPos, parent: doorParent })
@@ -136,7 +136,7 @@ export function createSlidingDoor(
     }
 
     function closeDoor() {
-       
+
         if (isOpenSingle) {
             isOpenSingle = false;
             moveDoor(-openDoorOffset);
@@ -145,7 +145,7 @@ export function createSlidingDoor(
 
 
     function openDoor() {
-       
+
         if (!isOpenSingle && !isMovingSingle) {
             isOpenSingle = true;
             moveDoor(openDoorOffset);
@@ -158,7 +158,7 @@ export function createSlidingDoor(
         utils.NO_LAYERS,
         utils.LAYER_1,
         [{ type: 'box', position: { x: 0, y: 0, z: 0 }, scale: { x: 13, y: 3.5, z: 5 } }],
-      
+
         function (otherEntity) {
 
             if (Date.now() - lastDoorInteractionTime < cooldownTime) return; // Adjust the cooldown time as needed
@@ -181,10 +181,10 @@ export function createDoorEntity(model: string, offsetX: number, parent: Entity)
 
 
 export function createAllDoors() {
-    createSlidingDoors( doorPos1, doorRot1, doorLmodel, doorRmodel, openDoorOffset, closeDoorOffset );
-    createSlidingDoors( doorPos2, doorRot2, doorLmodel, doorRmodel, openDoorOffset, closeDoorOffset);
-    createSlidingDoor( doorPos3, doorRot3, singleDoor, 9, 0 )
-    createSlidingDoor( doorPos4, doorRot4, singleDoor, 9, 0 )
+    createSlidingDoors(doorPos1, doorRot1, doorLmodel, doorRmodel, openDoorOffset, closeDoorOffset);
+    createSlidingDoors(doorPos2, doorRot2, doorLmodel, doorRmodel, openDoorOffset, closeDoorOffset);
+    createSlidingDoor(doorPos3, doorRot3, singleDoor, 9, 0)
+    createSlidingDoor(doorPos4, doorRot4, singleDoor, 9, 0)
 }
 
 
