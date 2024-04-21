@@ -22,23 +22,26 @@ export function main() {
     initializeElevatorDoors()
     createAllDoors()
     creatAllLazyAreas()
-    createArtHovers()
     createSocials()
     setupUi()
-    engine.addSystem(changeArtHoverSystem)
-    engine.addSystem(artHoverSystem)
+    //engine.addSystem(changeArtHoverSystem)
+    //engine.addSystem(artHoverSystem)
     toggleAudio('playlist')
-
-
-
-
+    
+    
+    
+    
     /// TEXT
-
+    
     // Change the active function below to toggle between default and custom title texts
     createDefaultTexts()
     //createCustomTextTitles()
-
+    
     // Customise in text.ts
     createCustomTextPanels()
+
+    utils.timers.setTimeout(() => {
+        createArtHovers()
+    }, 5000)
 
 }

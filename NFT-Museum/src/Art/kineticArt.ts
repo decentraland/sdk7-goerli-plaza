@@ -4,7 +4,7 @@ import * as utils from '@dcl-sdk/utils';
 import { artPosA, artPosB, artPosC, artPosD, artRotA, artRotB, artRotC, artRotD } from "./artPositions";
 import { openExternalUrl } from "~system/RestrictedActions";
 import { linktreeURL } from "../social";
-import { audioConfig, toggleAudio } from "../Audio/audio";
+import { audioConfig, audioType, toggleAudio } from "../Audio/audio";
 
 
 
@@ -156,23 +156,17 @@ export function createKineticArt(
         }],
         function (otherEntity) {
 
-            if (audioConfig['playlist']) {
-                toggleAudio('playlist')
-            }
-            else if (audioConfig['radio']) {
-                toggleAudio('radio')
-            }
+            if (audio) {
+                toggleAudio(audioType)
+              }
             if (animationClip !== null) {
                 let animateArt = Animator.playSingleAnimation(entity, animationClip, false)
             }
         },
         function (anotherEntity) {
-            if (audioConfig['playlist']) {
-                toggleAudio('playlist')
-            }
-            else if (audioConfig['radio']) {
-                toggleAudio('radio')
-            }
+            if (audio) {
+                toggleAudio(audioType)
+              }
             if (animationClip !== null) {
                 let stopAnim = Animator.stopAllAnimations(entity, false)
             }

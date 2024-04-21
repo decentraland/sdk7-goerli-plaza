@@ -1,10 +1,10 @@
-import { engine, Transform, MeshRenderer, MeshCollider, Material, VideoPlayer, InputAction, pointerEventsSystem, Entity } from '@dcl/sdk/ecs';
+import { engine, Transform, MeshRenderer, MeshCollider, Material, VideoPlayer, InputAction, pointerEventsSystem } from '@dcl/sdk/ecs';
 import * as utils from '@dcl-sdk/utils';
 import { openExternalUrl } from '~system/RestrictedActions';
 import { Quaternion, Color3, Color4, Vector3 } from '@dcl/sdk/math';
 import { artPos14, artPos15, artPos2, artPos25, artPos26, artRot14, artRot15, artRot2, artRot25, artRot26 } from './artPositions';
 import { homepageUrl, linktreeURL } from '../social';
-import { audioConfig, toggleAudio } from '../Audio/audio';
+import { audioConfig, audioType, toggleAudio } from '../Audio/audio';
 
 //let videoPlayer: any;
 let isImage = true
@@ -145,11 +145,8 @@ export function createVideoArt(
         volume: 0.5
       })
 
-      if (audioConfig['playlist']) {
-        toggleAudio('playlist')
-      }
-      else if (audioConfig['radio']) {
-        toggleAudio('radio')
+      if (audio) {
+        toggleAudio(audioType)
       }
       else { return }
     },
@@ -161,12 +158,8 @@ export function createVideoArt(
       VideoPlayer.getMutable(entity).playing = false;
       setMaterial(isImage)
 
-
-      if (audioConfig['playlist']) {
-        toggleAudio('playlist')
-      }
-      else if (audioConfig['radio']) {
-        toggleAudio('radio')
+      if (audio) {
+        toggleAudio(audioType)
       }
       else { return }
     }
