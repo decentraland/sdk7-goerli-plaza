@@ -12,9 +12,9 @@
   "devDependencies": {
     "@dcl-sdk/utils": "latest",
     "@dcl/asset-packs": "latest",
-    "@dcl/js-runtime": "7.3.33",
+    "@dcl/js-runtime": "7.4.17",
     "@dcl/sdk": "latest",
-    "dcl-crypto-toolkit": "^1.0.0-20231102183838.commit-5873fdd",
+    "dcl-crypto-toolkit": "latest",
     "dcl-ui-toolkit": "latest"
   },
   "dependencies": {
