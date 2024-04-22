@@ -4,7 +4,7 @@ import * as utils from '@dcl-sdk/utils'
 import { createVideoArt, videoCollection } from '../Art/videoArt'
 import { createKineticArt, kineticArtCollection } from '../Art/kineticArt'
 import { createImageArt, imageArtCollection } from '../Art/imageArt'
-import { createNFT, nftCollection } from '../Art/nftArt'
+import { createNFT, NFTdata } from '../Art/nftArt'
 import { createWearableReward, reward, rewardEntity } from '../Rewards/rewards'
 
 
@@ -52,9 +52,9 @@ export function createLazyArea(position: Vector3, scale: Vector3, parentPos: Ent
         createdKineticArt = []
         createdImages = []
 
-        for (const nft of nftCollection) {
+        for (const nft of NFTdata) {
           if (nft.room === id) {
-            const nftArt = createNFT(nft.position, nft.rotation, nft.scale, nft.urn, nft.color, nft.frame, nft.hoverText)
+            const nftArt = createNFT(nft)
             createdNfts.push(nftArt)
           }
         }
@@ -83,7 +83,7 @@ export function createLazyArea(position: Vector3, scale: Vector3, parentPos: Ent
           }
         }
         if (id === 3) {
-          const theRewardEntity = createWearableReward()
+          createWearableReward()
         }
 
       }
@@ -106,7 +106,7 @@ export function createLazyArea(position: Vector3, scale: Vector3, parentPos: Ent
         engine.removeEntity(rewardEntity)
       }
 
-      createdNfts = [] // Clear the array
+      createdNfts = []
       createdVideos = []
       createdKineticArt = []
       createdImages = []
@@ -154,8 +154,6 @@ export function creatAllLazyAreas() {
     scale: Vector3.create(1, 1, 1),
     parent: lazyParent
   })
-
-
 
   createLazyArea(Vector3.create(6.65, 10.5, 8), Vector3.create(30, 10, 30), lazyArea3, 3)
   createLazyArea(Vector3.create(6.65, 5.5, 8), Vector3.create(26.2, 10, 32), lazyArea2, 2)

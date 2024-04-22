@@ -1,8 +1,6 @@
 import { GltfContainer, Transform, engine } from "@dcl/sdk/ecs";
 import { sceneCentrePosition } from "../structures";
-import { Vector2 } from "~system/EngineApi";
 import { Vector3 } from "@dcl/sdk/math";
-import { artPos1, artPos2, artRot1 } from "./artPositions";
 
 
 
@@ -57,15 +55,9 @@ export function initializeArtDetails() {
         { title: 'Artwork D', description: 'Description D' },
     )
 
+    // Add more artworks as needed
+    // Change titles and descriptions here to match your art :) 
 }
-
-
-// Add more artworks as needed
-// The artwork id matches the title and description number
-// Change titles and descriptions here to match your art :) 
-
-
-
 
 
 interface ArtPostions {
@@ -74,9 +66,8 @@ interface ArtPostions {
 }
 
 export const artPositions: ArtPostions[] = [
-    // Ground floor gallery:
 
-    //////////////////
+    // Ground floor gallery:
     // Back wall three artworks south to north (room: 1)
     { position: Vector3.create(2.79, 3, 9.8), rotation: Vector3.create(0, -90, 0) },
     { position: Vector3.create(2.8, 3.25, 16), rotation: Vector3.create(0, -90, 0) },
@@ -88,8 +79,6 @@ export const artPositions: ArtPostions[] = [
 
 
     // First floor gallery: 
-
-    ////////////////
     // South wall three artworks east to west (room: 2)
     { position: Vector3.create(24.15, 10.9, 8.27), rotation: Vector3.create(0, 180, 0) },
     { position: Vector3.create(20.6, 10.9, 8.27), rotation: Vector3.create(0, 180, 0) },
@@ -102,9 +91,8 @@ export const artPositions: ArtPostions[] = [
     { position: Vector3.create(20.6, 10.9, 23.71), rotation: Vector3.create(0, 0, 0) },
     { position: Vector3.create(24.17, 10.9, 23.71), rotation: Vector3.create(0, 0, 0) },
 
-    // Mezzanine level:
 
-    ///////////
+    // Mezzanine level:
     // West wall two artworks south to north (room: 2)
     { position: Vector3.create(3.5, 15.43, 12), rotation: Vector3.create(0, -90, 0) },
     { position: Vector3.create(3.5, 15.43, 20.15), rotation: Vector3.create(0, -90, 0) },
@@ -123,6 +111,7 @@ export const artPositions: ArtPostions[] = [
     { position: Vector3.create(21.75, 13.25, 7.5), rotation: Vector3.create(0, 0, 0) },
     /// Exterior Video north
     { position: Vector3.create(21.75, 13.25, 24.5), rotation: Vector3.create(0, 180, 0) },
+
 
     /// 3D Art / Animated Sculptures: 
     // room: 1

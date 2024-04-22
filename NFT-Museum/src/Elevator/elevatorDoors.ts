@@ -103,7 +103,6 @@ export function createElevatorDoors(
     // utils.triggers.enableDebugDraw(true);
 }
 
-
 export function initializeElevatorDoors() {
     createElevatorDoors(
         doorsPos1,

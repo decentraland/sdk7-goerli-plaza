@@ -2,9 +2,9 @@ import { engine, Transform, MeshRenderer, MeshCollider, Material, VideoPlayer, I
 import * as utils from '@dcl-sdk/utils';
 import { openExternalUrl } from '~system/RestrictedActions';
 import { Quaternion, Color3, Color4, Vector3 } from '@dcl/sdk/math';
-import { artPos14, artPos15, artPos2, artPos25, artPos26, artRot14, artRot15, artRot2, artRot25, artRot26 } from './artPositions';
 import { homepageUrl, linktreeURL } from '../social';
 import { audioConfig, audioType, toggleAudio } from '../Audio/audio';
+import { artPositions } from './artData';
 
 //let videoPlayer: any;
 let isImage = true
@@ -24,6 +24,87 @@ const horizontalVideoLPMxSOAplaceholder = 'https://bafkreigpeshmzddtlhw5tpxa55z3
 const horizontalVideoIndieVillage = 'https://player.vimeo.com/external/931792879.m3u8?s=fa7ece24dfd2899ddac2112250092c4be5dbdff0&logging=false'
 const horizontalVideoIndieVillagePlaceholder = 'https://bafkreie2rucyrbnl5en7bccthydcxsmddhffp4oincu7afc2jt53u4eb6e.ipfs.nftstorage.link/'
 
+
+export const videoCollection: VideoData[] = [
+  {
+    room: 1,
+    id: 2,
+    position: artPositions[1].position,
+    rotation: artPositions[1].rotation,
+    scale: Vector3.create(0.003 * 1920, 0.003 * 1080, 1),
+    image: horizontalVideoMVFW23placeholder,
+    video: horizontalVideoMVFW23,
+    hoverText: 'Click',
+    website: homepageUrl,
+    triggerScale: Vector3.create(4, 2, 10),
+    triggerPosition: Vector3.create(artPositions[1].position.x + 2, artPositions[1].position.y - 1, artPositions[1].position.z),
+    audio: true,
+    hasAlpha: false
+  },
+  {
+    room: 2,
+    id: 14,
+    position: artPositions[13].position,
+    rotation: artPositions[13].rotation,
+    scale: Vector3.create(0.0025 * 1920, 0.0025 * 1080, 1),
+    image: horizontalVideoLPMxSOAplaceholder,
+    video: horizontalVideoLPMxSOA,
+    hoverText: 'Click',
+    website: linktreeURL,
+    triggerScale: Vector3.create(4, 2, 4),
+    triggerPosition: Vector3.create(artPositions[13].position.x + 2, artPositions[13].position.y - 1, artPositions[13].position.z),
+    audio: true,
+    hasAlpha: false
+
+  },
+  {
+    room: 2,
+    id: 15,
+    position: artPositions[14].position,
+    rotation: artPositions[14].rotation,
+    scale: Vector3.create(0.0025 * 1920, 0.0025 * 1080, 1),
+    image: horizontalVideoIndieVillagePlaceholder,
+    video: horizontalVideoIndieVillage,
+    hoverText: 'Click',
+    website: linktreeURL,
+    triggerScale: Vector3.create(4, 2, 4),
+    triggerPosition: Vector3.create(artPositions[14].position.x + 2, artPositions[14].position.y - 1, artPositions[14].position.z),
+    audio: true,
+    hasAlpha: false
+
+  },
+  {
+    room: 2,
+    id: 25,
+    position: artPositions[24].position,
+    rotation: artPositions[24].rotation,
+    scale: Vector3.create(6, 8.65, 1),
+    image: verticalVarbarianPlaceholder,
+    video: verticalVarbarianVid,
+    hoverText: 'Click',
+    website: linktreeURL,
+    triggerScale: Vector3.create(8, 6, 6),
+    triggerPosition: Vector3.create(artPositions[24].position.x, artPositions[24].position.y - 1, artPositions[24].position.z - 2),
+    audio: false,
+    hasAlpha: false
+  },
+  {
+    room: 2,
+    id: 26,
+    position: artPositions[25].position,
+    rotation: artPositions[25].rotation,
+    scale: Vector3.create(6, 8.65, 1),
+    image: verticalVideoPlaceholder,
+    video: verticalVideo,
+    hoverText: 'Click',
+    website: linktreeURL,
+    triggerScale: Vector3.create(8, 6, 6),
+    triggerPosition: Vector3.create(artPositions[25].position.x, artPositions[25].position.y - 1, artPositions[25].position.z + 4),
+    audio: true,
+    hasAlpha: false
+  }
+]
+
 export type VideoData = {
   room: number;
   id: number;
@@ -39,7 +120,6 @@ export type VideoData = {
   audio?: boolean;
   hasAlpha?: boolean;
 };
-
 
 export function createVideoArt(
   position: Vector3,
@@ -166,84 +246,3 @@ export function createVideoArt(
   );
   return entity
 }
-
-export const videoCollection: VideoData[] = [
-  {
-    room: 1,
-    id: 2,
-    position: artPos2,
-    rotation: artRot2,
-    scale: Vector3.create(0.003 * 1920, 0.003 * 1080, 1),
-    image: horizontalVideoMVFW23placeholder,
-    video: horizontalVideoMVFW23,
-    hoverText: 'Click',
-    website: homepageUrl,
-    triggerScale: Vector3.create(4, 2, 10),
-    triggerPosition: Vector3.create(artPos2.x + 2, artPos2.y - 1, artPos2.z),
-    audio: true,
-    hasAlpha: false
-  },
-  {
-    room: 2,
-    id: 14,
-    position: artPos14,
-    rotation: artRot14,
-    scale: Vector3.create(0.0025 * 1920, 0.0025 * 1080, 1),
-    image: horizontalVideoLPMxSOAplaceholder,
-    video: horizontalVideoLPMxSOA,
-    hoverText: 'Click',
-    website: linktreeURL,
-    triggerScale: Vector3.create(4, 2, 4),
-    triggerPosition: Vector3.create(artPos14.x + 2, artPos14.y - 1, artPos14.z),
-    audio: true,
-    hasAlpha: false
-
-  },
-  {
-    room: 2,
-    id: 15,
-    position: artPos15,
-    rotation: artRot15,
-    scale: Vector3.create(0.0025 * 1920, 0.0025 * 1080, 1),
-    image: horizontalVideoIndieVillagePlaceholder,
-    video: horizontalVideoIndieVillage,
-    hoverText: 'Click',
-    website: linktreeURL,
-    triggerScale: Vector3.create(4, 2, 4),
-    triggerPosition: Vector3.create(artPos15.x + 2, artPos15.y - 1, artPos15.z),
-    audio: true,
-    hasAlpha: false
-
-  },
-  {
-    room: 2,
-    id: 25,
-    position: artPos25,
-    rotation: artRot25,
-    scale: Vector3.create(6, 8.65, 1),
-    image: verticalVarbarianPlaceholder,
-    video: verticalVarbarianVid,
-    hoverText: 'Click',
-    website: linktreeURL,
-    triggerScale: Vector3.create(8, 6, 6),
-    triggerPosition: Vector3.create(artPos25.x, artPos25.y - 1, artPos25.z - 2),
-    audio: false,
-    hasAlpha: false
-  },
-  {
-    room: 2,
-    id: 26,
-    position: artPos26,
-    rotation: artRot26,
-    scale: Vector3.create(6, 8.65, 1),
-    image: verticalVideoPlaceholder,
-    video: verticalVideo,
-    hoverText: 'Click',
-    website: linktreeURL,
-    triggerScale: Vector3.create(8, 6, 6),
-    triggerPosition: Vector3.create(artPos26.x, artPos26.y - 1, artPos26.z + 4),
-    audio: true,
-    hasAlpha: false
-  }
-]
-

@@ -44,6 +44,7 @@ export function radioUI() {
                         alignItems: 'center',
                     }}
                 >
+                    {/* Button with radio details */}
                     <Button key={'radio-button'}
                         uiTransform={{
                             width: `${canvasHeight * 0.075}`,
@@ -56,6 +57,7 @@ export function radioUI() {
                         color={textColor}
                         onMouseDown={openRadio}
                     />
+                    {/* Play / pause radio button */}
                     <Button key={'radio-toggle'}
                         uiTransform={{
                             width: `${canvasHeight * 0.035}`,

@@ -1,9 +1,7 @@
-import { engine, Transform, Entity, InputAction, PointerEventType, PointerEvents, Schemas, inputSystem, MeshCollider, MeshRenderer, Material } from "@dcl/sdk/ecs";
+import { engine, Transform, Entity, InputAction, PointerEventType, PointerEvents, Schemas, inputSystem, MeshCollider, MeshRenderer } from "@dcl/sdk/ecs";
 import * as utils from '@dcl-sdk/utils';
 import { Quaternion, Vector3 } from "@dcl/sdk/math";
-import { artPos1, artRot1, artPos2, artRot2, artPos3, artRot3, artPos4, artRot4, artPos5, artRot5, artPos6, artRot6, artPos7, artPos8, artRot8, artPos9, artRot9, artPos10, artRot10, artPos11, artRot11, artPos12, artRot12, artPos13, artRot13, artPos14, artRot14, artPos15, artRot15, artPos16, artRot16, artPos17, artRot17, artPos18, artRot18, artPos19, artRot19, artPos20, artRot20, artPos21, artRot21, artPos22, artRot22, artPos23, artRot23, artPos24, artRot24, artPos25, artRot25, artPos26, artRot26, artPosA, artRotA, artPosB, artRotB, artPosC, artRotC, artPosD, artRotD, artRot7 } from "./artPositions";
-import { artDetails, initializeArtDetails } from "./artData";
-import { cleanString } from "../helperFunctions";
+import { artDetails, artPositions } from "./artData";
 
 
 let hoverDistance = 8 // Distance at which artHover UI will appear
@@ -32,7 +30,7 @@ export function createArtID(position: Vector3, rotation: Vector3, artworkId: num
         scale: defaultScale
     })
 
-    // MeshRenderer.setBox(entity) // handy for debugging
+   // MeshRenderer.setBox(entity) // handy for debugging
     MeshCollider.setBox(entity)
     ArtHover.create(entity, { visible: false })
     PointerEvents.create(entity, {
@@ -51,8 +49,8 @@ export function createArtID(position: Vector3, rotation: Vector3, artworkId: num
 export function artHoverSystem(dt: number) {
     const artEntities = engine.getEntitiesWith(ArtHover, Transform)
     for (const [entity, _arthover, _transform] of artEntities) {
-        const mutableTransform = Transform.getMutable(entity)
-        const artDetails = ArtHover.get(entity)
+        Transform.getMutable(entity)
+        ArtHover.get(entity)
     }
 }
 
@@ -126,60 +124,10 @@ export function addArtworkData(entity: Entity, artworkId: number, title: string,
 
 const yOffset = -0.5
 
-/*
-export function createArtHovers() {
 
-    if (artDetails.length === 0) {
-        initializeArtDetails();
-        console.log('initialized art details');
-    }
-
-    
-    const entityData = {
-        entityIDs: [] as number[],
-        entityPositions: [] as Vector3[],
-        entityRotations: [] as Vector3[],
-        entityIndex: [] as number[],
-        entityTitle: [] as string[],
-        entityDescription: [] as string[]
-    };
-
-    const adjustments = [
-        { index: 1, position: { x: 0, y: 0, z: 0 }, rotation: { x: 0, y: 0, z: 0 } }, // Adjustments for artwork 1
-        { index: 2, position: { x: 0, y: -0.25, z: 0 }, rotation: { x: 0, y: 0, z: 0 } }, // Adjustments for artwork 2
-        // Add more adjustments for other artworks as needed
-    ];
-
-    for (let i = 0; i < 30; i++) {
-        const artPosValues: Vector3[] = [artPos1, artPos2];
-        const artPos = artPosValues[i];        
-        const artRotValues: Vector3[] = [artRot1, artRot2];
-        const artRot = artRotValues[i];        
-        const artDetail = artDetails[i];
-        const adjustment = adjustments.find(adj => adj.index === i + 1) || { position: { x: 0, y: 0, z: 0 }, rotation: { x: 0, y: 0, z: 0 } };
-
-        const adjustedPosition = Vector3.create(artPos.x + adjustment.position.x, artPos.y + yOffset + adjustment.position.y, artPos.z + adjustment.position.z);
-        const adjustedRotation = Vector3.create(artRot.x + adjustment.rotation.x, artRot.y + adjustment.rotation.y, artRot.z + adjustment.rotation.z);
-
-        console.log('position:', artPos.x, artPos.y, artPos.z);
-        console.log('rotation:', artRot.x, artRot.y, artRot.z);
-        console.log('adjusted rotation:', artRot.x + adjustment.rotation.x, artRot.y + adjustment.rotation.y, artRot.z + adjustment.rotation.z);
-        console.log('adjusted position:', artPos.x + adjustment.position.x, artPos.y + adjustment.position.y, artPos.z + adjustment.position.z);
-        
-
-        const entity = createArtID(adjustedPosition, adjustedRotation, i + 1, artDetail.title, artDetail.description);
-        addArtworkData(entity, i + 1, artDetail.title, artDetail.description, true);
-
-        entityData.entityIDs.push(entity);
-        entityData.entityPositions.push(adjustedPosition);
-        entityData.entityRotations.push(adjustedRotation);
-        entityData.entityIndex.push(i + 1);
-        entityData.entityTitle.push(artDetail.title);
-        entityData.entityDescription.push(artDetail.description);
-    }
+interface ArtHoverAdjustments {
+    hoverAdjustment: Vector3
 }
-*/
-
 
 
 export function createArtHovers() {
@@ -191,37 +139,96 @@ export function createArtHovers() {
     const entityTitle: string[] = []
     const entityDescription: string[] = []
 
+    const artHoverAdjustments = [
+        { hoverAdjustment: Vector3.create(0, 0, 0) },
+        { hoverAdjustment: Vector3.create(0, - 0.25, 0) },
+        { hoverAdjustment: Vector3.create(0, 0, 0) },
+        { hoverAdjustment: Vector3.create(0, 0, 0) },
+        { hoverAdjustment: Vector3.create(0, 0, 0) },
+        { hoverAdjustment: Vector3.create(0, + 0.25, 0) },
+        { hoverAdjustment: Vector3.create(0, + 0.25, 0) },
+        { hoverAdjustment: Vector3.create(0, + 0.25, 0) },
+        { hoverAdjustment: Vector3.create(0, 0, 0) },
+        { hoverAdjustment: Vector3.create(0, 0, 0) },
+        { hoverAdjustment: Vector3.create(0, + 0.25, 0) },
+        { hoverAdjustment: Vector3.create(0, + 0.25, 0) },
+        { hoverAdjustment: Vector3.create(0, + 0.25, 0) },
+        { hoverAdjustment: Vector3.create(0, 0, 0) },
+        { hoverAdjustment: Vector3.create(0, 0, 0) },
+        { hoverAdjustment: Vector3.create(0, 0, 0) },
+        { hoverAdjustment: Vector3.create(0, 0, 0) },
+        { hoverAdjustment: Vector3.create(0, 0, 0) },
+        { hoverAdjustment: Vector3.create(0, 0, 0) },
+        { hoverAdjustment: Vector3.create(0, 0, 0) },
+        { hoverAdjustment: Vector3.create(0, 0, 0) },
+        { hoverAdjustment: Vector3.create(0, 0, 0) },
+        { hoverAdjustment: Vector3.create(0, 0, 0) },
+        { hoverAdjustment: Vector3.create(0, 0, 0) },
+
+        { hoverAdjustment: Vector3.create(- 4.5, - 2.1, 0) },
+        { hoverAdjustment: Vector3.create(- 4.5, - 2.1, 0) },
+
+        { hoverAdjustment: Vector3.create(0, 1, 0) },
+        { hoverAdjustment: Vector3.create(0, 1, 0) },
+        { hoverAdjustment: Vector3.create(0.2, 1, 0) },
+        { hoverAdjustment: Vector3.create(1.5, 1.5, 0) },
+
+
+
+
+    ]
+
     const artworkData = [
-        { position: Vector3.create(artPos1.x, artPos1.y, artPos1.z), rotation: artRot1, index: 1, title: artDetails[0].title, description: artDetails[0].description },
-        { position: Vector3.create(artPos2.x, artPos2.y - 0.25, artPos2.z), rotation: artRot2, index: 2, title: artDetails[1].title, description: artDetails[1].description },
-        { position: Vector3.create(artPos3.x, artPos3.y, artPos3.z), rotation: artRot3, index: 3, title: artDetails[2].title, description: artDetails[2].description },
-        { position: Vector3.create(artPos4.x, artPos4.y, artPos4.z), rotation: artRot4, index: 4, title: artDetails[3].title, description: artDetails[3].description },
-        { position: Vector3.create(artPos5.x, artPos5.y, artPos5.z), rotation: artRot5, index: 5, title: artDetails[4].title, description: artDetails[4].description },
-        { position: Vector3.create(artPos6.x, artPos6.y + 0.25, artPos6.z), rotation: artRot6, index: 6, title: artDetails[5].title, description: artDetails[5].description },
-        { position: Vector3.create(artPos7.x, artPos7.y + 0.25, artPos7.z), rotation: artRot7, index: 7, title: artDetails[6].title, description: artDetails[6].description },
-        { position: Vector3.create(artPos8.x, artPos8.y + 0.25, artPos8.z), rotation: artRot8, index: 8, title: artDetails[7].title, description: artDetails[7].description },
-        { position: Vector3.create(artPos9.x, artPos9.y, artPos9.z), rotation: artRot9, index: 9, title: artDetails[8].title, description: artDetails[8].description },
-        { position: Vector3.create(artPos10.x, artPos10.y, artPos10.z), rotation: artRot10, index: 10, title: artDetails[9].title, description: artDetails[9].description },
-        { position: Vector3.create(artPos11.x, artPos11.y + 0.25, artPos11.z), rotation: artRot11, index: 11, title: artDetails[10].title, description: artDetails[10].description },
-        { position: Vector3.create(artPos12.x, artPos12.y + 0.25, artPos12.z), rotation: artRot12, index: 12, title: artDetails[11].title, description: artDetails[11].description },
-        { position: Vector3.create(artPos13.x, artPos13.y + 0.25, artPos13.z), rotation: artRot13, index: 13, title: artDetails[12].title, description: artDetails[12].description },
-        { position: Vector3.create(artPos14.x, artPos14.y, artPos14.z), rotation: artRot14, index: 14, title: artDetails[13].title, description: artDetails[13].description },
-        { position: Vector3.create(artPos15.x, artPos15.y, artPos15.z), rotation: artRot15, index: 15, title: artDetails[14].title, description: artDetails[14].description },
-        { position: Vector3.create(artPos16.x, artPos16.y, artPos16.z), rotation: artRot16, index: 16, title: artDetails[15].title, description: artDetails[15].description },
-        { position: Vector3.create(artPos17.x, artPos17.y, artPos17.z), rotation: artRot17, index: 17, title: artDetails[16].title, description: artDetails[16].description },
-        { position: Vector3.create(artPos18.x, artPos18.y, artPos18.z), rotation: artRot18, index: 18, title: artDetails[17].title, description: artDetails[17].description },
-        { position: Vector3.create(artPos19.x, artPos19.y, artPos19.z), rotation: artRot19, index: 19, title: artDetails[18].title, description: artDetails[18].description },
-        { position: Vector3.create(artPos20.x, artPos20.y, artPos20.z), rotation: artRot20, index: 20, title: artDetails[19].title, description: artDetails[19].description },
-        { position: Vector3.create(artPos21.x, artPos21.y, artPos21.z), rotation: artRot21, index: 21, title: artDetails[20].title, description: artDetails[20].description },
-        { position: Vector3.create(artPos22.x, artPos22.y, artPos22.z), rotation: artRot22, index: 22, title: artDetails[21].title, description: artDetails[21].description },
-        { position: Vector3.create(artPos23.x, artPos23.y, artPos23.z), rotation: artRot23, index: 23, title: artDetails[22].title, description: artDetails[22].description },
-        { position: Vector3.create(artPos24.x, artPos24.y, artPos24.z), rotation: artRot24, index: 24, title: artDetails[23].title, description: artDetails[23].description },
-        { position: Vector3.create(artPos25.x - 4.5, artPos25.y - 2.1, artPos25.z), rotation: artRot25, index: 25, title: artDetails[24].title, description: artDetails[24].description },
-        { position: Vector3.create(artPos26.x - 4.5, artPos26.y - 2.1, artPos26.z), rotation: artRot26, index: 26, title: artDetails[25].title, description: artDetails[25].description },
-        { position: Vector3.create(artPosA.x, artPosA.y + 1, artPosA.z), rotation: artRotA, index: 27, title: artDetails[26].title, description: artDetails[26].description },
-        { position: Vector3.create(artPosB.x, artPosB.y + 1, artPosB.z), rotation: artRotB, index: 28, title: artDetails[27].title, description: artDetails[27].description },
-        { position: Vector3.create(artPosC.x + 1, artPosC.y + 2, artPosC.z), rotation: artRotC, index: 29, title: artDetails[28].title, description: artDetails[28].description },
-        { position: Vector3.create(artPosD.x + 1, artPosD.y + 2, artPosD.z), rotation: artRotD, index: 30, title: artDetails[29].title, description: artDetails[29].description }
+        // Ground floor gallery:
+        // Back wall three artworks south to north (room: 1)
+        { position: Vector3.add(artPositions[0].position, artHoverAdjustments[0].hoverAdjustment), rotation: artPositions[0].rotation, index: 1, title: artDetails[0].title, description: artDetails[0].description },
+        { position: Vector3.add(artPositions[1].position, artHoverAdjustments[1].hoverAdjustment), rotation: artPositions[1].rotation, index: 2, title: artDetails[1].title, description: artDetails[1].description },
+        { position: artPositions[2].position, rotation: artPositions[2].rotation, index: 3, title: artDetails[2].title, description: artDetails[2].description },
+        // South door
+        { position: artPositions[3].position, rotation: artPositions[3].rotation, index: 4, title: artDetails[3].title, description: artDetails[3].description },
+        // North door
+        { position: artPositions[4].position, rotation: artPositions[4].rotation, index: 5, title: artDetails[4].title, description: artDetails[4].description },
+
+        // First floor gallery: 
+        // South wall three artworks east to west (room: 2)
+        { position: Vector3.add(artPositions[5].position, artHoverAdjustments[5].hoverAdjustment), rotation: artPositions[5].rotation, index: 6, title: artDetails[5].title, description: artDetails[5].description },
+        { position: Vector3.add(artPositions[6].position, artHoverAdjustments[5].hoverAdjustment), rotation: artPositions[6].rotation, index: 7, title: artDetails[6].title, description: artDetails[6].description },
+        { position: Vector3.add(artPositions[7].position, artHoverAdjustments[7].hoverAdjustment), rotation: artPositions[7].rotation, index: 8, title: artDetails[7].title, description: artDetails[7].description },
+        // West wall two artworks south to north
+        { position: artPositions[8].position, rotation: artPositions[8].rotation, index: 9, title: artDetails[8].title, description: artDetails[8].description },
+        { position: artPositions[9].position, rotation: artPositions[9].rotation, index: 10, title: artDetails[9].title, description: artDetails[9].description },
+        // North wall three artworks west to east
+        { position: Vector3.add(artPositions[10].position, artHoverAdjustments[10].hoverAdjustment), rotation: artPositions[10].rotation, index: 11, title: artDetails[10].title, description: artDetails[10].description },
+        { position: Vector3.add(artPositions[11].position, artHoverAdjustments[11].hoverAdjustment), rotation: artPositions[11].rotation, index: 12, title: artDetails[11].title, description: artDetails[11].description },
+        { position: Vector3.add(artPositions[12].position, artHoverAdjustments[12].hoverAdjustment), rotation: artPositions[12].rotation, index: 13, title: artDetails[12].title, description: artDetails[12].description },
+        // Mezzanine level:
+        // West wall two artworks south to north (room: 2)
+        { position: artPositions[13].position, rotation: artPositions[13].rotation, index: 14, title: artDetails[13].title, description: artDetails[13].description },
+        { position: artPositions[14].position, rotation: artPositions[14].rotation, index: 15, title: artDetails[14].title, description: artDetails[14].description },
+        { position: artPositions[15].position, rotation: artPositions[15].rotation, index: 16, title: artDetails[15].title, description: artDetails[15].description },
+        { position: artPositions[16].position, rotation: artPositions[16].rotation, index: 17, title: artDetails[16].title, description: artDetails[16].description },
+        { position: artPositions[17].position, rotation: artPositions[17].rotation, index: 18, title: artDetails[17].title, description: artDetails[17].description },
+        // East wall three artworks north to south
+        { position: artPositions[18].position, rotation: artPositions[18].rotation, index: 19, title: artDetails[18].title, description: artDetails[18].description },
+        { position: artPositions[19].position, rotation: artPositions[19].rotation, index: 20, title: artDetails[19].title, description: artDetails[19].description },
+        { position: artPositions[20].position, rotation: artPositions[20].rotation, index: 21, title: artDetails[20].title, description: artDetails[20].description },
+        //South wall three artworks east to west
+        { position: artPositions[21].position, rotation: artPositions[21].rotation, index: 22, title: artDetails[21].title, description: artDetails[21].description },
+        { position: artPositions[22].position, rotation: artPositions[22].rotation, index: 23, title: artDetails[22].title, description: artDetails[22].description },
+        { position: artPositions[23].position, rotation: artPositions[23].rotation, index: 24, title: artDetails[23].title, description: artDetails[23].description },
+        /// Exterior Video south 
+        { position: Vector3.add(artPositions[24].position, artHoverAdjustments[24].hoverAdjustment), rotation: artPositions[24].rotation, index: 25, title: artDetails[24].title, description: artDetails[24].description },
+        /// Exterior Video north
+        { position: Vector3.add(artPositions[25].position, artHoverAdjustments[25].hoverAdjustment), rotation: artPositions[25].rotation, index: 26, title: artDetails[25].title, description: artDetails[25].description },
+        /// 3D Art / Animated Sculptures:
+        // room: 1
+        { position: Vector3.add(artPositions[26].position, artHoverAdjustments[26].hoverAdjustment), rotation: artPositions[26].rotation, index: 27, title: artDetails[26].title, description: artDetails[26].description },
+        // room: 1
+        { position: Vector3.add(artPositions[27].position, artHoverAdjustments[27].hoverAdjustment), rotation: artPositions[27].rotation, index: 28, title: artDetails[27].title, description: artDetails[27].description },
+        // room: 2
+        { position: Vector3.add(artPositions[28].position, artHoverAdjustments[28].hoverAdjustment), rotation: artPositions[28].rotation, index: 29, title: artDetails[28].title, description: artDetails[28].description },
+        // room: 2
+        { position: Vector3.add(artPositions[29].position, artHoverAdjustments[29].hoverAdjustment), rotation: artPositions[29].rotation, index: 30, title: artDetails[29].title, description: artDetails[29].description }
     ]
 
     artworkData.forEach((artwork, i) => {

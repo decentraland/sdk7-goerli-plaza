@@ -6,11 +6,7 @@ import { pauseIcon, playIcon, skipIcon } from "./ui";
 import { audioType, currentSong, isPlaying, openMixcloud, skipSong, toggleAudio } from "../Audio/audio";
 
 
-
-
 let playlistFontSize = 12;
-
-// {/* Label displaying Art Details */}
 
 export function playlistUI() {
     const canvasHeight = UiCanvasInformation.get(engine.RootEntity).height;
@@ -19,6 +15,7 @@ export function playlistUI() {
         let songData = `${currentSong.title}`;
         let songDataWrap = wordWrap(songData, 8 * tieredModalTextWrapScale, 6);
         return (
+
             <UiEntity
                 key={'playlist-main'}
                 uiTransform={{
@@ -39,6 +36,7 @@ export function playlistUI() {
                     maxHeight: 200
                 }}
             >
+                {/* Button for more playlist info */}
                 <Button
                     key={'playlist-button'}
                     uiTransform={{
@@ -62,6 +60,7 @@ export function playlistUI() {
                         alignItems: 'center',
                     }}
                 >
+                    {/* Play / pause button */}
                     <Button
                         key={'playlist-button2'}
                         uiTransform={{
@@ -87,6 +86,7 @@ export function playlistUI() {
                         }}
                         onMouseDown={() => toggleAudio('playlist')}
                     />
+                    {/* Skip button */}
                     <Button
                         key={'playlist-button3'}
                         uiTransform={{

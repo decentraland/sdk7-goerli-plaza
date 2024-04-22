@@ -1,10 +1,10 @@
 import { Quaternion, Vector3 } from "@dcl/sdk/math";
-import { Animator, engine, Transform, GltfContainer, ColliderLayer, pointerEventsSystem, InputAction, TransformType } from "@dcl/sdk/ecs";
+import { Animator, engine, Transform, GltfContainer, ColliderLayer, pointerEventsSystem, InputAction } from "@dcl/sdk/ecs";
 import * as utils from '@dcl-sdk/utils';
-import { artPosA, artPosB, artPosC, artPosD, artRotA, artRotB, artRotC, artRotD } from "./artPositions";
 import { openExternalUrl } from "~system/RestrictedActions";
 import { linktreeURL } from "../social";
 import { audioType, toggleAudio } from "../Audio/audio";
+import { artPositions } from "./artData";
 
 
 
@@ -38,8 +38,8 @@ export const kineticArtCollection: KineticData[] = [
     {
         room: 1,
         id: 27,
-        position: Vector3.create(artPosA.x, artPosA.y - 0.58, artPosA.z + 0.1),
-        rotation: Quaternion.fromEulerDegrees(artRotA.x, artRotA.y, artRotA.z),
+        position: Vector3.create(artPositions[26].position.x, artPositions[26].position.y - 0.58, artPositions[26].position.z + 0.1),
+        rotation: Quaternion.fromEulerDegrees(artPositions[26].rotation.x, artPositions[26].rotation.y, artPositions[26].rotation.z),
         scale: Vector3.create(0.5, 0.5, 0.5),
         triggerPosition: Vector3.create(0, 0, 0),
         triggerScale: Vector3.create(6, 5, 10),
@@ -50,8 +50,8 @@ export const kineticArtCollection: KineticData[] = [
     {
         room: 1,
         id: 28,
-        position: Vector3.create(artPosB.x + 0, artPosB.y - 0.58, artPosB.z - 0.1),
-        rotation: Quaternion.fromEulerDegrees(artRotB.x, artRotB.y, artRotB.z),
+        position: Vector3.create(artPositions[27].position.x, artPositions[27].position.y - 0.58, artPositions[27].position.z - 0.1),
+        rotation: Quaternion.fromEulerDegrees(artPositions[27].rotation.x, artPositions[27].rotation.y, artPositions[27].rotation.z),
         scale: Vector3.create(0.75, 0.75, 0.75),
         triggerPosition: Vector3.create(0, 0, 0),
         triggerScale: Vector3.create(6, 5, 10),
@@ -62,8 +62,8 @@ export const kineticArtCollection: KineticData[] = [
     {
         room: 2,
         id: 29,
-        position: artPosC,
-        rotation: Quaternion.fromEulerDegrees(artRotC.x, artRotC.y, artRotC.z),
+        position: artPositions[28].position,
+        rotation: Quaternion.fromEulerDegrees(artPositions[28].rotation.x, artPositions[28].rotation.y, artPositions[28].rotation.z),
         scale: Vector3.create(0.5, 0.5, 0.5),
         triggerPosition: Vector3.create(0, 0, 0),
         triggerScale: Vector3.create(6, 5, 10),
@@ -76,8 +76,8 @@ export const kineticArtCollection: KineticData[] = [
     {
         room: 2,
         id: 30,
-        position: artPosD,
-        rotation: Quaternion.fromEulerDegrees(artRotD.x, artRotD.y, artRotD.z), // rotation
+        position: artPositions[29].position,
+        rotation: Quaternion.fromEulerDegrees(artPositions[29].rotation.x, artPositions[29].rotation.y, artPositions[29].rotation.z), // rotation
         scale: Vector3.create(0.8, 0.8, 0.8),
         triggerPosition: Vector3.create(2, 0, 0),
         triggerScale: Vector3.create(10, 4, 10),
@@ -142,7 +142,7 @@ export function createKineticArt(
         entity,
         utils.NO_LAYERS,
         utils.LAYER_1,
-        [{  type: 'box', position: triggerPosition, scale: triggerScale }],
+        [{ type: 'box', position: triggerPosition, scale: triggerScale }],
         function (otherEntity) {
             if (audio) { toggleAudio(audioType) }
             if (animationClip !== null) { Animator.playSingleAnimation(entity, animationClip, false) }
