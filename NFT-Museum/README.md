@@ -76,7 +76,7 @@ To change the NFT art on display:
   
 
  ```typescript
-     {
+ {
     room: 1,
     id: 1,
     position: artPos1,
@@ -103,7 +103,7 @@ By default, clicking on an NFT will open the default NFT UI, displaying details 
 
 ## Customize the Image Art
 
-To change the image art on display:
+To change the image art on display (for images that aren't NFTs):
 
 1. Navigate to `imageArt.ts` and locate the `imageArtCollection` array:
 
@@ -267,9 +267,15 @@ artDescription1 = 'your description for Artwork ID 1'
 If you change the position or rotation of your artworks, the artHover details will update automatically as long as you maintain consistency with the artworkID. If you add or remove artworks, update the `createArtHovers()` function in `artHover.ts` to include more or less IDs.
 
 ```typescript
-    // Create art hover entity for each artwork
-    const entityID1 = createArtID(artPos1, artRot1, 1, artTitle1, artDescription1);
-    addArtworkData(entityID1, 1, artTitle1, artDescription1, true);
+    // Add more art hover entities as needed 
+    const artworkData = [
+        {
+          position: Vector3.add(artPositions[0].position, artHoverAdjustments[0].hoverAdjustment),
+          rotation: artPositions[0].rotation,
+          index: 1,
+          title: artDetails[0].title,
+          description: artDetails[0].description
+        },
 ```
 
 ---
@@ -301,67 +307,35 @@ To create a lazy area, open `lazyLoading.ts` and locate `createAllLazyAreas()`. 
 
 ## Audio
 
-To toggle between the playlist and the radio go into the `Audio` src folder: 
-
-In `audio.ts` there are two booleans at the top: `Playlist` and `radioPlaying`, set them to `true` or `false` according to which you want. 
+To toggle between the playlist and the radio, go to `audio.ts` and change the `audioType` to 'radio' or 'playlist': 
 
 ```typescript
-/// This is the Playlist, set to false to remove it
-export let Playlist: Boolean = false;
+/// Either playlist: 
+export const audioType: string = 'playlist'
 
+// Or radio: 
+export const audioType: string = 'radio'
 
-// This is the radio, set to true to play it 
-export let radioPlaying: boolean = true;
 ```
 
-In `playlist.ts` set the `streamPlayingRef` to `true` or `false` (true = the playlist plays, false = no playlist).
-
-```typescript
-/// This is the Playlist, set to false to remove it
-export let streamPlayingRef: { value: boolean } = { value: false }; // Set an initial value
-```
-
-In `radio.ts` set the `radioPlaying` boolean to `true` or `false` (true = the radio plays, false = no radio).
-
-```typescript
-// This is the radio, set to true to play it 
-export let radioPlaying: boolean = true;
-```
-
----
-
-
-## Audio UI
-
-In the `UI` folder, set the playlist and radio booleans to match `playlist.ts` and `radio.ts`:
-
-```typescript
-playlist.ui.tsx:
-// Set Playlist to 'false' to hide the playlist UI:
-let Playlist: Boolean = true;
-
-radio.ui.tsx:
-// Set Radio to 'true' to show the radio UI:
-let Radio: Boolean = false
-```
+Depending on the audioType you set, the `playlist` or `radio` UI will appear on the screen. You can adjust them in `playlist.ui.tsx` and `radio.ui.tsx`. 
 
 ---
 
 
 ## Radio: 
 
-Change the radioStation url in `radio.ts`:
+Change the radioStation url in `audio.ts`:
 
 ```typescript
-// House Radio (24 House Radio)
-let radioStation = 'radio-stream-url'
+const radioStation = 'https://your-radio-stream-url' // audio streaming url
+const radioLink = 'https://your-radio-website' // link to the radio site
 ```
 
 Adapt the UI however you like in `radio.ui.tsx`:
 
 ```typescript
 let radioStationName = '24 House Radio'
-let radioStationNameWrap = wordWrap(radioStationName, 10, 3)
 let textColor = Color4.White()
 let smallFont = 10
 ```
@@ -372,22 +346,23 @@ let smallFont = 10
 
 ## Playlist: 
 
-Open `playlist.ts` and update the data in the playlist `Song` array to customize the song titles, artists, song durations, and streaming links. 
+Open `audio.ts` and update the data in the playlist `Song` array to customize the song titles, artists, song durations, and streaming links. 
 
 ```typescript
 export const playlist: Song[] = [
-  { title: 'Song Title', artist: 'Artist', duration: (60 * 60), url: 'stream-url' },
-  { title: 'Song Title', artist: 'Artist', duration: (60 * 60) + 1, url: 'stream-url' },
-  { title: 'Song Title', artist: 'Artist', duration: (59 * 60) + 57, url: 'stream-url' },
+  { title: 'Song Title', artist: 'Artist', duration: (60 * 60), url: 'https://stream-url' },
+  { title: 'Song Title', artist: 'Artist', duration: (60 * 60) + 1, url: 'https://stream-url' },
+  { title: 'Song Title', artist: 'Artist', duration: (59 * 60) + 57, url: 'https://stream-url' },
 ];
 ```
 
 Adapt the UI however you like in `playlist.ui.tsx`:
 
 ```typescript
-let songData = 'Playlist Name';
-let songDataWrap = wordWrap(songData, 8 * tieredModalTextWrapScale, 6);
-let playlistFontSize = 12;
+ const playlistFontSize = 12;
+ const playlistTextColor = Color4.White()
+ let songData = `${currentSong.title}`; // displays the title of the song playing
+
 ```
 
 
@@ -440,8 +415,14 @@ To customize the social media links, navigate to `social.ts` and update the urls
 
 To customize the text visible on the NFT Museum, you can hide all visible text from the 3D model and make customizable code based text which you can customize. 
 
-1. Remove `createDefaultTexts()` from `index.ts` and make sure the function `createCustomTextTitles()` isn't commented out.
-2. Open `texts.ts` to customize any element of the texts on display including value, font, size and color.
+1. Go to `text.ts` from `index.ts` and change the showCustomText boolean to true or false.
+
+ ```typescript
+// Set to true to use custom texts and hide the defaults
+let showCustomText: Boolean = false
+```
+
+2. You can customize any element of the texts on display including words, font, size and color in this file.
 
 
 ![image](https://github.com/KatherineJoelle/NFT-Museum2/assets/53322457/0587ba1a-cc80-4545-8d7c-06cfc6ffaaf8) ![image](https://github.com/KatherineJoelle/NFT-Museum2/assets/53322457/5a68c999-ac2a-410b-9896-bd251e4ebdfd)
@@ -492,16 +473,18 @@ To host your images on an external site, instead of uploading them as files in y
 
 ## Change Artwork Positions 
 
-To move artwork it's suggested to adjust the values directly in `artPositions.ts`, then they will automatically update throughout the rest of your code as long as you're following the numbering system, i.e.: 
+To move artwork around head to `artData.ts` and locate the `ArtPostions[]` array. All of the artwork positions and rotations are listed inside this array in ascending index order: 
 
 ```typescript
-ArtworkID = 1
-ArtworkPosition = artPos1
-ArtworkRotation = artRot1
-artTitle1 = 'your title for Artwork ID 1'
-artDescription1 = 'your description for Artwork ID 1'
+export const artPositions: ArtPostions[] = [
 
-// (same setup for ArtworkID 1-30)
+    // Ground floor gallery:
+    // Back wall three artworks south to north (room: 1)
+    { position: Vector3.create(2.79, 3, 9.8), rotation: Vector3.create(0, -90, 0) },
+    { position: Vector3.create(2.8, 3.25, 16), rotation: Vector3.create(0, -90, 0) },
+    { position: Vector3.create(2.82, 3, 22.19), rotation: Vector3.create(0, -90, 0) },
+    // (same setup for ArtworkID 1-30)
+]
 ```
 
 ---
