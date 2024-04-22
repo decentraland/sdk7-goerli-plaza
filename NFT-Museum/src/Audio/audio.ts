@@ -2,7 +2,7 @@ import { AudioStream, engine } from "@dcl/sdk/ecs";
 import * as utils from '@dcl-sdk/utils';
 import { openExternalUrl } from "~system/RestrictedActions";
 
-export const audioType: string = 'playlist' // 'radio' or 'playlist'
+export const audioType: string = 'radio' // 'radio' or 'playlist'
 
 
 // Red Albert Playlist
@@ -106,23 +106,38 @@ export function isPlaying(name: string): boolean {
   return audioConfig[name].isPlaying;
 }
 
-export function skipSong() {
+export async function skipSong() {
   if (currentSongIndex < customPlaylist.length - 1) {
     currentSongIndex++;
   } else {
     currentSongIndex = 0;
   }
-
   currentSong = customPlaylist[currentSongIndex];
+  
+  let audioEntities = engine.getEntitiesWith(AudioStream);
+  for (const [entity] of audioEntities) {
+    AudioStream.deleteFrom(entity)
+    engine.removeEntity(entity);
+  }
+  await createStream(customPlaylist[currentSongIndex].url);
   console.log(`Now playing song: ${customPlaylist[currentSongIndex].title}`);
+}
 
+export async function prevSong() {
+  if (currentSongIndex > 0) {
+    currentSongIndex--;
+  } else {
+    currentSongIndex = customPlaylist.length - 1;
+  }
+  currentSong = customPlaylist[currentSongIndex];
+  
   let audioEntities = engine.getEntitiesWith(AudioStream);
   for (const [entity] of audioEntities) {
     engine.removeEntity(entity);
   }
-  createStream(customPlaylist[currentSongIndex].url);
+  await createStream(customPlaylist[currentSongIndex].url);
+  console.log(`Now playing song: ${customPlaylist[currentSongIndex].title}`);
 }
-
 
 export function openRadio() {
   openExternalUrl({ url: radioLink })

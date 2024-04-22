@@ -43,8 +43,6 @@ export function artDetailsUI() {
             maxHeight: `${UiCanvasInformation.get(engine.RootEntity).height * .2}`,
             maxWidth: `${UiCanvasInformation.get(engine.RootEntity).width * .1}`,
             minWidth: '200px',
-
-
           }}
           onMouseDown={toggleHover}
           uiBackground={{

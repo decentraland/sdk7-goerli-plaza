@@ -9,7 +9,12 @@ import { ReactEcsRenderer } from '@dcl/sdk/react-ecs';
 
 export const pauseIcon = 'images/pauseIcon.png';
 export const playIcon = 'images/playIcon.png';
-export const skipIcon = 'images/skipIcon.png'
+export const backgroundUI = 'images/audio-bg.png'
+export const linkIcon = 'images/link.png'
+export const audioFont = 'sans-serif'
+export const audioFontSize = 15;
+
+
 
 
 export function setupUi() {
