@@ -5,18 +5,20 @@ import { openExternalUrl } from "~system/RestrictedActions";
 export const audioType: string = 'radio' // 'radio' or 'playlist'
 
 
+// House Radio (24 House Radio)
+export const radioStation = 'https://strw3.openstream.co/1487?aw_0_1st.collectionid%3D4682%26stationId%3D4682%26publisherId%3D1511%26k%3D1708457720'
+const radioLink = "https://onlineradiobox.com/ro/24house/?cs=ro.24house"
+
+
+
 // Red Albert Playlist
 export const customPlaylist: Song[] = [
   { title: 'DCLMF23 Set', artist: 'RED ALBERT', duration: (60 * 60), url: 'https://bafybeigyzew44hkz46vzugd3plpovkboshdztv74vkmhhflz44477kmqte.ipfs.nftstorage.link/' },
   { title: 'MVFW23 Set', artist: 'RED ALBERT', duration: (60 * 60) + 1, url: 'https://bafybeicvyrgg6jnvpajfenbdspaevx4yydizslxdgmgd6f2y4tptpkzjpu.ipfs.nftstorage.link/' },
   { title: 'LPM x SOA Set 22', artist: 'RED ALBERT', duration: (59 * 60) + 57, url: 'https://bafybeihis46rooueupvj3dett2sz6745lq5od3x74hvmtfvvollsldr5vq.ipfs.nftstorage.link/' },
 ];
-
 const playlistLink = "https://www.mixcloud.com/alberto-mart%C3%ADnez-cobos/uploads/"
 
-// House Radio (24 House Radio)
-export const radioStation = 'https://strw3.openstream.co/1487?aw_0_1st.collectionid%3D4682%26stationId%3D4682%26publisherId%3D1511%26k%3D1708457720'
-const radioLink = "https://onlineradiobox.com/ro/24house/?cs=ro.24house"
 
 
 type Song = {
@@ -38,7 +40,7 @@ export function createStream(streamUrl: string): Promise<void> {
     AudioStream.create(audioEntity, {
       url: streamUrl,
       playing: true,
-      volume: 0.3
+      volume: 0.1
     });
 
     utils.timers.setTimeout(() => {
@@ -48,7 +50,6 @@ export function createStream(streamUrl: string): Promise<void> {
 }
 
 interface AudioConfig {
-  volume: number;
   isPlaying: boolean;
   streamUrl: string;
   currentSongIndex?: number;
@@ -57,13 +58,11 @@ interface AudioConfig {
 
 export const audioConfig: { [key: string]: AudioConfig } = {
   radio: {
-    volume: 0.5,
     isPlaying: false,
     streamUrl: "https://strw3.openstream.co/1487?aw_0_1st.collectionid%3D4682%26stationId%3D4682%26publisherId%3D1511%26k%3D1708457720",
     preset: 'radio'
   },
   playlist: {
-    volume: 0.3,
     isPlaying: false,
     streamUrl: customPlaylist[currentSongIndex].url,
     preset: 'playlist'
@@ -146,7 +145,6 @@ export function openPlaylistLink() {
 }
 
 export function updateNowPlayingTitle(title: string, artist: string) {
-
   currentSong.title = title;
   currentSong.artist = artist;
   console.log(`Playing:\n ${currentSong.title}\n ${currentSong.artist}`)

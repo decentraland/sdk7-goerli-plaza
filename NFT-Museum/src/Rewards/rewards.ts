@@ -50,6 +50,7 @@ export function createWearableReward() {
         }
       },
       function () {
+        utils.playSound('sounds/star-collect.mp3', false);
         confirmationUI(rewardImage, rewardName);
         let camp = ClaimConfig.campaign.CAMPAIGN_TEST
         claimToken(camp, camp.campaignKeys.KEY_0)

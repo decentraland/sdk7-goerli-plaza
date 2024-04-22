@@ -6,7 +6,7 @@ import { homepageUrl, linktreeURL } from '../social';
 import { audioConfig, audioType, toggleAudio } from '../audio';
 import { artPositions } from './artData';
 
-//let videoPlayer: any;
+const videoVolume = 0.1
 let isImage = true
 
 const verticalVideo = 'https://player.vimeo.com/external/931742718.m3u8?s=efbe1b55804e4ba10b2e8c17e241d1809d324f36&logging=false'
@@ -199,6 +199,7 @@ export function createVideoArt(
     src: video,
     playing: false,
     loop: true,
+    volume: 0.1
   });
 
   if (!videoPlayer) {
@@ -213,7 +214,6 @@ export function createVideoArt(
     [{ type: 'box', scale: triggerScale }],
 
     (otherEntity) => {
-      videoPlayer.playing = true
       if (audio) {
         toggleAudio(audioType)
       }
@@ -225,18 +225,20 @@ export function createVideoArt(
         src: video,
         playing: true,
         loop: true,
-        volume: 0.5
+        volume: videoVolume
       })
+      videoPlayer.playing = true
     },
+
 
     (onExit) => {
       VideoPlayer.getMutable(entity).playing = false;
+      setMaterial(isImage)  
       
       if (audio) {
         toggleAudio(audioType)
       }
-      if (!videoPlayer) return;
-      setMaterial(isImage)  
+    //  if (!videoPlayer) return;
     }
   );
   return entity
