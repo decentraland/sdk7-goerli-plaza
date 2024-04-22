@@ -34,9 +34,6 @@
       "path": "sliding-door"
     },
     {
-      "path": "scene-bounds-check"
-    },
-    {
       "path": "rotating-platforms"
     },
     {
@@ -98,9 +95,6 @@
     },
     {
       "path": "droid-scene"
-    },
-    {
-      "path": "dbmonster"
     },
     {
       "path": "cube-wave-32x32"
@@ -251,12 +245,6 @@
     },
     {
       "path": "BasicInteractions"
-    },
-    {
-      "path": "80,-2-main-crdt"
-    },
-    {
-      "path": "77,-1-raycast-unit-tests"
     }
   ]
 }
