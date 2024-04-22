@@ -6,7 +6,8 @@ import { pauseIcon, playIcon, skipIcon } from "./ui";
 import { audioType, currentSong, isPlaying, openMixcloud, skipSong, toggleAudio } from "../Audio/audio";
 
 
-let playlistFontSize = 12;
+const playlistFontSize = 12;
+const playlistTextColor = Color4.White()
 
 export function playlistUI() {
     const canvasHeight = UiCanvasInformation.get(engine.RootEntity).height;
@@ -48,7 +49,7 @@ export function playlistUI() {
                     variant='primary'
                     textAlign="top-center"
                     fontSize={playlistFontSize * tieredFontScale}
-                    color={Color4.White()}
+                    color={playlistTextColor}
                     onMouseDown={openMixcloud}
                 />
                 <UiEntity
@@ -70,8 +71,8 @@ export function playlistUI() {
                         }}
                         value=''
                         variant='secondary'
-                        fontSize={24 * tieredFontScale}
-                        color={Color4.White()}
+                        fontSize={playlistFontSize * tieredFontScale}
+                        color={playlistTextColor}
                         uiBackground={{
                             textureMode: 'nine-slices',
                             texture: {
@@ -96,7 +97,7 @@ export function playlistUI() {
                         }}
                         value=''
                         variant='secondary'
-                        fontSize={24 * tieredFontScale}
+                        fontSize={playlistFontSize * tieredFontScale}
                         color={Color4.White()}
                         uiBackground={{
                             textureMode: 'nine-slices',

@@ -5,7 +5,7 @@ import { openExternalUrl } from "~system/RestrictedActions";
 export const audioType: string = 'playlist' // 'radio' or 'playlist'
 
 
-// Customise the playlist here:  
+// Red Albert Playlist
 export const customPlaylist: Song[] = [
   { title: 'DCLMF23 Set', artist: 'RED ALBERT', duration: (60 * 60), url: 'https://bafybeigyzew44hkz46vzugd3plpovkboshdztv74vkmhhflz44477kmqte.ipfs.nftstorage.link/' },
   { title: 'MVFW23 Set', artist: 'RED ALBERT', duration: (60 * 60) + 1, url: 'https://bafybeicvyrgg6jnvpajfenbdspaevx4yydizslxdgmgd6f2y4tptpkzjpu.ipfs.nftstorage.link/' },
@@ -14,6 +14,7 @@ export const customPlaylist: Song[] = [
 
 const playlistLink = "https://www.mixcloud.com/alberto-mart%C3%ADnez-cobos/uploads/"
 
+// House Radio (24 House Radio)
 export const radioStation = 'https://strw3.openstream.co/1487?aw_0_1st.collectionid%3D4682%26stationId%3D4682%26publisherId%3D1511%26k%3D1708457720'
 const radioLink = "https://onlineradiobox.com/ro/24house/?cs=ro.24house"
 

@@ -7,9 +7,11 @@ import { pauseIcon, playIcon } from "./ui";
 import { isPlaying, toggleAudio } from '../Audio/audio';
 
 const radioStationName = '24 House Radio'
-const radioStationNameWrap = wordWrap(radioStationName, 14, 3)
 const textColor = Color4.White()
 const smallFont = 10
+
+
+const radioStationNameWrap = wordWrap(radioStationName, 14, 3)
 
 export function radioUI() {
     if (audioType === 'radio') {

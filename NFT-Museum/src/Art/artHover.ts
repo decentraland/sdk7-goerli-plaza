@@ -234,7 +234,6 @@ export function createArtHovers() {
     artworkData.forEach((artwork, i) => {
         const entity = createArtID(Vector3.create(artwork.position.x, artwork.position.y + yOffset, artwork.position.z), artwork.rotation, artwork.index, artwork.title, artwork.description);
         addArtworkData(entity, artwork.index, artwork.title, artwork.description, true);
-
         entityID[i] = entity;
         entityPositions[i] = Vector3.create(artwork.position.x, artwork.position.y + yOffset, artwork.position.z);
         entityRotations[i] = artwork.rotation;
