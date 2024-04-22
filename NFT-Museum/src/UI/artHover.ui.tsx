@@ -1,27 +1,18 @@
 import { UiCanvasInformation, engine } from "@dcl/ecs";
-import { Color4 } from "@dcl/ecs-math";
 import ReactEcs, { UiEntity, Label } from "@dcl/react-ecs";
 import { currentArtworkId, findArtworkById, hoverVisible, toggleHover } from "../Art/artHover";
 import { wordWrap, tieredModalTextWrapScale, breakLines, tieredFontScale } from "../helperFunctions";
+import { backgroundUI, highlightColor, mainColor, mainFont } from "./ui";
 
 
 
-const Max_Chars = 38
+const titleFontSize = 20;
+const descriptionFontSize = 10
+const Max_Chars = 32
 const Max_Lines = 3
-const titleFontSize = 22;
-const descriptionFontSize = 12
-
-const titleFont = 'serif'
-const descriptionFont = 'sans-serif'
-
-const titleColor = Color4.White()
-const descriptionColor = Color4.White()
-
-const artFrame = 'images/artFrame.png'
 
 
 // Set all Art Titles and Descriptions in artData.ts 
-
 export function artDetailsUI() {
   if (hoverVisible) {
     const artwork = findArtworkById(currentArtworkId);
@@ -29,24 +20,22 @@ export function artDetailsUI() {
       const { title, description } = artwork;
       const artTitleWrap = wordWrap(title, Max_Chars * tieredModalTextWrapScale, Max_Lines)
       const artDescriptionWrap = breakLines(description, Max_Chars)
+      const canvasHeight = UiCanvasInformation.get(engine.RootEntity).height;
 
 
       return (
         <UiEntity key={'art-main'}
           uiTransform={{
-            height: `${UiCanvasInformation.get(engine.RootEntity).height * .2}`,
-            width: `${UiCanvasInformation.get(engine.RootEntity).width * .5}`,
+            height: `${canvasHeight * 0.18}`,
+            width: `${canvasHeight * 0.18}`,
             positionType: 'absolute',
-            position: `85% 0 0 90%`,
+            position: `23% 0 0 92%`,
             flexDirection: 'column',
             alignItems: 'center',
-            maxHeight: `${UiCanvasInformation.get(engine.RootEntity).height * .2}`,
-            maxWidth: `${UiCanvasInformation.get(engine.RootEntity).width * .1}`,
-            minWidth: '200px',
           }}
           onMouseDown={toggleHover}
           uiBackground={{
-            texture: { src: artFrame },
+            texture: { src: backgroundUI },
             textureMode: 'nine-slices',
             textureSlices: {
               top: -0.0,
@@ -61,17 +50,15 @@ export function artDetailsUI() {
           <Label key={'artTitle'}
             value={artTitleWrap}
             fontSize={titleFontSize * tieredFontScale}
-            font={titleFont}
+            font={mainFont}
             textAlign="middle-center"
             uiTransform={{
-              width: 'auto',
-              height: 'auto',
-              alignSelf: 'center',
-              margin: `15% 0px 0px ${UiCanvasInformation.get(engine.RootEntity).width * .023}`,
-              positionType: 'absolute',
-              position: '-18% 0 0 0%',
+              width: `${canvasHeight * 0.07}`,
+              height: `${canvasHeight * 0.038}`,
+              margin: '0 0 0 0',
+              position: `13% 0 0 1%`,
             }}
-            color={titleColor}
+            color={highlightColor}
             onMouseDown={toggleHover}
 
           />
@@ -79,25 +66,19 @@ export function artDetailsUI() {
           <Label key={'artDetails'}
             value={artDescriptionWrap}
             fontSize={descriptionFontSize * tieredFontScale}
-            font={descriptionFont}
+            font={mainFont}
             textAlign="middle-center"
             uiTransform={{
-              width: 'auto',
-              height: 'auto',
-              alignSelf: 'center',
-              margin: `0px 0px 0px ${UiCanvasInformation.get(engine.RootEntity).width * .015}`,
-              positionType: 'absolute',
-              position: '10% 0 -9% 0%',
+              width: `${canvasHeight * 0.07}`,
+              height: `${canvasHeight * 0.038}`,
+              margin: '0 0 0 0',
+              position: `20% 0 0 2%`,
             }}
-            color={descriptionColor}
+            color={mainColor}
             onMouseUp={toggleHover}
           />
         </UiEntity>
-
-
       );
-
     }
   }
-
 }

@@ -38,6 +38,7 @@ export function createStream(streamUrl: string): Promise<void> {
     AudioStream.create(audioEntity, {
       url: streamUrl,
       playing: true,
+      volume: 0.3
     });
 
     utils.timers.setTimeout(() => {
@@ -89,6 +90,7 @@ export async function toggleAudio(name: string) {
   } else {
     delete config.currentSongIndex;
     config.streamUrl = '';
+    config.isPlaying = false;
     console.log(`Audio stopped`);
 
     let audioEntities = engine.getEntitiesWith(AudioStream);
@@ -96,10 +98,6 @@ export async function toggleAudio(name: string) {
       engine.removeEntity(entity);
     }
   }
-}
-
-export function setVolume(name: string, volume: number) {
-  audioConfig[name].volume = volume;
 }
 
 export function isPlaying(name: string): boolean {
@@ -139,11 +137,11 @@ export async function prevSong() {
   console.log(`Now playing song: ${customPlaylist[currentSongIndex].title}`);
 }
 
-export function openRadio() {
+export function openRadioLink() {
   openExternalUrl({ url: radioLink })
 }
 
-export function openMixcloud() {
+export function openPlaylistLink() {
   openExternalUrl({ url: playlistLink })
 }
 

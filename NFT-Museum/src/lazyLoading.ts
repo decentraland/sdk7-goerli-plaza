@@ -1,11 +1,11 @@
 import { Vector3, Quaternion } from '@dcl/sdk/math'
 import { Entity, Transform, engine } from '@dcl/sdk/ecs'
 import * as utils from '@dcl-sdk/utils'
-import { createVideoArt, videoCollection } from '../Art/videoArt'
-import { createKineticArt, kineticArtCollection } from '../Art/kineticArt'
-import { createImageArt, imageArtCollection } from '../Art/imageArt'
-import { createNFT, NFTdata } from '../Art/nftArt'
-import { createWearableReward, reward, rewardEntity } from '../Rewards/rewards'
+import { createVideoArt, videoCollection } from './Art/videoArt'
+import { createKineticArt, kineticArtCollection } from './Art/kineticArt'
+import { createImageArt, imageArtCollection } from './Art/imageArt'
+import { createNFT, NFTdata } from './Art/nftArt'
+import { createWearableReward, reward, rewardEntity } from './Rewards/rewards'
 
 
 export let scene1active = true

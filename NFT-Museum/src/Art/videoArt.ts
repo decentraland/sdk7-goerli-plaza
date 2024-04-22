@@ -3,7 +3,7 @@ import * as utils from '@dcl-sdk/utils';
 import { openExternalUrl } from '~system/RestrictedActions';
 import { Quaternion, Color3, Color4, Vector3 } from '@dcl/sdk/math';
 import { homepageUrl, linktreeURL } from '../social';
-import { audioConfig, audioType, toggleAudio } from '../Audio/audio';
+import { audioConfig, audioType, toggleAudio } from '../audio';
 import { artPositions } from './artData';
 
 //let videoPlayer: any;
@@ -131,7 +131,7 @@ export function createVideoArt(
   website: string,
   triggerScale: Vector3,
   triggerPosition: Vector3,
-  audio?: boolean,
+  audio: boolean = true,
   hasAlpha?: boolean
 ) {
 
@@ -213,8 +213,11 @@ export function createVideoArt(
     [{ type: 'box', scale: triggerScale }],
 
     (otherEntity) => {
-      if (!otherEntity || !videoPlayer) return;
       videoPlayer.playing = true
+      if (audio) {
+        toggleAudio(audioType)
+      }
+      if (!otherEntity || !videoPlayer) return;
 
       setMaterial(isImage)
 
@@ -224,24 +227,16 @@ export function createVideoArt(
         loop: true,
         volume: 0.5
       })
-
-      if (audio) {
-        toggleAudio(audioType)
-      }
-      else { return }
     },
 
     (onExit) => {
-
-      if (!videoPlayer) return;
-
       VideoPlayer.getMutable(entity).playing = false;
-      setMaterial(isImage)
-
+      
       if (audio) {
         toggleAudio(audioType)
       }
-      else { return }
+      if (!videoPlayer) return;
+      setMaterial(isImage)  
     }
   );
   return entity

@@ -2,13 +2,11 @@ import { UiCanvasInformation, engine } from "@dcl/sdk/ecs";
 import { Color4 } from "@dcl/sdk/math";
 import ReactEcs, { UiEntity, Button, Label } from "@dcl/sdk/react-ecs";
 import { tieredFontScale, tieredModalTextWrapScale, wordWrap } from "../helperFunctions";
-import { audioFont, audioFontSize, backgroundUI, linkIcon, pauseIcon, playIcon } from "./ui";
-import { audioType, currentSong, isPlaying, openMixcloud, prevSong, skipSong, toggleAudio } from "../Audio/audio";
+import { audioFontSize, backgroundUI, highlightColor, linkIcon, mainColor, mainFont, pauseIcon, playIcon } from "./ui";
+import { audioType, currentSong, isPlaying, openPlaylistLink, prevSong, skipSong, toggleAudio } from "../audio";
 
 
 const playlistSmallFont = 8
-const playlistTextColor = Color4.Black()
-const highlightColor = Color4.Red()
 const previousSongIcon = 'images/prev.png'
 const nextSongIcon = 'images/next.png'
 
@@ -53,6 +51,7 @@ export function playlistUI() {
                       },
                 }}
             >
+
                 {/* Label with song title */}
                 <Label
                     key={'playlist-song-title'}
@@ -66,8 +65,9 @@ export function playlistUI() {
                     textAlign="top-center"
                     fontSize={audioFontSize * tieredFontScale}
                     color={highlightColor}
-                    font={audioFont}
+                    font={mainFont}
                 />
+                
                     {/* Label with song artist */}
                     <Label
                     key={'playlist-song-artist'}
@@ -80,8 +80,8 @@ export function playlistUI() {
                     value={songDataArtistWrap}
                     textAlign="top-center"
                     fontSize={playlistSmallFont * tieredFontScale}
-                    color={playlistTextColor}
-                    font={audioFont}
+                    color={mainColor}
+                    font={mainFont}
                 />
                 <UiEntity
                     key={'playlist-space'}
@@ -92,9 +92,10 @@ export function playlistUI() {
                         alignItems: 'center',
                     }}
                 >
+
                     {/* Play / pause button */}
                     <Button
-                        key={'playlist-button2'}
+                        key={'playlist-toggle'}
                         uiTransform={{
                             width: `${canvasHeight * 0.035}`,
                             height: `${canvasHeight * 0.035}`,
@@ -104,7 +105,7 @@ export function playlistUI() {
                         value=''
                         variant='secondary'
                         fontSize={audioFontSize * tieredFontScale}
-                        color={playlistTextColor}
+                        color={mainColor}
                         uiBackground={{
                             textureMode: 'nine-slices',
                             texture: {
@@ -119,6 +120,7 @@ export function playlistUI() {
                         }}
                         onMouseDown={() => toggleAudio('playlist')}
                     />
+
                       {/* Previous song button */}
                       <Button
                         key={'playlist-previous-song'}
@@ -126,8 +128,7 @@ export function playlistUI() {
                             width: `${canvasHeight * 0.015}`,
                             height: `${canvasHeight * 0.015}`,
                             margin: '0 0 20px 0',
-                            position: `-85% 0 0 -40%`,
-
+                            position: `-85% 0 0 -40%`
                         }}
                         value=''
                         variant='secondary'
@@ -136,9 +137,9 @@ export function playlistUI() {
                         uiBackground={{
                             textureMode: 'stretch',
                             textureSlices: {
-                                left: 1, // Flip horizontally
+                                left: 1, // Flip horizontally doesn't work event with wrapMode 'mirror' :(
                                 right: 0,
-                                top: 0, // Flip vertically
+                                top: 0, 
                                 bottom: 0,
                             },
                             texture: {
@@ -148,6 +149,7 @@ export function playlistUI() {
                         }}
                         onMouseDown={prevSong}
                     />
+
                     {/* Next song button */}
                     <Button
                         key={'playlist-next-song'}
@@ -203,7 +205,7 @@ export function playlistUI() {
                                 right: -0.0,
                             },
                         }}
-                        onMouseDown={openMixcloud}
+                        onMouseDown={openPlaylistLink}
                     />
                 </UiEntity>
             </UiEntity>

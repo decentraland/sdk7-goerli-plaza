@@ -3,7 +3,7 @@ import { Animator, engine, Transform, GltfContainer, ColliderLayer, pointerEvent
 import * as utils from '@dcl-sdk/utils';
 import { openExternalUrl } from "~system/RestrictedActions";
 import { linktreeURL } from "../social";
-import { audioType, toggleAudio } from "../Audio/audio";
+import { audioType, toggleAudio } from "../audio";
 import { artPositions } from "./artData";
 
 

@@ -23,7 +23,7 @@ export const artDetails: Artwork[] = []
 
 export function initializeArtDetails() {
     artDetails.push(
-        { title: 'Artwork 1', description: 'Description 1' },
+        { title: 'Artwork 1', description: 'Long artwork description example, feel free to edit me in artData.ts. You can add a good amount of text here - or you can use line breaks to adjust the description spacing to your liking. :)' },
         { title: 'Artwork 2', description: 'Description 2' },
         { title: 'Artwork 3', description: 'Description 3' },
         { title: 'Artwork 4', description: 'Description 4' },
