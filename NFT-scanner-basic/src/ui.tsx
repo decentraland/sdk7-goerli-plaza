@@ -3,7 +3,7 @@ import {
   Transform,
   GltfContainer,
   MeshRenderer,
-  InputAction, Entity,Animator,
+  InputAction, Entity, Animator,
   pointerEventsSystem, AudioSource
 } from '@dcl/sdk/ecs'
 import { Color4, Vector3, Quaternion } from '@dcl/sdk/math'
@@ -27,7 +27,7 @@ export function setupUi() {
 
 
 const uiComponent = () => (
- 
+
   <UiEntity
     uiTransform={{
       flexDirection: 'column',
@@ -37,7 +37,7 @@ const uiComponent = () => (
       width: '40%', // Use percentage to make it responsive
       height: '40%', // Use percentage to make it responsive
       position: { left: '40%', top: '40%' }, // Adjust to center the UI
-      display: isUIVisible ? 'flex': 'none'
+      display: isUIVisible ? 'flex' : 'none'
     }}
     uiBackground={{
       textureMode: 'center',
@@ -46,8 +46,8 @@ const uiComponent = () => (
 
       }
     }}
-   >
-          
+  >
+
     <Label
       value="Error: Hodl NFT to Enter"
       fontSize={24}
@@ -55,29 +55,29 @@ const uiComponent = () => (
       uiTransform={{ width: '100%', height: 80, alignContent: 'center', margin: '20px' }}
     />
 
- <UiEntity
+    <UiEntity
 
-uiTransform={{ width: '35%', height: 50, margin: '10px' }}
->
+      uiTransform={{ width: '35%', height: 50, margin: '10px' }}
+    >
 
-    <Button
-      value="CANCEL" // using UI text here 
-      variant="secondary"
-    
-      fontSize={22}
-      uiTransform={{ width: '100%', height: 50, margin: '0px' }}
+      <Button
+        value="CANCEL" // using UI text here 
+        variant="secondary"
 
-      
-    onMouseDown={() => {
-        console.log('Cancel')
-       
-        // toggle, hide  the UI 
-        toggleUIVisibility();
-      }}
-     
+        fontSize={22}
+        uiTransform={{ width: '100%', height: 50, margin: '0px' }}
 
-    />
-  </UiEntity> 
-  </UiEntity> 
+
+        onMouseDown={() => {
+          console.log('Cancel')
+
+          // toggle, hide  the UI 
+          toggleUIVisibility();
+        }}
+
+
+      />
+    </UiEntity>
+  </UiEntity>
 )
 
