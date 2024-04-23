@@ -1,5 +1,5 @@
 import { Vector3, Quaternion } from '@dcl/sdk/math'
-import { Entity, Transform, engine } from '@dcl/sdk/ecs'
+import { Entity, Transform, VideoPlayer, engine } from '@dcl/sdk/ecs'
 import * as utils from '@dcl-sdk/utils'
 import { createVideoArt, videoCollection } from './Art/videoArt'
 import { createKineticArt, kineticArtCollection } from './Art/kineticArt'
@@ -60,7 +60,6 @@ export function createLazyArea(position: Vector3, scale: Vector3, parentPos: Ent
         }
         for (const video of videoCollection) {
           if (video.room === id) {
-            const videoData = (video.position, video.rotation, video.scale, video.image, video.video, video.hoverText, video.website, video.triggerScale, video.triggerPosition, video.audio, video.hasAlpha)
             const videoArt = createVideoArt(video.position, video.rotation, video.scale, video.image, video.video, video.hoverText, video.website, video.triggerScale, video.triggerPosition, video.audio, video.hasAlpha);
             if (videoArt !== null) {
               createdVideos.push(videoArt);
@@ -94,6 +93,7 @@ export function createLazyArea(position: Vector3, scale: Vector3, parentPos: Ent
         engine.removeEntity(nft)
       }
       for (const videoArt of createdVideos) {
+       VideoPlayer.deleteFrom(videoArt)
         engine.removeEntity(videoArt)
       }
       for (const kinetic of createdKineticArt) {

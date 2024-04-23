@@ -3,7 +3,7 @@ import * as utils from '@dcl-sdk/utils';
 import { openExternalUrl } from '~system/RestrictedActions';
 import { Quaternion, Color3, Color4, Vector3 } from '@dcl/sdk/math';
 import { homepageUrl, linktreeURL } from '../social';
-import { audioConfig, audioType, toggleAudio } from '../audio';
+import { audioConfig, audioType, isPlaying, toggleAudio } from '../audio';
 import { artPositions } from './artData';
 
 const videoVolume = 0.1
@@ -195,16 +195,29 @@ export function createVideoArt(
     }
   );
 
-  const videoPlayer = VideoPlayer.create(entity, {
-    src: video,
-    playing: false,
-    loop: true,
-    volume: 0.1
-  });
+  function playVideo() {
+    setMaterial(true)
 
-  if (!videoPlayer) {
-    console.error('Failed to create video player.');
+    VideoPlayer.createOrReplace(entity, {
+      src: video,
+      playing: true,
+      loop: true,
+      volume: videoVolume
+    })
+    if (audio) {
+      toggleAudio(audioType)
+    }
+
   }
+
+  function stopVideo() {
+    setMaterial(!isImage)  
+    VideoPlayer.deleteFrom(entity)
+    if (audio) {
+      toggleAudio(audioType)
+    }
+  }
+ 
 
   utils.triggers.addTrigger(
 
@@ -214,31 +227,11 @@ export function createVideoArt(
     [{ type: 'box', scale: triggerScale }],
 
     (otherEntity) => {
-      if (audio) {
-        toggleAudio(audioType)
-      }
-      if (!otherEntity || !videoPlayer) return;
-
-      setMaterial(isImage)
-
-      VideoPlayer.createOrReplace(entity, {
-        src: video,
-        playing: true,
-        loop: true,
-        volume: videoVolume
-      })
-      videoPlayer.playing = true
+    playVideo()
     },
 
-
     (onExit) => {
-      VideoPlayer.getMutable(entity).playing = false;
-      setMaterial(isImage)  
-      
-      if (audio) {
-        toggleAudio(audioType)
-      }
-    //  if (!videoPlayer) return;
+     stopVideo()
     }
   );
   return entity
