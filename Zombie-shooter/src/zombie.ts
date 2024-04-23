@@ -28,7 +28,6 @@ export function createZombie(xPos: number): Entity {
 
   ZombieComponent.create(zombie)
 
-
   Transform.create(zombie, {
     position: { x: xPos, y: 1, z: 3 }
   })
@@ -80,7 +79,6 @@ export function createZombie(xPos: number): Entity {
     ]
   })
 
-
   onMoveZombieFinish(zombie, () => {
     console.log('finished zombie', zombie)
 
@@ -95,8 +93,6 @@ export function createZombie(xPos: number): Entity {
     }
 
     ZombieComponent.getMutable(zombie).rechedEnd = true
-
-
   })
 
   return zombie

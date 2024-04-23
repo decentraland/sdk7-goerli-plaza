@@ -33,7 +33,7 @@ export function main() {
   })
 
   AudioSource.create(tree, {
-    audioClipUrl: 'sounds/pickUp.mp3',
+    audioClipUrl: 'sounds/pickUp.mp3'
   })
 
   Animator.create(tree, {

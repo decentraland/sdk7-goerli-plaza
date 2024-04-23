@@ -1,9 +1,6 @@
 import { engine, AudioSource, Entity } from '@dcl/sdk/ecs'
 
-
-
 export function playSound(entity: Entity, soundPath: string, rndPitch?: boolean) {
-
   AudioSource.stopSound(entity)
   AudioSource.playSound(entity, soundPath, true)
 

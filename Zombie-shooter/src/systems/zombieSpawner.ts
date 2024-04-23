@@ -49,7 +49,6 @@ function spawnZombie() {
 }
 
 function endGame() {
-
   const lever = engine.getEntityOrNullByName('Lever')
 
   if (lever) {

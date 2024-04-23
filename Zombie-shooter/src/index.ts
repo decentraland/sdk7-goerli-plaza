@@ -1,5 +1,5 @@
 import { AudioSource, engine, InputAction, pointerEventsSystem } from '@dcl/sdk/ecs'
-import { } from '@dcl/sdk/math'
+import {} from '@dcl/sdk/math'
 import { GameControllerComponent } from './components/gameController'
 
 import { moveSystem } from './systems/moveZombie'
@@ -16,9 +16,7 @@ const _LIVES = 4
 const _WINNING_SCORE = 15
 const _SPAWN_INTERVAL = 3
 
-
 export function main() {
-
   // lever
   const lever = engine.getEntityOrNullByName('Lever')
 
@@ -36,8 +34,6 @@ export function main() {
           controller.spawnActive = true
           controller.livesLeft = _LIVES
           controller.score = 0
-
-
         } else return
       } else {
         GameControllerComponent.create(lever, {
@@ -57,8 +53,6 @@ export function main() {
 
       AudioSource.playSound(lever, 'sounds/pickUp.mp3', true)
     })
-
-
   }
 
   // walls
@@ -67,26 +61,19 @@ export function main() {
   const wall3 = engine.getEntityOrNullByName('Wall3')
   const wall4 = engine.getEntityOrNullByName('Wall4')
   if (wall1 && wall2 && wall3 && wall4) {
-
     prepareWall(wall1)
     prepareWall(wall2)
     prepareWall(wall3)
     prepareWall(wall4)
-
   }
-
-
 
   AudioSource.create(engine.CameraEntity)
 
   // UI with GitHub link
   setupUi()
-
-
 }
 
 engine.addSystem(zombieSpawnSystem)
 engine.addSystem(moveSystem)
 engine.addSystem(zombieKiller)
 engine.addSystem(attackSystem)
-

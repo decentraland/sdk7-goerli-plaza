@@ -130,16 +130,16 @@ export module PlayerShootingArea {
             if (isDebugging)
               console.log(
                 'Shooting Area: hit validated entityID=' +
-                hitID +
-                ', mesh=' +
-                raycastResult.hits[0].meshName +
-                '\t\nposition{ x=' +
-                relPos.x +
-                ', y=' +
-                relPos.y +
-                ', z=' +
-                relPos.z +
-                ' }'
+                  hitID +
+                  ', mesh=' +
+                  raycastResult.hits[0].meshName +
+                  '\t\nposition{ x=' +
+                  relPos.x +
+                  ', y=' +
+                  relPos.y +
+                  ', z=' +
+                  relPos.z +
+                  ' }'
               )
 
             //render new shot decal

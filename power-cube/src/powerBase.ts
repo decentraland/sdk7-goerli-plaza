@@ -54,9 +54,8 @@ export function createPowerBase(position: Vector3, gltfSrc: string) {
 
       try {
         engine.addSystem(particleSystem)
-      } catch (err) { }
+      } catch (err) {}
       AudioSource.playSound(powerUp, 'sounds/powerUp.mp3')
-
 
       for (const [entity] of engine.getEntitiesWith(Particle)) {
         VisibilityComponent.deleteFrom(entity)

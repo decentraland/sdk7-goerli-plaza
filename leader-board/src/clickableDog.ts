@@ -40,7 +40,7 @@ export class ClickableDog {
 
     this.soundPlayer = engine.addEntity()
     AudioSource.create(this.soundPlayer, {
-      audioClipUrl: 'sounds/bell.mp3',
+      audioClipUrl: 'sounds/bell.mp3'
     })
 
     pointerEventsSystem.onPointerDown(
@@ -68,8 +68,6 @@ export class ClickableDog {
       }
     )
   }
-
-
 
   processClick() {
     this.clickCounter.increase()

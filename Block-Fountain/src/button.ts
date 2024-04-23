@@ -12,7 +12,7 @@ import { Quaternion, Vector3 } from '@dcl/sdk/math'
 import { ECS6ComponentAudioSource } from '~system/EngineApi'
 
 export class ButtonClickComponent {
-  constructor(public clickAnim: string, public audioSource: string) { }
+  constructor(public clickAnim: string, public audioSource: string) {}
 }
 
 export class Button {

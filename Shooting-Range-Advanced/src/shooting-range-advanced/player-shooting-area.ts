@@ -142,20 +142,20 @@ export module PlayerShootingArea {
             if (isDebugging)
               console.log(
                 'Shooting Area: hit at ' +
-                '\n\tposition {x=' +
-                modTransform.pos.x +
-                ', y=' +
-                modTransform.pos.y +
-                ', z=' +
-                modTransform.pos.z +
-                '}' +
-                '\n\trotation {x=' +
-                modTransform.rot.x +
-                ', y=' +
-                modTransform.rot.y +
-                ', z=' +
-                modTransform.rot.z +
-                '}'
+                  '\n\tposition {x=' +
+                  modTransform.pos.x +
+                  ', y=' +
+                  modTransform.pos.y +
+                  ', z=' +
+                  modTransform.pos.z +
+                  '}' +
+                  '\n\trotation {x=' +
+                  modTransform.rot.x +
+                  ', y=' +
+                  modTransform.rot.y +
+                  ', z=' +
+                  modTransform.rot.z +
+                  '}'
               )
 
             //create decal pieces

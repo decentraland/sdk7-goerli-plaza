@@ -48,5 +48,5 @@ export function createJoinTeamControl(team: TeamModels, position: Vector3, color
     text: 'Join Team:\n' + team,
     fontSize: 5
   })
-  Billboard.create(label, { billboardMode: BillboardMode.BM_Y, })
+  Billboard.create(label, { billboardMode: BillboardMode.BM_Y })
 }
