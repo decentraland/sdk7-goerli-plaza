@@ -12,7 +12,7 @@ import { Quaternion, Vector3 } from '@dcl/sdk/math'
 import { ECS6ComponentAudioSource } from '~system/EngineApi'
 
 export class ButtonClickComponent {
-  constructor(public clickAnim: string, public audioSource: string) {}
+  constructor(public clickAnim: string, public audioSource: string) { }
 }
 
 export class Button {
@@ -84,8 +84,7 @@ export class Button {
     Animator.playSingleAnimation(this.buttonEntity, this.buttonClickComponent.clickAnim)
 
     // Fetch the button's audio source and play it
-    const buttonSource = AudioSource.getMutable(this.buttonEntity)
-    buttonSource.playing = true
+    AudioSource.playSound(this.buttonEntity, this.buttonClickComponent.audioSource)
   }
 }
 
