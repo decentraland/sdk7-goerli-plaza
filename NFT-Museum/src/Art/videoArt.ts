@@ -135,6 +135,8 @@ export function createVideoArt(
   hasAlpha?: boolean
 ) {
 
+  let isVideoPlaying = false
+
   const entity = engine.addEntity();
   MeshRenderer.setPlane(entity);
   MeshCollider.setPlane(entity);
@@ -161,9 +163,7 @@ export function createVideoArt(
     alphaTest: hasAlpha ? undefined : 0.5,
   });
 
-
   function setMaterial(isImage: boolean) {
-
     Material.setPbrMaterial(entity, {
       texture: isImage ? videoTexture : imageMaterial,
       roughness: 1,
@@ -176,9 +176,7 @@ export function createVideoArt(
       alphaTexture: hasAlpha ? videoTexture : imageMaterial,
       alphaTest: hasAlpha ? undefined : 0.5,
     });
-
     isImage = !isImage
-
   }
 
   pointerEventsSystem.onPointerDown(
@@ -195,44 +193,42 @@ export function createVideoArt(
     }
   );
 
-  function playVideo() {
-    setMaterial(true)
-
-    VideoPlayer.createOrReplace(entity, {
-      src: video,
-      playing: true,
-      loop: true,
-      volume: videoVolume
-    })
-    if (audio) {
-      toggleAudio(audioType)
-    }
-
-  }
-
-  function stopVideo() {
-    setMaterial(!isImage)  
-    VideoPlayer.deleteFrom(entity)
-    if (audio) {
-      toggleAudio(audioType)
-    }
-  }
- 
-
   utils.triggers.addTrigger(
-
     utils.addTestCube({ position: triggerPosition, scale: triggerScale }, undefined, undefined, Color4.create(1, 1, 1, 0), undefined, true),
     utils.NO_LAYERS,
     utils.LAYER_1,
     [{ type: 'box', scale: triggerScale }],
-
     (otherEntity) => {
-    playVideo()
+      console.log('Entered trigger');
+      if (!isVideoPlaying) {
+        console.log('Playing video');
+        setMaterial(true);
+        VideoPlayer.createOrReplace(entity, {
+          src: video,
+          playing: true,
+          loop: true,
+          volume: videoVolume
+        });
+        if (audio) {
+          toggleAudio(audioType);
+        }
+        isVideoPlaying = true;
+      }
     },
-
     (onExit) => {
-     stopVideo()
+      console.log('Exited trigger');
+      if (isVideoPlaying) {
+        console.log('Stopping video');
+        setMaterial(!isImage);
+        VideoPlayer.deleteFrom(entity);
+        if (audio) {
+          toggleAudio(audioType);
+        }
+        isVideoPlaying = false;
+      }
     }
   );
-  return entity
+
+  return entity;
 }
+

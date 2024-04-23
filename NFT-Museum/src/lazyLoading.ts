@@ -8,7 +8,7 @@ import { createNFT, NFTdata } from './Art/nftArt'
 import { createWearableReward, reward, rewardEntity } from './Rewards/rewards'
 
 
-export let scene1active = true
+//export let scene1active = true
 
 
 export function createLazyArea(position: Vector3, scale: Vector3, parentPos: Entity, id: number,) {
@@ -43,7 +43,7 @@ export function createLazyArea(position: Vector3, scale: Vector3, parentPos: Ent
     }],
     function (onenter) {
 
-      if (scene1active) {
+      //if (scene1active) {
         console.log(`ACTIVE`)
         console.log(`ENTERED ` + id)
 
@@ -63,10 +63,7 @@ export function createLazyArea(position: Vector3, scale: Vector3, parentPos: Ent
             const videoArt = createVideoArt(video.position, video.rotation, video.scale, video.image, video.video, video.hoverText, video.website, video.triggerScale, video.triggerPosition, video.audio, video.hasAlpha);
             if (videoArt !== null) {
               createdVideos.push(videoArt);
-            } else {
-              console.error('Failed to create video art entity.');
-              return null
-            }
+            } 
           }
         }
         for (const kineticArt of kineticArtCollection) {
@@ -85,7 +82,7 @@ export function createLazyArea(position: Vector3, scale: Vector3, parentPos: Ent
           createWearableReward()
         }
 
-      }
+     // }
     },
     () => {
       console.log('LEFT')

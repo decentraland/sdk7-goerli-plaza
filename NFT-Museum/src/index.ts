@@ -18,20 +18,21 @@ import { initializeArtDetails } from './Art/artData'
 export function main() {
 
     createBaseScene()
+    toggleAudio(audioType)
     ElevatorModule.createElevator
     initializeElevatorDoors()
     createAllDoors()
     creatAllLazyAreas()
     createSocials()
-    setupUi()
-    engine.addSystem(changeArtHoverSystem)
-    engine.addSystem(artHoverSystem)
-    toggleAudio(audioType)
     initializeArtDetails()
     createDefaultTexts()
     createCustomTextTitles()
     createCustomTextPanels()
+    engine.addSystem(changeArtHoverSystem)
+    engine.addSystem(artHoverSystem)
     createArtHovers()
+    setupUi()
+   
 
 
 }
