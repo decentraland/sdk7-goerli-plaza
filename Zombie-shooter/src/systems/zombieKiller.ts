@@ -5,7 +5,7 @@ import { engine, InputAction, inputSystem, PointerEventType, Transform } from '@
 import { GameControllerComponent } from '../components/gameController'
 
 
-const _COOLDOWN = 0.7
+const _COOLDOWN = 0.5
 
 var coolDown = 0
 
