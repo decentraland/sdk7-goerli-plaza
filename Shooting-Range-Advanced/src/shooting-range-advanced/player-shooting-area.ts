@@ -83,7 +83,7 @@ export module PlayerShootingArea {
     audioIndex[type]++
     if (audioIndex[type] >= entityAudioShotHit[type].length) audioIndex[type] = 0
     //play next sound
-    AudioSource.getMutable(entityAudioShotHit[type][audioIndex[type]]).playing = true
+    AudioSource.playSound(entityAudioShotHit[type][audioIndex[type]], AUDIO_SHOT_SFX[type])
   }
 
   /** left click input -> fire a ray */
@@ -142,20 +142,20 @@ export module PlayerShootingArea {
             if (isDebugging)
               console.log(
                 'Shooting Area: hit at ' +
-                  '\n\tposition {x=' +
-                  modTransform.pos.x +
-                  ', y=' +
-                  modTransform.pos.y +
-                  ', z=' +
-                  modTransform.pos.z +
-                  '}' +
-                  '\n\trotation {x=' +
-                  modTransform.rot.x +
-                  ', y=' +
-                  modTransform.rot.y +
-                  ', z=' +
-                  modTransform.rot.z +
-                  '}'
+                '\n\tposition {x=' +
+                modTransform.pos.x +
+                ', y=' +
+                modTransform.pos.y +
+                ', z=' +
+                modTransform.pos.z +
+                '}' +
+                '\n\trotation {x=' +
+                modTransform.rot.x +
+                ', y=' +
+                modTransform.rot.y +
+                ', z=' +
+                modTransform.rot.z +
+                '}'
               )
 
             //create decal pieces

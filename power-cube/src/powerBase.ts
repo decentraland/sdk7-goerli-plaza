@@ -54,8 +54,9 @@ export function createPowerBase(position: Vector3, gltfSrc: string) {
 
       try {
         engine.addSystem(particleSystem)
-      } catch (err) {}
-      AudioSource.getMutable(powerUp).playing = true
+      } catch (err) { }
+      AudioSource.playSound(powerUp, 'sounds/powerUp.mp3')
+
 
       for (const [entity] of engine.getEntitiesWith(Particle)) {
         VisibilityComponent.deleteFrom(entity)
@@ -72,7 +73,7 @@ export function createPowerBase(position: Vector3, gltfSrc: string) {
       Transform.getMutable(forcefieldEntity).scale = Vector3.Zero()
 
       engine.removeSystem(particleSystem)
-      AudioSource.getMutable(powerDown).playing = true
+      AudioSource.playSound(powerDown, 'sounds/powerDown.mp3')
     }
   }
 

@@ -22,8 +22,7 @@ export class ClickableDog {
 
   clickCounter: ui.UICounter
   dogStatue: Entity
-  clickSound: Entity
-  bellSound: Entity
+  soundPlayer: Entity
 
   constructor(transform: TransformTypeWithOptionals, endGameCallback: (count: number) => void) {
     ReactEcsRenderer.setUiRenderer(ui.render)
@@ -39,18 +38,9 @@ export class ClickableDog {
     })
     Transform.create(this.dogStatue, transform)
 
-    this.bellSound = engine.addEntity()
-    AudioSource.create(this.bellSound, {
+    this.soundPlayer = engine.addEntity()
+    AudioSource.create(this.soundPlayer, {
       audioClipUrl: 'sounds/bell.mp3',
-      playing: false,
-      loop: false
-    })
-
-    this.clickSound = engine.addEntity()
-    AudioSource.create(this.clickSound, {
-      audioClipUrl: 'sounds/click.mp3',
-      playing: false,
-      loop: false
     })
 
     pointerEventsSystem.onPointerDown(
@@ -79,14 +69,11 @@ export class ClickableDog {
     )
   }
 
-  playSound(entity: Entity) {
-    const audioSource = AudioSource.getMutable(entity)
-    audioSource.playing = true
-  }
+
 
   processClick() {
     this.clickCounter.increase()
-    this.playSound(this.clickSound)
+    AudioSource.playSound(this.soundPlayer, 'sounds/click.mp3')
   }
 
   endGame() {
@@ -96,7 +83,7 @@ export class ClickableDog {
     const hoverFeedback = PointerEvents.getMutable(this.dogStatue)
     hoverFeedback.pointerEvents[0].eventInfo!.hoverText = 'Time up!'
 
-    this.playSound(this.bellSound)
+    AudioSource.playSound(this.soundPlayer, 'sounds/bell.mp3')
   }
 
   restartGame() {

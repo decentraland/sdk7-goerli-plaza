@@ -15,7 +15,6 @@ export function main() {
   const ground = engine.addEntity()
   Transform.create(ground, {
     position: { x: 8, y: 0, z: 8 },
-    rotation: { x: 0, y: 0, z: 0, w: 0 },
     scale: { x: 1.6, y: 1.6, z: 1.6 }
   })
   GltfContainer.create(ground, {
@@ -25,7 +24,6 @@ export function main() {
   const tree = engine.addEntity()
   Transform.create(tree, {
     position: { x: 8, y: 0, z: 8 },
-    rotation: { x: 0, y: 0, z: 0, w: 0 },
     scale: { x: 1.6, y: 1.6, z: 1.6 }
   })
   GltfContainer.create(tree, {
@@ -36,16 +34,12 @@ export function main() {
 
   AudioSource.create(tree, {
     audioClipUrl: 'sounds/pickUp.mp3',
-    loop: false,
-    playing: false
   })
 
   Animator.create(tree, {
     states: [
       {
         clip: 'Tree_Action',
-        loop: false,
-        playing: false,
         shouldReset: true
       }
     ]
@@ -63,8 +57,7 @@ export function main() {
       createHummingBird()
       const anim = Animator.getMutable(tree)
       anim.states[0].playing = true
-      const audioSource = AudioSource.getMutable(tree)
-      audioSource.playing = true
+      AudioSource.playSound(tree, 'sounds/pickUp.mp3')
     }
   )
 
