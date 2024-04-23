@@ -171,6 +171,11 @@ const uiComponent = () => (
 
         onMouseDown={async () => {
           console.log('Sending Mana!');
+                // Hide the UI
+                toggleUIVisibility();
+
+                const state = bridgeStates.get(bridge)
+                if (state) state.toggleDirection()
 
           try {
             const numericAmount = parseFloat(paymentAmount); // Convert to number
@@ -180,15 +185,11 @@ const uiComponent = () => (
               crypto.mana.send(myWallet, numericAmount, true).then(() => {
 
                 // This block executes after the transaction is successful
-                const state = bridgeStates.get(bridge)
-                if (state) state.toggleDirection()
-
+             
                 console.log(paymentAmount, 'Mana'); // Log amount sent
                 playSound(bridgeSound);
 
-                // Hide the UI
-                toggleUIVisibility();
-
+          
               }).catch((error: any) => {
 
                 // Handles any errors in the transaction

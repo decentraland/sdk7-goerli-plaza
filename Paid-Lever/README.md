@@ -20,6 +20,8 @@ Enables users to interact with a lever that, upon successful $MANA transaction, 
 
 ## Try it out
 
+## To launch the scene on the testnet open a preview with the added &ENABLE_WEB3 URL parameter and make sure Metamask is using the Sepolia network.
+
 **Previewing the scene**
 
 1. Download this repository.

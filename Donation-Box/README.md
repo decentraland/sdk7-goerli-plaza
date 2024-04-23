@@ -17,6 +17,9 @@ Repo need [Decentraland Crypto Toolkit](https://github.com/decentraland/dcl-cryp
 
 ## Try it out
 
+## To launch scene on testnet Open a preview with the added &ENABLE_WEB3 URL parameter and make sure Metamask is using the Sepolia network.
+
+
 **Previewing the scene**
 
 1. Download this repository.

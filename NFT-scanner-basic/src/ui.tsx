@@ -34,9 +34,9 @@ const uiComponent = () => (
       alignItems: 'center',
       justifyContent: 'center',
       positionType: 'absolute',
-      width: '40%', // Use percentage to make it responsive
-      height: '40%', // Use percentage to make it responsive
-      position: { left: '40%', top: '40%' }, // Adjust to center the UI
+      width: '60%', // Use percentage to make it responsive
+      height: '60%', // Use percentage to make it responsive
+      position: { left: '20%', top: '20%' }, // Adjust to center the UI
       display: isUIVisible ? 'flex' : 'none'
     }}
     uiBackground={{
