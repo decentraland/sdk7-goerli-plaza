@@ -4,8 +4,10 @@ import { pointerEventsSystem, InputAction, MeshCollider, Entity } from "@dcl/sdk
 import { openNftDialog } from "~system/RestrictedActions";
 import { classicFrame } from "./nftFrames";
 import { artPositions } from "./artData";
+import { currentArtworkId } from "./artHover";
 
-
+/// need to export a function into arthover onpointer down
+// function should be able to cover current pointer eventss present in nfts
 
 let urn6 = 'urn:decentraland:ethereum:erc721:0x06012c8cf97bead5deae237070f9587f8e7a266d:558536'
 let urn7 = 'urn:decentraland:ethereum:erc721:0xd73be539d6b2076bab83ca6ba62dfe189abc6bbe:64359'
@@ -35,8 +37,8 @@ interface NFTdata {
   scale: Vector3,
   urn: string
   frame: NftFrameType,
-  color: Color3
-  hoverText: string
+  color: Color3,
+  hoverText: string,
 }
 
 export const NFTdata: NFTdata[] = [
@@ -45,7 +47,7 @@ export const NFTdata: NFTdata[] = [
     id: 1,
     position: artPositions[0].position,
     rotation: artPositions[0].rotation,
-    scale: Vector3.create(4, 4, 4),
+    scale: artPositions[0].scale,
     urn: 'urn:decentraland:ethereum:erc721:0x06012c8cf97bead5deae237070f9587f8e7a266d:558536', // Example with urn path
     frame: classicFrame,
     color: Color3.Yellow(),
@@ -55,8 +57,8 @@ export const NFTdata: NFTdata[] = [
     room: 1,
     id: 3,
     position: artPositions[2].position,
-    rotation: artPositions[0].rotation,
-    scale: Vector3.create(4, 4, 4),
+    rotation: artPositions[2].rotation,
+    scale: artPositions[2].scale,
     urn: urn3, // Example with urns declared above
     frame: classicFrame,
     color: Color3.Yellow(),
@@ -68,7 +70,7 @@ export const NFTdata: NFTdata[] = [
     id: 6,
     position: artPositions[5].position,
     rotation: artPositions[5].rotation,
-    scale: Vector3.create(4, 4, 4),
+    scale: artPositions[5].scale,
     urn: urn6,
     frame: classicFrame,
     color: Color3.Yellow(),
@@ -79,7 +81,7 @@ export const NFTdata: NFTdata[] = [
     id: 7,
     position: artPositions[6].position,
     rotation: artPositions[6].rotation,
-    scale: Vector3.create(4, 4, 4),
+    scale: artPositions[6].scale,
     urn: urn7,
     frame: classicFrame,
     color: Color3.Yellow(),
@@ -90,7 +92,7 @@ export const NFTdata: NFTdata[] = [
     id: 8,
     position: artPositions[7].position,
     rotation: artPositions[7].rotation,
-    scale: Vector3.create(4, 4, 4),
+    scale: artPositions[7].scale,
     urn: urn8,
     frame: classicFrame,
     color: Color3.Yellow(),
@@ -101,7 +103,7 @@ export const NFTdata: NFTdata[] = [
     id: 11,
     position: artPositions[10].position,
     rotation: artPositions[10].rotation,
-    scale: Vector3.create(4, 4, 4),
+    scale: artPositions[10].scale,
     urn: urn11,
     frame: classicFrame,
     color: Color3.Yellow(),
@@ -123,7 +125,7 @@ export const NFTdata: NFTdata[] = [
     id: 13,
     position: artPositions[12].position,
     rotation: artPositions[12].rotation,
-    scale: Vector3.create(4, 4, 4),
+    scale: artPositions[12].scale,
     urn: urn13,
     frame: classicFrame,
     color: Color3.Yellow(),
@@ -134,7 +136,7 @@ export const NFTdata: NFTdata[] = [
     id: 16,
     position: artPositions[15].position,
     rotation: artPositions[15].rotation,
-    scale: Vector3.create(4, 4, 4),
+    scale: artPositions[15].scale,
     urn: urn16,
     frame: classicFrame,
     color: Color3.Yellow(),
@@ -145,7 +147,7 @@ export const NFTdata: NFTdata[] = [
     id: 17,
     position: artPositions[16].position,
     rotation: artPositions[16].rotation,
-    scale: Vector3.create(4, 4, 4),
+    scale: artPositions[16].scale,
     urn: urn17,
     frame: classicFrame,
     color: Color3.Yellow(),
@@ -156,7 +158,7 @@ export const NFTdata: NFTdata[] = [
     id: 18,
     position: artPositions[17].position,
     rotation: artPositions[17].rotation,
-    scale: Vector3.create(4, 4, 4),
+    scale: artPositions[17].scale,
     urn: urn18,
     frame: classicFrame,
     color: Color3.Yellow(),
@@ -167,7 +169,7 @@ export const NFTdata: NFTdata[] = [
     id: 19,
     position: artPositions[18].position,
     rotation: artPositions[18].rotation,
-    scale: Vector3.create(4, 4, 4),
+    scale: artPositions[18].scale,
     urn: urn19,
     frame: classicFrame,
     color: Color3.Yellow(),
@@ -178,7 +180,7 @@ export const NFTdata: NFTdata[] = [
     id: 20,
     position: artPositions[19].position,
     rotation: artPositions[19].rotation,
-    scale: Vector3.create(4, 4, 4),
+    scale: artPositions[19].scale,
     urn: urn20,
     frame: classicFrame,
     color: Color3.Yellow(),
@@ -189,7 +191,7 @@ export const NFTdata: NFTdata[] = [
     id: 21,
     position: artPositions[20].position,
     rotation: artPositions[20].rotation,
-    scale: Vector3.create(4, 4, 4),
+    scale: artPositions[20].scale,
     urn: urn21,
     frame: classicFrame,
     color: Color3.Yellow(),
@@ -200,7 +202,7 @@ export const NFTdata: NFTdata[] = [
     id: 22,
     position: artPositions[21].position,
     rotation: artPositions[21].rotation,
-    scale: Vector3.create(4, 4, 4),
+    scale: artPositions[21].scale,
     urn: urn22,
     frame: classicFrame,
     color: Color3.Yellow(),
@@ -211,7 +213,7 @@ export const NFTdata: NFTdata[] = [
     id: 23,
     position: artPositions[22].position,
     rotation: artPositions[22].rotation,
-    scale: Vector3.create(4, 4, 4),
+    scale: artPositions[22].scale,
     urn: urn23,
     frame: classicFrame,
     color: Color3.Yellow(),
@@ -222,7 +224,7 @@ export const NFTdata: NFTdata[] = [
     id: 24,
     position: artPositions[23].position,
     rotation: artPositions[23].rotation,
-    scale: Vector3.create(4, 4, 4),
+    scale: artPositions[23].scale,
     urn: urn24,
     frame: classicFrame,
     color: Color3.Yellow(),
@@ -246,6 +248,8 @@ export function createNFT(data: NFTdata) {
 
   MeshCollider.setPlane(entity);
 
+  
+  
   pointerEventsSystem.onPointerDown(
     {
       entity: entity,
@@ -253,6 +257,7 @@ export function createNFT(data: NFTdata) {
         button: InputAction.IA_POINTER,
         hoverText: hoverText,
       },
+      
     },
     function () {
       openNftDialog({ urn: urn });
@@ -270,4 +275,9 @@ export function createNFT(data: NFTdata) {
 
 export function removeNFTs(entity: Entity) {
   engine.removeEntity(entity);
+}
+
+export function openNFTlink(id: number) {
+  openNftDialog({ urn: NFTdata[id].urn });
+
 }
