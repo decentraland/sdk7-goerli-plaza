@@ -24,36 +24,36 @@ export const artDetails: Artwork[] = []
 
 export function initializeArtDetails() {
     artDetails.push(
-        { title: 'Artwork 1', description: 'Long artwork description example, feel free to edit me in artData.ts. You can add a good amount of text here - or you can use line breaks to adjust the description spacing to your liking. :)', type: 'nft' },
-        { title: 'Artwork 2', description: 'Description 2', type: 'nft' },
-        { title: 'Artwork 3', description: 'Description 3', type: 'nft' },
-        { title: 'Artwork 4', description: 'Description 4', type: 'nft' },
-        { title: 'Artwork 5', description: 'Description 5', type: 'nft' },
-        { title: 'Artwork 6', description: 'Description 6', type: 'nft' },
-        { title: 'Artwork 7', description: 'Description 7', type: 'nft' },
-        { title: 'Artwork 8', description: 'Description 8', type: 'nft' },
-        { title: 'Artwork 9', description: 'Description 9', type: 'nft' },
-        { title: 'Artwork 10', description: 'Description 10', type: 'nft' },
-        { title: 'Artwork 11', description: 'Description 11', type: 'nft' },
-        { title: 'Artwork 12', description: 'Description 12', type: 'nft' },
-        { title: 'Artwork 13', description: 'Description 13', type: 'nft' },
-        { title: 'Artwork 14', description: 'Description 14', type: 'nft' },
-        { title: 'Artwork 15', description: 'Description 15', type: 'nft' },
-        { title: 'Artwork 16', description: 'Description 16', type: 'nft' },
-        { title: 'Artwork 17', description: 'Description 17', type: 'nft' },
-        { title: 'Artwork 18', description: 'Description 18', type: 'nft' },
-        { title: 'Artwork 19', description: 'Description 19', type: 'nft' },
-        { title: 'Artwork 20', description: 'Description 20', type: 'nft' },
-        { title: 'Artwork 21', description: 'Description 21', type: 'nft' },
-        { title: 'Artwork 22', description: 'Description 22', type: 'nft' },
-        { title: 'Artwork 23', description: 'Description 23', type: 'nft' },
-        { title: 'Artwork 24', description: 'Description 24', type: 'nft' },
-        { title: 'Artwork 25', description: 'Description 25', type: 'nft' },
-        { title: 'Artwork 26', description: 'Description 26', type: 'nft' },
-        { title: 'Artwork A', description: 'Description A', type: 'nft' },
-        { title: 'Artwork B', description: 'Description B', type: 'nft' },
-        { title: 'Artwork C', description: 'Description C', type: 'nft' },
-        { title: 'Artwork D', description: 'Description D', type: 'nft' },
+        { title: 'Artwork 0', description: 'Long artwork description example, feel free to edit me in artData.ts. You can add a good amount of text here - or you can use line breaks to adjust the description spacing to your liking. :)', type: 'nft' }, // 0 
+        { title: 'Artwork 1', description: 'Description 1', type: 'video' }, // 1
+        { title: 'Artwork 2', description: 'Description 2', type: 'nft' }, // 2
+        { title: 'Artwork 3', description: 'Description 3', type: 'image' }, // 3
+        { title: 'Artwork 4', description: 'Description 4', type: 'image' }, // 4
+        { title: 'Artwork 5', description: 'Description 5', type: 'nft' }, // 5
+        { title: 'Artwork 6', description: 'Description 6', type: 'nft' }, // 6
+        { title: 'Artwork 7', description: 'Description 7', type: 'nft' }, // 7
+        { title: 'Artwork 8', description: 'Description 8', type: 'image' }, // 8
+        { title: 'Artwork 9', description: 'Description 9', type: 'image' }, // 9
+        { title: 'Artwork 10', description: 'Description 10', type: 'nft' }, // 10
+        { title: 'Artwork 11', description: 'Description 11', type: 'nft' }, // 11
+        { title: 'Artwork 12', description: 'Description 12', type: 'nft' }, // 12
+        { title: 'Artwork 13', description: 'Description 13', type: 'video' }, // 13
+        { title: 'Artwork 14', description: 'Description 14', type: 'video' }, // 14
+        { title: 'Artwork 15', description: 'Description 15', type: 'nft' }, // 15
+        { title: 'Artwork 16', description: 'Description 16', type: 'nft' }, // 16
+        { title: 'Artwork 17', description: 'Description 17', type: 'nft' }, // 17
+        { title: 'Artwork 18', description: 'Description 18', type: 'nft' }, // 18
+        { title: 'Artwork 19', description: 'Description 19', type: 'nft' }, // 19
+        { title: 'Artwork 20', description: 'Description 20', type: 'nft' }, // 20
+        { title: 'Artwork 21', description: 'Description 21', type: 'nft' }, // 21
+        { title: 'Artwork 22', description: 'Description 22', type: 'nft' }, // 22
+        { title: 'Artwork 23', description: 'Description 23', type: 'nft' }, // 23
+        { title: 'Artwork 24', description: 'Description 24', type: 'video' }, // 24
+        { title: 'Artwork 25', description: 'Description 25', type: 'video' }, // 25
+        { title: 'Artwork A', description: 'Description A', type: 'kinetic' }, // 26
+        { title: 'Artwork B', description: 'Description B', type: 'kinetic' }, // 27
+        { title: 'Artwork C', description: 'Description C', type: 'kinetic' }, // 28
+        { title: 'Artwork D', description: 'Description D', type: 'kinetic' }, // 29
     )
 
     // Add more artworks as needed

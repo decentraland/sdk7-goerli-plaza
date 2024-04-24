@@ -15,7 +15,7 @@ let verticalImageRender = 'https://bafkreia5xiavtlcbrvfr4os7om5bdzbzjdtvm4jcuki5
 export const imageArtCollection: ImageData[] = [
   {
     room: 1,
-    id: 4,
+    id: 3,
     position: artPositions[3].position,
     rotation: artPositions[3].rotation,
     scale: artPositions[3].scale,
@@ -26,7 +26,7 @@ export const imageArtCollection: ImageData[] = [
   },
   {
     room: 1,
-    id: 5,
+    id: 4,
     position: artPositions[4].position,
     rotation: artPositions[4].rotation,
     scale: artPositions[4].scale,
@@ -37,7 +37,7 @@ export const imageArtCollection: ImageData[] = [
   },
   {
     room: 2,
-    id: 9,
+    id: 8,
     position: artPositions[8].position,
     rotation: artPositions[8].rotation,
     scale: artPositions[8].scale,
@@ -48,7 +48,7 @@ export const imageArtCollection: ImageData[] = [
   },
   {
     room: 2,
-    id: 10,
+    id: 9,
     position: artPositions[9].position,
     rotation: artPositions[9].rotation,
     scale: artPositions[9].scale,
@@ -90,22 +90,6 @@ export function createImageArt(
   MeshRenderer.setPlane(entity)
   MeshCollider.setPlane(entity)
 
-  pointerEventsSystem.onPointerDown(
-    {
-      entity: entity,
-      opts: {
-        button: InputAction.IA_POINTER,
-        hoverText: hoverText,
-        maxDistance: 16
-      }
-    },
-    function () {
-      openExternalUrl({
-        url: url
-      })
-    }
-  )
-
   const imageMaterial = Material.Texture.Common({ src: image });
 
 
@@ -140,4 +124,10 @@ export function createImageArt(
   }
 
   return entity
+}
+
+export function openImageLink(url: string) {
+  openExternalUrl({
+    url: url
+  })
 }

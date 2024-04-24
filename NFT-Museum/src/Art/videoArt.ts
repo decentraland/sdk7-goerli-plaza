@@ -28,7 +28,7 @@ const horizontalVideoIndieVillagePlaceholder = 'https://bafkreie2rucyrbnl5en7bcc
 export const videoCollection: VideoData[] = [
   {
     room: 1,
-    id: 2,
+    id: 1,
     position: artPositions[1].position,
     rotation: artPositions[1].rotation,
     scale: artPositions[1].scale,
@@ -43,7 +43,7 @@ export const videoCollection: VideoData[] = [
   },
   {
     room: 2,
-    id: 14,
+    id: 13,
     position: artPositions[13].position,
     rotation: artPositions[13].rotation,
     scale: artPositions[13].scale,
@@ -59,7 +59,7 @@ export const videoCollection: VideoData[] = [
   },
   {
     room: 2,
-    id: 15,
+    id: 14,
     position: artPositions[14].position,
     rotation: artPositions[14].rotation,
     scale: artPositions[14].scale,
@@ -75,7 +75,7 @@ export const videoCollection: VideoData[] = [
   },
   {
     room: 2,
-    id: 25,
+    id: 24,
     position: artPositions[24].position,
     rotation: artPositions[24].rotation,
     scale: artPositions[24].scale,
@@ -90,7 +90,7 @@ export const videoCollection: VideoData[] = [
   },
   {
     room: 2,
-    id: 26,
+    id: 25,
     position: artPositions[25].position,
     rotation: artPositions[25].rotation,
     scale: artPositions[25].scale,
@@ -179,19 +179,6 @@ export function createVideoArt(
     isImage = !isImage
   }
 
-  pointerEventsSystem.onPointerDown(
-    {
-      entity: entity,
-      opts: {
-        button: InputAction.IA_POINTER,
-        hoverText: hoverText,
-      },
-    },
-    () => {
-      console.log('Clicked artwork');
-      openExternalUrl({ url: website });
-    }
-  );
 
   utils.triggers.addTrigger(
     utils.addTestCube({ position: triggerPosition, scale: triggerScale }, undefined, undefined, Color4.create(1, 1, 1, 0), undefined, true),
@@ -232,3 +219,7 @@ export function createVideoArt(
   return entity;
 }
 
+export function openVideoLink(website: string) {
+  openExternalUrl({ url: website });
+
+}

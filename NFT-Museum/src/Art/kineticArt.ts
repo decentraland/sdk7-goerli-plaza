@@ -23,7 +23,7 @@ export const kineticArtCollection: KineticData[] = [
 
     {
         room: 1,
-        id: 27,
+        id: 26,
         position: Vector3.create(artPositions[26].position.x, artPositions[26].position.y - 0.58, artPositions[26].position.z + 0.1),
         rotation: Quaternion.fromEulerDegrees(artPositions[26].rotation.x, artPositions[26].rotation.y, artPositions[26].rotation.z),
         scale: artPositions[26].scale,
@@ -35,7 +35,7 @@ export const kineticArtCollection: KineticData[] = [
     },
     {
         room: 1,
-        id: 28,
+        id: 27,
         position: Vector3.create(artPositions[27].position.x, artPositions[27].position.y - 0.58, artPositions[27].position.z - 0.1),
         rotation: Quaternion.fromEulerDegrees(artPositions[27].rotation.x, artPositions[27].rotation.y, artPositions[27].rotation.z),
         scale: artPositions[27].scale,
@@ -47,7 +47,7 @@ export const kineticArtCollection: KineticData[] = [
     },
     {
         room: 2,
-        id: 29,
+        id: 28,
         position: artPositions[28].position,
         rotation: Quaternion.fromEulerDegrees(artPositions[28].rotation.x, artPositions[28].rotation.y, artPositions[28].rotation.z),
         scale: artPositions[28].scale,
@@ -61,7 +61,7 @@ export const kineticArtCollection: KineticData[] = [
     },
     {
         room: 2,
-        id: 30,
+        id: 29,
         position: artPositions[29].position,
         rotation: Quaternion.fromEulerDegrees(artPositions[29].rotation.x, artPositions[29].rotation.y, artPositions[29].rotation.z), // rotation
         scale: artPositions[29].position,
@@ -116,15 +116,6 @@ export function createKineticArt(
         invisibleMeshesCollisionMask: ColliderLayer.CL_PHYSICS
     })
 
-    pointerEventsSystem.onPointerDown(
-        {
-            entity: entity,
-            opts: { button: InputAction.IA_POINTER, hoverText: hoverText },
-        },
-        function () {
-            openExternalUrl({ url: url });
-        }
-    );
     if (animationClip !== null) {
         Animator.create(entity, {
             states: [
@@ -155,4 +146,6 @@ export function createKineticArt(
     return entity
 }
 
-
+export function openKineticLink(url: string) {
+    openExternalUrl({ url: url });
+}

@@ -44,7 +44,7 @@ interface NFTdata {
 export const NFTdata: NFTdata[] = [
   {
     room: 1,
-    id: 1,
+    id: 0,
     position: artPositions[0].position,
     rotation: artPositions[0].rotation,
     scale: artPositions[0].scale,
@@ -55,7 +55,7 @@ export const NFTdata: NFTdata[] = [
   },
   {
     room: 1,
-    id: 3,
+    id: 2,
     position: artPositions[2].position,
     rotation: artPositions[2].rotation,
     scale: artPositions[2].scale,
@@ -67,7 +67,7 @@ export const NFTdata: NFTdata[] = [
 
   {
     room: 2,
-    id: 6,
+    id: 5,
     position: artPositions[5].position,
     rotation: artPositions[5].rotation,
     scale: artPositions[5].scale,
@@ -78,7 +78,7 @@ export const NFTdata: NFTdata[] = [
   },
   {
     room: 2,
-    id: 7,
+    id: 6,
     position: artPositions[6].position,
     rotation: artPositions[6].rotation,
     scale: artPositions[6].scale,
@@ -89,7 +89,7 @@ export const NFTdata: NFTdata[] = [
   },
   {
     room: 2,
-    id: 8,
+    id: 7,
     position: artPositions[7].position,
     rotation: artPositions[7].rotation,
     scale: artPositions[7].scale,
@@ -100,7 +100,7 @@ export const NFTdata: NFTdata[] = [
   },
   {
     room: 2,
-    id: 11,
+    id: 10,
     position: artPositions[10].position,
     rotation: artPositions[10].rotation,
     scale: artPositions[10].scale,
@@ -111,7 +111,7 @@ export const NFTdata: NFTdata[] = [
   },
   {
     room: 2,
-    id: 12,
+    id: 11,
     position: artPositions[11].position,
     rotation: artPositions[11].rotation,
     scale: Vector3.create(4, 4, 4),
@@ -122,7 +122,7 @@ export const NFTdata: NFTdata[] = [
   },
   {
     room: 2,
-    id: 13,
+    id: 12,
     position: artPositions[12].position,
     rotation: artPositions[12].rotation,
     scale: artPositions[12].scale,
@@ -133,7 +133,7 @@ export const NFTdata: NFTdata[] = [
   },
   {
     room: 2,
-    id: 16,
+    id: 15,
     position: artPositions[15].position,
     rotation: artPositions[15].rotation,
     scale: artPositions[15].scale,
@@ -144,7 +144,7 @@ export const NFTdata: NFTdata[] = [
   },
   {
     room: 2,
-    id: 17,
+    id: 16,
     position: artPositions[16].position,
     rotation: artPositions[16].rotation,
     scale: artPositions[16].scale,
@@ -155,7 +155,7 @@ export const NFTdata: NFTdata[] = [
   },
   {
     room: 2,
-    id: 18,
+    id: 17,
     position: artPositions[17].position,
     rotation: artPositions[17].rotation,
     scale: artPositions[17].scale,
@@ -166,7 +166,7 @@ export const NFTdata: NFTdata[] = [
   },
   {
     room: 2,
-    id: 19,
+    id: 18,
     position: artPositions[18].position,
     rotation: artPositions[18].rotation,
     scale: artPositions[18].scale,
@@ -177,7 +177,7 @@ export const NFTdata: NFTdata[] = [
   },
   {
     room: 2,
-    id: 20,
+    id: 19,
     position: artPositions[19].position,
     rotation: artPositions[19].rotation,
     scale: artPositions[19].scale,
@@ -188,7 +188,7 @@ export const NFTdata: NFTdata[] = [
   },
   {
     room: 2,
-    id: 21,
+    id: 20,
     position: artPositions[20].position,
     rotation: artPositions[20].rotation,
     scale: artPositions[20].scale,
@@ -199,7 +199,7 @@ export const NFTdata: NFTdata[] = [
   },
   {
     room: 2,
-    id: 22,
+    id: 21,
     position: artPositions[21].position,
     rotation: artPositions[21].rotation,
     scale: artPositions[21].scale,
@@ -210,7 +210,7 @@ export const NFTdata: NFTdata[] = [
   },
   {
     room: 2,
-    id: 23,
+    id: 22,
     position: artPositions[22].position,
     rotation: artPositions[22].rotation,
     scale: artPositions[22].scale,
@@ -221,7 +221,7 @@ export const NFTdata: NFTdata[] = [
   },
   {
     room: 2,
-    id: 24,
+    id: 23,
     position: artPositions[23].position,
     rotation: artPositions[23].rotation,
     scale: artPositions[23].scale,
@@ -247,22 +247,6 @@ export function createNFT(data: NFTdata) {
   });
 
   MeshCollider.setPlane(entity);
-
-  
-  
-  pointerEventsSystem.onPointerDown(
-    {
-      entity: entity,
-      opts: {
-        button: InputAction.IA_POINTER,
-        hoverText: hoverText,
-      },
-      
-    },
-    function () {
-      openNftDialog({ urn: urn });
-    }
-  );
 
   NftShape.create(entity, {
     urn: urn,
