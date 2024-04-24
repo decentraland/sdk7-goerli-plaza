@@ -60,15 +60,6 @@ export function initializeArtDetails() {
     // Change titles and descriptions here to match your art :) 
 }
 
-/*
-export interface ArtType {
-    nft: boolean,
-    image: boolean,
-    video: boolean,
-    kinetic: boolean
-}
-*/
-
 interface ArtPostions {
     position: Vector3;
     rotation: Vector3;
@@ -126,9 +117,9 @@ export const artPositions: ArtPostions[] = [
     /// 3D Art / Animated Sculptures: 
     // room: 1
     { position: Vector3.create(8.3, 1.9, 13), rotation: Vector3.create(0, 180, 0), scale: Vector3.create(0.5, 0.5, 0.5) }, // 26
-    { position: Vector3.create(8.3, 1.9, 19), rotation: Vector3.create(0, 180, 0), scale: Vector3.create(0.75, 0.75, 0.75) }, // 27
+    { position: Vector3.create(8.3, 1.9, 19), rotation: Vector3.create(0, 180, 0), scale: Vector3.create(0.5, 0.5, 0.5) }, // 27
     // room: 2
-    { position: Vector3.create(21.65, 10.5, 16), rotation: Vector3.create(0, 0, 0), scale: Vector3.create(0.5, 0.5, 0.5) }, // 28
+    { position: Vector3.create(21.65, 10.5, 16), rotation: Vector3.create(0, 0, 0), scale: Vector3.create(0.8, 0.8, 0.8) }, // 28
     { position: Vector3.create(6.5, 9.72, 16), rotation: Vector3.create(0, 0, 0), scale: Vector3.create(0.8, 0.8, 0.8) }, // 29
 
 

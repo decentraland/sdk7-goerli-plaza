@@ -64,7 +64,7 @@ export const kineticArtCollection: KineticData[] = [
         id: 29,
         position: artPositions[29].position,
         rotation: Quaternion.fromEulerDegrees(artPositions[29].rotation.x, artPositions[29].rotation.y, artPositions[29].rotation.z), // rotation
-        scale: artPositions[29].position,
+        scale: artPositions[29].scale,
         triggerPosition: Vector3.create(2, 0, 0),
         triggerScale: Vector3.create(10, 4, 10),
         modelPath: kineticArtCircuit,
