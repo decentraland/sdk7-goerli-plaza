@@ -1,10 +1,9 @@
 import { NftFrameType, NftShape, Transform, engine } from "@dcl/ecs";
 import { Color3, Quaternion, Vector3 } from "@dcl/ecs-math";
-import { pointerEventsSystem, InputAction, MeshCollider, Entity } from "@dcl/sdk/ecs";
+import { MeshCollider, Entity } from "@dcl/sdk/ecs";
 import { openNftDialog } from "~system/RestrictedActions";
 import { classicFrame } from "./nftFrames";
 import { artPositions } from "./artData";
-import { currentArtworkId } from "./artHover";
 
 /// need to export a function into arthover onpointer down
 // function should be able to cover current pointer eventss present in nfts
@@ -263,5 +262,4 @@ export function removeNFTs(entity: Entity) {
 
 export function openNFTlink(id: number) {
   openNftDialog({ urn: NFTdata[id].urn });
-
 }

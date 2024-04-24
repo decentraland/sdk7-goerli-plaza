@@ -1,4 +1,4 @@
-import { InputAction, Material, MeshCollider, MeshRenderer, Transform, engine, pointerEventsSystem } from "@dcl/sdk/ecs";
+import { Material, MeshCollider, MeshRenderer, Transform, engine, pointerEventsSystem } from "@dcl/sdk/ecs";
 import { Color3, Quaternion, Vector3 } from "@dcl/sdk/math";
 import { openExternalUrl } from "~system/RestrictedActions";
 import { homepageUrl, linktreeURL } from "../social";

@@ -76,17 +76,20 @@ export async function toggleAudio(name: string) {
   config.isPlaying = !config.isPlaying;
 
   if (config.isPlaying) {
+   
     if (name === 'playlist' && customPlaylist.length > 0) {
       config.currentSongIndex = 0;
       config.streamUrl = customPlaylist[0].url;
        createStream(config.streamUrl);
       console.log(`Now playing song: ${customPlaylist[0].title}`);
     }
+  
     else if (name === 'radio') {
       config.streamUrl = radioStation;
        createStream(radioStation);
       console.log(`Now playing radio station`);
     }
+  
   } else if (!config.isPlaying) {
     delete config.currentSongIndex;
     config.streamUrl = '';
@@ -95,6 +98,7 @@ export async function toggleAudio(name: string) {
     console.log(`Audio stopped`);
 
     let audioEntities = engine.getEntitiesWith(AudioStream);
+   
     for (const [entity] of audioEntities) {
       AudioStream.getMutable(entity).playing = false;
     }

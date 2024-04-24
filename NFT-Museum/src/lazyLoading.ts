@@ -8,8 +8,6 @@ import { createNFT, NFTdata } from './Art/nftArt'
 import { createWearableReward, reward, rewardEntity } from './Rewards/rewards'
 
 
-//export let scene1active = true
-
 
 export function createLazyArea(position: Vector3, scale: Vector3, parentPos: Entity, id: number,) {
   const entity = engine.addEntity()
@@ -43,46 +41,43 @@ export function createLazyArea(position: Vector3, scale: Vector3, parentPos: Ent
     }],
     function (onenter) {
 
-      //if (scene1active) {
-        console.log(`ACTIVE`)
-        console.log(`ENTERED ` + id)
+      console.log(`ENTERED ` + id)
+      createdNfts = []
+      createdVideos = []
+      createdKineticArt = []
+      createdImages = []
 
-        createdNfts = []
-        createdVideos = []
-        createdKineticArt = []
-        createdImages = []
+      for (const nft of NFTdata) {
+        if (nft.room === id) {
+          const nftArt = createNFT(nft)
+          createdNfts.push(nftArt)
+        }
+      }
+      for (const video of videoCollection) {
+        if (video.room === id) {
+          const videoArt = createVideoArt(video.position, video.rotation, video.scale, video.image, video.video, video.hoverText, video.website, video.triggerScale, video.triggerPosition, video.audio, video.hasAlpha);
+          if (videoArt !== null) {
+            createdVideos.push(videoArt);
+          }
+        }
+      }
+      for (const kineticArt of kineticArtCollection) {
+        if (kineticArt.room === id) {
+          const kinetic = createKineticArt(kineticArt.position, kineticArt.rotation, kineticArt.scale, kineticArt.triggerPosition, kineticArt.triggerScale, kineticArt.modelPath, kineticArt.animationClip, kineticArt.audio, kineticArt.url, kineticArt.hoverText)
+          createdKineticArt.push(kinetic)
+        }
+      }
+      for (const imageArt of imageArtCollection) {
+        if (imageArt.room === id) {
+          const image = createImageArt(imageArt.position, imageArt.rotation, imageArt.scale, imageArt.image, imageArt.hoverText, imageArt.url, imageArt.hasAlpha)
+          createdImages.push(image)
+        }
+      }
+      if (id === 3) {
+        createWearableReward()
+      }
 
-        for (const nft of NFTdata) {
-          if (nft.room === id) {
-            const nftArt = createNFT(nft)
-            createdNfts.push(nftArt)
-          }
-        }
-        for (const video of videoCollection) {
-          if (video.room === id) {
-            const videoArt = createVideoArt(video.position, video.rotation, video.scale, video.image, video.video, video.hoverText, video.website, video.triggerScale, video.triggerPosition, video.audio, video.hasAlpha);
-            if (videoArt !== null) {
-              createdVideos.push(videoArt);
-            } 
-          }
-        }
-        for (const kineticArt of kineticArtCollection) {
-          if (kineticArt.room === id) {
-            const kinetic = createKineticArt(kineticArt.position, kineticArt.rotation, kineticArt.scale, kineticArt.triggerPosition, kineticArt.triggerScale, kineticArt.modelPath, kineticArt.animationClip, kineticArt.audio, kineticArt.url, kineticArt.hoverText)
-            createdKineticArt.push(kinetic)
-          }
-        }
-        for (const imageArt of imageArtCollection) {
-          if (imageArt.room === id) {
-            const image = createImageArt(imageArt.position, imageArt.rotation, imageArt.scale, imageArt.image, imageArt.hoverText, imageArt.url, imageArt.hasAlpha)
-            createdImages.push(image)
-          }
-        }
-        if (id === 3) {
-          createWearableReward()
-        }
-
-     // }
+      // }
     },
     () => {
       console.log('LEFT')
@@ -90,7 +85,7 @@ export function createLazyArea(position: Vector3, scale: Vector3, parentPos: Ent
         engine.removeEntity(nft)
       }
       for (const videoArt of createdVideos) {
-       VideoPlayer.deleteFrom(videoArt)
+        VideoPlayer.deleteFrom(videoArt)
         engine.removeEntity(videoArt)
       }
       for (const kinetic of createdKineticArt) {

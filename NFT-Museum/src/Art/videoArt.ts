@@ -185,8 +185,10 @@ export function createVideoArt(
     utils.NO_LAYERS,
     utils.LAYER_1,
     [{ type: 'box', scale: triggerScale }],
+   
     (otherEntity) => {
       console.log('Entered trigger');
+     
       if (!isVideoPlaying) {
         console.log('Playing video');
         setMaterial(true);
@@ -196,18 +198,22 @@ export function createVideoArt(
           loop: true,
           volume: videoVolume
         });
+     
         if (audio) {
           toggleAudio(audioType);
         }
         isVideoPlaying = true;
       }
     },
+  
     (onExit) => {
       console.log('Exited trigger');
+    
       if (isVideoPlaying) {
         console.log('Stopping video');
         setMaterial(!isImage);
         VideoPlayer.deleteFrom(entity);
+     
         if (audio) {
           toggleAudio(audioType);
         }

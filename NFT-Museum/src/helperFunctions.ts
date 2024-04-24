@@ -138,8 +138,6 @@ export function wordWrap(str: string, maxWidth: number, maxLines: number) {
     let linesSeparate = str.split(newLineStr)
     let lines = ''
 
-    //log("original lines: " + str.split(newLineStr).length)
-
     if (str.length > maxWidth) {
         for (let j = 0; j < linesSeparate.length; j++) {
             res = ''

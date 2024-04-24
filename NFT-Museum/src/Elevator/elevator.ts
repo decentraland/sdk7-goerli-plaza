@@ -216,8 +216,6 @@ function createCallButton(position: Vector3, rotation: Vector3, floorIndex: numb
         },
         () => {
             utils.playSound(callButtonSound, false, Transform.get(engine.PlayerEntity).position)
-            console.log('play call button sound')
-
             moveToFloor(elevator, floorIndex);
             moveToFloor(elevator2, floorIndex)
             Animator.playSingleAnimation(callButton, 'Push');

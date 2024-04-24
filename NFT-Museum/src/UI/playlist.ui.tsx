@@ -137,7 +137,7 @@ export function playlistUI() {
                         uiBackground={{
                             textureMode: 'stretch',
                             textureSlices: {
-                                left: 1, // Flip horizontally doesn't work event with wrapMode 'mirror' :(
+                                left: 1, // Flip horizontally not working with wrapMode 'mirror'
                                 right: 0,
                                 top: 0, 
                                 bottom: 0,

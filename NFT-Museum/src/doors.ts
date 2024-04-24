@@ -33,9 +33,9 @@ const doorRot4 = Vector3.create(0, 0, 0)
 
 
 // Change door movement speed
-export const doorDuration = 1
-const bigDoorDuration = 2
-export const cooldownTime = 2500 // 2000 miliseconds or 2 seconds
+export const doorDuration = 1 // 1 second
+const bigDoorDuration = 2 // 2 seconds
+export const cooldownTime = 2500 // 2500 miliseconds or 2.5 seconds
 
 
 // Regular double glass sliding doors
@@ -75,14 +75,12 @@ export function createSlidingDoors(
         });
     }
 
-
     function closeDoors() {
         if (isOpen && !isMoving) {
             moveDoors(-openDoorOffset);
             isOpen = false;
         }
     }
-
 
     function openDoors() {
         if (!isOpen && !isMoving) {
