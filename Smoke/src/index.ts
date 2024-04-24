@@ -13,8 +13,8 @@ export function main() {
 
   // // Add a smoke source that creates a smoke puff every 0.2 seconds
   SmokeSource.create(fire, {
-    particleCount: 50,
-    smokeInterval: 0.2
+    particleCount: 30,
+    smokeInterval: 0.7
   })
 
   const floor = engine.addEntity()

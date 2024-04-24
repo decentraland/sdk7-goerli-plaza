@@ -1,4 +1,12 @@
-import { engine, GltfContainer, PointerEvents, PointerEventType, Transform } from '@dcl/sdk/ecs'
+import {
+  CameraModeArea,
+  CameraType,
+  engine,
+  GltfContainer,
+  PointerEvents,
+  PointerEventType,
+  Transform
+} from '@dcl/sdk/ecs'
 import { Vector3, Quaternion } from '@dcl/sdk/math'
 import { BeerType } from './definitions'
 import { pickingGlassSystem } from './modules/beerGlass'
@@ -45,6 +53,16 @@ export function main() {
   })
   syncEntity(floor, [], SyncEntityIDs.TABLES)
 
+  // camera modifiera area
+  const cameraMod = engine.addEntity()
+
+  Transform.create(cameraMod, { position: Vector3.create(8, 1, 8) })
+
+  CameraModeArea.create(cameraMod, {
+    area: Vector3.create(5, 2, 5),
+    mode: CameraType.CT_FIRST_PERSON
+  })
+
   // Create dispenser
   const dispenserEntity = engine.addEntity()
   GltfContainer.create(dispenserEntity, {
@@ -75,5 +93,5 @@ export function main() {
   engine.addSystem(tapPumpSystem)
 
   // UI with GitHub link
-  //setupUi()
+  setupUi()
 }

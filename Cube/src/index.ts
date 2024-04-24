@@ -9,23 +9,13 @@ import {
   MeshCollider,
   pointerEventsSystem,
   Transform,
+  UiBackground,
+  UiText,
+  UiTransform,
   VideoPlayer,
   VisibilityComponent
 } from '@dcl/sdk/ecs'
 import { Color4 } from '@dcl/sdk/math'
-import { initAssetPacks } from '@dcl/asset-packs/dist/scene-entrypoint'
-
-// You can remove this if you don't use any asset packs
-initAssetPacks(engine, pointerEventsSystem, {
-  Animator,
-  AudioSource,
-  AvatarAttach,
-  Transform,
-  VisibilityComponent,
-  GltfContainer,
-  Material,
-  VideoPlayer
-})
 
 import { bounceScalingSystem, circularSystem } from './systems'
 

@@ -7,7 +7,9 @@ import {
   AudioSource,
   pointerEventsSystem,
   MeshCollider,
-  ColliderLayer
+  ColliderLayer,
+  Tween,
+  EasingFunction
 } from '@dcl/sdk/ecs'
 import { Color3, Vector3 } from '@dcl/sdk/math'
 import * as utils from '@dcl-sdk/utils'
@@ -81,19 +83,35 @@ export function main() {
     isInflating = true
 
     // Enlarge
-    utils.tweens.startScaling(fish, deflatedScale, inflatedScale, 1, utils.InterpolationType.EASEINQUAD)
+    Tween.createOrReplace(fish, {
+      mode: Tween.Mode.Scale({
+        start: deflatedScale,
+        end: inflatedScale
+      }),
+      duration: 1000,
+      easingFunction: EasingFunction.EF_EASEINQUAD
+    })
 
     // Wait, then shrink back
     utils.timers.setTimeout(() => {
-      utils.tweens.startScaling(fish, inflatedScale, deflatedScale, 3, utils.InterpolationType.EASEINQUAD, () => {
-        // When finished, reset flag to allow triggering again
-        isInflating = false
+      Tween.createOrReplace(fish, {
+        mode: Tween.Mode.Scale({
+          start: inflatedScale,
+          end: deflatedScale
+        }),
+        duration: 3000,
+        easingFunction: EasingFunction.EF_EASEINQUAD
       })
 
       const sound = AudioSource.getMutable(fish)
       sound.playing = true
       sound.pitch = 0.5 + Math.random()
     }, 2000)
+
+    // When finished inflate and deflate, reset flag to allow triggering again
+    utils.timers.setTimeout(() => {
+      isInflating = false
+    }, 5000)
   }
 
   // UI with GitHub link

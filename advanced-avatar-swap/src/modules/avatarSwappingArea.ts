@@ -11,7 +11,7 @@ import {
 } from '@dcl/sdk/ecs'
 import { Color4, Vector3 } from '@dcl/sdk/math'
 import { IntervalUtil } from './intervalUtil'
-import { AniamtionState, playAnimation } from './modelsHandler'
+import { AnimationState, playAnimation } from './modelsHandler'
 
 let areaCenter: Vector3
 let areaSize: Vector3
@@ -29,12 +29,12 @@ function setupAreaData(center: Vector3, size: Vector3) {
 
 function isPositionInsideArea(targetPosition: Vector3): boolean {
   return (
-    targetPosition.x > areaMinPosition.x &&
-    targetPosition.y > areaMinPosition.y &&
-    targetPosition.z > areaMinPosition.z &&
-    targetPosition.x < areaMaxPosition.x &&
-    targetPosition.y < areaMaxPosition.y &&
-    targetPosition.z < areaMaxPosition.z
+    targetPosition.x >= areaMinPosition.x &&
+    targetPosition.y >= areaMinPosition.y &&
+    targetPosition.z >= areaMinPosition.z &&
+    targetPosition.x <= areaMaxPosition.x &&
+    targetPosition.y <= areaMaxPosition.y &&
+    targetPosition.z <= areaMaxPosition.z
   )
 }
 
@@ -79,10 +79,11 @@ export function avatarSwappingSystem(dt: number) {
   if (!intervalUtil.update(dt)) return
 
   const playerPos = Transform.get(engine.PlayerEntity).position
-  const moved = playerPos != lastPlayerPos
+  const moved =
+    Vector3.length(Vector3.add(playerPos, Vector3.scale(lastPlayerPos ?? Vector3.Zero(), -1))) > Number.EPSILON
 
-  let animation = moved ? AniamtionState.Run : AniamtionState.Idle
-  playAnimation(animation)
+  let animation = moved ? AnimationState.Run : AnimationState.Idle
+  playAnimation(animation, false)
 
   if (!moved) return
 

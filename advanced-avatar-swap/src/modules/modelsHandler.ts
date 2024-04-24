@@ -86,20 +86,21 @@ export function changeModel(targetModel: TeamModels) {
 
       break
   }
+  playAnimation(AnimationState.Idle, true)
 }
 
-export enum AniamtionState {
+export enum AnimationState {
   None = 'None',
   Idle = 'Idle',
   Run = 'Run'
 }
 
-let currentAnimation: AniamtionState
-export function playAnimation(animation: AniamtionState) {
-  if (currentAnimation === animation) return
+let currentAnimation: AnimationState
+export function playAnimation(animation: AnimationState, force: boolean) {
+  if (currentAnimation === animation && !force) return
   currentAnimation = animation
   switch (currentAnimation) {
-    case AniamtionState.Idle:
+    case AnimationState.Idle:
       if (CURRENT_TEAM == TeamModels.Krampus) {
         Animator.playSingleAnimation(modelEntity, 'Idle', false)
       } else if (CURRENT_TEAM == TeamModels.Santa) {
@@ -108,7 +109,7 @@ export function playAnimation(animation: AniamtionState) {
 
       break
 
-    case AniamtionState.Run:
+    case AnimationState.Run:
       if (CURRENT_TEAM == TeamModels.Krampus) {
         Animator.playSingleAnimation(modelEntity, 'Run', false)
       } else if (CURRENT_TEAM == TeamModels.Santa) {

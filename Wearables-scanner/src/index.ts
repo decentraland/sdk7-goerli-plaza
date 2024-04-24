@@ -1,21 +1,9 @@
-import {
-  Animator,
-  AudioSource,
-  engine,
-  Entity,
-  InputAction,
-  inputSystem,
-  Material,
-  MeshCollider,
-  pointerEventsSystem
-} from '@dcl/sdk/ecs'
+import { Animator, AudioSource, engine } from '@dcl/sdk/ecs'
 import { Color4, Vector3 } from '@dcl/sdk/math'
 import * as utils from '@dcl-sdk/utils'
-
+import { getPlayer } from '@dcl/sdk/src/players'
 import { doorSystem } from './systems'
-
 import { DoorState } from './components'
-import { getUserData } from '~system/UserIdentity'
 import { setupUi } from './ui'
 
 // Defining behavior. See `src/systems.ts` file.
@@ -96,13 +84,13 @@ export function main() {
 }
 
 export async function checkWearables(filter: string) {
-  const userData = await getUserData({})
+  const playerData = getPlayer()
 
-  if (!userData || !userData.data || !userData.data.avatar || !userData.data.avatar.wearables) return false
+  if (!playerData || !playerData.wearables) return false
 
-  console.log('Currently wearing: ', userData.data.avatar)
+  console.log('Currently wearing: ', playerData.wearables)
   let result = false
-  for (const wearable of userData.data.avatar.wearables) {
+  for (const wearable of playerData.wearables) {
     if (wearable === filter) {
       result = true
     }

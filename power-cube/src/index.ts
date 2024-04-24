@@ -1,7 +1,6 @@
 import { createCard } from './card'
 import { createPowerBase } from './powerBase'
 import { createPowerCube, dropAllCubes } from './powerCube'
-import { onEnterSceneObservable, onLeaveSceneObservable } from '@dcl/sdk/observables'
 
 import {
   AudioSource,

@@ -1,17 +1,21 @@
 # SDK7 Goerli Plaza
+Welcome to the SDK7 expamples scene repository!
+
+This collection contains SDK7 scenes that are aimed to showcase more complex and comprehensive funcionalities of the SDK7.
+It's great resource for learning on how to use SDK7.
 
 # Adding a new scene
 
 Check the parcel usage running `node scripts/checkParcelsCollision.js`. The plaza is a rect from 72,-9 to 81,10.
 
-Visit the collection of all the scenes in this repo deployed at [sdk-test-scenes.decentraland.zone/?position=72%2C-10](https://sdk-test-scenes.decentraland.zone/?realm=LocalPreview&position=72%2C-10)
+Visit the collection of all the scenes in this repo deployed at [decentraland.org/play/?position=72%2C-10](https://decentraland.org/play/?realm=sdk-team-cdn.decentraland.org%2Fipfs%2Fgoerli-plaza-main-latest&position=72%2C-10)
 
 ## Before commit
 
 You will need to make sure the workspace is in good shape for the CI. TO do so, run:
 
 1. `npm run update-parcels && npm run sync && npm run test && npm run format`
-1. Then commit
+2. Then commit
 
 This project uses NPM workspaces, that means all scenes must have their own package.json with an unique name
 
@@ -26,5 +30,5 @@ To keep consistent code styles, there is an automated CI step. If the build fail
 In a Decentraland explorer execute:
 
 ```
-/changerealm https://sdk-team-cdn.decentraland.org/ipfs/goerli-plaza-main
+/changerealm https://sdk-team-cdn.decentraland.org/ipfs/goerli-plaza-main-latest
 ```

@@ -2,9 +2,6 @@
   "name": "avatar-animations",
   "description": "Avatar custom animations from the scene",
   "version": "1.0.0",
-  "bundleDependencies": [
-    "@dcl-sdk/utils"
-  ],
   "dependencies": {
     "@dcl-sdk/utils": "latest"
   },

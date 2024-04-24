@@ -35,10 +35,7 @@ export function main() {
   const Z_OFFSET = 1
 
   const translatorParent = engine.addEntity()
-  Transform.create(translatorParent)
-  AvatarAttach.create(translatorParent, {
-    anchorPointId: AvatarAnchorPointType.AAPT_POSITION
-  })
+  Transform.create(translatorParent, { parent: engine.PlayerEntity, position: Vector3.create(0, -1.7, 0) })
 
   const translocator = new Translocator({
     position: Vector3.create(X_OFFSET, Y_OFFSET, Z_OFFSET),

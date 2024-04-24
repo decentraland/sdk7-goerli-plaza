@@ -16,6 +16,9 @@
       "path": "ui-spritesheet"
     },
     {
+      "path": "ui-animations"
+    },
+    {
       "path": "translocator"
     },
     {
@@ -40,6 +43,9 @@
       "path": "rocket-board"
     },
     {
+      "path": "reward-claim"
+    },
+    {
       "path": "push-box-puzzle"
     },
     {
@@ -56,6 +62,9 @@
     },
     {
       "path": "mirror-puzzle"
+    },
+    {
+      "path": "media-streaming"
     },
     {
       "path": "light-bounce-puzzle"
@@ -221,6 +230,9 @@
     },
     {
       "path": "Events-API-Board"
+    },
+    {
+      "path": "Editor-actions"
     },
     {
       "path": "Dance-floor"
