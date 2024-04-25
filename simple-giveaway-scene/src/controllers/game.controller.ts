@@ -15,7 +15,7 @@ export class gameController {
   public playerData: any
   public placeholder: any
   public claim: Claim
-  public camp = ClaimConfig.campaign.CAMPAIGN_TEST
+  public camp = ClaimConfig.campaign.DAY_1
   public scene: setUpScenes
   constructor() {
     this.ui = new UI(this)

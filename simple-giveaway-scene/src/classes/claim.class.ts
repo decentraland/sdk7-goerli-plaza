@@ -47,7 +47,7 @@ export class Claim {
     await this.setUserData()
 
     if (USE_CAPTCHA) {
-      const request = await fetch(`https://rewards.decentraland.org/api/captcha`, { method: 'POST' })
+      const request = await fetch(ClaimConfig.rewardsServer + `/api/captcha`, { method: 'POST' })
       const captcha = await request.json()
       console.log('CAPTCHA DATA: ', captcha)
       this.gameController.ui.captchaUI(captcha.data.image, captcha.data.id, this.campaign, this.campaign_key)
@@ -117,7 +117,7 @@ export class Claim {
     }
 
     const response = await signedFetch({
-      url: 'https://rewards.decentraland.org/api/rewards',
+      url: ClaimConfig.rewardsServer + '/api/rewards',
       init: {
         method: 'POST',
         headers: {
