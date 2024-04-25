@@ -42,7 +42,7 @@ export async function claimToken(campaign: ClaimConfigInstType, campaign_key: st
   await setUserData()
 
   if (USE_CAPTCHA) {
-    const request = await fetch(`https://rewards.decentraland.org/api/captcha`, { method: 'POST' })
+    const request = await fetch(ClaimConfig.rewardsServer + `/api/captcha`, { method: 'POST' })
     const captcha = await request.json()
     console.log('CAPTCHA DATA: ', captcha)
     captchaUI(captcha.data.image, captcha.data.id, campaign, campaign_key)
@@ -122,7 +122,7 @@ export async function validateCaptcha(
   }
 
   const response = await signedFetch({
-    url: 'https://rewards.decentraland.org/api/rewards',
+    url: ClaimConfig.rewardsServer + '/api/rewards',
     init: {
       method: 'POST',
       headers: {
