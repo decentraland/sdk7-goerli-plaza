@@ -4,7 +4,7 @@ export class IntervalUtil {
   type: IntervalUtilType = 'delta'
   elapsedTime: number
   targetTime: number
-  lastUpdateTime: number
+  lastUpdateTime: number = 0
   onTargetTimeReached: () => void
 
   onTimeReachedCallback?: () => void
