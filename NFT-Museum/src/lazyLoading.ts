@@ -8,7 +8,6 @@ import { createNFT, NFTdata } from './Art/nftArt'
 import { createWearableReward, reward, rewardEntity } from './Rewards/rewards'
 
 
-
 export function createLazyArea(position: Vector3, scale: Vector3, parentPos: Entity, id: number,) {
   const entity = engine.addEntity()
 
@@ -77,7 +76,6 @@ export function createLazyArea(position: Vector3, scale: Vector3, parentPos: Ent
         createWearableReward()
       }
 
-      // }
     },
     () => {
       console.log('LEFT')
@@ -107,7 +105,6 @@ export function createLazyArea(position: Vector3, scale: Vector3, parentPos: Ent
     }
   )
   //utils.triggers.enableDebugDraw(true)
-
   return entity
 }
 

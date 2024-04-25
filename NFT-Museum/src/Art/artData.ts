@@ -8,16 +8,16 @@ import { Vector3 } from "@dcl/sdk/math";
 // Make artNumbers visible to help with placing and naming items in the gallery:
 
 /*
- const artNumbers = engine.addEntity()
- Transform.create(artNumbers, { position: sceneCentrePosition })
- GltfContainer.create(artNumbers, { src: 'models/artNumbers.glb' })
+const artNumbers = engine.addEntity()
+Transform.create(artNumbers, { position: sceneCentrePosition })
+GltfContainer.create(artNumbers, { src: 'models/artNumbers.glb' })
 */
 
 
 interface Artwork {
     title: string;
     description: string;
-    type: string 
+    type: string
 }
 
 export const artDetails: Artwork[] = []

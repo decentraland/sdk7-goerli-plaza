@@ -10,7 +10,7 @@ import { kineticArtCollection, openKineticLink } from "./kineticArt";
 
 export let hoverDistance = 8 // Distance at which artHover UI will appear
 let visibilityTime = 9000 // duration of the artHover UI in miliseconds
-
+let cooldownTime = 1000
 
 
 
@@ -158,7 +158,8 @@ export function artHoverSystem(dt: number) {
     }
 }
 
-let inCooldown = false
+let inCooldown = false;
+
 export function changeArtHoverSystem() {
     for (const [entity] of engine.getEntitiesWith(ArtHover, PointerEvents)) {
         const artworkId = getArtworkId(entity);
@@ -167,32 +168,37 @@ export function changeArtHoverSystem() {
 
             if (artworkId !== undefined) {
                 changeCurrentArtworkId(artworkId);
-              //  inCooldown = true
-                console.log('hover?', hoverVisible, 'for artworkID:', artworkId);
+                console.log('Hover enter for artworkID:', artworkId);
             }
 
-            hoverVisible = true;
+            // Check if not in cooldown before updating visibility
             if (!inCooldown) {
+                hoverVisible = true;
                 utils.timers.setTimeout(() => {
-                    if (hoverVisible && !inCooldown) {
-                        hoverVisible = false;
-                    }
+                    hoverVisible = false;
+                    // Set cooldown after visibility time
+                    inCooldown = true;
+                    // Start cooldown timer
+                    utils.timers.setTimeout(() => {
+                        inCooldown = false;
+                    }, cooldownTime);
                 }, visibilityTime);
             }
 
         } else if (inputSystem.isTriggered(InputAction.IA_POINTER, PointerEventType.PET_HOVER_LEAVE, entity)) {
-            inCooldown = true
+            // Always update hoverVisible on leave
+            hoverVisible = false;
+            // Set cooldown when leaving
+            inCooldown = true;
             utils.timers.setTimeout(() => {
-                if (hoverVisible) {
-                    hoverVisible = false;
-                    inCooldown = false
-                }
-            }, visibilityTime)
-            console.log('hover?', hoverVisible);
-
+                // Reset cooldown after cooldown time
+                inCooldown = false;
+            }, cooldownTime);
+            console.log('Hover leave');
         }
     }
 }
+
 
 export function toggleHover() {
     hoverVisible = false
