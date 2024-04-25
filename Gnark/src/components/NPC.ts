@@ -6,9 +6,7 @@ export enum gnarkStates {
   YELLING
 }
 
-const NPCData = {
+export const NPCData = engine.defineComponent('NPComponent', {
   state: Schemas.EnumNumber<gnarkStates>(gnarkStates, gnarkStates.TURNING),
   previousState: Schemas.EnumNumber<gnarkStates>(gnarkStates, gnarkStates.TURNING)
-}
-
-export const NPComponent = engine.defineComponent('NPComponent', NPCData)
+})

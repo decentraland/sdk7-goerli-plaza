@@ -1,6 +1,6 @@
 import { GameControllerComponent } from '../components/gameController'
 // import { createCube } from '../cube'
-import { coneEntity } from '..'
+
 import { createZombie } from '../zombie'
 import { playSound } from './sound'
 import { engine, AudioSource } from '@dcl/sdk/ecs'
@@ -49,11 +49,14 @@ function spawnZombie() {
 }
 
 function endGame() {
-  if (GameControllerComponent.has(coneEntity)) {
-    GameControllerComponent.getMutable(coneEntity).spawnActive = false
+  const lever = engine.getEntityOrNullByName('Lever')
+
+  if (lever) {
+    if (GameControllerComponent.has(lever)) {
+      GameControllerComponent.getMutable(lever).spawnActive = false
+    }
   }
 
-  if (AudioSource.has(coneEntity)) {
-    AudioSource.getMutable(coneEntity).playing = false
-  }
+  console.log('GAME OVER')
+  //TODO game over message
 }

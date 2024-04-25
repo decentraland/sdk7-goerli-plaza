@@ -4,9 +4,11 @@ import {
   MeshCollider,
   MeshRenderer,
   TextShape,
+  Billboard,
   Transform,
   engine,
-  pointerEventsSystem
+  pointerEventsSystem,
+  BillboardMode
 } from '@dcl/sdk/ecs'
 import { Color4, Vector3 } from '@dcl/sdk/math'
 import { TeamModels, changeModel } from './modelsHandler'
@@ -37,7 +39,6 @@ export function createJoinTeamControl(team: TeamModels, position: Vector3, color
       maxDistance: 5
     }
   )
-
   let label = engine.addEntity()
   Transform.create(label, {
     parent: teamBall,
@@ -47,4 +48,5 @@ export function createJoinTeamControl(team: TeamModels, position: Vector3, color
     text: 'Join Team:\n' + team,
     fontSize: 5
   })
+  Billboard.create(label, { billboardMode: BillboardMode.BM_Y })
 }

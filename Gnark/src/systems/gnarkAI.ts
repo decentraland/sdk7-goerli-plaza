@@ -1,23 +1,23 @@
 import { Transform, Entity, engine, Animator } from '@dcl/sdk/ecs'
 import { Vector3, Quaternion } from '@dcl/sdk/math'
 import { MoveTransformComponent } from '../components/moveTransport'
-import { gnarkStates, NPComponent } from '../components/NPC'
+import { gnarkStates, NPCData } from '../components/NPC'
 import { PathDataComponent } from '../components/pathData'
 import { TimeOutComponent } from '../components/timeOut'
 import { Interpolate } from '../helper/interpolation'
 
 export function distanceSystem() {
-  const playerTransform = Transform.getOrNull(1 as Entity)
+  const playerTransform = Transform.getOrNull(engine.PlayerEntity)
 
   if (playerTransform) {
-    for (const [entity, transform] of engine.getEntitiesWith(Transform, NPComponent)) {
-      const npcData = NPComponent.getMutable(entity)
+    for (const [entity, transform] of engine.getEntitiesWith(Transform, NPCData)) {
+      const npcData = NPCData.getMutable(entity)
       const dist = getDistance(playerTransform.position, transform.position)
 
       if (dist < 5 && npcData.state !== gnarkStates.YELLING) {
         changeState(entity, gnarkStates.YELLING)
       } else if (dist > 5 && npcData.state === gnarkStates.YELLING) {
-        previousState(entity)
+        changeState(entity, gnarkStates.WALKING)
       }
     }
   }
@@ -30,8 +30,8 @@ function getDistance(playerPos: Vector3.ReadonlyVector3, NPCPos: Vector3.Readonl
 }
 
 export function walkAround(dt: number) {
-  for (const [entity] of engine.getEntitiesWith(NPComponent)) {
-    const npcData = NPComponent.getMutable(entity)
+  for (const [entity] of engine.getEntitiesWith(NPCData, Transform, MoveTransformComponent)) {
+    const npcData = NPCData.getMutable(entity)
 
     switch (npcData.state) {
       case gnarkStates.WALKING:
@@ -67,7 +67,7 @@ export function walkAround(dt: number) {
 }
 
 export function changeState(entity: Entity, newState: gnarkStates) {
-  const npcDataMutable = NPComponent.getMutable(entity)
+  const npcDataMutable = NPCData.getMutable(entity)
 
   leaveState(entity, npcDataMutable.state)
   npcDataMutable.previousState = npcDataMutable.state
@@ -77,7 +77,7 @@ export function changeState(entity: Entity, newState: gnarkStates) {
 }
 
 export function previousState(entity: Entity) {
-  const npcDataMutable = NPComponent.getMutable(entity)
+  const npcDataMutable = NPCData.getMutable(entity)
 
   leaveState(entity, npcDataMutable.state)
   npcDataMutable.state = npcDataMutable.previousState
@@ -89,8 +89,7 @@ export function enterState(entity: Entity, newState: gnarkStates) {
   const animator = Animator.getMutable(entity)
   switch (newState) {
     case gnarkStates.WALKING:
-      const walkAnim = Animator.getClip(entity, 'walk')
-      walkAnim.playing = true
+      Animator.playSingleAnimation(entity, 'walk')
 
       const move = MoveTransformComponent.get(entity)
       if (move.hasFinished) {
@@ -99,8 +98,7 @@ export function enterState(entity: Entity, newState: gnarkStates) {
       break
     case gnarkStates.TURNING:
       nextSegment(entity)
-      const turnAnim = Animator.getClip(entity, 'turnRight')
-      turnAnim.playing = true
+      Animator.playSingleAnimation(entity, 'turnRight', true)
 
       const timer = TimeOutComponent.getMutable(entity)
       // if(timer.hasFinished){
@@ -113,8 +111,8 @@ export function enterState(entity: Entity, newState: gnarkStates) {
       const transform = Transform.getMutable(entity)
       const playerPosition = Transform.get(engine.PlayerEntity)
       transform.rotation = Quaternion.fromLookAt(transform.position, playerPosition.position)
-      const raiseDeadAnim = Animator.getClip(entity, 'raiseDead')
-      raiseDeadAnim.playing = true
+      Animator.playSingleAnimation(entity, 'raiseDead', true)
+
       break
   }
 }
@@ -123,22 +121,13 @@ export function leaveState(entity: Entity, oldState: gnarkStates) {
   const animator = Animator.getMutable(entity)
   switch (oldState) {
     case gnarkStates.WALKING:
-      // TODO use Animator.Play
-      const walkAnim = Animator.getClip(entity, 'walk')
-      if (!walkAnim.playing) return
-      walkAnim.playing = false
-
+      Animator.stopAllAnimations(entity)
       break
     case gnarkStates.TURNING:
-      const turnAnim = Animator.getClip(entity, 'turnRight')
-      if (!turnAnim.playing) return
-      turnAnim.playing = false
-
+      Animator.stopAllAnimations(entity)
       break
     case gnarkStates.YELLING:
-      const raiseDeadAnim = Animator.getClip(entity, 'raiseDead')
-      if (!raiseDeadAnim.playing) return
-      raiseDeadAnim.playing = false
+      Animator.stopAllAnimations(entity)
       const path = PathDataComponent.get(entity)
       turn(entity, path.path[path.target])
       break

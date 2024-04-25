@@ -5,10 +5,7 @@ const punch = engine.addEntity()
 
 //Create audio source component
 AudioSource.create(punch, {
-  audioClipUrl: 'sounds/punch.mp3',
-  loop: false,
-  playing: false,
-  volume: 1
+  audioClipUrl: 'sounds/punch.mp3'
 })
 
 // Attach to local player position
@@ -18,8 +15,5 @@ AvatarAttach.create(punch, {
 
 //Create a function to play punch sound
 export function playpunchSound() {
-  //Fetch mutable version of audio source component
-  const audioSource = AudioSource.getMutable(punch)
-  //Play the sound
-  audioSource.playing = true
+  AudioSource.playSound(punch, 'sounds/punch.mp3')
 }
