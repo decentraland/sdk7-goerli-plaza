@@ -11,7 +11,7 @@ export class UI {
     private gameController: gameController
     private timerId: number = 0
     private timerText: string = ''
-    private timeLeft: number = 6
+    private timeLeft: number = 60
     private timerTextColor: Color4 = Color4.Red();
     private thumbnail: string = 'images/wearable_thumbnail.png'
     //Visibles
@@ -106,12 +106,27 @@ export class UI {
                     uiTransform={{
                         width: 13,
                         height: 13,
-                        margin: { top: '20%', bottom: '0%', left: '50%', right: '50%' },
+                        margin: { top: '21%', bottom: '0%', left: '50%', right: '50%' },
                         positionType: 'absolute',
                         position: { bottom: '0%', top: '0%', left: '0%' },
                         display: this.welcome_ui_visible ? 'flex' : 'none',
                     }}
-                    value={`*Stay 1' to Recieve a Free Wearable \n *You can Claim 1 per/day (Max 3) `}
+                    value={`*Stay 1' to Recieve a Free Wearable \n *You can Claim 1 per/day (Max 3)`}
+                    fontSize={15}
+                    font='sans-serif'
+                    color={Color4.Gray()}
+                />
+                {/* Testnet - Label - Subtitle */}
+                <Label
+                    uiTransform={{
+                        width: 13,
+                        height: 13,
+                        margin: { top: '28%', bottom: '0%', left: '50%', right: '50%' },
+                        positionType: 'absolute',
+                        position: { bottom: '0%', top: '0%', left: '0%' },
+                        display: this.welcome_ui_visible ? 'flex' : 'none',
+                    }}
+                    value={`*You must be connected to Amoy Polygon \n testnet to recieve wearables`}
                     fontSize={15}
                     font='sans-serif'
                     color={Color4.Gray()}
@@ -121,7 +136,7 @@ export class UI {
                     uiTransform={{
                         width: 13,
                         height: 13,
-                        margin: { top: '10%', bottom: '0%', left: '50%', right: '50%' },
+                        margin: { top: '20%', bottom: '0%', left: '50%', right: '50%' },
                         positionType: 'relative',
                         position: { bottom: '0%', top: '0%', left: '0%' },
                         display: this.timer_label_visible ? 'flex' : 'none',
