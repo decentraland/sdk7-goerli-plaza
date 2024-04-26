@@ -1,5 +1,4 @@
 import { engine, Transform, Entity, InputAction, PointerEventType, PointerEvents, Schemas, inputSystem, MeshCollider, MeshRenderer, pointerEventsSystem } from "@dcl/sdk/ecs";
-import * as utils from '@dcl-sdk/utils';
 import { Quaternion, Vector3 } from "@dcl/sdk/math";
 import { artDetails, artPositions } from "./artData";
 import { openNFTlink } from "./nftArt";
@@ -9,17 +8,17 @@ import { kineticArtCollection, openKineticLink } from "./kineticArt";
 
 
 export let hoverDistance = 8 // Distance at which artHover UI will appear
-let visibilityTime = 9000 // duration of the artHover UI in miliseconds
-let cooldownTime = 1000
+
+
+// Adjustments to kinetic hover area sizes 
+let sizeAdjust = 0.5 // smaller
+let biggerSizeAdjust = 2.5 // larger
 
 
 
 export let hoverVisible = false
 export let currentArtworkId = 0;
 
-// Adjustments to kinetic hover area sizes 
-let sizeAdjust = 0.5 // smaller
-let biggerSizeAdjust = 2.5 // larger
 
 
 export const ArtHover = engine.defineComponent('arthover', { visible: Schemas.Boolean })
@@ -72,6 +71,14 @@ export function createArtID(position: Vector3, rotation: Vector3, scale: Vector3
         pointerEvents: [
             {
                 eventType: PointerEventType.PET_HOVER_ENTER,
+                eventInfo: {
+                    button: InputAction.IA_ANY,
+                    hoverText: artTitle,
+                    maxDistance: hoverDistance
+                }
+            },
+            {
+                eventType: PointerEventType.PET_HOVER_LEAVE,
                 eventInfo: {
                     button: InputAction.IA_ANY,
                     hoverText: artTitle,
@@ -170,31 +177,10 @@ export function changeArtHoverSystem() {
                 changeCurrentArtworkId(artworkId);
                 console.log('Hover enter for artworkID:', artworkId);
             }
-
-            // Check if not in cooldown before updating visibility
-            if (!inCooldown) {
                 hoverVisible = true;
-                utils.timers.setTimeout(() => {
-                    hoverVisible = false;
-                    // Set cooldown after visibility time
-                    inCooldown = true;
-                    // Start cooldown timer
-                    utils.timers.setTimeout(() => {
-                        inCooldown = false;
-                    }, cooldownTime);
-                }, visibilityTime);
-            }
 
-        } else if (inputSystem.isTriggered(InputAction.IA_POINTER, PointerEventType.PET_HOVER_LEAVE, entity)) {
-            // Always update hoverVisible on leave
-            hoverVisible = false;
-            // Set cooldown when leaving
-            inCooldown = true;
-            utils.timers.setTimeout(() => {
-                // Reset cooldown after cooldown time
-                inCooldown = false;
-            }, cooldownTime);
-            console.log('Hover leave');
+        } if (inputSystem.isTriggered(InputAction.IA_POINTER, PointerEventType.PET_HOVER_LEAVE, entity)) {
+            toggleHover();
         }
     }
 }
