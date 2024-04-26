@@ -5,8 +5,9 @@ import { Color4 } from "@dcl/sdk/math"
 
 
 const projectPath = "Zombie-shooter"
-const description = ""
+const description = "Pull the lever to start shooting zombies, stop them from reaching the end."
 const Max_Chars = 45
+
 
 
 const uiComponent = () => (

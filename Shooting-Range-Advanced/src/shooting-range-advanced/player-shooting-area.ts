@@ -83,7 +83,7 @@ export module PlayerShootingArea {
     audioIndex[type]++
     if (audioIndex[type] >= entityAudioShotHit[type].length) audioIndex[type] = 0
     //play next sound
-    AudioSource.getMutable(entityAudioShotHit[type][audioIndex[type]]).playing = true
+    AudioSource.playSound(entityAudioShotHit[type][audioIndex[type]], AUDIO_SHOT_SFX[type])
   }
 
   /** left click input -> fire a ray */

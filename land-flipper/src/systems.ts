@@ -37,7 +37,7 @@ export function setMyColor() {
 
 export function changeTileColor(tile: Entity, color: Color4 | undefined) {
   Material.setPbrMaterial(tile, { albedoColor: color })
-  AudioSource.getMutable(tile).playing = true
+  AudioSource.playSound(tile, 'sounds/coinPickup.mp3')
 }
 
 export function resetAllTiles() {
