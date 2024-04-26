@@ -6,6 +6,7 @@ import { timeStampConverter } from '../functions/timestamp.function'
 import { ClaimConfigInstType } from '../config/claim.config'
 import { executeTask } from '@dcl/sdk/ecs'
 import { getRealm } from '~system/Runtime'
+import { GitHubLinkUi, descriptionUI } from '../ui'
 
 export class UI {
   private gameController: gameController
@@ -52,6 +53,8 @@ export class UI {
       [
         this.mainUi(),
         this.cornerUi(),
+        GitHubLinkUi(),
+        descriptionUI()
       ]
     )
     ReactEcsRenderer.setUiRenderer(uiComponent)
@@ -167,11 +170,11 @@ export class UI {
         {/* Wearable - Label - Data */}
         <Label
           uiTransform={{
-            width: 13,
-            height: 13,
+            width: 'auto',
+            height: 'auto',
             margin: { top: '15%', bottom: '0%', left: '0%', right: '0%' },
             positionType: 'absolute',
-            position: { bottom: '0%', top: '10%', left: '40%' },
+            position: { bottom: '30%', top: '10%', left: '40%' },
             display: this.claim_label_visible ? 'flex' : 'none',
           }}
           value={`User ID: ${this.data_userID} \nWearables Collected: ${this.data_wearablesAmount}/3 \nTime for Next Wearable: ${this.data_timeForNextWearable} \nTimes Visited: ${this.data_timesVisited} `}
@@ -333,7 +336,7 @@ export class UI {
         alignItems: 'center',
         justifyContent: 'center',
         positionType: 'absolute',
-        position: { right: "2%", bottom: '3%' },
+        position: { right: "2%", bottom: '35%' },
         display: this.corner_ui_visible ? 'flex' : 'none',
       }}
     >
@@ -348,7 +351,7 @@ export class UI {
       <Label
         value={`\nWearables Collected: ${this.data_wearablesAmount}/3 \nTime for Next Wearable: ${this.data_timeForNextWearable}`}
         color={Color4.Black()}
-        fontSize={18}
+        fontSize={scaleFontSize(15, 0.8)}
         textAlign="middle-right"
         uiTransform={{ position: { right: '30%', bottom: '20%' }, display: this.corner_ui_visible ? 'flex' : 'none', }}
       />
