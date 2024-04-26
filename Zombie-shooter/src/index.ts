@@ -1,48 +1,42 @@
-import { AudioSource, engine, InputAction, NftShape, pointerEventsSystem } from '@dcl/sdk/ecs'
+import { AudioSource, engine, InputAction, pointerEventsSystem } from '@dcl/sdk/ecs'
 import {} from '@dcl/sdk/math'
 import { GameControllerComponent } from './components/gameController'
-import { createCone } from './cone'
-import { createNft } from './nft'
+
 import { moveSystem } from './systems/moveZombie'
 import { zombieSpawnSystem } from './systems/zombieSpawner'
 import { createText } from './text'
 import { setupUi } from './ui'
+import { zombieKiller } from './systems/zombieKiller'
+import { getTriggerEvents, getActionEvents } from '@dcl/asset-packs/dist/events'
+import { WallState } from './components/wallState'
+import { fixWall, prepareWall } from './walls'
+import { attackSystem } from './systems/zombieAttack'
 
-const _LIVES = 5
+const _LIVES = 4
 const _WINNING_SCORE = 15
 const _SPAWN_INTERVAL = 3
 
-export const coneEntity = createCone()
-
 export function main() {
-  createText(coneEntity, 'Click Cone to Play')
+  // lever
+  const lever = engine.getEntityOrNullByName('Lever')
 
-  pointerEventsSystem.onPointerDown(
-    {
-      entity: coneEntity,
-      opts: {
-        button: InputAction.IA_PRIMARY,
-        hoverText: 'Start game'
-      }
-    },
-    function () {
+  if (lever) {
+    createText(lever, 'Click to Play')
+
+    const actions = getActionEvents(lever)
+
+    actions.on('Activate', () => {
       console.log('STARTING GAME')
 
-      if (GameControllerComponent.has(coneEntity)) {
-        if (!GameControllerComponent.get(coneEntity).spawnActive) {
-          const controller = GameControllerComponent.getMutable(coneEntity)
+      if (GameControllerComponent.has(lever)) {
+        if (!GameControllerComponent.get(lever).spawnActive) {
+          const controller = GameControllerComponent.getMutable(lever)
           controller.spawnActive = true
           controller.livesLeft = _LIVES
           controller.score = 0
-
-          // clear NFTs
-          const nfts = engine.getEntitiesWith(NftShape)
-          for (const [entity] of nfts) {
-            engine.removeEntity(entity)
-          }
         } else return
       } else {
-        GameControllerComponent.create(coneEntity, {
+        GameControllerComponent.create(lever, {
           spawnActive: true,
           livesLeft: _LIVES,
           score: 0,
@@ -53,22 +47,27 @@ export function main() {
         })
       }
 
-      for (let i = _LIVES; i >= 0; i--) {
-        createNft(i)
+      for (const [wall] of engine.getEntitiesWith(WallState)) {
+        fixWall(wall)
       }
 
-      if (AudioSource.has(coneEntity)) {
-        const source = AudioSource.getMutable(coneEntity)
-        source.playing = true
-      } else {
-        AudioSource.create(coneEntity, {
-          audioClipUrl: 'sounds/ambient.mp3',
-          loop: true,
-          playing: true
-        })
-      }
-    }
-  )
+      AudioSource.playSound(lever, 'sounds/pickUp.mp3', true)
+    })
+  }
+
+  // walls
+  const wall1 = engine.getEntityOrNullByName('Wall1')
+  const wall2 = engine.getEntityOrNullByName('Wall2')
+  const wall3 = engine.getEntityOrNullByName('Wall3')
+  const wall4 = engine.getEntityOrNullByName('Wall4')
+  if (wall1 && wall2 && wall3 && wall4) {
+    prepareWall(wall1)
+    prepareWall(wall2)
+    prepareWall(wall3)
+    prepareWall(wall4)
+  }
+
+  AudioSource.create(engine.CameraEntity)
 
   // UI with GitHub link
   setupUi()
@@ -76,3 +75,5 @@ export function main() {
 
 engine.addSystem(zombieSpawnSystem)
 engine.addSystem(moveSystem)
+engine.addSystem(zombieKiller)
+engine.addSystem(attackSystem)

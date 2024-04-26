@@ -28,8 +28,6 @@
     "update-parcels": "node scripts/checkParcelsCollision.js"
   },
   "workspaces": [
-    "77,-1-raycast-unit-tests",
-    "80,-2-main-crdt",
     "BasicInteractions",
     "Block-Fountain",
     "Block-dog",
@@ -64,7 +62,6 @@
     "Wearables-scanner",
     "Weather-Simulation",
     "Zombie-shooter",
-    "Zombie-shooter2",
     "advanced-avatar-swap",
     "auto-dance",
     "avatar-animations",
@@ -80,7 +77,6 @@
     "coin-pickup",
     "cube-wave-16x16",
     "cube-wave-32x32",
-    "dbmonster",
     "droid-scene",
     "enemy-spawner",
     "grab-object-advance",
@@ -102,7 +98,6 @@
     "reward-claim",
     "rocket-board",
     "rotating-platforms",
-    "scene-bounds-check",
     "simple-giveaway-scene",
     "sliding-door",
     "switchable-platforms",
