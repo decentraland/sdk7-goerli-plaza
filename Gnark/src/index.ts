@@ -18,8 +18,8 @@ export function main() {
     src: 'models/Temple.glb'
   })
 
+  createGnark(0)
   createGnark(1)
-  createGnark(2)
 
   // UI with GitHub link
   setupUi()

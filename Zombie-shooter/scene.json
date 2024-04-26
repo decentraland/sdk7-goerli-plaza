@@ -20,16 +20,16 @@
       "default": true,
       "position": {
         "x": [
-          0,
-          3
+          3,
+          6
         ],
         "y": [
           0,
           0
         ],
         "z": [
-          0,
-          3
+          3,
+          6
         ]
       },
       "cameraTarget": {
@@ -39,7 +39,10 @@
       }
     }
   ],
-  "featureToggles": {},
+  "featureToggles": {
+    "voiceChat": "enabled",
+    "portableExperiences": "enabled"
+  },
   "scene": {
     "base": "77,-9",
     "parcels": [

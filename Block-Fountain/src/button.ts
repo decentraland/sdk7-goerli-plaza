@@ -84,8 +84,7 @@ export class Button {
     Animator.playSingleAnimation(this.buttonEntity, this.buttonClickComponent.clickAnim)
 
     // Fetch the button's audio source and play it
-    const buttonSource = AudioSource.getMutable(this.buttonEntity)
-    buttonSource.playing = true
+    AudioSource.playSound(this.buttonEntity, this.buttonClickComponent.audioSource)
   }
 }
 

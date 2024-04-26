@@ -44,7 +44,7 @@ function stop(entity: Entity) {
     return
   }
 
-  AudioSource.getMutable(entity).playing = false
+  AudioSource.stopSound(entity)
 
   Tween.createOrReplace(entity, {
     mode: Tween.Mode.Move({

@@ -1,6 +1,6 @@
 // Coordinates of path to patrol
 import { Animator, engine, Entity, GltfContainer, Transform } from '@dcl/sdk/ecs'
-import {} from '@dcl/sdk/math'
+import { Quaternion } from '@dcl/sdk/math'
 
 const point1 = { x: 8, y: 0, z: 8 }
 const point2 = { x: 8, y: 0, z: 24 }
@@ -11,15 +11,22 @@ const pathArray = [point1, point2, point3, point4]
 // const TURN_TIME = 0.9
 
 import { MoveTransformComponent } from './components/moveTransport'
-import { gnarkStates, NPComponent } from './components/NPC'
+import { gnarkStates, NPCData } from './components/NPC'
 import { PathDataComponent } from './components/pathData'
 import { TimeOutComponent } from './components/timeOut'
+import { changeState, turn } from './systems/gnarkAI'
 
 export function createGnark(startingSegment: number = 1): Entity {
   const gnark = engine.addEntity()
 
+  let target = startingSegment + 1
+  if (target >= pathArray.length) {
+    target = 0
+  }
+
   Transform.create(gnark, {
-    position: point1
+    position: point1,
+    rotation: Quaternion.fromLookAt(point1, pathArray[target])
   })
 
   GltfContainer.create(gnark, {
@@ -31,32 +38,26 @@ export function createGnark(startingSegment: number = 1): Entity {
       {
         clip: 'walk',
         playing: true,
-        weight: 1,
-        speed: 1,
         loop: true,
         shouldReset: false
       },
       {
         clip: 'turnRight',
         playing: false,
-        weight: 1,
-        speed: 1,
         loop: false,
         shouldReset: true
       },
       {
         clip: 'raiseDead',
         playing: false,
-        weight: 1,
-        speed: 1,
         loop: true,
         shouldReset: true
       }
     ]
   })
 
-  NPComponent.create(gnark, {
-    state: gnarkStates.TURNING,
+  NPCData.create(gnark, {
+    state: gnarkStates.WALKING,
     previousState: gnarkStates.WALKING
   })
 
@@ -64,12 +65,12 @@ export function createGnark(startingSegment: number = 1): Entity {
     path: pathArray,
     paused: false,
     origin: startingSegment,
-    target: startingSegment + 1
+    target: target
   })
 
   MoveTransformComponent.create(gnark, {
     start: pathArray[startingSegment],
-    end: pathArray[startingSegment + 1],
+    end: pathArray[target],
     normalizedTime: 0,
     lerpTime: 0,
     speed: 0.1,
@@ -82,6 +83,8 @@ export function createGnark(startingSegment: number = 1): Entity {
     hasFinished: false,
     paused: false
   })
+
+  // changeState(gnark, gnarkStates.TURNING)
 
   return gnark
 }

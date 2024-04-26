@@ -1,4 +1,8 @@
 # SDK7 Goerli Plaza
+Welcome to the SDK7 expamples scene repository!
+
+This collection contains SDK7 scenes that are aimed to showcase more complex and comprehensive funcionalities of the SDK7.
+It's great resource for learning on how to use SDK7.
 
 # Adding a new scene
 

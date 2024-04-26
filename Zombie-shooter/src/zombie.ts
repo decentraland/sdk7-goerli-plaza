@@ -1,6 +1,6 @@
 import { GameControllerComponent } from './components/gameController'
 import { MoveTransformComponent } from './components/moveTransport'
-import { coneEntity } from '.'
+
 import { onMoveZombieFinish } from './systems/moveZombie'
 
 import { playSound } from './systems/sound'
@@ -10,16 +10,23 @@ import {
   Transform,
   GltfContainer,
   Animator,
-  NftShape,
   pointerEventsSystem,
   InputAction,
   MeshCollider,
   AvatarAttach,
-  AvatarAnchorPointType
+  AvatarAnchorPointType,
+  PointerEvents,
+  PointerEventType,
+  AudioSource
 } from '@dcl/sdk/ecs'
+import { ZombieComponent } from './components/zombie'
+import { WallState } from './components/wallState'
+import { breakWall, damageWall } from './walls'
 
 export function createZombie(xPos: number): Entity {
   const zombie = engine.addEntity()
+
+  ZombieComponent.create(zombie)
 
   Transform.create(zombie, {
     position: { x: xPos, y: 1, z: 3 }
@@ -35,7 +42,7 @@ export function createZombie(xPos: number): Entity {
     duration: 6,
     normalizedTime: 0,
     lerpTime: 0,
-    speed: 0.04,
+    speed: 0.08,
     hasFinished: false,
     interpolationType: 1
   })
@@ -57,32 +64,23 @@ export function createZombie(xPos: number): Entity {
     ]
   })
 
-  pointerEventsSystem.onPointerDown(
-    {
-      entity: zombie,
-      opts: {
-        button: InputAction.IA_POINTER,
-        hoverText: 'Shoot'
-      }
-    },
-    function () {
-      console.log('BOOM!!!')
+  AudioSource.create(zombie)
 
-      engine.removeEntity(zombie)
-      playSound(dummySoundPlayer, 'sounds/explosion.mp3', true)
-
-      if (GameControllerComponent.has(coneEntity)) {
-        GameControllerComponent.getMutable(coneEntity).score += 1
+  PointerEvents.create(zombie, {
+    pointerEvents: [
+      {
+        eventType: PointerEventType.PET_DOWN,
+        eventInfo: {
+          button: InputAction.IA_POINTER,
+          hoverText: 'Shoot',
+          maxDistance: 20
+        }
       }
-    }
-  )
+    ]
+  })
 
   onMoveZombieFinish(zombie, () => {
     console.log('finished zombie', zombie)
-
-    if (GameControllerComponent.has(coneEntity)) {
-      GameControllerComponent.getMutable(coneEntity).livesLeft -= 1
-    }
 
     const animator = Animator.getMutable(zombie)
     const walkAnim = Animator.getClip(zombie, 'Walking')
@@ -94,15 +92,7 @@ export function createZombie(xPos: number): Entity {
       attackAnim.loop = true
     }
 
-    const nfts = engine.getEntitiesWith(NftShape)
-
-    //only remove first
-    for (const [entity] of nfts) {
-      engine.removeEntity(entity)
-      break
-    }
-
-    playSound(zombie, 'sounds/attack.mp3', true)
+    ZombieComponent.getMutable(zombie).rechedEnd = true
   })
 
   return zombie
