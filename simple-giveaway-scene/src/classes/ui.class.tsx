@@ -11,7 +11,7 @@ export class UI {
     private gameController: gameController
     private timerId: number = 0
     private timerText: string = ''
-    private timeLeft: number = 60
+    private timeLeft: number = 6
     private timerTextColor: Color4 = Color4.Red();
     private thumbnail: string = 'images/wearable_thumbnail.png'
     //Visibles

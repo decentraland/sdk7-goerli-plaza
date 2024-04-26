@@ -15,7 +15,7 @@ export class Claim {
   constructor(gameController: gameController) {
     this.gameController = gameController
     this.campaign = this.gameController.camp
-    this.campaign_key = this.gameController.camp.campaignKeys.KEY_0
+    this.campaign_key = this.gameController.camp.campaignKeys.KEY_3
   }
   setUserData() {
     this.userData = getPlayer()
