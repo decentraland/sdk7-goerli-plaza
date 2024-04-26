@@ -6,5 +6,3 @@ export function main() {
 
   setupUi()
 }
-
-

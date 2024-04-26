@@ -7,7 +7,7 @@ const DEBUG_FLAGS: Record<string, boolean> = {
 class Config {
   CONFIG_CLAIM_TESTING_ENABLED = true
 
-  init() { }
+  init() {}
 }
 
 export const CONFIG = new Config()
