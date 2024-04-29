@@ -2,7 +2,7 @@
   "ecs7": true,
   "runtimeVersion": "7",
   "display": {
-    "title": "Atari Arcade Cabinets",
+    "title": "atari-arcade-cabinets",
     "description": "Atari Arcade Cabinets",
     "navmapThumbnail": "images/scene-thumbnail.png",
     "favicon": "favicon_asset"
@@ -16,12 +16,12 @@
   "tags": [],
   "scene": {
     "parcels": [
-      "74,10",
-      "75,10",
+      "74,12",
+      "75,12",
       "74,11",
       "75,11"
     ],
-    "base": "74,10"
+    "base": "74,11"
   },
   "spawnPoints": [
     {
@@ -52,5 +52,5 @@
     "voiceChat": "enabled",
     "portableExperiences": "enabled"
   },
-  "name": "atari"
+  "name": "atari-arcade-cabinets"
 }
