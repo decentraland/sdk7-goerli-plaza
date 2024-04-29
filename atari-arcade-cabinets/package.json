@@ -1,0 +1,30 @@
+{
+  "name": "dcl-project",
+  "version": "1.0.0",
+  "description": "SDK7 Template scene",
+  "scripts": {
+    "start": "sdk-commands start",
+    "deploy": "sdk-commands deploy",
+    "build": "sdk-commands build",
+    "upgrade-sdk": "npm install --save-dev @dcl/sdk@latest",
+    "upgrade-sdk:next": "npm install --save-dev @dcl/sdk@next",
+    "format": "prettier --config .prettierrc -c src/**/*.{ts,tsx}",
+    "format:fix": "prettier -w --config .prettierrc -c src/**/*.{ts,tsx}"
+  },
+  "devDependencies": {
+    "@dcl/asset-packs": "^1.16.0",
+    "@dcl/js-runtime": "7.4.15",
+    "@dcl/sdk": "latest",
+    "prettier": "3.0.3"
+  },
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=6.0.0"
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true,
+    "printWidth": 120,
+    "trailingComma": "none"
+  }
+}
