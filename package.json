@@ -29,6 +29,7 @@
   },
   "workspaces": [
     "BasicInteractions",
+    "Block-Fountain",
     "Block-dog",
     "BouncerUI",
     "Cube",
@@ -69,7 +70,6 @@
     "avatar-swap",
     "beer-dispenser",
     "bird-field",
-    "block-fountain",
     "block-portable-experiences",
     "boids",
     "cannon-car-example-scene",

@@ -19,18 +19,18 @@ export const mainColor = Color4.Black()
 
 
 
-export function setupUi() {
-    setupUiInfoEngine(),
-        ReactEcsRenderer.setUiRenderer(uiComponent)
-}
+// export function setupUi() {
+//     setupUiInfoEngine(),
+//         ReactEcsRenderer.setUiRenderer(uiComponent)
+// }
 
 
-export const uiComponent = () => [
-    artDetailsUI(),
-    ui.render(),
-    playlistUI(),
-    radioUI(),
-]
+// export const uiComponent = () => [
+//     artDetailsUI(),
+//     ui.render(),
+//     playlistUI(),
+//     radioUI(),
+// ]
 
 
 

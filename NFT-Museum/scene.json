@@ -2,7 +2,7 @@
   "ecs7": true,
   "runtimeVersion": "7",
   "display": {
-    "title": "NFT Museum SDK7 Scene Template",
+    "title": "NFT-Museum",
     "description": "NFT Museum template scene with SDK7",
     "navmapThumbnail": "images/scene-thumbnail.png",
     "favicon": "favicon_asset"
@@ -16,12 +16,12 @@
   "tags": [],
   "scene": {
     "parcels": [
-      "0,0",
-      "0,1",
-      "1,0",
-      "1,1"
+      "85,-8",
+      "85,-7",
+      "86,-8",
+      "86,-7"
     ],
-    "base": "0,0"
+    "base": "85,-8"
   },
   "worldConfiguration": {
     "name": "kjwalker.dcl.eth"
@@ -65,5 +65,6 @@
   "featureToggles": {
     "voiceChat": "enabled",
     "portableExperiences": "enabled"
-  }
+  },
+  "name": "NFT-Museum"
 }

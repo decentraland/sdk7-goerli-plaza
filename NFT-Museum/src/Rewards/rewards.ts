@@ -1,10 +1,10 @@
 import { ColliderLayer, engine, GltfContainer, Transform, pointerEventsSystem, InputAction } from '@dcl/sdk/ecs'
-import { Quaternion, Vector3 } from '@dcl/sdk/math';
-import { CONFIG } from './config';
-import { claimToken } from "./claim";
-import { ClaimConfig } from "./claimConfig";
+import { Quaternion, Vector3 } from '@dcl/sdk/math'
+import { CONFIG } from './config'
+import { claimToken } from './claim'
+import { ClaimConfig } from './claimConfig'
 import * as utils from '@dcl-sdk/utils'
-import { confirmationUI } from '../UI/reward.ui';
+import { confirmationUI } from '../UI/reward.ui'
 
 // Lazy Loading: room: 3
 const dispenserModel = 'models/dispenser.glb'
@@ -21,9 +21,7 @@ export let rewardClaimed = false
 export let rewardEntity = engine.addEntity()
 
 export function createWearableReward() {
-
   if (!rewardClaimed) {
-
     console.log('creating wearable reward')
     CONFIG.init()
 
@@ -35,7 +33,7 @@ export function createWearableReward() {
     GltfContainer.create(rewardEntity, {
       src: dispenserModel,
       invisibleMeshesCollisionMask: ColliderLayer.CL_PHYSICS,
-      visibleMeshesCollisionMask: ColliderLayer.CL_POINTER,
+      visibleMeshesCollisionMask: ColliderLayer.CL_POINTER
     })
 
     utils.perpetualMotions.startRotation(rewardEntity, Quaternion.fromEulerDegrees(0, 25, 0))
@@ -50,19 +48,19 @@ export function createWearableReward() {
         }
       },
       function () {
-        utils.playSound('sounds/star-collect.mp3', false);
-        confirmationUI(rewardImage, rewardName);
+        utils.playSound('sounds/star-collect.mp3', false)
+        confirmationUI(rewardImage, rewardName)
         let camp = ClaimConfig.campaign.CAMPAIGN_TEST
         claimToken(camp, camp.campaignKeys.KEY_0)
         console.log('claimed Wearable gift')
-        utils.timers.setTimeout(() => { engine.removeEntity(rewardEntity), reward = false }, 1000)
+        utils.timers.setTimeout(() => {
+          engine.removeEntity(rewardEntity), (reward = false)
+        }, 1000)
         rewardClaimed = true
       }
     )
     return rewardEntity
-  }
-  else {
+  } else {
     console.log('reward already collected')
   }
 }
-

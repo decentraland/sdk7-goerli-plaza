@@ -1,9 +1,9 @@
-import { NftFrameType, NftShape, Transform, engine } from "@dcl/ecs";
-import { Color3, Quaternion, Vector3 } from "@dcl/ecs-math";
-import { MeshCollider, Entity } from "@dcl/sdk/ecs";
-import { openNftDialog } from "~system/RestrictedActions";
-import { classicFrame } from "./nftFrames";
-import { artPositions } from "./artData";
+import { NftFrameType, NftShape, Transform, engine } from '@dcl/ecs'
+import { Color3, Quaternion, Vector3 } from '@dcl/ecs-math'
+import { MeshCollider, Entity } from '@dcl/sdk/ecs'
+import { openNftDialog } from '~system/RestrictedActions'
+import { classicFrame } from './nftFrames'
+import { artPositions } from './artData'
 
 /// need to export a function into arthover onpointer down
 // function should be able to cover current pointer eventss present in nfts
@@ -25,19 +25,16 @@ let urn22 = 'urn:decentraland:ethereum:erc721:0x22c1f6050e56d2876009903609a2cc3f
 let urn23 = 'urn:decentraland:ethereum:erc721:0x22c1f6050e56d2876009903609a2cc3fef83b415:13493'
 let urn24 = 'urn:decentraland:ethereum:erc721:0x22c1f6050e56d2876009903609a2cc3fef83b415:13294'
 
-
-
-
 interface NFTdata {
   room: number // location >> room 1 = ground floor; room 2 = first floor + mezzanine; room 3: rooftop area
   id: number
   position: Vector3
-  rotation: Vector3,
-  scale: Vector3,
+  rotation: Vector3
+  scale: Vector3
   urn: string
-  frame: NftFrameType,
-  color: Color3,
-  hoverText: string,
+  frame: NftFrameType
+  color: Color3
+  hoverText: string
 }
 
 export const NFTdata: NFTdata[] = [
@@ -228,38 +225,38 @@ export const NFTdata: NFTdata[] = [
     frame: classicFrame,
     color: Color3.Yellow(),
     hoverText: 'Click'
-  },
+  }
 ]
 
 for (const data of NFTdata) {
-  createNFT(data);
+  createNFT(data)
 }
 
 export function createNFT(data: NFTdata) {
-  const { id, room, position, rotation, scale, urn, frame, color, hoverText } = data;
-  const entity = engine.addEntity();
+  const { id, room, position, rotation, scale, urn, frame, color, hoverText } = data
+  const entity = engine.addEntity()
 
   Transform.create(entity, {
     position: position,
     rotation: Quaternion.fromEulerDegrees(rotation.x, rotation.y, rotation.z),
     scale: scale
-  });
+  })
 
-  MeshCollider.setPlane(entity);
+  MeshCollider.setPlane(entity)
 
   NftShape.create(entity, {
     urn: urn,
     color: color,
     style: frame
-  });
+  })
 
-  return entity;
+  return entity
 }
 
 export function removeNFTs(entity: Entity) {
-  engine.removeEntity(entity);
+  engine.removeEntity(entity)
 }
 
 export function openNFTlink(id: number) {
-  openNftDialog({ urn: NFTdata[id].urn });
+  openNftDialog({ urn: NFTdata[id].urn })
 }

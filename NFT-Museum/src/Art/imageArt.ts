@@ -1,8 +1,8 @@
-import { Material, MeshCollider, MeshRenderer, Transform, engine, pointerEventsSystem } from "@dcl/sdk/ecs";
-import { Color3, Quaternion, Vector3 } from "@dcl/sdk/math";
-import { openExternalUrl } from "~system/RestrictedActions";
-import { homepageUrl, linktreeURL } from "../social";
-import { artPositions } from "./artData";
+import { Material, MeshCollider, MeshRenderer, Transform, engine, pointerEventsSystem } from '@dcl/sdk/ecs'
+import { Color3, Quaternion, Vector3 } from '@dcl/sdk/math'
+import { openExternalUrl } from '~system/RestrictedActions'
+import { homepageUrl, linktreeURL } from '../social'
+import { artPositions } from './artData'
 
 // For static images that aren't loaded in as NFTs
 // Use server hosted images or paths to files in your project folder
@@ -10,7 +10,6 @@ export let logoImage = 'https://bafkreih4ndg6qpczqw2ardbrrdoj23t43hiegbceo36hbi3
 
 let verticalImageAR = 'https://bafybeig2s7rg4dwuebwnmzwefz5h6c3p3x4eazcm6qng2wgtqqfe2l2m2i.ipfs.nftstorage.link/'
 let verticalImageRender = 'https://bafkreia5xiavtlcbrvfr4os7om5bdzbzjdtvm4jcuki52r5wkn6lzzb74a.ipfs.nftstorage.link/'
-
 
 export const imageArtCollection: ImageData[] = [
   {
@@ -60,14 +59,14 @@ export const imageArtCollection: ImageData[] = [
 ]
 
 export type ImageData = {
-  room: number,
-  id: number,
-  position: Vector3,
-  rotation: Vector3,
+  room: number
+  id: number
+  position: Vector3
+  rotation: Vector3
   scale: Vector3
-  image: string,
-  hoverText: string,
-  url: string,
+  image: string
+  hoverText: string
+  url: string
   hasAlpha: boolean
 }
 
@@ -80,7 +79,6 @@ export function createImageArt(
   url: string,
   hasAlpha: boolean
 ) {
-
   let entity = engine.addEntity()
   Transform.create(entity, {
     position: position,
@@ -90,11 +88,9 @@ export function createImageArt(
   MeshRenderer.setPlane(entity)
   MeshCollider.setPlane(entity)
 
-  const imageMaterial = Material.Texture.Common({ src: image });
-
+  const imageMaterial = Material.Texture.Common({ src: image })
 
   if (!hasAlpha) {
-
     Material.setPbrMaterial(entity, {
       texture: imageMaterial,
       roughness: 1,
@@ -102,12 +98,9 @@ export function createImageArt(
       metallic: 0,
       emissiveColor: Color3.White(),
       emissiveIntensity: 1,
-      emissiveTexture: imageMaterial,
+      emissiveTexture: imageMaterial
     })
-  }
-
-  else if (hasAlpha) {
-
+  } else if (hasAlpha) {
     Material.setPbrMaterial(entity, {
       texture: imageMaterial,
       roughness: 1,
@@ -118,8 +111,7 @@ export function createImageArt(
       alphaTest: 0.5,
       emissiveColor: Color3.White(),
       emissiveIntensity: 1,
-      emissiveTexture: imageMaterial,
-
+      emissiveTexture: imageMaterial
     })
   }
 

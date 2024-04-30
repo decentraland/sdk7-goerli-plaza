@@ -1,6 +1,4 @@
-import { NftFrameType } from "@dcl/sdk/ecs"
-
-
+import { NftFrameType } from '@dcl/sdk/ecs'
 
 // Styles of NFT frames
 export let classicFrame = NftFrameType.NFT_CLASSIC
