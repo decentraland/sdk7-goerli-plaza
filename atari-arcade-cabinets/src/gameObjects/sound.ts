@@ -11,7 +11,6 @@ export function createSound(audioClipUrl: Sounds): void {
 
 export function playSound(clip: Sounds): void {
   for (const [sound] of engine.getEntitiesWith(AudioSource)) {
-    if (AudioSource.get(sound).audioClipUrl === clip)
-      AudioSource.getMutable(sound).playing = true
+    if (AudioSource.get(sound).audioClipUrl === clip) AudioSource.getMutable(sound).playing = true
   }
 }

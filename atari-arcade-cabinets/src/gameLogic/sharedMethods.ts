@@ -1,10 +1,4 @@
-import {
-  Entity,
-  GltfContainer,
-  Transform,
-  VisibilityComponent,
-  engine
-} from '@dcl/sdk/ecs'
+import { Entity, GltfContainer, Transform, VisibilityComponent, engine } from '@dcl/sdk/ecs'
 import { Color3, Vector3 } from '@dcl/sdk/math'
 import { createBrick } from '../gameObjects/brick'
 import { PLANE_HEIGHT } from '../gameConfig'
@@ -13,11 +7,7 @@ import { createBackground } from '../gameObjects/background'
 import { createWall } from '../gameObjects/wall'
 import { BRICK_SIZE, Games } from './sharedConstants'
 
-export function loadBricks(
-  game: Games,
-  bricks: Array<{ position: Vector3; color: Color3 }>,
-  parent: Entity
-): void {
+export function loadBricks(game: Games, bricks: Array<{ position: Vector3; color: Color3 }>, parent: Entity): void {
   toggleVisibilityReadyPlayerOne(game, false)
   for (let i = 0; i < bricks.length; i++) {
     createBrick(
@@ -41,8 +31,7 @@ export function loadBricks(
 export function toggleVisibilityReadyPlayerOne(game: Games, visible: boolean) {
   for (const [readyPlayerOne] of engine.getEntitiesWith(ReadyPlayerOneFlag)) {
     if (ReadyPlayerOneFlag.get(readyPlayerOne).game === game) {
-      const mutableVisibility =
-        VisibilityComponent.getMutableOrNull(readyPlayerOne)
+      const mutableVisibility = VisibilityComponent.getMutableOrNull(readyPlayerOne)
       if (mutableVisibility) {
         mutableVisibility.visible = visible
       } else {
