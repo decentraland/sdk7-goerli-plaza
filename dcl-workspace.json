@@ -34,6 +34,9 @@
       "path": "sliding-door"
     },
     {
+      "path": "simple-giveaway-scene"
+    },
+    {
       "path": "rotating-platforms"
     },
     {
@@ -140,6 +143,9 @@
     },
     {
       "path": "auto-dance"
+    },
+    {
+      "path": "atari-arcade-cabinets"
     },
     {
       "path": "advanced-avatar-swap"
