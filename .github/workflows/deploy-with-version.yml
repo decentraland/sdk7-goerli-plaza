@@ -78,31 +78,15 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.SDK_TEAM_AWS_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.SDK_TEAM_AWS_SECRET }}
 
-      - name: Asset Bundle converter queue WebGL
+      - name: Asset Bundle converter queue AllPlataforms
         if: github.event_name != 'pull_request'
         run: >
           npx @dcl/opscli queue-ab-conversion-about \
             --token ${{ secrets.AB_TOKEN }} \
             --about-url ${{ secrets.SDK_TEAM_S3_BASE_URL }}/ipfs/${{steps.get-branch-realm-name.outputs.result}}/about
+            --crossplatform
+            --prioritize
             
-      - name: Asset Bundle converter queue Windows
-        if: github.event_name != 'pull_request'
-        run: >
-          npx @dcl/opscli queue-ab-conversion-about \
-            --token ${{ secrets.AB_TOKEN }} \
-            --about-url ${{ secrets.SDK_TEAM_S3_BASE_URL }}/ipfs/${{steps.get-branch-realm-name.outputs.result}}/about
-            --ab-server https://asset-bundle-converter-windows.decentraland.org
-            --prioritize
-
-      - name: Asset Bundle converter queue Mac
-        if: github.event_name != 'pull_request'
-        run: >
-          npx @dcl/opscli queue-ab-conversion-about \
-            --token ${{ secrets.AB_TOKEN }} \
-            --about-url ${{ secrets.SDK_TEAM_S3_BASE_URL }}/ipfs/${{steps.get-branch-realm-name.outputs.result}}/about
-            --ab-server https://asset-bundle-converter-mac.decentraland.org
-            --prioritize
-
       - name: Find Comment
         uses: peter-evans/find-comment@v1
         if: github.event_name == 'pull_request'
