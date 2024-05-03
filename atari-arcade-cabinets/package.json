@@ -12,8 +12,8 @@
     "format:fix": "prettier -w --config .prettierrc -c src/**/*.{ts,tsx}"
   },
   "devDependencies": {
-    "@dcl/asset-packs": "^1.16.0",
-    "@dcl/js-runtime": "7.4.15",
+    "@dcl/asset-packs": "^1.17.0",
+    "@dcl/js-runtime": "7.4.20",
     "@dcl/sdk": "latest",
     "prettier": "3.0.3"
   },
