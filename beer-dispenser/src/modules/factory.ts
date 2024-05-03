@@ -72,7 +72,7 @@ export function createBeerGlass(model: string, position: Vector3, id: SyncEntity
         eventType: PointerEventType.PET_DOWN,
         eventInfo: {
           hoverText: 'Pick up',
-          maxDistance: 5,
+          maxDistance: 8,
           button: InputAction.IA_PRIMARY
         }
       }
