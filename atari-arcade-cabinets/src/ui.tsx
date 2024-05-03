@@ -3,8 +3,8 @@ import ReactEcs, { Label, ReactEcsRenderer, UiEntity } from '@dcl/sdk/react-ecs'
 import { openExternalUrl } from "~system/RestrictedActions"
 
 
-const projectPath = "zenquencer"
-const description = "This scene uses P2P to sync players' melody composition. In addition, each player can play, stop or change the speed of the music locally."
+const projectPath = "atari-arcade-cabinets"
+const description = "A mini game replying the Atari's classic breakout. This scene uses syncEntity to use the melody compositer collaboratibely"
 const Max_Chars = 45
 
 
