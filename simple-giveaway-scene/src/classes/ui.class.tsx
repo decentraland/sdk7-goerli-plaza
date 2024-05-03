@@ -1,4 +1,4 @@
-import ReactEcs, { Button, Input, Label, ReactEcsRenderer, UiEntity, scaleFontSize } from '@dcl/sdk/react-ecs'
+import ReactEcs, { Button, Input, Label, ReactEcsRenderer, UiEntity } from '@dcl/sdk/react-ecs'
 import { Color4 } from '@dcl/sdk/math'
 import * as utils from '@dcl-sdk/utils'
 import { gameController } from '../controllers/game.controller'
@@ -53,8 +53,6 @@ export class UI {
       [
         this.mainUi(),
         this.cornerUi(),
-        GitHubLinkUi(),
-        descriptionUI()
       ]
     )
     ReactEcsRenderer.setUiRenderer(uiComponent)
@@ -63,9 +61,9 @@ export class UI {
   mainUi() {
     return <UiEntity
       uiTransform={{
-        width: '50%',
-        height: '30%',
-        margin: { top: '10%', left: '25%', right: '25%' },
+        width: 520,
+        height: 325,
+        margin: '10% 50px 50% 40%',
         position: { top: '40%' },
         padding: { top: 4, bottom: 4, left: 4, right: 4 },
         display: this.master_ui_visible ? 'flex' : 'none',
@@ -74,14 +72,16 @@ export class UI {
     >
       <UiEntity
         uiTransform={{
-          width: '100%',
-          height: '100%',
+          width: 650,
+          height: 325,
+          maxWidth: '100%',
+          maxHeight: '100%',
+          minHeight: '12%',
+          minWidth: '15%',
           positionType: 'relative',
           justifyContent: 'center',
           alignItems: 'center',
-          padding: { top: 4, bottom: 4, left: 4, right: 4 },
           display: this.master_ui_visible ? 'flex' : 'none',
-          flexDirection: 'column',
         }}
         uiBackground={{
           textureMode: 'stretch',
@@ -91,15 +91,14 @@ export class UI {
         <Label
           uiTransform={{
             width: 13,
-            height: '10%',
-            padding: { top: '3%', bottom: '3%', left: '20%', right: '20%' },
-            margin: { top: '35%', bottom: '0%', left: '50%', right: '50%' },
-            positionType: 'relative',
-
-            // display: this.welcome_ui_visible ? 'flex' : 'none',
+            height: 13,
+            margin: { top: '9%', bottom: '0%', left: '50%', right: '50%' },
+            positionType: 'absolute',
+            position: { bottom: '0%', top: '0%', left: '0%' },
+            display: this.welcome_ui_visible ? 'flex' : 'none',
           }}
           value={`Welcome to a Simple Recurrent Giveaway Scene!`}
-          fontSize={scaleFontSize(18, 0.8)}
+          fontSize={18}
           font='sans-serif'
           color={Color4.fromHexString("#000000")}
         />
@@ -108,14 +107,28 @@ export class UI {
           uiTransform={{
             width: 13,
             height: 13,
-            padding: { top: '3%', bottom: '3%', left: '20%', right: '20%' },
-            margin: { top: '0%', bottom: '0%', left: '50%', right: '50%' },
-            positionType: 'relative',
-
+            margin: { top: '21%', bottom: '0%', left: '50%', right: '50%' },
+            positionType: 'absolute',
+            position: { bottom: '0%', top: '0%', left: '0%' },
             display: this.welcome_ui_visible ? 'flex' : 'none',
           }}
-          value={`*Stay 1' to Recieve a Free Wearable \n *You can Claim 1 per/day (Max 3)`}
-          fontSize={scaleFontSize(15, 0.8)}
+          value={`*Stay 1 minute to Receive a Free Wearable \n *You can Claim 1 per/day (Max 3)`}
+          fontSize={15}
+          font='sans-serif'
+          color={Color4.Gray()}
+        />
+        {/* Testnet - Label - Subtitle */}
+        <Label
+          uiTransform={{
+            width: 13,
+            height: 13,
+            margin: { top: '28%', bottom: '0%', left: '50%', right: '50%' },
+            positionType: 'absolute',
+            position: { bottom: '0%', top: '0%', left: '0%' },
+            display: this.welcome_ui_visible ? 'flex' : 'none',
+          }}
+          value={`*Wearables reside in the Amoy Polygon testnet`}
+          fontSize={15}
           font='sans-serif'
           color={Color4.Gray()}
         />
@@ -124,33 +137,15 @@ export class UI {
           uiTransform={{
             width: 13,
             height: 13,
-            padding: { top: '3%', bottom: '3%', left: '20%', right: '20%' },
-            margin: { top: '0%', bottom: '0%', left: '50%', right: '50%' },
+            margin: { top: '20%', bottom: '0%', left: '50%', right: '50%' },
             positionType: 'relative',
-
+            position: { bottom: '0%', top: '0%', left: '0%' },
             display: this.timer_label_visible ? 'flex' : 'none',
           }}
           value={`Time left: ${this.timerText}`}
           color={this.timerTextColor}
-          fontSize={scaleFontSize(15, 0.8)}
+          fontSize={15}
         />
-        {/* Testnet - Label - Subtitle */}
-        <Label
-          uiTransform={{
-            width: 13,
-            height: 13,
-            padding: { top: '5%', bottom: '0%', left: '20%', right: '20%' },
-            margin: { top: '0%', bottom: '35%', left: '50%', right: '50%' },
-            positionType: 'relative',
-
-            display: this.welcome_ui_visible ? 'flex' : 'none',
-          }}
-          value={`*Wearables reside in the Amoy Polygon testnet`}
-          fontSize={scaleFontSize(15, 0.8)}
-          font='sans-serif'
-          color={Color4.Gray()}
-        />
-
         {/* Wearable - Label - Title */}
         <Label
           uiTransform={{
@@ -170,15 +165,15 @@ export class UI {
         {/* Wearable - Label - Data */}
         <Label
           uiTransform={{
-            width: 'auto',
-            height: 'auto',
+            width: 13,
+            height: 13,
             margin: { top: '15%', bottom: '0%', left: '0%', right: '0%' },
             positionType: 'absolute',
-            position: { bottom: '30%', top: '10%', left: '40%' },
+            position: { bottom: '0%', top: '10%', left: '40%' },
             display: this.claim_label_visible ? 'flex' : 'none',
           }}
           value={`User ID: ${this.data_userID} \nWearables Collected: ${this.data_wearablesAmount}/3 \nTime for Next Wearable: ${this.data_timeForNextWearable} \nTimes Visited: ${this.data_timesVisited} `}
-          fontSize={scaleFontSize(15, 0.8)}
+          fontSize={15}
           color={Color4.Gray()}
           textAlign='middle-left'
         />
@@ -193,7 +188,7 @@ export class UI {
             display: this.claim_label_visible ? 'flex' : 'none',
           }}
           value={`*Wearable will arrive in your backpack in a few minutes. `}
-          fontSize={scaleFontSize(15, 0.8)}
+          fontSize={12}
           color={Color4.Gray()}
           textAlign='middle-center'
         />
@@ -336,7 +331,7 @@ export class UI {
         alignItems: 'center',
         justifyContent: 'center',
         positionType: 'absolute',
-        position: { right: "2%", bottom: '35%' },
+        position: { right: "2%", bottom: '3%' },
         display: this.corner_ui_visible ? 'flex' : 'none',
       }}
     >
@@ -351,7 +346,7 @@ export class UI {
       <Label
         value={`\nWearables Collected: ${this.data_wearablesAmount}/3 \nTime for Next Wearable: ${this.data_timeForNextWearable}`}
         color={Color4.Black()}
-        fontSize={scaleFontSize(15, 0.8)}
+        fontSize={18}
         textAlign="middle-right"
         uiTransform={{ position: { right: '30%', bottom: '20%' }, display: this.corner_ui_visible ? 'flex' : 'none', }}
       />
