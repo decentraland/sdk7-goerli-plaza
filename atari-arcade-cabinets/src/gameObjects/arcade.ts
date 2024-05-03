@@ -3,11 +3,15 @@ import { Quaternion, Vector3 } from '@dcl/sdk/math'
 import { ArcadeFlag, KnobFlag } from '../components/definitions'
 import { CABINETS, Games } from '../gameLogic/sharedConstants'
 
+<<<<<<< HEAD
 export function createArcade(
   position: Vector3,
   rotation: Quaternion,
   game: Games
 ): void {
+=======
+export function createArcade(position: Vector3, rotation: Quaternion, game: Games): void {
+>>>>>>> main
   const arcade: Entity = engine.addEntity()
   const cabinet: Entity = engine.addEntity()
   const knob: Entity = engine.addEntity()
