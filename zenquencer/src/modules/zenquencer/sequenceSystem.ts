@@ -8,10 +8,6 @@ export enum PlayingMode {
   RANDOM
 }
 
-export const LOOP_DURATION = 8 // second
-export const TOTAL_DURATION = 60 // second
-export const TOTAL_BEATS = 8
-
 class PlaySequence {
   isSystemAdded: boolean = false
   // active: boolean = false
@@ -59,7 +55,7 @@ function PlaySequenceSystem(dt: number) {
     }
     if (sequencerConfig.playingMode === 1) {
       // sequence mode
-      console.log(stones[sequencerConfig.currentBeat])
+      // console.log(stones[sequencerConfig.currentBeat])
       for (let i = 0; i < 7; i++) {
         if (stones[sequencerConfig.currentBeat][i].stoneOn) {
           // console.log('zenquencer. current beat', sequencerConfig.currentBeat, 'play stone beat:', sequencerConfig.currentBeat, 'note:', i)

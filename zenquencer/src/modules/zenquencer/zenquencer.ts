@@ -13,12 +13,11 @@ import resources from '../../resources'
 import { sceneMessageBus } from '../serverHandler'
 import {
   PlayingMode,
-  TOTAL_DURATION,
   activateSequenceSystem,
   sequencerConfig
 } from './sequenceSystem'
 import { Stone, seqNumbers, stones } from './stones'
-import { BEATS_LENGHT } from './gameConfig'
+import { BEATS_LENGHT, TOTAL_DURATION } from './gameConfig'
 
 export const linear = engine.addEntity()
 export const random = engine.addEntity()
@@ -119,6 +118,7 @@ export function addZenquencer() {
         'zenquencer. sceneMessageBus. seqSpeed. new loop duration = ',
         newSpeed
       )
+
       sequencerConfig.loopDuration = newSpeed
       sequencerConfig.beatDuration =
         sequencerConfig.loopDuration / sequencerConfig.beats
