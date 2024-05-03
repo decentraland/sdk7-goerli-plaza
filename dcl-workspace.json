@@ -145,6 +145,9 @@
       "path": "auto-dance"
     },
     {
+      "path": "atari-arcade-cabinets"
+    },
+    {
       "path": "advanced-avatar-swap"
     },
     {
@@ -209,6 +212,9 @@
     },
     {
       "path": "Party-Time"
+    },
+    {
+      "path": "NFT-Museum"
     },
     {
       "path": "Laser-ray-Casting"
