@@ -11,7 +11,10 @@ export function spinSystem(dt: number) {
 
     transform.rotation = Quaternion.multiply(
       transform.rotation,
-      Quaternion.fromAngleAxis(dt * 100 * SpinComponent.get(entity).clockwise, Vector3.Up())
+      Quaternion.fromAngleAxis(
+        dt * 100 * SpinComponent.get(entity).clockwise,
+        Vector3.Up()
+      )
     )
   }
 }
