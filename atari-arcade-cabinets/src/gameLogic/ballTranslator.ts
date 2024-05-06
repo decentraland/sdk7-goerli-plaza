@@ -12,7 +12,10 @@ import { Sounds } from './sharedConstants'
 export function BallTranslatorSystem(dt: number) {
   for (const [ball] of engine.getEntitiesWith(BallFlag)) {
     const transform = Transform.getMutable(ball)
-    const increment = Vector3.scale(BallFlag.getMutable(ball).direction, dt * BALL_SPEED)
+    const increment = Vector3.scale(
+      BallFlag.getMutable(ball).direction,
+      dt * BALL_SPEED
+    )
     transform.position = Vector3.add(transform.position, increment)
 
     if (transform.position.z <= OUT_OF_BOUNDS) {
