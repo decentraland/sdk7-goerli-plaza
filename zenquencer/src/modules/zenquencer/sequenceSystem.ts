@@ -53,11 +53,12 @@ function PlaySequenceSystem(dt: number) {
       sequencerConfig.currentLoop = 0
       sequencerConfig.currentBeat = 0
     }
+    
     if (sequencerConfig.playingMode === 1) {
       // sequence mode
       // console.log(stones[sequencerConfig.currentBeat])
       for (let i = 0; i < 7; i++) {
-        if (stones[sequencerConfig.currentBeat][i].stoneOn) {
+        if (stones[sequencerConfig.currentBeat] && stones[sequencerConfig.currentBeat][i].stoneOn) {
           // console.log('zenquencer. current beat', sequencerConfig.currentBeat, 'play stone beat:', sequencerConfig.currentBeat, 'note:', i)
           stones[sequencerConfig.currentBeat][i].play()
         }

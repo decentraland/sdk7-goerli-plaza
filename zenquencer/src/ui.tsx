@@ -25,6 +25,7 @@ function GitHubLinkUi() {
 	const fullPath = "https://github.com/decentraland/sdk7-goerli-plaza/tree/main/" + projectPath
 
 	return <UiEntity
+		key="github-link"
 		uiTransform={{
 			flexDirection: 'column',
 			alignItems: 'center',
@@ -64,6 +65,7 @@ function descriptionUI() {
 	const multiLineDescription = breakLines(description, Max_Chars)
 
 	return <UiEntity
+		key="description"
 		uiTransform={{
 			width: "auto",
 			height: "auto",
@@ -95,7 +97,6 @@ function descriptionUI() {
 				value={multiLineDescription}
 				fontSize={18}
 				textAlign="middle-center"
-
 				uiTransform={{
 					width: "auto",
 					height: "auto",

@@ -1,3 +1,4 @@
+import * as utils from '@dcl-sdk/utils'
 import {
   Animator,
   AudioSource,
@@ -12,11 +13,10 @@ import {
   pointerEventsSystem
 } from '@dcl/sdk/ecs'
 import { Color4, Quaternion, Vector3 } from '@dcl/sdk/math'
+import { SeqNumbers, StoneStatus } from '../../components'
 import resources from '../../resources'
 import { sceneMessageBus } from '../serverHandler'
 import { sequencerConfig } from './sequenceSystem'
-import * as utils from '@dcl-sdk/utils'
-import { SeqNumbers, StoneStatus } from '../../components'
 
 
 export let stones: Stone[][] = []
@@ -28,10 +28,8 @@ export class Stone {
   stoneEntity: Entity = engine.addEntity()
   noteEntity: Entity = engine.addEntity()
   musicDropEntity: Entity = engine.addEntity()
-
   noteSrc: string
   pos: { beat: number; note: number }
-
   constructor(
     _pos: { beat: number; note: number },
     _noteSrc: string,
