@@ -8,6 +8,7 @@ export function createArcade(
   rotation: Quaternion,
   game: Games
 ): void {
+
   const arcade: Entity = engine.addEntity()
   const cabinet: Entity = engine.addEntity()
   const knob: Entity = engine.addEntity()

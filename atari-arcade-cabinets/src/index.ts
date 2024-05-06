@@ -10,6 +10,7 @@ import { createArcade } from './gameObjects/arcade'
 import { createSound } from './gameObjects/sound'
 import { spinSystem } from './utils'
 import { Sounds, Games, CABINETS } from './gameLogic/sharedConstants'
+import { setupUi } from './ui'
 
 export function main() {
   createSound(Sounds.S_HIT)
@@ -51,4 +52,5 @@ export function main() {
   )
 
   loadAllLevels()
+  setupUi()
 }
