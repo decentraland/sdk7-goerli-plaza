@@ -1,7 +1,17 @@
-import { Entity, Material, MeshRenderer, Transform, TransformType, engine } from '@dcl/sdk/ecs'
+import {
+  Entity,
+  Material,
+  MeshRenderer,
+  Transform,
+  TransformType,
+  engine
+} from '@dcl/sdk/ecs'
 import { Color4 } from '@dcl/sdk/math'
 
-export function createBackground(transform: Partial<TransformType>, parent: Entity): void {
+export function createBackground(
+  transform: Partial<TransformType>,
+  parent: Entity
+): void {
   const background: Entity = engine.addEntity()
   Transform.create(background, transform)
   const mutableTransform = Transform.getMutable(background)

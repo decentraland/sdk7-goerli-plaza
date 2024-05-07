@@ -1,17 +1,30 @@
 import { Entity, Transform, engine } from '@dcl/sdk/ecs'
 import { Vector3 } from '@dcl/sdk/math'
-import { BallFlag, CollisionFlag, PaddleFlag, WallFlag, BrickFlag, LastHitFlag } from '../components/definitions'
+import {
+  BallFlag,
+  CollisionFlag,
+  PaddleFlag,
+  WallFlag,
+  BrickFlag,
+  LastHitFlag
+} from '../components/definitions'
 import { playSound } from '../gameObjects/sound'
 import { Sounds } from './sharedConstants'
 
 // 2D collision detection
 export function CollisionDetection(dt: number) {
-  for (const [ballEntity, ballFlag, transform] of engine.getEntitiesWith(BallFlag, Transform)) {
+  for (const [ballEntity, ballFlag, transform] of engine.getEntitiesWith(
+    BallFlag,
+    Transform
+  )) {
     const ballPos = transform.position
     const ballSize = transform.scale
     const ballPosX = ballPos.x - ballSize.x / 2
     const ballPosZ = ballPos.z + ballSize.z / 2
-    for (const [hitEntity, _collisionFlag, transform] of engine.getEntitiesWith(CollisionFlag, Transform)) {
+    for (const [hitEntity, _collisionFlag, transform] of engine.getEntitiesWith(
+      CollisionFlag,
+      Transform
+    )) {
       const brickPos = transform.position
       const brickSize = transform.scale
       const brickPosX = brickPos.x - brickSize.x / 2
@@ -47,11 +60,21 @@ export function CollisionDetection(dt: number) {
         if (isWall) {
           collisionNorm = WallFlag.get(hitEntity).normal
 
-          mutableBallFlag.direction = reflectVector(collisionNorm, isPaddle, isWall, isBrick)
+          mutableBallFlag.direction = reflectVector(
+            collisionNorm,
+            isPaddle,
+            isWall,
+            isBrick
+          )
           // If is brick or paddle calculate collisionNormal
         } else if (isPaddle || isBrick) {
           collisionNorm = collisionNormal(ballEntity, hitEntity)
-          mutableBallFlag.direction = reflectVector(collisionNorm, isPaddle, isWall, isBrick)
+          mutableBallFlag.direction = reflectVector(
+            collisionNorm,
+            isPaddle,
+            isWall,
+            isBrick
+          )
           // Then, if is brick, remove it
           if (isBrick && !isPaddle) {
             engine.removeEntity(hitEntity)
@@ -60,8 +83,14 @@ export function CollisionDetection(dt: number) {
             CollisionFlag.deleteFrom(hitEntity)
             LastHitFlag.createOrReplace(hitEntity)
           }
-        } else if ((isWall && isPaddle) || (isWall && isBrick) || (isBrick && isPaddle)) {
-          console.error('The hit entity must have a single type (paddle, brick or wall). ')
+        } else if (
+          (isWall && isPaddle) ||
+          (isWall && isBrick) ||
+          (isBrick && isPaddle)
+        ) {
+          console.error(
+            'The hit entity must have a single type (paddle, brick or wall). '
+          )
         }
         break
       }
@@ -79,13 +108,21 @@ export function CollisionDetection(dt: number) {
  *
  * @returns The normalized reflected vector to define ball's new direction.
  */
-function reflectVector(normal: Vector3, isPaddle: boolean, isWall: boolean, isBrick: boolean): Vector3 {
+function reflectVector(
+  normal: Vector3,
+  isPaddle: boolean,
+  isWall: boolean,
+  isBrick: boolean
+): Vector3 {
   let incident: Vector3 = Vector3.Zero()
   for (const [_ballEntity, ballFlag] of engine.getEntitiesWith(BallFlag)) {
     incident = ballFlag.direction
   }
   const dot = 2 * Vector3.dot(incident, normal)
-  const reflected = Vector3.subtract(incident, Vector3.multiplyByFloats(normal, dot, dot, dot))
+  const reflected = Vector3.subtract(
+    incident,
+    Vector3.multiplyByFloats(normal, dot, dot, dot)
+  )
 
   // HACKS: Collision issues
   if (isWall || isBrick) {
