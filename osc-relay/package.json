@@ -1,5 +1,5 @@
 {
-  "name": "dcl-project",
+  "name": "osc-relay",
   "version": "1.0.0",
   "description": "SDK7 Template scene",
   "scripts": {
@@ -11,7 +11,7 @@
   },
   "devDependencies": {
     "@dcl/asset-packs": "^1.17.0",
-    "@dcl/js-runtime": "7.4.20",
+    "@dcl/js-runtime": "7.4.21",
     "@dcl/sdk": "latest",
     "@types/node": "^20.12.9"
   },
