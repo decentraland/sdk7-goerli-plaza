@@ -10,10 +10,8 @@
     "upgrade-sdk:next": "npm install --save-dev @dcl/sdk@next"
   },
   "devDependencies": {
-    "@dcl/asset-packs": "^1.17.0",
     "@dcl/js-runtime": "7.4.21",
-    "@dcl/sdk": "latest",
-    "@types/node": "^20.12.9"
+    "@dcl/sdk": "^7.3.15"
   },
   "engines": {
     "node": ">=16.0.0",
@@ -26,9 +24,9 @@
     "trailingComma": "none"
   },
   "dependencies": {
-    "colyseus.js": "^0.15.19",
-    "typescript": "^5.4.5",
+    "@dcl/sdk-commands": "^7.3.15",
+    "colyseus.js": "^0.15.14",
     "whatwg-url-without-unicode": "^8.0.0-3",
-    "xmlhttprequest-polyfill": "^1.0.1"
+    "xmlhttprequest-polyfill": "^0.1.2"
   }
 }

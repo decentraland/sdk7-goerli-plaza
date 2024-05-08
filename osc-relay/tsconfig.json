@@ -2,7 +2,7 @@
   "compilerOptions": {
     "allowJs": true,
     "strict": true,
-    "noLib": false
+    "skipLibCheck": true
   },
   "include": [
     "src/**/*.ts",
