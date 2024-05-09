@@ -254,6 +254,9 @@
     },
     {
       "path": "BasicInteractions"
+    },
+    {
+      "path": "osc-relay"
     }
   ]
 }
