@@ -83,7 +83,6 @@ jobs:
         run: >
           npx @dcl/opscli queue-ab-conversion-about \
             --token ${{ secrets.AB_TOKEN }} \
-            --crossplatform \
             --prioritize \
             --about-url ${{ secrets.SDK_TEAM_S3_BASE_URL }}/ipfs/${{steps.get-branch-realm-name.outputs.result}}/about
 
