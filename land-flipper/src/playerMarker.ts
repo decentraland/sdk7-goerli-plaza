@@ -5,12 +5,16 @@ import { myProfile, parentEntity, syncEntity } from '@dcl/sdk/network'
 import {
   AvatarAnchorPointType,
   AvatarAttach,
+  EasingFunction,
   Entity,
   Material,
   MeshRenderer,
   PBAvatarAttach,
   TextShape,
   Transform,
+  Tween,
+  TweenLoop,
+  TweenSequence,
   engine
 } from '@dcl/sdk/ecs'
 import { PlayerIdentityData } from '@dcl/sdk/ecs'
@@ -24,25 +28,38 @@ export function createMarker(player: string) {
 
   if (isCurrentPlayer(player)) {
     console.log("I'm the player")
-    Transform.create(markerParent, { parent: engine.PlayerEntity, position: Vector3.create(0, -1.5, 0) })
     OnlyInScene.create(markerParent)
   } else {
-    AvatarAttach.create(markerParent, { avatarId: player, anchorPointId: AvatarAnchorPointType.AAPT_POSITION })
-
     onLeaveScene((player) => {
       console.log('PLAYER LEFT', player)
       engine.removeEntityWithChildren(markerParent)
     })
   }
 
+  AvatarAttach.create(markerParent, { avatarId: player, anchorPointId: AvatarAnchorPointType.AAPT_NAME_TAG })
+
   const marker = engine.addEntity()
   Transform.create(marker, {
     scale: { x: 0.25, y: 0.5, z: 0.25 },
-    position: { x: 0, y: 3, z: 0 },
+    position: { x: 0, y: 0.3, z: 0 },
     parent: markerParent
   })
   MeshRenderer.setCylinder(marker, 0, 1)
   Material.setPbrMaterial(marker, { albedoColor: color, metallic: 0, roughness: 1 })
+
+
+  Tween.createOrReplace(marker, {
+    mode: Tween.Mode.Move({
+      start: { x: 0, y: 0.3, z: 0 },
+      end: { x: 0, y: 0.6, z: 0 }
+    }),
+    duration: 1000,
+    easingFunction: EasingFunction.EF_EASEQUAD
+  })
+  TweenSequence.create(marker, {
+    sequence: [],
+    loop: TweenLoop.TL_YOYO
+  })
 
   // const idText = engine.addEntity()
   // Transform.create(idText, {

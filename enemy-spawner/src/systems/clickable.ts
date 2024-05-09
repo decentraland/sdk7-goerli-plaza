@@ -18,7 +18,8 @@ export function clickedSystem() {
       audioClipUrl: 'sounds/blaster.mp3',
       playing: true,
       loop: false,
-      volume: 0.5
+      volume: 0.5,
+      currentTime: 0.0 // reset the blaster sound if it's currently playing
     })
 
     for (const [entity] of engine.getEntitiesWith(EnemyShip)) {

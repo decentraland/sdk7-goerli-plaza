@@ -9,7 +9,7 @@ export function createArissaCharacter(): Entity {
     src: 'models/arissa.glb'
   })
   Transform.create(entity, {
-    position: Vector3.create(0, 1.75, 0),
+    position: Vector3.create(0, 1, 0),
     scale: Vector3.create(0, 0, 0),
     parent: parentEntity
   })

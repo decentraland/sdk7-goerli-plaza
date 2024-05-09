@@ -48,8 +48,8 @@ export function createBall(position: Vector3, cannonMaterial: CANNON.Material, c
 
   GltfContainer.create(glowEntity, {
     src: 'models/ballGlow.glb',
-    invisibleMeshesCollisionMask: ColliderLayer.CL_PHYSICS,
-    visibleMeshesCollisionMask: ColliderLayer.CL_POINTER
+    invisibleMeshesCollisionMask: 0,
+    visibleMeshesCollisionMask: 0
   })
   Transform.create(glowEntity, {
     scale: Vector3.create(0, 0, 0),
