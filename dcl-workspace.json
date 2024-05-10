@@ -4,6 +4,9 @@
       "path": "zombie-attack"
     },
     {
+      "path": "zenquencer"
+    },
+    {
       "path": "video-streaming"
     },
     {
@@ -34,7 +37,7 @@
       "path": "sliding-door"
     },
     {
-      "path": "scene-bounds-check"
+      "path": "simple-giveaway-scene"
     },
     {
       "path": "rotating-platforms"
@@ -100,9 +103,6 @@
       "path": "droid-scene"
     },
     {
-      "path": "dbmonster"
-    },
-    {
       "path": "cube-wave-32x32"
     },
     {
@@ -145,10 +145,10 @@
       "path": "auto-dance"
     },
     {
-      "path": "advanced-avatar-swap"
+      "path": "atari-arcade-cabinets"
     },
     {
-      "path": "Zombie-shooter2"
+      "path": "advanced-avatar-swap"
     },
     {
       "path": "Zombie-shooter"
@@ -214,6 +214,9 @@
       "path": "Party-Time"
     },
     {
+      "path": "NFT-Museum"
+    },
+    {
       "path": "Laser-ray-Casting"
     },
     {
@@ -251,12 +254,6 @@
     },
     {
       "path": "BasicInteractions"
-    },
-    {
-      "path": "80,-2-main-crdt"
-    },
-    {
-      "path": "77,-1-raycast-unit-tests"
     }
   ]
 }

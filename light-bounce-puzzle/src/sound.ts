@@ -27,7 +27,6 @@ export class Sound {
   stopAudio(): void {
     if (this.sourceEntity === undefined || this.sourceEntity === null) return
 
-    const audioSource = AudioSource.getMutable(this.sourceEntity)
-    audioSource.playing = false
+    AudioSource.stopSound(this.sourceEntity)
   }
 }

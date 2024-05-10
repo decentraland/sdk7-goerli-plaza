@@ -28,8 +28,6 @@
     "update-parcels": "node scripts/checkParcelsCollision.js"
   },
   "workspaces": [
-    "77,-1-raycast-unit-tests",
-    "80,-2-main-crdt",
     "BasicInteractions",
     "Block-Fountain",
     "Block-dog",
@@ -43,6 +41,7 @@
     "Hypno-wheels",
     "Jukebox",
     "Laser-ray-Casting",
+    "NFT-Museum",
     "Party-Time",
     "Pixel-Canvas-API",
     "Portal-Puzzle",
@@ -64,8 +63,8 @@
     "Wearables-scanner",
     "Weather-Simulation",
     "Zombie-shooter",
-    "Zombie-shooter2",
     "advanced-avatar-swap",
+    "atari-arcade-cabinets",
     "auto-dance",
     "avatar-animations",
     "avatar-swap",
@@ -80,7 +79,6 @@
     "coin-pickup",
     "cube-wave-16x16",
     "cube-wave-32x32",
-    "dbmonster",
     "droid-scene",
     "enemy-spawner",
     "grab-object-advance",
@@ -102,7 +100,7 @@
     "reward-claim",
     "rocket-board",
     "rotating-platforms",
-    "scene-bounds-check",
+    "simple-giveaway-scene",
     "sliding-door",
     "switchable-platforms",
     "testing-gallery",
@@ -113,6 +111,7 @@
     "uv-map",
     "validate-player-authenticity",
     "video-streaming",
+    "zenquencer",
     "zombie-attack"
   ]
 }
