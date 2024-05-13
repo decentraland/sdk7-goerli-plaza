@@ -127,3 +127,7 @@ export type Option = {
 export type OptionWithArray = Option & {
   array: Option[]
 }
+
+export const DAILY_FREE_TOKENS: number = 6
+export const PREMIUM_TOKENS: number = 0
+export const SEASON_PASS: number = 0

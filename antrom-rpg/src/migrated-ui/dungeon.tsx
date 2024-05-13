@@ -7,7 +7,7 @@ import ReactEcs, {
 } from '@dcl/sdk/react-ecs'
 import { canvasInfo } from '..'
 import { engine } from '@dcl/sdk/ecs'
-import { DIFFICULTIES, DUNGEONS, DUNGEONS_TO_SHOW, Option, OptionWithArray } from '../mocked-data/dungeons-data'
+import { DAILY_FREE_TOKENS, DIFFICULTIES, DUNGEONS, DUNGEONS_TO_SHOW, Option, OptionWithArray, PREMIUM_TOKENS, SEASON_PASS } from '../mocked-data/dungeons-data'
 
 export function setupDungeonSelectionUi() {
   ReactEcsRenderer.setUiRenderer(uiComponent)
@@ -382,12 +382,7 @@ function selectOption(id: string, array: Option[]) {
 function changeInfo() {
   isInfo = !isInfo
 }
-
-// Mocked data - Tokens
-const DAILY_FREE_TOKENS: number = 6
-const PREMIUM_TOKENS: number = 0
-const SEASON_PASS: number = 0
-
+// Time to timeout the loading screen (because there isn't nothing to load)
 let timer: number = 2
 export function loadingDungeonSystem(dt: number) {
   if (timer - dt <= 0 && isLoading) {
