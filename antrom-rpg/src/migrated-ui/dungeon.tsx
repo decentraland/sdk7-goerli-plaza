@@ -7,6 +7,7 @@ import ReactEcs, {
 } from '@dcl/sdk/react-ecs'
 import { canvasInfo } from '..'
 import { engine } from '@dcl/sdk/ecs'
+import { DIFFICULTIES, DUNGEONS, DUNGEONS_TO_SHOW, Option, OptionWithArray } from '../mocked-data/dungeons-data'
 
 export function setupDungeonSelectionUi() {
   ReactEcsRenderer.setUiRenderer(uiComponent)
@@ -18,135 +19,7 @@ let scrollPosition: number = 0
 let selectedDungeon: string = ''
 let selectedDifficulty: string = ''
 let isPlayable: Boolean = false
-type Option = {
-  visible: boolean
-  available: boolean
-  selected: boolean
-  imgSources: string[]
-  id: string
-}
 
-type OptionWithArray = Option & {
-  array: Option[]
-}
-
-const DUNGEONS: Option[] = [
-  {
-    visible: true,
-    available: true,
-    selected: false,
-    imgSources: [
-      'images/chooseDungeon/dungeon1Avail.png',
-      'images/chooseDungeon/dungeon1Unavail.png'
-    ],
-    id: 'dungeon1'
-  },
-  {
-    visible: true,
-    available: false,
-    selected: false,
-    imgSources: [
-      'images/chooseDungeon/dungeon2Avail.png',
-      'images/chooseDungeon/dungeon2Unavail.png'
-    ],
-    id: 'dungeon2'
-  },
-  {
-    visible: true,
-    available: true,
-    selected: false,
-    imgSources: [
-      'images/chooseDungeon/dungeon3Avail.png',
-      'images/chooseDungeon/dungeon3Unavail.png'
-    ],
-    id: 'dungeon3'
-  },
-  {
-    visible: true,
-    available: true,
-    selected: false,
-    imgSources: [
-      'images/chooseDungeon/dungeon4Avail.png',
-      'images/chooseDungeon/dungeon4Unavail.png'
-    ],
-    id: 'dungeon4'
-  },
-  {
-    visible: true,
-    available: true,
-    selected: false,
-    imgSources: [
-      'images/chooseDungeon/dungeon5Avail.png',
-      'images/chooseDungeon/dungeon5Unavail.png'
-    ],
-    id: 'dungeon5'
-  },
-  {
-    visible: true,
-    available: true,
-    selected: false,
-    imgSources: [
-      'images/chooseDungeon/dungeon6Avail.png',
-      'images/chooseDungeon/dungeon6Unavail.png'
-    ],
-    id: 'dungeon6'
-  },
-  {
-    visible: true,
-    available: true,
-    selected: false,
-    imgSources: [
-      'images/chooseDungeon/dungeon7Avail.png',
-      'images/chooseDungeon/dungeon7Unavail.png'
-    ],
-    id: 'dungeon7'
-  }
-]
-
-const DIFFICULTIES: Option[] = [
-  {
-    visible: true,
-    available: true,
-    selected: false,
-    imgSources: [
-      'images/chooseDungeon/easy.png',
-      'images/chooseDungeon/easyUnavail.png'
-    ],
-    id: 'easy'
-  },
-  {
-    visible: true,
-    available: true,
-    selected: false,
-    imgSources: [
-      'images/chooseDungeon/medium.png',
-      'images/chooseDungeon/mediumUnavail.png'
-    ],
-    id: 'medium'
-  },
-  {
-    visible: true,
-    available: true,
-    selected: false,
-    imgSources: [
-      'images/chooseDungeon/hard.png',
-      'images/chooseDungeon/hardUnavail.png'
-    ],
-    id: 'hard'
-  },
-  {
-    visible: true,
-    available: true,
-    selected: false,
-    imgSources: [
-      'images/chooseDungeon/nightmare.png',
-      'images/chooseDungeon/nightmareUnavail.png'
-    ],
-    id: 'nightmare'
-  }
-]
-
-const DUNGEONS_TO_SHOW = 3
 
 const uiComponent = () => (
   <UiEntity
@@ -184,7 +57,7 @@ const uiComponent = () => (
           textureMode: 'center',
           texture: { src: 'images/dungeon.png' }
         }}
-        onMouseDown={changeVisibility}
+        onMouseDown={openDungeonSelection}
       />
       <UiEntity
         uiTransform={{
@@ -494,6 +367,7 @@ function selectOption(id: string, array: Option[]) {
       selectedOption.selected = true
       if (isDungeon) {
         selectedDungeon = selectedOption.id
+        getLoadingImage()
       } else if (isDifficulty) {
         selectedDifficulty = selectedOption.id
       }
@@ -520,20 +394,37 @@ export function loadingDungeonSystem(dt: number) {
     isLoading = false
     timer = 2
     engine.removeSystem(loadingDungeonSystem)
+    isVisible = false
   } else {
     timer = timer - dt
   }
 }
 
 
-function getLoadingImage(): string {
+function getLoadingImage() {
   if (selectedDungeon === 'dungeon2') {
-    return 'images/Load_The_Cave.png'
+    return 'images/Loading_The_Cave.png'
   }
-  return 'images/Load_The_Dungeon.png'
+  return 'images/Loading_The_Dungeon.png'
 }
 
 function playDungeon() {
   engine.addSystem(loadingDungeonSystem)
   isLoading = true
+}
+
+function openDungeonSelection() {
+  for (const dungeon of DUNGEONS) {
+    dungeon.selected = false
+  }
+  for (const difficulty of DIFFICULTIES) {
+    difficulty.selected = false
+  }
+  isLoading = false
+  isInfo = false
+  isVisible = true
+  scrollPosition = 0
+  selectedDungeon = ''
+  selectedDifficulty = ''
+  isPlayable = false
 }
