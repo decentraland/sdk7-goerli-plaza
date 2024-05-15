@@ -1,6 +1,6 @@
 import { UiCanvasInformation, engine } from '@dcl/sdk/ecs'
 
-import { setupQuestLog } from './migrated-ui/questLog'
+import { setupTimer } from './migrated-ui/timer'
 
 export let canvasInfo = {
   width: 0,
@@ -17,7 +17,6 @@ export function main() {
     canvasInfo.height = uiCanvasInfo.height
   })
 
-
   // draw UI
-  setupQuestLog()
+  setupTimer()
 }
