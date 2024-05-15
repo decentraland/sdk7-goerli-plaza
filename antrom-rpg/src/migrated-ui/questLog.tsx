@@ -9,11 +9,10 @@ import { QUEST_STAGES, StageButton } from '../mocked-data/questsData'
 export function setupQuestLog() {
   ReactEcsRenderer.setUiRenderer(uiComponent)
 }
-let isLoading: Boolean = false
 let isInfo: Boolean = false
 let isVisible: Boolean = false
 let selectedStage: string = 'quest'
-let stageDescription: string = 'Navigate trough \nthe cave to collect \nartifacts while \ndefeating cave \nenemies.'
+let stageDescription: string = ''
 let stageNeeded: number = 0
 let stageProgress: number = -1
 let progress: string = ''
@@ -30,7 +29,7 @@ const uiComponent = () => (
       uiTransform={{
         width: '100%',
         height: '100%',
-        display: isLoading ? 'none' : 'flex',
+        display: 'flex',
         justifyContent: 'flex-end',
         alignItems: 'center',
       }}
