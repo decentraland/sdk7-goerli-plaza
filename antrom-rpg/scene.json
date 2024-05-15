@@ -2,23 +2,23 @@
   "ecs7": true,
   "runtimeVersion": "7",
   "display": {
-    "title": "Migrated Antrom RPG (Dice Masters) from SDK6",
-    "description": "@KnightsOfAntrom, the ultimate role-playing game that will challenge you to farm, craft, and fight your way to the top. Explore a vast and immersive world filled with danger and opportunity at every turn. Gather resources, upgrade your gear, and face off against fearsome enemies as you level up and unlock new abilities and skills. Are you ready to rise to the challenge and become an Antrom legend? Join us and find out!",
+    "title": "antrom-rpg",
+    "description": "Antrom RPG Game's UI components migration from SDK6",
     "navmapThumbnail": "scene-thumbnail.png",
     "favicon": "favicon_asset"
   },
   "owner": "",
   "contact": {
-    "name": "SDK",
+    "name": "Seba",
     "email": ""
   },
   "main": "bin/index.js",
   "tags": [],
   "scene": {
     "parcels": [
-      "20,20"
+      "90,-10"
     ],
-    "base": "20,20"
+    "base": "90,-10"
   },
   "spawnPoints": [
     {
@@ -48,5 +48,6 @@
   "featureToggles": {
     "voiceChat": "enabled",
     "portableExperiences": "enabled"
-  }
+  },
+  "name": "antrom-rpg"
 }

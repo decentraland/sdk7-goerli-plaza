@@ -7,7 +7,7 @@ import ReactEcs, {
 } from '@dcl/sdk/react-ecs'
 import { canvasInfo } from '..'
 import { engine } from '@dcl/sdk/ecs'
-import { DAILY_FREE_TOKENS, DIFFICULTIES, DUNGEONS, DUNGEONS_TO_SHOW, Option, OptionWithArray, PREMIUM_TOKENS, SEASON_PASS } from '../mocked-data/dungeons-data'
+import { DAILY_FREE_TOKENS, DIFFICULTIES, DUNGEONS, DUNGEONS_TO_SHOW, Option, OptionWithArray, PREMIUM_TOKENS, SEASON_PASS } from '../mocked-data/dungeonsData'
 
 export function setupDungeonSelectionUi() {
   ReactEcsRenderer.setUiRenderer(uiComponent)
@@ -82,7 +82,7 @@ const uiComponent = () => (
           }}
           uiBackground={{
             textureMode: 'stretch',
-            texture: { wrapMode: 'repeat', src: 'images/DungeonTokens.png' }
+            texture: { src: 'images/DungeonTokens.png' }
           }}
         >
           <Label
@@ -118,7 +118,6 @@ const uiComponent = () => (
           uiBackground={{
             textureMode: 'stretch',
             texture: {
-              wrapMode: 'mirror',
               src: 'images/chooseDungeon/dungeonInfoFrame.png'
             }
           }}
@@ -135,7 +134,6 @@ const uiComponent = () => (
             uiBackground={{
               textureMode: 'center',
               texture: {
-                wrapMode: 'repeat',
                 src: 'images/chooseDungeon/back.png'
               }
             }}
@@ -155,7 +153,6 @@ const uiComponent = () => (
           uiBackground={{
             textureMode: 'stretch',
             texture: {
-              wrapMode: 'repeat',
               src: 'images/chooseDungeon/dungeonSelectionFrame.png'
             }
           }}
@@ -255,7 +252,6 @@ const uiComponent = () => (
             uiBackground={{
               textureMode: 'stretch',
               texture: {
-                wrapMode: 'repeat',
                 src: isPlayable
                   ? 'images/chooseDungeon/playAvail.png'
                   : 'images/chooseDungeon/playUnavail.png'
@@ -318,7 +314,6 @@ function OptionButton(props: OptionWithArray) {
       uiBackground={{
         textureMode: 'stretch',
         texture: {
-          wrapMode: 'repeat',
           src: props.available ? props.imgSources[0] : props.imgSources[1]
         }
       }}

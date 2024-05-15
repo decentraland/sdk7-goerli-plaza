@@ -1,6 +1,6 @@
 import { UiCanvasInformation, engine } from '@dcl/sdk/ecs'
 
-import { setupDungeonSelectionUi } from './migrated-ui/dungeon'
+import { setupQuestLog } from './migrated-ui/questLog'
 
 export let canvasInfo = {
   width: 0,
@@ -19,5 +19,5 @@ export function main() {
 
 
   // draw UI
-  setupDungeonSelectionUi()
+  setupQuestLog()
 }
