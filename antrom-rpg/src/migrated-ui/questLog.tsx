@@ -174,26 +174,62 @@ const uiComponent = () => (
                 }}
                 uiText={{ value: progress, fontSize: 14, textAlign: 'top-left' }}
               />
-              <Button
-                value=""
-                variant="secondary"
-                //disabled={stageNeeded == stageProgress}
+              <UiEntity
                 uiTransform={{
                   width: '80%',
                   height: '10%',
                   positionType: 'relative',
                   margin: { left: '10%', top: '10%' },
-                  display: isProgressVisible ? 'none' : 'flex',
+                  display: selectedStage == 'quest' ? 'none' : 'flex',
                 }}
-                uiBackground={{
-                  textureMode: 'stretch',
-                  texture: {
-                    src: 'images/eventQuests/checkProgressButton.png'
+              >
+                <Button
+                  value=""
+                  variant="secondary"
+                  //disabled={stageNeeded == stageProgress}
+                  uiTransform={{
+                    width: '100%',
+                    height: '100%',
+                    display: isProgressVisible ? 'none' : 'flex',
+                  }}
+                  uiBackground={{
+                    textureMode: 'stretch',
+                    texture: {
+                      src: 'images/eventQuests/checkProgressButton.png'
 
-                  }
+                    }
+                  }}
+                  onMouseDown={showProgress}
+                />
+              </UiEntity>
+              <UiEntity
+                uiTransform={{
+                  width: '80%',
+                  height: '10%',
+                  positionType: 'relative',
+                  margin: { left: '10%', top: '10%' },
+                  display: selectedStage == 'quest' ? 'flex' : 'none',
                 }}
-                onMouseDown={showProgress}
-              />
+              >
+                <Button
+                  value=""
+                  variant="secondary"
+                  //disabled={stageNeeded == stageProgress}
+                  uiTransform={{
+                    width: '100%',
+                    height: '100%',
+                    display: 'flex',
+                  }}
+                  uiBackground={{
+                    textureMode: 'stretch',
+                    texture: {
+                      src: 'images/eventQuests/Abandon_Quest.png'
+
+                    }
+                  }}
+                  onMouseDown={changeVisibility}
+                />
+              </UiEntity>
               <Button
                 value=""
                 variant="secondary"
@@ -203,7 +239,7 @@ const uiComponent = () => (
                   height: '10%',
                   positionType: 'relative',
                   margin: { left: '10%', top: '5%' },
-                  display: selectedStage == 'quest' ? 'none' : 'flex'
+                  display: 'flex'
                 }}
                 uiBackground={{
                   textureMode: 'stretch',
@@ -234,7 +270,7 @@ const uiComponent = () => (
         </UiEntity>
       </UiEntity>
     </UiEntity>
-  </UiEntity>
+  </UiEntity >
 )
 
 function changeVisibility() {
