@@ -1,7 +1,7 @@
 {
-  "name": "dcl-project",
+  "name": "atari-arcade-cabinets",
   "version": "1.0.0",
-  "description": "SDK7 Template scene",
+  "description": "Arcade cabinets containing variations of the classic Breakout game developed and published by Atari, Inc.",
   "scripts": {
     "start": "sdk-commands start",
     "deploy": "sdk-commands deploy",

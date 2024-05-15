@@ -1,7 +1,7 @@
 {
-  "name": "dcl-project",
+  "name": "knight-of-antrom",
   "version": "1.0.0",
-  "description": "SDK7 Template scene",
+  "description": "Knight of Antrom RPG Game migration from SDK6",
   "scripts": {
     "start": "sdk-commands start",
     "deploy": "sdk-commands deploy",
