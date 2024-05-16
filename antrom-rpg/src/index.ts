@@ -1,6 +1,7 @@
 import { UiCanvasInformation, engine } from '@dcl/sdk/ecs'
 
-import { setupTimer } from './migrated-ui/timer'
+import { bannerSystem, setupBanner } from './migrated-ui/banner'
+import { BannerPosition, BannerType } from './migrated-ui/bannerConstants'
 
 export let canvasInfo = {
   width: 0,
@@ -18,5 +19,7 @@ export function main() {
   })
 
   // draw UI
-  setupTimer()
+  engine.addSystem(bannerSystem)
+
+  setupBanner(BannerType.B_MEAT)
 }
