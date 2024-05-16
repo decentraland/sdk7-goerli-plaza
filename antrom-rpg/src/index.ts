@@ -1,7 +1,7 @@
 import { UiCanvasInformation, engine } from '@dcl/sdk/ecs'
 
-import { bannerSystem, setupBanner } from './migrated-ui/banner'
-import { BannerPosition, BannerType } from './migrated-ui/bannerConstants'
+import { setupNpcDialogUi } from './migrated-ui/npcDialog'
+import { BONE_TRADER_DIALOGS } from './mocked-data/dialogsData'
 
 export let canvasInfo = {
   width: 0,
@@ -19,7 +19,6 @@ export function main() {
   })
 
   // draw UI
-  engine.addSystem(bannerSystem)
 
-  setupBanner(BannerType.B_MEAT)
+  setupNpcDialogUi(BONE_TRADER_DIALOGS)
 }
