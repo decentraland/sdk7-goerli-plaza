@@ -2,6 +2,8 @@ export type DialogButton = {
   label: string
   triggeredAction?: void
   goToDialog: string
+  disabled?: boolean
+  action?: 'primary' | 'secondary'
 }
 
 export type Dialog = {
@@ -27,8 +29,18 @@ export const BONE_TRADER_DIALOGS: Dialog[] = [
     portraitSource: 'images/pfp/advBoneTrader.png',
     isQuestion: true,
     buttons: [
-      { label: 'Yes', goToDialog: 'bone-trader-yes' },
-      { label: 'No', goToDialog: 'bone-trader-no' }
+      {
+        label: 'Yes',
+        goToDialog: 'bone-trader-yes',
+        action: 'primary'
+      },
+      { label: 'No', goToDialog: 'bone-trader-no' },
+      {
+        label: 'Disabled',
+        goToDialog: 'bone-trader-no',
+        disabled: true,
+        action: 'secondary'
+      }
     ]
   },
   {
