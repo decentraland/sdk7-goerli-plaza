@@ -1,5 +1,6 @@
 import { Coords } from '@dcl/sdk/ecs'
 import { Sprite } from './mocked-data/atlasSprites'
+import ReactEcs, { UiEntity } from '@dcl/sdk/react-ecs'
 
 export function getUvs(sprite: Sprite): number[] {
   const A: Coords = {
@@ -21,4 +22,30 @@ export function getUvs(sprite: Sprite): number[] {
 
   const finalUvs: number[] = [A.x, A.y, B.x, B.y, C.x, C.y, D.x, D.y]
   return finalUvs
+}
+
+export function Tab(props: {
+  condition: boolean
+  trueSprite: Sprite
+  falseSprite: Sprite
+  callback: Function
+  callbackValue: boolean
+}) {
+  return (
+    <UiEntity
+      uiTransform={{
+        positionType: 'relative',
+        width: '50%',
+        height: '100%'
+      }}
+      uiBackground={{
+        textureMode: 'stretch',
+        uvs: getUvs(props.condition ? props.trueSprite : props.falseSprite),
+        texture: {
+          src: props.trueSprite.atlasSrc
+        }
+      }}
+      onMouseDown={() => props.callback(props.callbackValue)}
+    ></UiEntity>
+  )
 }

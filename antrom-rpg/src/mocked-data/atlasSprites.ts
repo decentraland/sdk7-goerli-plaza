@@ -90,6 +90,86 @@ export const antromSprites: { [key: string]: Sprite } = {
     w: 160,
     h: 160
   },
+  resources_market_max_button: {
+    atlasSrc: 'images/resourcemarket_spritesheet.png',
+    atlasSize: { x: 1403, y: 1194 },
+    x: 260,
+    y: 0,
+    w: 85,
+    h: 40
+  },
+  resources_market_max_button_clicked: {
+    atlasSrc: 'images/resourcemarket_spritesheet.png',
+    atlasSize: { x: 1403, y: 1194 },
+    x: 345,
+    y: 0,
+    w: 85,
+    h: 40
+  },
+  resources_market_purchase_button: {
+    atlasSrc: 'images/resourcemarket_spritesheet.png',
+    atlasSize: { x: 1403, y: 1194 },
+    x: 430,
+    y: 0,
+    w: 280,
+    h: 60
+  },
+  resources_market_purchase_button_clicked: {
+    atlasSrc: 'images/resourcemarket_spritesheet.png',
+    atlasSize: { x: 1403, y: 1194 },
+    x: 990,
+    y: 0,
+    w: 280,
+    h: 60
+  },
+  resources_market_purchase_button_unavailable: {
+    atlasSrc: 'images/resourcemarket_spritesheet.png',
+    atlasSize: { x: 1403, y: 1194 },
+    x: 710,
+    y: 0,
+    w: 280,
+    h: 60
+  },
+  resources_market_sell_button: {
+    atlasSrc: 'images/resourcemarket_spritesheet.png',
+    atlasSize: { x: 1403, y: 1194 },
+    x: 720,
+    y: 1034,
+    w: 280,
+    h: 60
+  },
+  resources_market_sell_button_clicked: {
+    atlasSrc: 'images/resourcemarket_spritesheet.png',
+    atlasSize: { x: 1403, y: 1194 },
+    x: 1000,
+    y: 1034,
+    w: 280,
+    h: 60
+  },
+  resources_market_sell_button_unavailable: {
+    atlasSrc: 'images/resourcemarket_spritesheet.png',
+    atlasSize: { x: 1403, y: 1194 },
+    x: 0,
+    y: 1094,
+    w: 280,
+    h: 60
+  },
+  resources_market_purchase_with_mana_button: {
+    atlasSrc: 'images/resourcemarket_spritesheet.png',
+    atlasSize: { x: 1403, y: 1194 },
+    x: 0,
+    y: 1034,
+    w: 250,
+    h: 54
+  },
+  resources_market_purchase_with_mana_button_clicked: {
+    atlasSrc: 'images/resourcemarket_spritesheet.png',
+    atlasSize: { x: 1403, y: 1194 },
+    x: 250,
+    y: 1034,
+    w: 250,
+    h: 54
+  },
   berry: {
     atlasSrc: 'images/item_spritesheet.png',
     atlasSize: { x: 1536, y: 1280 },
@@ -121,6 +201,20 @@ export const antromSprites: { [key: string]: Sprite } = {
     y: 0,
     w: 256,
     h: 256
+  },
+  mana_coin: {
+    atlasSrc: 'images/item_spritesheet.png',
+    atlasSize: { x: 1536, y: 1280 },
+    x: 0,
+    y: 0,
+    w: 100,
+    h: 100
+    // atlasSrc: 'images/item_spritesheet.png',
+    // atlasSize: { x: 1536, y: 1280 },
+    // x: 180,
+    // y: 0,
+    // w: 40,
+    // h: 40
   }
 }
 
@@ -307,10 +401,10 @@ export const antromSprites: { [key: string]: Sprite } = {
 //         },
 //         "purchase button bw.png": {
 //             "frame": {
-//                 "x": 710,
-//                 "y": 0,
-//                 "w": 280,
-//                 "h": 60
+// "x": 710,
+// "y": 0,
+// "w": 280,
+// "h": 60
 //             },
 //             "rotated": false,
 //             "trimmed": false,
@@ -327,10 +421,10 @@ export const antromSprites: { [key: string]: Sprite } = {
 //         },
 //         "purchase button clicked.png": {
 //             "frame": {
-//                 "x": 990,
-//                 "y": 0,
-//                 "w": 280,
-//                 "h": 60
+// "x": 990,
+// "y": 0,
+// "w": 280,
+// "h": 60
 //             },
 //             "rotated": false,
 //             "trimmed": false,
@@ -347,10 +441,10 @@ export const antromSprites: { [key: string]: Sprite } = {
 //         },
 //         "purchase_with_MANA_button.png": {
 //             "frame": {
-//                 "x": 0,
-//                 "y": 1034,
-//                 "w": 250,
-//                 "h": 54
+// "x": 0,
+// "y": 1034,
+// "w": 250,
+// "h": 54
 //             },
 //             "rotated": false,
 //             "trimmed": false,
@@ -367,10 +461,10 @@ export const antromSprites: { [key: string]: Sprite } = {
 //         },
 //         "purchase_with_MANA_button_clicked.png": {
 //             "frame": {
-//                 "x": 250,
-//                 "y": 1034,
-//                 "w": 250,
-//                 "h": 54
+// "x": 250,
+// "y": 1034,
+// "w": 250,
+// "h": 54
 //             },
 //             "rotated": false,
 //             "trimmed": false,
@@ -467,10 +561,10 @@ export const antromSprites: { [key: string]: Sprite } = {
 //         },
 //         "sell button.png": {
 //             "frame": {
-//                 "x": 720,
-//                 "y": 1034,
-//                 "w": 280,
-//                 "h": 60
+// "x": 720,
+// "y": 1034,
+// "w": 280,
+// "h": 60
 //             },
 //             "rotated": false,
 //             "trimmed": false,
@@ -487,10 +581,10 @@ export const antromSprites: { [key: string]: Sprite } = {
 //         },
 //         "sell button clicked.png": {
 //             "frame": {
-//                 "x": 1000,
-//                 "y": 1034,
-//                 "w": 280,
-//                 "h": 60
+// "x": 1000,
+// "y": 1034,
+// "w": 280,
+// "h": 60
 //             },
 //             "rotated": false,
 //             "trimmed": false,
@@ -507,10 +601,10 @@ export const antromSprites: { [key: string]: Sprite } = {
 //         },
 //         "sell button unavailable.png": {
 //             "frame": {
-//                 "x": 0,
-//                 "y": 1094,
-//                 "w": 280,
-//                 "h": 60
+// "x": 0,
+// "y": 1094,
+// "w": 280,
+// "h": 60
 //             },
 //             "rotated": false,
 //             "trimmed": false,
