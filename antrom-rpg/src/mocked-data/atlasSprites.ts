@@ -170,6 +170,7 @@ export const antromSprites: { [key: string]: Sprite } = {
     w: 250,
     h: 54
   },
+
   berry: {
     atlasSrc: 'images/item_spritesheet.png',
     atlasSize: { x: 1536, y: 1280 },
@@ -203,12 +204,12 @@ export const antromSprites: { [key: string]: Sprite } = {
     h: 256
   },
   mana_coin: {
-    atlasSrc: 'images/item_spritesheet.png',
-    atlasSize: { x: 1536, y: 1280 },
-    x: 0,
+    atlasSrc: 'images/resourcemarket_spritesheet.png',
+    atlasSize: { x: 1403, y: 1194 },
+    x: 180,
     y: 0,
-    w: 100,
-    h: 100
+    w: 39,
+    h: 39
     // atlasSrc: 'images/item_spritesheet.png',
     // atlasSize: { x: 1536, y: 1280 },
     // x: 180,

@@ -1,6 +1,6 @@
 import { Sprite, antromSprites } from './atlasSprites'
 
-const ITEMS: { [key: string]: Item } = {
+export const ITEMS: { [key: string]: Item } = {
   berry: {
     name: 'Berry',
     sellPrice: 1,
@@ -30,15 +30,15 @@ const ITEMS: { [key: string]: Item } = {
 }
 
 export const RESOURCES_INVENTORY: InventoryItem[] = [
-  { item: ITEMS.berry, amount: 10},
-  { item: ITEMS.bone, amount: 5}
+  { item: ITEMS.berry, amount: 10 },
+  { item: ITEMS.bone, amount: 5 }
 ]
 
 export const RESOURCES_MARKET: InventoryItem[] = [
-  { item: ITEMS.berry},
-  { item: ITEMS.bone},
-  { item: ITEMS.token},
-  { item: ITEMS.coin}
+  { item: ITEMS.berry },
+  { item: ITEMS.bone },
+  { item: ITEMS.token },
+  { item: ITEMS.coin }
 ]
 
 export type Item = {

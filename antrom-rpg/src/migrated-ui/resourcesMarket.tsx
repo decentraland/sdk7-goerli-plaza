@@ -3,6 +3,7 @@ import ReactEcs, { Input, ReactEcsRenderer, UiEntity } from '@dcl/sdk/react-ecs'
 import { canvasInfo } from '..'
 import { Sprite, antromSprites } from '../mocked-data/atlasSprites'
 import {
+  ITEMS,
   InventoryItem,
   RESOURCES_INVENTORY,
   RESOURCES_MARKET
@@ -14,6 +15,7 @@ const WIDTH_FACTOR = 0.5
 const HEIGTH_FACTOR = WIDTH_FACTOR * ASPECT_RATIO
 const SIZE_ITEM_FACTOR = 0.1
 
+let balance: number = 200
 let withMana: boolean = false
 let tradeClicked: boolean = false
 let isSelling: boolean = true
@@ -92,7 +94,7 @@ const uiComponent = () => (
             flexDirection: 'row',
             margin: { right: '10%' }
           }}
-          uiText={{ value: '105', textAlign: 'middle-right' }}
+          uiText={{ value: balance.toString(), textAlign: 'middle-right' }}
         />
         <UiEntity
           uiTransform={{
@@ -169,7 +171,7 @@ const uiComponent = () => (
                 height: '20%',
                 margin: { top: '90%', bottom: '20%' }
               }}
-            ></Input>
+            />
             <UiEntity
               uiTransform={{
                 positionType: 'relative',
@@ -226,7 +228,7 @@ const uiComponent = () => (
               width: '30%',
               height: '10%',
               display: isSelling ? 'none' : 'flex',
-              margin: { top: '17.5%', right: '5%' }
+              margin: { top: '17.5%', right: '10%' }
             }}
             uiText={{
               value: totalPrice.toString(),
@@ -239,9 +241,9 @@ const uiComponent = () => (
       <UiEntity
         uiTransform={{
           positionType: 'absolute',
-          position: { top: '52.5%', right: '9%' },
-          width: '2.5%',
-          height: '3%',
+          position: { top: '52%', right: '8%' },
+          width: '4%',
+          height: '4%',
           display: withMana ? 'flex' : 'none'
         }}
         uiBackground={{
@@ -261,7 +263,12 @@ function ItemButton(props: { inventoryItem: InventoryItem }) {
     <UiEntity
       uiTransform={{
         width: '100%',
-        height: '100%'
+        height: '100%',
+        display:
+          (props.inventoryItem.amount && props.inventoryItem.amount > 0) ||
+          !isSelling
+            ? 'flex'
+            : 'none'
       }}
       uiBackground={{
         textureMode: 'stretch',
@@ -289,6 +296,21 @@ function ItemButton(props: { inventoryItem: InventoryItem }) {
           }
         }}
       />
+      <UiEntity
+        uiTransform={{
+          positionType: 'absolute',
+          width: '100%',
+          height: '100%',
+          display: isSelling ? 'flex' : 'none'
+        }}
+        uiText={{
+          value: props.inventoryItem.amount
+            ? props.inventoryItem.amount.toString()
+            : '',
+          textAlign: 'bottom-right',
+          fontSize: 20
+        }}
+      />
     </UiEntity>
   )
 }
@@ -296,18 +318,24 @@ function ItemButton(props: { inventoryItem: InventoryItem }) {
 function TradeButton() {
   let normalSprite: Sprite
   let clickedSprite: Sprite
+  let unavailableSprite: Sprite
 
   if (isSelling) {
     normalSprite = antromSprites.resources_market_sell_button
     clickedSprite = antromSprites.resources_market_sell_button_clicked
+    unavailableSprite = antromSprites.resources_market_sell_button_unavailable
   } else {
     if (withMana) {
       normalSprite = antromSprites.resources_market_purchase_with_mana_button
       clickedSprite =
         antromSprites.resources_market_purchase_with_mana_button_clicked
+      unavailableSprite =
+        antromSprites.resources_market_purchase_button_unavailable
     } else {
       normalSprite = antromSprites.resources_market_purchase_button
       clickedSprite = antromSprites.resources_market_purchase_button_clicked
+      unavailableSprite =
+        antromSprites.resources_market_purchase_button_unavailable
     }
   }
   return (
@@ -317,21 +345,47 @@ function TradeButton() {
         width: '50%',
         height: '10%'
       }}
-      uiBackground={{
-        textureMode: 'stretch',
-        uvs: getUvs(tradeClicked ? clickedSprite : normalSprite),
-        texture: {
-          src: clickedSprite.atlasSrc
-        }
-      }}
-      onMouseDown={() => (tradeClicked = true)}
-      onMouseUp={() => (tradeClicked = false)}
-    ></UiEntity>
+    >
+      <UiEntity
+        uiTransform={{
+          positionType: 'relative',
+          width: '100%',
+          height: '100%',
+          display: isUnavailable() ? 'flex' : 'none'
+        }}
+        uiBackground={{
+          textureMode: 'stretch',
+          uvs: getUvs(unavailableSprite),
+          texture: {
+            src: unavailableSprite.atlasSrc
+          }
+        }}
+      />
+      <UiEntity
+        uiTransform={{
+          positionType: 'relative',
+          width: '100%',
+          height: '100%',
+          display: !isUnavailable() ? 'flex' : 'none'
+        }}
+        uiBackground={{
+          textureMode: 'stretch',
+          uvs: getUvs(tradeClicked ? clickedSprite : normalSprite),
+          texture: {
+            src: clickedSprite.atlasSrc
+          }
+        }}
+        onMouseDown={tradeDown}
+        onMouseUp={() => (tradeClicked = false)}
+      />
+    </UiEntity>
   )
 }
 
 function selectItem(props: { inventoryItem: InventoryItem }) {
   selectedItem = props.inventoryItem
+  selectedQuantity = 1
+  updatePrice()
   if (props.inventoryItem.item.manaPrice) {
     withMana = true
   } else {
@@ -339,31 +393,43 @@ function selectItem(props: { inventoryItem: InventoryItem }) {
   }
 }
 
-function updatePrice(value: string) {
-  const formattedValue = value.replace(' ', '')
-  if (Number(formattedValue)) {
-    selectedQuantity = Number(formattedValue)
+function updatePrice(value?: string) {
+  if (value) {
+    const formattedValue = value.replace(' ', '')
+    if (Number(formattedValue)) {
+      selectedQuantity = Number(formattedValue)
+    } else {
+      selectedQuantity = 1
+    }
+  }
+
+  let unitPrice: number | undefined
+
+  if (selectedItem) {
+    if (isSelling) {
+      unitPrice = selectedItem.item.sellPrice
+    } else if (selectedItem.item.buyPrice) {
+      unitPrice = selectedItem.item.buyPrice
+    } else {
+      unitPrice = selectedItem.item.manaPrice
+    }
+  }
+  if (unitPrice) {
+    totalPrice = selectedQuantity * unitPrice
   } else {
-    selectedQuantity = 1
-  }
-  if (isSelling && selectedItem?.item.sellPrice) {
-    totalPrice = selectedItem.item.sellPrice * selectedQuantity
-  }
-  if (selectedItem?.item.buyPrice) {
-    totalPrice = selectedQuantity * selectedItem.item.buyPrice
-    return
-  }
-  if (selectedItem?.item.manaPrice) {
-    totalPrice = selectedQuantity * selectedItem.item.manaPrice
-    return
+    totalPrice = 0
   }
 }
 
 function mouseDownMax(item: InventoryItem) {
-  if (item.amount) {
+  if (isSelling && item.amount) {
     selectedQuantity = item.amount
   }
+  if (!isSelling && item.item.buyPrice) {
+    selectedQuantity = Math.floor(balance / item.item.buyPrice)
+  }
   buttonMaxSprite = antromSprites.resources_market_max_button_clicked
+  updatePrice()
 }
 
 function mouseUpMax() {
@@ -381,5 +447,81 @@ function setSelling(state: boolean) {
     } else {
       itemsArray = RESOURCES_MARKET
     }
+  }
+}
+
+function tradeDown() {
+  if (selectedItem) {
+    if (isSelling) {
+      if (selectedItem.item.sellPrice && selectedItem.amount) {
+        if (selectedItem.amount >= selectedQuantity) {
+          balance = balance + selectedItem.item.sellPrice * selectedQuantity
+        } else {
+          return
+        }
+      }
+    } else {
+      if (selectedItem.item.buyPrice) {
+        if (balance - selectedItem.item.buyPrice * selectedQuantity >= 0) {
+          balance = balance - selectedItem.item.buyPrice * selectedQuantity
+        } else {
+          return
+        }
+      }
+    }
+    updateInventory(selectedItem.item.id, selectedQuantity)
+  }
+  tradeClicked = true
+}
+
+function updateInventory(itemId: string, amount: number) {
+  const existingItemIndex = RESOURCES_INVENTORY.findIndex(
+    (inventoryItem) => inventoryItem.item.id === itemId
+  )
+  const existingItem = RESOURCES_INVENTORY[existingItemIndex]
+
+  if (isSelling) {
+    if (existingItem && existingItem.amount) {
+      if (existingItem.amount - amount <= 0) {
+        RESOURCES_INVENTORY.splice(existingItemIndex, 1)
+      }
+      existingItem.amount -= amount
+    }
+  } else {
+    if (existingItem && existingItem.amount) {
+      if (existingItem.amount) {
+        existingItem.amount += amount
+      } else {
+        existingItem.amount = amount
+      }
+    } else {
+      const newItem = ITEMS[itemId]
+      if (newItem) {
+        RESOURCES_INVENTORY.push({ item: newItem, amount: amount })
+      } else {
+        console.error(`Item with ID ${itemId} does not exist.`)
+      }
+    }
+  }
+}
+
+function isUnavailable(): boolean {
+  if (selectedItem && selectedItem.amount && selectedItem.item.buyPrice) {
+    if (isSelling) {
+      console.log(isSelling)
+      if (selectedItem.amount >= selectedQuantity) {
+        return false
+      } else {
+        return true
+      }
+    } else {
+      if (totalPrice > balance) {
+        return true
+      } else {
+        return false
+      }
+    }
+  } else {
+    return false
   }
 }
