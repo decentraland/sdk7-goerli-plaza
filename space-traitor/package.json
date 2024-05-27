@@ -1,0 +1,40 @@
+{
+  "name": "Space-Traitor",
+  "version": "1.0.0",
+  "description": "SDK7",
+  "scripts": {
+    "start": "sdk-commands start",
+    "deploy": "sdk-commands deploy",
+    "build": "sdk-commands build",
+    "upgrade-sdk": "npm install --save-dev @dcl/sdk@latest",
+    "upgrade-sdk:next": "npm install --save-dev @dcl/sdk@next"
+  },
+  "devDependencies": {
+    "@dcl/asset-packs": "^1.17.0",
+    "@dcl/js-runtime": "7.4.21",
+    "@dcl/sdk": "^7.3.15"
+  },
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=6.0.0"
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true,
+    "printWidth": 120,
+    "trailingComma": "none"
+  },
+  "dependencies": {
+    "@dcl/sdk-commands": "^7.3.15",
+    "colyseus.js": "^0.15.14",
+    "dcl-npc-toolkit": "^1.2.2",
+    "whatwg-url-without-unicode": "^8.0.0-3",
+    "xmlhttprequest-polyfill": "^0.1.2"
+  },
+  "bundledDependencies": [
+    "colyseus.js"
+  ],
+  "bundleDependencies": [
+    "colyseus.js"
+  ]
+}
