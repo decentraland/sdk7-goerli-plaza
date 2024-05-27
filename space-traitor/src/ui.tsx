@@ -136,7 +136,7 @@ export class UI {
                     positionType: 'absolute',
                     position: { top: '38%', left: '45%' },
                 }}
-                value={this.fixCounter.credits.toString() + '/6'}
+                value={this.fixCounter.credits.toString() + '/8'}
                 color={Color4.Purple()}
                 fontSize={37}
             />
