@@ -185,10 +185,8 @@ const uiComponent = () => (
                   src: selectedItem ? buttonMaxSprite.atlasSrc : ''
                 }
               }}
-              onMouseDown={() =>
-                selectedItem ? mouseDownMax(selectedItem) : nonFunction
-              }
-              onMouseUp={mouseUpMax}
+              onMouseDown={mouseDownMax}
+              onMouseUp={() => (selectedItem ? mouseUpMax(selectedItem) : {})}
             />
           </UiEntity>
           <UiEntity
@@ -421,22 +419,20 @@ function updatePrice(value?: string) {
   }
 }
 
-function mouseDownMax(item: InventoryItem) {
+function mouseDownMax() {
+  buttonMaxSprite = antromSprites.resources_market_max_button_clicked
+}
+
+function mouseUpMax(item: InventoryItem) {
+  buttonMaxSprite = antromSprites.resources_market_max_button
   if (isSelling && item.amount) {
     selectedQuantity = item.amount
   }
   if (!isSelling && item.item.buyPrice) {
     selectedQuantity = Math.floor(balance / item.item.buyPrice)
   }
-  buttonMaxSprite = antromSprites.resources_market_max_button_clicked
   updatePrice()
 }
-
-function mouseUpMax() {
-  buttonMaxSprite = antromSprites.resources_market_max_button
-}
-
-function nonFunction() {}
 
 function setSelling(state: boolean) {
   if (isSelling !== state) {
@@ -506,10 +502,9 @@ function updateInventory(itemId: string, amount: number) {
 }
 
 function isUnavailable(): boolean {
-  if (selectedItem && selectedItem.amount && selectedItem.item.buyPrice) {
+  if (selectedItem) {
     if (isSelling) {
-      console.log(isSelling)
-      if (selectedItem.amount >= selectedQuantity) {
+      if (selectedItem.amount && selectedItem.amount >= selectedQuantity) {
         return false
       } else {
         return true
