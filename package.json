@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "dependencies": {
     "@dcl-sdk/utils": "latest",
-    "@dcl/sdk": "latest",
+    "@dcl/sdk": "^7.5.1-9236275282.commit-84ad0a4",
     "glob": "^9.3.4",
     "prettier": "^2.8.8",
     "syncpack": "^9.8.4"
