@@ -26,7 +26,6 @@ export class UI {
     public announcement: string = ''
     public announcement_color: Color4 = Color4.White()
     public announcement_visible: boolean = false
-    uiComponent: () => ReactEcs.JSX.Element[]
     constructor(gameController: GameController) {
         this.gameController = gameController
         this.fixCounter = new CreditCounter()
@@ -63,7 +62,7 @@ export class UI {
                 }
             }
         )
-        this.uiComponent = () => (
+        const uiComponent = () => (
             [
                 this.announcementUI(),
                 NpcUtilsUi(),
@@ -76,7 +75,7 @@ export class UI {
                 this.gameController.miniGameMachine.wordTyper.mainUi(),
             ]
         )
-        ReactEcsRenderer.setUiRenderer(this.uiComponent)
+        ReactEcsRenderer.setUiRenderer(uiComponent)
     }
     cornerUi() {
         {/* Corner - UI - Conecction */ }
