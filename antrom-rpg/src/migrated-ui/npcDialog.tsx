@@ -5,9 +5,9 @@ import ReactEcs, {
   UiEntity
 } from '@dcl/sdk/react-ecs'
 import { canvasInfo } from '..'
-import { antromSprites } from '../mocked-data/atlasSprites'
 import { Dialog, DialogButton } from '../mocked-data/dialogsData'
 import { getUvs } from '../utils'
+import { npcDialogsSprites } from '../mocked-data/npcDialogueSprites'
 
 let isVisible: Boolean = true
 let dialogIndex: number = 0
@@ -48,8 +48,8 @@ const uiComponent = () => (
       }}
       uiBackground={{
         textureMode: 'stretch',
-        uvs: getUvs(antromSprites.npc_dialog_background),
-        texture: { src: antromSprites.npc_dialog_background.atlasSrc }
+        uvs: getUvs(npcDialogsSprites.background),
+        texture: { src: npcDialogsSprites.background.atlasSrc }
       }}
       onMouseDown={nextMessage}
     >
@@ -111,8 +111,8 @@ const uiComponent = () => (
         }}
         uiBackground={{
           textureMode: 'stretch',
-          uvs: getUvs(antromSprites.npc_dialog_click_on_bg_icon),
-          texture: { src: antromSprites.npc_dialog_click_on_bg_icon.atlasSrc }
+          uvs: getUvs(npcDialogsSprites.click_on_bg_icon),
+          texture: { src: npcDialogsSprites.click_on_bg_icon.atlasSrc }
         }}
       />
     </UiEntity>
@@ -159,9 +159,9 @@ function AnswerButton(props: { answer: DialogButton; key: number }) {
         uiBackground={{
           textureMode: 'stretch',
           uvs: props.answer.disabled
-            ? getUvs(antromSprites.npc_dialog_available_button)
-            : getUvs(antromSprites.npc_dialog_unavailable_button),
-          texture: { src: antromSprites.npc_dialog_available_button.atlasSrc }
+            ? getUvs(npcDialogsSprites.available_button)
+            : getUvs(npcDialogsSprites.unavailable_button),
+          texture: { src: npcDialogsSprites.available_button.atlasSrc }
         }}
         onMouseDown={() => goToDialog(props.answer.goToDialog)}
       />
@@ -180,9 +180,9 @@ function AnswerButton(props: { answer: DialogButton; key: number }) {
           textureMode: 'stretch',
           uvs:
             props.answer.action === 'primary'
-              ? getUvs(antromSprites.npc_dialog_e_icon_avaialable)
-              : getUvs(antromSprites.npc_dialog_f_icon_avaialable),
-          texture: { src: antromSprites.npc_dialog_e_icon_avaialable.atlasSrc }
+              ? getUvs(npcDialogsSprites.e_icon_avaialable)
+              : getUvs(npcDialogsSprites.f_icon_avaialable),
+          texture: { src: npcDialogsSprites.e_icon_avaialable.atlasSrc }
         }}
       />
     </UiEntity>

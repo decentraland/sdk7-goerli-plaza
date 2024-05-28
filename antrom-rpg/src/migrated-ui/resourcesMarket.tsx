@@ -1,14 +1,14 @@
 import { Color4 } from '@dcl/sdk/math'
 import ReactEcs, { Input, ReactEcsRenderer, UiEntity } from '@dcl/sdk/react-ecs'
 import { canvasInfo } from '..'
-import { Sprite, antromSprites } from '../mocked-data/atlasSprites'
 import {
   ITEMS,
   InventoryItem,
   RESOURCES_INVENTORY,
   RESOURCES_MARKET
 } from '../mocked-data/resourcesData'
-import { Tab, getUvs } from '../utils'
+import { resourcesMarketSprites } from '../mocked-data/resourcesMarketSprites'
+import { Sprite, Tab, getUvs } from '../utils'
 
 const ASPECT_RATIO = 0.7
 const WIDTH_FACTOR = 0.5
@@ -22,7 +22,7 @@ let tradeClicked: boolean = false
 let isSelling: boolean = true
 let itemsArray: InventoryItem[] = RESOURCES_INVENTORY
 let totalPrice: number = 0
-let buttonMaxSprite: Sprite = antromSprites.resources_market_max_button
+let buttonMaxSprite: Sprite = resourcesMarketSprites.max_button
 
 let selectedItem: InventoryItem | undefined = undefined
 let selectedQuantity: number = 1
@@ -51,8 +51,8 @@ const uiComponent = () => (
       }}
       uiBackground={{
         textureMode: 'stretch',
-        uvs: getUvs(antromSprites.resources_market_background),
-        texture: { src: antromSprites.resources_market_background.atlasSrc }
+        uvs: getUvs(resourcesMarketSprites.background),
+        texture: { src: resourcesMarketSprites.background.atlasSrc }
       }}
     >
       <UiEntity
@@ -75,15 +75,15 @@ const uiComponent = () => (
         >
           <Tab
             condition={isSelling}
-            trueSprite={antromSprites.resources_market_purchase_button}
-            falseSprite={antromSprites.resources_market_purchase_button_clicked}
+            trueSprite={resourcesMarketSprites.purchase_button}
+            falseSprite={resourcesMarketSprites.purchase_button_clicked}
             callback={setSelling}
             callbackValue={false}
           />
           <Tab
             condition={isSelling}
-            trueSprite={antromSprites.resources_market_sell_button_clicked}
-            falseSprite={antromSprites.resources_market_sell_button}
+            trueSprite={resourcesMarketSprites.sell_button_clicked}
+            falseSprite={resourcesMarketSprites.sell_button}
             callback={setSelling}
             callbackValue={true}
           />
@@ -247,9 +247,9 @@ const uiComponent = () => (
         }}
         uiBackground={{
           textureMode: 'stretch',
-          uvs: getUvs(antromSprites.mana_coin),
+          uvs: getUvs(resourcesMarketSprites.mana_coin),
           texture: {
-            src: antromSprites.mana_coin.atlasSrc
+            src: resourcesMarketSprites.mana_coin.atlasSrc
           }
         }}
       />
@@ -262,9 +262,9 @@ const uiComponent = () => (
         }}
         uiBackground={{
           textureMode: 'stretch',
-          uvs: getUvs(antromSprites.resources_market_exit_icon),
+          uvs: getUvs(resourcesMarketSprites.exit_icon),
           texture: {
-            src: antromSprites.resources_market_exit_icon.atlasSrc
+            src: resourcesMarketSprites.exit_icon.atlasSrc
           }
         }}
         onMouseDown={changeVisibility}
@@ -305,9 +305,9 @@ function ItemButton(props: { inventoryItem: InventoryItem }) {
         }}
         uiBackground={{
           textureMode: 'stretch',
-          uvs: getUvs(antromSprites.resources_market_selected_frame),
+          uvs: getUvs(resourcesMarketSprites.selected_frame),
           texture: {
-            src: antromSprites.resources_market_selected_frame.atlasSrc
+            src: resourcesMarketSprites.selected_frame.atlasSrc
           }
         }}
       />
@@ -336,21 +336,18 @@ function TradeButton() {
   let unavailableSprite: Sprite
 
   if (isSelling) {
-    normalSprite = antromSprites.resources_market_sell_button
-    clickedSprite = antromSprites.resources_market_sell_button_clicked
-    unavailableSprite = antromSprites.resources_market_sell_button_unavailable
+    normalSprite = resourcesMarketSprites.sell_button
+    clickedSprite = resourcesMarketSprites.sell_button_clicked
+    unavailableSprite = resourcesMarketSprites.sell_button_unavailable
   } else {
     if (withMana) {
-      normalSprite = antromSprites.resources_market_purchase_with_mana_button
-      clickedSprite =
-        antromSprites.resources_market_purchase_with_mana_button_clicked
-      unavailableSprite =
-        antromSprites.resources_market_purchase_button_unavailable
+      normalSprite = resourcesMarketSprites.purchase_with_mana_button
+      clickedSprite = resourcesMarketSprites.purchase_with_mana_button_clicked
+      unavailableSprite = resourcesMarketSprites.purchase_button_unavailable
     } else {
-      normalSprite = antromSprites.resources_market_purchase_button
-      clickedSprite = antromSprites.resources_market_purchase_button_clicked
-      unavailableSprite =
-        antromSprites.resources_market_purchase_button_unavailable
+      normalSprite = resourcesMarketSprites.purchase_button
+      clickedSprite = resourcesMarketSprites.purchase_button_clicked
+      unavailableSprite = resourcesMarketSprites.purchase_button_unavailable
     }
   }
   return (
@@ -437,11 +434,11 @@ function updatePrice(value?: string) {
 }
 
 function mouseDownMax() {
-  buttonMaxSprite = antromSprites.resources_market_max_button_clicked
+  buttonMaxSprite = resourcesMarketSprites.max_button_clicked
 }
 
 function mouseUpMax(item: InventoryItem) {
-  buttonMaxSprite = antromSprites.resources_market_max_button
+  buttonMaxSprite = resourcesMarketSprites.max_button
   if (isSelling && item.amount) {
     selectedQuantity = item.amount
   }

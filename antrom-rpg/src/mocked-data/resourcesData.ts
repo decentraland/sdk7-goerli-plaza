@@ -1,30 +1,31 @@
-import { Sprite, antromSprites } from './atlasSprites'
+import { Sprite } from '../utils'
+import { resourcesMarketSprites } from './resourcesMarketSprites'
 
 export const ITEMS: { [key: string]: Item } = {
   berry: {
     name: 'Berry',
     sellPrice: 1,
     buyPrice: 5,
-    sprite: antromSprites.berry,
+    sprite: resourcesMarketSprites.berry,
     id: 'berry'
   },
   bone: {
     name: 'Bone',
     sellPrice: 0,
     buyPrice: 1,
-    sprite: antromSprites.bone,
+    sprite: resourcesMarketSprites.bone,
     id: 'bone'
   },
   coin: {
     name: 'Coins',
     manaPrice: 0.1,
-    sprite: antromSprites.coins,
+    sprite: resourcesMarketSprites.coins,
     id: 'coins'
   },
   token: {
     name: 'Premium Dungeon Tokens',
     manaPrice: 1,
-    sprite: antromSprites.token,
+    sprite: resourcesMarketSprites.token,
     id: 'token'
   }
 }

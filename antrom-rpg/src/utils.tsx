@@ -1,5 +1,4 @@
 import { Coords } from '@dcl/sdk/ecs'
-import { Sprite } from './mocked-data/atlasSprites'
 import ReactEcs, { UiEntity } from '@dcl/sdk/react-ecs'
 
 export function getUvs(sprite: Sprite): number[] {
@@ -48,4 +47,13 @@ export function Tab(props: {
       onMouseDown={() => props.callback(props.callbackValue)}
     ></UiEntity>
   )
+}
+
+export interface Sprite {
+  atlasSrc: string
+  atlasSize: Coords
+  x: number
+  y: number
+  w: number
+  h: number
 }
