@@ -15,6 +15,7 @@ const WIDTH_FACTOR = 0.5
 const HEIGTH_FACTOR = WIDTH_FACTOR * ASPECT_RATIO
 const SIZE_ITEM_FACTOR = 0.1
 
+let isVisible: boolean = true
 let balance: number = 200
 let withMana: boolean = false
 let tradeClicked: boolean = false
@@ -35,7 +36,7 @@ const uiComponent = () => (
     uiTransform={{
       width: canvasInfo.width,
       height: canvasInfo.height,
-      display: 'flex',
+      display: isVisible ? 'flex' : 'none',
       flexDirection: 'column',
       alignItems: 'center',
       justifyContent: 'center'
@@ -240,8 +241,8 @@ const uiComponent = () => (
         uiTransform={{
           positionType: 'absolute',
           position: { top: '52%', right: '8%' },
-          width: '4%',
-          height: '4%',
+          width: canvasInfo.width * WIDTH_FACTOR * 0.04,
+          height: canvasInfo.width * WIDTH_FACTOR * 0.04 * ASPECT_RATIO,
           display: withMana ? 'flex' : 'none'
         }}
         uiBackground={{
@@ -251,6 +252,22 @@ const uiComponent = () => (
             src: antromSprites.mana_coin.atlasSrc
           }
         }}
+      />
+      <UiEntity
+        uiTransform={{
+          position: { right: '3%', top: '23%' },
+          positionType: 'absolute',
+          width: canvasInfo.width * WIDTH_FACTOR * 0.04,
+          height: canvasInfo.width * WIDTH_FACTOR * 0.04 * ASPECT_RATIO
+        }}
+        uiBackground={{
+          textureMode: 'stretch',
+          uvs: getUvs(antromSprites.resources_market_exit_icon),
+          texture: {
+            src: antromSprites.resources_market_exit_icon.atlasSrc
+          }
+        }}
+        onMouseDown={changeVisibility}
       />
     </UiEntity>
   </UiEntity>
@@ -510,7 +527,7 @@ function isUnavailable(): boolean {
         return true
       }
     } else {
-      if (totalPrice > balance) {
+      if (totalPrice > balance && !withMana) {
         return true
       } else {
         return false
@@ -519,4 +536,8 @@ function isUnavailable(): boolean {
   } else {
     return false
   }
+}
+
+function changeVisibility() {
+  isVisible = !isVisible
 }

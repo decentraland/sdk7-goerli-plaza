@@ -210,12 +210,14 @@ export const antromSprites: { [key: string]: Sprite } = {
     y: 0,
     w: 39,
     h: 39
-    // atlasSrc: 'images/item_spritesheet.png',
-    // atlasSize: { x: 1536, y: 1280 },
-    // x: 180,
-    // y: 0,
-    // w: 40,
-    // h: 40
+  },
+  resources_market_exit_icon: {
+    atlasSrc: 'images/resourcemarket_spritesheet.png',
+    atlasSize: { x: 1403, y: 1194 },
+    x: 219,
+    y: 0,
+    w: 39,
+    h: 39
   }
 }
 
