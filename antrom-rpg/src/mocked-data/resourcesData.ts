@@ -1,17 +1,4 @@
 import { Sprite } from '../utils'
-import { resourcesMarketSprites } from './resourcesMarketSprites'
-
-export enum Wearables {
-  W_MAGE_STAFF = 'mage_staff'
-  // W_RANGER_BOW = 'ranger_bow',
-  // W_BERSERKER_AXE = 'berserker_axe',
-  // W_MAGE = 'mage',
-  // W_RANGER = 'ranger',
-  // W_BERSERKER = 'berserker',
-  // W_MAGE_HAT = 'mage_hat',
-  // W_RANGER_HOOD = 'ranger_hood',
-  // W_BERSERKER_HELM = 'berserker_helm'
-}
 
 export enum Items {
   I_BERRY = 'berry',
@@ -23,12 +10,219 @@ export enum Items {
   I_IRON = 'iron'
 }
 
+export const resourcesMarketSprites: { [key: string]: Sprite } = {
+  background: {
+    atlasSrc: 'images/resourcemarket_spritesheet.png',
+    atlasSize: { x: 1403, y: 1194 },
+    x: 0,
+    y: 60,
+    w: 1403,
+    h: 974
+  },
+  selected_frame: {
+    atlasSrc: 'images/resourcemarket_spritesheet.png',
+    atlasSize: { x: 1403, y: 1194 },
+    x: 558,
+    y: 1032,
+    w: 160,
+    h: 160
+  },
+  max_button: {
+    atlasSrc: 'images/resourcemarket_spritesheet.png',
+    atlasSize: { x: 1403, y: 1194 },
+    x: 260,
+    y: 0,
+    w: 85,
+    h: 40
+  },
+  max_button_clicked: {
+    atlasSrc: 'images/resourcemarket_spritesheet.png',
+    atlasSize: { x: 1403, y: 1194 },
+    x: 345,
+    y: 0,
+    w: 85,
+    h: 40
+  },
+  purchase_button: {
+    atlasSrc: 'images/resourcemarket_spritesheet.png',
+    atlasSize: { x: 1403, y: 1194 },
+    x: 430,
+    y: 0,
+    w: 280,
+    h: 60
+  },
+  purchase_button_clicked: {
+    atlasSrc: 'images/resourcemarket_spritesheet.png',
+    atlasSize: { x: 1403, y: 1194 },
+    x: 990,
+    y: 0,
+    w: 280,
+    h: 60
+  },
+  purchase_button_unavailable: {
+    atlasSrc: 'images/resourcemarket_spritesheet.png',
+    atlasSize: { x: 1403, y: 1194 },
+    x: 710,
+    y: 0,
+    w: 280,
+    h: 60
+  },
+  sell_button: {
+    atlasSrc: 'images/resourcemarket_spritesheet.png',
+    atlasSize: { x: 1403, y: 1194 },
+    x: 720,
+    y: 1034,
+    w: 280,
+    h: 60
+  },
+  sell_button_clicked: {
+    atlasSrc: 'images/resourcemarket_spritesheet.png',
+    atlasSize: { x: 1403, y: 1194 },
+    x: 1000,
+    y: 1034,
+    w: 280,
+    h: 60
+  },
+  sell_button_unavailable: {
+    atlasSrc: 'images/resourcemarket_spritesheet.png',
+    atlasSize: { x: 1403, y: 1194 },
+    x: 0,
+    y: 1094,
+    w: 280,
+    h: 60
+  },
+  purchase_with_mana_button: {
+    atlasSrc: 'images/resourcemarket_spritesheet.png',
+    atlasSize: { x: 1403, y: 1194 },
+    x: 0,
+    y: 1034,
+    w: 250,
+    h: 54
+  },
+  purchase_with_mana_button_clicked: {
+    atlasSrc: 'images/resourcemarket_spritesheet.png',
+    atlasSize: { x: 1403, y: 1194 },
+    x: 250,
+    y: 1034,
+    w: 250,
+    h: 54
+  },
+
+  berry: {
+    atlasSrc: 'images/item_spritesheet.png',
+    atlasSize: { x: 1536, y: 1280 },
+    x: 0,
+    y: 0,
+    w: 256,
+    h: 256
+  },
+  bone: {
+    atlasSrc: 'images/item_spritesheet.png',
+    atlasSize: { x: 1536, y: 1280 },
+    x: 256,
+    y: 0,
+    w: 256,
+    h: 256
+  },
+  coins: {
+    atlasSrc: 'images/item_spritesheet.png',
+    atlasSize: { x: 1536, y: 1280 },
+    x: 768,
+    y: 0,
+    w: 256,
+    h: 256
+  },
+  token: {
+    atlasSrc: 'images/item_spritesheet.png',
+    atlasSize: { x: 1536, y: 1280 },
+    x: 1280,
+    y: 0,
+    w: 256,
+    h: 256
+  },
+  mana_coin: {
+    atlasSrc: 'images/resourcemarket_spritesheet.png',
+    atlasSize: { x: 1403, y: 1194 },
+    x: 180,
+    y: 0,
+    w: 39,
+    h: 39
+  },
+  exit_icon: {
+    atlasSrc: 'images/resourcemarket_spritesheet.png',
+    atlasSize: { x: 1403, y: 1194 },
+    x: 219,
+    y: 0,
+    w: 39,
+    h: 39
+  }
+}
+
+export const resourcesSprites: Record<Items, Sprite> = {
+  [Items.I_BERRY]: {
+    atlasSrc: 'images/item_spritesheet.png',
+    atlasSize: { x: 1536, y: 1280 },
+    x: 0,
+    y: 0,
+    w: 256,
+    h: 256
+  },
+  [Items.I_BONE]: {
+    atlasSrc: 'images/item_spritesheet.png',
+    atlasSize: { x: 1536, y: 1280 },
+    x: 256,
+    y: 0,
+    w: 256,
+    h: 256
+  },
+  [Items.I_COIN]: {
+    atlasSrc: 'images/item_spritesheet.png',
+    atlasSize: { x: 1536, y: 1280 },
+    x: 768,
+    y: 0,
+    w: 256,
+    h: 256
+  },
+  [Items.I_TOKEN]: {
+    atlasSrc: 'images/item_spritesheet.png',
+    atlasSize: { x: 1536, y: 1280 },
+    x: 1280,
+    y: 0,
+    w: 256,
+    h: 256
+  },
+  [Items.I_MEAT]: {
+    atlasSrc: 'images/item_spritesheet.png',
+    atlasSize: { x: 1536, y: 1280 },
+    x: 768,
+    y: 512,
+    w: 256,
+    h: 256
+  },
+  [Items.I_WOOD]: {
+    atlasSrc: 'images/item_spritesheet.png',
+    atlasSize: { x: 1536, y: 1280 },
+    x: 512,
+    y: 512,
+    w: 256,
+    h: 256
+  },
+  [Items.I_IRON]: {
+    atlasSrc: 'images/item_spritesheet.png',
+    atlasSize: { x: 1536, y: 1280 },
+    x: 0,
+    y: 768,
+    w: 256,
+    h: 256
+  }
+}
+
 export const ITEMS: Record<Items, Item> = {
   [Items.I_BERRY]: {
     name: 'Berry',
     sellPrice: 1,
     buyPrice: 5,
-    sprite: resourcesMarketSprites.berry,
+    sprite: resourcesSprites.berry,
     id: Items.I_BERRY
   },
   [Items.I_BONE]: {
@@ -70,15 +264,6 @@ export const ITEMS: Record<Items, Item> = {
   }
 }
 
-export const APPRENTICE_WEARABLES: Record<Wearables, Wearable> = {
-  [Wearables.W_MAGE_STAFF]: {
-    name: 'Mage Staff',
-    craftCost: [{ item: ITEMS.wood, amount: 250 }],
-    sprite: resourcesMarketSprites.token,
-    id: Wearables.W_MAGE_STAFF
-  }
-}
-
 export const RESOURCES_INVENTORY: InventoryItem[] = [
   { item: ITEMS.berry, amount: 10 },
   { item: ITEMS.bone, amount: 5 }
@@ -96,14 +281,6 @@ export type Item = {
   sellPrice?: number
   buyPrice?: number
   manaPrice?: number
-  craftCost?: CraftCost[]
-  sprite: Sprite
-  id: string
-}
-
-export type Wearable = {
-  name: string
-  craftCost?: CraftCost[]
   sprite: Sprite
   id: string
 }
@@ -111,9 +288,4 @@ export type Wearable = {
 export type InventoryItem = {
   item: Item
   amount?: number
-}
-
-export type CraftCost = {
-  item: Item
-  amount: Number
 }

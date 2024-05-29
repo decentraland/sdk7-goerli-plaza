@@ -5,9 +5,9 @@ import {
   InventoryItem,
   Items,
   RESOURCES_INVENTORY,
-  RESOURCES_MARKET
+  RESOURCES_MARKET,
+  resourcesMarketSprites
 } from '../mocked-data/resourcesData'
-import { resourcesMarketSprites } from '../mocked-data/resourcesMarketSprites'
 import { Sprite, Tab, getUvs } from '../utils'
 
 const ASPECT_RATIO = 0.7

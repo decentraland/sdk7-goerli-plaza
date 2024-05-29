@@ -5,9 +5,8 @@ import ReactEcs, {
   UiEntity
 } from '@dcl/sdk/react-ecs'
 import { canvasInfo } from '..'
-import { Dialog, DialogButton } from '../mocked-data/dialogsData'
+import { Dialog, DialogButton, npcDialogsSprites } from '../mocked-data/dialogsData'
 import { getUvs } from '../utils'
-import { npcDialogsSprites } from '../mocked-data/npcDialogueSprites'
 
 let isVisible: Boolean = true
 let dialogIndex: number = 0

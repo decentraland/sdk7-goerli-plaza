@@ -1,17 +1,23 @@
 import ReactEcs, { ReactEcsRenderer, UiEntity } from '@dcl/sdk/react-ecs'
 import { canvasInfo } from '..'
-import { wearablesMarketSprites } from '../mocked-data/wearablesMarketSprites'
+import {
+  APPRENTICE_WEARABLES,
+  Wearable,
+  Wearables,
+  wearablesMarketSprites
+} from '../mocked-data/wearablesData'
 import { getUvs } from '../utils'
-import { InventoryItem } from '../mocked-data/resourcesData'
+import { Color4 } from '@dcl/sdk/math'
 
 const ASPECT_RATIO = 0.57
 const WIDTH_FACTOR = 0.5
 const HEIGTH_FACTOR = WIDTH_FACTOR * ASPECT_RATIO
-const SIZE_ITEM_FACTOR = 0.1
+const ITEM_SIZE_FACTOR = 0.12
 
-let selectedItem: InventoryItem | undefined = undefined
+const wearablesArray = Object.values(APPRENTICE_WEARABLES)
+
 let isVisible: boolean = true
-let selectedWearable: number | undefined = undefined
+let selectedWearable: Wearable | undefined = undefined
 let tradeClicked: boolean = false
 
 export function setupWearableMarket() {
@@ -42,6 +48,31 @@ const uiComponent = () => (
         texture: { src: wearablesMarketSprites.background.atlasSrc }
       }}
     >
+      {' '}
+      <UiEntity
+        uiTransform={{
+          width: '40%',
+          height: 'auto',
+          flexDirection: 'row',
+          position: { top: '14.5%', left: '11%' },
+          flexWrap: 'wrap'
+        }}
+        uiBackground={{ color: Color4.create(1, 0, 0, 0.1) }}
+      >
+        {wearablesArray.map((wearable, index) => (
+          <UiEntity
+            key={index}
+            uiTransform={{
+              width: canvasInfo.width * WIDTH_FACTOR * 0.12,
+              height: canvasInfo.width * WIDTH_FACTOR * 0.12,
+              margin: { right: '9.25%', bottom: '0%' }
+            }}
+            uiBackground={{ color: Color4.create(0, 0, 1, 0.1) }}
+          >
+            <WearableButton wearable={wearable} />
+          </UiEntity>
+        ))}
+      </UiEntity>
       <UiEntity
         uiTransform={{
           position: { right: '2%', top: '10%' },
@@ -66,7 +97,7 @@ function changeVisibility() {
   isVisible = !isVisible
 }
 
-function ItemButton(props: { inventoryItem: InventoryItem }) {
+function WearableButton(props: { wearable: Wearable }) {
   return (
     <UiEntity
       uiTransform={{
@@ -76,21 +107,18 @@ function ItemButton(props: { inventoryItem: InventoryItem }) {
       }}
       uiBackground={{
         textureMode: 'stretch',
-        uvs: getUvs(props.inventoryItem.item.sprite),
-        texture: { src: props.inventoryItem.item.sprite.atlasSrc }
+        uvs: getUvs(props.wearable.sprite),
+        texture: { src: props.wearable.sprite.atlasSrc }
       }}
-      onMouseDown={() => selectItem(props)}
+      onMouseDown={() => selectWearable(props)}
     >
       <UiEntity
         uiTransform={{
           positionType: 'absolute',
           width: '115%',
           height: '115%',
-          position: { left: '-5%', top: '-5%' },
-          display:
-            selectedItem?.item.id === props.inventoryItem.item.id
-              ? 'flex'
-              : 'none'
+          position: { left: '-7.5%', top: '-7.5%' },
+          display: selectedWearable?.id === props.wearable.id ? 'flex' : 'none'
         }}
         uiBackground={{
           textureMode: 'stretch',
@@ -104,8 +132,8 @@ function ItemButton(props: { inventoryItem: InventoryItem }) {
   )
 }
 
-function selectItem(props: { inventoryItem: InventoryItem }) {
-  selectedItem = props.inventoryItem
+function selectWearable(props: { wearable: Wearable }) {
+  selectedWearable = props.wearable
 }
 
 function tradeDown() {
