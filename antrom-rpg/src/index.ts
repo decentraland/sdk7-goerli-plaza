@@ -1,8 +1,6 @@
 import { UiCanvasInformation, engine } from '@dcl/sdk/ecs'
 
-import { setupNpcDialogUi } from './migrated-ui/npcDialog'
-import { BONE_TRADER_DIALOGS } from './mocked-data/dialogsData'
-import { setupResourcesMarket } from './migrated-ui/resourcesMarket'
+import { setupWearableMarket } from './migrated-ui/wearablesMarket'
 
 export let canvasInfo = {
   width: 0,
@@ -21,5 +19,5 @@ export function main() {
 
   // draw UI
 
-  setupResourcesMarket()
+  setupWearableMarket()
 }

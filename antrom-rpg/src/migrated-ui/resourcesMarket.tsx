@@ -1,9 +1,9 @@
-import { Color4 } from '@dcl/sdk/math'
 import ReactEcs, { Input, ReactEcsRenderer, UiEntity } from '@dcl/sdk/react-ecs'
 import { canvasInfo } from '..'
 import {
   ITEMS,
   InventoryItem,
+  Items,
   RESOURCES_INVENTORY,
   RESOURCES_MARKET
 } from '../mocked-data/resourcesData'
@@ -258,7 +258,7 @@ const uiComponent = () => (
           position: { right: '3%', top: '23%' },
           positionType: 'absolute',
           width: canvasInfo.width * WIDTH_FACTOR * 0.04,
-          height: canvasInfo.width * WIDTH_FACTOR * 0.04 * ASPECT_RATIO
+          height: canvasInfo.width * WIDTH_FACTOR * 0.04
         }}
         uiBackground={{
           textureMode: 'stretch',
@@ -479,38 +479,34 @@ function tradeDown() {
         }
       }
     }
-    updateInventory(selectedItem.item.id, selectedQuantity)
+    updateInventory()
   }
   tradeClicked = true
 }
 
-function updateInventory(itemId: string, amount: number) {
+function updateInventory() {
   const existingItemIndex = RESOURCES_INVENTORY.findIndex(
-    (inventoryItem) => inventoryItem.item.id === itemId
+    (resourcesInventoryItem) =>
+      resourcesInventoryItem.item.id === selectedItem?.item.id
   )
   const existingItem = RESOURCES_INVENTORY[existingItemIndex]
 
   if (isSelling) {
     if (existingItem && existingItem.amount) {
-      if (existingItem.amount - amount <= 0) {
+      if (existingItem.amount - selectedQuantity <= 0) {
         RESOURCES_INVENTORY.splice(existingItemIndex, 1)
       }
-      existingItem.amount -= amount
+      existingItem.amount -= selectedQuantity
     }
   } else {
-    if (existingItem && existingItem.amount) {
+    if (existingItem) {
       if (existingItem.amount) {
-        existingItem.amount += amount
+        existingItem.amount += selectedQuantity
       } else {
-        existingItem.amount = amount
+        existingItem.amount = selectedQuantity
       }
     } else {
-      const newItem = ITEMS[itemId]
-      if (newItem) {
-        RESOURCES_INVENTORY.push({ item: newItem, amount: amount })
-      } else {
-        console.error(`Item with ID ${itemId} does not exist.`)
-      }
+      addItemToResourcesInventory()
     }
   }
 }
@@ -537,4 +533,16 @@ function isUnavailable(): boolean {
 
 function changeVisibility() {
   isVisible = !isVisible
+}
+
+function addItemToResourcesInventory() {
+  if (selectedItem) {
+    const key = selectedItem.item.id
+    if (key in ITEMS) {
+      RESOURCES_INVENTORY.push({
+        item: ITEMS[key as Items],
+        amount: selectedQuantity
+      })
+    }
+  }
 }
