@@ -237,7 +237,7 @@ export const APPRENTICE_WEARABLES: Record<Wearables, Wearable> = {
     id: Wearables.W_MAGE
   },
   [Wearables.W_RANGER_BOW]: {
-    name: '',
+    name: 'Ranger Bow',
     craftCost: [
       { item: ITEMS.meat, amount: 250 },
       { item: ITEMS.wood, amount: 250 },
@@ -248,7 +248,7 @@ export const APPRENTICE_WEARABLES: Record<Wearables, Wearable> = {
   },
 
   [Wearables.W_RANGER_HOOD]: {
-    name: '',
+    name: 'Ranger Hood',
     craftCost: [
       { item: ITEMS.meat, amount: 250 },
       { item: ITEMS.wood, amount: 250 },
@@ -258,7 +258,7 @@ export const APPRENTICE_WEARABLES: Record<Wearables, Wearable> = {
     id: Wearables.W_RANGER_HOOD
   },
   [Wearables.W_RANGER]: {
-    name: '',
+    name: 'Ranger',
     craftCost: [
       { item: ITEMS.meat, amount: 250 },
       { item: ITEMS.wood, amount: 250 },
@@ -269,7 +269,7 @@ export const APPRENTICE_WEARABLES: Record<Wearables, Wearable> = {
   },
 
   [Wearables.W_BERSERKER_AXE]: {
-    name: '',
+    name: 'Berserker Axe',
     craftCost: [
       { item: ITEMS.meat, amount: 250 },
       { item: ITEMS.wood, amount: 250 },
@@ -279,7 +279,7 @@ export const APPRENTICE_WEARABLES: Record<Wearables, Wearable> = {
     id: Wearables.W_BERSERKER_AXE
   },
   [Wearables.W_BERSERKER_HELM]: {
-    name: '',
+    name: 'Berserker Helm',
     craftCost: [
       { item: ITEMS.meat, amount: 250 },
       { item: ITEMS.wood, amount: 250 },
@@ -289,7 +289,7 @@ export const APPRENTICE_WEARABLES: Record<Wearables, Wearable> = {
     id: Wearables.W_BERSERKER_HELM
   },
   [Wearables.W_BERSERKER]: {
-    name: '',
+    name: 'Berserker',
     craftCost: [
       { item: ITEMS.meat, amount: 250 },
       { item: ITEMS.wood, amount: 250 },

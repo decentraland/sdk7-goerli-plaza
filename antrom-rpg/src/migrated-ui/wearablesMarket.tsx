@@ -1,26 +1,24 @@
+import { Color4 } from '@dcl/sdk/math'
 import ReactEcs, { ReactEcsRenderer, UiEntity } from '@dcl/sdk/react-ecs'
 import { canvasInfo } from '..'
 import {
-  APPRENTICE_WEARABLES,
   HEIGTH_FACTOR,
   WEARABLES_TO_SHOW,
   WIDTH_FACTOR,
   Wearable,
-  Wearables,
   wearablesMarketSprites
 } from '../mocked-data/wearablesData'
 import { Sprite, getUvs } from '../utils'
-import { Color4 } from '@dcl/sdk/math'
 
 let wearablesToShow: Wearable[]
 let scrollPosition: number = 0
 
 let isVisible: boolean = true
 let selectedWearable: Wearable | undefined = undefined
-let tradeClicked: boolean = false
 let backgroundSprite: Sprite = wearablesMarketSprites.background
-let buttonSprite: Sprite = wearablesMarketSprites.purchase
-let clickedButtonSprite: Sprite = wearablesMarketSprites.purchase_clicked
+let clickedPurchaseSprite: Sprite = wearablesMarketSprites.purchase_clicked
+let purchaseSprite: Sprite = wearablesMarketSprites.purchase
+let buttonSprite: Sprite | undefined = purchaseSprite
 let leftButton: Sprite = wearablesMarketSprites.left_unavailable
 let rightButton: Sprite = wearablesMarketSprites.right_unavailable
 
@@ -28,12 +26,20 @@ export function setupWearableMarket(
   wearablesArray: Wearable[],
   backgroundSprite?: Sprite,
   purchaseButtonSprite?: Sprite,
-  purchaseClickedButtonSprite?: Sprite
+  clickedPurchaseButtonSprite?: Sprite
 ) {
   ReactEcsRenderer.setUiRenderer(uiComponent)
   wearablesToShow = wearablesArray
   if (wearablesArray.length > WEARABLES_TO_SHOW) {
     rightButton = wearablesMarketSprites.right
+  }
+  if (backgroundSprite) {
+  }
+  if (purchaseButtonSprite) {
+    purchaseSprite = purchaseButtonSprite
+  }
+  if (clickedPurchaseButtonSprite) {
+    clickedPurchaseSprite = clickedPurchaseButtonSprite
   }
 }
 
@@ -136,6 +142,61 @@ const uiComponent = () => (
         onMouseDown={scrollRight}
         onMouseUp={upScrollButtons}
       />
+      <UiEntity
+        uiTransform={{
+          width: '32%',
+          height: '100%',
+          positionType: 'absolute',
+          flexDirection: 'column',
+          alignItems: 'center',
+          position: { right: 0, top: 0 }
+        }}
+      >
+        <UiEntity
+          uiTransform={{
+            display: selectedWearable ? 'flex' : 'none',
+            width: '100%',
+            height: '20%',
+            margin: { top: '12%', bottom: '12%' }
+          }}
+          uiText={{
+            value: selectedWearable ? selectedWearable.name : '',
+            fontSize: 15,
+            textAlign: 'middle-center'
+          }}
+        />
+        <UiEntity
+          uiTransform={{
+            display: selectedWearable ? 'flex' : 'none',
+            width: canvasInfo.width * WIDTH_FACTOR * 0.12,
+            height: canvasInfo.width * WIDTH_FACTOR * 0.12
+          }}
+          uiBackground={{
+            textureMode: 'stretch',
+            uvs: getUvs(selectedWearable ? selectedWearable.sprite : undefined),
+            texture: {
+              src: selectedWearable ? selectedWearable.sprite.atlasSrc : ''
+            }
+          }}
+        />
+        <UiEntity
+          uiTransform={{
+            display: selectedWearable ? 'flex' : 'none',
+            margin: { top: '25%' },
+            width: canvasInfo.width * WIDTH_FACTOR * 0.2,
+            height: canvasInfo.width * WIDTH_FACTOR * 0.2 * 0.2
+          }}
+          uiBackground={{
+            textureMode: 'stretch',
+            uvs: getUvs(buttonSprite),
+            texture: {
+              src: buttonSprite ? buttonSprite.atlasSrc : ''
+            }
+          }}
+          onMouseDown={tradeDown}
+          onMouseUp={tradeUp}
+        />
+      </UiEntity>
     </UiEntity>
   </UiEntity>
 )
@@ -184,7 +245,10 @@ function selectWearable(props: { wearable: Wearable }) {
 }
 
 function tradeDown() {
-  tradeClicked = true
+  buttonSprite = clickedPurchaseSprite
+}
+function tradeUp() {
+  buttonSprite = purchaseSprite
 }
 
 function scrollRight() {
