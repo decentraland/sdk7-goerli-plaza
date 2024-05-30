@@ -2,26 +2,39 @@ import ReactEcs, { ReactEcsRenderer, UiEntity } from '@dcl/sdk/react-ecs'
 import { canvasInfo } from '..'
 import {
   APPRENTICE_WEARABLES,
+  HEIGTH_FACTOR,
+  WEARABLES_TO_SHOW,
+  WIDTH_FACTOR,
   Wearable,
   Wearables,
   wearablesMarketSprites
 } from '../mocked-data/wearablesData'
-import { getUvs } from '../utils'
+import { Sprite, getUvs } from '../utils'
 import { Color4 } from '@dcl/sdk/math'
 
-const ASPECT_RATIO = 0.57
-const WIDTH_FACTOR = 0.5
-const HEIGTH_FACTOR = WIDTH_FACTOR * ASPECT_RATIO
-const ITEM_SIZE_FACTOR = 0.12
-
-const wearablesArray = Object.values(APPRENTICE_WEARABLES)
+let wearablesToShow: Wearable[]
+let scrollPosition: number = 0
 
 let isVisible: boolean = true
 let selectedWearable: Wearable | undefined = undefined
 let tradeClicked: boolean = false
+let backgroundSprite: Sprite = wearablesMarketSprites.background
+let buttonSprite: Sprite = wearablesMarketSprites.purchase
+let clickedButtonSprite: Sprite = wearablesMarketSprites.purchase_clicked
+let leftButton: Sprite = wearablesMarketSprites.left_unavailable
+let rightButton: Sprite = wearablesMarketSprites.right_unavailable
 
-export function setupWearableMarket() {
+export function setupWearableMarket(
+  wearablesArray: Wearable[],
+  backgroundSprite?: Sprite,
+  purchaseButtonSprite?: Sprite,
+  purchaseClickedButtonSprite?: Sprite
+) {
   ReactEcsRenderer.setUiRenderer(uiComponent)
+  wearablesToShow = wearablesArray
+  if (wearablesArray.length > WEARABLES_TO_SHOW) {
+    rightButton = wearablesMarketSprites.right
+  }
 }
 
 const uiComponent = () => (
@@ -44,34 +57,34 @@ const uiComponent = () => (
       }}
       uiBackground={{
         textureMode: 'stretch',
-        uvs: getUvs(wearablesMarketSprites.background),
-        texture: { src: wearablesMarketSprites.background.atlasSrc }
+        uvs: getUvs(backgroundSprite),
+        texture: { src: backgroundSprite.atlasSrc }
       }}
     >
       {' '}
       <UiEntity
         uiTransform={{
-          width: '40%',
+          width: '55%',
           height: 'auto',
           flexDirection: 'row',
           position: { top: '14.5%', left: '11%' },
           flexWrap: 'wrap'
         }}
-        uiBackground={{ color: Color4.create(1, 0, 0, 0.1) }}
       >
-        {wearablesArray.map((wearable, index) => (
-          <UiEntity
-            key={index}
-            uiTransform={{
-              width: canvasInfo.width * WIDTH_FACTOR * 0.12,
-              height: canvasInfo.width * WIDTH_FACTOR * 0.12,
-              margin: { right: '9.25%', bottom: '0%' }
-            }}
-            uiBackground={{ color: Color4.create(0, 0, 1, 0.1) }}
-          >
-            <WearableButton wearable={wearable} />
-          </UiEntity>
-        ))}
+        {wearablesToShow
+          .slice(scrollPosition * (WEARABLES_TO_SHOW - 1), WEARABLES_TO_SHOW)
+          .map((wearable, index) => (
+            <UiEntity
+              key={index}
+              uiTransform={{
+                width: canvasInfo.width * WIDTH_FACTOR * 0.12,
+                height: canvasInfo.width * WIDTH_FACTOR * 0.12,
+                margin: { right: '10.2%', bottom: '4.5%' }
+              }}
+            >
+              <WearableButton wearable={wearable} />
+            </UiEntity>
+          ))}
       </UiEntity>
       <UiEntity
         uiTransform={{
@@ -88,6 +101,40 @@ const uiComponent = () => (
           }
         }}
         onMouseDown={changeVisibility}
+      />
+      <UiEntity
+        uiTransform={{
+          position: { left: '6%', top: '47%' },
+          positionType: 'absolute',
+          width: canvasInfo.width * WIDTH_FACTOR * 0.04,
+          height: canvasInfo.width * WIDTH_FACTOR * 0.04
+        }}
+        uiBackground={{
+          textureMode: 'stretch',
+          uvs: getUvs(leftButton),
+          texture: {
+            src: leftButton.atlasSrc
+          }
+        }}
+        onMouseDown={scrollLeft}
+        onMouseUp={upScrollButtons}
+      />
+      <UiEntity
+        uiTransform={{
+          position: { left: '59.5%', top: '47%' },
+          positionType: 'absolute',
+          width: canvasInfo.width * WIDTH_FACTOR * 0.04,
+          height: canvasInfo.width * WIDTH_FACTOR * 0.04
+        }}
+        uiBackground={{
+          textureMode: 'stretch',
+          uvs: getUvs(rightButton),
+          texture: {
+            src: rightButton.atlasSrc
+          }
+        }}
+        onMouseDown={scrollRight}
+        onMouseUp={upScrollButtons}
       />
     </UiEntity>
   </UiEntity>
@@ -138,4 +185,34 @@ function selectWearable(props: { wearable: Wearable }) {
 
 function tradeDown() {
   tradeClicked = true
+}
+
+function scrollRight() {
+  if (scrollPosition < Math.floor(wearablesToShow.length / WEARABLES_TO_SHOW)) {
+    rightButton = wearablesMarketSprites.right_clicked
+    scrollPosition++
+  }
+}
+
+function scrollLeft() {
+  if (scrollPosition > 0) {
+    leftButton = wearablesMarketSprites.left_clicked
+    scrollPosition--
+  }
+}
+
+function upScrollButtons() {
+  rightButton = wearablesMarketSprites.right
+  leftButton = wearablesMarketSprites.left
+
+  if (scrollPosition === 0) {
+    leftButton = wearablesMarketSprites.left_unavailable
+  }
+
+  if (
+    scrollPosition * WEARABLES_TO_SHOW >=
+    Math.floor(wearablesToShow.length / WEARABLES_TO_SHOW)
+  ) {
+    rightButton = wearablesMarketSprites.right_unavailable
+  }
 }
