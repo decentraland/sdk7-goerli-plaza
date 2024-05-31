@@ -4,35 +4,42 @@ import { Room } from 'colyseus.js'
 import { Color4 } from '@dcl/sdk/math'
 import { getRealm } from '~system/Runtime'
 import { GameController } from './game.controller'
-import { getUserData } from "~system/UserIdentity";
+import { UserData, getUserData } from "~system/UserIdentity";
 import * as Colyseus from "colyseus.js";
+import { MyRoomState } from './types';
 
 
 export class Connection {
   private gameController: GameController
-  public userData: any
+  public userData: UserData | undefined
 
   constructor(gameController: GameController) {
     this.gameController = gameController
   }
+
   async setUserData() {
-    this.userData = await getUserData({})
+    this.userData = (await getUserData({})).data
   }
-  async connect(roomName: string, options: any = {}) {
+
+  async connect(roomName: string) {
     const { realmInfo } = await getRealm({})
     //
     // make sure users are matched together by the same "realm".
     //
-    if (realmInfo?.isPreview) {
-      options.realm = 'test'
-    } else {
-      options.realm = realmInfo?.realmName
-    }
+    // if (realmInfo?.isPreview) {
+    //   options.realm = 'test'
+    // } else {
+    //   options.realm = realmInfo?.realmName
+    // }
 
     if (!this.userData) {
       await this.setUserData()
     }
-    options.userData = this.userData
+
+    const options: JoinOptions = {
+      displayName: this.userData?.displayName ?? 'Anonymous',
+      userId: this.userData?.userId ?? '',
+    }
 
     console.log('data sent:', options)
 
@@ -45,13 +52,13 @@ export class Connection {
     let client = new Colyseus.Client('ws://127.0.0.1:2567');
 
     try {
-      const room = await client.joinOrCreate<any>(roomName, options)
+      const room = await client.joinOrCreate<MyRoomState>(roomName, options)
       console.log(room)
       if (realmInfo?.isPreview) {
         this.updateConnectionDebugger(room)
       }
 
-       return room
+      return room
     } catch (error) {
       this.updateConnectionMessage(`Error: ${error}`, Color4.Red())
       throw error

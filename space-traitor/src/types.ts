@@ -1,44 +1,38 @@
-import { Quaternion, Vector3 } from "@dcl/sdk/math"
+import { Schema, ArraySchema, MapSchema, type } from '@colyseus/schema'
 
-export type JoinData = {
-  thumb?: string
+export class Player extends Schema {
+  @type('string') id: string = ''
+  @type('string') userId: string = ''
+  @type('string') displayName: string = ''
+  @type('boolean') isTraitor: boolean = false
+  @type('boolean') alive: boolean = true
+  @type(['string']) votes: ArraySchema<string> = new ArraySchema<string>();
+  @type('boolean') ready: boolean = false
 }
 
-export type EquiptmentChange = {
-  id: number
-  broken: boolean
+export class Equiptment extends Schema {
+  @type('number') id: number = 0
+  @type('boolean') broken: boolean = true
 }
 
-export type FuseChange = {
-  id: number
-  doorOpen?: boolean
-  redCut?: boolean
-  greenCut?: boolean
-  blueCut?: boolean
+export class FuseBox extends Schema {
+  @type('number') id: number = 0
+  @type('boolean') doorOpen: boolean = false
+  @type('boolean') redCut: boolean = false
+  @type('boolean') greenCut: boolean = false
+  @type('boolean') blueCut: boolean = false
+  @type('boolean') broken: boolean = false
 }
 
-export type Vote = {
-  voter: string
-  voted: string
-}
-export type EquiptmentData = {
-  position: Vector3
-  rotation: Quaternion
-  scale?: Vector3
-  startBroken: boolean
-}
 
-export class Player extends Object {
-  id: number
-  name: string
-  thumb: string | null
-  isTraitor: boolean = false
-  alive: boolean = true
-  votes: number[] = []
-  constructor(id: number, name: string, thumb?: string) {
-    super()
-    this.id = id
-    this.name = name
-    this.thumb = thumb ? thumb : null
-  }
+export class MyRoomState extends Schema {
+  @type('boolean') active: boolean = false
+  @type('boolean') paused: boolean = false
+  @type('number') fixCount: number = 0
+  @type('number') traitors: number = 0
+  @type('number') countdown: number = 0
+  @type('number') votingCountdown: number = 0
+  @type([FuseBox]) fuseBoxes = new ArraySchema<FuseBox>()
+  @type([Equiptment]) toFix = new ArraySchema<Equiptment>()
+  @type({ map: Player }) players: MapSchema<Player> = new MapSchema<Player>()
 }

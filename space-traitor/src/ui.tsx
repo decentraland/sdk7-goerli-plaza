@@ -1,12 +1,15 @@
-import { Vector3, Quaternion } from "@dcl/sdk/math"
+import * as utils from '@dcl-sdk/utils'
+import { Entity } from "@dcl/sdk/ecs"
+import { Color4, Quaternion, Vector3 } from "@dcl/sdk/math"
+import ReactEcs, { ReactEcsRenderer } from '@dcl/sdk/react-ecs'
 import * as npc from 'dcl-npc-toolkit'
-import { Color4 } from '@dcl/sdk/math'
-import ReactEcs, { Button, Label, ReactEcsRenderer, UiEntity } from '@dcl/sdk/react-ecs'
 import { NpcUtilsUi } from 'dcl-npc-toolkit'
 import { GameController } from "./game.controller"
-import { Entity } from "@dcl/sdk/ecs"
+import Announcement from "./ui/Announcement"
+import CornerStatus from "./ui/CornerStatus"
+import HudCounter from "./ui/HudCounter"
+import TimeCounter from "./ui/TimeCounter"
 import { CreditCounter } from "./utils/coin.counter"
-import * as utils from '@dcl-sdk/utils'
 
 export class UI {
     public color: Color4
@@ -78,145 +81,16 @@ export class UI {
         ReactEcsRenderer.setUiRenderer(uiComponent)
     }
     cornerUi() {
-        {/* Corner - UI - Conecction */ }
-        return <UiEntity
-            uiTransform={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                justifyContent: 'center',
-                positionType: 'absolute',
-                position: { right: "10%", bottom: '3%' },
-            }}
-        >
-            <UiEntity
-                uiTransform={{
-                    width: '100',
-                    height: '100',
-                }}
-                uiBackground={{ color: Color4.create(0, 0, 0, 0) }}
-            />
-            {/* Label - Title */}
-            <Label
-                uiTransform={{
-                    position: { right: '30%', bottom: '20%' }
-                }}
-                value={this.message}
-                fontSize={18}
-                font='sans-serif'
-                color={this.color}
-            />
-        </UiEntity>
+        return <CornerStatus message={this.message} color={this.color} />
     }
     fixUIBck() {
-        {/* Fix Icon - UI*/ }
-        return <UiEntity
-            uiTransform={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                justifyContent: 'center',
-                positionType: 'absolute',
-                position: { right: "5%", bottom: '30%' },
-                display: this.fixIcon_visible ? 'flex' : 'none',
-            }}
-        >
-            <UiEntity
-                uiTransform={{
-                    width: '217',
-                    height: '105',
-                }}
-                uiBackground={{
-                    textureMode: 'center',
-                    texture: {
-                        src: 'images/ui-counter-2.png',
-                    },
-                }}
-            />
-            <Label
-                uiTransform={{
-                    positionType: 'absolute',
-                    position: { top: '38%', left: '45%' },
-                }}
-                value={this.fixCounter.credits.toString() + '/8'}
-                color={Color4.Purple()}
-                fontSize={37}
-            />
-
-            {/* Fix Icon - UI*/}
-            <UiEntity
-                uiTransform={{
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    positionType: 'absolute',
-                    position: { right: "100%", bottom: '2%' },
-                    display: this.fixIcon_visible ? 'flex' : 'none',
-                }}
-            >
-                <UiEntity
-                    uiTransform={{
-                        width: '100',
-                        height: '100',
-                    }}
-                    uiBackground={{
-                        textureMode: 'stretch',
-                        texture: {
-                            src: 'images/tool2.png',
-                        },
-                    }}
-                />
-            </UiEntity>
-        </UiEntity>
+        return <HudCounter visible={this.fixUIBck_visible} credits={this.fixCounter.credits} />
     }
     timeCounter() {
-        {/* Fix Icon - UI - timer*/ }
-        return <UiEntity
-            uiTransform={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                justifyContent: 'center',
-                positionType: 'absolute',
-                position: { right: "5%", bottom: '45%' },
-                display: this.timeCounter_visible ? 'flex' : 'none',
-            }}
-        >
-            <UiEntity
-                uiTransform={{
-                    width: '217',
-                    height: '105',
-                }}
-                uiBackground={{
-                    textureMode: 'center',
-                    texture: {
-                        src: 'images/ui-counter-2.png',
-                    },
-                }}
-            />
-            <Label
-                uiTransform={{
-                    positionType: 'absolute',
-                    position: { top: '38%', left: '45%' },
-                }}
-                value={this.timerText}
-                color={Color4.Black()}
-                fontSize={37}
-            />
-        </UiEntity>
+        return <TimeCounter visible={this.timeCounter_visible} text={this.timerText} />
     }
     announcementUI() {
-        return <Label
-            uiTransform={{
-                width: 13,
-                height: 13,
-                margin: { top: '5%', bottom: '0%', left: '50%', right: '50%' },
-                positionType: 'absolute',
-                position: { bottom: '0%', top: '0%', left: '0%' },
-                display: this.announcement_visible ? 'flex' : 'none',
-            }}
-            fontSize={40}
-            font='sans-serif'
-            value={this.announcement}
-            color={this.announcement_color}
-        />
+        return <Announcement visible={this.announcement_visible} text={this.announcement} color={this.announcement_color} />
     }
     displayAnnouncement(announcement: string, color: Color4, duration: number) {
         utils.timers.clearInterval(duration)

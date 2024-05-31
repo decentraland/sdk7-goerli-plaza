@@ -10,10 +10,6 @@ import {
 import {
   MyRoomState,
   Player,
-  JoinData,
-  EquiptmentChange,
-  FuseChange,
-  Vote,
   FuseBox,
   Equiptment,
 } from './MyRoomState'
@@ -24,40 +20,33 @@ export class MyRoom extends Room<MyRoomState> {
   private currentHeight: number = 0
   private isFinished: boolean = false
 
-  onCreate(options: any) {
+  onCreate(options: {}) {
     this.setState(new MyRoomState())
     // this.setPatchRate(33)  > 30 fps   (default 20 fps)
 
     // set-up the game!
     this.reset()
 
-    this.onMessage('join', (client: Client, atIndex: number) => {
-      // set player new position
-      const player = this.state.players.get(client.sessionId)
-    })
-    
-    this.onMessage('ready', (client: Client, data: JoinData) => {
+    const onSceneMsgReadyData = (client: Client, data: SceneMessageReadyData) => {
       if (this.state.active) {
-        client.send('msg', { text: 'Wait for the current game to end' })
+        client.send('server', {
+          msg: 'text', text: 'Wait for the current game to end'
+        } satisfies ServerMessageText)
         return
       }
 
       const player = this.state.players.get(client.sessionId)
 
       if (player.ready) {
-        
-        client.send('msg', {
+        client.send('server', {
+          msg: 'text',
           text: "You're already in the game. Waiting for other players.",
-        })
+        } satisfies ServerMessageText)
         return
       }
 
       player.ready = true
       player.alive = true
-
-      if (data.thumb) {
-        player.thumb = data.thumb
-      }
 
       let playerCount: number = 0
 
@@ -66,7 +55,7 @@ export class MyRoom extends Room<MyRoomState> {
       })
 
       console.log(
-        player.name,
+        player.userId,
         'is ready! ',
         playerCount,
         ' players ready so far'
@@ -88,11 +77,11 @@ export class MyRoom extends Room<MyRoomState> {
           ' players read. At least ' +
           MINIMUM_PLAYERS +
           ' required. Invite your fiends/nemesis!'
-        this.broadcast(message)
+        this.broadcast('server', { msg: 'text', text: message } satisfies ServerMessageText)
       }
-    })
+    }
 
-    this.onMessage('shipChange', (client: Client, data: EquiptmentChange) => {
+    const onSceneMsgEquiptmentChange = (client: Client, data: SceneMessageEquiptmentChange) => {
       const player = this.state.players.get(client.sessionId)
 
       if (!this.state.active) {
@@ -132,9 +121,9 @@ export class MyRoom extends Room<MyRoomState> {
           }, 2000)
         }
       }
-    })
+    }
 
-    this.onMessage('FuseBoxChange', (client: Client, data: FuseChange) => {
+    const onSceneMsgFuseChange = (client: Client, data: SceneMessageFuseChange) => {
       if (!this.state.active) {
         return
       }
@@ -183,13 +172,14 @@ export class MyRoom extends Room<MyRoomState> {
           box.broken = true
         }
       } else {
-        client.send('msg', {
+        client.send('server', {
+          msg: 'text',
           text: 'Only a traitor would sabotage their own ship like that.',
-        })
+        } satisfies ServerMessageText)
       }
-    })
+    }
 
-    this.onMessage('startvote', (client: Client) => {
+    const onSceneStartVote = (client: Client, data: SceneMessageStartVote) => {
       if (!this.state.active || this.state.paused) {
         console.log('room inactive or already voting')
         return
@@ -203,9 +193,10 @@ export class MyRoom extends Room<MyRoomState> {
       })
 
       if (playersAlive <= 2) {
-        this.broadcast('msg', {
+        this.broadcast('server', {
+          msg: 'text',
           text: 'too few players left to vote',
-        })
+        } satisfies ServerMessageText)
         return
       } else {
         this.state.votingCountdown = VOTING_TIME
@@ -213,14 +204,15 @@ export class MyRoom extends Room<MyRoomState> {
           player.votes = []
         })
         this.state.paused = true
-        this.broadcast('startvote', {
+        this.broadcast('server', {
+          msg: 'startvote',
           timeLeft: VOTING_TIME,
           players: this.state.players,
-        })
+        } satisfies ServerMessageStartVote)
       }
-    })
+    }
 
-    this.onMessage('vote', (client: Client, data: Vote) => {
+    const onSceneMsgVote = (client: Client, data: SceneMessageVote) => {
       if (!this.state.active || !this.state.paused) {
         console.log('room inactive or not paused')
         return
@@ -231,8 +223,8 @@ export class MyRoom extends Room<MyRoomState> {
       let voted: Player = null
 
       this.state.players.forEach((player) => {
-        if (player.name == data.voter) voter = player
-        if (player.name == data.voted) voted = player
+        if (player.userId == data.voter) voter = player
+        if (player.userId == data.voted) voted = player
       })
 
       if (!voter || !voted) return
@@ -256,6 +248,29 @@ export class MyRoom extends Room<MyRoomState> {
         }, 2000)
       } else {
         console.log('We have ', voteCount, ' votes, we need ', playersAlive)
+      }
+    }
+
+    this.onMessage('*', function (client, message, payload) {
+      console.log('received message from ', client.id, ' => ', payload)
+      switch (payload.msg) {
+        case 'ready':
+          onSceneMsgReadyData(client, payload)
+          break
+        case 'equiptmentChange':
+          onSceneMsgEquiptmentChange(client, payload)
+          break
+        case 'fuseChange':
+          onSceneMsgFuseChange(client, payload)
+          break
+        case 'startvote':
+          onSceneStartVote(client, payload)
+          break
+        case 'vote':
+          onSceneMsgVote(client, payload)
+          break
+        case 'join':
+          break
       }
     })
   }
@@ -289,12 +304,12 @@ export class MyRoom extends Room<MyRoomState> {
 
     if (weHaveATie) {
       console.log("it's a tie! ", mostVotesAgainst)
-      this.broadcast('endvote', { voted: null, wasTraitor: false })
+      this.broadcast('server', { msg: 'endvote', voted: null, wasTraitor: false } satisfies ServerMessageEndVote)
       return
     } else if (playerWithMostVotes && playerWithMostVotes.alive) {
       console.log(
         'We have a victim! ',
-        playerWithMostVotes.name,
+        playerWithMostVotes.userId,
         ' is traitor? ',
         playerWithMostVotes.isTraitor
       )
@@ -307,10 +322,11 @@ export class MyRoom extends Room<MyRoomState> {
     })
 
     setTimeout(() => {
-      this.broadcast('endvote', {
-        voted: playerWithMostVotes.name,
+      this.broadcast('server', {
+        msg: 'endvote',
+        voted: playerWithMostVotes.userId,
         wasTraitor: traitorKilled,
-      })
+      } satisfies ServerMessageEndVote)
       this.state.paused = false
       setTimeout(() => {
         if (playersAlive < 2 || traitorKilled) {
@@ -338,7 +354,7 @@ export class MyRoom extends Room<MyRoomState> {
       'Player ',
       rnd,
       ' , ',
-      traitorPlayer.name,
+      traitorPlayer.userId,
       ' is the traitor, id: ',
       traitor.id
     )
@@ -356,7 +372,9 @@ export class MyRoom extends Room<MyRoomState> {
       equipt.reset()
     })
 
-    this.broadcast('msg', { text: 'Game starts in ...' })
+    this.broadcast('server', {
+      msg: 'text', text: 'Game starts in ...'
+    } satisfies ServerMessageText)
 
     this.state.countdown = 3
 
@@ -364,15 +382,21 @@ export class MyRoom extends Room<MyRoomState> {
     this.clock.clear()
 
     this.clock.setTimeout(() => {
-      this.broadcast('msg', { text: '3' })
+      this.broadcast('server', {
+        msg: 'text', text: '3'
+      } satisfies ServerMessageText)
     }, 2000)
 
     this.clock.setTimeout(() => {
-      this.broadcast('msg', { text: '2' })
+      this.broadcast('server', {
+        msg: 'text', text: '2'
+      } satisfies ServerMessageText)
     }, 4000)
 
     this.clock.setTimeout(() => {
-      this.broadcast('msg', { text: '1' })
+      this.broadcast('server', {
+        msg: 'text', text: '1'
+      } satisfies ServerMessageText)
     }, 6000)
 
     this.clock.setTimeout(() => {
@@ -393,16 +417,19 @@ export class MyRoom extends Room<MyRoomState> {
         }
       })
       if (player.isTraitor) {
-        currentClient.send('msg', { text: 'You are the treasoning android!' })
+        currentClient.send('server', {
+          msg: 'text', text: 'You are the treasoning android!'
+        } satisfies ServerMessageText)
       } else {
-        currentClient.send('msg', {
+        currentClient.send('server', {
+          msg: 'text',
           text: 'One of your mates is a treacherous android.',
-        })
+        } satisfies ServerMessageText)
       }
     })
 
     // maybe I dont need this eiter, listener to active = true
-    this.broadcast('new', { duration: ROUND_DURATION })
+    this.broadcast('server', { msg: 'new', duration: ROUND_DURATION } satisfies ServerMessageNew)
 
     this.state.active = true
 
@@ -466,23 +493,24 @@ export class MyRoom extends Room<MyRoomState> {
       traitorWon
     )
 
-    this.broadcast('end', {
+    this.broadcast('server', {
+      msg: 'end',
       traitorWon: traitorWon,
       fixCount: this.state.fixCount,
       timeLeft: this.state.countdown,
-    })
+    } satisfies ServerMessageEnd)
 
     // reset after 10 seconds
 
+    this.reset()
+    
     this.clock.setTimeout(() => {
-      this.reset()
-      this.broadcast('reset')
+      this.broadcast('server', { msg: 'reset' } satisfies ServerMessageReset)
     }, 10000)
   }
 
   reset() {
-    //this.state.players.clear()
-
+    console.log("RESETTT")
     this.state.active = false
 
     this.state.fuseBoxes.forEach((box) => {
@@ -527,20 +555,20 @@ export class MyRoom extends Room<MyRoomState> {
     }
   }
 
-  onJoin(client: Client, options: any) {
+  onJoin(client: Client, options: JoinOptions) {
     const newPlayer = new Player(
       client.id,
-      options.userData.data.displayName || 'Anonymous',
-      options.thumb || null
+      options.userId || '0x0',
+      options.displayName || 'anon',
     )
     this.state.players.set(client.sessionId, newPlayer)
-  
-    console.log(newPlayer.name, 'joined! => ', options.userData)
+
+    console.log(newPlayer.userId, 'joined! => ', options)
   }
 
   onLeave(client: Client, consented: boolean) {
     const player = this.state.players.get(client.sessionId)
-    console.log(player.name, 'left!')
+    console.log(player.userId, 'left!')
 
     this.state.players.delete(client.sessionId)
 

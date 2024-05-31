@@ -1,9 +1,8 @@
-import { engine, GltfContainer, Transform, TextShape, AudioSource, removeEntityWithChildren, MeshRenderer, Material, Font, InputAction, PointerEventType, PointerEvents, inputSystem, Animator, Entity, TransformType, MeshCollider } from '@dcl/sdk/ecs'
+import { Animator, AudioSource, GltfContainer, InputAction, MeshCollider, PointerEventType, PointerEvents, Transform, engine, inputSystem } from '@dcl/sdk/ecs'
 import { Quaternion, Vector3 } from '@dcl/sdk/math'
 
 export class Button {
   public button = engine.addEntity()
-  private animation: any
   action: () => void
   constructor(
     model: string,
@@ -14,16 +13,16 @@ export class Button {
     scale?: Vector3,
   ) {
     MeshCollider.setBox(this.button)
-    if(scale === undefined){
-        scale = Vector3.create(1,1,1)
+    if (scale === undefined) {
+      scale = Vector3.create(1, 1, 1)
     }
     Transform.createOrReplace(this.button, {
       position: position,
       scale: scale,
       rotation: rotation
     })
-    GltfContainer.createOrReplace(this.button,{ src: model })
-    Animator.createOrReplace(this.button,{
+    GltfContainer.createOrReplace(this.button, { src: model })
+    Animator.createOrReplace(this.button, {
       states: [{
         clip: 'trigger',
         playing: true,
@@ -47,7 +46,7 @@ export class Button {
       ]
     })
     engine.addSystem(() => {
-      if (inputSystem.isTriggered(InputAction.IA_POINTER, PointerEventType.PET_DOWN,this.button)) {
+      if (inputSystem.isTriggered(InputAction.IA_POINTER, PointerEventType.PET_DOWN, this.button)) {
         action()
         this.play()
       }
@@ -62,7 +61,6 @@ export class Button {
       loop: false,
       playing: true,
     })
-    Animator.stopAllAnimations(this.button,true) 
-    Animator.playSingleAnimation(this.button,this.animation)
+    Animator.stopAllAnimations(this.button, true)
   }
 }

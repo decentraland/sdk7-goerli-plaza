@@ -1,7 +1,8 @@
-import ReactEcs, { Input, Label, ReactEcsRenderer, UiEntity, Button } from "@dcl/sdk/react-ecs"
+import { engine } from "@dcl/sdk/ecs"
 import { Color4, Scalar } from "@dcl/sdk/math"
-import { GltfContainer, Transform, engine } from "@dcl/sdk/ecs"
+import ReactEcs from "@dcl/sdk/react-ecs"
 import { GameController } from "../game.controller"
+import BugClickerUi from "../ui/minigames/BugClicker"
 
 
 let timer = 1
@@ -10,13 +11,13 @@ export class BugClicker {
     successNeeded = 5
     currentSuccesses = 0
     randomPositions = []
-    leftBugPosition: number | undefined
-    topBugPosition: number | undefined
+    leftBugPosition: number = 0
+    topBugPosition: number = 0
     started: boolean | undefined
     visibleUi = false
     gameController: GameController
-    onWinCallback: () => any
-    constructor(gameController: GameController, onWinCallback: () => any) {
+    onWinCallback: () => void
+    constructor(gameController: GameController, onWinCallback: () => void) {
         this.gameController = gameController
         this.onWinCallback = onWinCallback
         engine.addSystem(this.update)
@@ -59,80 +60,14 @@ export class BugClicker {
     }
 
     mainUi() {
-        return <UiEntity
-            uiTransform={{
-                width: 800,
-                height: 600,
-                margin: '10% 50px 50% 30%',
-                position: { top: '0%' },
-                padding: { top: 4, bottom: 4, left: 4, right: 4 },
-                display: this.visibleUi ? 'flex' : 'none',
-            }}
-        >
-            <UiEntity
-                uiTransform={{
-                    width: 800,
-                    height: 600,
-                    maxWidth: '100%',
-                    maxHeight: '100%',
-                    minHeight: '12%',
-                    minWidth: '15%',
-                    positionType: 'absolute',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                }}
-                uiBackground={{
-                    color: Color4.fromHexString('#342E39'),
-                    textureMode: 'stretch'
-                }}
-            >
-                {/* Label - Title */}
-                <Label
-                    uiTransform={{
-                        width: 13,
-                        height: 13,
-                        margin: { top: '9%', bottom: '0%', left: '50%', right: '50%' },
-                        positionType: 'absolute',
-                        position: { bottom: '0%', top: '0%', left: '0%' },
-                    }}
-                    fontSize={40}
-                    font='sans-serif'
-                    value={'CLICK THE BUGS!'}
-                    color={Color4.Green()}
-                />
-                {/* Button - Bug */}
-                <Button
-                    value='bug'
-                    variant="primary"
-                    uiTransform={{
-                        width: 30,
-                        height: 30,
-                        position: { bottom: '0%', top: this.topBugPosition, left: this.leftBugPosition },
-                        positionType: 'absolute'
-
-                    }}
-                    onMouseDown={() => {
-                        this.AddSuccess(1)
-                    }}
-                />
-                {/* Label - Success */}
-                <Label
-                    uiTransform={{
-                        width: 13,
-                        height: 13,
-                        margin: { top: '0%', bottom: '0%', left: '50%', right: '50%' },
-                        positionType: 'absolute',
-                        position: { bottom: '0%', top: '80%', left: '0%' },
-                    }}
-                    fontSize={40}
-                    font='sans-serif'
-                    value={"SUCCESS: " + this.currentSuccesses + "/" + this.successNeeded}
-                    color={Color4.Yellow()}
-                />
-            </UiEntity>
-        </UiEntity>
-
-
+        return <BugClickerUi
+            visible={this.visibleUi}
+            topBugPosition={this.topBugPosition}
+            leftBugPosition={this.leftBugPosition}
+            successNeeded={this.successNeeded}
+            successScore={this.currentSuccesses}
+            onSuccess={() => this.AddSuccess(1)}
+        />
     }
 
 }

@@ -1,9 +1,9 @@
-import { AudioSource, GltfContainer, InputAction, MeshCollider, PointerEventType, PointerEvents, Transform, TransformType, engine, inputSystem } from "@dcl/sdk/ecs";
-import { Siren } from "./Siren";
-import { Vector3, Quaternion } from "@dcl/sdk/math";
-import { playerIsTraitor } from "./SpaceShip";
-import { GameController } from "../game.controller";
+import { AudioSource, GltfContainer, InputAction, MeshCollider, PointerEventType, PointerEvents, Transform, engine, inputSystem } from "@dcl/sdk/ecs";
+import { Quaternion, Vector3 } from "@dcl/sdk/math";
 import { openDialogWindow } from "dcl-npc-toolkit";
+import { GameController } from "../game.controller";
+import { Siren } from "./Siren";
+import { playerIsTraitor } from "./SpaceShip";
 
 let firstFix: boolean = true
 export class Equipment {

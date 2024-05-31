@@ -14,6 +14,7 @@
     "useDefineForClassFields": false
   },
   "include": [
-    "src"
+    "src",
+    "../common-types"
   ]
 }

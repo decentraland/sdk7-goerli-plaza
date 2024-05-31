@@ -1,9 +1,8 @@
 
-import { engine, Transform, GltfContainer } from "@dcl/sdk/ecs"
-import { Color4, Quaternion, Vector3 } from '@dcl/sdk/math'
-import { GameController, } from './game.controller'
+import { GltfContainer, Transform, engine } from "@dcl/sdk/ecs";
+import { Vector3 } from '@dcl/sdk/math';
+import { GameController, } from './game.controller';
 import "./polyfill";
-import { Voting } from "./voting";
 
 export function main() {
   const game = new GameController()

@@ -1,10 +1,11 @@
-import ReactEcs, { Input, Label, ReactEcsRenderer, UiEntity } from "@dcl/sdk/react-ecs"
 import { Color4, Scalar } from "@dcl/sdk/math"
+import ReactEcs from "@dcl/sdk/react-ecs"
 import { GameController } from "../game.controller"
-
+import WordTyperUi from "../ui/minigames/WordTyper"
 
 export class WordTyper {
   public color: Color4 | undefined
+  inputValue: string = ''
   successNeeded = 3
   currentSuccesses = 0
   started: boolean
@@ -29,9 +30,9 @@ export class WordTyper {
   ]
   currentChallengeWord = ''
   visibleUi = false
-  onWinCallback: () => any
+  onWinCallback: () => void
   gameController: GameController
-  constructor(gameController: GameController, onWinCallback: () => any) {
+  constructor(gameController: GameController, onWinCallback: () => void) {
     this.gameController = gameController
     this.onWinCallback = onWinCallback
     this.started = false
@@ -89,84 +90,16 @@ export class WordTyper {
     return finalWord
   }
   mainUi() {
-    return <UiEntity
-      uiTransform={{
-        width: 800,
-        height: 600,
-        margin: '10% 50px 50% 30%',
-        position: { top: '0%' },
-        padding: { top: 4, bottom: 4, left: 4, right: 4 },
-        display: this.visibleUi ? 'flex' : 'none',
-      }}
-    >
-      <UiEntity
-        uiTransform={{
-          width: 800,
-          height: 600,
-          maxWidth: '100%',
-          maxHeight: '100%',
-          minHeight: '12%',
-          minWidth: '15%',
-          positionType: 'absolute',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-        uiBackground={{
-          color: Color4.fromHexString('#342E39'),
-          textureMode: 'stretch'
-        }}
-      >
-        {/* Label - Title */}
-        <Label
-          uiTransform={{
-            width: 13,
-            height: 13,
-            margin: { top: '9%', bottom: '0%', left: '50%', right: '50%' },
-            positionType: 'absolute',
-            position: { bottom: '0%', top: '0%', left: '0%' },
-          }}
-          value={"TYPE THE NEXT WORD: \n" + this.currentChallengeWord}
-          fontSize={30}
-          font='sans-serif'
-          color={Color4.Green()}
-        />
-        {/* Input - Word */}
-        <Input
-          uiTransform={{
-            position: {
-              left: '0%',
-              top: '20%',
-            },
-            width: '300px',
-            height: '70px',
-          }}
-          textAlign='middle-center'
-          fontSize={18}
-          placeholder={'Type Word Here'}
-          color={Color4.White()}
-          placeholderColor={Color4.Gray()}
-          onSubmit={(value: string) => {
-            if (value.localeCompare(this.currentChallengeWord) === 0) {
-              this.AddSuccess(1)
-            }
-          }}
-        ></Input>
-        {/* Label - Success */}
-        <Label
-          uiTransform={{
-            width: 13,
-            height: 13,
-            margin: { top: '0%', bottom: '0%', left: '50%', right: '50%' },
-            positionType: 'absolute',
-            position: { bottom: '0%', top: '80%', left: '0%' },
-          }}
-          fontSize={40}
-          font='sans-serif'
-          value={"SUCCESS: " + this.currentSuccesses + "/" + this.successNeeded}
-          color={Color4.Yellow()}
-        />
-      </UiEntity>
-    </UiEntity>
+    return <WordTyperUi
+      visible={this.visibleUi}
+      currentChallengeWord={this.currentChallengeWord}
+      onSuccess={() => this.AddSuccess(1)}
+      successScore={this.currentSuccesses}
+      successNeeded={this.successNeeded}
+      onValueChange={(value: string) => this.inputValue = value}
+      currentValue={this.inputValue}
+    />
   }
+
 
 }

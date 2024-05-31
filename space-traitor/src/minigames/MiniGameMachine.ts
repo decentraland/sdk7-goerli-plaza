@@ -9,7 +9,7 @@ export class MiniGameMachine {
     public bugClicker: BugClicker
     public switchTogglers: SwitchTogglers
     public wordTyper: WordTyper
-    public onWinCallback: () => void = () => {};
+    public onWinCallback: () => void = () => { };
     constructor(gameController: GameController) {
         this.gameController = gameController
         this.bugClicker = new BugClicker(this.gameController, this.onWinCallback)

@@ -1,5 +1,5 @@
 import * as utils from '@dcl-sdk/utils'
-import { AudioSource, EasingFunction, Entity, GltfContainer, Transform, Tween, engine } from '@dcl/sdk/ecs'
+import { AudioSource, EasingFunction, GltfContainer, Transform, Tween, engine } from '@dcl/sdk/ecs'
 import { Quaternion, Vector3 } from '@dcl/sdk/math'
 
 export class Door {

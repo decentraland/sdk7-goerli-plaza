@@ -3,27 +3,27 @@ import { EQUIPT_COUNT, FUSE_BOXES, GAME_DURATION, VOTING_TIME } from '../config'
 
 export class Player extends Schema {
   @type('string') id: string
-  @type('string') name: string
-  @type('string') thumb: string | null
+  @type('string') userId: string
+  @type('string') displayName: string
   @type('boolean') isTraitor: boolean
   @type('boolean') alive: boolean
   @type(['string']) votes: string[] = []
   @type('boolean') ready: boolean
-  constructor(id: string, name: string, thumb?: string) {
+  constructor(id: string, userId: string, displayName: string) {
     super()
     this.id = id
-    this.name = name
-    this.thumb = thumb ? thumb : null
+    this.userId = userId
+    this.displayName = displayName
     this.isTraitor = false
     this.alive = true
     this.ready = false
-    
+
   }
   reset() {
     this.ready = false
     this.alive = false
     this.isTraitor = false
-    
+
   }
 }
 
@@ -65,27 +65,6 @@ export class FuseBox extends Schema {
   }
 }
 
-export type JoinData = {
-  thumb?: string
-}
-
-export type EquiptmentChange = {
-  id: number
-  broken: boolean
-}
-
-export type FuseChange = {
-  id: number
-  doorOpen?: boolean
-  redCut?: boolean
-  greenCut?: boolean
-  blueCut?: boolean
-}
-
-export type Vote = {
-  voter: string
-  voted: string
-}
 
 export class MyRoomState extends Schema {
   @type('boolean') active: boolean

@@ -1,12 +1,17 @@
-import { Entity, engine, Transform, GltfContainer } from "@dcl/sdk/ecs"
-import { Vector3, Quaternion } from "@dcl/sdk/math"
+import { GltfContainer, Transform, engine } from "@dcl/sdk/ecs"
+import { Quaternion, Vector3 } from "@dcl/sdk/math"
 import { Room } from "colyseus.js"
 import { movePlayerTo } from "~system/RestrictedActions"
-import { EquiptmentData, EquiptmentChange } from "../types"
-import { Button } from "./Button"
-import { Door } from "./door"
-import { Equipment } from "./equipment"
 import { GameController } from "../game.controller"
+import { Button } from "./Button"
+import { Equipment } from "./equipment"
+
+type EquiptmentData = {
+    position: Vector3
+    rotation: Quaternion
+    scale?: Vector3
+    startBroken: boolean
+}
 
 let equiptMentList: EquiptmentData[] = [
     {
@@ -56,8 +61,8 @@ let equiptMentList: EquiptmentData[] = [
     },
 ]
 
+
 export class SpaceShip {
-    private spaceShip = engine.addEntity()
     public toFix: Equipment[] = []
     public active: boolean = false
     public timeLeft: number = 0
@@ -72,16 +77,17 @@ export class SpaceShip {
                 equiptMentList[i].position,
                 equiptMentList[i].rotation,
                 (state) => {
-                    let data: EquiptmentChange = {
+                    let data: SceneMessageEquiptmentChange = {
+                        msg: 'equiptmentChange',
                         id: i,
                         broken: state,
                     }
-                    room.send('shipChange', data)
+                    room.send('client', data satisfies SceneMessageEquiptmentChange)
                 },
                 equiptMentList[i].startBroken,
                 this.gameController
             )
-            console.log('equipment created', i , equiptMentList.length )
+            console.log('equipment created', i, equiptMentList.length)
             this.toFix.push(eq)
         }
 
@@ -95,7 +101,7 @@ export class SpaceShip {
 
         let panicButton = new Button('models/Danger_SciFi_Button.glb',
             () => {
-                room.send('startvote')
+                room.send('client', { msg: 'startvote' } satisfies SceneMessageStartVote)
             },
             'Emergency Meeting',
             Vector3.create(24, 1.5, 18.1),
@@ -105,7 +111,7 @@ export class SpaceShip {
         return
     }
 
-    reactToSingleChanges(change: EquiptmentChange): void {
+    reactToSingleChanges(change: SceneMessageEquiptmentChange): void {
         console.log('reacting to single change ', change)
         this.toFix[change.id].alterState(change.broken)
     }

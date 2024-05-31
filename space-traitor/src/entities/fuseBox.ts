@@ -1,9 +1,6 @@
-import { Animator, AudioSource, Entity, GltfContainer, InputAction, Material, MeshCollider, PointerEventType, PointerEvents, Schemas, TextureFilterMode, Transform, engine, inputSystem } from "@dcl/sdk/ecs"
-import { Color4, Quaternion, Vector3 } from "@dcl/sdk/math"
+import { Animator, AudioSource, Entity, GltfContainer, InputAction, MeshCollider, PointerEventType, PointerEvents, Schemas, Transform, engine, inputSystem } from "@dcl/sdk/ecs"
+import { Quaternion, Vector3 } from "@dcl/sdk/math"
 import { Room } from "colyseus.js"
-import { FuseChange } from "../types"
-import { syncEntity, parentEntity } from "@dcl/sdk/network"
-import { playAnimation } from "dcl-npc-toolkit"
 
 export enum CableColors {
     Blue,
@@ -24,9 +21,9 @@ const CableBox = engine.defineComponent(
 export class FuseBox {
     public fusebox = engine.addEntity()
     id: number
-    redCable : Entity
-    blueCable : Entity
-    greenCable : Entity
+    redCable: Entity
+    blueCable: Entity
+    greenCable: Entity
     public room: Room
     constructor(
         id: number,
@@ -76,9 +73,10 @@ export class FuseBox {
         let boxState = CableBox.getMutable(this.fusebox)
         engine.addSystem(() => {
             if (inputSystem.isTriggered(InputAction.IA_POINTER, PointerEventType.PET_DOWN, this.fusebox)) {
-                let data: FuseChange
+                let data: SceneMessageFuseChange
                 if (boxState.doorOpen) {
                     data = {
+                        msg: 'fuseChange',
                         id: this.id,
                         doorOpen: false,
                     }
@@ -86,6 +84,7 @@ export class FuseBox {
                     Animator.playSingleAnimation(this.fusebox, 'close')
                 } else {
                     data = {
+                        msg: 'fuseChange',
                         id: this.id,
                         doorOpen: true,
                     }
@@ -93,10 +92,10 @@ export class FuseBox {
                     Animator.playSingleAnimation(this.fusebox, 'open')
                 }
                 console.log('door open or close?' + boxState.doorOpen)
-                room.send('FuseBoxChange', data)
+                room.send('client', data satisfies SceneMessageFuseChange)
             }
         })
-        this.redCable  = engine.addEntity()
+        this.redCable = engine.addEntity()
 
 
         Transform.createOrReplace(this.redCable, {
@@ -133,10 +132,11 @@ export class FuseBox {
             if (inputSystem.isTriggered(InputAction.IA_POINTER, PointerEventType.PET_DOWN, this.redCable)) {
                 if (!boxState.doorOpen || boxState.redCableCut) return
                 Animator.playSingleAnimation(this.redCable, 'CableRedAction')
-                room.send('FuseBoxChange', {
+                room.send('client', {
+                    msg: 'fuseChange',
                     id: this.id,
                     redCut: true,
-                })
+                } satisfies SceneMessageFuseChange)
             }
         })
 
@@ -172,16 +172,17 @@ export class FuseBox {
                 }
             ]
         })
-        
+
 
         engine.addSystem(() => {
             if (inputSystem.isTriggered(InputAction.IA_POINTER, PointerEventType.PET_DOWN, this.greenCable)) {
                 if (!boxState.doorOpen || boxState.greenCableCut) return
                 Animator.playSingleAnimation(this.greenCable, 'CableGreenAction')
-                room.send('FuseBoxChange', {
+                room.send('client', {
+                    msg: 'fuseChange',
                     id: this.id,
                     greenCut: true,
-                })
+                } satisfies SceneMessageFuseChange)
             }
         })
         this.blueCable = engine.addEntity()
@@ -194,7 +195,7 @@ export class FuseBox {
 
         Animator.create(this.blueCable, {
             states: [{
-                clip: 'CableBlueAction', 
+                clip: 'CableBlueAction',
                 playing: false,
                 loop: false,
             }
@@ -219,10 +220,11 @@ export class FuseBox {
             if (inputSystem.isTriggered(InputAction.IA_POINTER, PointerEventType.PET_DOWN, this.blueCable)) {
                 if (!boxState.doorOpen || boxState.blueCableCut) return
                 Animator.playSingleAnimation(this.blueCable, 'CableBlueAction')
-                room.send('FuseBoxChange', {
+                room.send('client', {
+                    msg: 'fuseChange',
                     id: this.id,
                     blueCut: true,
-                })
+                } satisfies SceneMessageFuseChange)
             }
         })
 

@@ -1,7 +1,5 @@
-import { Entity, Animator, Transform, GltfContainer, TransformComponent, TransformType, engine, Name } from "@dcl/sdk/ecs"
+import { Animator, Entity, GltfContainer, Transform, engine } from "@dcl/sdk/ecs"
 import { Quaternion, Vector3 } from "@dcl/sdk/math"
-import { syncEntity, parentEntity } from '@dcl/sdk/network'
-import { playAnimation } from "dcl-npc-toolkit"
 
 export class Siren {
   entity: Entity
