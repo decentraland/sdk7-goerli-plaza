@@ -6,29 +6,28 @@ import {
   Items,
   RESOURCES_INVENTORY,
   RESOURCES_MARKET,
+  ResourcesDataType,
+  initialMarketResourcesData,
   resourcesMarketSprites
 } from '../mocked-data/resourcesData'
 import { Sprite, Tab, getUvs } from '../utils'
+import { engine } from '@dcl/sdk/ecs'
+import { MarketResources } from '../components/definitions'
 
 const ASPECT_RATIO = 0.7
 const WIDTH_FACTOR = 0.5
 const HEIGTH_FACTOR = WIDTH_FACTOR * ASPECT_RATIO
 const SIZE_ITEM_FACTOR = 0.1
 
-let isVisible: boolean = true
-let balance: number = 200
-let withMana: boolean = false
-let tradeClicked: boolean = false
-let isSelling: boolean = true
-let itemsArray: InventoryItem[] = RESOURCES_INVENTORY
-let totalPrice: number = 0
-let buttonMaxSprite: Sprite = resourcesMarketSprites.max_button
-
-let selectedItem: InventoryItem | undefined = undefined
-let selectedQuantity: number = 1
+let MutableMarketResources: ResourcesDataType
 
 export function setupResourcesMarket() {
+  const ResourcesMarketEntity = engine.addEntity()
+  MarketResources.create(ResourcesMarketEntity, initialMarketResourcesData)
   ReactEcsRenderer.setUiRenderer(uiComponent)
+  if (MarketResources.get(ResourcesMarketEntity)) {
+    MutableMarketResources = MarketResources.getMutable(ResourcesMarketEntity)
+  }
 }
 
 const uiComponent = () => (
@@ -36,7 +35,7 @@ const uiComponent = () => (
     uiTransform={{
       width: canvasInfo.width,
       height: canvasInfo.height,
-      display: isVisible ? 'flex' : 'none',
+      display: MutableMarketResources.isVisible ? 'flex' : 'none',
       flexDirection: 'column',
       alignItems: 'center',
       justifyContent: 'center'
@@ -74,14 +73,14 @@ const uiComponent = () => (
           uiBackground={{}}
         >
           <Tab
-            condition={isSelling}
+            condition={MutableMarketResources.isSelling}
             trueSprite={resourcesMarketSprites.purchase_button}
             falseSprite={resourcesMarketSprites.purchase_button_clicked}
             callback={setSelling}
             callbackValue={false}
           />
           <Tab
-            condition={isSelling}
+            condition={MutableMarketResources.isSelling}
             trueSprite={resourcesMarketSprites.sell_button_clicked}
             falseSprite={resourcesMarketSprites.sell_button}
             callback={setSelling}
@@ -95,7 +94,10 @@ const uiComponent = () => (
             flexDirection: 'row',
             margin: { right: '10%' }
           }}
-          uiText={{ value: balance.toString(), textAlign: 'middle-right' }}
+          uiText={{
+            value: MutableMarketResources.balance.toString(),
+            textAlign: 'middle-right'
+          }}
         />
         <UiEntity
           uiTransform={{
@@ -106,7 +108,7 @@ const uiComponent = () => (
             padding: { top: '1%' }
           }}
         >
-          {itemsArray.map((resource, index) => (
+          {MutableMarketResources.itemsArray.map((resource, index) => (
             <UiEntity
               key={index}
               uiTransform={{
@@ -127,7 +129,7 @@ const uiComponent = () => (
           flexDirection: 'column',
           alignItems: 'center',
           margin: { top: '17.5%', left: '2%' },
-          display: selectedItem ? 'flex' : 'none'
+          display: MutableMarketResources.selectedItem ? 'flex' : 'none'
         }}
       >
         <UiEntity
@@ -137,7 +139,9 @@ const uiComponent = () => (
             flexDirection: 'row'
           }}
           uiText={{
-            value: selectedItem ? selectedItem.item.name : '',
+            value: MutableMarketResources.selectedItem?.item
+              ? MutableMarketResources.selectedItem.item.name
+              : '',
             textAlign: 'middle-center',
             fontSize: 16
           }}
@@ -149,7 +153,7 @@ const uiComponent = () => (
             flexDirection: 'row',
             alignItems: 'flex-start',
             margin: { top: '25%' },
-            display: selectedItem ? 'flex' : 'none'
+            display: MutableMarketResources.selectedItem ? 'flex' : 'none'
           }}
         >
           <UiEntity
@@ -159,14 +163,14 @@ const uiComponent = () => (
               flexDirection: 'column',
               alignItems: 'center',
               margin: { left: '4%', right: '9%' },
-              display: selectedItem ? 'flex' : 'none'
+              display: MutableMarketResources.selectedItem ? 'flex' : 'none'
             }}
           >
             <Input
               onChange={(value) => {
                 updatePrice(value)
               }}
-              value={selectedQuantity.toString()}
+              value={MutableMarketResources.selectedQuantity.toString()}
               uiTransform={{
                 width: '100%',
                 height: '20%',
@@ -181,13 +185,23 @@ const uiComponent = () => (
               }}
               uiBackground={{
                 textureMode: 'stretch',
-                uvs: selectedItem ? getUvs(buttonMaxSprite) : [],
+                uvs: MutableMarketResources.selectedItem
+                  ? getUvs(MutableMarketResources.buttonMaxSprite)
+                  : [],
                 texture: {
-                  src: selectedItem ? buttonMaxSprite.atlasSrc : ''
+                  src:
+                    MutableMarketResources.selectedItem &&
+                    MutableMarketResources.buttonMaxSprite
+                      ? MutableMarketResources.buttonMaxSprite?.atlasSrc
+                      : ''
                 }
               }}
               onMouseDown={mouseDownMax}
-              onMouseUp={() => (selectedItem ? mouseUpMax(selectedItem) : {})}
+              onMouseUp={() =>
+                MutableMarketResources.selectedItem
+                  ? mouseUpMax(MutableMarketResources.selectedItem)
+                  : {}
+              }
             />
           </UiEntity>
           <UiEntity
@@ -199,9 +213,13 @@ const uiComponent = () => (
             }}
             uiBackground={{
               textureMode: 'stretch',
-              uvs: selectedItem ? getUvs(selectedItem.item.sprite) : [],
+              uvs: MutableMarketResources.selectedItem?.item
+                ? getUvs(MutableMarketResources.selectedItem.item.sprite)
+                : [],
               texture: {
-                src: selectedItem ? selectedItem.item.sprite.atlasSrc : ''
+                src: MutableMarketResources.selectedItem?.item.sprite
+                  ? MutableMarketResources.selectedItem.item.sprite.atlasSrc
+                  : ''
               }
             }}
           />
@@ -210,14 +228,18 @@ const uiComponent = () => (
               positionType: 'relative',
               width: '30%',
               height: '10%',
-              display: isSelling ? 'flex' : 'none',
+              display: MutableMarketResources.isSelling ? 'flex' : 'none',
               margin: { top: '17.5%', right: '5%' }
             }}
             uiText={{
               textAlign: 'middle-right',
               value:
-                selectedItem && selectedItem.item.sellPrice
-                  ? (selectedItem.item.sellPrice * selectedQuantity).toString()
+                MutableMarketResources.selectedItem &&
+                MutableMarketResources.selectedItem.item.sellPrice
+                  ? (
+                      MutableMarketResources.selectedItem.item.sellPrice *
+                      MutableMarketResources.selectedQuantity
+                    ).toString()
                   : ''
             }}
           />
@@ -226,16 +248,16 @@ const uiComponent = () => (
               positionType: 'relative',
               width: '30%',
               height: '10%',
-              display: isSelling ? 'none' : 'flex',
+              display: MutableMarketResources.isSelling ? 'none' : 'flex',
               margin: { top: '17.5%', right: '10%' }
             }}
             uiText={{
-              value: totalPrice.toString(),
+              value: MutableMarketResources.totalPrice.toString(),
               textAlign: 'middle-right'
             }}
           />
         </UiEntity>
-        <TradeButton inventoryItem={selectedItem} />
+        <TradeButton inventoryItem={MutableMarketResources.selectedItem} />
       </UiEntity>
       <UiEntity
         uiTransform={{
@@ -243,7 +265,9 @@ const uiComponent = () => (
           position: { top: '52%', right: '8%' },
           width: canvasInfo.width * WIDTH_FACTOR * 0.04,
           height: canvasInfo.width * WIDTH_FACTOR * 0.04 * ASPECT_RATIO,
-          display: withMana ? 'flex' : 'none'
+          display: MutableMarketResources.selectedItem?.item.withMana
+            ? 'flex'
+            : 'none'
         }}
         uiBackground={{
           textureMode: 'stretch',
@@ -281,7 +305,7 @@ function ItemButton(props: { inventoryItem: InventoryItem }) {
         height: '100%',
         display:
           (props.inventoryItem.amount && props.inventoryItem.amount > 0) ||
-          !isSelling
+          !MutableMarketResources.isSelling
             ? 'flex'
             : 'none'
       }}
@@ -299,7 +323,8 @@ function ItemButton(props: { inventoryItem: InventoryItem }) {
           height: '115%',
           position: { left: '-5%', top: '-5%' },
           display:
-            selectedItem?.item.id === props.inventoryItem.item.id
+            MutableMarketResources.selectedItem?.item.id ===
+            props.inventoryItem.item.id
               ? 'flex'
               : 'none'
         }}
@@ -316,7 +341,7 @@ function ItemButton(props: { inventoryItem: InventoryItem }) {
           positionType: 'absolute',
           width: '100%',
           height: '100%',
-          display: isSelling ? 'flex' : 'none'
+          display: MutableMarketResources.isSelling ? 'flex' : 'none'
         }}
         uiText={{
           value: props.inventoryItem.amount
@@ -335,12 +360,12 @@ function TradeButton() {
   let clickedSprite: Sprite
   let unavailableSprite: Sprite
 
-  if (isSelling) {
+  if (MutableMarketResources.isSelling) {
     normalSprite = resourcesMarketSprites.sell_button
     clickedSprite = resourcesMarketSprites.sell_button_clicked
     unavailableSprite = resourcesMarketSprites.sell_button_unavailable
   } else {
-    if (withMana) {
+    if (MutableMarketResources.selectedItem?.item.withMana) {
       normalSprite = resourcesMarketSprites.purchase_with_mana_button
       clickedSprite = resourcesMarketSprites.purchase_with_mana_button_clicked
       unavailableSprite = resourcesMarketSprites.purchase_button_unavailable
@@ -382,98 +407,114 @@ function TradeButton() {
         }}
         uiBackground={{
           textureMode: 'stretch',
-          uvs: getUvs(tradeClicked ? clickedSprite : normalSprite),
+          uvs: getUvs(
+            MutableMarketResources.tradeClicked ? clickedSprite : normalSprite
+          ),
           texture: {
             src: clickedSprite.atlasSrc
           }
         }}
         onMouseDown={tradeDown}
-        onMouseUp={() => (tradeClicked = false)}
+        onMouseUp={() => (MutableMarketResources.tradeClicked = false)}
       />
     </UiEntity>
   )
 }
 
 function selectItem(props: { inventoryItem: InventoryItem }) {
-  selectedItem = props.inventoryItem
-  selectedQuantity = 1
+  MutableMarketResources.selectedItem = props.inventoryItem
+  MutableMarketResources.selectedQuantity = 1
   updatePrice()
-  if (props.inventoryItem.item.manaPrice) {
-    withMana = true
-  } else {
-    withMana = false
-  }
 }
 
 function updatePrice(value?: string) {
   if (value) {
     const formattedValue = value.replace(' ', '')
     if (Number(formattedValue)) {
-      selectedQuantity = Number(formattedValue)
+      MutableMarketResources.selectedQuantity = Number(formattedValue)
     } else {
-      selectedQuantity = 1
+      MutableMarketResources.selectedQuantity = 1
     }
   }
 
   let unitPrice: number | undefined
 
-  if (selectedItem) {
-    if (isSelling) {
-      unitPrice = selectedItem.item.sellPrice
-    } else if (selectedItem.item.buyPrice) {
-      unitPrice = selectedItem.item.buyPrice
+  if (MutableMarketResources.selectedItem) {
+    if (MutableMarketResources.isSelling) {
+      unitPrice = MutableMarketResources.selectedItem.item.sellPrice
     } else {
-      unitPrice = selectedItem.item.manaPrice
+      unitPrice = MutableMarketResources.selectedItem.item.buyPrice
     }
-  }
-  if (unitPrice) {
-    totalPrice = selectedQuantity * unitPrice
-  } else {
-    totalPrice = 0
+    if (unitPrice) {
+      MutableMarketResources.totalPrice =
+        MutableMarketResources.selectedQuantity * unitPrice
+    } else {
+      MutableMarketResources.totalPrice = 0
+    }
   }
 }
 
 function mouseDownMax() {
-  buttonMaxSprite = resourcesMarketSprites.max_button_clicked
+  MutableMarketResources.buttonMaxSprite =
+    resourcesMarketSprites.max_button_clicked
 }
 
 function mouseUpMax(item: InventoryItem) {
-  buttonMaxSprite = resourcesMarketSprites.max_button
-  if (isSelling && item.amount) {
-    selectedQuantity = item.amount
+  MutableMarketResources.buttonMaxSprite = resourcesMarketSprites.max_button
+  if (MutableMarketResources.isSelling && item.amount) {
+    MutableMarketResources.selectedQuantity = item.amount
   }
-  if (!isSelling && item.item.buyPrice) {
-    selectedQuantity = Math.floor(balance / item.item.buyPrice)
+  if (!MutableMarketResources.isSelling && item.item.buyPrice) {
+    MutableMarketResources.selectedQuantity = Math.floor(
+      MutableMarketResources.balance / item.item.buyPrice
+    )
   }
   updatePrice()
 }
 
 function setSelling(state: boolean) {
-  if (isSelling !== state) {
-    selectedItem = undefined
-    isSelling = state
+  if (MutableMarketResources.isSelling !== state) {
+    MutableMarketResources.selectedItem = undefined
+    MutableMarketResources.isSelling = state
     if (state) {
-      itemsArray = RESOURCES_INVENTORY
+      MutableMarketResources.itemsArray = RESOURCES_INVENTORY
     } else {
-      itemsArray = RESOURCES_MARKET
+      MutableMarketResources.itemsArray = RESOURCES_MARKET
     }
   }
 }
 
 function tradeDown() {
-  if (selectedItem) {
-    if (isSelling) {
-      if (selectedItem.item.sellPrice && selectedItem.amount) {
-        if (selectedItem.amount >= selectedQuantity) {
-          balance = balance + selectedItem.item.sellPrice * selectedQuantity
+  if (MutableMarketResources.selectedItem) {
+    if (MutableMarketResources.isSelling) {
+      if (
+        MutableMarketResources.selectedItem?.item.sellPrice &&
+        MutableMarketResources.selectedItem.amount
+      ) {
+        if (
+          MutableMarketResources.selectedItem.amount >=
+          MutableMarketResources.selectedQuantity
+        ) {
+          MutableMarketResources.balance =
+            MutableMarketResources.balance +
+            MutableMarketResources.selectedItem.item.sellPrice *
+              MutableMarketResources.selectedQuantity
         } else {
           return
         }
       }
     } else {
-      if (selectedItem.item.buyPrice) {
-        if (balance - selectedItem.item.buyPrice * selectedQuantity >= 0) {
-          balance = balance - selectedItem.item.buyPrice * selectedQuantity
+      if (MutableMarketResources.selectedItem.item.buyPrice) {
+        if (
+          MutableMarketResources.balance -
+            MutableMarketResources.selectedItem.item.buyPrice *
+              MutableMarketResources.selectedQuantity >=
+          0
+        ) {
+          MutableMarketResources.balance =
+            MutableMarketResources.balance -
+            MutableMarketResources.selectedItem.item.buyPrice *
+              MutableMarketResources.selectedQuantity
         } else {
           return
         }
@@ -481,29 +522,30 @@ function tradeDown() {
     }
     updateInventory()
   }
-  tradeClicked = true
+  MutableMarketResources.tradeClicked = true
 }
 
 function updateInventory() {
   const existingItemIndex = RESOURCES_INVENTORY.findIndex(
     (resourcesInventoryItem) =>
-      resourcesInventoryItem.item.id === selectedItem?.item.id
+      resourcesInventoryItem.item.id ===
+      MutableMarketResources.selectedItem?.item.id
   )
   const existingItem = RESOURCES_INVENTORY[existingItemIndex]
 
-  if (isSelling) {
+  if (MutableMarketResources.isSelling) {
     if (existingItem && existingItem.amount) {
-      if (existingItem.amount - selectedQuantity <= 0) {
+      if (existingItem.amount - MutableMarketResources.selectedQuantity <= 0) {
         RESOURCES_INVENTORY.splice(existingItemIndex, 1)
       }
-      existingItem.amount -= selectedQuantity
+      existingItem.amount -= MutableMarketResources.selectedQuantity
     }
   } else {
     if (existingItem) {
       if (existingItem.amount) {
-        existingItem.amount += selectedQuantity
+        existingItem.amount += MutableMarketResources.selectedQuantity
       } else {
-        existingItem.amount = selectedQuantity
+        existingItem.amount = MutableMarketResources.selectedQuantity
       }
     } else {
       addItemToResourcesInventory()
@@ -512,15 +554,19 @@ function updateInventory() {
 }
 
 function isUnavailable(): boolean {
-  if (selectedItem) {
-    if (isSelling) {
-      if (selectedItem.amount && selectedItem.amount >= selectedQuantity) {
+  if (MutableMarketResources.selectedItem) {
+    if (MutableMarketResources.isSelling) {
+      if (
+        MutableMarketResources.selectedItem.amount &&
+        MutableMarketResources.selectedItem.amount >=
+          MutableMarketResources.selectedQuantity
+      ) {
         return false
       } else {
         return true
       }
     } else {
-      if (totalPrice > balance && !withMana) {
+      if (MutableMarketResources.totalPrice > MutableMarketResources.balance) {
         return true
       } else {
         return false
@@ -532,17 +578,19 @@ function isUnavailable(): boolean {
 }
 
 function changeVisibility() {
-  isVisible = !isVisible
+  MutableMarketResources.isVisible = !MutableMarketResources.isVisible
 }
 
 function addItemToResourcesInventory() {
-  if (selectedItem) {
-    const key = selectedItem.item.id
-    if (key in ITEMS) {
-      RESOURCES_INVENTORY.push({
-        item: ITEMS[key as Items],
-        amount: selectedQuantity
-      })
+  if (MutableMarketResources.selectedItem) {
+    const key = MutableMarketResources.selectedItem.item.id
+    if (key) {
+      if (key in ITEMS) {
+        RESOURCES_INVENTORY.push({
+          item: ITEMS[key as Items],
+          amount: MutableMarketResources.selectedQuantity
+        })
+      }
     }
   }
 }

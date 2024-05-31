@@ -54,7 +54,7 @@ export function Tab(props: {
 
 export interface Sprite {
   atlasSrc: string
-  atlasSize: Coords
+  atlasSize: { x: number; y: number }
   x: number
   y: number
   w: number

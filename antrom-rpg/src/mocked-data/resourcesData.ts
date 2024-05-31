@@ -1,6 +1,7 @@
 import { Sprite } from '../utils'
 
 export enum Items {
+  I_UNSELECTED = 'unselected',
   I_BERRY = 'berry',
   I_BONE = 'bone',
   I_COIN = 'coins',
@@ -159,6 +160,14 @@ export const resourcesMarketSprites: { [key: string]: Sprite } = {
 }
 
 export const resourcesSprites: Record<Items, Sprite> = {
+  [Items.I_UNSELECTED]: {
+    atlasSrc: '',
+    atlasSize: { x: 0, y: 0 },
+    x: 0,
+    y: 0,
+    w: 0,
+    h: 0
+  },
   [Items.I_BERRY]: {
     atlasSrc: 'images/item_spritesheet.png',
     atlasSize: { x: 1536, y: 1280 },
@@ -218,10 +227,19 @@ export const resourcesSprites: Record<Items, Sprite> = {
 }
 
 export const ITEMS: Record<Items, Item> = {
+  [Items.I_UNSELECTED]: {
+    name: 'Unselected',
+    sellPrice: 0,
+    buyPrice: 0,
+    withMana: false,
+    sprite: resourcesSprites.unselected,
+    id: Items.I_UNSELECTED
+  },
   [Items.I_BERRY]: {
     name: 'Berry',
     sellPrice: 1,
     buyPrice: 5,
+    withMana: false,
     sprite: resourcesSprites.berry,
     id: Items.I_BERRY
   },
@@ -229,36 +247,50 @@ export const ITEMS: Record<Items, Item> = {
     name: 'Bone',
     sellPrice: 0,
     buyPrice: 1,
+    withMana: false,
     sprite: resourcesMarketSprites.bone,
     id: Items.I_BONE
   },
   [Items.I_COIN]: {
     name: 'Coins',
-    manaPrice: 0.1,
+    sellPrice: 0,
+    buyPrice: 0.1,
+    withMana: true,
     sprite: resourcesMarketSprites.coins,
     id: Items.I_COIN
   },
   [Items.I_TOKEN]: {
     name: 'Premium Dungeon Tokens',
-    manaPrice: 1,
+    sellPrice: 0,
+    buyPrice: 1,
+    withMana: true,
     sprite: resourcesMarketSprites.token,
     id: Items.I_TOKEN
   },
   [Items.I_MEAT]: {
     name: '',
     // provisory sprite
+    sellPrice: 0,
+    buyPrice: 1,
+    withMana: true,
     sprite: resourcesMarketSprites.token,
     id: Items.I_MEAT
   },
   [Items.I_WOOD]: {
     name: '',
     // provisory sprite
+    sellPrice: 0,
+    buyPrice: 1,
+    withMana: true,
     sprite: resourcesMarketSprites.token,
     id: Items.I_WOOD
   },
   [Items.I_IRON]: {
     name: '',
     // provisory sprite
+    sellPrice: 0,
+    buyPrice: 1,
+    withMana: true,
     sprite: resourcesMarketSprites.token,
     id: Items.I_IRON
   }
@@ -269,18 +301,19 @@ export const RESOURCES_INVENTORY: InventoryItem[] = [
   { item: ITEMS.bone, amount: 5 }
 ]
 
+// Amount isn't an optional now, this is because idk how set optional in schemas.
 export const RESOURCES_MARKET: InventoryItem[] = [
   { item: ITEMS.berry },
-  { item: ITEMS.bone },
-  { item: ITEMS.token },
-  { item: ITEMS.coins }
+  { item: ITEMS.bone, amount: 9999 },
+  { item: ITEMS.token, amount: 9999 },
+  { item: ITEMS.coins, amount: 9999 }
 ]
 
 export type Item = {
   name: string
-  sellPrice?: number
-  buyPrice?: number
-  manaPrice?: number
+  sellPrice: number
+  buyPrice: number
+  withMana: boolean
   sprite: Sprite
   id: string
 }
@@ -288,4 +321,27 @@ export type Item = {
 export type InventoryItem = {
   item: Item
   amount?: number
+}
+
+export type ResourcesDataType = {
+  isVisible: boolean
+  balance: number
+  tradeClicked: boolean
+  isSelling: boolean
+  itemsArray: InventoryItem[]
+  totalPrice: number
+  buttonMaxSprite: Sprite
+  selectedQuantity: number
+  selectedItem?: InventoryItem
+}
+
+export const initialMarketResourcesData: ResourcesDataType = {
+  isVisible: true,
+  balance: 200,
+  tradeClicked: false,
+  isSelling: true,
+  itemsArray: RESOURCES_INVENTORY,
+  totalPrice: 0,
+  buttonMaxSprite: resourcesMarketSprites.max_button,
+  selectedQuantity: 1
 }

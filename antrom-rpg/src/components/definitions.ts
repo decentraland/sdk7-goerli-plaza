@@ -1,28 +1,46 @@
-// import { engine, Schemas } from '@dcl/sdk/ecs'
-// import { Sprite } from '../mocked-data/atlasSprites'
+import { engine, Schemas } from '@dcl/sdk/ecs'
 
-// const CoordsSchema = {
-//   x: Schemas.Number,
-//   y: Schemas.Number
-// }
+const CoordsSchema = Schemas.Map({
+  x: Schemas.Number,
+  y: Schemas.Number
+})
 
-// const SpriteSchema = {
-//   atlasSrc: Schemas.String,
-//   atlasSize: Schemas.Optional(CoordsSchema),
-//   x: 0,
-//   y: 0,
-//   w: 0,
-//   h: 0
-// }
+const SpriteSchema = Schemas.Map({
+  atlasSrc: Schemas.String,
+  atlasSize: Schemas.Map({ x: Schemas.Number, y: Schemas.Number }),
+  x: Schemas.Number,
+  y: Schemas.Number,
+  w: Schemas.Number,
+  h: Schemas.Number
+})
 
-// export const MarketResources = engine.defineComponent('rpg::MarketResources', {
-//   balance: Schemas.Number,
-//   withMana: Schemas.Boolean,
-//   tradeClicked: Schemas.Boolean,
-//   isSelling: Schemas.Boolean,
-//   itemsArray: Schemas.Array(Schemas.Optional(InventoryItem)),
-//   totalPrice: Schemas.Number,
-//   buttonMaxSprite: Schemas.Optional(SpriteSchema),
-//   selectedQuantity: Schemas.Number,
-//   selectedItem: Schemas.Optional(InventoryItem)
-// })
+const ItemSchema = Schemas.Map({
+  name: Schemas.String,
+  sellPrice: Schemas.Number,
+  buyPrice: Schemas.Number,
+  withMana: Schemas.Boolean,
+  sprite: SpriteSchema,
+  id: Schemas.String
+})
+
+const InventoryItemSchema = Schemas.Map({
+  item: ItemSchema,
+  amount: Schemas.Optional(Schemas.Number)
+})
+
+const MarketResourceSchema = Schemas.Map({
+  isVisible: Schemas.Boolean,
+  balance: Schemas.Number,
+  tradeClicked: Schemas.Boolean,
+  isSelling: Schemas.Boolean,
+  itemsArray: Schemas.Array(InventoryItemSchema),
+  totalPrice: Schemas.Number,
+  buttonMaxSprite: SpriteSchema,
+  selectedQuantity: Schemas.Number,
+  selectedItem: Schemas.Optional(InventoryItemSchema)
+})
+
+export const MarketResources = engine.defineComponentFromSchema(
+  'rpg::MarketResources',
+  MarketResourceSchema
+)
