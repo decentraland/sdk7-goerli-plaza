@@ -20,6 +20,7 @@ export type CraftCost = {
 }
 
 export enum Wearables {
+  W_UNSELECTED = 'unselected',
   W_MAGE = 'mage',
   W_MAGE_HAT = 'mage_hat',
   W_MAGE_STAFF = 'mage_staff',
@@ -32,6 +33,14 @@ export enum Wearables {
 }
 
 export const wearablesSprites: Record<Wearables, Sprite> = {
+  [Wearables.W_UNSELECTED]: {
+    atlasSrc: '',
+    atlasSize: { x: 0, y: 0 },
+    x: 0,
+    y: 0,
+    w: 0,
+    h: 0
+  },
   [Wearables.W_MAGE]: {
     atlasSrc: 'images/wearables_spritesheet.png',
     atlasSize: { x: 1024, y: 1024 },
@@ -205,16 +214,22 @@ export const wearablesMarketSprites: { [key: string]: Sprite } = {
   }
 }
 
-export const APPRENTICE_WEARABLES: Record<Wearables, Wearable> = {
-  [Wearables.W_MAGE_STAFF]: {
-    name: 'Mage Staff',
+export const WEARABLES: Record<Wearables, Wearable> = {
+  [Wearables.W_UNSELECTED]: {
+    name: '',
+    craftCost: [{ item: ITEMS.unselected, amount: 0 }],
+    sprite: wearablesSprites.unselected,
+    id: ''
+  },
+  [Wearables.W_MAGE]: {
+    name: 'Mage',
     craftCost: [
       { item: ITEMS.meat, amount: 250 },
       { item: ITEMS.wood, amount: 250 },
       { item: ITEMS.iron, amount: 250 }
     ],
-    sprite: wearablesSprites.mage_staff,
-    id: Wearables.W_MAGE_STAFF
+    sprite: wearablesSprites.mage,
+    id: Wearables.W_MAGE
   },
   [Wearables.W_MAGE_HAT]: {
     name: 'Mage Hat',
@@ -226,36 +241,15 @@ export const APPRENTICE_WEARABLES: Record<Wearables, Wearable> = {
     sprite: wearablesSprites.mage_hat,
     id: Wearables.W_MAGE_HAT
   },
-  [Wearables.W_MAGE]: {
-    name: 'Mage Hat',
+  [Wearables.W_MAGE_STAFF]: {
+    name: 'Mage Staff',
     craftCost: [
       { item: ITEMS.meat, amount: 250 },
       { item: ITEMS.wood, amount: 250 },
       { item: ITEMS.iron, amount: 250 }
     ],
-    sprite: wearablesSprites.mage,
-    id: Wearables.W_MAGE
-  },
-  [Wearables.W_RANGER_BOW]: {
-    name: 'Ranger Bow',
-    craftCost: [
-      { item: ITEMS.meat, amount: 250 },
-      { item: ITEMS.wood, amount: 250 },
-      { item: ITEMS.iron, amount: 250 }
-    ],
-    sprite: wearablesSprites.ranger_bow,
-    id: Wearables.W_RANGER_BOW
-  },
-
-  [Wearables.W_RANGER_HOOD]: {
-    name: 'Ranger Hood',
-    craftCost: [
-      { item: ITEMS.meat, amount: 250 },
-      { item: ITEMS.wood, amount: 250 },
-      { item: ITEMS.iron, amount: 250 }
-    ],
-    sprite: wearablesSprites.ranger_hood,
-    id: Wearables.W_RANGER_HOOD
+    sprite: wearablesSprites.mage_staff,
+    id: Wearables.W_MAGE_STAFF
   },
   [Wearables.W_RANGER]: {
     name: 'Ranger',
@@ -267,7 +261,36 @@ export const APPRENTICE_WEARABLES: Record<Wearables, Wearable> = {
     sprite: wearablesSprites.ranger,
     id: Wearables.W_RANGER
   },
-
+  [Wearables.W_RANGER_HOOD]: {
+    name: 'Ranger Hood',
+    craftCost: [
+      { item: ITEMS.meat, amount: 250 },
+      { item: ITEMS.wood, amount: 250 },
+      { item: ITEMS.iron, amount: 250 }
+    ],
+    sprite: wearablesSprites.ranger_hood,
+    id: Wearables.W_RANGER_HOOD
+  },
+  [Wearables.W_RANGER_BOW]: {
+    name: 'Ranger Bow',
+    craftCost: [
+      { item: ITEMS.meat, amount: 250 },
+      { item: ITEMS.wood, amount: 250 },
+      { item: ITEMS.iron, amount: 250 }
+    ],
+    sprite: wearablesSprites.ranger_bow,
+    id: Wearables.W_RANGER_BOW
+  },
+  [Wearables.W_BERSERKER]: {
+    name: 'Berserker',
+    craftCost: [
+      { item: ITEMS.meat, amount: 250 },
+      { item: ITEMS.wood, amount: 250 },
+      { item: ITEMS.iron, amount: 250 }
+    ],
+    sprite: wearablesSprites.berserker,
+    id: Wearables.W_BERSERKER
+  },
   [Wearables.W_BERSERKER_AXE]: {
     name: 'Berserker Axe',
     craftCost: [
@@ -287,15 +310,37 @@ export const APPRENTICE_WEARABLES: Record<Wearables, Wearable> = {
     ],
     sprite: wearablesSprites.berserker_helm,
     id: Wearables.W_BERSERKER_HELM
-  },
-  [Wearables.W_BERSERKER]: {
-    name: 'Berserker',
-    craftCost: [
-      { item: ITEMS.meat, amount: 250 },
-      { item: ITEMS.wood, amount: 250 },
-      { item: ITEMS.iron, amount: 250 }
-    ],
-    sprite: wearablesSprites.berserker,
-    id: Wearables.W_BERSERKER
   }
+}
+
+export const APPRENTICE_WEARABLES: Wearable[] = [
+  WEARABLES.mage,
+  WEARABLES.mage_hat,
+  WEARABLES.mage_staff,
+  WEARABLES.ranger,
+  WEARABLES.ranger_bow,
+  WEARABLES.ranger_hood,
+  WEARABLES.berserker,
+  WEARABLES.berserker_axe,
+  WEARABLES.berserker_helm
+]
+
+export type WearablesDataType = {
+  isVisible: boolean
+  selectedWearable: Wearable
+  backgroundSprite: Sprite
+  clickedPurchaseSprite: Sprite
+  purchaseSprite: Sprite
+  leftButton: Sprite
+  rightButton: Sprite
+}
+
+export const initialWearablesData: WearablesDataType = {
+  isVisible: true,
+  selectedWearable: WEARABLES.unselected,
+  backgroundSprite: wearablesMarketSprites.background,
+  clickedPurchaseSprite: wearablesMarketSprites.purchase_clicked,
+  purchaseSprite: wearablesMarketSprites.purchase,
+  leftButton: wearablesMarketSprites.left_unavailable,
+  rightButton: wearablesMarketSprites.right_unavailable
 }

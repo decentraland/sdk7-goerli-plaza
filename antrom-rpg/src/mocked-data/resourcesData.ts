@@ -336,7 +336,7 @@ export type ResourcesDataType = {
 }
 
 export const initialMarketResourcesData: ResourcesDataType = {
-  isVisible: true,
+  isVisible: false,
   balance: 200,
   tradeClicked: false,
   isSelling: true,

@@ -6,9 +6,13 @@ import {
   WEARABLES_TO_SHOW,
   WIDTH_FACTOR,
   Wearable,
+  WearablesDataType,
+  initialWearablesData,
   wearablesMarketSprites
 } from '../mocked-data/wearablesData'
 import { Sprite, getUvs } from '../utils'
+import { engine } from '@dcl/sdk/ecs'
+import { WearablesResources } from '../components/definitions'
 
 let wearablesToShow: Wearable[]
 let scrollPosition: number = 0
@@ -22,12 +26,23 @@ let buttonSprite: Sprite | undefined = purchaseSprite
 let leftButton: Sprite = wearablesMarketSprites.left_unavailable
 let rightButton: Sprite = wearablesMarketSprites.right_unavailable
 
+let MutableAppretienceWearablesData: WearablesDataType
+
 export function setupWearableMarket(
   wearablesArray: Wearable[],
   backgroundSprite?: Sprite,
   purchaseButtonSprite?: Sprite,
   clickedPurchaseButtonSprite?: Sprite
 ) {
+  const AppretienceWearablesEntity = engine.addEntity()
+  WearablesResources.create(AppretienceWearablesEntity, initialWearablesData)
+  ReactEcsRenderer.setUiRenderer(uiComponent)
+  if (WearablesResources.get(AppretienceWearablesEntity)) {
+    MutableAppretienceWearablesData = WearablesResources.getMutable(
+      AppretienceWearablesEntity
+    )
+  }
+
   ReactEcsRenderer.setUiRenderer(uiComponent)
   wearablesToShow = wearablesArray
   if (wearablesArray.length > WEARABLES_TO_SHOW) {

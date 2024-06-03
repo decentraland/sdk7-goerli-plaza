@@ -1,10 +1,5 @@
 import { engine, Schemas } from '@dcl/sdk/ecs'
 
-const CoordsSchema = Schemas.Map({
-  x: Schemas.Number,
-  y: Schemas.Number
-})
-
 const SpriteSchema = Schemas.Map({
   atlasSrc: Schemas.String,
   atlasSize: Schemas.Map({ x: Schemas.Number, y: Schemas.Number }),
@@ -43,4 +38,31 @@ const MarketResourceSchema = Schemas.Map({
 export const MarketResources = engine.defineComponentFromSchema(
   'rpg::MarketResources',
   MarketResourceSchema
+)
+
+const CraftCostSchema = {
+  item: ItemSchema,
+  amount: Schemas.Number
+}
+
+const WearableSchema = Schemas.Map({
+  name: Schemas.String,
+  craftCost: Schemas.Array(Schemas.Map(CraftCostSchema)),
+  sprite: SpriteSchema,
+  id: Schemas.String
+})
+
+const WearablesResourcesSchema = Schemas.Map({
+  isVisible: Schemas.Boolean,
+  selectedWearable: WearableSchema,
+  backgroundSprite: SpriteSchema,
+  clickedPurchaseSprite: SpriteSchema,
+  purchaseSprite: SpriteSchema,
+  leftButton: SpriteSchema,
+  rightButton: SpriteSchema
+})
+
+export const WearablesResources = engine.defineComponentFromSchema(
+  'rpg::WearablesResources',
+  WearablesResourcesSchema
 )

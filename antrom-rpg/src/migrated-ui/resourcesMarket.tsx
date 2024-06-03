@@ -24,10 +24,10 @@ let MutableMarketResources: ResourcesDataType
 export function setupResourcesMarket() {
   const ResourcesMarketEntity = engine.addEntity()
   MarketResources.create(ResourcesMarketEntity, initialMarketResourcesData)
-  ReactEcsRenderer.setUiRenderer(uiComponent)
   if (MarketResources.get(ResourcesMarketEntity)) {
     MutableMarketResources = MarketResources.getMutable(ResourcesMarketEntity)
   }
+  ReactEcsRenderer.setUiRenderer(uiComponent)
 }
 
 const uiComponent = () => (
