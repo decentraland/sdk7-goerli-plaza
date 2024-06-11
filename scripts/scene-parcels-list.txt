@@ -1,0 +1,496 @@
+Scene Name: advanced-avatar-swap
+Link: https://github.com/decentraland/sdk7-goerli-plaza/tree/main/advanced-avatar-swap
+   76,-7
+   76,-6
+
+Scene Name: atari-arcade-cabinets
+Link: https://github.com/decentraland/sdk7-goerli-plaza/tree/main/atari-arcade-cabinets
+   74,12
+   75,12
+   74,11
+   75,11
+
+Scene Name: auto-dance
+Link: https://github.com/decentraland/sdk7-goerli-plaza/tree/main/auto-dance
+   77,-6
+
+Scene Name: avatar-animations
+Link: https://github.com/decentraland/sdk7-goerli-plaza/tree/main/avatar-animations
+   80,-1
+   80,0
+   81,-1
+   81,0
+
+Scene Name: avatar-swap
+Link: https://github.com/decentraland/sdk7-goerli-plaza/tree/main/avatar-swap
+   75,-7
+
+Scene Name: BasicInteractions
+Link: https://github.com/decentraland/sdk7-goerli-plaza/tree/main/BasicInteractions
+   72,-7
+
+Scene Name: beer-dispenser
+Link: https://github.com/decentraland/sdk7-goerli-plaza/tree/main/beer-dispenser
+   73,-7
+
+Scene Name: bird-field
+Link: https://github.com/decentraland/sdk7-goerli-plaza/tree/main/bird-field
+   74,-2
+   74,-1
+   75,-2
+   75,-1
+   76,-2
+   76,-1
+   74,0
+   75,0
+   76,0
+
+Scene Name: Block-dog
+Link: https://github.com/decentraland/sdk7-goerli-plaza/tree/main/Block-dog
+   72,-9
+
+Scene Name: Block-Fountain
+Link: https://github.com/decentraland/sdk7-goerli-plaza/tree/main/Block-Fountain
+   77,3
+   77,4
+   77,5
+   78,3
+   78,4
+   78,5
+   79,3
+   79,4
+   79,5
+
+Scene Name: block-portable-experiences
+Link: https://github.com/decentraland/sdk7-goerli-plaza/tree/main/block-portable-experiences
+   80,-4
+
+Scene Name: boids
+Link: https://github.com/decentraland/sdk7-goerli-plaza/tree/main/boids
+   72,-6
+   72,-5
+
+Scene Name: BouncerUI
+Link: https://github.com/decentraland/sdk7-goerli-plaza/tree/main/BouncerUI
+   81,-4
+
+Scene Name: cannon-car-example-scene
+Link: https://github.com/decentraland/sdk7-goerli-plaza/tree/main/cannon-car-example-scene
+   72,6
+   72,7
+   72,8
+   72,9
+   72,10
+   73,6
+   73,7
+   73,8
+   73,9
+   73,10
+   74,6
+   74,7
+   74,8
+   74,9
+   74,10
+   75,6
+   75,7
+   75,8
+   75,9
+   75,10
+   76,6
+   76,7
+   76,8
+   76,9
+   76,10
+
+Scene Name: cannon-example-scene
+Link: https://github.com/decentraland/sdk7-goerli-plaza/tree/main/cannon-example-scene
+   83,2
+   82,2
+   83,1
+   82,1
+
+Scene Name: clap-meter
+Link: https://github.com/decentraland/sdk7-goerli-plaza/tree/main/clap-meter
+   82,0
+
+Scene Name: coconut-shy
+Link: https://github.com/decentraland/sdk7-goerli-plaza/tree/main/coconut-shy
+   72,-2
+
+Scene Name: coin-pickup
+Link: https://github.com/decentraland/sdk7-goerli-plaza/tree/main/coin-pickup
+   76,-4
+
+Scene Name: Cube
+Link: https://github.com/decentraland/sdk7-goerli-plaza/tree/main/Cube
+   76,-8
+
+Scene Name: cube-wave-16x16
+Link: https://github.com/decentraland/sdk7-goerli-plaza/tree/main/cube-wave-16x16
+   78,-8
+
+Scene Name: cube-wave-32x32
+Link: https://github.com/decentraland/sdk7-goerli-plaza/tree/main/cube-wave-32x32
+   78,-9
+
+Scene Name: Dance-floor
+Link: https://github.com/decentraland/sdk7-goerli-plaza/tree/main/Dance-floor
+   76,-3
+
+Scene Name: droid-scene
+Link: https://github.com/decentraland/sdk7-goerli-plaza/tree/main/droid-scene
+   81,-3
+   81,-2
+   82,-3
+   82,-2
+
+Scene Name: Editor-actions
+Link: https://github.com/decentraland/sdk7-goerli-plaza/tree/main/Editor-actions
+   85,-9
+   86,-9
+   87,-9
+   88,-9
+
+Scene Name: enemy-spawner
+Link: https://github.com/decentraland/sdk7-goerli-plaza/tree/main/enemy-spawner
+   75,-4
+   74,-4
+   75,-3
+   74,-3
+
+Scene Name: Events-API-Board
+Link: https://github.com/decentraland/sdk7-goerli-plaza/tree/main/Events-API-Board
+   78,1
+
+Scene Name: Gnark
+Link: https://github.com/decentraland/sdk7-goerli-plaza/tree/main/Gnark
+   74,-9
+   74,-8
+   75,-9
+   75,-8
+
+Scene Name: grab-object-advance
+Link: https://github.com/decentraland/sdk7-goerli-plaza/tree/main/grab-object-advance
+   74,-6
+   74,-5
+   75,-6
+   75,-5
+
+Scene Name: grab-objects
+Link: https://github.com/decentraland/sdk7-goerli-plaza/tree/main/grab-objects
+   77,-3
+
+Scene Name: guest-book-api
+Link: https://github.com/decentraland/sdk7-goerli-plaza/tree/main/guest-book-api
+   81,-9
+
+Scene Name: Hummingbirds
+Link: https://github.com/decentraland/sdk7-goerli-plaza/tree/main/Hummingbirds
+   76,-9
+
+Scene Name: Hypno-wheels
+Link: https://github.com/decentraland/sdk7-goerli-plaza/tree/main/Hypno-wheels
+   73,-6
+
+Scene Name: inflatable-punch-bag
+Link: https://github.com/decentraland/sdk7-goerli-plaza/tree/main/inflatable-punch-bag
+   73,-9
+
+Scene Name: item-pickup
+Link: https://github.com/decentraland/sdk7-goerli-plaza/tree/main/item-pickup
+   77,-4
+
+Scene Name: Jukebox
+Link: https://github.com/decentraland/sdk7-goerli-plaza/tree/main/Jukebox
+   73,-5
+
+Scene Name: land-flipper
+Link: https://github.com/decentraland/sdk7-goerli-plaza/tree/main/land-flipper
+   82,-9
+   82,-8
+   82,-7
+   83,-9
+   83,-8
+   83,-7
+   84,-9
+   84,-8
+   84,-7
+
+Scene Name: Laser-ray-Casting
+Link: https://github.com/decentraland/sdk7-goerli-plaza/tree/main/Laser-ray-Casting
+   72,-4
+   73,-4
+   72,-3
+   73,-3
+
+Scene Name: lazy-loading
+Link: https://github.com/decentraland/sdk7-goerli-plaza/tree/main/lazy-loading
+   80,-7
+   80,-6
+   81,-7
+   81,-6
+
+Scene Name: leader-board
+Link: https://github.com/decentraland/sdk7-goerli-plaza/tree/main/leader-board
+   80,9
+
+Scene Name: light-bounce-puzzle
+Link: https://github.com/decentraland/sdk7-goerli-plaza/tree/main/light-bounce-puzzle
+   84,-4
+
+Scene Name: media-streaming
+Link: https://github.com/decentraland/sdk7-goerli-plaza/tree/main/media-streaming
+   70,-70
+
+Scene Name: mirror-puzzle
+Link: https://github.com/decentraland/sdk7-goerli-plaza/tree/main/mirror-puzzle
+   82,-4
+   82,-5
+
+Scene Name: moving-platforms
+Link: https://github.com/decentraland/sdk7-goerli-plaza/tree/main/moving-platforms
+   77,-5
+
+Scene Name: NFT-Museum
+Link: https://github.com/decentraland/sdk7-goerli-plaza/tree/main/NFT-Museum
+   85,-8
+   85,-7
+   86,-8
+   86,-7
+
+Scene Name: open-door
+Link: https://github.com/decentraland/sdk7-goerli-plaza/tree/main/open-door
+   77,-7
+
+Scene Name: Party-Time
+Link: https://github.com/decentraland/sdk7-goerli-plaza/tree/main/Party-Time
+   77,1
+
+Scene Name: piano-floor
+Link: https://github.com/decentraland/sdk7-goerli-plaza/tree/main/piano-floor
+   84,1
+
+Scene Name: Pixel-Canvas-API
+Link: https://github.com/decentraland/sdk7-goerli-plaza/tree/main/Pixel-Canvas-API
+   81,-8
+
+Scene Name: Portal-Puzzle
+Link: https://github.com/decentraland/sdk7-goerli-plaza/tree/main/Portal-Puzzle
+   79,-4
+
+Scene Name: power-cube
+Link: https://github.com/decentraland/sdk7-goerli-plaza/tree/main/power-cube
+   72,-10
+
+Scene Name: Puffer
+Link: https://github.com/decentraland/sdk7-goerli-plaza/tree/main/Puffer
+   77,-2
+
+Scene Name: push-box-puzzle
+Link: https://github.com/decentraland/sdk7-goerli-plaza/tree/main/push-box-puzzle
+   84,-5
+
+Scene Name: Random-noise-movement
+Link: https://github.com/decentraland/sdk7-goerli-plaza/tree/main/Random-noise-movement
+   73,-10
+
+Scene Name: reward-claim
+Link: https://github.com/decentraland/sdk7-goerli-plaza/tree/main/reward-claim
+   82,-6
+
+Scene Name: rocket-board
+Link: https://github.com/decentraland/sdk7-goerli-plaza/tree/main/rocket-board
+   72,1
+   73,1
+   74,1
+   75,1
+   76,1
+   72,2
+   73,2
+   74,2
+   75,2
+   76,2
+   72,3
+   73,3
+   74,3
+   75,3
+   76,3
+   72,4
+   73,4
+   74,4
+   75,4
+   76,4
+   72,5
+   73,5
+   74,5
+   75,5
+   76,5
+
+Scene Name: rotating-platforms
+Link: https://github.com/decentraland/sdk7-goerli-plaza/tree/main/rotating-platforms
+   78,-7
+   79,-7
+   78,-6
+   79,-6
+
+Scene Name: Shark-animation
+Link: https://github.com/decentraland/sdk7-goerli-plaza/tree/main/Shark-animation
+   73,-8
+
+Scene Name: Shooting-range
+Link: https://github.com/decentraland/sdk7-goerli-plaza/tree/main/Shooting-range
+   83,-3
+   83,-2
+   84,-3
+   84,-2
+
+Scene Name: Shooting-Range-Advanced
+Link: https://github.com/decentraland/sdk7-goerli-plaza/tree/main/Shooting-Range-Advanced
+   83,-1
+   84,-1
+   83,0
+   84,0
+
+Scene Name: Show-Manager-Example
+Link: https://github.com/decentraland/sdk7-goerli-plaza/tree/main/Show-Manager-Example
+   79,1
+
+Scene Name: simple-giveaway-scene
+Link: https://github.com/decentraland/sdk7-goerli-plaza/tree/main/simple-giveaway-scene
+   83,-4
+
+Scene Name: Simple-NFT
+Link: https://github.com/decentraland/sdk7-goerli-plaza/tree/main/Simple-NFT
+   82,-1
+
+Scene Name: Simple-NPC
+Link: https://github.com/decentraland/sdk7-goerli-plaza/tree/main/Simple-NPC
+   80,-3
+
+Scene Name: sliding-door
+Link: https://github.com/decentraland/sdk7-goerli-plaza/tree/main/sliding-door
+   79,-9
+
+Scene Name: Smart_Items_Pirate_Island
+Link: https://github.com/decentraland/sdk7-goerli-plaza/tree/main/Smart_Items_Pirate_Island
+   78,7
+   77,7
+   78,6
+   77,6
+
+Scene Name: Smoke
+Link: https://github.com/decentraland/sdk7-goerli-plaza/tree/main/Smoke
+   78,-4
+
+Scene Name: Splat-Attack
+Link: https://github.com/decentraland/sdk7-goerli-plaza/tree/main/Splat-Attack
+   80,1
+   81,1
+   80,2
+   81,2
+
+Scene Name: Swimming-Shark
+Link: https://github.com/decentraland/sdk7-goerli-plaza/tree/main/Swimming-Shark
+   72,-8
+
+Scene Name: switchable-platforms
+Link: https://github.com/decentraland/sdk7-goerli-plaza/tree/main/switchable-platforms
+   78,-5
+   79,-5
+
+Scene Name: Template
+Link: https://github.com/decentraland/sdk7-goerli-plaza/tree/main/Template
+   79,-8
+
+Scene Name: Testing-3d-models
+Link: https://github.com/decentraland/sdk7-goerli-plaza/tree/main/Testing-3d-models
+   54,-55
+   54,-54
+   54,-53
+   54,-52
+   55,-55
+   55,-54
+   55,-53
+   55,-52
+   56,-55
+   56,-54
+   56,-53
+   56,-52
+   57,-55
+   57,-54
+   57,-53
+   57,-52
+
+Scene Name: testing-gallery
+Link: https://github.com/decentraland/sdk7-goerli-plaza/tree/main/testing-gallery
+   52,-52
+   52,-53
+   53,-52
+   53,-53
+
+Scene Name: tin-can-alley
+Link: https://github.com/decentraland/sdk7-goerli-plaza/tree/main/tin-can-alley
+   73,-1
+
+Scene Name: translocator
+Link: https://github.com/decentraland/sdk7-goerli-plaza/tree/main/translocator
+   79,6
+   79,7
+   79,8
+   80,6
+   80,7
+   80,8
+   81,6
+   81,7
+   81,8
+
+Scene Name: ui-animations
+Link: https://github.com/decentraland/sdk7-goerli-plaza/tree/main/ui-animations
+   72,-1
+
+Scene Name: ui-spritesheet
+Link: https://github.com/decentraland/sdk7-goerli-plaza/tree/main/ui-spritesheet
+   80,-9
+
+Scene Name: UiCanvasInformation
+Link: https://github.com/decentraland/sdk7-goerli-plaza/tree/main/UiCanvasInformation
+   76,-10
+
+Scene Name: uv-map
+Link: https://github.com/decentraland/sdk7-goerli-plaza/tree/main/uv-map
+   74,-7
+
+Scene Name: validate-player-authenticity
+Link: https://github.com/decentraland/sdk7-goerli-plaza/tree/main/validate-player-authenticity
+   80,-8
+
+Scene Name: video-streaming
+Link: https://github.com/decentraland/sdk7-goerli-plaza/tree/main/video-streaming
+   78,-3
+   78,-2
+   79,-3
+   79,-2
+
+Scene Name: Wearables-scanner
+Link: https://github.com/decentraland/sdk7-goerli-plaza/tree/main/Wearables-scanner
+   76,-5
+
+Scene Name: Weather-Simulation
+Link: https://github.com/decentraland/sdk7-goerli-plaza/tree/main/Weather-Simulation
+   77,0
+
+Scene Name: zenquencer
+Link: https://github.com/decentraland/sdk7-goerli-plaza/tree/main/zenquencer
+   74,13
+   74,14
+
+Scene Name: zombie-attack
+Link: https://github.com/decentraland/sdk7-goerli-plaza/tree/main/zombie-attack
+   78,-1
+   78,0
+   79,-1
+   79,0
+
+Scene Name: Zombie-shooter
+Link: https://github.com/decentraland/sdk7-goerli-plaza/tree/main/Zombie-shooter
+   77,-9
