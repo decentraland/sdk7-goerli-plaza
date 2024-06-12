@@ -1,13 +1,7 @@
 import { InputAction, Transform, engine, inputSystem } from '@dcl/sdk/ecs'
 import { Color3, Vector3 } from '@dcl/sdk/math'
 
-import {
-  NEG_X_LIMIT,
-  PADDLE_SPEED,
-  PADDLE_WIDTH,
-  PLANE_HEIGHT,
-  POS_X_LIMIT
-} from './gameConfig'
+import { NEG_X_LIMIT, PADDLE_SPEED, PADDLE_WIDTH, PLANE_HEIGHT, POS_X_LIMIT } from './gameConfig'
 import { shoot } from './gameObjects/ball'
 import { createPaddle } from './gameObjects/paddle'
 import {
@@ -87,28 +81,16 @@ function buttonChecker(dt: number) {
     const transform = Transform.getMutableOrNull(paddleEntity)
     const increment = Vector3.scale(Vector3.Right(), dt * PADDLE_SPEED)
     if (transform) {
-      if (
-        !inputSystem.isPressed(InputAction.IA_PRIMARY) &&
-        !inputSystem.isPressed(InputAction.IA_SECONDARY)
-      ) {
+      if (!inputSystem.isPressed(InputAction.IA_PRIMARY) && !inputSystem.isPressed(InputAction.IA_SECONDARY)) {
         controlStop()
       }
 
-      if (
-        inputSystem.isPressed(InputAction.IA_PRIMARY) &&
-        transform.position.x >= NEG_X_LIMIT
-      ) {
-        transform.position = Vector3.add(
-          transform.position,
-          Vector3.multiplyByFloats(increment, -1, -1, -1)
-        )
+      if (inputSystem.isPressed(InputAction.IA_PRIMARY) && transform.position.x >= NEG_X_LIMIT) {
+        transform.position = Vector3.add(transform.position, Vector3.multiplyByFloats(increment, -1, -1, -1))
         controlLeft()
       }
 
-      if (
-        inputSystem.isPressed(InputAction.IA_SECONDARY) &&
-        transform.position.x <= POS_X_LIMIT
-      ) {
+      if (inputSystem.isPressed(InputAction.IA_SECONDARY) && transform.position.x <= POS_X_LIMIT) {
         transform.position = Vector3.add(transform.position, increment)
         controlRight()
       }
