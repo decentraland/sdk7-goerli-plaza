@@ -3292,6 +3292,14 @@
                     "type": "boolean",
                     "serializationType": "boolean"
                   }
+                },
+                "basicViewId": {
+                  "type": "string",
+                  "serializationType": "optional",
+                  "optionalJsonSchema": {
+                    "type": "string",
+                    "serializationType": "utf8-string"
+                  }
                 }
               },
               "serializationType": "map"
@@ -3616,7 +3624,8 @@
                     "on_global_primary",
                     "on_global_secondary",
                     "on_tick",
-                    "on_heal_player"
+                    "on_heal_player",
+                    "on_player_spawn"
                   ],
                   "default": "on_input_action",
                   "serializationType": "enum-string",
@@ -3638,7 +3647,8 @@
                     "ON_GLOBAL_PRIMARY": "on_global_primary",
                     "ON_GLOBAL_SECONDARY": "on_global_secondary",
                     "ON_TICK": "on_tick",
-                    "ON_HEAL_PLAYER": "on_heal_player"
+                    "ON_HEAL_PLAYER": "on_heal_player",
+                    "ON_PLAYER_SPAWN": "on_player_spawn"
                   }
                 },
                 "conditions": {
