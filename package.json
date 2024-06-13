@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "dependencies": {
     "@dcl-sdk/utils": "latest",
-    "@dcl/sdk": "latest",
+    "@dcl/sdk": "https://sdk-team-cdn.decentraland.org/@dcl/js-sdk-toolchain/branch/feat/add-text-wrap-to-ui/dcl-sdk-7.5.3-9467724202.commit-0397ec1.tgz",
     "glob": "^9.3.4",
     "prettier": "^2.8.8",
     "syncpack": "^9.8.4"
