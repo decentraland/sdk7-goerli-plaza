@@ -6,13 +6,13 @@ on:
       dcl-sdk-package:
         type: string
         description: "@dcl/sdk package"
-        default: "@dcl/sdk@latest"
+        default: "https://sdk-team-cdn.decentraland.org/@dcl/js-sdk-toolchain/branch/feat/add-text-wrap-to-ui/dcl-sdk-7.5.3-9467724202.commit-0397ec1.tgz"
   workflow_call:
     inputs:
       dcl-sdk-package:
         type: string
         description: "@dcl/sdk package"
-        default: "@dcl/sdk@latest"
+        default: "https://sdk-team-cdn.decentraland.org/@dcl/js-sdk-toolchain/branch/feat/add-text-wrap-to-ui/dcl-sdk-7.5.3-9467724202.commit-0397ec1.tgz"
     secrets:
       SDK_TEAM_S3_BUCKET:
         required: true
