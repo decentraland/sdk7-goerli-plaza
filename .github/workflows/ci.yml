@@ -10,7 +10,7 @@ jobs:
   push-or-pr:
     uses: ./.github/workflows/deploy-with-version.yml
     with:
-      dcl-sdk-package: '@dcl/sdk@latest'
+      dcl-sdk-package: "https://sdk-team-cdn.decentraland.org/@dcl/js-sdk-toolchain/branch/feat/add-text-wrap-to-ui/dcl-sdk-7.5.3-9467724202.commit-0397ec1.tgz"
     secrets:
       SDK_TEAM_S3_BUCKET: ${{ secrets.SDK_TEAM_S3_BUCKET }}
       SDK_TEAM_AWS_ID: ${{ secrets.SDK_TEAM_AWS_ID }}

@@ -5,9 +5,8 @@
   "dependencies": {
     "@dcl-sdk/utils": "latest",
     "@dcl/js-runtime": "latest",
-    "@dcl/sdk": "latest"
+    "@dcl/sdk": "https://sdk-team-cdn.decentraland.org/@dcl/js-sdk-toolchain/branch/feat/add-text-wrap-to-ui/dcl-sdk-7.5.3-9467724202.commit-0397ec1.tgz"
   },
-  "devDependencies": {},
   "scripts": {
     "build": "sdk-commands build --skip-install",
     "deploy": "sdk-commands deploy",
