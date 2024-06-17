@@ -11,10 +11,7 @@ export class MessageBusExt extends MessageBus {
   constructor() {
     super()
   }
-  on(
-    message: string,
-    callback: (value: any, sender: string) => void
-  ): Observer<IEvents['comms']> {
+  on(message: string, callback: (value: any, sender: string) => void): Observer<IEvents['comms']> {
     const result = super.on(message, callback)
     this.cbLookup[message] = callback
     return result
@@ -24,12 +21,7 @@ export class MessageBusExt extends MessageBus {
       if (this.cbLookup[message]) {
         this.cbLookup[message](payload, 'me')
       } else {
-        console.log(
-          'MessageBusExt',
-          'WARNING',
-          'emit: no callback for message',
-          message
-        )
+        console.log('MessageBusExt', 'WARNING', 'emit: no callback for message', message)
       }
     } else {
       super.emit(message, payload)

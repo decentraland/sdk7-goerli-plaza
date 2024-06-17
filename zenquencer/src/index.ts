@@ -12,14 +12,11 @@ export function main() {
   addZenquencer()
 
   let id = 0
-  for (const [stoneEntity] of engine.getEntitiesWith(
-    StoneStatus
-  )) {
+  for (const [stoneEntity] of engine.getEntitiesWith(StoneStatus)) {
     syncEntity(stoneEntity, [StoneStatus.componentId], id)
     id++
   }
   engine.addSystem(updateStones)
 
   setupUi()
-
 }
