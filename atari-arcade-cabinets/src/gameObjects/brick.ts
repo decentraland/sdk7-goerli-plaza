@@ -1,25 +1,9 @@
-import {
-  Entity,
-  Material,
-  MeshRenderer,
-  Transform,
-  TransformType,
-  engine
-} from '@dcl/sdk/ecs'
+import { Entity, Material, MeshRenderer, Transform, TransformType, engine } from '@dcl/sdk/ecs'
 import { Color3, Color4 } from '@dcl/sdk/math'
-import {
-  BrickFlag,
-  CollisionFlag,
-  GameElementsFlag
-} from '../components/definitions'
+import { BrickFlag, CollisionFlag, GameElementsFlag } from '../components/definitions'
 import { Games } from '../gameLogic/sharedConstants'
 
-export function createBrick(
-  transform: Partial<TransformType>,
-  color: Color3,
-  parent: Entity,
-  game: Games
-): void {
+export function createBrick(transform: Partial<TransformType>, color: Color3, parent: Entity, game: Games): void {
   const brick: Entity = engine.addEntity()
   Transform.create(brick, transform)
   const transformMutable = Transform.getMutable(brick)

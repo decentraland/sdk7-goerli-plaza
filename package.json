@@ -22,6 +22,7 @@
     "format": "./node_modules/.bin/prettier '**/*.ts' -w",
     "lint": "./node_modules/.bin/prettier '**/*.ts' --check",
     "reinstall-next": "./build-all.sh",
+    "show-scene-parcels": "node scripts/showSceneParcels.js",
     "start": "sdk-commands start",
     "sync": "syncpack format --config .syncpackrc.json  --source \"*/package.json\" --source package.json",
     "test": "syncpack list-mismatches --config .syncpackrc.json  --source \"*/package.json\" --source package.json",
