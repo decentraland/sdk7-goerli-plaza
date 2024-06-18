@@ -5,8 +5,7 @@ import { Color4 } from "@dcl/sdk/math"
 
 
 const projectPath = "open-door"
-const description = "Use the Utils library to shift the position of a door gradually. Clicks on the door toggle it from open to closed."
-
+const description = "Use the Utils library to shift the position of a door gradually. Press E on the door to toggle it from open to closed."
 
 
 const uiComponent = () => (
@@ -61,8 +60,6 @@ function GitHubLinkUi() {
 }
 
 function descriptionUI() {
-
-
 
   return <UiEntity
     uiTransform={{

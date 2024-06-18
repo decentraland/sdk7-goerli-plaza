@@ -4,8 +4,7 @@ import ReactEcs, { Label, ReactEcsRenderer, UiEntity } from '@dcl/sdk/react-ecs'
 import { openExternalUrl } from '~system/RestrictedActions'
 
 const projectPath = "ui-spritesheet"
-const description = ""
-
+const description = "A simple sprite sheet animation, a UI image switches between several frames to give the illusion of movement."
 
 export function setupUi() {
   ReactEcsRenderer.setUiRenderer(() => [
@@ -144,8 +143,6 @@ function GitHubLinkUi() {
 
 
 function descriptionUI() {
-
-
 
   return <UiEntity
     uiTransform={{

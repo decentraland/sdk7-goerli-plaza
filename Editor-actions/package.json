@@ -3,8 +3,9 @@
   "description": "A collection of no-code actions from the Editor",
   "version": "1.0.0",
   "devDependencies": {
-    "@dcl/js-runtime": "latest",
-    "@dcl/sdk": "latest"
+    "@dcl/asset-packs": "^1.20.0",
+    "@dcl/js-runtime": "7.5.3",
+    "@dcl/sdk": "^7.4.21"
   },
   "scripts": {
     "build": "sdk-commands build",
