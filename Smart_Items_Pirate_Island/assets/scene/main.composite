@@ -118,16 +118,16 @@
               "y": 0,
               "z": 0
             },
+            "rotation": {
+              "x": 0.022761626169085503,
+              "y": 0.7072952389717102,
+              "z": -0.7065463066101074,
+              "w": -0.0027725808322429657
+            },
             "scale": {
               "x": 0.23000000417232513,
               "y": 0.23000000417232513,
               "z": 0.23000000417232513
-            },
-            "rotation": {
-              "x": -0.022761626169085503,
-              "y": -0.7072952389717102,
-              "z": 0.7065463066101074,
-              "w": 0.0027725808322429657
             },
             "parent": 514
           }
@@ -135,41 +135,20 @@
         "514": {
           "json": {
             "position": {
-              "x": 3.4996256828308105,
-              "y": 0.7991488575935364,
-              "z": 30.46498680114746
-            },
-            "scale": {
-              "x": 1.000000238418579,
-              "y": 0.9999998211860657,
-              "z": 0.9999998211860657
+              "x": 3.5,
+              "y": 0.800000011920929,
+              "z": 30.459999084472656
             },
             "rotation": {
-              "x": 0.470285564661026,
-              "y": -0.5296893119812012,
-              "z": 0.4954942464828491,
-              "w": 0.5027386546134949
-            },
-            "parent": 0
-          }
-        },
-        "515": {
-          "json": {
-            "position": {
-              "x": 29.745441436767578,
-              "y": 0,
-              "z": 17.589187622070312
+              "x": -0.4702901542186737,
+              "y": 0.5296836495399475,
+              "z": -0.4954957962036133,
+              "w": -0.5027388334274292
             },
             "scale": {
-              "x": 0.9999997615814209,
+              "x": 1,
               "y": 1,
-              "z": 0.9999997615814209
-            },
-            "rotation": {
-              "x": 0,
-              "y": 0.7085624933242798,
-              "z": 0,
-              "w": 0.7056480646133423
+              "z": 1
             },
             "parent": 0
           }
@@ -181,16 +160,16 @@
               "y": -0.20999999344348907,
               "z": -0.15000000596046448
             },
+            "rotation": {
+              "x": 0.02276175655424595,
+              "y": 0.707290768623352,
+              "z": -0.7065507769584656,
+              "w": -0.0027727107517421246
+            },
             "scale": {
               "x": 0.23000000417232513,
               "y": 0.23000000417232513,
               "z": 0.23000000417232513
-            },
-            "rotation": {
-              "x": -0.02276175655424595,
-              "y": -0.707290768623352,
-              "z": 0.7065507769584656,
-              "w": 0.0027727107517421246
             },
             "parent": 517
           }
@@ -219,148 +198,64 @@
         "518": {
           "json": {
             "position": {
-              "x": 0.801671028137207,
-              "y": 0.4940040707588196,
-              "z": 0.6596960425376892
-            },
-            "scale": {
-              "x": 0.9999994039535522,
-              "y": 1.0000003576278687,
-              "z": 0.9999993443489075
+              "x": 0.800000011920929,
+              "y": 0.49000000953674316,
+              "z": 0.6600000262260437
             },
             "rotation": {
-              "x": -0.47028613090515137,
-              "y": 0.5296899080276489,
-              "z": -0.49549341201782227,
-              "w": 0.5027382969856262
-            },
-            "parent": 517
-          }
-        },
-        "519": {
-          "json": {
-            "position": {
-              "x": -0.037465572357177734,
-              "y": 0,
-              "z": 0.011921882629394531
+              "x": 0.4702860414981842,
+              "y": -0.5296923518180847,
+              "z": 0.49545741081237793,
+              "w": -0.5027713179588318
             },
             "scale": {
               "x": 1,
               "y": 1,
               "z": 1
             },
-            "rotation": {
-              "x": 0,
-              "y": 0,
-              "z": 0,
-              "w": 1
-            },
-            "parent": 522
+            "parent": 517
           }
         },
         "520": {
           "json": {
             "position": {
-              "x": -0.0006382286665029824,
-              "y": -0.46013152599334717,
-              "z": 0.00008530377817805856
+              "x": 2,
+              "y": -0.5,
+              "z": 0
+            },
+            "rotation": {
+              "x": -1.672646687822521e-9,
+              "y": 0.691357433795929,
+              "z": -1.3277122734578484e-9,
+              "w": 0.7225129008293152
             },
             "scale": {
               "x": 1.0000026226043701,
               "y": 1,
               "z": 1.0000026226043701
             },
-            "rotation": {
-              "x": -1.467831522994345e-9,
-              "y": 0.691357433795929,
-              "z": -1.5363594840778205e-9,
-              "w": 0.7225129008293152
-            },
             "parent": 529
-          }
-        },
-        "521": {
-          "json": {
-            "position": {
-              "x": -0.032053470611572266,
-              "y": 0,
-              "z": 0.015862464904785156
-            },
-            "scale": {
-              "x": 1,
-              "y": 1,
-              "z": 1
-            },
-            "rotation": {
-              "x": 0,
-              "y": 0,
-              "z": 0,
-              "w": 1
-            },
-            "parent": 522
-          }
-        },
-        "522": {
-          "json": {
-            "position": {
-              "x": 16.89178466796875,
-              "y": 0,
-              "z": 27.74830436706543
-            },
-            "scale": {
-              "x": 0.9999996423721313,
-              "y": 1,
-              "z": 0.9999996423721313
-            },
-            "rotation": {
-              "x": 0,
-              "y": 0.4101746678352356,
-              "z": 0,
-              "w": 0.9120069742202759
-            },
-            "parent": 0
-          }
-        },
-        "523": {
-          "json": {
-            "position": {
-              "x": -0.0004134178161621094,
-              "y": 0,
-              "z": 0.00296783447265625
-            },
-            "scale": {
-              "x": 1,
-              "y": 1,
-              "z": 1
-            },
-            "rotation": {
-              "x": 0,
-              "y": 0,
-              "z": 0,
-              "w": 1
-            },
-            "parent": 522
           }
         },
         "524": {
           "json": {
             "position": {
-              "x": -0.312502384185791,
-              "y": 0.4646282494068146,
-              "z": -0.0023708343505859375
-            },
-            "scale": {
-              "x": 0.6005328297615051,
-              "y": 0.6005328297615051,
-              "z": 0.6005324125289917
+              "x": -0.3100000023841858,
+              "y": 0.36000001430511475,
+              "z": 0
             },
             "rotation": {
               "x": 0,
               "y": 0,
-              "z": -0.6976988911628723,
-              "w": 0.7163911461830139
+              "z": 0.6977279186248779,
+              "w": -0.7163628339767456
             },
-            "parent": 522
+            "scale": {
+              "x": 0.6000000238418579,
+              "y": 0.6000000238418579,
+              "z": 0.6000000238418579
+            },
+            "parent": 569
           }
         },
         "525": {
@@ -391,16 +286,16 @@
               "y": 0.46000000834465027,
               "z": 0
             },
+            "rotation": {
+              "x": 0,
+              "y": 0,
+              "z": 0.7152659893035889,
+              "w": -0.6988523602485657
+            },
             "scale": {
               "x": 1,
               "y": 1,
               "z": 1
-            },
-            "rotation": {
-              "x": 0,
-              "y": 0,
-              "z": -0.7152659893035889,
-              "w": 0.6988523602485657
             },
             "parent": 524
           }
@@ -450,22 +345,22 @@
         "529": {
           "json": {
             "position": {
-              "x": -1.6069239377975464,
+              "x": -1.8863601684570312,
               "y": 1.3485093116760254,
-              "z": 0.11157628148794174
-            },
-            "scale": {
-              "x": 1.0000016689300537,
-              "y": 1,
-              "z": 1.000000238418579
+              "z": 1.9456377029418945
             },
             "rotation": {
-              "x": -0.004370282404124737,
-              "y": -0.7085615396499634,
-              "z": 0.0043593342415988445,
-              "w": 0.7056220173835754
+              "x": 0.000004979413006367395,
+              "y": -0.000017779137124307454,
+              "z": 0.006172773893922567,
+              "w": 0.9999809265136719
             },
-            "parent": 515
+            "scale": {
+              "x": 1.0000014305114746,
+              "y": 1,
+              "z": 1
+            },
+            "parent": 532
           }
         },
         "530": {
@@ -508,6 +403,27 @@
               "w": 0.7009713649749756
             },
             "parent": 527
+          }
+        },
+        "532": {
+          "json": {
+            "position": {
+              "x": 29.75,
+              "y": 0,
+              "z": 17.25
+            },
+            "rotation": {
+              "x": 0,
+              "y": 0,
+              "z": 0,
+              "w": 1
+            },
+            "scale": {
+              "x": 1,
+              "y": 1,
+              "z": 1
+            },
+            "parent": 0
           }
         },
         "533": {
@@ -807,20 +723,20 @@
         "547": {
           "json": {
             "position": {
-              "x": 27.435760498046875,
+              "x": 27.25,
               "y": 0,
               "z": 10.5
+            },
+            "rotation": {
+              "x": 0,
+              "y": 0.3826834261417389,
+              "z": 0,
+              "w": -0.9238795042037964
             },
             "scale": {
               "x": 1,
               "y": 1,
               "z": 1
-            },
-            "rotation": {
-              "x": 0,
-              "y": -0.3826834261417389,
-              "z": 0,
-              "w": 0.9238795638084412
             },
             "parent": 558
           }
@@ -1080,22 +996,22 @@
         "560": {
           "json": {
             "position": {
-              "x": -1.3540455102920532,
-              "y": 0.5860956311225891,
-              "z": 0.10117623955011368
-            },
-            "scale": {
-              "x": 1.000000238418579,
-              "y": 1,
-              "z": 1.000000238418579
+              "x": 0,
+              "y": 0.5,
+              "z": 1.75
             },
             "rotation": {
               "x": 0,
-              "y": -0.0268856231123209,
+              "y": 0.6893423795700073,
               "z": 0,
-              "w": 0.9996384978294373
+              "w": 0.7244357466697693
             },
-            "parent": 515
+            "scale": {
+              "x": 0.9999997615814209,
+              "y": 1,
+              "z": 0.9999997615814209
+            },
+            "parent": 532
           }
         },
         "561": {
@@ -1161,27 +1077,6 @@
             "parent": 0
           }
         },
-        "564": {
-          "json": {
-            "position": {
-              "x": 0.06219759210944176,
-              "y": 0.6370668411254883,
-              "z": 0.23223203420639038
-            },
-            "scale": {
-              "x": 1.000000238418579,
-              "y": 1,
-              "z": 1.000000238418579
-            },
-            "rotation": {
-              "x": 0,
-              "y": -0.7085624933242798,
-              "z": 0,
-              "w": 0.7056480646133423
-            },
-            "parent": 515
-          }
-        },
         "565": {
           "json": {
             "position": {
@@ -1244,6 +1139,164 @@
             },
             "parent": 566
           }
+        },
+        "568": {
+          "json": {
+            "position": {
+              "x": 0.25,
+              "y": 0.75,
+              "z": 0.25
+            },
+            "rotation": {
+              "x": 0,
+              "y": 0,
+              "z": 0,
+              "w": 1
+            },
+            "scale": {
+              "x": 1,
+              "y": 1,
+              "z": 1
+            },
+            "parent": 532
+          }
+        },
+        "569": {
+          "json": {
+            "position": {
+              "x": 16.889999389648438,
+              "y": 0,
+              "z": 27.75
+            },
+            "rotation": {
+              "x": 0,
+              "y": 0.4101618230342865,
+              "z": 0,
+              "w": 0.9120127558708191
+            },
+            "scale": {
+              "x": 1,
+              "y": 1,
+              "z": 1
+            },
+            "parent": 0
+          }
+        }
+      }
+    },
+    {
+      "name": "core-schema::Network-Entity",
+      "jsonSchema": {
+        "type": "object",
+        "properties": {
+          "networkId": {
+            "type": "integer",
+            "serializationType": "int64"
+          },
+          "entityId": {
+            "type": "integer",
+            "serializationType": "entity"
+          }
+        },
+        "serializationType": "map"
+      },
+      "data": {
+        "532": {
+          "json": {
+            "networkId": 0,
+            "entityId": 3334
+          }
+        },
+        "568": {
+          "json": {
+            "networkId": 0,
+            "entityId": 3335
+          }
+        },
+        "569": {
+          "json": {
+            "networkId": 0,
+            "entityId": 3336
+          }
+        }
+      }
+    },
+    {
+      "name": "core::Animator",
+      "jsonSchema": {
+        "type": "object",
+        "properties": {},
+        "serializationType": "protocol-buffer",
+        "protocolBuffer": "PBAnimator"
+      },
+      "data": {
+        "513": {
+          "json": {
+            "states": [
+              {
+                "clip": "Key.001Action",
+                "playing": false,
+                "weight": 1,
+                "speed": 1,
+                "loop": false,
+                "shouldReset": false
+              }
+            ]
+          }
+        },
+        "516": {
+          "json": {
+            "states": [
+              {
+                "clip": "Key.001Action",
+                "playing": false,
+                "weight": 1,
+                "speed": 1,
+                "loop": false,
+                "shouldReset": false
+              }
+            ]
+          }
+        },
+        "525": {
+          "json": {
+            "states": [
+              {
+                "clip": "main",
+                "playing": false,
+                "weight": 1,
+                "speed": 1,
+                "loop": false,
+                "shouldReset": false
+              },
+              {
+                "clip": "Close",
+                "playing": false,
+                "weight": 1,
+                "speed": 1,
+                "loop": false,
+                "shouldReset": false
+              },
+              {
+                "clip": "Open",
+                "playing": false,
+                "weight": 1,
+                "speed": 1,
+                "loop": false,
+                "shouldReset": false
+              }
+            ]
+          }
+        },
+        "568": {
+          "json": {
+            "states": []
+          }
+        },
+        "569": {
+          "json": {
+            "states": []
+          }
         }
       }
     },
@@ -1270,13 +1323,6 @@
             "invisibleMeshesCollisionMask": 2
           }
         },
-        "515": {
-          "json": {
-            "src": "assets/builder/wooden_raft/Raft_01/Raft_01.glb",
-            "visibleMeshesCollisionMask": 1,
-            "invisibleMeshesCollisionMask": 2
-          }
-        },
         "516": {
           "json": {
             "src": "assets/scene/animated_chainsaw_low-poly_free-download.glb",
@@ -1291,32 +1337,11 @@
             "invisibleMeshesCollisionMask": 2
           }
         },
-        "519": {
-          "json": {
-            "src": "assets/builder/golden_chest_base/Chest_Base_Gold_01/Chest_Base_Gold_01.glb",
-            "visibleMeshesCollisionMask": 1,
-            "invisibleMeshesCollisionMask": 2
-          }
-        },
         "520": {
           "json": {
             "src": "assets/builder/vent_cover/AirVent_Cap_01/AirVent_Cap_01.glb",
             "visibleMeshesCollisionMask": 1,
             "invisibleMeshesCollisionMask": 2
-          }
-        },
-        "521": {
-          "json": {
-            "src": "assets/builder/golden_chest_lid/Chest_Top_Gold_01/Chest_Top_Gold_01.glb",
-            "visibleMeshesCollisionMask": 1,
-            "invisibleMeshesCollisionMask": 2
-          }
-        },
-        "523": {
-          "json": {
-            "src": "assets/builder/click_area/click_area.glb",
-            "visibleMeshesCollisionMask": 1,
-            "invisibleMeshesCollisionMask": 0
           }
         },
         "525": {
@@ -1329,7 +1354,7 @@
         "526": {
           "json": {
             "src": "assets/builder/chest_gear_key/Chest Gear Key.glb",
-            "visibleMeshesCollisionMask": 0,
+            "visibleMeshesCollisionMask": 1,
             "invisibleMeshesCollisionMask": 0
           }
         },
@@ -1351,6 +1376,13 @@
           "json": {
             "src": "assets/builder/large_forest_log/Log_03/Log_03.glb",
             "visibleMeshesCollisionMask": 1,
+            "invisibleMeshesCollisionMask": 2
+          }
+        },
+        "532": {
+          "json": {
+            "src": "assets/builder/raft/raft.glb",
+            "visibleMeshesCollisionMask": 2,
             "invisibleMeshesCollisionMask": 2
           }
         },
@@ -1550,13 +1582,6 @@
             "invisibleMeshesCollisionMask": 2
           }
         },
-        "564": {
-          "json": {
-            "src": "assets/builder/pirate_lever/lever_pirates.glb",
-            "visibleMeshesCollisionMask": 1,
-            "invisibleMeshesCollisionMask": 2
-          }
-        },
         "565": {
           "json": {
             "src": "assets/builder/shovel/Shovel.glb",
@@ -1569,6 +1594,20 @@
             "src": "assets/builder/click_area/click_area.glb",
             "visibleMeshesCollisionMask": 1,
             "invisibleMeshesCollisionMask": 0
+          }
+        },
+        "568": {
+          "json": {
+            "src": "assets/builder/pirate_lever/lever_pirates.glb",
+            "visibleMeshesCollisionMask": 1,
+            "invisibleMeshesCollisionMask": 2
+          }
+        },
+        "569": {
+          "json": {
+            "src": "assets/builder/fantasy_chest/chest_fantasy.glb",
+            "visibleMeshesCollisionMask": 1,
+            "invisibleMeshesCollisionMask": 2
           }
         }
       }
@@ -1601,11 +1640,6 @@
             "value": "chainsaw grab"
           }
         },
-        "515": {
-          "json": {
-            "value": "Wooden Raft"
-          }
-        },
         "516": {
           "json": {
             "value": "chainsaw placeholder"
@@ -1621,29 +1655,9 @@
             "value": "Bookshelf Bench"
           }
         },
-        "519": {
-          "json": {
-            "value": "chest base"
-          }
-        },
         "520": {
           "json": {
             "value": "Vent Cover"
-          }
-        },
-        "521": {
-          "json": {
-            "value": "chest lid"
-          }
-        },
-        "522": {
-          "json": {
-            "value": "chest"
-          }
-        },
-        "523": {
-          "json": {
-            "value": "click"
           }
         },
         "524": {
@@ -1684,6 +1698,11 @@
         "531": {
           "json": {
             "value": "log 3"
+          }
+        },
+        "532": {
+          "json": {
+            "value": "Raft"
           }
         },
         "533": {
@@ -1841,11 +1860,6 @@
             "value": "Sandy Rock"
           }
         },
-        "564": {
-          "json": {
-            "value": "Pirate Lever"
-          }
-        },
         "565": {
           "json": {
             "value": "shovel model"
@@ -1860,6 +1874,207 @@
           "json": {
             "value": "click"
           }
+        },
+        "568": {
+          "json": {
+            "value": "Pirate Lever_1"
+          }
+        },
+        "569": {
+          "json": {
+            "value": "Fantasy Chest"
+          }
+        }
+      }
+    },
+    {
+      "name": "core::PointerEvents",
+      "jsonSchema": {
+        "type": "object",
+        "properties": {},
+        "serializationType": "protocol-buffer",
+        "protocolBuffer": "PBPointerEvents"
+      },
+      "data": {
+        "512": {
+          "json": {
+            "pointerEvents": [
+              {
+                "eventType": 1,
+                "eventInfo": {
+                  "button": 1,
+                  "hoverText": "Pick Up",
+                  "maxDistance": 10,
+                  "showFeedback": true
+                }
+              }
+            ]
+          }
+        },
+        "513": {
+          "json": {
+            "pointerEvents": [
+              {
+                "eventType": 1,
+                "eventInfo": {
+                  "button": 1,
+                  "hoverText": "Pick Up",
+                  "maxDistance": 10,
+                  "showFeedback": true
+                }
+              }
+            ]
+          }
+        },
+        "518": {
+          "json": {
+            "pointerEvents": [
+              {
+                "eventType": 1,
+                "eventInfo": {
+                  "button": 1,
+                  "hoverText": "Drop",
+                  "maxDistance": 10,
+                  "showFeedback": true
+                }
+              }
+            ]
+          }
+        },
+        "525": {
+          "json": {
+            "pointerEvents": [
+              {
+                "eventType": 1,
+                "eventInfo": {
+                  "button": 1,
+                  "hoverText": "Open (locked)",
+                  "maxDistance": 10,
+                  "showFeedback": true
+                }
+              }
+            ]
+          }
+        },
+        "526": {
+          "json": {
+            "pointerEvents": [
+              {
+                "eventType": 1,
+                "eventInfo": {
+                  "button": 1,
+                  "hoverText": "Pick Up",
+                  "maxDistance": 10,
+                  "showFeedback": true
+                }
+              }
+            ]
+          }
+        },
+        "563": {
+          "json": {
+            "pointerEvents": [
+              {
+                "eventType": 1,
+                "eventInfo": {
+                  "button": 0,
+                  "hoverText": "Dig",
+                  "maxDistance": 10,
+                  "showFeedback": true
+                }
+              }
+            ]
+          }
+        },
+        "567": {
+          "json": {
+            "pointerEvents": [
+              {
+                "eventType": 1,
+                "eventInfo": {
+                  "button": 1,
+                  "hoverText": "Pick Up",
+                  "maxDistance": 10,
+                  "showFeedback": true
+                }
+              }
+            ]
+          }
+        },
+        "568": {
+          "json": {
+            "pointerEvents": [
+              {
+                "eventType": 1,
+                "eventInfo": {
+                  "button": 1,
+                  "hoverText": "Activate / Deactivate",
+                  "maxDistance": 10,
+                  "showFeedback": true
+                }
+              }
+            ]
+          }
+        },
+        "569": {
+          "json": {
+            "pointerEvents": [
+              {
+                "eventType": 1,
+                "eventInfo": {
+                  "button": 1,
+                  "hoverText": "Open / Close",
+                  "maxDistance": 10,
+                  "showFeedback": true
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "core-schema::Sync-Components",
+      "jsonSchema": {
+        "type": "object",
+        "properties": {
+          "componentIds": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "serializationType": "int64"
+            },
+            "serializationType": "array"
+          }
+        },
+        "serializationType": "map"
+      },
+      "data": {
+        "532": {
+          "json": {
+            "componentIds": [
+              1102,
+              2709697014
+            ]
+          }
+        },
+        "568": {
+          "json": {
+            "componentIds": [
+              1042,
+              1020,
+              2709697014
+            ]
+          }
+        },
+        "569": {
+          "json": {
+            "componentIds": [
+              1042,
+              1020,
+              2709697014
+            ]
+          }
         }
       }
     },
@@ -1873,11 +2088,6 @@
       },
       "data": {
         "516": {
-          "json": {
-            "visible": false
-          }
-        },
-        "523": {
           "json": {
             "visible": false
           }
@@ -1902,7 +2112,7 @@
         "serializationType": "map"
       },
       "data": {
-        "535": {
+        "532": {
           "json": {
             "gizmo": 0
           }
@@ -2354,14 +2564,14 @@
                   512,
                   514,
                   517,
-                  522,
                   525,
                   527,
                   534,
                   558,
                   563,
                   566,
-                  515
+                  532,
+                  569
                 ]
               },
               {
@@ -2374,6 +2584,7 @@
               },
               {
                 "entity": 514,
+                "open": true,
                 "children": [
                   513
                 ]
@@ -2395,29 +2606,8 @@
                 "children": []
               },
               {
-                "entity": 519,
-                "children": []
-              },
-              {
-                "entity": 521,
-                "children": []
-              },
-              {
-                "entity": 522,
-                "open": true,
-                "children": [
-                  521,
-                  519,
-                  524,
-                  523
-                ]
-              },
-              {
-                "entity": 523,
-                "children": []
-              },
-              {
                 "entity": 524,
+                "open": true,
                 "children": [
                   526
                 ]
@@ -2623,15 +2813,6 @@
                 "children": []
               },
               {
-                "entity": 515,
-                "open": true,
-                "children": [
-                  529,
-                  560,
-                  564
-                ]
-              },
-              {
                 "entity": 520,
                 "children": []
               },
@@ -2647,16 +2828,30 @@
                 "children": []
               },
               {
-                "entity": 564,
-                "children": []
-              },
-              {
                 "entity": 1,
                 "children": []
               },
               {
                 "entity": 2,
                 "children": []
+              },
+              {
+                "entity": 532,
+                "children": [
+                  529,
+                  560,
+                  568
+                ]
+              },
+              {
+                "entity": 568,
+                "children": []
+              },
+              {
+                "entity": 569,
+                "children": [
+                  524
+                ]
               }
             ]
           }
@@ -2911,6 +3106,14 @@
                     "type": "boolean",
                     "serializationType": "boolean"
                   }
+                },
+                "basicViewId": {
+                  "type": "string",
+                  "serializationType": "optional",
+                  "optionalJsonSchema": {
+                    "type": "string",
+                    "serializationType": "utf8-string"
+                  }
                 }
               },
               "serializationType": "map"
@@ -2975,18 +3178,6 @@
             ]
           }
         },
-        "515": {
-          "json": {
-            "id": 26,
-            "value": [
-              {
-                "name": "Move",
-                "type": "start_tween",
-                "jsonPayload": "{\"type\":\"move_item\",\"end\":{\"x\":0,\"y\":0,\"z\":-10},\"relative\":true,\"interpolationType\":\"linear\",\"duration\":10}"
-              }
-            ]
-          }
-        },
         "516": {
           "json": {
             "id": 7,
@@ -3005,35 +3196,6 @@
                 "name": "Stop Animation",
                 "type": "stop_animation",
                 "jsonPayload": "{}"
-              }
-            ]
-          }
-        },
-        "521": {
-          "json": {
-            "id": 9,
-            "value": [
-              {
-                "name": "Open",
-                "type": "start_tween",
-                "jsonPayload": "{\"type\":\"rotate_item\",\"end\":{\"x\":-90,\"y\":0,\"z\":0},\"relative\":false,\"interpolationType\":\"linear\",\"duration\":1}"
-              }
-            ]
-          }
-        },
-        "522": {
-          "json": {
-            "id": 12,
-            "value": [
-              {
-                "name": "Open",
-                "type": "set_state",
-                "jsonPayload": "{\"state\":\"Open\"}"
-              },
-              {
-                "name": "Close",
-                "type": "set_state",
-                "jsonPayload": "{\"state\":\"Closed\"}"
               }
             ]
           }
@@ -3135,6 +3297,45 @@
             ]
           }
         },
+        "532": {
+          "json": {
+            "id": 30,
+            "value": [
+              {
+                "name": "Go to Start",
+                "type": "batch",
+                "jsonPayload": "{ \"actions\": [\"Going to Start\", \"Tween to Start\"] }",
+                "allowedInBasicView": true
+              },
+              {
+                "name": "Go to End",
+                "type": "batch",
+                "jsonPayload": "{ \"actions\": [\"Going to End\", \"Tween to End\"] }",
+                "allowedInBasicView": true
+              },
+              {
+                "name": "Going to Start",
+                "type": "set_state",
+                "jsonPayload": "{ \"state\": \"GoingToStart\" }"
+              },
+              {
+                "name": "Going to End",
+                "type": "set_state",
+                "jsonPayload": "{ \"state\": \"GoingToEnd\" }"
+              },
+              {
+                "name": "Tween to Start",
+                "type": "start_tween",
+                "jsonPayload": "{\"type\":\"move_item\",\"end\":{\"x\":0,\"y\":0,\"z\":10},\"relative\":true,\"interpolationType\":\"linear\",\"duration\":10}"
+              },
+              {
+                "name": "Tween to End",
+                "type": "start_tween",
+                "jsonPayload": "{\"type\":\"move_item\",\"end\":{\"x\":0,\"y\":0,\"z\":-10},\"relative\":true,\"interpolationType\":\"linear\",\"duration\":10}"
+              }
+            ]
+          }
+        },
         "533": {
           "json": {
             "id": 20,
@@ -3169,38 +3370,6 @@
             ]
           }
         },
-        "564": {
-          "json": {
-            "id": 27,
-            "value": [
-              {
-                "name": "Activate",
-                "type": "set_state",
-                "jsonPayload": "{ \"state\": \"Activated\" }"
-              },
-              {
-                "name": "Deactivate",
-                "type": "set_state",
-                "jsonPayload": "{ \"state\": \"Deactivated\" }"
-              },
-              {
-                "name": "Play Sound",
-                "type": "play_sound",
-                "jsonPayload": "{\"src\":\"assets/builder/pirate_lever/sound.mp3\"}"
-              },
-              {
-                "name": "Play Activate Animation",
-                "type": "play_animation",
-                "jsonPayload": "{ \"animation\": \"activate\" }"
-              },
-              {
-                "name": "Play Deactivate Animation",
-                "type": "play_animation",
-                "jsonPayload": "{ \"animation\": \"deactivate\" }"
-              }
-            ]
-          }
-        },
         "566": {
           "json": {
             "id": 21,
@@ -3227,6 +3396,85 @@
               }
             ]
           }
+        },
+        "568": {
+          "json": {
+            "id": 32,
+            "value": [
+              {
+                "name": "Activate",
+                "type": "set_state",
+                "jsonPayload": "{ \"state\": \"Activated\" }",
+                "allowedInBasicView": true
+              },
+              {
+                "name": "Deactivate",
+                "type": "set_state",
+                "jsonPayload": "{ \"state\": \"Deactivated\" }",
+                "allowedInBasicView": true
+              },
+              {
+                "name": "Play Sound",
+                "type": "play_sound",
+                "jsonPayload": "{\"src\":\"assets/builder/pirate_lever/sound.mp3\"}"
+              },
+              {
+                "name": "Play Activate Animation",
+                "type": "play_animation",
+                "jsonPayload": "{ \"animation\": \"activate\" }"
+              },
+              {
+                "name": "Play Deactivate Animation",
+                "type": "play_animation",
+                "jsonPayload": "{ \"animation\": \"deactivate\" }"
+              }
+            ]
+          }
+        },
+        "569": {
+          "json": {
+            "id": 34,
+            "value": [
+              {
+                "name": "Open",
+                "type": "set_state",
+                "jsonPayload": "{ \"state\": \"Opened\" }",
+                "allowedInBasicView": true
+              },
+              {
+                "name": "Close",
+                "type": "set_state",
+                "jsonPayload": "{ \"state\": \"Closed\" }",
+                "allowedInBasicView": true
+              },
+              {
+                "name": "Open or Close",
+                "type": "set_state",
+                "jsonPayload": "{ \"state\": \"Toggle\" }",
+                "allowedInBasicView": true
+              },
+              {
+                "name": "Play Open Sound",
+                "type": "play_sound",
+                "jsonPayload": "{\"src\":\"assets/builder/fantasy_chest/open.mp3\"}"
+              },
+              {
+                "name": "Play Close Sound",
+                "type": "play_sound",
+                "jsonPayload": "{\"src\":\"assets/builder/fantasy_chest/close.mp3\"}"
+              },
+              {
+                "name": "Play Open Animation",
+                "type": "play_animation",
+                "jsonPayload": "{ \"animation\": \"open\" }"
+              },
+              {
+                "name": "Play Close Animation",
+                "type": "play_animation",
+                "jsonPayload": "{ \"animation\": \"close\" }"
+              }
+            ]
+          }
         }
       }
     },
@@ -3250,7 +3498,7 @@
         "0": {
           "json": {
             "id": 0,
-            "value": 29
+            "value": 35
           }
         },
         "563": {
@@ -3291,7 +3539,8 @@
                     "on_global_primary",
                     "on_global_secondary",
                     "on_tick",
-                    "on_heal_player"
+                    "on_heal_player",
+                    "on_player_spawn"
                   ],
                   "default": "on_input_action",
                   "serializationType": "enum-string",
@@ -3313,7 +3562,8 @@
                     "ON_GLOBAL_PRIMARY": "on_global_primary",
                     "ON_GLOBAL_SECONDARY": "on_global_secondary",
                     "ON_TICK": "on_tick",
-                    "ON_HEAL_PLAYER": "on_heal_player"
+                    "ON_HEAL_PLAYER": "on_heal_player",
+                    "ON_PLAYER_SPAWN": "on_player_spawn"
                   }
                 },
                 "conditions": {
@@ -3433,7 +3683,7 @@
           "json": {
             "value": [
               {
-                "type": "on_click",
+                "type": "on_input_action",
                 "conditions": [
                   {
                     "id": 5,
@@ -3441,6 +3691,23 @@
                     "value": "Put Down"
                   }
                 ],
+                "operation": "and",
+                "actions": [
+                  {
+                    "id": 1,
+                    "name": "Pick Up"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "513": {
+          "json": {
+            "value": [
+              {
+                "type": "on_input_action",
+                "conditions": [],
                 "operation": "and",
                 "actions": [
                   {
@@ -3541,7 +3808,7 @@
           "json": {
             "value": [
               {
-                "type": "on_click",
+                "type": "on_input_action",
                 "conditions": [
                   {
                     "id": 5,
@@ -3554,78 +3821,6 @@
                   {
                     "id": 1,
                     "name": "Put Down"
-                  }
-                ]
-              }
-            ]
-          }
-        },
-        "522": {
-          "json": {
-            "value": [
-              {
-                "type": "on_state_change",
-                "conditions": [
-                  {
-                    "id": 10,
-                    "type": "when_state_is",
-                    "value": "Open"
-                  }
-                ],
-                "operation": "and",
-                "actions": [
-                  {
-                    "id": 9,
-                    "name": "Open"
-                  }
-                ]
-              }
-            ]
-          }
-        },
-        "523": {
-          "json": {
-            "value": [
-              {
-                "type": "on_click",
-                "conditions": [
-                  {
-                    "id": 10,
-                    "type": "when_state_is",
-                    "value": "Closed"
-                  },
-                  {
-                    "id": 24,
-                    "type": "when_counter_is_greater_than",
-                    "value": "2"
-                  }
-                ],
-                "operation": "and",
-                "actions": [
-                  {
-                    "id": 12,
-                    "name": "Open"
-                  },
-                  {
-                    "id": 21,
-                    "name": "Drop"
-                  }
-                ]
-              },
-              {
-                "type": "on_click",
-                "conditions": [
-                  {
-                    "id": 10,
-                    "type": "when_state_is",
-                    "value": "Open"
-                  }
-                ],
-                "operation": "and",
-                "actions": [
-                  {
-                    "id": 13,
-                    "name": "Pick Up"
                   }
                 ]
               }
@@ -3676,7 +3871,7 @@
           "json": {
             "value": [
               {
-                "type": "on_click",
+                "type": "on_input_action",
                 "conditions": [
                   {
                     "id": 16,
@@ -3718,6 +3913,27 @@
                   {
                     "id": 15,
                     "name": "Play Sound"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "526": {
+          "json": {
+            "value": [
+              {
+                "type": "on_input_action",
+                "conditions": [],
+                "operation": "and",
+                "actions": [
+                  {
+                    "id": 13,
+                    "name": "Pick Up"
+                  },
+                  {
+                    "id": 21,
+                    "name": "Drop"
                   }
                 ]
               }
@@ -3810,6 +4026,29 @@
             ]
           }
         },
+        "532": {
+          "json": {
+            "value": [
+              {
+                "type": "on_tween_end",
+                "conditions": [
+                  {
+                    "id": 31,
+                    "type": "when_state_is",
+                    "value": "GoingToStart"
+                  }
+                ],
+                "actions": [
+                  {
+                    "id": 30,
+                    "name": "Going to End"
+                  }
+                ],
+                "basicViewId": "trigger-when-start-reached"
+              }
+            ]
+          }
+        },
         "535": {
           "json": {
             "value": [
@@ -3871,62 +4110,6 @@
             ]
           }
         },
-        "564": {
-          "json": {
-            "value": [
-              {
-                "type": "on_click",
-                "conditions": [
-                  {
-                    "id": 28,
-                    "type": "when_state_is",
-                    "value": "Deactivated"
-                  },
-                  {
-                    "id": 5,
-                    "type": "when_state_is",
-                    "value": "Put Down"
-                  }
-                ],
-                "operation": "and",
-                "actions": [
-                  {
-                    "id": 27,
-                    "name": "Activate"
-                  }
-                ]
-              },
-              {
-                "type": "on_state_change",
-                "conditions": [
-                  {
-                    "id": 28,
-                    "type": "when_state_is",
-                    "value": "Activated"
-                  }
-                ],
-                "actions": [
-                  {
-                    "id": 27,
-                    "name": "Play Activate Animation"
-                  },
-                  {
-                    "id": 27,
-                    "name": "Play Sound"
-                  },
-                  {
-                    "id": 26,
-                    "name": "Move"
-                  },
-                  {
-                    "id": 25,
-                    "name": "Spin"
-                  }
-                ]
-              }
-            ]
-          }
-        },
         "566": {
           "json": {
             "value": [
@@ -3971,12 +4154,209 @@
           "json": {
             "value": [
               {
-                "type": "on_click",
+                "type": "on_input_action",
                 "conditions": [],
                 "actions": [
                   {
                     "id": 21,
                     "name": "Pick"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "568": {
+          "json": {
+            "value": [
+              {
+                "type": "on_input_action",
+                "conditions": [
+                  {
+                    "id": 33,
+                    "type": "when_state_is",
+                    "value": "Deactivated"
+                  }
+                ],
+                "actions": [
+                  {
+                    "id": 32,
+                    "name": "Activate"
+                  }
+                ]
+              },
+              {
+                "type": "on_input_action",
+                "conditions": [
+                  {
+                    "id": 33,
+                    "type": "when_state_is",
+                    "value": "Activated"
+                  }
+                ],
+                "actions": [
+                  {
+                    "id": 32,
+                    "name": "Deactivate"
+                  }
+                ]
+              },
+              {
+                "type": "on_state_change",
+                "conditions": [
+                  {
+                    "id": 33,
+                    "type": "when_state_is",
+                    "value": "Activated"
+                  }
+                ],
+                "actions": [
+                  {
+                    "id": 32,
+                    "name": "Play Activate Animation"
+                  },
+                  {
+                    "id": 32,
+                    "name": "Play Sound"
+                  },
+                  {
+                    "id": 30,
+                    "name": "Go to End"
+                  }
+                ],
+                "basicViewId": "trigger-when-activated"
+              },
+              {
+                "type": "on_state_change",
+                "conditions": [
+                  {
+                    "id": 33,
+                    "type": "when_state_is",
+                    "value": "Deactivated"
+                  }
+                ],
+                "actions": [
+                  {
+                    "id": 32,
+                    "name": "Play Deactivate Animation"
+                  },
+                  {
+                    "id": 32,
+                    "name": "Play Sound"
+                  }
+                ],
+                "basicViewId": "trigger-when-deactivated"
+              }
+            ]
+          }
+        },
+        "569": {
+          "json": {
+            "value": [
+              {
+                "type": "on_input_action",
+                "conditions": [],
+                "actions": [
+                  {
+                    "id": 34,
+                    "name": "Open or Close"
+                  }
+                ],
+                "basicViewId": "trigger-when-clicked"
+              },
+              {
+                "type": "on_state_change",
+                "conditions": [
+                  {
+                    "id": 35,
+                    "type": "when_state_is",
+                    "value": "Opened"
+                  }
+                ],
+                "actions": [
+                  {
+                    "id": 34,
+                    "name": "Play Open Animation"
+                  },
+                  {
+                    "id": 34,
+                    "name": "Play Open Sound"
+                  }
+                ],
+                "basicViewId": "trigger-when-opened"
+              },
+              {
+                "type": "on_state_change",
+                "conditions": [
+                  {
+                    "id": 35,
+                    "type": "when_state_is",
+                    "value": "Closed"
+                  }
+                ],
+                "actions": [
+                  {
+                    "id": 34,
+                    "name": "Play Close Animation"
+                  },
+                  {
+                    "id": 34,
+                    "name": "Play Close Sound"
+                  }
+                ],
+                "basicViewId": "trigger-when-closed"
+              },
+              {
+                "type": "on_spawn",
+                "conditions": [],
+                "actions": [
+                  {
+                    "id": 34,
+                    "name": "Close"
+                  }
+                ]
+              },
+              {
+                "type": "on_state_change",
+                "conditions": [
+                  {
+                    "id": 35,
+                    "type": "when_state_is",
+                    "value": "Toggle"
+                  },
+                  {
+                    "id": 35,
+                    "type": "when_previous_state_is",
+                    "value": "Opened"
+                  }
+                ],
+                "operation": "and",
+                "actions": [
+                  {
+                    "id": 34,
+                    "name": "Close"
+                  }
+                ]
+              },
+              {
+                "type": "on_state_change",
+                "conditions": [
+                  {
+                    "id": 35,
+                    "type": "when_state_is",
+                    "value": "Toggle"
+                  },
+                  {
+                    "id": 35,
+                    "type": "when_previous_state_is",
+                    "value": "Closed"
+                  }
+                ],
+                "operation": "and",
+                "actions": [
+                  {
+                    "id": 34,
+                    "name": "Open"
                   }
                 ]
               }
@@ -4040,16 +4420,6 @@
             "defaultValue": "Put Down"
           }
         },
-        "522": {
-          "json": {
-            "id": 10,
-            "value": [
-              "Closed",
-              "Open"
-            ],
-            "defaultValue": "Closed"
-          }
-        },
         "524": {
           "json": {
             "id": 14,
@@ -4071,6 +4441,16 @@
             "defaultValue": "Closed"
           }
         },
+        "532": {
+          "json": {
+            "id": 31,
+            "value": [
+              "GoingToEnd",
+              "GoingToStart"
+            ],
+            "defaultValue": "GoingToEnd"
+          }
+        },
         "533": {
           "json": {
             "id": 29,
@@ -4081,16 +4461,6 @@
             "defaultValue": "Start"
           }
         },
-        "564": {
-          "json": {
-            "id": 28,
-            "value": [
-              "Activated",
-              "Deactivated"
-            ],
-            "defaultValue": "Deactivated"
-          }
-        },
         "566": {
           "json": {
             "id": 22,
@@ -4099,6 +4469,27 @@
               "Unpicked"
             ],
             "defaultValue": "Unpicked"
+          }
+        },
+        "568": {
+          "json": {
+            "id": 33,
+            "value": [
+              "Activated",
+              "Deactivated"
+            ],
+            "defaultValue": "Deactivated"
+          }
+        },
+        "569": {
+          "json": {
+            "id": 35,
+            "value": [
+              "Opened",
+              "Closed",
+              "Toggle"
+            ],
+            "defaultValue": "Closed"
           }
         }
       }
@@ -4129,9 +4520,6 @@
         "514": {
           "json": {}
         },
-        "515": {
-          "json": {}
-        },
         "516": {
           "json": {}
         },
@@ -4141,19 +4529,7 @@
         "518": {
           "json": {}
         },
-        "519": {
-          "json": {}
-        },
         "520": {
-          "json": {}
-        },
-        "521": {
-          "json": {}
-        },
-        "522": {
-          "json": {}
-        },
-        "523": {
           "json": {}
         },
         "524": {
@@ -4178,6 +4554,9 @@
           "json": {}
         },
         "531": {
+          "json": {}
+        },
+        "532": {
           "json": {}
         },
         "533": {
@@ -4273,9 +4652,6 @@
         "563": {
           "json": {}
         },
-        "564": {
-          "json": {}
-        },
         "565": {
           "json": {}
         },
@@ -4284,6 +4660,253 @@
         },
         "567": {
           "json": {}
+        },
+        "568": {
+          "json": {}
+        },
+        "569": {
+          "json": {}
+        }
+      }
+    },
+    {
+      "name": "inspector::Lock",
+      "jsonSchema": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "boolean",
+            "serializationType": "boolean"
+          }
+        },
+        "serializationType": "map"
+      },
+      "data": {
+        "524": {
+          "json": {
+            "value": true
+          }
+        },
+        "526": {
+          "json": {
+            "value": true
+          }
+        }
+      }
+    },
+    {
+      "name": "inspector::Config",
+      "jsonSchema": {
+        "type": "object",
+        "properties": {
+          "isBasicViewEnabled": {
+            "type": "boolean",
+            "serializationType": "boolean"
+          },
+          "componentName": {
+            "type": "string",
+            "serializationType": "utf8-string"
+          },
+          "fields": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "serializationType": "utf8-string"
+                },
+                "type": {
+                  "type": "string",
+                  "enum": [
+                    "core::Animator",
+                    "core::AudioSource",
+                    "core::AudioStream",
+                    "core::GltfContainer",
+                    "core-schema::Network-Entity",
+                    "core::Material",
+                    "core::MeshCollider",
+                    "core::MeshRenderer",
+                    "core::NftShape",
+                    "core::PointerEvents",
+                    "core-schema::Sync-Components",
+                    "core::TextShape",
+                    "core::Transform",
+                    "core::Tween",
+                    "core::TweenSequence",
+                    "core::VideoPlayer",
+                    "core::VisibilityComponent",
+                    "inspector::Selection",
+                    "inspector::SceneMetadata",
+                    "inspector::Nodes",
+                    "asset-packs::ActionTypes",
+                    "ActionTypes",
+                    "asset-packs::Actions",
+                    "Actions",
+                    "asset-packs::Counter",
+                    "Counter",
+                    "asset-packs::CounterBar",
+                    "CounterBar",
+                    "asset-packs::Triggers",
+                    "Triggers",
+                    "asset-packs::States",
+                    "States",
+                    "inspector::TransformConfig",
+                    "inspector::Hide",
+                    "inspector::Lock",
+                    "inspector::Config",
+                    "inspector::Ground",
+                    "inspector::Tile"
+                  ],
+                  "default": "asset-packs::Actions",
+                  "serializationType": "enum-string",
+                  "enumObject": {
+                    "ANIMATOR": "core::Animator",
+                    "AUDIO_SOURCE": "core::AudioSource",
+                    "AUDIO_STREAM": "core::AudioStream",
+                    "GLTF_CONTAINER": "core::GltfContainer",
+                    "NETWORK_ENTITY": "core-schema::Network-Entity",
+                    "MATERIAL": "core::Material",
+                    "MESH_COLLIDER": "core::MeshCollider",
+                    "MESH_RENDERER": "core::MeshRenderer",
+                    "NFT_SHAPE": "core::NftShape",
+                    "POINTER_EVENTS": "core::PointerEvents",
+                    "SYNC_COMPONENTS": "core-schema::Sync-Components",
+                    "TEXT_SHAPE": "core::TextShape",
+                    "TRANSFORM": "core::Transform",
+                    "TWEEN": "core::Tween",
+                    "TWEEN_SEQUENCE": "core::TweenSequence",
+                    "VIDEO_PLAYER": "core::VideoPlayer",
+                    "VISIBILITY_COMPONENT": "core::VisibilityComponent",
+                    "Selection": "inspector::Selection",
+                    "Scene": "inspector::SceneMetadata",
+                    "Nodes": "inspector::Nodes",
+                    "ActionTypes": "asset-packs::ActionTypes",
+                    "asset-packs::ActionTypes": "ActionTypes",
+                    "Actions": "asset-packs::Actions",
+                    "asset-packs::Actions": "Actions",
+                    "Counter": "asset-packs::Counter",
+                    "asset-packs::Counter": "Counter",
+                    "CounterBar": "asset-packs::CounterBar",
+                    "asset-packs::CounterBar": "CounterBar",
+                    "Triggers": "asset-packs::Triggers",
+                    "asset-packs::Triggers": "Triggers",
+                    "States": "asset-packs::States",
+                    "asset-packs::States": "States",
+                    "TransformConfig": "inspector::TransformConfig",
+                    "Hide": "inspector::Hide",
+                    "Lock": "inspector::Lock",
+                    "Config": "inspector::Config",
+                    "Ground": "inspector::Ground",
+                    "Tile": "inspector::Tile"
+                  }
+                },
+                "layout": {
+                  "type": "string",
+                  "serializationType": "optional",
+                  "optionalJsonSchema": {
+                    "type": "string",
+                    "serializationType": "utf8-string"
+                  }
+                },
+                "basicViewId": {
+                  "type": "string",
+                  "serializationType": "optional",
+                  "optionalJsonSchema": {
+                    "type": "string",
+                    "serializationType": "utf8-string"
+                  }
+                }
+              },
+              "serializationType": "map"
+            },
+            "serializationType": "array"
+          },
+          "assetId": {
+            "type": "string",
+            "serializationType": "optional",
+            "optionalJsonSchema": {
+              "type": "string",
+              "serializationType": "utf8-string"
+            }
+          }
+        },
+        "serializationType": "map"
+      },
+      "data": {
+        "532": {
+          "json": {
+            "isBasicViewEnabled": false,
+            "componentName": "Horizontal Platform",
+            "fields": [
+              {
+                "name": "Tween",
+                "type": "core::Tween"
+              },
+              {
+                "name": "When End Reached",
+                "type": "asset-packs::Triggers",
+                "basicViewId": "trigger-when-end-reached"
+              },
+              {
+                "name": "When Start Reached",
+                "type": "asset-packs::Triggers",
+                "basicViewId": "trigger-when-start-reached"
+              }
+            ],
+            "assetId": "f5c1fc52-2cd3-40b2-862a-c6ceaf66aa1e"
+          }
+        },
+        "568": {
+          "json": {
+            "isBasicViewEnabled": true,
+            "componentName": "Lever",
+            "fields": [
+              {
+                "name": "Hover Text",
+                "type": "core::PointerEvents"
+              },
+              {
+                "name": "When Activated",
+                "type": "asset-packs::Triggers",
+                "basicViewId": "trigger-when-activated"
+              },
+              {
+                "name": "When Deactivated",
+                "type": "asset-packs::Triggers",
+                "basicViewId": "trigger-when-deactivated"
+              }
+            ],
+            "assetId": "37e449e5-9298-41b6-8c9a-a6d12b45bdd2"
+          }
+        },
+        "569": {
+          "json": {
+            "isBasicViewEnabled": true,
+            "componentName": "Chest",
+            "fields": [
+              {
+                "name": "Hover Text",
+                "type": "core::PointerEvents"
+              },
+              {
+                "name": "When Clicked",
+                "type": "asset-packs::Triggers",
+                "basicViewId": "trigger-when-clicked"
+              },
+              {
+                "name": "When Opened",
+                "type": "asset-packs::Triggers",
+                "basicViewId": "trigger-when-opened"
+              },
+              {
+                "name": "When Closed",
+                "type": "asset-packs::Triggers",
+                "basicViewId": "trigger-when-closed"
+              }
+            ],
+            "assetId": "ff9257ec-9d62-404f-97c7-cf19c4035761"
+          }
         }
       }
     }

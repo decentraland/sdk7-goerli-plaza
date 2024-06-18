@@ -5,8 +5,8 @@ import { Color4 } from "@dcl/sdk/math"
 
 
 const projectPath = "Smart_Items_Pirate_Island"
-const description = ""
-
+const description = "A scene built entirely with smart items, using the visual editor. No code was used to set the behavior of any of the items here."
+const Max_Chars = 45
 
 
 const uiComponent = () => (
