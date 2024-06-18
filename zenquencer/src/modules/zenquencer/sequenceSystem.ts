@@ -44,16 +44,13 @@ function PlaySequenceSystem(dt: number) {
   let beatDuration = sequencerConfig.loopDuration / sequencerConfig.beats
 
   sequencerConfig.currentLoop += dt
-  if (
-    sequencerConfig.currentLoop >
-    (sequencerConfig.currentBeat + 1) * beatDuration
-  ) {
+  if (sequencerConfig.currentLoop > (sequencerConfig.currentBeat + 1) * beatDuration) {
     sequencerConfig.currentBeat += 1
     if (sequencerConfig.currentBeat >= sequencerConfig.beats) {
       sequencerConfig.currentLoop = 0
       sequencerConfig.currentBeat = 0
     }
-    
+
     if (sequencerConfig.playingMode === 1) {
       // sequence mode
       // console.log(stones[sequencerConfig.currentBeat])
@@ -75,18 +72,13 @@ function PlaySequenceSystem(dt: number) {
   }
 }
 
-export function setupSequenceConfig(
-  loopDuration: number,
-  totalDuration: number,
-  beats: number
-) {
+export function setupSequenceConfig(loopDuration: number, totalDuration: number, beats: number) {
   sequencerConfig.durationLeft = totalDuration
   sequencerConfig.loopDuration = loopDuration
   sequencerConfig.beats = beats
   sequencerConfig.currentLoop = 0
   sequencerConfig.currentBeat = 0
-  sequencerConfig.beatDuration =
-    sequencerConfig.loopDuration / sequencerConfig.beats
+  sequencerConfig.beatDuration = sequencerConfig.loopDuration / sequencerConfig.beats
 }
 
 export function activateSequenceSystem() {

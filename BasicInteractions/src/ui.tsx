@@ -5,8 +5,8 @@ import { Color4 } from "@dcl/sdk/math"
 
 
 const projectPath = "BasicInteractions"
-const description = "A simple example of each way in which players\n can use button events to interact with the scene\n. Each shape's color is activated by interacting with it in a different way."
-const Max_Chars = 45
+const description = "A simple example of each way in which players can use button events to interact with the scene. Each shape's color is activated by interacting with it in a different way."
+
 
 
 const uiComponent = () => (
@@ -62,7 +62,7 @@ function GitHubLinkUi() {
 
 function descriptionUI() {
 
-  const multiLineDescription = breakLines(description, Max_Chars)
+
 
   return <UiEntity
     uiTransform={{
@@ -93,7 +93,7 @@ function descriptionUI() {
       uiBackground={{ color: Color4.fromHexString("#92b096") }}
     >
       <Label
-        value={multiLineDescription}
+        value={description}
         fontSize={18}
         textAlign="middle-center"
 
@@ -107,46 +107,4 @@ function descriptionUI() {
       />
     </UiEntity>
   </UiEntity >
-}
-
-
-function breakLines(text: string, linelength: number) {
-  const lineBreak = '\n'
-  var counter = 0
-  var line = ''
-  var returnText = ''
-  var bMatchFound = false
-  const lineLen = linelength ? linelength : 50
-
-
-  if (!text) return ''
-  if (text.length < lineLen + 1) { return text }
-
-  while (counter < text.length) {
-    line = text.substring(counter, counter + lineLen);
-    bMatchFound = false
-    if (line.length == lineLen) {
-      for (var i = line.length; i > -1; i--) {
-        if (line.substring(i, i + 1) == ' ') {
-          counter += line.substring(0, i).length
-          line = line.substring(0, i) + lineBreak
-          returnText += line
-          bMatchFound = true
-          break
-        }
-      }
-
-      if (!bMatchFound) {
-        counter += line.length
-        line = line + lineBreak
-        returnText += line
-      }
-    }
-    else {
-      returnText += line
-      break // We're breaking out of the the while(), not the for()
-    }
-  }
-
-  return returnText
 }
