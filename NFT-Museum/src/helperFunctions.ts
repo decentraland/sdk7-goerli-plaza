@@ -203,47 +203,6 @@ export function shortenText(text: string, maxLenght: number) {
   return finalText
 }
 
-export function breakLines(text: string, linelength: number) {
-  const lineBreak = '\n'
-  var counter = 0
-  var line = ''
-  var returnText = ''
-  var bMatchFound = false
-  const lineLen = linelength ? linelength : 50
-
-  if (!text) return ''
-  if (text.length < lineLen + 1) {
-    return text
-  }
-
-  while (counter < text.length) {
-    line = text.substring(counter, counter + lineLen)
-    bMatchFound = false
-    if (line.length == lineLen) {
-      for (var i = line.length; i > -1; i--) {
-        if (line.substring(i, i + 1) == ' ') {
-          counter += line.substring(0, i).length
-          line = line.substring(0, i) + lineBreak
-          returnText += line
-          bMatchFound = true
-          break
-        }
-      }
-
-      if (!bMatchFound) {
-        counter += line.length
-        line = line + lineBreak
-        returnText += line
-      }
-    } else {
-      returnText += line
-      break // We're breaking out of the the while(), not the for()
-    }
-  }
-
-  return returnText
-}
-
 export function getRandomHexColor(): string {
   const letters = '0123456789ABCDEF'
   let color = '#'

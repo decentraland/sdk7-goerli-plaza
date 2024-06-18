@@ -8,7 +8,6 @@ const projectPath = "cube-wave-32x32"
 const description = "A stress test, 32x32 cubes, 1024 cubes in total, each cube moves up and down independently."
 const Max_Chars = 45
 
-
 const uiComponent = () => (
   [
     GitHubLinkUi(),
