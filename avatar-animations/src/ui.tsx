@@ -5,9 +5,7 @@ import { Color4 } from "@dcl/sdk/math"
 
 
 const projectPath = "avatar-animations"
-const description = "A simple scene to play avatar animations, triggered by the player's actions. The scene includes these animations as internal assets."
-
-
+const description = "A simple scene to play avatar animations, triggered by the player's actions. The scene includes these animations as internal assets. Click on the snow pile to grab a snowball, throw it with E."
 
 const uiComponent = () => (
   [

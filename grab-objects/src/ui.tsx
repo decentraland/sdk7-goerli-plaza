@@ -5,8 +5,7 @@ import { Color4 } from "@dcl/sdk/math"
 
 
 const projectPath = "grab-objects"
-const description = "Click an item to hold it and drop it somewhere else in the scene."
-
+const description = "Press E on an item to hold it and drop it somewhere else in the scene."
 
 
 const uiComponent = () => (
@@ -61,7 +60,6 @@ function GitHubLinkUi() {
 }
 
 function descriptionUI() {
-
 
 
   return <UiEntity
