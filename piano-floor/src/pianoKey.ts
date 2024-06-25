@@ -62,8 +62,7 @@ export class WhitePianoKey {
   }
 
   play(): void {
-    AudioSource.getMutable(this.whiteKeyEntity).playing = true
-    AudioSource.getMutable(this.whiteKeyEntity).loop = false
+    AudioSource.playSound(this.whiteKeyEntity, resources.sounds.whiteKeys.c4)
     Material.setPbrMaterial(this.whiteKeyEntity, {
       albedoColor: this.onColor,
       emissiveColor: this.onColor,
@@ -103,8 +102,7 @@ export class WhitePianoKey {
       // on camera enter
       () => {
         console.log('enter white key trigger: ', sound)
-        AudioSource.getMutable(this.whiteKeyEntity).playing = true
-        AudioSource.getMutable(this.whiteKeyEntity).loop = false
+        AudioSource.playSound(this.whiteKeyEntity, resources.sounds.whiteKeys.c4)
         sceneMessageBus.emit('noteOn', { note: this.note })
       },
       // on camera exit
@@ -158,8 +156,7 @@ export class BlackPianoKey {
   }
 
   play(): void {
-    AudioSource.getMutable(this.blackKeyEntity).playing = true
-    AudioSource.getMutable(this.blackKeyEntity).loop = false
+    AudioSource.playSound(this.blackKeyEntity, resources.sounds.blackKeys.aSharp3)
     Material.setPbrMaterial(this.blackKeyEntity, {
       albedoColor: this.onColor2,
       emissiveColor: this.onColor2,
@@ -203,8 +200,7 @@ export class BlackPianoKey {
       // on camera enter
       () => {
         console.log('enter black key trigger: ', sound)
-        AudioSource.getMutable(this.blackKeyEntity).playing = true
-        AudioSource.getMutable(this.blackKeyEntity).loop = false
+        AudioSource.playSound(this.blackKeyEntity, resources.sounds.blackKeys.aSharp3)
         sceneMessageBus.emit('noteOn', { note: this.note, isBlackKey: true })
         Material.setPbrMaterial(this.blackKeyEntity, {
           albedoColor: this.onColor2,
