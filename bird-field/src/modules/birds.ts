@@ -72,7 +72,7 @@ export function createBird(newPos: Vector3) {
     rotation: Quaternion.fromEulerDegrees(0, Math.random() * 360, 0)
   })
   GltfContainer.create(entity, {
-    src: 'models/bird.glb'
+    src: 'assets/scene/bird.glb'
   })
   DistanceBirdComopnent.create(entity, {
     elapsed: Math.random(),
@@ -109,7 +109,7 @@ export function proximitySystem(dt: number) {
       // if the bird was idle, change it to flying and replace the GLTF model with the flying one
       if (!birdInfo.flying) {
         mutableBirdInfo.flying = true
-        GltfContainer.createOrReplace(entity, { src: 'models/bird_fly.glb' })
+        GltfContainer.createOrReplace(entity, { src: 'assets/scene/bird_fly.glb' })
       }
 
       // move the bird away from the player on the X and Z axis based on the closeness multiplier
@@ -136,7 +136,7 @@ export function proximitySystem(dt: number) {
       const mutableTransform = Transform.getMutable(entity)
 
       mutableBirdInfo.flying = false
-      GltfContainer.createOrReplace(entity, { src: 'models/bird.glb' })
+      GltfContainer.createOrReplace(entity, { src: 'assets/scene/bird.glb' })
 
       //make the bird land on its original position
       mutableTransform.position = birdInfo.originalPos
