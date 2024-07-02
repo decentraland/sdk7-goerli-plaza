@@ -4,8 +4,8 @@ import { getPlayer } from '@dcl/sdk/src/players'
 import { signedFetch } from '~system/SignedFetch'
 
 // external servers being used by the project - Please change these to your own if working on something else!
-const serverBaseUrl = 'http://localhost:3001/'  // running locally
-// const serverBaseUrl = 'https://test.dclexplorer.com/leader-board/'
+// const serverBaseUrl = 'http://localhost:3006/'  // running locally
+const serverBaseUrl = 'https://test.dclexplorer.com/leader-board/'
 
 // get latest guestbook data from server
 export function fetchScores(leaderboard: LeaderBoard) {

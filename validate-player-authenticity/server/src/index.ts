@@ -5,7 +5,11 @@ import dcl, { express as dclExpress } from 'decentraland-crypto-middleware'
 import { runChecks } from './security/securityChecks'
 import { VALID_SIGNATURE_TOLERANCE_INTERVAL_MS, Metadata, VALID_PARCEL } from './utils'
 
-const port = 3003 // default port to listen
+import * as dotenv from 'dotenv'
+dotenv.config()
+
+const SERVER_PORT = process.env.PORT || 3004
+const SERVER_BASE_URL = process.env.BASE_URL || ''
 
 const app = express()
 
@@ -15,6 +19,7 @@ app.get(
   '/check-validity',
   dclExpress({ expiration: VALID_SIGNATURE_TOLERANCE_INTERVAL_MS }),
   async (req: Request & dcl.DecentralandSignatureData<Metadata>, res: Response) => {
+    req.baseUrl = SERVER_BASE_URL
     try {
       await runChecks(req, VALID_PARCEL)
       return res.status(200).send({ valid: true, msg: 'Valid request' })
@@ -25,7 +30,6 @@ app.get(
   }
 )
 
-// start the Express server
-app.listen(port, () => {
-  console.log(`server started at http://localhost:${port}`)
-})
+app.listen(SERVER_PORT, () => {
+  console.log(`Server is running on port ${SERVER_PORT} - base URL: "${SERVER_BASE_URL}"`);
+});

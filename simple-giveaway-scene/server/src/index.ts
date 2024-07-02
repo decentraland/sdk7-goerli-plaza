@@ -6,7 +6,7 @@ import * as cors from 'cors';
 
 require('dotenv').config()
 
-const SERVER_PORT = process.env.PORT || 3000;
+const SERVER_PORT = process.env.PORT || 3012;
 const SERVER_BASE_URL = process.env.BASE_URL || '';
 
 const app = express();

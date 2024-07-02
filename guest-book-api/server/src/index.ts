@@ -7,7 +7,7 @@ import { open } from 'sqlite';
 
 require('dotenv').config()
 
-const SERVER_PORT = process.env.PORT || 3000
+const SERVER_PORT = process.env.PORT || 3008
 const SERVER_BASE_URL = process.env.BASE_URL || ''
 
 const express = require('express');

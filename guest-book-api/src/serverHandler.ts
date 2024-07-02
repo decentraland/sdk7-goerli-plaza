@@ -4,7 +4,7 @@ import { closeUi, displaySignature } from './ui'
 import { signedFetch } from '~system/SignedFetch'
 
 // external servers being used by the project - Please change these to your own if working on something else!
-// const serverBaseUrl = 'http://localhost:3000/' // running express server locally
+// const serverBaseUrl = 'http://localhost:3008/' // running express server locally
 const serverBaseUrl = 'https://test.dclexplorer.com/guest-book-api/'
 
 const linesPerGuestBookPage = 8
