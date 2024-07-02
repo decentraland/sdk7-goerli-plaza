@@ -5,7 +5,8 @@ import {
   GltfContainerLoadingState,
   IEngine,
   LoadingState,
-  Transform
+  Transform,
+  Entity
 } from '@dcl/sdk/ecs'
 import { Vector3 } from '@dcl/sdk/math'
 import { spawnBirds } from './modules/birds'
@@ -14,6 +15,8 @@ import { setupUi } from './ui'
 
 // please do not remove this coroutine, it exists to test the compliance of the GltfContainerLoadingState component
 const corountime = mendezCoroutineRuntime(engine)
+let entitiesToWait : Entity[]
+
 
 function logCurrentMoment(log: string) {
   const info = EngineInfo.get(engine.RootEntity)
@@ -45,7 +48,9 @@ corountime.run(function* waitForAllGtfLoaded() {
   Transform.create(birdFlyingPreloadDummy, {
     position: Vector3.create(8, -10, 6)
   })
-
+  
+  entitiesToWait = [ground, birdPreloadDummy, birdFlyingPreloadDummy]
+  
   yield* waitForAllModelsToLoad(engine)
 
   logCurrentMoment('spawningBirds')
@@ -59,15 +64,10 @@ function* waitForAllModelsToLoad(engine: IEngine) {
   yield // send all updates to renderer
 
   while (true) {
-    let areLoading = false
-
-    for (const [_entity, loadingState] of engine.getEntitiesWith(GltfContainerLoadingState)) {
-      if (loadingState.currentState == LoadingState.LOADING) {
-        areLoading = true
-        logCurrentMoment('models are still loading')
-        break
-      }
-    }
+    let areLoading = entitiesToWait.some(entity => {
+      const state = GltfContainerLoadingState.getOrNull(entity);
+      return state == null || state.currentState != LoadingState.FINISHED;
+    });
 
     if (areLoading) {
       yield // wait one frame
