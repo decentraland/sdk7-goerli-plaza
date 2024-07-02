@@ -5,6 +5,11 @@ import { VALID_SIGNATURE_TOLERANCE_INTERVAL_MS, Metadata, VALID_PARCEL } from '.
 import * as sqlite3 from 'sqlite3';
 import { open } from 'sqlite';
 
+require('dotenv').config()
+
+const SERVER_PORT = process.env.PORT || 3000
+const SERVER_BASE_URL = process.env.BASE_URL || ''
+
 const express = require('express');
 const cors = require('cors');
 const app = express();
@@ -23,6 +28,7 @@ const dbPromise = open({
 
 app.get('/check-validity', async (req: Request & dcl.DecentralandSignatureData<Metadata>, res: Response) => {
   try {
+    req.baseUrl = SERVER_BASE_URL
     return dcl.express({ expiration: VALID_SIGNATURE_TOLERANCE_INTERVAL_MS })(req, res, async () => {
       try {
         await runChecks(req, VALID_PARCEL);
@@ -38,6 +44,7 @@ app.get('/check-validity', async (req: Request & dcl.DecentralandSignatureData<M
 
 app.get('/get-signatures', async (req: Request & dcl.DecentralandSignatureData<Metadata>, res: Response) => {
   try {
+    req.baseUrl = SERVER_BASE_URL
     return dcl.express({ expiration: VALID_SIGNATURE_TOLERANCE_INTERVAL_MS })(req, res, async () => {
       try {
         await runChecks(req, VALID_PARCEL);
@@ -66,6 +73,7 @@ app.get('/get-signatures', async (req: Request & dcl.DecentralandSignatureData<M
 
 app.post('/add-signature', async (req: Request & dcl.DecentralandSignatureData<Metadata>, res: Response) => {
   try {
+    req.baseUrl = SERVER_BASE_URL
     return dcl.express({ expiration: VALID_SIGNATURE_TOLERANCE_INTERVAL_MS })(req, res, async () => {
       try {
         await runChecks(req, VALID_PARCEL);
@@ -96,6 +104,6 @@ app.post('/add-signature', async (req: Request & dcl.DecentralandSignatureData<M
   }
 });
 
-app.listen(process.env.PORT || 3000, () => {
-  console.log('Server is running on port 3000');
+app.listen(SERVER_PORT, () => {
+  console.log(`Server is running on port ${SERVER_PORT} - base URL: "${SERVER_BASE_URL}"`);
 });
