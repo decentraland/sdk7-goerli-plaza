@@ -5,7 +5,8 @@ import {
   GltfContainerLoadingState,
   IEngine,
   LoadingState,
-  Transform
+  Transform,
+  Entity
 } from '@dcl/sdk/ecs'
 import { Vector3 } from '@dcl/sdk/math'
 import { spawnBirds } from './modules/birds'
@@ -14,6 +15,8 @@ import { setupUi } from './ui'
 
 // please do not remove this coroutine, it exists to test the compliance of the GltfContainerLoadingState component
 const corountime = mendezCoroutineRuntime(engine)
+let entitiesToWait: Entity[]
+
 
 function logCurrentMoment(log: string) {
   const info = EngineInfo.get(engine.RootEntity)
@@ -23,15 +26,10 @@ function logCurrentMoment(log: string) {
 corountime.run(function* waitForAllGtfLoaded() {
   logCurrentMoment(`initializing coroutine`)
 
-  const ground = engine.addEntity()
-  GltfContainer.create(ground, {
-    src: 'models/sand.glb'
-  })
-
   // preload the animated bird glbs (underground), for faster loading
   const birdPreloadDummy = engine.addEntity()
   GltfContainer.create(birdPreloadDummy, {
-    src: 'models/bird.glb'
+    src: 'assets/scene/bird.glb'
   })
   Transform.create(birdPreloadDummy, {
     position: Vector3.create(8, -10, 6)
@@ -40,11 +38,13 @@ corountime.run(function* waitForAllGtfLoaded() {
   //  preload the animated bird glbs (underground), for faster loading
   const birdFlyingPreloadDummy = engine.addEntity()
   GltfContainer.create(birdFlyingPreloadDummy, {
-    src: 'models/bird_fly.glb'
+    src: 'assets/scene/bird_fly.glb'
   })
   Transform.create(birdFlyingPreloadDummy, {
     position: Vector3.create(8, -10, 6)
   })
+
+  entitiesToWait = [birdPreloadDummy, birdFlyingPreloadDummy]
 
   yield* waitForAllModelsToLoad(engine)
 
@@ -59,15 +59,10 @@ function* waitForAllModelsToLoad(engine: IEngine) {
   yield // send all updates to renderer
 
   while (true) {
-    let areLoading = false
-
-    for (const [_entity, loadingState] of engine.getEntitiesWith(GltfContainerLoadingState)) {
-      if (loadingState.currentState == LoadingState.LOADING) {
-        areLoading = true
-        logCurrentMoment('models are still loading')
-        break
-      }
-    }
+    let areLoading = entitiesToWait.some(entity => {
+      const state = GltfContainerLoadingState.getOrNull(entity);
+      return state == null || state.currentState != LoadingState.FINISHED;
+    });
 
     if (areLoading) {
       yield // wait one frame
