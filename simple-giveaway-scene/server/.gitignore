@@ -5,3 +5,4 @@ typings/
 node_modules/
 
 dist
+database.db

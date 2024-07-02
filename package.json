@@ -4,8 +4,8 @@
   "version": "1.0.0",
   "dependencies": {
     "@dcl-sdk/utils": "latest",
-    "@dcl/sdk": "^7.5.6-9724511758.commit-cb2baa8",
-    "@dcl/sdk-commands": "^7.5.6-9724511758.commit-cb2baa8",
+    "@dcl/js-runtime": "latest",
+    "@dcl/sdk": "latest",
     "glob": "^9.3.4",
     "prettier": "^2.8.8",
     "syncpack": "^9.8.4"

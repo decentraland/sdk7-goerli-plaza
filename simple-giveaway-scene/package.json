@@ -7,7 +7,7 @@
   },
   "devDependencies": {
     "@dcl/asset-packs": "latest",
-    "@dcl/js-runtime": "7.5.6-9724511758.commit-cb2baa8",
+    "@dcl/js-runtime": "latest",
     "@dcl/sdk": "latest"
   },
   "engines": {
