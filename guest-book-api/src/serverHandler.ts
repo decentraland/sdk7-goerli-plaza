@@ -5,7 +5,8 @@ import { signedFetch } from '~system/SignedFetch'
 
 // external servers being used by the project - Please change these to your own if working on something else!
 // const fireBaseServer = 'http://localhost:5001/dcl-guestbook-e4ae4/us-central1/app/'  // running firebase function locally
-const fireBaseServer = 'https://us-central1-dcl-guestbook-e4ae4.cloudfunctions.net/app/' // after deploy
+// const fireBaseServer = 'https://us-central1-dcl-guestbook-e4ae4.cloudfunctions.net/app/' // after deploy
+const fireBaseServer = 'http://localhost:3000/'
 
 const linesPerGuestBookPage = 8
 var signatureList: any[]
