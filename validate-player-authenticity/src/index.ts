@@ -18,7 +18,7 @@ export function main() {
       executeTask(async () => {
         try {
           let response = await signedFetch({
-            url: 'http://localhost:8080/check-validity',
+            url: 'http://localhost:3002/check-validity',
             init: {
               headers: { 'Content-Type': 'application/json' },
               method: 'GET'

@@ -4,15 +4,15 @@ import { getPlayer } from '@dcl/sdk/src/players'
 import { signedFetch } from '~system/SignedFetch'
 
 // external servers being used by the project - Please change these to your own if working on something else!
-// const fireBaseServer = 'http://localhost:5001/dcl-leaderboard-d4629/us-central1/app/'  // running firebase function locally
-const fireBaseServer = 'https://us-central1-dcl-leaderboard-d4629.cloudfunctions.net/app/'
+const serverBaseUrl = 'http://localhost:3001/'  // running locally
+// const serverBaseUrl = 'https://test.dclexplorer.com/leader-board/'
 
 // get latest guestbook data from server
 export function fetchScores(leaderboard: LeaderBoard) {
   executeTask(async () => {
     try {
       const response = await signedFetch({
-        url: fireBaseServer + 'get-scores',
+        url: serverBaseUrl + 'get-scores',
         init: {
           headers: { 'Content-Type': 'application/json' },
           method: 'GET'
@@ -59,7 +59,7 @@ export function publishScore(score: number, leaderboard: LeaderBoard) {
 
     try {
       const response = await signedFetch({
-        url: fireBaseServer + 'publish-score',
+        url: serverBaseUrl + 'publish-score',
         init: {
           headers: { 'Content-Type': 'application/json' },
           method: 'POST',

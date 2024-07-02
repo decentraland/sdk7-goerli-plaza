@@ -23,12 +23,12 @@ const dbPromise = open({
 
 (async () => {
   const db = await dbPromise;
-  await db.exec('CREATE TABLE IF NOT EXISTS Signatures (id TEXT, name TEXT)');
+  await db.exec('CREATE TABLE IF NOT EXISTS Scores (id TEXT, name TEXT, score INTEGER)');
 })();
 
 app.get('/check-validity', async (req: Request & dcl.DecentralandSignatureData<Metadata>, res: Response) => {
   try {
-    req.baseUrl = SERVER_BASE_URL
+    req.baseUrl = SERVER_BASE_URL;
     return dcl.express({ expiration: VALID_SIGNATURE_TOLERANCE_INTERVAL_MS })(req, res, async () => {
       try {
         await runChecks(req, VALID_PARCEL);
@@ -42,19 +42,19 @@ app.get('/check-validity', async (req: Request & dcl.DecentralandSignatureData<M
   }
 });
 
-app.get('/get-signatures', async (req: Request & dcl.DecentralandSignatureData<Metadata>, res: Response) => {
+app.get('/get-scores', async (req: Request & dcl.DecentralandSignatureData<Metadata>, res: Response) => {
   try {
-    req.baseUrl = SERVER_BASE_URL
+    req.baseUrl = SERVER_BASE_URL;
     return dcl.express({ expiration: VALID_SIGNATURE_TOLERANCE_INTERVAL_MS })(req, res, async () => {
       try {
         await runChecks(req, VALID_PARCEL);
 
         const db = await dbPromise;
-        const signatures = await db.all('SELECT * FROM Signatures');
+        const scores = await db.all('SELECT * FROM Scores ORDER BY score DESC LIMIT 10');
 
         return res.status(200).send({
           valid: true,
-          allSignatures: signatures
+          topTen: scores
         });
       } catch (error) {
         return res.status(500).send({
@@ -71,23 +71,24 @@ app.get('/get-signatures', async (req: Request & dcl.DecentralandSignatureData<M
   }
 });
 
-app.post('/add-signature', async (req: Request & dcl.DecentralandSignatureData<Metadata>, res: Response) => {
+app.post('/publish-score', async (req: Request & dcl.DecentralandSignatureData<Metadata>, res: Response) => {
   try {
-    req.baseUrl = SERVER_BASE_URL
+    req.baseUrl = SERVER_BASE_URL;
     return dcl.express({ expiration: VALID_SIGNATURE_TOLERANCE_INTERVAL_MS })(req, res, async () => {
       try {
         await runChecks(req, VALID_PARCEL);
 
-        let newSignature = req.body;
+        const newScore = req.body;
         const db = await dbPromise;
-        await db.run('INSERT INTO Signatures (id, name) VALUES (?, ?)', [
-          newSignature.id,
-          newSignature.name
+        await db.run('INSERT INTO Scores (id, name, score) VALUES (?, ?, ?)', [
+          newScore.id,
+          newScore.name,
+          newScore.score
         ]);
 
         return res.status(200).send({
           valid: true,
-          message: 'Signed book!'
+          message: 'Published score!'
         });
       } catch (error) {
         return res.status(500).send({
@@ -103,6 +104,7 @@ app.post('/add-signature', async (req: Request & dcl.DecentralandSignatureData<M
     });
   }
 });
+
 
 app.listen(SERVER_PORT, () => {
   console.log(`Server is running on port ${SERVER_PORT} - base URL: "${SERVER_BASE_URL}"`);

@@ -5,7 +5,7 @@ import dcl, { express as dclExpress } from 'decentraland-crypto-middleware'
 import { runChecks } from './security/securityChecks'
 import { VALID_SIGNATURE_TOLERANCE_INTERVAL_MS, Metadata, VALID_PARCEL } from './utils'
 
-const port = 8080 // default port to listen
+const port = 3003 // default port to listen
 
 const app = express()
 
