@@ -16,10 +16,6 @@ import { setupUi } from './ui'
 // please do not remove this coroutine, it exists to test the compliance of the GltfContainerLoadingState component
 const corountime = mendezCoroutineRuntime(engine)
 let entitiesToWait: Entity[]
-<<<<<<< fix-hummingbird-scene
-=======
-
->>>>>>> main
 
 function logCurrentMoment(log: string) {
   const info = EngineInfo.get(engine.RootEntity)
@@ -62,17 +58,11 @@ function* waitForAllModelsToLoad(engine: IEngine) {
   yield // send all updates to renderer
 
   while (true) {
-<<<<<<< fix-hummingbird-scene
+
     let areLoading = entitiesToWait.some((entity) => {
       const state = GltfContainerLoadingState.getOrNull(entity)
       return state == null || state.currentState != LoadingState.FINISHED
     })
-=======
-    let areLoading = entitiesToWait.some(entity => {
-      const state = GltfContainerLoadingState.getOrNull(entity);
-      return state == null || state.currentState != LoadingState.FINISHED;
-    });
->>>>>>> main
 
     if (areLoading) {
       yield // wait one frame
