@@ -3,28 +3,26 @@
   "scripts": {
     "build": "tsc",
     "build:watch": "tsc --watch",
-    "serve": "npm run build && firebase emulators:start --only functions",
-    "shell": "npm run build && firebase functions:shell",
-    "start": "npm run shell",
-    "deploy": "firebase deploy --only functions",
-    "logs": "firebase functions:log"
+    "start": "npm run build && node dist/index.js",
+    "serve": "node dist/index.js"
   },
   "engines": {
     "node": "18"
   },
-  "main": "lib/index.js",
+  "main": "dist/index.js",
   "dependencies": {
+    "@types/sqlite3": "^3.1.11",
     "cors": "latest",
     "decentraland-crypto-middleware": "latest",
+    "dotenv": "^16.4.5",
     "express": "latest",
-    "firebase-admin": "latest",
-    "firebase-functions": "latest"
+    "sqlite": "^5.1.1",
+    "sqlite3": "^5.1.7"
   },
   "devDependencies": {
     "@types/koa": "latest",
     "@types/passport-strategy": "latest",
     "@well-known-components/interfaces": "latest",
-    "firebase-functions-test": "latest",
     "typescript": "latest"
   },
   "private": true

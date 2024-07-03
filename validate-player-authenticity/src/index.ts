@@ -4,6 +4,9 @@ import { signedFetch } from '~system/SignedFetch'
 import { setupUi } from './ui'
 import * as ui from 'dcl-ui-toolkit'
 
+// const serverBaseUrl = 'http://localhost:3004/'
+const serverBaseUrl = 'https://test.dclexplorer.com/validate-player-authenticity/'
+
 export function main() {
   const scene = new Scene()
 
@@ -18,7 +21,7 @@ export function main() {
       executeTask(async () => {
         try {
           let response = await signedFetch({
-            url: 'http://localhost:8080/check-validity',
+            url: serverBaseUrl + 'check-validity',
             init: {
               headers: { 'Content-Type': 'application/json' },
               method: 'GET'

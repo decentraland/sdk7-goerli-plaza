@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "dependencies": {
     "@dcl-sdk/utils": "latest",
+    "@dcl/js-runtime": "latest",
     "@dcl/sdk": "latest",
     "glob": "^9.3.4",
     "prettier": "^2.8.8",
