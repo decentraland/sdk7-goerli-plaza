@@ -12,6 +12,13 @@
       "sourceMapPathOverrides": {
         "dcl:///*": "${workspaceFolder}/*"
       }
+    },
+    {
+      "name": "Debug Node Current File",
+      "type": "node",
+      "request": "launch",
+      "program": "${file}",
+      "skipFiles": ["<node_internals>/**"]
     }
   ]
 }

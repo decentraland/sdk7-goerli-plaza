@@ -1,7 +1,10 @@
+
+const serverBaseUrl = 'https://test.dclexplorer.com/simple-giveaway-scene/'
+// const serverBaseUrl = 'http://localhost:3012/'
+
 export async function addUser(publickey: string | undefined) {
-  const url = 'https://us-central1-giorgio-1a3d9.cloudfunctions.net/app'
   try {
-    const lead = url + '/add-user'
+    const lead = serverBaseUrl + 'add-user'
     console.log('making a call to: ', lead)
 
     const response = await fetch(lead, {
@@ -19,9 +22,8 @@ export async function addUser(publickey: string | undefined) {
   }
 }
 export async function updatePlayerData(publickey: string | undefined) {
-  const url = 'https://us-central1-giorgio-1a3d9.cloudfunctions.net/app'
   try {
-    const lead = url + '/update-wearable'
+    const lead = serverBaseUrl + 'update-wearable'
     console.log('making a call to: ', lead)
 
     const response = await fetch(lead, {
@@ -39,9 +41,8 @@ export async function updatePlayerData(publickey: string | undefined) {
 }
 
 export async function getPlayerData(publickey: string | undefined) {
-  const url = 'https://us-central1-giorgio-1a3d9.cloudfunctions.net/app'
   try {
-    const lead = url + '/getUserData'
+    const lead = serverBaseUrl + 'getUserData'
     console.log('making a call to: ', lead)
 
     const response = await fetch(lead, {

@@ -4,18 +4,19 @@ import { closeUi, displaySignature } from './ui'
 import { signedFetch } from '~system/SignedFetch'
 
 // external servers being used by the project - Please change these to your own if working on something else!
-// const fireBaseServer = 'http://localhost:5001/dcl-guestbook-e4ae4/us-central1/app/'  // running firebase function locally
-const fireBaseServer = 'https://us-central1-dcl-guestbook-e4ae4.cloudfunctions.net/app/' // after deploy
+// const serverBaseUrl = 'http://localhost:3008/' // running express server locally
+const serverBaseUrl = 'https://test.dclexplorer.com/guest-book-api/'
 
 const linesPerGuestBookPage = 8
 var signatureList: any[]
+
 
 // get latest guestbook data from server
 export function fetchSignatures() {
   executeTask(async () => {
     try {
       const response = await signedFetch({
-        url: fireBaseServer + 'get-signatures',
+        url: serverBaseUrl + 'get-signatures',
         init: {
           headers: { 'Content-Type': 'application/json' },
           method: 'GET'
@@ -91,7 +92,7 @@ export function signGuestbook() {
 
     try {
       const response = await signedFetch({
-        url: fireBaseServer + 'add-signature',
+        url: serverBaseUrl + 'add-signature',
         init: {
           headers: { 'Content-Type': 'application/json' },
           method: 'POST',
