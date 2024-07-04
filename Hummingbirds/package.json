@@ -4,9 +4,12 @@
   "version": "1.0.0",
   "dependencies": {
     "@dcl-sdk/utils": "latest",
-    "@dcl/sdk": "latest"
+    "@dcl/sdk": "latest",
+    "@dcl/js-runtime": "latest"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "@dcl/asset-packs": "latest"
+  },
   "scripts": {
     "build": "sdk-commands build --skip-install",
     "deploy": "sdk-commands deploy",

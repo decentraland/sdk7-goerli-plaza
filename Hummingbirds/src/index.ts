@@ -40,7 +40,8 @@ export function main() {
     states: [
       {
         clip: 'Tree_Action',
-        shouldReset: true
+        shouldReset: true,
+        loop: false
       }
     ]
   })
