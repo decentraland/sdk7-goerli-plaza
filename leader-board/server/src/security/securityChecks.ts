@@ -5,7 +5,7 @@ import { denyListedIPS, TESTS_ENABLED, Metadata, realmWhiteList } from './utils'
 import { checkCoords, checkPlayer } from './verifyOnMap'
 
 export function checkOrigin(req: Request) {
-  const validOrigins = ['https://play.decentraland.org', 'https://play.decentraland.zone']
+  const validOrigins = ['https://decentraland.org', 'https://decentraland.zone']
   return validOrigins.includes(req.header('origin')!)
 }
 
