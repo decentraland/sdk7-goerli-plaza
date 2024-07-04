@@ -16,13 +16,13 @@ const app = express()
 app.use(cors({ origin: true }))
 
 const setBaseUrl = (req: Request, res: Response, next: NextFunction) => {
-  req.baseUrl = SERVER_BASE_URL;
-  next();
-};
+  req.baseUrl = SERVER_BASE_URL
+  next()
+}
 
 app.get(
   '/check-validity',
-  setBaseUrl, 
+  setBaseUrl,
   dclExpress({ expiration: VALID_SIGNATURE_TOLERANCE_INTERVAL_MS }),
   async (req: Request & dcl.DecentralandSignatureData<Metadata>, res: Response) => {
     try {
@@ -36,5 +36,5 @@ app.get(
 )
 
 app.listen(SERVER_PORT, () => {
-  console.log(`Server is running on port ${SERVER_PORT} - base URL: "${SERVER_BASE_URL}"`);
-});
+  console.log(`Server is running on port ${SERVER_PORT} - base URL: "${SERVER_BASE_URL}"`)
+})
