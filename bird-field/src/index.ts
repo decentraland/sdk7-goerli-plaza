@@ -17,7 +17,6 @@ import { setupUi } from './ui'
 const corountime = mendezCoroutineRuntime(engine)
 let entitiesToWait: Entity[]
 
-
 function logCurrentMoment(log: string) {
   const info = EngineInfo.get(engine.RootEntity)
   console.log(`tick=${info.tickNumber} frame=${info.frameNumber} runtime=${info.totalRuntime} -- ${log}`)
@@ -59,10 +58,11 @@ function* waitForAllModelsToLoad(engine: IEngine) {
   yield // send all updates to renderer
 
   while (true) {
-    let areLoading = entitiesToWait.some(entity => {
-      const state = GltfContainerLoadingState.getOrNull(entity);
-      return state == null || state.currentState != LoadingState.FINISHED;
-    });
+
+    let areLoading = entitiesToWait.some((entity) => {
+      const state = GltfContainerLoadingState.getOrNull(entity)
+      return state == null || state.currentState != LoadingState.FINISHED
+    })
 
     if (areLoading) {
       yield // wait one frame
