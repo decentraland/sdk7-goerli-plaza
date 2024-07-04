@@ -10,7 +10,6 @@ const serverBaseUrl = 'https://test.dclexplorer.com/guest-book-api/'
 const linesPerGuestBookPage = 8
 var signatureList: any[]
 
-
 // get latest guestbook data from server
 export function fetchSignatures() {
   executeTask(async () => {

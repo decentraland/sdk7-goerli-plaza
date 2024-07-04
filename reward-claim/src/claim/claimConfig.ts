@@ -7,10 +7,10 @@ export type ClaimConfigInstType = {
 
 export const USE_CAPTCHA: boolean = true
 
-const TEST_CAMPAIGN_ID = '0x464f38a93a6c34bb85d1915761ef39acdac2197e'
+const TEST_CAMPAIGN_ID = 'db56a9ec-cdf7-4656-9d23-f780723a659f'
 //'7a7c87db-801a-4427-bf2b-2fab3d518b58'
 //non captcha
-const TEST_CAMPAIGN_KEY = 'ZN3zqBl2RVqp7dolXribbWbjQaKkuU0vhggk18iv3Jc=.taU/DJWHfeWI4kpnQ8Xr8n3N42EFQKqqEHWlK/DBls4='
+const TEST_CAMPAIGN_KEY = 'q97vcCt1SNWtLcyeWw528dtWqezN90ZWnSP3gHI6ZZ8=.jQvlHmYmjFMsGbXO5fG01MU75fADrevlPnBg0bi5O3U='
 //'eyJpZCI6IjY2NThmOGRiLWZjNGItNDQyMC05NTUzLWYyZDQxODRjZDY3YiIsImNhbXBhaWduX2lkIjoiN2E3Yzg3ZGItODAxYS00NDI3LWJmMmItMmZhYjNkNTE4YjU4In0=.lu0GNQ/5Tjl4QvAvJuFJ5hhjIPfyaeqVcWluMX/3WyY='
 
 export const ClaimConfig = {

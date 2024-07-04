@@ -1,4 +1,3 @@
-
 const serverBaseUrl = 'https://test.dclexplorer.com/simple-giveaway-scene/'
 // const serverBaseUrl = 'http://localhost:3012/'
 
