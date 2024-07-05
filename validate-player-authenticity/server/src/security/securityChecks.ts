@@ -54,13 +54,16 @@ export async function runChecks(req: Request & dcl.DecentralandSignatureData<Met
 
   // Validate that the authchain signature is real
   // validate that the player is in the catalyst & location from the signature
-  const validCatalystPos: boolean =
-    TESTS_ENABLED && (metadata.realm.hostname === 'localhost' || metadata.realm.serverName === 'LocalPreview')
-      ? true
-      : await checkPlayer(userAddress, metadata.realm.domain, coordinates)
-  if (!validCatalystPos) {
-    throw new Error('INVALID PLAYER POSITION')
-  }
+
+  // TODO: check if this is going to be maintained due to the deprecation of exposing the player positions
+
+  // const validCatalystPos: boolean | undefined =
+  //   TESTS_ENABLED && (metadata.realm.hostname === 'localhost' || metadata.realm.serverName === 'LocalPreview')
+  //     ? true
+  //     : await checkPlayer(userAddress, metadata.realm.domain!, coordinates)
+  // if (!validCatalystPos) {
+  //   throw new Error('INVALID PLAYER POSITION')
+  // }
 
   // validate that the player is in a valid location for this operation - if a parcel is provided
   const validPos: boolean = parcel?.length ? checkCoords(coordinates, parcel) : true
