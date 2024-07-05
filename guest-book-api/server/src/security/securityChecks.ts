@@ -18,7 +18,7 @@ export function checkRealmName(metadata: Metadata) {
   return (
     (TESTS_ENABLED && (metadata.realm.hostname === 'localhost' || metadata.realm.serverName === 'LocalPreview')) ||
     realmWhiteList.includes(metadata.realm.serverName!) ||
-    metadata.realm.serverName?.startsWith('goerli-plaza')
+    metadata.realm.serverName!.startsWith('goerli-plaza')
   )
 }
 
