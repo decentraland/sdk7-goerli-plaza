@@ -24,7 +24,7 @@ export function checkRealmName(metadata: Metadata) {
 
 export async function runChecks(req: Request & dcl.DecentralandSignatureData<Metadata>, parcel?: number[]) {
   const metadata = req.authMetadata
-  const userAddress = req.auth
+  // const userAddress = req.auth
 
   console.log(metadata)
 
