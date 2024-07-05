@@ -2,7 +2,7 @@ import { Request } from 'express'
 import * as dcl from 'decentraland-crypto-middleware'
 
 import { denyListedIPS, TESTS_ENABLED, Metadata, realmWhiteList } from './utils'
-import { checkCoords, checkPlayer } from './verifyOnMap'
+import { checkCoords } from './verifyOnMap'
 
 export function checkOrigin(req: Request) {
   const validOrigins = ['https://decentraland.org', 'https://decentraland.zone']
@@ -24,7 +24,7 @@ export function checkRealmName(metadata: Metadata) {
 
 export async function runChecks(req: Request & dcl.DecentralandSignatureData<Metadata>, parcel?: number[]) {
   const metadata = req.authMetadata
-  const userAddress = req.auth
+  // const userAddress = req.auth
 
   console.log(metadata)
 

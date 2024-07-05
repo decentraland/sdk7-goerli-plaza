@@ -2,7 +2,7 @@ import { Request } from 'express'
 import dcl from 'decentraland-crypto-middleware'
 
 import { denyListedIPS, TESTS_ENABLED, Metadata, realmWhiteList } from '../utils'
-import { checkCoords, checkPlayer } from './verifyOnMap'
+import { checkCoords } from './verifyOnMap'
 
 export function checkOrigin(req: Request) {
   const validOrigins = ['https://decentraland.org', 'https://decentraland.zone']
