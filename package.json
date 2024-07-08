@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "dependencies": {
     "@dcl-sdk/utils": "latest",
+    "@dcl/js-runtime": "latest",
     "@dcl/sdk": "latest",
     "glob": "^9.3.4",
     "prettier": "^2.8.8",
@@ -22,6 +23,7 @@
     "format": "./node_modules/.bin/prettier '**/*.ts' -w",
     "lint": "./node_modules/.bin/prettier '**/*.ts' --check",
     "reinstall-next": "./build-all.sh",
+    "show-scene-parcels": "node scripts/showSceneParcels.js",
     "start": "sdk-commands start",
     "sync": "syncpack format --config .syncpackrc.json  --source \"*/package.json\" --source package.json",
     "test": "syncpack list-mismatches --config .syncpackrc.json  --source \"*/package.json\" --source package.json",

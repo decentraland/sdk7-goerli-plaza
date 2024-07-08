@@ -18,9 +18,10 @@ import resources from '../../resources'
 import { sceneMessageBus } from '../serverHandler'
 import { sequencerConfig } from './sequenceSystem'
 
-
 export let stones: Stone[][] = []
-if (SeqNumbers.getOrNull(engine.RootEntity) === null) { SeqNumbers.create(engine.RootEntity, { seq: [] }) }
+if (SeqNumbers.getOrNull(engine.RootEntity) === null) {
+  SeqNumbers.create(engine.RootEntity, { seq: [] })
+}
 export let seqNumbers: number[][] = SeqNumbers.getMutable(engine.RootEntity).seq
 
 export class Stone {
@@ -30,11 +31,7 @@ export class Stone {
   musicDropEntity: Entity = engine.addEntity()
   noteSrc: string
   pos: { beat: number; note: number }
-  constructor(
-    _pos: { beat: number; note: number },
-    _noteSrc: string,
-    _parent: Entity,
-  ) {
+  constructor(_pos: { beat: number; note: number }, _noteSrc: string, _parent: Entity) {
     let seqOffset = Vector3.create(127.5 - 120, 0.3, 222 - 225)
     this.pos = _pos
     this.noteSrc = _noteSrc
@@ -46,11 +43,7 @@ export class Stone {
     })
     Transform.create(this.stoneEntity, {
       parent: _parent,
-      position: Vector3.create(
-        seqOffset.x - this.pos.beat,
-        seqOffset.y,
-        seqOffset.z + this.pos.note
-      ),
+      position: Vector3.create(seqOffset.x - this.pos.beat, seqOffset.y, seqOffset.z + this.pos.note),
       scale: Vector3.One(),
       rotation: Quaternion.fromEulerDegrees(180, 0, 0)
     })
@@ -82,19 +75,13 @@ export class Stone {
           canClick = true
         }, 1000)
 
-        console.log(
-          'zenquencer. stone click. pos:',
-          this.pos,
-          'stoneOn:',
-          StoneStatus.get(this.stoneEntity).stoneOn
-        )
+        console.log('zenquencer. stone click. pos:', this.pos, 'stoneOn:', StoneStatus.get(this.stoneEntity).stoneOn)
 
         const mutableStoneStatus = StoneStatus.getMutable(this.stoneEntity)
         if (mutableStoneStatus.stoneOn) {
           sceneMessageBus.emit('hideStone', { pos: this.pos })
           mutableStoneStatus.stoneOn = false
           this.stoneOn = false
-
         } else {
           sceneMessageBus.emit('showStone', { pos: this.pos })
           mutableStoneStatus.stoneOn = true
@@ -138,22 +125,14 @@ export class Stone {
     if (StoneStatus.get(this.stoneEntity).stoneOn) return
     StoneStatus.getMutable(this.stoneEntity).stoneOn = true
     this.stoneOn = true
-    console.log(
-      'zenquencer. stone. activate. pos:',
-      this.pos.beat,
-      this.pos.note
-    )
+    console.log('zenquencer. stone. activate. pos:', this.pos.beat, this.pos.note)
     Transform.getMutable(this.noteEntity).scale = Vector3.One()
   }
   deactivate() {
     if (!StoneStatus.get(this.stoneEntity).stoneOn) return
     StoneStatus.getMutable(this.stoneEntity).stoneOn = false
     this.stoneOn = false
-    console.log(
-      'zenquencer. stone. deactivate. pos:',
-      this.pos.beat,
-      this.pos.note
-    )
+    console.log('zenquencer. stone. deactivate. pos:', this.pos.beat, this.pos.note)
     Transform.getMutable(this.noteEntity).scale = Vector3.Zero()
   }
   play() {
@@ -188,14 +167,9 @@ export class Stone {
   }
 }
 
-
 sceneMessageBus.on('showStone', (e) => {
   e = e.pos
-  console.log(
-    'zenquencer. sceneMessageBus. showStone. e:',
-    e,
-    stones[e.beat][e.note]
-  )
+  console.log('zenquencer. sceneMessageBus. showStone. e:', e, stones[e.beat][e.note])
   stones[e.beat][e.note].activate()
 
   if (!sequencerConfig.playingMode) {
@@ -204,17 +178,11 @@ sceneMessageBus.on('showStone', (e) => {
 
   seqNumbers[e.beat][e.note] = 1
   SeqNumbers.createOrReplace(engine.RootEntity, { seq: seqNumbers })
-
-
 })
 
 sceneMessageBus.on('hideStone', (e) => {
   e = e.pos
-  console.log(
-    'zenquencer. sceneMessageBus. hideStone. e:',
-    e,
-    stones[e.beat][e.note]
-  )
+  console.log('zenquencer. sceneMessageBus. hideStone. e:', e, stones[e.beat][e.note])
 
   stones[e.beat][e.note].deactivate()
 

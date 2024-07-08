@@ -1,0 +1,29 @@
+{
+  "name": "functions",
+  "scripts": {
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "start": "npm run build && node dist/index.js",
+    "serve": "node dist/index.js"
+  },
+  "engines": {
+    "node": "18"
+  },
+  "main": "dist/index.js",
+  "dependencies": {
+    "@types/sqlite3": "^3.1.11",
+    "cors": "latest",
+    "decentraland-crypto-middleware": "latest",
+    "dotenv": "^16.4.5",
+    "express": "latest",
+    "sqlite": "^5.1.1",
+    "sqlite3": "^5.1.7"
+  },
+  "devDependencies": {
+    "@types/koa": "latest",
+    "@types/passport-strategy": "latest",
+    "@well-known-components/interfaces": "latest",
+    "typescript": "latest"
+  },
+  "private": true
+}

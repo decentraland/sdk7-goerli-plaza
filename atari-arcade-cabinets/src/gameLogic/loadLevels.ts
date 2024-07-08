@@ -1,24 +1,14 @@
 import * as utils from '@dcl-sdk/utils'
 import { Entity, Transform, engine } from '@dcl/sdk/ecs'
 import { Color3, Quaternion, Vector3 } from '@dcl/sdk/math'
-import {
-  ArcadeFlag,
-  ArcadeScreenFlag,
-  ArcadeTriggerFlag,
-  HasGameLoaded
-} from '../components/definitions'
+import { ArcadeFlag, ArcadeScreenFlag, ArcadeTriggerFlag, HasGameLoaded } from '../components/definitions'
 import { loadPlayer, unloadPlayer } from '../player'
 import { loadAtariBricks } from './atariMethods'
 import { BITCOIN_BRICKS } from './bitcoinConstants'
 import { DECENTRALAND_BRICKS } from './decentralandConstants'
 import { ETHEREUM_BRICKS } from './ethereumConstants'
 import { Games } from './sharedConstants'
-import {
-  loadBricks,
-  unloadBricks,
-  createWallsAndBackground,
-  readyPlayerOne
-} from './sharedMethods'
+import { loadBricks, unloadBricks, createWallsAndBackground, readyPlayerOne } from './sharedMethods'
 
 /**
  * Get arcades and loads levels.

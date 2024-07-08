@@ -16,10 +16,10 @@ export function main() {
   setupUi()
 
   // Shortcut to make an NFT picture frame
-  MakeNFTFrame('0x07ccfd0fbada4ac3c22ecd38037ca5e5c0ad8cfa', '48', 8, 1, 8, 1, 1, 1, 0, 0, 0)
+  MakeNFTFrame('0x22c1f6050e56d2876009903609a2cc3fef83b415', '15726', 8, 1, 8, 1, 1, 1, 0, 0, 0)
 
   // Shortcut to make an NFT picture frame that is also clickable and includes a UI
-  createFullNFT('0xc1f4b0eea2bd6690930e6c66efd3e197d620b9c2', '4068', 10, 1, 10, 1, 1, 1, 0, 0, 0)
+  createFullNFT('0x41a322b28d0ff354040e2cbc676f0320d8c8850d', '3734', 10, 1, 10, 1, 1, 1, 0, 0, 0)
 
   // Manually create an NFT picture frame that is also clickable and includes a UI
   const manualNFT = engine.addEntity()
@@ -27,7 +27,7 @@ export function main() {
     position: Vector3.create(5, 1, 5)
   })
   NftShape.create(manualNFT, {
-    urn: 'urn:decentraland:ethereum:erc721:0x06012c8cf97bead5deae237070f9587f8e7a266d:229795',
+    urn: 'urn:decentraland:matic:erc721:0xd27a967ee4f66226d49a18d4f9fd98f4aa0b26df:9567',
     color: Color4.Red(),
     style: NftFrameType.NFT_GOLD_CARVED
   })

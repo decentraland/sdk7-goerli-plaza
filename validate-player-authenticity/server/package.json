@@ -16,6 +16,7 @@
   "dependencies": {
     "cors": "latest",
     "decentraland-crypto-middleware": "latest",
+    "dotenv": "^16.4.5",
     "express": "latest",
     "isomorphic-fetch": "latest"
   },

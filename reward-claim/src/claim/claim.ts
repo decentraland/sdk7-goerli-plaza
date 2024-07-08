@@ -2,7 +2,7 @@ import { getRealm } from '~system/Runtime'
 import { signedFetch } from '~system/SignedFetch'
 // import { GAME_STATE } from "../gameData"
 import { ClaimConfig, ClaimConfigInstType, USE_CAPTCHA } from './claimConfig'
-import { confirmationUI, alreadyClaimedUI, errorUI, breakLines, captchaUI } from './ui'
+import { confirmationUI, alreadyClaimedUI, errorUI, captchaUI } from './ui'
 import * as utils from '@dcl-sdk/utils'
 import { getPlayer } from '@dcl/sdk/players'
 
@@ -96,7 +96,7 @@ async function processResponse(response: any, campaign_key: string) {
 
   if (json.ok === false) {
     console.log('ERROR:' + json.error)
-    errorUI(json.error ? breakLines(json.error, 20) : 'Invalid response')
+    errorUI(json.error ? json.error : 'Invalid response')
   }
 
   alreadyClaimed.push(campaign_key)
@@ -146,7 +146,7 @@ export async function validateCaptcha(
 
   if (json.ok === false) {
     console.log('ERROR:' + json.error)
-    errorUI(json.error ? breakLines(json.error, 20) : 'Invalid response')
+    errorUI(json.error ? json.error : 'Invalid response')
     return false
   }
 

@@ -8,19 +8,20 @@ import { artPositions } from './artData'
 /// need to export a function into arthover onpointer down
 // function should be able to cover current pointer eventss present in nfts
 
-let urn6 = 'urn:decentraland:ethereum:erc721:0x06012c8cf97bead5deae237070f9587f8e7a266d:558536'
-let urn7 = 'urn:decentraland:ethereum:erc721:0xd73be539d6b2076bab83ca6ba62dfe189abc6bbe:64359'
+let urn6 = 'urn:decentraland:ethereum:erc721:0x7552589075e94b41819ddfef622f07160b5b813c:32'
+let urn7 = 'urn:decentraland:matic:erc721:0x2d58a44d6c0a355de25761fb33a1f6269a97e2c5:1855'
 let urn3 = 'urn:decentraland:ethereum:erc721:0x41a322b28d0ff354040e2cbc676f0320d8c8850d:3734'
-let urn8 = 'urn:decentraland:ethereum:erc721:0xecf7ef42b57ee37a959bf507183c5dd6bf182081:100'
+let urn8 = 'urn:decentraland:matic:erc721:0xe89758f01d76e1f76bc900f6749f56e1e5edc7fc:896'
 let urn11 = 'urn:decentraland:ethereum:erc721:0x06012c8cf97bead5deae237070f9587f8e7a266d:1540722'
-let urn12 = 'urn:decentraland:ethereum:erc721:0x5B8c7104122aB9d33550d43D2343B20DcD455126:72'
+let urn12 = 'urn:decentraland:matic:erc721:0xd27a967ee4f66226d49a18d4f9fd98f4aa0b26df:9567'
 let urn13 = 'urn:decentraland:ethereum:erc721:0x22c1f6050e56d2876009903609a2cc3fef83b415:13726'
-let urn16 = 'urn:decentraland:ethereum:erc721:0xe977bfe8b83db27616ec10c7862066d37e0326a9:68'
+let urn16 = 'urn:decentraland:matic:erc721:0x0520501f5fec9ada8198b40524ce1decac303ca7:9886'
 let urn17 = 'urn:decentraland:ethereum:erc721:0xdd9c7bc159dacb19c9f6b9d7e23948c87aa2397f:1'
 let urn18 = 'urn:decentraland:ethereum:erc721:0x22c1f6050e56d2876009903609a2cc3fef83b415:15726'
 let urn19 = 'urn:decentraland:ethereum:erc721:0x22c1f6050e56d2876009903609a2cc3fef83b415:13655'
 let urn20 = 'urn:decentraland:ethereum:erc721:0x22c1f6050e56d2876009903609a2cc3fef83b415:11975'
-let urn21 = 'urn:decentraland:ethereum:erc721::0x22c1f6050e56d2876009903609a2cc3fef83b415:12123'
+let urn21 =
+  'urn:decentraland:ethereum:erc721:0x495f947276749ce646f68ac8c248420045cb7b5e:51297453693788132298669809830038636826071347270421607062891710071363946414095'
 let urn22 = 'urn:decentraland:ethereum:erc721:0x22c1f6050e56d2876009903609a2cc3fef83b415:12673'
 let urn23 = 'urn:decentraland:ethereum:erc721:0x22c1f6050e56d2876009903609a2cc3fef83b415:13493'
 let urn24 = 'urn:decentraland:ethereum:erc721:0x22c1f6050e56d2876009903609a2cc3fef83b415:13294'
@@ -44,7 +45,7 @@ export const NFTdata: NFTdata[] = [
     position: artPositions[0].position,
     rotation: artPositions[0].rotation,
     scale: artPositions[0].scale,
-    urn: 'urn:decentraland:ethereum:erc721:0x06012c8cf97bead5deae237070f9587f8e7a266d:558536', // Example with urn path
+    urn: 'urn:decentraland:ethereum:erc721:0xecf7ef42b57ee37a959bf507183c5dd6bf182081:100', // Example with urn path
     frame: classicFrame,
     color: Color3.Yellow(),
     hoverText: 'Click'

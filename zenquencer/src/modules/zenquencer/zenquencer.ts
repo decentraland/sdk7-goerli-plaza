@@ -1,21 +1,9 @@
 import * as utils from '@dcl-sdk/utils'
-import {
-  Animator,
-  Entity,
-  GltfContainer,
-  InputAction,
-  Transform,
-  engine,
-  pointerEventsSystem
-} from '@dcl/sdk/ecs'
+import { Animator, Entity, GltfContainer, InputAction, Transform, engine, pointerEventsSystem } from '@dcl/sdk/ecs'
 import { Quaternion, Vector3 } from '@dcl/sdk/math'
 import resources from '../../resources'
 import { sceneMessageBus } from '../serverHandler'
-import {
-  PlayingMode,
-  activateSequenceSystem,
-  sequencerConfig
-} from './sequenceSystem'
+import { PlayingMode, activateSequenceSystem, sequencerConfig } from './sequenceSystem'
 import { Stone, seqNumbers, stones } from './stones'
 import { BEATS_LENGHT, TOTAL_DURATION } from './gameConfig'
 
@@ -57,16 +45,8 @@ export function addZenquencer() {
     sequencerConfig.durationLeft = TOTAL_DURATION
     sequencerConfig.currentLoop = 0
     Transform.getMutable(linear).rotation = Quaternion.fromEulerDegrees(0, 0, 0)
-    Transform.getMutable(random).rotation = Quaternion.fromEulerDegrees(
-      0,
-      180,
-      0
-    )
-    Transform.getMutable(neutral).rotation = Quaternion.fromEulerDegrees(
-      0,
-      0,
-      0
-    )
+    Transform.getMutable(random).rotation = Quaternion.fromEulerDegrees(0, 180, 0)
+    Transform.getMutable(neutral).rotation = Quaternion.fromEulerDegrees(0, 0, 0)
     Animator.getMutable(tube).states[0].playing = true
     activateSequenceSystem()
   })
@@ -77,189 +57,64 @@ export function addZenquencer() {
     sequencerConfig.durationLeft = TOTAL_DURATION
     sequencerConfig.currentLoop = 0
     Transform.getMutable(random).rotation = Quaternion.fromEulerDegrees(0, 0, 0)
-    Transform.getMutable(linear).rotation = Quaternion.fromEulerDegrees(
-      0,
-      180,
-      0
-    )
-    Transform.getMutable(neutral).rotation = Quaternion.fromEulerDegrees(
-      0,
-      0,
-      0
-    )
+    Transform.getMutable(linear).rotation = Quaternion.fromEulerDegrees(0, 180, 0)
+    Transform.getMutable(neutral).rotation = Quaternion.fromEulerDegrees(0, 0, 0)
     Animator.getMutable(tube).states[0].playing = true
     activateSequenceSystem()
   })
 
   sceneMessageBus.on('seqOff', (e: any) => {
     sequencerConfig.playingMode = PlayingMode.OFF
-    Transform.getMutable(linear).rotation = Quaternion.fromEulerDegrees(
-      0,
-      180,
-      0
-    )
-    Transform.getMutable(random).rotation = Quaternion.fromEulerDegrees(
-      0,
-      180,
-      0
-    )
-    Transform.getMutable(neutral).rotation = Quaternion.fromEulerDegrees(
-      0,
-      180,
-      0
-    )
+    Transform.getMutable(linear).rotation = Quaternion.fromEulerDegrees(0, 180, 0)
+    Transform.getMutable(random).rotation = Quaternion.fromEulerDegrees(0, 180, 0)
+    Transform.getMutable(neutral).rotation = Quaternion.fromEulerDegrees(0, 180, 0)
   })
 
   sceneMessageBus.on('seqSpeed', (e: any) => {
     if (sequencerConfig.playingMode) {
       let newSpeed = e.speed * 4
 
-      console.log(
-        'zenquencer. sceneMessageBus. seqSpeed. new loop duration = ',
-        newSpeed
-      )
+      console.log('zenquencer. sceneMessageBus. seqSpeed. new loop duration = ', newSpeed)
 
       sequencerConfig.loopDuration = newSpeed
-      sequencerConfig.beatDuration =
-        sequencerConfig.loopDuration / sequencerConfig.beats
-      sequencerConfig.currentLoop =
-        sequencerConfig.currentBeat * sequencerConfig.beatDuration
+      sequencerConfig.beatDuration = sequencerConfig.loopDuration / sequencerConfig.beats
+      sequencerConfig.currentLoop = sequencerConfig.currentBeat * sequencerConfig.beatDuration
 
       switch (e.speed) {
         case 12:
-          Transform.getMutable(slow2).rotation = Quaternion.fromEulerDegrees(
-            0,
-            0,
-            0
-          )
-          Transform.getMutable(slow1).rotation = Quaternion.fromEulerDegrees(
-            0,
-            0,
-            0
-          )
-          Transform.getMutable(neutral).rotation = Quaternion.fromEulerDegrees(
-            0,
-            0,
-            0
-          )
-          Transform.getMutable(fast1).rotation = Quaternion.fromEulerDegrees(
-            0,
-            180,
-            0
-          )
-          Transform.getMutable(fast2).rotation = Quaternion.fromEulerDegrees(
-            0,
-            180,
-            0
-          )
+          Transform.getMutable(slow2).rotation = Quaternion.fromEulerDegrees(0, 0, 0)
+          Transform.getMutable(slow1).rotation = Quaternion.fromEulerDegrees(0, 0, 0)
+          Transform.getMutable(neutral).rotation = Quaternion.fromEulerDegrees(0, 0, 0)
+          Transform.getMutable(fast1).rotation = Quaternion.fromEulerDegrees(0, 180, 0)
+          Transform.getMutable(fast2).rotation = Quaternion.fromEulerDegrees(0, 180, 0)
           break
         case 8:
-          Transform.getMutable(slow2).rotation = Quaternion.fromEulerDegrees(
-            0,
-            180,
-            0
-          )
-          Transform.getMutable(slow1).rotation = Quaternion.fromEulerDegrees(
-            0,
-            0,
-            0
-          )
-          Transform.getMutable(neutral).rotation = Quaternion.fromEulerDegrees(
-            0,
-            0,
-            0
-          )
-          Transform.getMutable(fast1).rotation = Quaternion.fromEulerDegrees(
-            0,
-            180,
-            0
-          )
-          Transform.getMutable(fast2).rotation = Quaternion.fromEulerDegrees(
-            0,
-            180,
-            0
-          )
+          Transform.getMutable(slow2).rotation = Quaternion.fromEulerDegrees(0, 180, 0)
+          Transform.getMutable(slow1).rotation = Quaternion.fromEulerDegrees(0, 0, 0)
+          Transform.getMutable(neutral).rotation = Quaternion.fromEulerDegrees(0, 0, 0)
+          Transform.getMutable(fast1).rotation = Quaternion.fromEulerDegrees(0, 180, 0)
+          Transform.getMutable(fast2).rotation = Quaternion.fromEulerDegrees(0, 180, 0)
           break
         case 4:
-          Transform.getMutable(slow2).rotation = Quaternion.fromEulerDegrees(
-            0,
-            180,
-            0
-          )
-          Transform.getMutable(slow1).rotation = Quaternion.fromEulerDegrees(
-            0,
-            180,
-            0
-          )
-          Transform.getMutable(neutral).rotation = Quaternion.fromEulerDegrees(
-            0,
-            0,
-            0
-          )
-          Transform.getMutable(fast1).rotation = Quaternion.fromEulerDegrees(
-            0,
-            180,
-            0
-          )
-          Transform.getMutable(fast2).rotation = Quaternion.fromEulerDegrees(
-            0,
-            180,
-            0
-          )
+          Transform.getMutable(slow2).rotation = Quaternion.fromEulerDegrees(0, 180, 0)
+          Transform.getMutable(slow1).rotation = Quaternion.fromEulerDegrees(0, 180, 0)
+          Transform.getMutable(neutral).rotation = Quaternion.fromEulerDegrees(0, 0, 0)
+          Transform.getMutable(fast1).rotation = Quaternion.fromEulerDegrees(0, 180, 0)
+          Transform.getMutable(fast2).rotation = Quaternion.fromEulerDegrees(0, 180, 0)
           break
         case 2:
-          Transform.getMutable(slow2).rotation = Quaternion.fromEulerDegrees(
-            0,
-            180,
-            0
-          )
-          Transform.getMutable(slow1).rotation = Quaternion.fromEulerDegrees(
-            0,
-            180,
-            0
-          )
-          Transform.getMutable(neutral).rotation = Quaternion.fromEulerDegrees(
-            0,
-            0,
-            0
-          )
-          Transform.getMutable(fast1).rotation = Quaternion.fromEulerDegrees(
-            0,
-            0,
-            0
-          )
-          Transform.getMutable(fast2).rotation = Quaternion.fromEulerDegrees(
-            0,
-            180,
-            0
-          )
+          Transform.getMutable(slow2).rotation = Quaternion.fromEulerDegrees(0, 180, 0)
+          Transform.getMutable(slow1).rotation = Quaternion.fromEulerDegrees(0, 180, 0)
+          Transform.getMutable(neutral).rotation = Quaternion.fromEulerDegrees(0, 0, 0)
+          Transform.getMutable(fast1).rotation = Quaternion.fromEulerDegrees(0, 0, 0)
+          Transform.getMutable(fast2).rotation = Quaternion.fromEulerDegrees(0, 180, 0)
           break
         case 1:
-          Transform.getMutable(slow2).rotation = Quaternion.fromEulerDegrees(
-            0,
-            180,
-            0
-          )
-          Transform.getMutable(slow1).rotation = Quaternion.fromEulerDegrees(
-            0,
-            180,
-            0
-          )
-          Transform.getMutable(neutral).rotation = Quaternion.fromEulerDegrees(
-            0,
-            0,
-            0
-          )
-          Transform.getMutable(fast1).rotation = Quaternion.fromEulerDegrees(
-            0,
-            0,
-            0
-          )
-          Transform.getMutable(fast2).rotation = Quaternion.fromEulerDegrees(
-            0,
-            0,
-            0
-          )
+          Transform.getMutable(slow2).rotation = Quaternion.fromEulerDegrees(0, 180, 0)
+          Transform.getMutable(slow1).rotation = Quaternion.fromEulerDegrees(0, 180, 0)
+          Transform.getMutable(neutral).rotation = Quaternion.fromEulerDegrees(0, 0, 0)
+          Transform.getMutable(fast1).rotation = Quaternion.fromEulerDegrees(0, 0, 0)
+          Transform.getMutable(fast2).rotation = Quaternion.fromEulerDegrees(0, 0, 0)
           break
       }
     } else {
