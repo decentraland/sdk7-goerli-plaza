@@ -52,14 +52,14 @@ export module TargetObject {
     if (isDebugging)
       console.log(
         'Target Object: attempting to create object of type=' +
-          data.type +
-          ' at pos(x=' +
-          data.pos.x +
-          ', y=' +
-          data.pos.y +
-          ', z=' +
-          data.pos.z +
-          ')...'
+        data.type +
+        ' at pos(x=' +
+        data.pos.x +
+        ', y=' +
+        data.pos.y +
+        ', z=' +
+        data.pos.z +
+        ')...'
       )
     const def = TargetStyleData[data.type]
 
@@ -110,7 +110,7 @@ export module TargetObject {
     //remove all unused static peices
     while (entry.TargetStaticPieces.length > staticPieces) {
       const piece = entry.TargetStaticPieces.pop()
-      if (piece) engine.removeEntity(piece)
+      if (piece) engine.removeEntityWithChildren(piece)
     }
     //	process all rotating pieces for target definition
     var rotatingPieceCount: number = 0
@@ -145,7 +145,7 @@ export module TargetObject {
     //remove all unused rotating peices
     while (entry.TargetRotatingPieces.length > rotatingPieceCount) {
       const piece = entry.TargetRotatingPieces.pop()
-      if (piece) engine.removeEntity(piece)
+      if (piece) engine.removeEntityWithChildren(piece)
     }
 
     //provide entry reference
@@ -192,6 +192,6 @@ export module TargetObject {
   }
   /** destroys given object (removes from engine and pool) */
   export function Destroy(entry: TargetObjectPiece) {
-    engine.removeEntity(entry.EntityParent)
+    engine.removeEntityWithChildren(entry.EntityParent)
   }
 }

@@ -130,7 +130,7 @@ export function VanishCrate(crate: Entity) {
 
   utils.timers.setTimeout(() => {
     utils.playSound('sounds/star-collect.mp3', false, Transform.get(crate).position)
-    engine.removeEntity(crate)
+    engine.removeEntityWithChildren(crate)
   }, 1000)
 
   // utils.tweens.startScaling(crate, Vector3.One(), Vector3.Zero(), 1, utils.InterpolationType.EASEINBOUNCE, () => {
