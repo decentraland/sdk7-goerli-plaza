@@ -106,7 +106,6 @@ const uiComponent = () => (
 
     <Label
       uiTransform={{
-        width: 76 * scaleMultiplier,
         height: 76 * scaleMultiplier,
         positionType: 'absolute',
         position: { top: '51%' }

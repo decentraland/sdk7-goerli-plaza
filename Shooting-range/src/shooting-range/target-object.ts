@@ -230,6 +230,6 @@ export module TargetObject {
   }
   /** destroys given object (removes from engine and pool) */
   export function Destroy(entity: Entity) {
-    engine.removeEntity(entity)
+    engine.removeEntityWithChildren(entity)
   }
 }

@@ -131,7 +131,7 @@ export function createSubScene(parentPos: Entity, id: number) {
     () => {
       console.log('LEFT')
       for (const painting of createdPaintings) {
-        engine.removeEntity(painting)
+        engine.removeEntityWithChildren(painting)
       }
 
       createdPaintings = [] // Clear the array
