@@ -2,10 +2,10 @@ import { Request } from 'express'
 import * as dcl from 'decentraland-crypto-middleware'
 
 import { denyListedIPS, TESTS_ENABLED, Metadata, realmWhiteList } from './utils'
-import { checkCoords, checkPlayer } from './verifyOnMap'
+import { checkCoords } from './verifyOnMap'
 
 export function checkOrigin(req: Request) {
-  const validOrigins = ['https://play.decentraland.org', 'https://play.decentraland.zone']
+  const validOrigins = ['https://decentraland.org', 'https://decentraland.zone']
   return validOrigins.includes(req.header('origin')!)
 }
 
@@ -17,13 +17,14 @@ export function checkBannedIPs(req: Request) {
 export function checkRealmName(metadata: Metadata) {
   return (
     (TESTS_ENABLED && (metadata.realm.hostname === 'localhost' || metadata.realm.serverName === 'LocalPreview')) ||
-    realmWhiteList.includes(metadata.realm.serverName!)
+    realmWhiteList.includes(metadata.realm.serverName!) ||
+    metadata.realm.serverName!.startsWith('goerli-plaza')
   )
 }
 
 export async function runChecks(req: Request & dcl.DecentralandSignatureData<Metadata>, parcel?: number[]) {
   const metadata = req.authMetadata
-  const userAddress = req.auth
+  // const userAddress = req.auth
 
   console.log(metadata)
 
@@ -53,13 +54,16 @@ export async function runChecks(req: Request & dcl.DecentralandSignatureData<Met
 
   // Validate that the authchain signature is real
   // validate that the player is in the catalyst & location from the signature
-  const validCatalystPos: boolean | undefined =
-    TESTS_ENABLED && (metadata.realm.hostname === 'localhost' || metadata.realm.serverName === 'LocalPreview')
-      ? true
-      : await checkPlayer(userAddress, metadata.realm.domain!, coordinates)
-  if (!validCatalystPos) {
-    throw new Error('INVALID PLAYER POSITION')
-  }
+
+  // TODO: check if this is going to be maintained due to the deprecation of exposing the player positions
+
+  // const validCatalystPos: boolean | undefined =
+  //   TESTS_ENABLED && (metadata.realm.hostname === 'localhost' || metadata.realm.serverName === 'LocalPreview')
+  //     ? true
+  //     : await checkPlayer(userAddress, metadata.realm.domain!, coordinates)
+  // if (!validCatalystPos) {
+  //   throw new Error('INVALID PLAYER POSITION')
+  // }
 
   // validate that the player is in a valid location for this operation - if a parcel is provided
   const validPos: boolean = parcel?.length ? checkCoords(coordinates, parcel) : true
