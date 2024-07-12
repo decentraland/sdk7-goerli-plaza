@@ -105,14 +105,14 @@ engine.addSystem(() => {
             Transform.getMutable(entity).rotation = Quaternion.fromEulerDegrees(-90, 0, 0)
             GltfContainer.createOrReplace(entity, { src: 'assets/models/splat.glb' })
             utils.timers.setTimeout(() => {
-              engine.removeEntity(entity)
+              engine.removeEntityWithChildren(entity)
             }, 300)
           }, 1000)
 
           const mutableSnow = Snow.getMutable(entity)
           mutableSnow.holding = false
           if (snowParent) {
-            engine.removeEntity(snowParent)
+            engine.removeEntityWithChildren(snowParent)
           }
         }
       }

@@ -154,7 +154,7 @@ export class Stone {
       loop: false
     })
     utils.timers.setTimeout(() => {
-      engine.removeEntity(audioEntity)
+      engine.removeEntityWithChildren(audioEntity)
     }, 7000)
   }
   updateStatus() {

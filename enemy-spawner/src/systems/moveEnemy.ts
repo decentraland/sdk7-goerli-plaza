@@ -18,7 +18,7 @@ export function moveSystem(dt: number) {
     move.hasFinished = move.normalizedTime >= 1
 
     if (move.hasFinished) {
-      engine.removeEntity(entity)
+      engine.removeEntityWithChildren(entity)
     }
   }
 }
