@@ -255,7 +255,7 @@ export function createNFT(data: NFTdata) {
 }
 
 export function removeNFTs(entity: Entity) {
-  engine.removeEntity(entity)
+  engine.removeEntityWithChildren(entity)
 }
 
 export function openNFTlink(id: number) {

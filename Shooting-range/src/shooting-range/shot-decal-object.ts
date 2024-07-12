@@ -59,12 +59,12 @@ export module ShotDecalObject {
     if (isDebugging)
       console.log(
         'Shot Decal Object: attempting to create object at pos(x=' +
-          data.pos.x +
-          ', y=' +
-          data.pos.y +
-          ', z=' +
-          data.pos.z +
-          ')...'
+        data.pos.x +
+        ', y=' +
+        data.pos.y +
+        ', z=' +
+        data.pos.z +
+        ')...'
       )
 
     //attempt to find pre-existing component
@@ -152,6 +152,6 @@ export module ShotDecalObject {
   }
   /** destroys given object (removes from engine and pool) */
   export function Destroy(entity: Entity) {
-    engine.removeEntity(entity)
+    engine.removeEntityWithChildren(entity)
   }
 }
