@@ -7,7 +7,8 @@ import {
   inputSystem,
   AudioSource,
   AvatarAttach,
-  AvatarAnchorPointType
+  AvatarAnchorPointType,
+  Transform
 } from '@dcl/sdk/ecs'
 import { EnemyShip } from '../components/customComponents'
 import { destroyEnemy } from '../enemy'
@@ -33,6 +34,4 @@ export function clickedSystem() {
 
 const soundPlayer = engine.addEntity()
 
-AvatarAttach.create(soundPlayer, {
-  anchorPointId: AvatarAnchorPointType.AAPT_POSITION
-})
+Transform.getOrCreateMutable(soundPlayer).parent = engine.PlayerEntity
