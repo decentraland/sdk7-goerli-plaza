@@ -34,10 +34,10 @@ export function createCrown(model: string, transform: TransformType): Entity {
       const playerPosition = Transform.getOrNull(engine.PlayerEntity)?.position || Vector3.Zero()
       //console.log("engine.PlayerEntity",Transform.getOrNull(engine.PlayerEntity),playerPosition,AudioSource.get(crownPickupSound).playing)
       Transform.getMutable(crownPickupSound).position = playerPosition //.position
-      engine.removeEntity(entity)
+      engine.removeEntityWithChildren(entity)
       utils.triggers.removeTrigger(entity)
     },
-    () => {},
+    () => { },
     Color3.Yellow()
   )
 

@@ -302,5 +302,5 @@ export function createPainting(
 }
 
 export function removePaintings(entity: Entity) {
-  engine.removeEntity(entity)
+  engine.removeEntityWithChildren(entity)
 }
