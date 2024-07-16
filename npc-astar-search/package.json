@@ -1,0 +1,23 @@
+{
+  "name": "npc-astar-search",
+  "version": "1.0.0",
+  "description": "SDK7 Template scene",
+  "scripts": {
+    "start": "sdk-commands start",
+    "deploy": "sdk-commands deploy",
+    "build": "sdk-commands build",
+    "upgrade-sdk": "npm install --save-dev @dcl/sdk@latest",
+    "upgrade-sdk:next": "npm install --save-dev @dcl/sdk@next",
+    "watch": "sdk-commands start"
+  },
+  "devDependencies": {
+    "@dcl/asset-packs": "latest",
+    "@dcl/js-runtime": "7.3.30",
+    "@dcl/sdk": "^7.3.30"
+  },
+  "dependencies": {
+    "@dcl-sdk/utils": "latest",
+    "dcl-npc-toolkit": "latest",
+    "dcl-ui-toolkit": "latest"
+  }
+}
