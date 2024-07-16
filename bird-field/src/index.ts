@@ -58,7 +58,6 @@ function* waitForAllModelsToLoad(engine: IEngine) {
   yield // send all updates to renderer
 
   while (true) {
-
     let areLoading = entitiesToWait.some((entity) => {
       const state = GltfContainerLoadingState.getOrNull(entity)
       return state == null || state.currentState != LoadingState.FINISHED
