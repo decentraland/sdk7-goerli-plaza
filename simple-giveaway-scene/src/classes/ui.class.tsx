@@ -74,14 +74,10 @@ export class UI {
         uiTransform={{
           width: 650,
           height: 325,
-          maxWidth: '100%',
-          maxHeight: '100%',
-          minHeight: '12%',
-          minWidth: '15%',
-          positionType: 'relative',
           justifyContent: 'center',
           alignItems: 'center',
           display: this.master_ui_visible ? 'flex' : 'none',
+          flexDirection: 'column'
         }}
         uiBackground={{
           textureMode: 'stretch',
@@ -90,57 +86,45 @@ export class UI {
         {/* Welcome - Label - Title */}
         <Label
           uiTransform={{
-            height: 13,
-            margin: { top: '9%', bottom: '0%', left: '5%', right: '5%' },
-            positionType: 'absolute',
-            position: { bottom: '0%', top: '0%', left: '0%' },
+            height: 'auto',
+            // width: 'auto',
             display: this.welcome_ui_visible ? 'flex' : 'none',
           }}
           value={`Welcome to a Simple Recurrent Giveaway Scene!`}
           fontSize={18}
-          font='sans-serif'
           color={Color4.fromHexString("#000000")}
         />
         {/* Welcome - Label - Subtitle */}
         <Label
           uiTransform={{
-            height: 13,
-            margin: { top: '21%', bottom: '0%', left: '5%', right: '5%' },
-            positionType: 'absolute',
-            position: { bottom: '0%', top: '0%', left: '0%' },
+            height: 'auto',
             display: this.welcome_ui_visible ? 'flex' : 'none',
           }}
           value={`*Stay 1 minute to Receive a Free Wearable \n *You can Claim 1 per/day (Max 3)`}
           fontSize={15}
-          font='sans-serif'
           color={Color4.Gray()}
         />
         {/* Testnet - Label - Subtitle */}
         <Label
           uiTransform={{
-            margin: { top: '28%', bottom: '0%', left: '5%', right: '5%' },
-            positionType: 'absolute',
-            position: { bottom: '0%', top: '0%', left: '0%' },
+            height: 'auto',
             display: this.welcome_ui_visible ? 'flex' : 'none',
           }}
           value={`*Wearables reside in the Amoy Polygon testnet`}
           fontSize={15}
-          font='sans-serif'
           color={Color4.Gray()}
         />
         {/* Timer - Label */}
         <Label
           uiTransform={{
-            height: 13,
-            margin: { top: '20%', bottom: '0%', left: '5%', right: '5%' },
-            positionType: 'relative',
-            position: { bottom: '0%', top: '0%', left: '0%' },
+            height: 'auto',
             display: this.timer_label_visible ? 'flex' : 'none',
           }}
           value={`Time left: ${this.timerText}`}
           color={this.timerTextColor}
           fontSize={15}
         />
+
         {/* Wearable - Label - Title */}
         <Label
           uiTransform={{
@@ -153,7 +137,6 @@ export class UI {
           value={`${this.data_wearableName}\nWearable incoming! `}
           fontSize={18}
           color={Color4.Black()}
-          font='sans-serif'
           textAlign='middle-left'
         />
         {/* Wearable - Label - Data */}
@@ -226,7 +209,6 @@ export class UI {
           }}
           value={`Please Solve this Captcha`}
           fontSize={18}
-          font='sans-serif'
           color={Color4.fromHexString("#000000")}
         />
         {/* Captcha - Image */}
@@ -291,7 +273,6 @@ export class UI {
           value={this.error}
           fontSize={18}
           color={Color4.Red()}
-          font='sans-serif'
           textAlign='middle-center'
         />
         {/* Already Claimed - Label */}
@@ -306,7 +287,6 @@ export class UI {
           value={'You already claimed this wearable!'}
           fontSize={18}
           color={Color4.Red()}
-          font='sans-serif'
           textAlign='middle-center'
         />
       </UiEntity>
