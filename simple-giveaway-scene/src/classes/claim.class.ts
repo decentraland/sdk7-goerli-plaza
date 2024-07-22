@@ -99,7 +99,7 @@ export class Claim {
     if (json.ok === false) {
       console.log('ERROR:' + json.error)
       this.gameController.ui.errorUI(
-        json.error ? this.gameController.ui.breakLines(json.error, 20) : 'Invalid response'
+        json.error ? json.error : 'Invalid response'
       )
     }
 
@@ -142,7 +142,7 @@ export class Claim {
     if (json.ok === false) {
       console.log('ERROR:' + json.error)
       this.gameController.ui.errorUI(
-        json.error ? this.gameController.ui.breakLines(json.error, 20) : 'Invalid response'
+        json.error ? json.error : 'Invalid response'
       )
       return false
     }
@@ -155,7 +155,7 @@ export class Claim {
     } else {
       const errorMessage = (await update?.text()) ?? 'Error undefined'
       this.gameController.ui.errorUI(
-        errorMessage ? this.gameController.ui.breakLines(errorMessage, 20) : 'Invalid response'
+        errorMessage ? errorMessage : 'Invalid response'
       )
     }
   }
