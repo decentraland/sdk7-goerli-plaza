@@ -129,11 +129,11 @@ export class UI {
         <Label
           uiTransform={{
             height: 'auto',
-            margin: { top: '4%', bottom: '0%', left: '0%', right: '0%' },
+            margin: { top: '2%', bottom: '2%', left: '0%', right: '0%' },
             // position: { bottom: '0%', top: '13%', left: '40%' },
             display: this.claim_label_visible ? 'flex' : 'none',
           }}
-          value={`${this.data_wearableName}\nWearable incoming! `}
+          value={`${this.data_wearableName} Wearable incoming! `}
           fontSize={18}
           color={Color4.Black()}
           textAlign='middle-center'
