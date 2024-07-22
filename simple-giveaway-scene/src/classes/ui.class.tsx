@@ -90,9 +90,8 @@ export class UI {
         {/* Welcome - Label - Title */}
         <Label
           uiTransform={{
-            width: 13,
             height: 13,
-            margin: { top: '9%', bottom: '0%', left: '50%', right: '50%' },
+            margin: { top: '9%', bottom: '0%', left: '5%', right: '5%' },
             positionType: 'absolute',
             position: { bottom: '0%', top: '0%', left: '0%' },
             display: this.welcome_ui_visible ? 'flex' : 'none',
@@ -105,9 +104,8 @@ export class UI {
         {/* Welcome - Label - Subtitle */}
         <Label
           uiTransform={{
-            width: 13,
             height: 13,
-            margin: { top: '21%', bottom: '0%', left: '50%', right: '50%' },
+            margin: { top: '21%', bottom: '0%', left: '5%', right: '5%' },
             positionType: 'absolute',
             position: { bottom: '0%', top: '0%', left: '0%' },
             display: this.welcome_ui_visible ? 'flex' : 'none',
@@ -120,9 +118,7 @@ export class UI {
         {/* Testnet - Label - Subtitle */}
         <Label
           uiTransform={{
-            width: 13,
-            height: 13,
-            margin: { top: '28%', bottom: '0%', left: '50%', right: '50%' },
+            margin: { top: '28%', bottom: '0%', left: '5%', right: '5%' },
             positionType: 'absolute',
             position: { bottom: '0%', top: '0%', left: '0%' },
             display: this.welcome_ui_visible ? 'flex' : 'none',
@@ -135,9 +131,8 @@ export class UI {
         {/* Timer - Label */}
         <Label
           uiTransform={{
-            width: 13,
             height: 13,
-            margin: { top: '20%', bottom: '0%', left: '50%', right: '50%' },
+            margin: { top: '20%', bottom: '0%', left: '5%', right: '5%' },
             positionType: 'relative',
             position: { bottom: '0%', top: '0%', left: '0%' },
             display: this.timer_label_visible ? 'flex' : 'none',
@@ -149,7 +144,6 @@ export class UI {
         {/* Wearable - Label - Title */}
         <Label
           uiTransform={{
-            width: 13,
             height: 13,
             margin: { top: '0%', bottom: '0%', left: '0%', right: '0%' },
             positionType: 'absolute',
@@ -165,7 +159,6 @@ export class UI {
         {/* Wearable - Label - Data */}
         <Label
           uiTransform={{
-            width: 13,
             height: 13,
             margin: { top: '15%', bottom: '0%', left: '0%', right: '0%' },
             positionType: 'absolute',
@@ -180,11 +173,10 @@ export class UI {
         {/* Wearable - Label - Info */}
         <Label
           uiTransform={{
-            width: 13,
             height: 13,
-            margin: { top: '25%', bottom: '0%', left: '0%', right: '0%' },
+            margin: { top: '25%', bottom: '0%', left: '5%', right: '5%' },
             positionType: 'absolute',
-            position: { bottom: '0%', top: '20%', left: '50%' },
+            position: { bottom: '0%', top: '20%' },
             display: this.claim_label_visible ? 'flex' : 'none',
           }}
           value={`*Wearable will arrive in your backpack in a few minutes. `}
@@ -226,9 +218,8 @@ export class UI {
         {/* Captcha - Title */}
         <Label
           uiTransform={{
-            width: 13,
             height: 13,
-            margin: { top: '6%', bottom: '0%', left: '50%', right: '50%' },
+            margin: { top: '6%', bottom: '0%', left: '5%', right: '5%' },
             positionType: 'absolute',
             position: { bottom: '0%', top: '0%', left: '0%' },
             display: this.captcha_ui_visible ? 'flex' : 'none',
@@ -291,9 +282,8 @@ export class UI {
         {/* Error - Label */}
         <Label
           uiTransform={{
-            width: 13,
             height: 13,
-            margin: { top: '20%', bottom: '0%', left: '50%', right: '50%' },
+            margin: { top: '20%', bottom: '0%', left: '5%', right: '5%' },
             positionType: 'absolute',
             position: { bottom: '0%', top: '0%', left: '0%' },
             display: this.error_ui_visible ? 'flex' : 'none',
@@ -307,9 +297,8 @@ export class UI {
         {/* Already Claimed - Label */}
         <Label
           uiTransform={{
-            width: 13,
             height: 13,
-            margin: { top: '20%', bottom: '0%', left: '50%', right: '50%' },
+            margin: { top: '20%', bottom: '0%', left: '5%', right: '5%' },
             positionType: 'absolute',
             position: { bottom: '0%', top: '0%', left: '0%' },
             display: this.already_claimed_ui_visible ? 'flex' : 'none',

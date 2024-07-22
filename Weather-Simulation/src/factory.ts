@@ -10,6 +10,7 @@ import {
 } from '@dcl/sdk/ecs'
 import { IsPrecip, PrecipType, Spin } from './components'
 import { flakeMaterial, raindropMaterial } from './materials'
+import { Quaternion } from '@dcl/sdk/math'
 
 // House factory
 export function createHouse(): Entity {
@@ -46,7 +47,7 @@ export function createLightning(): Entity {
 // Rain drop factory
 export function createRaindrop(): void {
   const drop = engine.addEntity()
-  MeshRenderer.setPlane(drop)
+
   Transform.create(drop, {
     position: {
       x: Math.random() * 8 + 4,
@@ -59,7 +60,13 @@ export function createRaindrop(): void {
   Billboard.create(drop, {
     billboardMode: BillboardMode.BM_Y
   })
-  Material.setPbrMaterial(drop, raindropMaterial)
+  const dropImage = engine.addEntity()
+  Transform.create(dropImage, {
+    parent: drop,
+    rotation: Quaternion.fromEulerDegrees(180, 0, 0),
+  })
+  MeshRenderer.setPlane(dropImage)
+  Material.setPbrMaterial(dropImage, raindropMaterial)
 
   // Add component identifier
   IsPrecip.create(drop, {
