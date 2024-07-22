@@ -31,7 +31,6 @@ export function GitHubLinkUi() {
       flexDirection: 'column',
       alignItems: 'center',
       justifyContent: 'space-between',
-      positionType: 'absolute',
       position: { right: "8%", bottom: '3%' }
     }}
   >
