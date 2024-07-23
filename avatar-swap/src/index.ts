@@ -18,9 +18,7 @@ export function main() {
   const arissaCharaEntity = createArissaCharacter()
   const parent = Transform.get(arissaCharaEntity).parent
   if (parent) {
-    AvatarAttach.create(parent, {
-      anchorPointId: AvatarAnchorPointType.AAPT_POSITION
-    })
+    Transform.getOrCreateMutable(parent).parent = engine.PlayerEntity
   }
 
   // Set avatar modifier area to swap player avatar
