@@ -10,6 +10,7 @@ jobs:
   push-or-pr:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
       - name: 'Deploy'
         if: github.event_name != 'false'
         uses: ./.github/workflows/deploy-with-version.yml
