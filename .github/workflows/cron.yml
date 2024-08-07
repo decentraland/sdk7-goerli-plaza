@@ -17,15 +17,12 @@ jobs:
 
   build-and-deploy-latest:
     needs: [skip-up-to-date-schedules]
-    steps:
-      - name: Deploy
-        if: ${{ needs.skip-up-to-date-schedules.outputs.out_of_date_latest }}
-        uses: ./.github/workflows/deploy-with-version.yml
-        with:
-          dcl-sdk-package: '@dcl/sdk@latest'
-        secrets:
-          SDK_TEAM_S3_BUCKET: ${{ secrets.SDK_TEAM_S3_BUCKET }}
-          SDK_TEAM_AWS_ID: ${{ secrets.SDK_TEAM_AWS_ID }}
-          SDK_TEAM_AWS_SECRET: ${{ secrets.SDK_TEAM_AWS_SECRET }}
-          SDK_TEAM_S3_BASE_URL: ${{ secrets.SDK_TEAM_S3_BASE_URL }}
-          AB_TOKEN: ${{ secrets.AB_TOKEN }}
+    uses: ./.github/actions/deploy-with-version
+    with:
+      dcl-sdk-package: '@dcl/sdk@latest'
+    secrets:
+      SDK_TEAM_S3_BUCKET: ${{ secrets.SDK_TEAM_S3_BUCKET }}
+      SDK_TEAM_AWS_ID: ${{ secrets.SDK_TEAM_AWS_ID }}
+      SDK_TEAM_AWS_SECRET: ${{ secrets.SDK_TEAM_AWS_SECRET }}
+      SDK_TEAM_S3_BASE_URL: ${{ secrets.SDK_TEAM_S3_BASE_URL }}
+      AB_TOKEN: ${{ secrets.AB_TOKEN }}

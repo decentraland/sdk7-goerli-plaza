@@ -1,30 +1,5 @@
 name: deploy-with-version
 
-on:
-  workflow_dispatch:
-    inputs:
-      dcl-sdk-package:
-        type: string
-        description: '@dcl/sdk package'
-        default: '@dcl/sdk@latest'
-  workflow_call:
-    inputs:
-      dcl-sdk-package:
-        type: string
-        description: '@dcl/sdk package'
-        default: '@dcl/sdk@latest'
-    secrets:
-      SDK_TEAM_S3_BUCKET:
-        required: true
-      SDK_TEAM_AWS_ID:
-        required: true
-      SDK_TEAM_AWS_SECRET:
-        required: true
-      SDK_TEAM_S3_BASE_URL:
-        required: true
-      AB_TOKEN:
-        required: true
-
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -38,7 +13,7 @@ jobs:
       - uses: actions/github-script@v7
         id: extract_version
         env:
-          VERSION: ${{ inputs.dcl-sdk-package }}
+          VERSION: ${{ env.dcl-sdk-package }}
         with:
           script: return `${process.env.VERSION.split('@').slice(-1)[0]}`
           result-encoding: string
@@ -52,7 +27,7 @@ jobs:
           result-encoding: string
 
       - name: install sdk version
-        run: npm i ${{inputs.dcl-sdk-package}} --workspaces
+        run: npm i ${{env.dcl-sdk-package}} --workspaces
 
       - name: install dependencies
         run: npm i --workspaces
@@ -107,5 +82,5 @@ jobs:
               ```bash
               /changerealm ${{ secrets.SDK_TEAM_S3_BASE_URL }}/ipfs/${{steps.get-branch-realm-name.outputs.result}}
               ```
-            This PR has been published using the `@dcl/sdk` version `${{ inputs.dcl-sdk-package }}`
+            This PR has been published using the `@dcl/sdk` version `${{ env.dcl-sdk-package }}`
           edit-mode: replace
