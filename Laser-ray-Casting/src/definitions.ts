@@ -4,7 +4,7 @@ import { Color4 } from '@dcl/sdk/math'
 // Configuration constants
 export const boxesCount = 10
 export const speed = 1
-export const rayDistance = 28
+export const rayDistance = 10
 
 export const defaultMaterial: PBMaterial_PbrMaterial = {
   metallic: 0,
