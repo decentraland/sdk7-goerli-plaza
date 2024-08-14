@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "strict": true,
+    "types": [
+      "@dcl/js-runtime",
+    ]
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx"
+  ],
+  "extends": "@dcl/sdk/types/tsconfig.ecs7.json"
+}
