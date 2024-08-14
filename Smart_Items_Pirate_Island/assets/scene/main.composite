@@ -2216,26 +2216,6 @@
       }
     },
     {
-      "name": "inspector::Selection",
-      "jsonSchema": {
-        "type": "object",
-        "properties": {
-          "gizmo": {
-            "type": "integer",
-            "serializationType": "int32"
-          }
-        },
-        "serializationType": "map"
-      },
-      "data": {
-        "528": {
-          "json": {
-            "gizmo": 0
-          }
-        }
-      }
-    },
-    {
       "name": "inspector::Scene",
       "jsonSchema": {
         "type": "object",
@@ -2594,15 +2574,13 @@
         "0": {
           "json": {
             "name": "Smart_Items_Pirate_Island",
+            "description": "",
             "thumbnail": "scene-thumbnail.png",
             "categories": [],
             "author": "0xb6e9c0a25aa6b10fa4fe0aa8d1097d2a6136bf98",
+            "email": "",
             "tags": [],
             "layout": {
-              "base": {
-                "x": 77,
-                "y": 6
-              },
               "parcels": [
                 {
                   "x": 78,
@@ -2620,8 +2598,14 @@
                   "x": 77,
                   "y": 6
                 }
-              ]
+              ],
+              "base": {
+                "x": 77,
+                "y": 6
+              }
             },
+            "silenceVoiceChat": false,
+            "disablePortableExperiences": false,
             "spawnPoints": []
           }
         }
