@@ -1,0 +1,58 @@
+{
+  "ecs7": true,
+  "runtimeVersion": "7",
+  "display": {
+    "title": "Tower of Hanoi",
+    "description": "Classic Tower of Hanoi game",
+    "navmapThumbnail": "images/scene-thumbnail.png",
+    "favicon": "favicon_asset"
+  },
+  "owner": "",
+  "contact": {
+    "name": "SDK",
+    "email": ""
+  },
+  "main": "bin/index.js",
+  "tags": [
+    "game"
+  ],
+  "scene": {
+    "parcels": [
+      "0,0"
+    ],
+    "base": "0,0"
+  },
+  "spawnPoints": [
+    {
+      "name": "Spawn Point 1",
+      "default": true,
+      "position": {
+        "x": [
+          -1,
+          1
+        ],
+        "y": [
+          0,
+          0
+        ],
+        "z": [
+          2,
+          4
+        ]
+      },
+      "cameraTarget": {
+        "x": 6,
+        "y": 0,
+        "z": 5
+      }
+    }
+  ],
+  "featureToggles": {
+    "voiceChat": "enabled",
+    "portableExperiences": "enabled"
+  },
+  "rating": "T",
+  "worldConfiguration": {
+    "name": "towerofhanoi.dcl.eth"
+  }
+}
