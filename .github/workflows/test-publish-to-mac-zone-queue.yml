@@ -21,6 +21,19 @@ on:
       SDK_TEAM_S3_BASE_URL:
         required: true
 
+  workflow_dispatch:
+    inputs:
+      dcl-sdk-package:
+        description: "@dcl/sdk package"
+        default: "@dcl/sdk@latest"
+        required: true
+      ab-server-url:
+        description: "AB server URL"
+        required: true
+      ab-token:
+        description: "AB token"
+        required: true
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
