@@ -6,13 +6,13 @@ on:
       dcl-sdk-package:
         type: string
         description: '@dcl/sdk package'
-        default: '@dcl/sdk@latest'
+        default: '@dcl/sdk@next'
   workflow_call:
     inputs:
       dcl-sdk-package:
         type: string
         description: '@dcl/sdk package'
-        default: '@dcl/sdk@latest'
+        default: '@dcl/sdk@next'
     secrets:
       SDK_TEAM_S3_BUCKET:
         required: true

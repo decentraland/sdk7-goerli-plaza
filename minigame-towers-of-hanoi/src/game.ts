@@ -347,7 +347,7 @@ async function countdown(cb: () => void, number: number) {
 
       if (currentValue > 0) {
         timer.show()
-        timer.setTimeAnimated(currentValue--, utils.InterpolationType.EASEEXPO)
+        timer.setTimeAnimated(currentValue--)
       } else {
         timer.hide()
         engine.removeSystem("countdown-system")

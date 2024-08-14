@@ -2,7 +2,7 @@ name: cron-job-sdk-next
 
 on:
   schedule:
-    - cron: "0 0 * * *"
+    - cron: '0 0 * * *'
 jobs:
   skip-up-to-date-schedules:
     runs-on: ubuntu-latest
@@ -20,7 +20,7 @@ jobs:
     if: ${{ needs.skip-up-to-date-schedules.outputs.out_of_date_latest }}
     uses: ./.github/workflows/deploy-with-version.yml
     with:
-      dcl-sdk-package: '@dcl/sdk@latest'
+      dcl-sdk-package: '@dcl/sdk@next'
     secrets:
       SDK_TEAM_S3_BUCKET: ${{ secrets.SDK_TEAM_S3_BUCKET }}
       SDK_TEAM_AWS_ID: ${{ secrets.SDK_TEAM_AWS_ID }}

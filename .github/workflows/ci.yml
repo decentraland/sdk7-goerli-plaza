@@ -3,14 +3,14 @@ name: push-deploy-world
 on:
   push:
     branches:
-      - "main"
+      - 'main'
   pull_request:
 
 jobs:
   push-or-pr:
     uses: ./.github/workflows/deploy-with-version.yml
     with:
-      dcl-sdk-package: '@dcl/sdk@latest'
+      dcl-sdk-package: '@dcl/sdk@next'
     secrets:
       SDK_TEAM_S3_BUCKET: ${{ secrets.SDK_TEAM_S3_BUCKET }}
       SDK_TEAM_AWS_ID: ${{ secrets.SDK_TEAM_AWS_ID }}
