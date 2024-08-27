@@ -7,8 +7,6 @@ on:
         type: string
         description: "@dcl/sdk package"
         default: "@dcl/sdk@latest"
-      ab-server-url:
-        type: string
       ab-token:
         type: string
     secrets:
@@ -92,4 +90,5 @@ jobs:
           npx @dcl/opscli queue-ab-conversion-about \
             --token ${{ inputs.ab-token }} \
             --about-url ${{ secrets.SDK_TEAM_S3_BASE_URL }}/test/${{steps.get-branch-realm-name.outputs.result}}/about \
-            --ab-server ${{ inputs.ab-server-url }}
+            --ab-server https://ab-admin.decentraland.zone
+            --platform mac
