@@ -25,9 +25,6 @@ on:
         description: "@dcl/sdk package"
         default: "@dcl/sdk@latest"
         required: true
-      ab-server-url:
-        description: "AB server URL"
-        required: true
       ab-token:
         description: "AB token"
         required: true
