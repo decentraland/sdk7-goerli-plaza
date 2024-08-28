@@ -9,6 +9,9 @@ on:
         default: "@dcl/sdk@latest"
       ab-token:
         type: string
+      ab-extra-params:
+        type: string
+        default: "--platform mac"
     secrets:
       SDK_TEAM_S3_BUCKET:
         required: true
@@ -25,12 +28,12 @@ on:
         description: "@dcl/sdk package"
         default: "@dcl/sdk@latest"
         required: true
-      ab-server-url:
-        description: "AB server URL"
-        required: true
       ab-token:
         description: "AB token"
         required: true
+      ab-extra-params:
+        description: "AB optional exta paramaters"
+        required: false
 
 jobs:
   build-and-deploy:
@@ -90,5 +93,5 @@ jobs:
           npx @dcl/opscli queue-ab-conversion-about \
             --token ${{ inputs.ab-token }} \
             --about-url ${{ secrets.SDK_TEAM_S3_BASE_URL }}/test/${{steps.get-branch-realm-name.outputs.result}}/about \
-            --ab-server https://ab-admin.decentraland.zone
-            --platform mac
+            --ab-server https://ab-admin.decentraland.zone \
+            ${{ inputs.ab-extra-params }}
