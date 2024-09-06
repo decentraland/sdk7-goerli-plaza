@@ -127,7 +127,7 @@ export function createSocialLink(params: SocialLinkParams) {
   })
   GltfContainer.create(entity, {
     src: params.modelPath,
-    invisibleMeshesCollisionMask: ColliderLayer.CL_POINTER || ColliderLayer.CL_PHYSICS
+    invisibleMeshesCollisionMask: ColliderLayer.CL_POINTER | ColliderLayer.CL_PHYSICS
   })
   pointerEventsSystem.onPointerDown(
     {
