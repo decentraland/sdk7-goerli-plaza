@@ -3,12 +3,15 @@
   "description": "SDK7 Template scene",
   "version": "1.0.0",
   "dependencies": {
-    "@dcl/js-runtime": "latest",
+    "@dcl/js-runtime": "7.5.6",
     "@dcl/sdk": "latest"
   },
   "scripts": {
     "build": "sdk-commands build --skip-install",
     "deploy": "sdk-commands deploy",
     "start": "sdk-commands start"
+  },
+  "devDependencies": {
+    "@dcl/asset-packs": "^1.20.0"
   }
 }

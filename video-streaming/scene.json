@@ -48,6 +48,9 @@
       }
     }
   ],
-  "featureToggles": {},
+  "featureToggles": {
+    "voiceChat": "enabled",
+    "portableExperiences": "enabled"
+  },
   "name": "video-streaming"
 }
