@@ -7,9 +7,9 @@
     "dcl-ui-toolkit": "latest"
   },
   "devDependencies": {
-    "@dcl/asset-packs": "latest",
-    "@dcl/js-runtime": "latest",
-    "@dcl/sdk": "latest"
+    "@dcl/asset-packs": "^1.20.1",
+    "@dcl/js-runtime": "7.5.7",
+    "@dcl/sdk": "^7.5.7"
   },
   "engines": {
     "node": ">=16.0.0",
