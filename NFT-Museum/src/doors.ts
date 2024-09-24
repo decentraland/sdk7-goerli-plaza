@@ -4,9 +4,13 @@ import * as utils from '@dcl-sdk/utils'
 import { Entity } from '@dcl/sdk/ecs'
 
 // Audio for the sliding doors depends on audio.ts
-export const doorLmodel = 'models/slidingDoor1.glb'
-export const doorRmodel = 'models/slidingDoor2.glb'
-export const singleDoor = 'models/slidingDoor-big.glb'
+export const doorLmodel = 'models/slidingDoor1-noAlpha.glb'
+export const doorLmodelAlpha = 'models/slidingDoor1-Alpha.glb'
+export const doorRmodel = 'models/slidingDoor2-noAlpha.glb'
+export const doorRmodelAlpha = 'models/slidingDoor2-Alpha.glb'
+
+export const singleDoor = 'models/slidingDoor-big-noAlpha.glb'
+export const singleDoorAlpha = 'models/slidingDoor-big-Alpha.glb'
 export const closeDoorOffset = 0
 export const openDoorOffset = 1
 
@@ -39,7 +43,9 @@ export function createSlidingDoors(
   position: Vector3,
   rotation: Vector3,
   doorLmodel: string,
+  doorLmodelAlpha: string,
   doorRmodel: string,
+  doorRmodelAlpha: string,
   openDoorOffset: number,
   closeDoorOffset: number
 ) {
@@ -52,7 +58,11 @@ export function createSlidingDoors(
   Transform.create(doorParent, { position: position, rotation: r })
 
   const doorL = createDoorEntity(doorLmodel, -closeDoorOffset, doorParent)
+  const doorLalpha = createDoorEntity(doorLmodelAlpha, -closeDoorOffset, doorParent)
+
   const doorR = createDoorEntity(doorRmodel, closeDoorOffset, doorParent)
+  const doorRalpha = createDoorEntity(doorRmodelAlpha, closeDoorOffset, doorParent)
+
 
   function moveDoors(offset: number) {
     const closedDoorLPos = Transform.get(doorL).position
@@ -64,6 +74,10 @@ export function createSlidingDoors(
     utils.playSound(fastDoorSound, false, Transform.get(engine.PlayerEntity).position)
 
     utils.tweens.startTranslation(doorL, closedDoorLPos, openDoorLPos, doorDuration, utils.InterpolationType.EASEINQUAD)
+    utils.tweens.startTranslation(doorLalpha, closedDoorLPos, openDoorLPos, doorDuration, utils.InterpolationType.EASEINQUAD)
+
+   
+   
     utils.tweens.startTranslation(
       doorR,
       closedDoorRPos,
@@ -73,6 +87,19 @@ export function createSlidingDoors(
       () => {
         Transform.createOrReplace(doorL, { position: openDoorLPos, parent: doorParent })
         Transform.createOrReplace(doorR, { position: openDoorRPos, parent: doorParent })
+        isMoving = false
+      }
+    )
+
+    utils.tweens.startTranslation(
+      doorRalpha,
+      closedDoorRPos,
+      openDoorRPos,
+      doorDuration,
+      utils.InterpolationType.EASEINQUAD,
+      () => {
+        Transform.createOrReplace(doorLalpha, { position: openDoorLPos, parent: doorParent })
+        Transform.createOrReplace(doorRalpha, { position: openDoorRPos, parent: doorParent })
         isMoving = false
       }
     )
@@ -111,6 +138,7 @@ export function createSlidingDoor(
   position: Vector3,
   rotation: Vector3,
   doormodel: string,
+  doorModelAlpha: string,
   openDoorOffset: number,
   closeDoorOffset: number
 ) {
@@ -124,6 +152,8 @@ export function createSlidingDoor(
     rotation: Quaternion.fromEulerDegrees(rotation.x, rotation.y, rotation.z)
   })
   let door = createDoorEntity(doormodel, -closeDoorOffset, doorParent)
+  let doorAlpha = createDoorEntity(doorModelAlpha, -closeDoorOffset, doorParent)
+
 
   function moveDoor(offset: number) {
     isMovingSingle = true
@@ -133,6 +163,18 @@ export function createSlidingDoor(
 
     utils.tweens.startTranslation(
       door,
+      currentDoorPos,
+      targetDoorPos,
+      bigDoorDuration,
+      utils.InterpolationType.EASEINSINE,
+      () => {
+        Transform.createOrReplace(door, { position: targetDoorPos, parent: doorParent })
+        isMovingSingle = false
+      }
+    )
+
+    utils.tweens.startTranslation(
+      doorAlpha,
       currentDoorPos,
       targetDoorPos,
       bigDoorDuration,
@@ -189,8 +231,8 @@ export function createDoorEntity(model: string, offsetX: number, parent: Entity)
 }
 
 export function createAllDoors() {
-  createSlidingDoors(doorPos1, doorRot1, doorLmodel, doorRmodel, openDoorOffset, closeDoorOffset)
-  createSlidingDoors(doorPos2, doorRot2, doorLmodel, doorRmodel, openDoorOffset, closeDoorOffset)
-  createSlidingDoor(doorPos3, doorRot3, singleDoor, 9, 0)
-  createSlidingDoor(doorPos4, doorRot4, singleDoor, 9, 0)
+  createSlidingDoors(doorPos1, doorRot1, doorLmodel, doorLmodelAlpha, doorRmodel, doorRmodelAlpha, openDoorOffset, closeDoorOffset)
+  createSlidingDoors(doorPos2, doorRot2, doorLmodel, doorLmodelAlpha, doorRmodel, doorRmodelAlpha, openDoorOffset, closeDoorOffset)
+  createSlidingDoor(doorPos3, doorRot3, singleDoor, singleDoorAlpha, 9, 0)
+  createSlidingDoor(doorPos4, doorRot4, singleDoor, singleDoorAlpha, 9, 0)
 }
