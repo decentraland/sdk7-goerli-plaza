@@ -5,7 +5,9 @@ import {
   createDoorEntity,
   doorDuration,
   doorLmodel,
+  doorLmodelAlpha,
   doorRmodel,
+  doorRmodelAlpha,
   fastDoorSound,
   openDoorOffset
 } from '../doors'
@@ -48,7 +50,11 @@ export function createElevatorDoors(
   Transform.create(doorParent, { position: position, rotation: r })
 
   const doorL = createDoorEntity(doorLmodel, -closeDoorOffset, doorParent)
+  const doorLalpha = createDoorEntity(doorLmodelAlpha, -closeDoorOffset, doorParent)
+
   const doorR = createDoorEntity(doorRmodel, closeDoorOffset, doorParent)
+  const doorRalpha = createDoorEntity(doorRmodelAlpha, closeDoorOffset, doorParent)
+
 
   function moveDoors(offset: number) {
     const closedDoorLPos = Transform.get(doorL).position
@@ -67,7 +73,26 @@ export function createElevatorDoors(
         utils.InterpolationType.EASEINQUAD
       )
       utils.tweens.startTranslation(
+        doorLalpha,
+        closedDoorLPos,
+        openDoorLPos,
+        doorDuration,
+        utils.InterpolationType.EASEINQUAD
+      )
+      utils.tweens.startTranslation(
         doorR,
+        closedDoorRPos,
+        openDoorRPos,
+        doorDuration,
+        utils.InterpolationType.EASEINQUAD,
+        () => {
+          Transform.createOrReplace(doorL, { position: openDoorLPos, parent: doorParent })
+          Transform.createOrReplace(doorR, { position: openDoorRPos, parent: doorParent })
+          isMoving = false
+        }
+      )
+      utils.tweens.startTranslation(
+        doorRalpha,
         closedDoorRPos,
         openDoorRPos,
         doorDuration,
@@ -125,10 +150,18 @@ export function createElevatorDoors(
 
 export function initializeElevatorDoors() {
   createElevatorDoors(doorsPos1, doorsRot1, doorLmodel, doorRmodel, openDoorOffset, closeDoorOffset, 0)
+  createElevatorDoors(doorsPos1, doorsRot1, doorLmodelAlpha, doorRmodelAlpha, openDoorOffset, closeDoorOffset, 0)
+
 
   createElevatorDoors(doorsPos2, doorsRot2, doorLmodel, doorRmodel, openDoorOffset, closeDoorOffset, 1)
+  createElevatorDoors(doorsPos2, doorsRot2, doorLmodelAlpha, doorRmodelAlpha, openDoorOffset, closeDoorOffset, 1)
+
 
   createElevatorDoors(doorsPos3, doorsRot3, doorLmodel, doorRmodel, openDoorOffset, closeDoorOffset, 0)
+  createElevatorDoors(doorsPos3, doorsRot3, doorLmodelAlpha, doorRmodelAlpha, openDoorOffset, closeDoorOffset, 0)
+
 
   createElevatorDoors(doorsPos4, doorsRot4, doorLmodel, doorRmodel, openDoorOffset, closeDoorOffset, 1)
+  createElevatorDoors(doorsPos4, doorsRot4, doorLmodelAlpha, doorRmodelAlpha, openDoorOffset, closeDoorOffset, 1)
+
 }
