@@ -11,7 +11,7 @@ import {
   fastDoorSound,
   openDoorOffset
 } from '../doors'
-import { engine, Transform } from '@dcl/sdk/ecs'
+import { engine, Entity, Transform } from '@dcl/sdk/ecs'
 import * as utils from '@dcl-sdk/utils'
 import { currentFloor } from './elevatorState'
 
@@ -30,6 +30,7 @@ const doorsRot3 = Vector3.create(0, 90, 0)
 // Elevator doors, east first floor
 const doorsPos4 = Vector3.create(26.9, 10.3, 12.36)
 const doorsRot4 = Vector3.create(0, 90, 0)
+
 
 export function createElevatorDoors(
   position: Vector3,
@@ -55,89 +56,97 @@ export function createElevatorDoors(
   const doorR = createDoorEntity(doorRmodel, closeDoorOffset, doorParent)
   const doorRalpha = createDoorEntity(doorRmodelAlpha, closeDoorOffset, doorParent)
 
+  // Tolerance for floating-point precision issues
+  const tolerance = 0.001
 
-  function moveDoors(offset: number) {
-    const closedDoorLPos = Transform.get(doorL).position
-    const closedDoorRPos = Transform.get(doorR).position
-    const openDoorLPos = Vector3.create(closedDoorLPos.x + offset, closedDoorLPos.y, closedDoorLPos.z)
-    const openDoorRPos = Vector3.create(closedDoorRPos.x - offset, closedDoorRPos.y, closedDoorRPos.z)
+  // Store exact closed positions
+  const initialClosedDoorLPos = Transform.get(doorL).position
+  const initialClosedDoorRPos = Transform.get(doorR).position
+
+  // Calculate open positions based on offset
+  function calculateOpenPositions(offset: number) {
+    const openDoorLPos = Vector3.create(initialClosedDoorLPos.x + offset, initialClosedDoorLPos.y, initialClosedDoorLPos.z)
+    const openDoorRPos = Vector3.create(initialClosedDoorRPos.x - offset, initialClosedDoorRPos.y, initialClosedDoorRPos.z)
+    return { openDoorLPos, openDoorRPos }
+  }
+
+  function forceExactPosition(entity: Entity, targetPos: Vector3) {
+    const currentPos = Transform.get(entity).position
+    if (
+      Math.abs(currentPos.x - targetPos.x) > tolerance ||
+      Math.abs(currentPos.y - targetPos.y) > tolerance ||
+      Math.abs(currentPos.z - targetPos.z) > tolerance
+    ) {
+      const mutableTransform = Transform.getMutable(entity)
+      mutableTransform.position = targetPos
+      console.log(`Snapped ${entity} to exact position: ${targetPos}`)
+    }
+  }
+
+  function moveDoors(offset: number, onComplete?: () => void) {
+    const { openDoorLPos, openDoorRPos } = calculateOpenPositions(offset)
+
+    // Get the current positions of the doors to start the tween from there
+    const currentDoorLPos = Transform.get(doorL).position
+    const currentDoorRPos = Transform.get(doorR).position
+    const currentDoorLAlphaPos = Transform.get(doorLalpha).position
+    const currentDoorRAlphaPos = Transform.get(doorRalpha).position
+
     isMoving = true
 
-    if (currentFloor === floorIndex) {
-      utils.playSound(fastDoorSound, false, Transform.get(engine.PlayerEntity).position)
-      utils.tweens.startTranslation(
-        doorL,
-        closedDoorLPos,
-        openDoorLPos,
-        doorDuration,
-        utils.InterpolationType.EASEINQUAD
-      )
-      utils.tweens.startTranslation(
-        doorLalpha,
-        closedDoorLPos,
-        openDoorLPos,
-        doorDuration,
-        utils.InterpolationType.EASEINQUAD
-      )
-      utils.tweens.startTranslation(
-        doorR,
-        closedDoorRPos,
-        openDoorRPos,
-        doorDuration,
-        utils.InterpolationType.EASEINQUAD,
-        () => {
-          Transform.createOrReplace(doorL, { position: openDoorLPos, parent: doorParent })
-          Transform.createOrReplace(doorR, { position: openDoorRPos, parent: doorParent })
-          isMoving = false
-        }
-      )
-      utils.tweens.startTranslation(
-        doorRalpha,
-        closedDoorRPos,
-        openDoorRPos,
-        doorDuration,
-        utils.InterpolationType.EASEINQUAD,
-        () => {
-          Transform.createOrReplace(doorL, { position: openDoorLPos, parent: doorParent })
-          Transform.createOrReplace(doorR, { position: openDoorRPos, parent: doorParent })
-          isMoving = false
-        }
-      )
-    }
+    // Move both doors with tweens (sliding from current position)
+    utils.tweens.startTranslation(doorL, currentDoorLPos, openDoorLPos, doorDuration, utils.InterpolationType.EASEINQUAD)
+    utils.tweens.startTranslation(doorLalpha, currentDoorLAlphaPos, openDoorLPos, doorDuration, utils.InterpolationType.EASEINQUAD)
+    utils.tweens.startTranslation(doorR, currentDoorRPos, openDoorRPos, doorDuration, utils.InterpolationType.EASEINQUAD, () => {
+      // Only run onComplete after the doors fully slide
+      if (onComplete) onComplete()
+      isMoving = false
+    })
+    utils.tweens.startTranslation(doorRalpha, currentDoorRAlphaPos, openDoorRPos, doorDuration, utils.InterpolationType.EASEINQUAD)
   }
 
   function closeDoors() {
     if (isOpen) {
-      moveDoors(-openDoorOffset)
+      // Move doors to the closed position smoothly
+      moveDoors(0, () => {
+        // Snap doors only if they are off by a small amount after tween completes
+        forceExactPosition(doorL, initialClosedDoorLPos)
+        forceExactPosition(doorR, initialClosedDoorRPos)
+        forceExactPosition(doorLalpha, initialClosedDoorLPos)
+        forceExactPosition(doorRalpha, initialClosedDoorRPos)
+        console.log(`Closed doors to LPos: ${initialClosedDoorLPos}, RPos: ${initialClosedDoorRPos}`)
+      })
       isOpen = false
     }
   }
 
   function openDoors() {
     if (!isOpen && !isMoving && doorsShouldOpen) {
-      moveDoors(openDoorOffset)
+      moveDoors(openDoorOffset, () => {
+        console.log('Doors fully opened')
+      })
       isOpen = true
       utils.timers.setTimeout(closeDoors, cooldownTime)
     }
   }
 
+  // Trigger to open/close doors when conditions are met
   utils.triggers.addTrigger(
     doorParent,
     utils.NO_LAYERS,
     utils.LAYER_1,
     [{ type: 'box', position: { x: 0, y: 0, z: 0 }, scale: { x: 4, y: 2, z: 4 } }],
     function (otherEntity) {
-      console.log(`floor index: ${floorIndex}, current floor: ${currentFloor}`)
-
-      if (Date.now() - lastDoorInteractionTime < cooldownTime) return // Adjust the cooldown time as needed
+      if (Date.now() - lastDoorInteractionTime < cooldownTime) return
       lastDoorInteractionTime = Date.now()
 
       if (floorIndex !== currentFloor) {
         console.log('cant open doors')
-        return // Do not open the doors if the elevator is not at the current floor
+        return
       } else {
         doorsShouldOpen = true
       }
+
       if (doorsShouldOpen && !isOpen) {
         utils.timers.setTimeout(() => {
           openDoors(), (doorsShouldOpen = false)
@@ -145,23 +154,18 @@ export function createElevatorDoors(
       }
     }
   )
-  // utils.triggers.enableDebugDraw(true);
 }
 
 export function initializeElevatorDoors() {
   createElevatorDoors(doorsPos1, doorsRot1, doorLmodel, doorRmodel, openDoorOffset, closeDoorOffset, 0)
   createElevatorDoors(doorsPos1, doorsRot1, doorLmodelAlpha, doorRmodelAlpha, openDoorOffset, closeDoorOffset, 0)
 
-
   createElevatorDoors(doorsPos2, doorsRot2, doorLmodel, doorRmodel, openDoorOffset, closeDoorOffset, 1)
   createElevatorDoors(doorsPos2, doorsRot2, doorLmodelAlpha, doorRmodelAlpha, openDoorOffset, closeDoorOffset, 1)
-
 
   createElevatorDoors(doorsPos3, doorsRot3, doorLmodel, doorRmodel, openDoorOffset, closeDoorOffset, 0)
   createElevatorDoors(doorsPos3, doorsRot3, doorLmodelAlpha, doorRmodelAlpha, openDoorOffset, closeDoorOffset, 0)
 
-
   createElevatorDoors(doorsPos4, doorsRot4, doorLmodel, doorRmodel, openDoorOffset, closeDoorOffset, 1)
   createElevatorDoors(doorsPos4, doorsRot4, doorLmodelAlpha, doorRmodelAlpha, openDoorOffset, closeDoorOffset, 1)
-
 }

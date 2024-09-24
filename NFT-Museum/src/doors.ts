@@ -49,89 +49,140 @@ export function createSlidingDoors(
   openDoorOffset: number,
   closeDoorOffset: number
 ) {
-  let isMoving = false
-  let isOpen = false
-  let lastDoorInteractionTime = 0
-  const r = Quaternion.fromEulerDegrees(rotation.x, rotation.y, rotation.z)
+  let isMoving = false;
+  let isOpen = false;
+  let lastDoorInteractionTime = 0;
+  const r = Quaternion.fromEulerDegrees(rotation.x, rotation.y, rotation.z);
 
-  const doorParent = engine.addEntity()
-  Transform.create(doorParent, { position: position, rotation: r })
+  const doorParent = engine.addEntity();
+  Transform.create(doorParent, { position: position, rotation: r });
 
-  const doorL = createDoorEntity(doorLmodel, -closeDoorOffset, doorParent)
-  const doorLalpha = createDoorEntity(doorLmodelAlpha, -closeDoorOffset, doorParent)
+  const doorL = createDoorEntity(doorLmodel, closeDoorOffset, doorParent);
+  const doorLalpha = createDoorEntity(doorLmodelAlpha, closeDoorOffset, doorParent);
 
-  const doorR = createDoorEntity(doorRmodel, closeDoorOffset, doorParent)
-  const doorRalpha = createDoorEntity(doorRmodelAlpha, closeDoorOffset, doorParent)
+  const doorR = createDoorEntity(doorRmodel, closeDoorOffset, doorParent);
+  const doorRalpha = createDoorEntity(doorRmodelAlpha, closeDoorOffset, doorParent);
 
+// Manually copy the position values into new Vector3 objects
+const initialClosedDoorLPos = Vector3.create(
+  Transform.get(doorL).position.x,
+  Transform.get(doorL).position.y,
+  Transform.get(doorL).position.z
+);
 
-  function moveDoors(offset: number) {
-    const closedDoorLPos = Transform.get(doorL).position
-    const closedDoorRPos = Transform.get(doorR).position
-    const openDoorLPos = Vector3.create(closedDoorLPos.x + offset, closedDoorLPos.y, closedDoorLPos.z)
-    const openDoorRPos = Vector3.create(closedDoorRPos.x - offset, closedDoorRPos.y, closedDoorRPos.z)
-    isMoving = true
+const initialClosedDoorRPos = Vector3.create(
+  Transform.get(doorR).position.x,
+  Transform.get(doorR).position.y,
+  Transform.get(doorR).position.z
+);
 
-    utils.playSound(fastDoorSound, false, Transform.get(engine.PlayerEntity).position)
+function moveDoors(offset: number, onComplete?: () => void) {
+  // Calculate the open positions relative to the initial closed positions
+  const openDoorLPos = roundVector3(Vector3.create(
+    initialClosedDoorLPos.x + offset, 
+    initialClosedDoorLPos.y,
+    initialClosedDoorLPos.z
+  ));
 
-    utils.tweens.startTranslation(doorL, closedDoorLPos, openDoorLPos, doorDuration, utils.InterpolationType.EASEINQUAD)
-    utils.tweens.startTranslation(doorLalpha, closedDoorLPos, openDoorLPos, doorDuration, utils.InterpolationType.EASEINQUAD)
+  const openDoorRPos = roundVector3(Vector3.create(
+    initialClosedDoorRPos.x - offset,
+    initialClosedDoorRPos.y,
+    initialClosedDoorRPos.z
+  ));
 
-   
-   
-    utils.tweens.startTranslation(
-      doorR,
-      closedDoorRPos,
-      openDoorRPos,
-      doorDuration,
-      utils.InterpolationType.EASEINQUAD,
-      () => {
-        Transform.createOrReplace(doorL, { position: openDoorLPos, parent: doorParent })
-        Transform.createOrReplace(doorR, { position: openDoorRPos, parent: doorParent })
-        isMoving = false
-      }
-    )
+  const roundedInitialClosedDoorLPos = roundVector3(initialClosedDoorLPos);
+  const roundedInitialClosedDoorRPos = roundVector3(initialClosedDoorRPos);
 
-    utils.tweens.startTranslation(
-      doorRalpha,
-      closedDoorRPos,
-      openDoorRPos,
-      doorDuration,
-      utils.InterpolationType.EASEINQUAD,
-      () => {
-        Transform.createOrReplace(doorLalpha, { position: openDoorLPos, parent: doorParent })
-        Transform.createOrReplace(doorRalpha, { position: openDoorRPos, parent: doorParent })
-        isMoving = false
-      }
-    )
-  }
+  // Define a small tolerance for rounding errors
+  const tolerance = 0.001;
 
-  function closeDoors() {
-    if (isOpen && !isMoving) {
-      moveDoors(-openDoorOffset)
-      isOpen = false
+  function forceExactPosition(entity: Entity, targetPos: Vector3) {
+    const currentPos = Transform.get(entity).position;
+    if (Math.abs(currentPos.x - targetPos.x) > tolerance ||
+        Math.abs(currentPos.y - targetPos.y) > tolerance ||
+        Math.abs(currentPos.z - targetPos.z) > tolerance) {
+      // Safely adjust the position using Transform.getMutable()
+      const mutableTransform = Transform.getMutable(entity);
+      mutableTransform.position = targetPos;
     }
   }
 
-  function openDoors() {
-    if (!isOpen && !isMoving) {
-      moveDoors(openDoorOffset)
-      isOpen = true
-      utils.timers.setTimeout(closeDoors, cooldownTime)
-    }
+  if (offset === 0) {
+    // Closing - Move both main and alpha doors back to closed positions smoothly
+    utils.tweens.startTranslation(doorL, Transform.get(doorL).position, roundedInitialClosedDoorLPos, doorDuration, utils.InterpolationType.EASEINQUAD, () => {
+      // Force doors to snap to exact positions at the end of the animation
+      forceExactPosition(doorL, roundedInitialClosedDoorLPos);
+      forceExactPosition(doorLalpha, roundedInitialClosedDoorLPos);
+      isMoving = false;
+      if (onComplete) onComplete();
+    });
+
+    utils.tweens.startTranslation(doorR, Transform.get(doorR).position, roundedInitialClosedDoorRPos, doorDuration, utils.InterpolationType.EASEINQUAD, () => {
+      forceExactPosition(doorR, roundedInitialClosedDoorRPos);
+      forceExactPosition(doorRalpha, roundedInitialClosedDoorRPos);
+    });
+
+    // Smoothly close alpha doors using identical tween parameters
+    utils.tweens.startTranslation(doorLalpha, Transform.get(doorLalpha).position, roundedInitialClosedDoorLPos, doorDuration, utils.InterpolationType.EASEINQUAD);
+    utils.tweens.startTranslation(doorRalpha, Transform.get(doorRalpha).position, roundedInitialClosedDoorRPos, doorDuration, utils.InterpolationType.EASEINQUAD);
+
+  } else {
+    // Opening - Move both main and alpha doors to the open positions smoothly
+    utils.tweens.startTranslation(doorL, roundedInitialClosedDoorLPos, openDoorLPos, doorDuration, utils.InterpolationType.EASEINQUAD);
+    utils.tweens.startTranslation(doorR, roundedInitialClosedDoorRPos, openDoorRPos, doorDuration, utils.InterpolationType.EASEINQUAD);
+
+    // Smoothly open alpha doors using identical tween parameters
+    utils.tweens.startTranslation(doorLalpha, roundedInitialClosedDoorLPos, openDoorLPos, doorDuration, utils.InterpolationType.EASEINQUAD);
+    utils.tweens.startTranslation(doorRalpha, roundedInitialClosedDoorRPos, openDoorRPos, doorDuration, utils.InterpolationType.EASEINQUAD, () => {
+      // Force exact final positions when open animation completes
+      forceExactPosition(doorL, openDoorLPos);
+      forceExactPosition(doorR, openDoorRPos);
+      forceExactPosition(doorLalpha, openDoorLPos);
+      forceExactPosition(doorRalpha, openDoorRPos);
+      isMoving = false; // Ensure all doors (main and alpha) are done moving
+    });
   }
+}
+
+function closeDoors() {
+  if (!isOpen && !isMoving) return;
+  isMoving = true;
+
+  // Close both main and alpha doors
+  moveDoors(0, () => {
+    isOpen = false;
+  });
+}
+
+function openDoors() {
+  if (isOpen || isMoving) return;
+  isOpen = true;
+  isMoving = true;
+
+  // Open both main and alpha doors
+  moveDoors(openDoorOffset); 
+
+  utils.timers.setTimeout(closeDoors, cooldownTime);
+}
+
+
+
+
+
 
   utils.triggers.addTrigger(
-    doorParent,
-    utils.NO_LAYERS,
-    utils.LAYER_1,
-    [{ type: 'box', position: { x: 0, y: 0.25, z: 0 }, scale: { x: 5, y: 3.5, z: 5 } }],
-    function (otherEntity) {
-      if (Date.now() - lastDoorInteractionTime < cooldownTime) return // Adjust the cooldown time as needed
-      lastDoorInteractionTime = Date.now()
-      openDoors()
-    }
-  )
+      doorParent,
+      utils.NO_LAYERS,
+      utils.LAYER_1,
+      [{ type: 'box', position: { x: 0, y: 0.25, z: 0 }, scale: { x: 5, y: 5, z: 5 } }],
+      function (otherEntity) {
+          if (Date.now() - lastDoorInteractionTime < cooldownTime) return; // Adjust the cooldown as needed
+          lastDoorInteractionTime = Date.now();
+          openDoors();
+      }
+  );
 }
+
 
 // Single sliding door (big one)
 export function createSlidingDoor(
@@ -151,16 +202,29 @@ export function createSlidingDoor(
     position: position,
     rotation: Quaternion.fromEulerDegrees(rotation.x, rotation.y, rotation.z)
   })
+
   let door = createDoorEntity(doormodel, -closeDoorOffset, doorParent)
   let doorAlpha = createDoorEntity(doorModelAlpha, -closeDoorOffset, doorParent)
 
+  // Store exact closed position
+  const initialClosedDoorPos = Transform.get(door).position
+
+  // Calculate open position based on offset
+  const openDoorPos = Vector3.create(initialClosedDoorPos.x + openDoorOffset, initialClosedDoorPos.y, initialClosedDoorPos.z)
 
   function moveDoor(offset: number) {
     isMovingSingle = true
-    let currentDoorPos = Transform.get(door).position
-    let targetDoorPos = Vector3.create(currentDoorPos.x + offset, currentDoorPos.y, currentDoorPos.z)
+
+    // Get the current positions of both the door and the alpha door
+    const currentDoorPos = Transform.get(door).position
+    const currentDoorAlphaPos = Transform.get(doorAlpha).position
+
+    // Calculate target position based on offset (open or closed)
+    const targetDoorPos = Vector3.create(initialClosedDoorPos.x + offset, initialClosedDoorPos.y, initialClosedDoorPos.z)
+
     utils.playSound(doorSound, false, Transform.get(engine.PlayerEntity).position)
 
+    // Move the door
     utils.tweens.startTranslation(
       door,
       currentDoorPos,
@@ -173,14 +237,15 @@ export function createSlidingDoor(
       }
     )
 
+    // Move the alpha door in sync with the main door
     utils.tweens.startTranslation(
       doorAlpha,
-      currentDoorPos,
+      currentDoorAlphaPos,
       targetDoorPos,
       bigDoorDuration,
       utils.InterpolationType.EASEINSINE,
       () => {
-        Transform.createOrReplace(door, { position: targetDoorPos, parent: doorParent })
+        Transform.createOrReplace(doorAlpha, { position: targetDoorPos, parent: doorParent })
         isMovingSingle = false
       }
     )
@@ -189,15 +254,15 @@ export function createSlidingDoor(
   function closeDoor() {
     if (isOpenSingle) {
       isOpenSingle = false
-      moveDoor(-openDoorOffset)
+      moveDoor(0) // Move the door back to the exact closed position (0 offset)
     }
   }
 
   function openDoor() {
     if (!isOpenSingle && !isMovingSingle) {
       isOpenSingle = true
-      moveDoor(openDoorOffset)
-      utils.timers.setTimeout(closeDoor, cooldownTime)
+      moveDoor(openDoorOffset) // Move the door to the open position using the exact offset
+      utils.timers.setTimeout(closeDoor, cooldownTime) // Automatically close the door after a delay
     }
   }
 
@@ -219,6 +284,8 @@ export function createSlidingDoor(
   )
 }
 
+
+
 export function createDoorEntity(model: string, offsetX: number, parent: Entity) {
   let doorEntity = engine.addEntity()
   Transform.create(doorEntity, {
@@ -235,4 +302,13 @@ export function createAllDoors() {
   createSlidingDoors(doorPos2, doorRot2, doorLmodel, doorLmodelAlpha, doorRmodel, doorRmodelAlpha, openDoorOffset, closeDoorOffset)
   createSlidingDoor(doorPos3, doorRot3, singleDoor, singleDoorAlpha, 9, 0)
   createSlidingDoor(doorPos4, doorRot4, singleDoor, singleDoorAlpha, 9, 0)
+}
+
+
+function roundVector3(vec: Vector3, decimals: number = 4): Vector3 {
+  return Vector3.create(
+    parseFloat(vec.x.toFixed(decimals)),
+    parseFloat(vec.y.toFixed(decimals)),
+    parseFloat(vec.z.toFixed(decimals))
+  );
 }
