@@ -19,8 +19,21 @@ export function createBaseScene() {
     parent: scene
   })
   GltfContainer.create(museum, {
-    src: 'models/museum.glb'
+    src: 'models/museum-noAlpha.glb'
   })
+
+  const museumAlpha = engine.addEntity()
+  Transform.create(museumAlpha, {
+    position: sceneCentrePosition,
+    rotation: Quaternion.Zero(),
+    scale: Vector3.One(),
+    parent: scene
+  })
+  GltfContainer.create(museumAlpha, {
+    src: 'models/museum-Alpha.glb'
+  })
+
+
 
   const museumAnimation = engine.addEntity()
   Transform.create(museumAnimation, {
