@@ -97,16 +97,16 @@
               "y": 0,
               "z": 0
             },
+            "scale": {
+              "x": 2,
+              "y": 2,
+              "z": 2
+            },
             "rotation": {
               "x": 0,
               "y": 0,
               "z": 0,
               "w": 1
-            },
-            "scale": {
-              "x": 2,
-              "y": 2,
-              "z": 2
             },
             "parent": 0
           }
@@ -114,9 +114,9 @@
         "514": {
           "json": {
             "position": {
-              "x": 16,
-              "y": 0.05000000074505806,
-              "z": 10
+              "x": 15.757807731628418,
+              "y": 5.75581884603815e-15,
+              "z": 9.234334945678711
             },
             "rotation": {
               "x": 0,
@@ -160,16 +160,16 @@
               "y": 6.150000095367432,
               "z": 0
             },
+            "scale": {
+              "x": 0.6299999952316284,
+              "y": 0.6299999952316284,
+              "z": 0.6299999952316284
+            },
             "rotation": {
               "x": 0,
               "y": 0,
               "z": 0,
               "w": 1
-            },
-            "scale": {
-              "x": 0.6299999952316284,
-              "y": 0.6299999952316284,
-              "z": 0.6299999952316284
             },
             "parent": 515
           }
@@ -181,39 +181,18 @@
               "y": -5,
               "z": 6.619181156158447
             },
-            "rotation": {
-              "x": 0,
-              "y": 0,
-              "z": 0,
-              "w": 1
-            },
             "scale": {
               "x": 3.8399999141693115,
               "y": 2.1600000858306885,
               "z": 1
             },
-            "parent": 516
-          }
-        },
-        "520": {
-          "json": {
-            "position": {
-              "x": 29.5,
-              "y": 0,
-              "z": 6
-            },
             "rotation": {
               "x": 0,
               "y": 0,
               "z": 0,
               "w": 1
             },
-            "scale": {
-              "x": 1,
-              "y": 1,
-              "z": 1
-            },
-            "parent": 0
+            "parent": 516
           }
         },
         "521": {
@@ -223,16 +202,16 @@
               "y": 1.149999976158142,
               "z": 6
             },
+            "scale": {
+              "x": 18.6299991607666,
+              "y": 10.479999542236328,
+              "z": 1.590000033378601
+            },
             "rotation": {
               "x": 0.07532680779695511,
               "y": 0,
               "z": 0,
               "w": -0.9971588850021362
-            },
-            "scale": {
-              "x": 18.6299991607666,
-              "y": 10.479999542236328,
-              "z": 1.590000033378601
             },
             "parent": 516
           }
@@ -293,13 +272,6 @@
             "visibleMeshesCollisionMask": 1,
             "invisibleMeshesCollisionMask": 2
           }
-        },
-        "520": {
-          "json": {
-            "src": "assets/builder/trigger_area/trigger_area.glb",
-            "visibleMeshesCollisionMask": 0,
-            "invisibleMeshesCollisionMask": 0
-          }
         }
       }
     },
@@ -321,7 +293,7 @@
                   "tex": {
                     "$case": "videoTexture",
                     "videoTexture": {
-                      "videoPlayerEntity": 0
+                      "videoPlayerEntity": 521
                     }
                   }
                 },
@@ -432,11 +404,6 @@
             "value": "screen2"
           }
         },
-        "520": {
-          "json": {
-            "value": "Trigger Area"
-          }
-        },
         "521": {
           "json": {
             "value": "Video Player"
@@ -516,22 +483,6 @@
       }
     },
     {
-      "name": "core::VisibilityComponent",
-      "jsonSchema": {
-        "type": "object",
-        "properties": {},
-        "serializationType": "protocol-buffer",
-        "protocolBuffer": "PBVisibilityComponent"
-      },
-      "data": {
-        "520": {
-          "json": {
-            "visible": false
-          }
-        }
-      }
-    },
-    {
       "name": "inspector::Selection",
       "jsonSchema": {
         "type": "object",
@@ -544,9 +495,9 @@
         "serializationType": "map"
       },
       "data": {
-        "519": {
+        "514": {
           "json": {
-            "gizmo": 0
+            "gizmo": 3
           }
         }
       }
@@ -899,15 +850,12 @@
           "json": {
             "name": "video-streaming",
             "description": "First scene with SDK7",
-            "thumbnail": "images/scene-thumbnail.png",
+            "thumbnail": "assets/scene/screenshot_2024-09-13_at_51113 pm.png",
             "categories": [],
             "author": "SDK",
+            "email": "",
             "tags": [],
             "layout": {
-              "base": {
-                "x": 78,
-                "y": -3
-              },
               "parcels": [
                 {
                   "x": 78,
@@ -925,8 +873,14 @@
                   "x": 79,
                   "y": -2
                 }
-              ]
+              ],
+              "base": {
+                "x": 78,
+                "y": -3
+              }
             },
+            "silenceVoiceChat": false,
+            "disablePortableExperiences": false,
             "spawnPoints": [
               {
                 "name": "spawn1",
@@ -1013,8 +967,7 @@
                 "children": [
                   513,
                   514,
-                  515,
-                  520
+                  515
                 ]
               },
               {
@@ -1050,10 +1003,6 @@
               },
               {
                 "entity": 519,
-                "children": []
-              },
-              {
-                "entity": 520,
                 "children": []
               },
               {
@@ -1563,22 +1512,6 @@
         "serializationType": "map"
       },
       "data": {
-        "520": {
-          "json": {
-            "value": [
-              {
-                "type": "on_player_enters_area",
-                "conditions": [],
-                "actions": []
-              },
-              {
-                "type": "on_player_leaves_area",
-                "conditions": [],
-                "actions": []
-              }
-            ]
-          }
-        },
         "521": {
           "json": {
             "value": [
@@ -1764,9 +1697,6 @@
           "json": {}
         },
         "519": {
-          "json": {}
-        },
-        "520": {
           "json": {}
         },
         "521": {
