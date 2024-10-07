@@ -15,7 +15,7 @@ const playerEntity: Entity = engine.PlayerEntity
 const BLACK_LAYER = utils.LAYER_2
 const WHITE_LAYER = utils.LAYER_3
 const PLAYER_LAYER = utils.triggers.getLayerMask(playerEntity)
-utils.triggers.setTriggeredByMask(playerEntity, 2 || 3)
+utils.triggers.setTriggeredByMask(playerEntity, 2 | 3)
 
 interface CustomPBAudioSource extends PBAudioSource {
   isBlackKey: boolean
