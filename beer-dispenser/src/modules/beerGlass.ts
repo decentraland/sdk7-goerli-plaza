@@ -13,10 +13,16 @@ import {
 import { Vector3, Quaternion } from '@dcl/sdk/math'
 import { BeerGlass, PickedUp, TapBase } from '../definitions'
 import { playSound } from './factory'
-import { currentPlayerId, getPlayerPosition } from './helpers'
+import { currentPlayerId, getPlayerID, getPlayerPosition } from './helpers'
 import { parentEntity, syncEntity, getParent, getChildren, removeParent } from '@dcl/sdk/network'
 
 export function pickingGlassSystem() {
+
+  if (!currentPlayerId) {
+    getPlayerID()
+    return
+  }
+
   // Drop beer
   // Only happens if the player has a beer picked up
   for (const [entity, pickedUp] of engine.getEntitiesWith(PickedUp)) {
