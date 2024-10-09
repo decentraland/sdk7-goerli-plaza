@@ -6,10 +6,18 @@ export function getPlayerPosition() {
   return Transform.getOrNull(engine.PlayerEntity)?.position || Vector3.create()
 }
 
-export let currentPlayerId: string
+export let currentPlayerId: string | undefined = undefined
 
-void executeTask(async () => {
+
+
+export function getPlayerID() {
   const user = getPlayer()
-  if (!user) return
+  if (!user) {
+    console.log('No user found')
+    return
+  } else {
+    console.log('User found', user.userId)
+  }
+
   currentPlayerId = user.userId
-})
+}
