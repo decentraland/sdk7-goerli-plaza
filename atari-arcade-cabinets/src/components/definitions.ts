@@ -5,19 +5,13 @@ export const ArcadeFlag = engine.defineComponent('atari::ArcadeFlag', {
   game: Schemas.String
 })
 
-export const ArcadeScreenFlag = engine.defineComponent(
-  'atari::ArcadeScreenFlag',
-  {
-    game: Schemas.String
-  }
-)
+export const ArcadeScreenFlag = engine.defineComponent('atari::ArcadeScreenFlag', {
+  game: Schemas.String
+})
 
-export const ArcadeTriggerFlag = engine.defineComponent(
-  'atari::ArcadeTriggerFlag',
-  {
-    game: Schemas.String
-  }
-)
+export const ArcadeTriggerFlag = engine.defineComponent('atari::ArcadeTriggerFlag', {
+  game: Schemas.String
+})
 
 export const BallFlag = engine.defineComponent('atari::BallFlag', {
   direction: Schemas.Vector3,
@@ -30,12 +24,9 @@ export const BrickFlag = engine.defineComponent('atari::BrickFlag', {
 
 export const CollisionFlag = engine.defineComponent('atari::collisionFlag', {})
 
-export const GameElementsFlag = engine.defineComponent(
-  'atari::GameElementsFlag',
-  {
-    game: Schemas.String
-  }
-)
+export const GameElementsFlag = engine.defineComponent('atari::GameElementsFlag', {
+  game: Schemas.String
+})
 
 export const HasGameLoaded = engine.defineComponent('atari::HasGameLoaded', {
   loaded: Schemas.Boolean,
@@ -56,17 +47,11 @@ export const PaddleFlag = engine.defineComponent('atari::PaddleFlag', {
   game: Schemas.String
 })
 
-export const PlayerElementsFlag = engine.defineComponent(
-  'PlayerElementsFlag',
-  {}
-)
+export const PlayerElementsFlag = engine.defineComponent('PlayerElementsFlag', {})
 
-export const ReadyPlayerOneFlag = engine.defineComponent(
-  'atari::ReadyPlayerOneFlag',
-  {
-    game: Schemas.String
-  }
-)
+export const ReadyPlayerOneFlag = engine.defineComponent('atari::ReadyPlayerOneFlag', {
+  game: Schemas.String
+})
 
 export const SpinComponent = engine.defineComponent('atari::SpinComponent', {
   clockwise: Schemas.Int

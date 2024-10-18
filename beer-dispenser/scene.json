@@ -3,7 +3,9 @@
   "runtimeVersion": "7",
   "display": {
     "title": "beer-dispenser",
-    "favicon": "favicon_asset"
+    "favicon": "favicon_asset",
+    "description": "",
+    "navmapThumbnail": ""
   },
   "contact": {
     "name": "author-name",
@@ -38,5 +40,9 @@
   "name": "beer-dispenser",
   "worldConfiguration": {
     "name": "boedo.dcl.eth"
+  },
+  "featureToggles": {
+    "voiceChat": "enabled",
+    "portableExperiences": "enabled"
   }
 }

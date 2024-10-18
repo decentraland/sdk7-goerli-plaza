@@ -73,15 +73,12 @@ export class UI {
       <UiEntity
         uiTransform={{
           width: 650,
-          height: 325,
-          maxWidth: '100%',
-          maxHeight: '100%',
-          minHeight: '12%',
-          minWidth: '15%',
-          positionType: 'relative',
+          height: 'auto', //325,
+          padding: { top: '5%', bottom: '5%', left: '10%', right: '10%' },
           justifyContent: 'center',
           alignItems: 'center',
           display: this.master_ui_visible ? 'flex' : 'none',
+          flexDirection: 'column'
         }}
         uiBackground={{
           textureMode: 'stretch',
@@ -90,101 +87,63 @@ export class UI {
         {/* Welcome - Label - Title */}
         <Label
           uiTransform={{
-            width: 13,
-            height: 13,
-            margin: { top: '9%', bottom: '0%', left: '50%', right: '50%' },
-            positionType: 'absolute',
-            position: { bottom: '0%', top: '0%', left: '0%' },
+            height: 'auto',
             display: this.welcome_ui_visible ? 'flex' : 'none',
           }}
           value={`Welcome to a Simple Recurrent Giveaway Scene!`}
           fontSize={18}
-          font='sans-serif'
           color={Color4.fromHexString("#000000")}
         />
         {/* Welcome - Label - Subtitle */}
         <Label
           uiTransform={{
-            width: 13,
-            height: 13,
-            margin: { top: '21%', bottom: '0%', left: '50%', right: '50%' },
-            positionType: 'absolute',
-            position: { bottom: '0%', top: '0%', left: '0%' },
+            height: 'auto',
             display: this.welcome_ui_visible ? 'flex' : 'none',
           }}
           value={`*Stay 1 minute to Receive a Free Wearable \n *You can Claim 1 per/day (Max 3)`}
           fontSize={15}
-          font='sans-serif'
           color={Color4.Gray()}
         />
         {/* Testnet - Label - Subtitle */}
         <Label
           uiTransform={{
-            width: 13,
-            height: 13,
-            margin: { top: '28%', bottom: '0%', left: '50%', right: '50%' },
-            positionType: 'absolute',
-            position: { bottom: '0%', top: '0%', left: '0%' },
+            height: 'auto',
             display: this.welcome_ui_visible ? 'flex' : 'none',
           }}
           value={`*Wearables reside in the Amoy Polygon testnet`}
           fontSize={15}
-          font='sans-serif'
           color={Color4.Gray()}
         />
         {/* Timer - Label */}
         <Label
           uiTransform={{
-            width: 13,
-            height: 13,
-            margin: { top: '20%', bottom: '0%', left: '50%', right: '50%' },
-            positionType: 'relative',
-            position: { bottom: '0%', top: '0%', left: '0%' },
+            height: 'auto',
             display: this.timer_label_visible ? 'flex' : 'none',
           }}
           value={`Time left: ${this.timerText}`}
           color={this.timerTextColor}
           fontSize={15}
         />
+
         {/* Wearable - Label - Title */}
         <Label
           uiTransform={{
-            width: 13,
-            height: 13,
-            margin: { top: '0%', bottom: '0%', left: '0%', right: '0%' },
-            positionType: 'absolute',
-            position: { bottom: '0%', top: '13%', left: '40%' },
+            height: 'auto',
+            margin: { top: '2%', bottom: '2%', left: '0%', right: '0%' },
+            // position: { bottom: '0%', top: '13%', left: '40%' },
             display: this.claim_label_visible ? 'flex' : 'none',
           }}
-          value={`${this.data_wearableName}\nWearable incoming! `}
+          value={`${this.data_wearableName} Wearable incoming! `}
           fontSize={18}
           color={Color4.Black()}
-          font='sans-serif'
-          textAlign='middle-left'
-        />
-        {/* Wearable - Label - Data */}
-        <Label
-          uiTransform={{
-            width: 13,
-            height: 13,
-            margin: { top: '15%', bottom: '0%', left: '0%', right: '0%' },
-            positionType: 'absolute',
-            position: { bottom: '0%', top: '10%', left: '40%' },
-            display: this.claim_label_visible ? 'flex' : 'none',
-          }}
-          value={`User ID: ${this.data_userID} \nWearables Collected: ${this.data_wearablesAmount}/3 \nTime for Next Wearable: ${this.data_timeForNextWearable} \nTimes Visited: ${this.data_timesVisited} `}
-          fontSize={15}
-          color={Color4.Gray()}
-          textAlign='middle-left'
+          textAlign='middle-center'
         />
         {/* Wearable - Label - Info */}
         <Label
           uiTransform={{
-            width: 13,
-            height: 13,
-            margin: { top: '25%', bottom: '0%', left: '0%', right: '0%' },
-            positionType: 'absolute',
-            position: { bottom: '0%', top: '20%', left: '50%' },
+            height: 'auto',
+            // margin: { top: '25%', bottom: '0%', left: '5%', right: '5%' },
+            // position: { bottom: '0%', top: '20%' },
             display: this.claim_label_visible ? 'flex' : 'none',
           }}
           value={`*Wearable will arrive in your backpack in a few minutes. `}
@@ -192,28 +151,26 @@ export class UI {
           color={Color4.Gray()}
           textAlign='middle-center'
         />
-        {/* Close - Button */}
-        <Button
-          value="Close"
-          variant="primary"
+        {/* Wearable - Label - Data */}
+        <Label
           uiTransform={{
-            width: 130, height: 39, positionType: 'relative',
-            position: { bottom: '0%', top: '30%', left: '0%', right: '0%' },
-            display: this.close_button_visible ? 'flex' : 'none',
+            height: 'auto',
+            // margin: { top: '15%', bottom: '0%', left: '0%', right: '0%' },
+            // position: { bottom: '0%', top: '10%', left: '40%' },
+            display: this.claim_label_visible ? 'flex' : 'none',
           }}
-          onMouseDown={() => {
-            this.closeUI()
-          }}
-          fontSize={14}
-          uiBackground={{ color: Color4.Gray() }}
+          value={`Wearables Collected: ${this.data_wearablesAmount}/3 \nTime for Next Wearable: ${this.data_timeForNextWearable}`}
+          fontSize={13}
+          color={Color4.Gray()}
+          textAlign='middle-left'
         />
+
         {/* Thumbnail Airdrop - Image */}
         <UiEntity
           uiTransform={{
             width: 130, height: 130,
-            positionType: 'absolute',
-            position: { bottom: '0%', top: '10%', left: '0%', right: '50%' },
-            margin: { top: '0%', bottom: '0%', left: '10%', right: '50%' },
+            // position: { bottom: '0%', top: '10%', left: '0%', right: '50%' },
+            margin: { top: '2%' },
             display: this.thumbnail_image_visible ? 'flex' : 'none',
           }}
           uiBackground={{
@@ -226,25 +183,20 @@ export class UI {
         {/* Captcha - Title */}
         <Label
           uiTransform={{
-            width: 13,
             height: 13,
-            margin: { top: '6%', bottom: '0%', left: '50%', right: '50%' },
-            positionType: 'absolute',
-            position: { bottom: '0%', top: '0%', left: '0%' },
             display: this.captcha_ui_visible ? 'flex' : 'none',
           }}
           value={`Please Solve this Captcha`}
           fontSize={18}
-          font='sans-serif'
           color={Color4.fromHexString("#000000")}
         />
         {/* Captcha - Image */}
         <UiEntity
           uiTransform={{
             width: 550, height: 125,
-            positionType: 'absolute',
-            position: { bottom: '0%', top: '22%', left: '0%', right: '0%' },
-            margin: { top: '0%', bottom: '0%', left: '0%', right: '0%' },
+            // positionType: 'absolute',
+            // position: { bottom: '0%', top: '22%', left: '0%', right: '0%' },
+            // margin: { top: '0%', bottom: '0%', left: '0%', right: '0%' },
             display: this.captcha_ui_visible ? 'flex' : 'none',
           }}
           uiBackground={{
@@ -266,9 +218,9 @@ export class UI {
             width: 200,
             height: 35,
             display: this.captcha_ui_visible ? 'flex' : 'none',
-            positionType: 'absolute',
-            position: { bottom: '0%', top: '67%', left: '30%', right: '0%' },
-            margin: { top: '0%', bottom: '0%', left: '0%', right: '50%' },
+            // positionType: 'absolute',
+            // position: { bottom: '0%', top: '67%', left: '30%', right: '0%' },
+            // margin: { top: '0%', bottom: '0%', left: '0%', right: '50%' },
 
           }}
         ></Input>
@@ -277,9 +229,9 @@ export class UI {
           value="OK"
           variant="primary"
           uiTransform={{
-            width: 110, height: 30, positionType: 'relative',
-            position: { bottom: '0%', top: '40%', left: '0%' },
-            margin: { top: '0%', bottom: '0%', left: '0%', right: '0%' },
+            width: 110, height: 30,
+            margin: { top: '5%', bottom: '5%' },
+
             display: this.captcha_ui_visible ? 'flex' : 'none',
           }}
           fontSize={15}
@@ -291,34 +243,42 @@ export class UI {
         {/* Error - Label */}
         <Label
           uiTransform={{
-            width: 13,
-            height: 13,
-            margin: { top: '20%', bottom: '0%', left: '50%', right: '50%' },
-            positionType: 'absolute',
-            position: { bottom: '0%', top: '0%', left: '0%' },
+            height: 'auto',
             display: this.error_ui_visible ? 'flex' : 'none',
           }}
           value={this.error}
           fontSize={18}
           color={Color4.Red()}
-          font='sans-serif'
           textAlign='middle-center'
         />
         {/* Already Claimed - Label */}
         <Label
           uiTransform={{
-            width: 13,
-            height: 13,
-            margin: { top: '20%', bottom: '0%', left: '50%', right: '50%' },
-            positionType: 'absolute',
-            position: { bottom: '0%', top: '0%', left: '0%' },
+            height: 'auto',
             display: this.already_claimed_ui_visible ? 'flex' : 'none',
           }}
           value={'You already claimed this wearable!'}
           fontSize={18}
           color={Color4.Red()}
-          font='sans-serif'
           textAlign='middle-center'
+        />
+        {/* Close - Button */}
+        <Button
+          value="Close"
+          variant="primary"
+          textAlign='middle-center'
+          uiTransform={{
+            width: 'auto', height: 'auto',
+            padding: { top: '1%', bottom: '1%', left: '10%', right: '10%' },
+            positionType: 'relative',
+            margin: { top: '5%', bottom: '5%', left: '0%', right: '0%' },
+            display: this.close_button_visible ? 'flex' : 'none',
+          }}
+          onMouseDown={() => {
+            this.closeUI()
+          }}
+          fontSize={16}
+          uiBackground={{ color: Color4.Gray() }}
         />
       </UiEntity>
     </UiEntity>
@@ -489,7 +449,7 @@ export class UI {
           this.gameController.airdrop_3.randomCrateSpawn()
         }
       } else {
-        this.errorUI(this.gameController.ui.breakLines('Less than 24 hours have passed since the last time the wearable was delivered', 20))
+        this.errorUI('Less than 24 hours have passed since the last time the wearable was delivered')
       }
     }
   }

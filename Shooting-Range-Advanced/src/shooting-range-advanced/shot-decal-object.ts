@@ -32,12 +32,12 @@ export module ShotDecalObject {
     if (isDebugging)
       console.log(
         'Shot Decal Object: attempting to create object at pos(x=' +
-          data.pos.x +
-          ', y=' +
-          data.pos.y +
-          ', z=' +
-          data.pos.z +
-          ')...'
+        data.pos.x +
+        ', y=' +
+        data.pos.y +
+        ', z=' +
+        data.pos.z +
+        ')...'
       )
 
     //create object
@@ -63,7 +63,7 @@ export module ShotDecalObject {
 
     //register a delayed function to remove the decal after it has expired
     utils.timers.setTimeout(function () {
-      engine.removeEntity(anchor)
+      engine.removeEntityWithChildren(anchor)
     }, DECAL_LIFESPAN)
 
     //add entity to pooling
@@ -71,27 +71,27 @@ export module ShotDecalObject {
     if (isDebugging)
       console.log(
         'Shot Decal Object: created new object at' +
-          '\n\tpar rotation {x=' +
-          data.pivot.x +
-          ', y=' +
-          data.pivot.y +
-          ', z=' +
-          data.pivot.z +
-          '}' +
-          '\n\ttar position {x=' +
-          data.pos.x +
-          ', y=' +
-          data.pos.y +
-          ', z=' +
-          data.pos.z +
-          '}' +
-          '\n\ttar rotation {x=' +
-          data.rot.x +
-          ', y=' +
-          data.rot.y +
-          ', z=' +
-          data.rot.z +
-          '}'
+        '\n\tpar rotation {x=' +
+        data.pivot.x +
+        ', y=' +
+        data.pivot.y +
+        ', z=' +
+        data.pivot.z +
+        '}' +
+        '\n\ttar position {x=' +
+        data.pos.x +
+        ', y=' +
+        data.pos.y +
+        ', z=' +
+        data.pos.z +
+        '}' +
+        '\n\ttar rotation {x=' +
+        data.rot.x +
+        ', y=' +
+        data.rot.y +
+        ', z=' +
+        data.rot.z +
+        '}'
       )
     //provide entity reference
     return entity

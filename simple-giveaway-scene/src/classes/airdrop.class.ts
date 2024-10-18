@@ -114,7 +114,7 @@ export class airdropWearable {
         })
 
         utils.timers.setTimeout(() => {
-          engine.removeEntity(this.crate)
+          engine.removeEntityWithChildren(this.crate)
         }, 1000)
       }
     })

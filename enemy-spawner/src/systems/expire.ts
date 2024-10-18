@@ -7,7 +7,7 @@ export function expire(dt: number) {
 
     expire.timeLeft -= dt
     if (expire.timeLeft < 0) {
-      engine.removeEntity(entity)
+      engine.removeEntityWithChildren(entity)
     }
   }
 }

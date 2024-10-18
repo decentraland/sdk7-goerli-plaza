@@ -1,4 +1,4 @@
-import { AudioSource, AvatarAnchorPointType, AvatarAttach, engine } from '@dcl/sdk/ecs'
+import { AudioSource, AvatarAnchorPointType, AvatarAttach, engine, Transform } from '@dcl/sdk/ecs'
 
 //Create audio entity to play sound
 const pickUp = engine.addEntity()
@@ -12,9 +12,7 @@ AudioSource.create(pickUp, {
 })
 
 // Attach to local player position
-AvatarAttach.create(pickUp, {
-  anchorPointId: AvatarAnchorPointType.AAPT_POSITION
-})
+Transform.getOrCreateMutable(pickUp).parent = engine.PlayerEntity
 
 //Create a function to play pickUp sound
 export function playPickUpSound() {

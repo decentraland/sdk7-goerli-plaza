@@ -27,6 +27,9 @@ import { Color4, Vector3 } from '@dcl/sdk/math'
 import { ShotDecalObject } from './shot-decal-object'
 import { ScoreObject } from './score-object'
 
+
+export var READY_TO_SHOOT: boolean = false
+
 /** manages the state of the shooting area, acting as the functional linkage between a target
  *  being shot, playing sounds, and bulletmark placement. the area is composed of 2 objects:
  *      1 - trigger box area that de/actives shooting when the player leaves/enter the area
@@ -130,16 +133,16 @@ export module PlayerShootingArea {
             if (isDebugging)
               console.log(
                 'Shooting Area: hit validated entityID=' +
-                  hitID +
-                  ', mesh=' +
-                  raycastResult.hits[0].meshName +
-                  '\t\nposition{ x=' +
-                  relPos.x +
-                  ', y=' +
-                  relPos.y +
-                  ', z=' +
-                  relPos.z +
-                  ' }'
+                hitID +
+                ', mesh=' +
+                raycastResult.hits[0].meshName +
+                '\t\nposition{ x=' +
+                relPos.x +
+                ', y=' +
+                relPos.y +
+                ', z=' +
+                relPos.z +
+                ' }'
               )
 
             //render new shot decal
@@ -213,6 +216,7 @@ export module PlayerShootingArea {
         function (otherEntity) {
           console.log(`trigger area entered, object=${otherEntity}!`)
           inShootingArea = true
+          READY_TO_SHOOT = true
           //update floor material
           Material.setPbrMaterial(shootingFloorEntity, {
             albedoColor: Color4.Yellow(),
@@ -224,6 +228,7 @@ export module PlayerShootingArea {
         function (otherEntity) {
           console.log(`trigger area exited, object=${otherEntity}!`)
           inShootingArea = false
+          READY_TO_SHOOT = false
           //update floor material
           Material.setPbrMaterial(shootingFloorEntity, {
             albedoColor: Color4.Red(),

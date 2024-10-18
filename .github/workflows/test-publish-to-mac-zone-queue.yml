@@ -1,0 +1,97 @@
+name: deploy-to-mac-zone-queue
+
+on:
+  workflow_call:
+    inputs:
+      dcl-sdk-package:
+        type: string
+        description: "@dcl/sdk package"
+        default: "@dcl/sdk@latest"
+      ab-token:
+        type: string
+      ab-extra-params:
+        type: string
+        default: "--platform mac"
+    secrets:
+      SDK_TEAM_S3_BUCKET:
+        required: true
+      SDK_TEAM_AWS_ID:
+        required: true
+      SDK_TEAM_AWS_SECRET:
+        required: true
+      SDK_TEAM_S3_BASE_URL:
+        required: true
+
+  workflow_dispatch:
+    inputs:
+      dcl-sdk-package:
+        description: "@dcl/sdk package"
+        default: "@dcl/sdk@latest"
+        required: true
+      ab-token:
+        description: "AB token"
+        required: true
+      ab-extra-params:
+        description: "AB optional exta paramaters"
+        required: false
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - uses: actions/github-script@v7
+        id: extract_version
+        env:
+          VERSION: ${{ inputs.dcl-sdk-package }}
+        with:
+          script: return `${process.env.VERSION.split('@').slice(-1)[0]}`
+          result-encoding: string
+
+      - uses: actions/github-script@v7
+        id: get-branch-realm-name
+        env:
+          BRANCH: ${{ github.head_ref || github.ref }}
+        with:
+          script: return `goerli-plaza-${process.env.BRANCH.replaceAll('/', '-').replaceAll('refs-heads-', '').substr(0, 28)}-${{ steps.extract_version.outputs.result }}`
+          result-encoding: string
+
+      - name: install sdk version
+        run: npm i ${{inputs.dcl-sdk-package}} --workspaces
+
+      - name: install dependencies
+        run: npm i --workspaces
+
+      - name: build
+        run: npm run build
+
+      - name: export-static (branch)
+        run: >
+          npm run export-static -- \
+            --realmName ${{steps.get-branch-realm-name.outputs.result}} \
+            --commsAdapter fixed-adapter:signed-login:https://worlds-content-server.decentraland.zone/get-comms-adapter/world-dev-goerliplaza.dcl.eth \
+            --baseUrl '${{ secrets.SDK_TEAM_S3_BASE_URL }}/test' \
+            --destination "$(pwd)/ipfs"
+
+      - name: upload to s3
+        run: >
+          npx @dcl/cdn-uploader@next \
+              --bucket ${{ secrets.SDK_TEAM_S3_BUCKET }} \
+              --local-folder "$(pwd)/ipfs" \
+              --bucket-folder 'test'
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.SDK_TEAM_AWS_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.SDK_TEAM_AWS_SECRET }}
+
+      - name: Asset Bundle converter queue AllPlataforms
+        run: >
+          npx @dcl/opscli queue-ab-conversion-about \
+            --token ${{ inputs.ab-token }} \
+            --about-url ${{ secrets.SDK_TEAM_S3_BASE_URL }}/test/${{steps.get-branch-realm-name.outputs.result}}/about \
+            --ab-server https://ab-admin.decentraland.zone \
+            ${{ inputs.ab-extra-params }}

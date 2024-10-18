@@ -30,26 +30,10 @@ export function main() {
   Transform.create(base, { scale: Vector3.create(2, 1, 1) })
 
   // Create Arcades
-  createArcade(
-    Vector3.create(2, 0.01, 8),
-    Quaternion.fromEulerDegrees(0, 0, 0),
-    Games.G_DECENTRALAND
-  )
-  createArcade(
-    Vector3.create(5, 0.01, 8),
-    Quaternion.fromEulerDegrees(0, 0, 0),
-    Games.G_ATARI
-  )
-  createArcade(
-    Vector3.create(8, 0.01, 8),
-    Quaternion.fromEulerDegrees(0, 0, 0),
-    Games.G_BITCOIN
-  )
-  createArcade(
-    Vector3.create(11, 0.01, 8),
-    Quaternion.fromEulerDegrees(0, 0, 0),
-    Games.G_ETHEREUM
-  )
+  createArcade(Vector3.create(2, 0.01, 8), Quaternion.fromEulerDegrees(0, 0, 0), Games.G_DECENTRALAND)
+  createArcade(Vector3.create(5, 0.01, 8), Quaternion.fromEulerDegrees(0, 0, 0), Games.G_ATARI)
+  createArcade(Vector3.create(8, 0.01, 8), Quaternion.fromEulerDegrees(0, 0, 0), Games.G_BITCOIN)
+  createArcade(Vector3.create(11, 0.01, 8), Quaternion.fromEulerDegrees(0, 0, 0), Games.G_ETHEREUM)
 
   loadAllLevels()
   setupUi()

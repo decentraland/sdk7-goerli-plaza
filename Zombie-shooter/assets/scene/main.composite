@@ -97,16 +97,16 @@
               "y": 0,
               "z": 8
             },
+            "scale": {
+              "x": 1,
+              "y": 1,
+              "z": 1
+            },
             "rotation": {
               "x": 0,
               "y": 0,
               "z": 0,
               "w": 1
-            },
-            "scale": {
-              "x": 1,
-              "y": 1,
-              "z": 1
             },
             "parent": 0
           }
@@ -118,16 +118,16 @@
               "y": 0,
               "z": 1.25
             },
+            "scale": {
+              "x": 1,
+              "y": 1,
+              "z": 1
+            },
             "rotation": {
               "x": 0,
               "y": 0,
               "z": 0,
               "w": 1
-            },
-            "scale": {
-              "x": 1,
-              "y": 1,
-              "z": 1
             },
             "parent": 0
           }
@@ -139,16 +139,16 @@
               "y": 0,
               "z": 0.75
             },
+            "scale": {
+              "x": 1,
+              "y": 1,
+              "z": 1
+            },
             "rotation": {
               "x": 0,
               "y": 0,
               "z": 0,
               "w": 1
-            },
-            "scale": {
-              "x": 1,
-              "y": 1,
-              "z": 1
             },
             "parent": 0
           }
@@ -160,16 +160,16 @@
               "y": 0,
               "z": 0.75
             },
+            "scale": {
+              "x": 1,
+              "y": 1,
+              "z": 1
+            },
             "rotation": {
               "x": 0,
               "y": 0,
               "z": 0,
               "w": 1
-            },
-            "scale": {
-              "x": 1,
-              "y": 1,
-              "z": 1
             },
             "parent": 0
           }
@@ -181,16 +181,16 @@
               "y": 0,
               "z": 0.75
             },
+            "scale": {
+              "x": 1,
+              "y": 1,
+              "z": 1
+            },
             "rotation": {
               "x": 0,
               "y": 0,
               "z": 0,
               "w": 1
-            },
-            "scale": {
-              "x": 1,
-              "y": 1,
-              "z": 1
             },
             "parent": 0
           }
@@ -202,16 +202,16 @@
               "y": 0,
               "z": 0.25
             },
+            "scale": {
+              "x": 1,
+              "y": 1,
+              "z": 1
+            },
             "rotation": {
               "x": 0,
               "y": 0,
               "z": 0,
               "w": 1
-            },
-            "scale": {
-              "x": 1,
-              "y": 1,
-              "z": 1
             },
             "parent": 0
           }
@@ -223,16 +223,16 @@
               "y": 0,
               "z": 0.5
             },
+            "scale": {
+              "x": 1,
+              "y": 1,
+              "z": 1
+            },
             "rotation": {
               "x": 0,
               "y": 0,
               "z": 0,
               "w": 1
-            },
-            "scale": {
-              "x": 1,
-              "y": 1,
-              "z": 1
             },
             "parent": 0
           }
@@ -244,16 +244,16 @@
               "y": 0,
               "z": 2.75
             },
+            "scale": {
+              "x": 1,
+              "y": 1,
+              "z": 1
+            },
             "rotation": {
               "x": 0,
               "y": 0,
               "z": 0,
               "w": 1
-            },
-            "scale": {
-              "x": 1,
-              "y": 1,
-              "z": 1
             },
             "parent": 0
           }
@@ -265,16 +265,16 @@
               "y": 0,
               "z": 13.25
             },
+            "scale": {
+              "x": 1,
+              "y": 1,
+              "z": 1
+            },
             "rotation": {
               "x": 0,
               "y": 0,
               "z": 0,
               "w": 1
-            },
-            "scale": {
-              "x": 1,
-              "y": 1,
-              "z": 1
             },
             "parent": 0
           }
@@ -286,16 +286,16 @@
               "y": 0,
               "z": 13.25
             },
+            "scale": {
+              "x": 1,
+              "y": 1,
+              "z": 1
+            },
             "rotation": {
               "x": 0,
               "y": 0,
               "z": 0,
               "w": 1
-            },
-            "scale": {
-              "x": 1,
-              "y": 1,
-              "z": 1
             },
             "parent": 0
           }
@@ -307,16 +307,16 @@
               "y": 0,
               "z": 13.25
             },
+            "scale": {
+              "x": 1,
+              "y": 1,
+              "z": 1
+            },
             "rotation": {
               "x": 0,
               "y": 0,
               "z": 0,
               "w": 1
-            },
-            "scale": {
-              "x": 1,
-              "y": 1,
-              "z": 1
             },
             "parent": 0
           }
@@ -328,16 +328,16 @@
               "y": 0,
               "z": 13.25
             },
+            "scale": {
+              "x": 1,
+              "y": 1,
+              "z": 1
+            },
             "rotation": {
               "x": 0,
               "y": 0,
               "z": 0,
               "w": 1
-            },
-            "scale": {
-              "x": 1,
-              "y": 1,
-              "z": 1
             },
             "parent": 0
           }
@@ -1003,19 +1003,22 @@
             "thumbnail": "images/scene-thumbnail.png",
             "categories": [],
             "author": "Lean",
+            "email": "",
             "tags": [],
             "layout": {
-              "base": {
-                "x": 77,
-                "y": -9
-              },
               "parcels": [
                 {
                   "x": 77,
                   "y": -9
                 }
-              ]
+              ],
+              "base": {
+                "x": 77,
+                "y": -9
+              }
             },
+            "silenceVoiceChat": false,
+            "disablePortableExperiences": false,
             "spawnPoints": [
               {
                 "name": "spawn1",
@@ -1423,6 +1426,14 @@
                     "type": "boolean",
                     "serializationType": "boolean"
                   }
+                },
+                "basicViewId": {
+                  "type": "string",
+                  "serializationType": "optional",
+                  "optionalJsonSchema": {
+                    "type": "string",
+                    "serializationType": "utf8-string"
+                  }
                 }
               },
               "serializationType": "map"
@@ -1676,7 +1687,8 @@
                     "on_global_primary",
                     "on_global_secondary",
                     "on_tick",
-                    "on_heal_player"
+                    "on_heal_player",
+                    "on_player_spawn"
                   ],
                   "default": "on_input_action",
                   "serializationType": "enum-string",
@@ -1698,7 +1710,8 @@
                     "ON_GLOBAL_PRIMARY": "on_global_primary",
                     "ON_GLOBAL_SECONDARY": "on_global_secondary",
                     "ON_TICK": "on_tick",
-                    "ON_HEAL_PLAYER": "on_heal_player"
+                    "ON_HEAL_PLAYER": "on_heal_player",
+                    "ON_PLAYER_SPAWN": "on_player_spawn"
                   }
                 },
                 "conditions": {
@@ -2291,6 +2304,8 @@
                     "Actions",
                     "asset-packs::Counter",
                     "Counter",
+                    "asset-packs::CounterBar",
+                    "CounterBar",
                     "asset-packs::Triggers",
                     "Triggers",
                     "asset-packs::States",
@@ -2298,7 +2313,9 @@
                     "inspector::TransformConfig",
                     "inspector::Hide",
                     "inspector::Lock",
-                    "inspector::Config"
+                    "inspector::Config",
+                    "inspector::Ground",
+                    "inspector::Tile"
                   ],
                   "default": "asset-packs::Actions",
                   "serializationType": "enum-string",
@@ -2329,6 +2346,8 @@
                     "asset-packs::Actions": "Actions",
                     "Counter": "asset-packs::Counter",
                     "asset-packs::Counter": "Counter",
+                    "CounterBar": "asset-packs::CounterBar",
+                    "asset-packs::CounterBar": "CounterBar",
                     "Triggers": "asset-packs::Triggers",
                     "asset-packs::Triggers": "Triggers",
                     "States": "asset-packs::States",
@@ -2336,10 +2355,12 @@
                     "TransformConfig": "inspector::TransformConfig",
                     "Hide": "inspector::Hide",
                     "Lock": "inspector::Lock",
-                    "Config": "inspector::Config"
+                    "Config": "inspector::Config",
+                    "Ground": "inspector::Ground",
+                    "Tile": "inspector::Tile"
                   }
                 },
-                "jsonPayload": {
+                "layout": {
                   "type": "string",
                   "serializationType": "optional",
                   "optionalJsonSchema": {

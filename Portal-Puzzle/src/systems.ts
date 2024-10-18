@@ -80,7 +80,7 @@ export function handlePortalRay(result: DeepReadonlyObject<PBRaycastResult>) {
     for (const [entity, portal] of activePortals) {
       if (portal.color == activePortal) {
         utils.triggers.removeTrigger(entity)
-        engine.removeEntity(entity)
+        engine.removeEntityWithChildren(entity)
       }
     }
 

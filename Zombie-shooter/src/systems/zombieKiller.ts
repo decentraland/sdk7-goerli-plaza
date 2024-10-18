@@ -20,7 +20,7 @@ export function zombieKiller(dt: number) {
       if (result.hit?.entityId === zombieEntity) {
         console.log('SHOT A ZOMbiE!!! ', zombieEntity)
 
-        engine.removeEntity(zombieEntity)
+        engine.removeEntityWithChildren(zombieEntity)
 
         const lever = engine.getEntityOrNullByName('Lever')
 
