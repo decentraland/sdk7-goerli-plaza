@@ -24,12 +24,8 @@ export function main() {
     const videoTexture = Material.Texture.Video({ videoPlayerEntity: screen })
 
     // apply same video to second screen
-    Material.setPbrMaterial(screen2, {
-      texture: videoTexture,
-      emissiveTexture: videoTexture,
-      emissiveIntensity: 1,
-      roughness: 0,
-      metallic: 0
+    Material.setBasicMaterial(screen2, {
+      texture: videoTexture
     })
 
     pointerEventsSystem.onPointerDown(
