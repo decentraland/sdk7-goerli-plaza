@@ -19,7 +19,6 @@ import { parentEntity, syncEntity, getParent, getChildren, removeParent } from '
 export function pickingGlassSystem() {
 
   if (!currentPlayerId) {
-    getPlayerID()
     return
   }
 
