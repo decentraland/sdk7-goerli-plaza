@@ -4,7 +4,7 @@
   "display": {
     "title": "video-streaming",
     "description": "First scene with SDK7",
-    "navmapThumbnail": "images/scene-thumbnail.png",
+    "navmapThumbnail": "assets/scene/screenshot_2024-09-13_at_51113 pm.png",
     "favicon": "favicon_asset"
   },
   "owner": "",
@@ -48,6 +48,9 @@
       }
     }
   ],
-  "featureToggles": {},
+  "featureToggles": {
+    "voiceChat": "enabled",
+    "portableExperiences": "enabled"
+  },
   "name": "video-streaming"
 }
