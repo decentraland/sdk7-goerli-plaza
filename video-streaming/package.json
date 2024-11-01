@@ -10,5 +10,8 @@
     "build": "sdk-commands build --skip-install",
     "deploy": "sdk-commands deploy",
     "start": "sdk-commands start"
+  },
+  "devDependencies": {
+    "@dcl/asset-packs": "latest"
   }
 }

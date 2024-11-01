@@ -31,7 +31,6 @@ const doorsRot3 = Vector3.create(0, 90, 0)
 const doorsPos4 = Vector3.create(26.9, 10.3, 12.36)
 const doorsRot4 = Vector3.create(0, 90, 0)
 
-
 export function createElevatorDoors(
   position: Vector3,
   rotation: Vector3,

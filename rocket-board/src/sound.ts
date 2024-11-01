@@ -1,4 +1,4 @@
-import { AudioSource, AvatarAnchorPointType, AvatarAttach, engine } from '@dcl/sdk/ecs'
+import { AudioSource, AvatarAnchorPointType, AvatarAttach, engine, Transform } from '@dcl/sdk/ecs'
 
 //Create audio entity to play sound
 const ringPass = engine.addEntity()
@@ -12,9 +12,7 @@ AudioSource.create(ringPass, {
 })
 
 // Attach to local player position
-AvatarAttach.create(ringPass, {
-  anchorPointId: AvatarAnchorPointType.AAPT_POSITION
-})
+Transform.getOrCreateMutable(ringPass).parent = engine.PlayerEntity
 
 //Create a function to play ringPass sound
 export function playringPassSound() {

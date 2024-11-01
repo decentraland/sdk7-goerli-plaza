@@ -1,8 +1,8 @@
 /*    SCORE OBJECT
-		contains all functional components of score objects, including file location model's 
-	location path, interface for creation calls, on-object component, and management module
-	(used for creating, enabling, disabling, and destroying splat objects). when placed
-		score objects automatically decay after a period of time (get repooled for use later)
+    contains all functional components of score objects, including file location model's 
+  location path, interface for creation calls, on-object component, and management module
+  (used for creating, enabling, disabling, and destroying splat objects). when placed
+    score objects automatically decay after a period of time (get repooled for use later)
 */
 
 import { Animator, Billboard, Entity, GltfContainer, Schemas, Transform, engine } from '@dcl/sdk/ecs'
@@ -70,14 +70,14 @@ export module ScoreObject {
     if (isDebugging)
       console.log(
         'Score Object: attempting to create object of type=' +
-          data.type +
-          ' at pos(x=' +
-          data.pos.x +
-          ', y=' +
-          data.pos.y +
-          ', z=' +
-          data.pos.z +
-          ')...'
+        data.type +
+        ' at pos(x=' +
+        data.pos.x +
+        ', y=' +
+        data.pos.y +
+        ', z=' +
+        data.pos.z +
+        ')...'
       )
 
     //attempt to find pre-existing component
@@ -179,6 +179,6 @@ export module ScoreObject {
   }
   /** destroys given object (removes from engine and pool) */
   export function Destroy(entity: Entity) {
-    engine.removeEntity(entity)
+    engine.removeEntityWithChildren(entity)
   }
 }

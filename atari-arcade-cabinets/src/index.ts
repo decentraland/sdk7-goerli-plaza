@@ -10,6 +10,7 @@ import { createArcade } from './gameObjects/arcade'
 import { createSound } from './gameObjects/sound'
 import { spinSystem } from './utils'
 import { Sounds, Games, CABINETS } from './gameLogic/sharedConstants'
+import { setupUi } from './ui'
 
 export function main() {
   createSound(Sounds.S_HIT)
@@ -35,4 +36,5 @@ export function main() {
   createArcade(Vector3.create(11, 0.01, 8), Quaternion.fromEulerDegrees(0, 0, 0), Games.G_ETHEREUM)
 
   loadAllLevels()
+  setupUi()
 }

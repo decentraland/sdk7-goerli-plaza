@@ -5,6 +5,7 @@
 */
 
 import { Schemas, engine, Entity, Transform, GltfContainer, ColliderLayer } from '@dcl/sdk/ecs'
+import { READY_TO_SHOOT } from './player-shooting-area'
 
 export module TargetObject {
   //when true debug logs are generated (toggle off when you deploy)
@@ -62,6 +63,9 @@ export module TargetObject {
   /** timed processing for all moving target components */
   const targetProcessingMoving = function MovingTimer(dt: number) {
     //process every entity that has this component
+
+    if (!READY_TO_SHOOT) return
+
     for (const [entity] of engine.getEntitiesWith(TargetMovingComponent)) {
       const component = TargetMovingComponent.getMutable(entity)
       //ensure target is active and processing movement
@@ -70,9 +74,9 @@ export module TargetObject {
       const pos = Transform.getMutable(entity).position
       //check for destination
       if (
-        Math.abs(pos.x - component.waypoints[component.indexCur].x) < 0.05 &&
-        Math.abs(pos.y - component.waypoints[component.indexCur].y) < 0.05 &&
-        Math.abs(pos.z - component.waypoints[component.indexCur].z) < 0.02
+        Math.abs(pos.x - component.waypoints[component.indexCur].x) < 0.1 &&
+        Math.abs(pos.y - component.waypoints[component.indexCur].y) < 0.1 &&
+        Math.abs(pos.z - component.waypoints[component.indexCur].z) < 0.1
       ) {
         //update target
         component.indexCur++
@@ -230,6 +234,6 @@ export module TargetObject {
   }
   /** destroys given object (removes from engine and pool) */
   export function Destroy(entity: Entity) {
-    engine.removeEntity(entity)
+    engine.removeEntityWithChildren(entity)
   }
 }

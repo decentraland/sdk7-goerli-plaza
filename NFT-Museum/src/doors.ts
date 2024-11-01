@@ -63,107 +63,107 @@ export function createSlidingDoors(
   const doorR = createDoorEntity(doorRmodel, closeDoorOffset, doorParent);
   const doorRalpha = createDoorEntity(doorRmodelAlpha, closeDoorOffset, doorParent);
 
-// Manually copy the position values into new Vector3 objects
-const initialClosedDoorLPos = Vector3.create(
-  Transform.get(doorL).position.x,
-  Transform.get(doorL).position.y,
-  Transform.get(doorL).position.z
-);
+  // Manually copy the position values into new Vector3 objects
+  const initialClosedDoorLPos = Vector3.create(
+    Transform.get(doorL).position.x,
+    Transform.get(doorL).position.y,
+    Transform.get(doorL).position.z
+  );
 
-const initialClosedDoorRPos = Vector3.create(
-  Transform.get(doorR).position.x,
-  Transform.get(doorR).position.y,
-  Transform.get(doorR).position.z
-);
+  const initialClosedDoorRPos = Vector3.create(
+    Transform.get(doorR).position.x,
+    Transform.get(doorR).position.y,
+    Transform.get(doorR).position.z
+  );
 
-function moveDoors(offset: number, onComplete?: () => void) {
-  // Calculate the open positions relative to the initial closed positions
-  const openDoorLPos = roundVector3(Vector3.create(
-    initialClosedDoorLPos.x + offset, 
-    initialClosedDoorLPos.y,
-    initialClosedDoorLPos.z
-  ));
+  function moveDoors(offset: number, onComplete?: () => void) {
+    // Calculate the open positions relative to the initial closed positions
+    const openDoorLPos = roundVector3(Vector3.create(
+      initialClosedDoorLPos.x + offset,
+      initialClosedDoorLPos.y,
+      initialClosedDoorLPos.z
+    ));
 
-  const openDoorRPos = roundVector3(Vector3.create(
-    initialClosedDoorRPos.x - offset,
-    initialClosedDoorRPos.y,
-    initialClosedDoorRPos.z
-  ));
+    const openDoorRPos = roundVector3(Vector3.create(
+      initialClosedDoorRPos.x - offset,
+      initialClosedDoorRPos.y,
+      initialClosedDoorRPos.z
+    ));
 
-  const roundedInitialClosedDoorLPos = roundVector3(initialClosedDoorLPos);
-  const roundedInitialClosedDoorRPos = roundVector3(initialClosedDoorRPos);
+    const roundedInitialClosedDoorLPos = roundVector3(initialClosedDoorLPos);
+    const roundedInitialClosedDoorRPos = roundVector3(initialClosedDoorRPos);
 
-  // Define a small tolerance for rounding errors
-  const tolerance = 0.001;
+    // Define a small tolerance for rounding errors
+    const tolerance = 0.001;
 
-  function forceExactPosition(entity: Entity, targetPos: Vector3) {
-    const currentPos = Transform.get(entity).position;
-    if (Math.abs(currentPos.x - targetPos.x) > tolerance ||
+    function forceExactPosition(entity: Entity, targetPos: Vector3) {
+      const currentPos = Transform.get(entity).position;
+      if (Math.abs(currentPos.x - targetPos.x) > tolerance ||
         Math.abs(currentPos.y - targetPos.y) > tolerance ||
         Math.abs(currentPos.z - targetPos.z) > tolerance) {
-      // Safely adjust the position using Transform.getMutable()
-      const mutableTransform = Transform.getMutable(entity);
-      mutableTransform.position = targetPos;
+        // Safely adjust the position using Transform.getMutable()
+        const mutableTransform = Transform.getMutable(entity);
+        mutableTransform.position = targetPos;
+      }
+    }
+
+    if (offset === 0) {
+      // Closing - Move both main and alpha doors back to closed positions smoothly
+      utils.tweens.startTranslation(doorL, Transform.get(doorL).position, roundedInitialClosedDoorLPos, doorDuration, utils.InterpolationType.EASEINQUAD, () => {
+        // Force doors to snap to exact positions at the end of the animation
+        forceExactPosition(doorL, roundedInitialClosedDoorLPos);
+        forceExactPosition(doorLalpha, roundedInitialClosedDoorLPos);
+        isMoving = false;
+        if (onComplete) onComplete();
+      });
+
+      utils.tweens.startTranslation(doorR, Transform.get(doorR).position, roundedInitialClosedDoorRPos, doorDuration, utils.InterpolationType.EASEINQUAD, () => {
+        forceExactPosition(doorR, roundedInitialClosedDoorRPos);
+        forceExactPosition(doorRalpha, roundedInitialClosedDoorRPos);
+      });
+
+      // Smoothly close alpha doors using identical tween parameters
+      utils.tweens.startTranslation(doorLalpha, Transform.get(doorLalpha).position, roundedInitialClosedDoorLPos, doorDuration, utils.InterpolationType.EASEINQUAD);
+      utils.tweens.startTranslation(doorRalpha, Transform.get(doorRalpha).position, roundedInitialClosedDoorRPos, doorDuration, utils.InterpolationType.EASEINQUAD);
+
+    } else {
+      // Opening - Move both main and alpha doors to the open positions smoothly
+      utils.tweens.startTranslation(doorL, roundedInitialClosedDoorLPos, openDoorLPos, doorDuration, utils.InterpolationType.EASEINQUAD);
+      utils.tweens.startTranslation(doorR, roundedInitialClosedDoorRPos, openDoorRPos, doorDuration, utils.InterpolationType.EASEINQUAD);
+
+      // Smoothly open alpha doors using identical tween parameters
+      utils.tweens.startTranslation(doorLalpha, roundedInitialClosedDoorLPos, openDoorLPos, doorDuration, utils.InterpolationType.EASEINQUAD);
+      utils.tweens.startTranslation(doorRalpha, roundedInitialClosedDoorRPos, openDoorRPos, doorDuration, utils.InterpolationType.EASEINQUAD, () => {
+        // Force exact final positions when open animation completes
+        forceExactPosition(doorL, openDoorLPos);
+        forceExactPosition(doorR, openDoorRPos);
+        forceExactPosition(doorLalpha, openDoorLPos);
+        forceExactPosition(doorRalpha, openDoorRPos);
+        isMoving = false; // Ensure all doors (main and alpha) are done moving
+      });
     }
   }
 
-  if (offset === 0) {
-    // Closing - Move both main and alpha doors back to closed positions smoothly
-    utils.tweens.startTranslation(doorL, Transform.get(doorL).position, roundedInitialClosedDoorLPos, doorDuration, utils.InterpolationType.EASEINQUAD, () => {
-      // Force doors to snap to exact positions at the end of the animation
-      forceExactPosition(doorL, roundedInitialClosedDoorLPos);
-      forceExactPosition(doorLalpha, roundedInitialClosedDoorLPos);
-      isMoving = false;
-      if (onComplete) onComplete();
-    });
+  function closeDoors() {
+    if (!isOpen && !isMoving) return;
+    isMoving = true;
 
-    utils.tweens.startTranslation(doorR, Transform.get(doorR).position, roundedInitialClosedDoorRPos, doorDuration, utils.InterpolationType.EASEINQUAD, () => {
-      forceExactPosition(doorR, roundedInitialClosedDoorRPos);
-      forceExactPosition(doorRalpha, roundedInitialClosedDoorRPos);
-    });
-
-    // Smoothly close alpha doors using identical tween parameters
-    utils.tweens.startTranslation(doorLalpha, Transform.get(doorLalpha).position, roundedInitialClosedDoorLPos, doorDuration, utils.InterpolationType.EASEINQUAD);
-    utils.tweens.startTranslation(doorRalpha, Transform.get(doorRalpha).position, roundedInitialClosedDoorRPos, doorDuration, utils.InterpolationType.EASEINQUAD);
-
-  } else {
-    // Opening - Move both main and alpha doors to the open positions smoothly
-    utils.tweens.startTranslation(doorL, roundedInitialClosedDoorLPos, openDoorLPos, doorDuration, utils.InterpolationType.EASEINQUAD);
-    utils.tweens.startTranslation(doorR, roundedInitialClosedDoorRPos, openDoorRPos, doorDuration, utils.InterpolationType.EASEINQUAD);
-
-    // Smoothly open alpha doors using identical tween parameters
-    utils.tweens.startTranslation(doorLalpha, roundedInitialClosedDoorLPos, openDoorLPos, doorDuration, utils.InterpolationType.EASEINQUAD);
-    utils.tweens.startTranslation(doorRalpha, roundedInitialClosedDoorRPos, openDoorRPos, doorDuration, utils.InterpolationType.EASEINQUAD, () => {
-      // Force exact final positions when open animation completes
-      forceExactPosition(doorL, openDoorLPos);
-      forceExactPosition(doorR, openDoorRPos);
-      forceExactPosition(doorLalpha, openDoorLPos);
-      forceExactPosition(doorRalpha, openDoorRPos);
-      isMoving = false; // Ensure all doors (main and alpha) are done moving
+    // Close both main and alpha doors
+    moveDoors(0, () => {
+      isOpen = false;
     });
   }
-}
 
-function closeDoors() {
-  if (!isOpen && !isMoving) return;
-  isMoving = true;
+  function openDoors() {
+    if (isOpen || isMoving) return;
+    isOpen = true;
+    isMoving = true;
 
-  // Close both main and alpha doors
-  moveDoors(0, () => {
-    isOpen = false;
-  });
-}
+    // Open both main and alpha doors
+    moveDoors(openDoorOffset);
 
-function openDoors() {
-  if (isOpen || isMoving) return;
-  isOpen = true;
-  isMoving = true;
-
-  // Open both main and alpha doors
-  moveDoors(openDoorOffset); 
-
-  utils.timers.setTimeout(closeDoors, cooldownTime);
-}
+    utils.timers.setTimeout(closeDoors, cooldownTime);
+  }
 
 
 
@@ -171,15 +171,15 @@ function openDoors() {
 
 
   utils.triggers.addTrigger(
-      doorParent,
-      utils.NO_LAYERS,
-      utils.LAYER_1,
-      [{ type: 'box', position: { x: 0, y: 0.25, z: 0 }, scale: { x: 5, y: 5, z: 5 } }],
-      function (otherEntity) {
-          if (Date.now() - lastDoorInteractionTime < cooldownTime) return; // Adjust the cooldown as needed
-          lastDoorInteractionTime = Date.now();
-          openDoors();
-      }
+    doorParent,
+    utils.NO_LAYERS,
+    utils.LAYER_1,
+    [{ type: 'box', position: { x: 0, y: 0.25, z: 0 }, scale: { x: 5, y: 5, z: 5 } }],
+    function (otherEntity) {
+      if (Date.now() - lastDoorInteractionTime < cooldownTime) return; // Adjust the cooldown as needed
+      lastDoorInteractionTime = Date.now();
+      openDoors();
+    }
   );
 }
 

@@ -10,7 +10,8 @@ export class Teleport {
       src: modelPath
     })
     Transform.create(this.entity, {
-      position: Vector3.create(0, -0.5, 0)
+      position: Vector3.create(0, -0.5, 0),
+      parent: engine.PlayerEntity
     })
 
     Animator.create(this.entity, {
@@ -21,10 +22,6 @@ export class Teleport {
           loop: false
         }
       ]
-    })
-
-    AvatarAttach.create(this.entity, {
-      anchorPointId: AvatarAnchorPointType.AAPT_POSITION
     })
   }
 

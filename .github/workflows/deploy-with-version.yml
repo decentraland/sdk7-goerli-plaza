@@ -64,7 +64,7 @@ jobs:
         run: >
           npm run export-static -- \
             --realmName ${{steps.get-branch-realm-name.outputs.result}} \
-            --commsAdapter ws-room:ws-room-service.decentraland.org/rooms/${{steps.get-branch-realm-name.outputs.result}} \
+            --commsAdapter fixed-adapter:signed-login:https://worlds-content-server.decentraland.zone/get-comms-adapter/world-dev-goerliplaza.dcl.eth \
             --baseUrl '${{ secrets.SDK_TEAM_S3_BASE_URL }}/ipfs' \
             --destination "$(pwd)/ipfs"
 
@@ -78,11 +78,11 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.SDK_TEAM_AWS_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.SDK_TEAM_AWS_SECRET }}
 
-      - name: Asset Bundle converter queue
-        if: github.event_name != 'pull_request'
+      - name: Asset Bundle converter queue AllPlataforms
         run: >
           npx @dcl/opscli queue-ab-conversion-about \
             --token ${{ secrets.AB_TOKEN }} \
+            --prioritize \
             --about-url ${{ secrets.SDK_TEAM_S3_BASE_URL }}/ipfs/${{steps.get-branch-realm-name.outputs.result}}/about
 
       - name: Find Comment

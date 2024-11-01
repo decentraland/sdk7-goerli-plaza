@@ -40,7 +40,8 @@ export function main() {
     states: [
       {
         clip: 'Tree_Action',
-        shouldReset: true
+        shouldReset: true,
+        loop: false
       }
     ]
   })
@@ -55,8 +56,7 @@ export function main() {
     },
     function () {
       createHummingBird()
-      const anim = Animator.getMutable(tree)
-      anim.states[0].playing = true
+      Animator.playSingleAnimation(tree, 'Tree_Action', true)
       AudioSource.playSound(tree, 'sounds/pickUp.mp3')
     }
   )
