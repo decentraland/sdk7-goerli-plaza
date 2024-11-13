@@ -14,8 +14,12 @@ import { createBeerGlass, createTap, SyncEntityIDs } from './modules/factory'
 import { tapPumpSystem } from './modules/tap'
 import { setupUi } from './ui'
 import { syncEntity } from '@dcl/sdk/network'
+import { getPlayerID } from './modules/helpers'
 
 export function main() {
+
+  // get player ID
+  getPlayerID()
 
   // camera modifiera area
   const cameraMod = engine.addEntity()
