@@ -11,10 +11,11 @@
   },
   "devDependencies": {
     "@dcl/asset-packs": "latest",
-    "@dcl/js-runtime": "latest",
+    "@dcl/js-runtime": "7.6.2",
     "@dcl/sdk": "latest"
   },
   "dependencies": {
+    "dcl-crypto-toolkit": "^1.0.0",
     "eth-connect": "latest"
   }
 }

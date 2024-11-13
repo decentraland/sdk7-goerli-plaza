@@ -3,12 +3,11 @@ import {
   Transform,
   GltfContainer,
   MeshRenderer,
-  InputAction, Entity,Animator,
+  InputAction, Entity, Animator,
   pointerEventsSystem, AudioSource
 } from '@dcl/sdk/ecs'
 import { Color4, Vector3, Quaternion } from '@dcl/sdk/math'
 import ReactEcs, { Button, Input, Label, ReactEcsRenderer, UiEntity } from '@dcl/sdk/react-ecs'
-import * as utils from '@dcl-sdk/utils'
 import * as crypto from 'dcl-crypto-toolkit'
 
 
@@ -38,10 +37,10 @@ export function addAudio(entity: Entity, audioClipUrl: string) {
 }
 
 // Add AudioSource to entities
-addAudio(acceptSound,'sounds/click.mp3')
-addAudio(buttonSound,'sounds/accept.mp3')
-addAudio(openSound,'sounds/open.mp3')
-addAudio(closeSound,'sounds/close.mp3')
+addAudio(acceptSound, 'sounds/click.mp3')
+addAudio(buttonSound, 'sounds/accept.mp3')
+addAudio(openSound, 'sounds/open.mp3')
+addAudio(closeSound, 'sounds/close.mp3')
 
 // General function to play sound
 export function playSound(entity: Entity) {
@@ -51,33 +50,33 @@ export function playSound(entity: Entity) {
 
 // Door 
 export const Door = engine.addEntity()
-GltfContainer.create(Door, { src: 'models/Door_Fantasy.glb' }) 
+GltfContainer.create(Door, { src: 'models/Door_Fantasy.glb' })
 MeshRenderer.create(Door)
 Transform.create(Door, {
-    position: Vector3.create(9.275432586669922, 0, 9.929542541503906),
-    rotation: Quaternion.create(0, 0, 0, 1),
-    scale: Vector3.create(1, 1, 1)
+  position: Vector3.create(9.275432586669922, 0, 9.929542541503906),
+  rotation: Quaternion.create(0, 0, 0, 1),
+  scale: Vector3.create(1, 1, 1)
 })
 
 // Animator for the door
 const doorAnimator = Animator.create(Door, {
-    states: [{
-        clip: "Close", 
-        playing: true, // Initially, the door is closed
-        loop: false,
-    }, {
-        clip: "Open",
-        playing: false, // Not playing initially
-        loop: false,
-    }]
+  states: [{
+    clip: "Close",
+    playing: true, // Initially, the door is closed
+    loop: false,
+  }, {
+    clip: "Open",
+    playing: false, // Not playing initially
+    loop: false,
+  }]
 })
 
 // Function to open the door
 function openDoor() {
-    const animator = Animator.getMutable(Door)
-    animator.states[0].playing = false // Stop playing 'Close' animation
-    animator.states[1].playing = true  // Start playing 'Open' animation
-    playSound(openSound) // Play the sound of the door opening
+  const animator = Animator.getMutable(Door)
+  animator.states[0].playing = false // Stop playing 'Close' animation
+  animator.states[1].playing = true  // Start playing 'Open' animation
+  playSound(openSound) // Play the sound of the door opening
 }
 
 
@@ -92,52 +91,52 @@ export function toggleUIVisibility() {
 
 //  UI toggle and Button model 
 export const Paid_Button = engine.addEntity();
-  GltfContainer.create(Paid_Button, { src: 'models/PaidButton/MANA_Button.glb' });
-  MeshRenderer.create(Paid_Button);
-  Transform.create(Paid_Button, {
-    position: Vector3.create(7, 0, 11),
-    rotation: Quaternion.create(
-      
-    ),
-    scale: Vector3.create(1, 1, 1)
-  });
-  pointerEventsSystem.onPointerDown(
-    {
-      entity: Paid_Button,
-      opts: { button: InputAction.IA_PRIMARY, hoverText: 'Pay Mana',maxDistance: 10 },
+GltfContainer.create(Paid_Button, { src: 'models/PaidButton/MANA_Button.glb' });
+MeshRenderer.create(Paid_Button);
+Transform.create(Paid_Button, {
+  position: Vector3.create(7, 0, 11),
+  rotation: Quaternion.create(
 
-    },
-    () => {
-      playSound(buttonSound); //play click sound once we press the button
+  ),
+  scale: Vector3.create(1, 1, 1)
+});
+pointerEventsSystem.onPointerDown(
+  {
+    entity: Paid_Button,
+    opts: { button: InputAction.IA_PRIMARY, hoverText: 'Pay Mana', maxDistance: 10 },
 
-      toggleUIVisibility(); // function toggles UI on/off 
-     
-    }
-  )
+  },
+  () => {
+    playSound(buttonSound); //play click sound once we press the button
 
-  const buttonAnimator = Animator.create(Paid_Button, {
-    states: [{
-        clip: "idle", 
-        playing: true, // Initially, idle
-        loop: false,
-    }, {
-        clip: "Button_Action",
-        playing: false, // Not playing initially
-        loop: false,
-    }]
+    toggleUIVisibility(); // function toggles UI on/off 
+
+  }
+)
+
+const buttonAnimator = Animator.create(Paid_Button, {
+  states: [{
+    clip: "idle",
+    playing: true, // Initially, idle
+    loop: false,
+  }, {
+    clip: "Button_Action",
+    playing: false, // Not playing initially
+    loop: false,
+  }]
 })
 
-  function onButtonPressed() {
-    const animator = Animator.getMutable(Paid_Button)
-    animator.states[1].playing = true  // Start playing 'Action Button' animation
-  }
+function onButtonPressed() {
+  const animator = Animator.getMutable(Paid_Button)
+  animator.states[1].playing = true  // Start playing 'Action Button' animation
+}
 
 
 // UI setup //
 
 const uiComponent = () => (
- 
-    <UiEntity
+
+  <UiEntity
     uiTransform={{
       flexDirection: 'column',
       alignItems: 'center',
@@ -146,7 +145,7 @@ const uiComponent = () => (
       width: '35%', // Use percentage to make it responsive
       height: '35%', // Use percentage to make it responsive
       position: { left: '40%', top: '40%' }, // Adjust to center the UI
-      display: isUIVisible ? 'flex': 'none'
+      display: isUIVisible ? 'flex' : 'none'
     }}
     uiBackground={{
       textureMode: 'stretch',
@@ -155,7 +154,7 @@ const uiComponent = () => (
 
       }
     }}
-      >
+  >
     <Label
       value=""
       fontSize={24}
@@ -165,125 +164,145 @@ const uiComponent = () => (
     <UiEntity
       uiTransform={{
         flexDirection: 'row', // Set to 'row' to align children (Input, Label) side by side
-        width: '100%', 
+        width: '100%',
         alignItems: 'center',
         justifyContent: 'center'
       }}
     >
-    <Input
-      onChange={(value) => {
-        paymentAmount  = value;     //Mana value;
-      }}
-      fontSize={24}
-      placeholder={'10'}
-      placeholderColor={Color4.Gray()}
-      uiTransform={{ width: '10%', height: '40px', margin: '0px 0px' }}
-    />
+      <Input
+        onChange={(value) => {
+          paymentAmount = value;     //Mana value;
+        }}
+        fontSize={24}
+        placeholder={'0'}
+        placeholderColor={Color4.Gray()}
+        uiTransform={{ width: '10%', height: '40px', margin: '0px 0px' }}
+      />
+      <Label
+        value="MANA"
+        fontSize={24}
+        color={Color4.Red()}
+        uiTransform={{ width: '20%', height: 30, margin: '10px 4px 4px 0px' }}
+      />
+    </UiEntity>
+
     <Label
-      value="MANA"
-      fontSize={24}
-      color={Color4.Red()}
-      uiTransform={{ width: '20%', height: 30, margin: '10px 4px 4px 0px' }}
-    />
-    </UiEntity> 
-    
-    <Label
-      value="Do you want to proceed?"
+      value="Minimum fee: 10. Do you want to proceed?"
       fontSize={24}
       color={Color4.Black()}
       uiTransform={{ width: '100%', height: 80, alignContent: 'center', margin: '10px 20px 10px 10px' }}
-      
-  />
 
-      <UiEntity
+    />
+
+    <UiEntity
       uiTransform={{
         flexDirection: 'row', // Set to 'row' to align children side by side
-        width: '100%', 
+        width: '100%',
         alignItems: 'center',
         justifyContent: 'center'
       }}
     >
 
-    <Button
-      value="PROCEED" //using UI react text here
-      variant="primary"
-      fontSize={22}
-      uiTransform={{ width: '35%', height: 50, margin: '4px' }}
+      <Button
+        value="PROCEED" //using UI react text here
+        variant="primary"
+        fontSize={22}
+        uiTransform={{ width: '35%', height: 50, margin: '4px' }}
 
 
-// Payment functionality
+        // Payment functionality
 
 
-onMouseDown={async () => {
-  console.log('Sending Mana!');
+        onMouseDown={async () => {
+          console.log('Sending Mana!');
 
-  onButtonPressed() // play audio and animation on button press 
+          onButtonPressed() // play audio and animation on button press 
 
-  try {
-    const numericAmount = parseFloat(paymentAmount); // Convert to number
-    if (!isNaN(numericAmount)) {
+          try {
+            const numericAmount = parseFloat(paymentAmount); // Convert to number
+            if (!isNaN(numericAmount)) {
 
-      if (numericAmount >=10){
-      // Send the transaction and use .then() for handling the promise
-    crypto.mana.send(myWallet, numericAmount, true).then(() => {
-  
-        /// open door 
-        openDoor(); // Open the door after successful payment
+              if (numericAmount >= 10) {
+                // Send the transaction and use .then() for handling the promise
 
-        console.log(paymentAmount, 'Mana'); // Log amount sent
+                toggleUIVisibility();
+
+                try {
+                  await crypto.mana.send(myWallet, numericAmount, false)
+                  console.log('Mana sent successfully!')
+                } catch (e) {
+                  console.log(e)
+                } finally {
+                  try {
+                    // const balance = await crypto.mana.balance(testAddressTarget )
+                    openDoor(); // Open the door after successful payment
+                    console.log("OPENED DOOR")
+                  } catch (e) {
+                    console.log(e)
+                  }
+                }
+
+                // crypto.mana.send(myWallet, numericAmount, true).then(() => {
+
+                //   /// open door 
+                //   openDoor(); // Open the door after successful payment
+                //   console.log("OPENED DOOR")
+
+                //   console.log(paymentAmount, 'Mana'); // Log amount sent
 
 
-        // Hide the UI
-        toggleUIVisibility();
+                //   // Hide the UI
 
-      }).catch((error:any) => {
 
-        // Handles any errors in the transaction
-        console.error('Transaction failed:', error);
-      });
+                // }).catch((error: any) => {
 
-    } else {
-      console.error('Invalid amount');
-              playSound(acceptSound);
-               toggleErrorMessageVisibility() 
-    }
-  }}catch (error) {
-    console.error('Error:', error);
-  }
+                //   // Handles any errors in the transaction
+                //   console.error('Transaction failed:', error);
+                // });
 
-}}
+              } else {
+                console.error('Invalid amount');
+                playSound(acceptSound);
+                toggleErrorMessageVisibility()
+              }
+            }
+          } catch (error) {
+            console.error('Error:', error);
+          }
 
-uiBackground={{
-  textureMode: 'stretch', // makes it fit to the UI object
-  texture: {
-    src: "images/proceed.png",  // using png texture 
-  }
-}}
+        }}
 
-    />
-        
-    <Button
-      value="CANCEL" // using UI text here 
-      variant="primary"
-      
-      fontSize={22}
-      uiTransform={{ width: '35%', height: 50, margin: '10px' }}
-      onMouseDown={() => {
-        console.log('Cancel Payment')
-       
-        // toggle, hide  the UI 
-        toggleUIVisibility();
-      }}
-      uiBackground={{
-        textureMode: 'stretch',
-        texture: {
-          src: "images/cancel.png",  /// using png as button background with alpha as texture 
-  
-        }
-      }}
+        uiBackground={{
+          textureMode: 'stretch', // makes it fit to the UI object
+          texture: {
+            src: "images/proceed.png",  // using png texture 
+          }
+        }}
 
-    />
-     </UiEntity> 
+      />
+
+      <Button
+        value="CANCEL" // using UI text here 
+        variant="primary"
+
+        fontSize={22}
+        uiTransform={{ width: '35%', height: 50, margin: '10px' }}
+        onMouseDown={() => {
+          console.log('Cancel Payment')
+
+          // toggle, hide  the UI 
+          toggleUIVisibility();
+        }}
+        uiBackground={{
+          textureMode: 'stretch',
+          texture: {
+            src: "images/cancel.png",  /// using png as button background with alpha as texture 
+
+          }
+        }}
+
+      />
+    </UiEntity>
   </UiEntity>
 );
 
