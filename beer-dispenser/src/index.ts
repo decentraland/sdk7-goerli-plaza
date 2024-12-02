@@ -14,44 +14,12 @@ import { createBeerGlass, createTap, SyncEntityIDs } from './modules/factory'
 import { tapPumpSystem } from './modules/tap'
 import { setupUi } from './ui'
 import { syncEntity } from '@dcl/sdk/network'
+import { getPlayerID } from './modules/helpers'
 
 export function main() {
-  // Create tables
-  const tables = engine.addEntity()
-  Transform.create(tables, {
-    position: Vector3.create(0, 0, 0)
-  })
-  GltfContainer.create(tables, { src: 'models/tables.glb' })
-  PointerEvents.create(tables, {
-    pointerEvents: [
-      {
-        eventType: PointerEventType.PET_DOWN,
-        eventInfo: {
-          showFeedback: false
-        }
-      }
-    ]
-  })
 
-  // Create floor
-  const floor = engine.addEntity()
-  Transform.create(floor, {
-    position: Vector3.create(0, 0, 0)
-  })
-  GltfContainer.create(floor, {
-    src: 'models/baseDarkWithCollider.glb'
-  })
-  PointerEvents.create(floor, {
-    pointerEvents: [
-      {
-        eventType: PointerEventType.PET_DOWN,
-        eventInfo: {
-          showFeedback: false
-        }
-      }
-    ]
-  })
-  syncEntity(floor, [], SyncEntityIDs.TABLES)
+  // get player ID
+  getPlayerID()
 
   // camera modifiera area
   const cameraMod = engine.addEntity()
@@ -63,22 +31,20 @@ export function main() {
     mode: CameraType.CT_FIRST_PERSON
   })
 
-  // Create dispenser
-  const dispenserEntity = engine.addEntity()
-  GltfContainer.create(dispenserEntity, {
-    src: 'models/beerDispenser.glb'
-  })
-  Transform.create(dispenserEntity, {
-    position: Vector3.create(8, 1.25, 7.5)
-  })
+  const dispenserEntity = engine.getEntityOrNullByName("dispenser")
+  if (dispenserEntity) {
 
-  // Create taps
-  createTap(BeerType.RED, dispenserEntity, SyncEntityIDs.RED)
-  createTap(BeerType.GREEN, dispenserEntity, SyncEntityIDs.GREEN)
-  createTap(BeerType.YELLOW, dispenserEntity, SyncEntityIDs.YELLOW)
+    // Create taps
+    createTap(BeerType.RED, dispenserEntity, SyncEntityIDs.RED)
+    createTap(BeerType.GREEN, dispenserEntity, SyncEntityIDs.GREEN)
+    createTap(BeerType.YELLOW, dispenserEntity, SyncEntityIDs.YELLOW)
+
+  }
+
+
 
   // Beer glasses
-  const beerGlassModel = 'models/beerGlass.glb'
+  const beerGlassModel = 'assets/scene/beerGlass.glb'
   createBeerGlass(beerGlassModel, Vector3.create(8.3, 1.25, 8), SyncEntityIDs.GLASS1)
   createBeerGlass(beerGlassModel, Vector3.create(7.8, 1.25, 8.3), SyncEntityIDs.GLASS2)
   createBeerGlass(beerGlassModel, Vector3.create(1.86, 0.8, 13.4), SyncEntityIDs.GLASS3)

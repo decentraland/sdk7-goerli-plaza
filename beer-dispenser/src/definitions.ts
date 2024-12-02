@@ -20,17 +20,17 @@ export type TapDataType = {
 export const TAP_DATA: Record<string, TapDataType> = {
   [BeerType.RED]: {
     name: 'Red',
-    model: 'models/redTap.glb',
+    model: 'assets/scene/redTap.glb',
     position: Vector3.create(0.368, 0, 0.31)
   },
   [BeerType.YELLOW]: {
     name: 'Yellow',
-    model: 'models/yellowTap.glb',
+    model: 'assets/scene/yellowTap.glb',
     position: Vector3.create(0, 0, 0.31)
   },
   [BeerType.GREEN]: {
     name: 'Green',
-    model: 'models/greenTap.glb',
+    model: 'assets/scene/greenTap.glb',
     position: Vector3.create(-0.368, 0, 0.31)
   }
 }

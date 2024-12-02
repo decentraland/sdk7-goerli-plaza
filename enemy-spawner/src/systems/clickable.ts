@@ -7,7 +7,8 @@ import {
   inputSystem,
   AudioSource,
   AvatarAttach,
-  AvatarAnchorPointType
+  AvatarAnchorPointType,
+  Transform
 } from '@dcl/sdk/ecs'
 import { EnemyShip } from '../components/customComponents'
 import { destroyEnemy } from '../enemy'
@@ -18,7 +19,8 @@ export function clickedSystem() {
       audioClipUrl: 'sounds/blaster.mp3',
       playing: true,
       loop: false,
-      volume: 0.5
+      volume: 0.5,
+      currentTime: 0.0 // reset the blaster sound if it's currently playing
     })
 
     for (const [entity] of engine.getEntitiesWith(EnemyShip)) {
@@ -32,6 +34,4 @@ export function clickedSystem() {
 
 const soundPlayer = engine.addEntity()
 
-AvatarAttach.create(soundPlayer, {
-  anchorPointId: AvatarAnchorPointType.AAPT_POSITION
-})
+Transform.getOrCreateMutable(soundPlayer).parent = engine.PlayerEntity

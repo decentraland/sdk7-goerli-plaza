@@ -13,6 +13,13 @@ export async function getEvents() {
         events.push(event)
       }
     }
+    if (events.length < 3 && json.data.length >= 3) {
+      let eventIndex = events.length
+      while (events.length < 3) {
+        events.push(json.data[eventIndex])
+        eventIndex += 1
+      }
+    }
 
     console.log(events)
     return events

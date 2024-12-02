@@ -5,17 +5,16 @@ export class Sound {
 
   constructor(audioUrl: string) {
     this.entity = engine.addEntity()
-    Transform.create(this.entity)
+    Transform.create(this.entity,
+      {
+        parent: engine.PlayerEntity
+      }
+    )
 
     AudioSource.create(this.entity, {
       audioClipUrl: audioUrl,
       loop: false,
       playing: false
-    })
-
-    AvatarAttach.create(this.entity, {
-      // Play the sound wherever the player is standing
-      anchorPointId: AvatarAnchorPointType.AAPT_POSITION
     })
   }
 }
