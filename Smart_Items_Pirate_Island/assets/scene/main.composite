@@ -2102,7 +2102,8 @@
           "json": {
             "componentIds": [
               1,
-              2709697014
+              2709697014,
+              1081
             ]
           }
         },
@@ -2110,7 +2111,8 @@
           "json": {
             "componentIds": [
               1,
-              1081
+              1081,
+              2709697014
             ]
           }
         },
@@ -2129,21 +2131,24 @@
         "528": {
           "json": {
             "componentIds": [
-              1
+              1,
+              1102
             ]
           }
         },
         "530": {
           "json": {
             "componentIds": [
-              1
+              1,
+              1102
             ]
           }
         },
         "531": {
           "json": {
             "componentIds": [
-              1
+              1,
+              1102
             ]
           }
         },
@@ -2228,7 +2233,7 @@
         "serializationType": "map"
       },
       "data": {
-        "528": {
+        "533": {
           "json": {
             "gizmo": 0
           }
@@ -2594,15 +2599,13 @@
         "0": {
           "json": {
             "name": "Smart_Items_Pirate_Island",
+            "description": "",
             "thumbnail": "scene-thumbnail.png",
             "categories": [],
             "author": "0xb6e9c0a25aa6b10fa4fe0aa8d1097d2a6136bf98",
+            "email": "",
             "tags": [],
             "layout": {
-              "base": {
-                "x": 77,
-                "y": 6
-              },
               "parcels": [
                 {
                   "x": 78,
@@ -2620,8 +2623,14 @@
                   "x": 77,
                   "y": 6
                 }
-              ]
+              ],
+              "base": {
+                "x": 77,
+                "y": 6
+              }
             },
+            "silenceVoiceChat": false,
+            "disablePortableExperiences": false,
             "spawnPoints": []
           }
         }
@@ -4836,6 +4845,7 @@
                     "core::Animator",
                     "core::AudioSource",
                     "core::AudioStream",
+                    "core::AvatarAttach",
                     "core::GltfContainer",
                     "core-schema::Network-Entity",
                     "core::Material",
@@ -4878,6 +4888,7 @@
                     "ANIMATOR": "core::Animator",
                     "AUDIO_SOURCE": "core::AudioSource",
                     "AUDIO_STREAM": "core::AudioStream",
+                    "AVATAR_ATTACH": "core::AvatarAttach",
                     "GLTF_CONTAINER": "core::GltfContainer",
                     "NETWORK_ENTITY": "core-schema::Network-Entity",
                     "MATERIAL": "core::Material",
