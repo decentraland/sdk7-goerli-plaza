@@ -1,0 +1,336 @@
+<html>
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script>
+    var GLOBAL_PRE_HIGHLIGHT_MAP = {}
+
+    const regex = /\([-0-9,]{1,20}\)/g
+    function exportGrid(){
+        var str = ""
+        $("#exportGrid").val( str )
+
+        $("#playerTable").find("tr").each(function (index) {
+            if (!index) return;
+            $(this).find("td").each(function () {
+                console.log("checking ",$(this).text(),$(this).attr('x-selected'),$(this).text())
+                if($(this).attr('x-selected') === "true"){
+                    var matchVal = $(this).text().match(regex)
+                    if(matchVal && matchVal.length > 0){
+                        str += '"'+ matchVal[0] + '"' + ","
+                    }
+                }
+            });
+            str += "\n"
+        });
+
+        str = str.split("\n").reverse().join("\n")
+
+        $("#exportGrid").val( str )
+    }
+    function makeGrid(){
+      
+        //delete old one
+        $("#playerTable").remove()
+
+        var data = [ //headers
+                ]
+
+        var bottomRightX = parseInt($("#bottomRightX").val())
+        var bottomRightY = parseInt($("#bottomRightY").val())
+
+        var parcelSizeX = parseInt($("#parcelSizeX").val())
+        var parcelSizeY = parseInt($("#parcelSizeY").val())
+
+        var idGridStr = $("#idGrid").val()
+
+        var idGrid = []
+        
+        const gridNewLine = idGridStr.split("\n")
+        for(let p in gridNewLine){
+            var arr = gridNewLine[p].split("\t")
+            for(let q in arr){
+                arr[q] = arr[q].trim()
+            }
+            idGrid.push(arr)
+        }
+
+        var preHighlight = $("#preHighlight").val()
+
+        var preHighlightMap = {}
+
+        var preHighlightArr = preHighlight.split(",")
+        for(let p in preHighlightArr){
+            var val = preHighlightArr[p]
+            preHighlightMap[val] = val
+        }
+
+        GLOBAL_PRE_HIGHLIGHT_MAP = preHighlightMap
+
+
+        console.log("idGrid",idGrid)
+        console.log("GLOBAL_PRE_HIGHLIGHT_MAP",GLOBAL_PRE_HIGHLIGHT_MAP)
+
+        var header = []
+        data.push(header)
+        for(var x=0;x<parcelSizeX;x++){
+            header.push(bottomRightX+x)
+        }
+
+        
+        console.log("header",header,parcelSizeX)
+        var cityTable = makeTable($(document.body),"playerTable", data);
+
+        //appendTableRow($("#playerTable"),["a","bxxxx"],1)
+        //appendTableRow($("#playerTable"),["a","bxxxx"],1)
+        //if(console) console.log("cityTable",cityTable.html())
+        
+        var rows = []
+
+
+
+        for(var y=0;y<parcelSizeY;y++){
+            var row = []
+            for(var x=0;x<parcelSizeX;x++){    
+                var text = (bottomRightX+x) +"," + (bottomRightY+y)
+                
+                row.push(text)
+            }
+            rows.push(row)
+        }
+        
+        rows = rows.reverse()
+
+        for(var x=0;x<rows.length;x++){
+            for(var y=0;y<rows[x].length;y++){    
+                var text = rows[x][y]
+                //console.log("idGrid",x,y,idGrid[y])
+                if(idGrid[x]){
+                    text = idGrid[x][y] + "("+text+")"
+                }
+                rows[x][y] = text
+            }
+        }
+
+        var rowCnt = 1
+        for(let p in rows){
+            appendTableRow($("#playerTable"),rows[p],rowCnt++)    
+        }
+        
+
+    }
+    function createTableRow(dataRow,rowIndex){
+            var row = $("<tr/>").attr('id', dataRow[0]);
+            $.each(dataRow, function(colIndex, c) { 
+                const cell = $("<t"+(rowIndex == 0 ?  "h" : "d")+"/>")
+                const myFn = function(){
+                        var oldVal = cell.attr('x-selected')
+                        var newVal = false
+                        if(oldVal === undefined || oldVal === "false"){
+                            newVal = true
+                        }else{
+                            newVal = false
+                        }
+                        if(newVal){
+                            cell.css("background-color","yellow");
+                        }else{
+                            cell.css("background-color","");
+                        }
+                        cell.attr('x-selected',newVal)
+                        console.log(c,oldVal)
+                    }
+                cell.click(myFn).text(c)
+                //debugger
+                if(isNaN(c) && (GLOBAL_PRE_HIGHLIGHT_MAP['*'] || (GLOBAL_PRE_HIGHLIGHT_MAP[c.charAt(0)]||(c.length>2 && GLOBAL_PRE_HIGHLIGHT_MAP[c.substr(0,2)])))){
+                    myFn()
+                }
+
+                row.append(cell);
+            });
+            return row
+        }
+        function appendTableRow(table,dataRow,rowIndex){
+            var row = createTableRow(dataRow,rowIndex)
+            table.append(row);
+            //console.log(table.html())
+        }
+        function makeTable(container, tableId, data) {
+            var table = $("<table/>").addClass('blueTable').attr('id', tableId);
+            $.each(data, function(rowIndex, r) {
+                appendTableRow(table,r,rowIndex)
+            }); 
+            //console.log("makeTable",table.html(),container)
+            return container.append(table);
+        }
+        function getTableData(table) {
+            var data = [];
+            table.find('tr').each(function (rowIndex, r) {
+                var cols = [];
+                $(this).find('th,td').each(function (colIndex, c) {
+                    cols.push(c.textContent);
+                });
+                data.push(cols);
+            });
+            return data;
+        }
+        function replaceRowById(table,value,data){
+            console.log("replaceRowById",value)
+
+            table.find('tr').each(function (index) {
+                if (!index) return;
+                $(this).find("td").each(function () {
+                    console.log("checking ",$(this).text(),value)
+                    var id = $(this).text().trim();
+                    var found = id === value;
+                    
+                    
+                    if(found){ 
+                        console.log("replaceRowById found",found,$(this).closest('tr').html())
+                        var row = createTableRow(data,1)
+                        $(this).closest('tr').html(row.html())
+                        //appendTableRow(table,data,1)
+                    }
+
+                    return found;
+                });
+            });
+        }
+        function removeById(table,value){
+            console.log("remove",value)
+
+            table.find("tr").each(function (index) {
+                if (!index) return;
+                $(this).find("td").each(function () {
+                    console.log("checking ",$(this).text(),value)
+                    var id = $(this).text().trim();
+                    var found = id === value;
+                    
+                    console.log("found",found,$(this).closest('tr').html())
+                    if(found) $(this).closest('tr').remove()
+                    return found;
+                });
+            });
+        }
+
+  </script>
+  <style type="text/css">
+    .player {
+      width: 100px;
+      height: 100px;
+      position: absolute;
+      padding-top: 24px;
+      box-sizing: border-box;
+      left: 0;
+      top: 0;
+    }
+    table.blueTable {
+      border: 1px solid #1C6EA4;
+      background-color: #EEEEEE;
+      width: 100%;
+      text-align: left;
+      border-collapse: collapse;
+      }
+      table.blueTable td, table.blueTable th {
+      border: 1px solid #AAAAAA;
+      padding: 3px 2px;
+      }
+      table.blueTable tbody td {
+      font-size: 13px;
+      }
+      table.blueTable tr:nth-child(even) {
+      background: #D0E4F5;
+      }
+      table.blueTable thead {
+      background: #1C6EA4;
+      background: -moz-linear-gradient(top, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
+      background: -webkit-linear-gradient(top, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
+      background: linear-gradient(to bottom, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
+      border-bottom: 2px solid #444444;
+      }
+      table.blueTable thead th {
+      font-size: 15px;
+      font-weight: bold;
+      color: #FFFFFF;
+      border-left: 2px solid #D0E4F5;
+      }
+      table.blueTable thead th:first-child {
+      border-left: none;
+      }
+
+      table.blueTable tfoot {
+      font-size: 14px;
+      font-weight: bold;
+      color: #FFFFFF;
+      background: #D0E4F5;
+      background: -moz-linear-gradient(top, #dcebf7 0%, #d4e6f6 66%, #D0E4F5 100%);
+      background: -webkit-linear-gradient(top, #dcebf7 0%, #d4e6f6 66%, #D0E4F5 100%);
+      background: linear-gradient(to bottom, #dcebf7 0%, #d4e6f6 66%, #D0E4F5 100%);
+      border-top: 2px solid #444444;
+      }
+      table.blueTable tfoot td {
+      font-size: 14px;
+      }
+      table.blueTable tfoot .links {
+      text-align: right;
+      }
+      table.blueTable tfoot .links a{
+      display: inline-block;
+      background: #1C6EA4;
+      color: #FFFFFF;
+      padding: 2px 8px;
+      border-radius: 5px;
+      }
+  </style>
+</head>
+<body>
+    <script>
+        
+
+    </script>
+<form>
+  Bottom Right X
+  <input type="text" name="bottomRightX" id="bottomRightX" value="0"> 
+  Bottom Right Y
+  <input type="text" name="bottomRightY" id="bottomRightY" value="0"> 
+  
+  Parcel Size X
+  <input type="text" name="parcelSizeX" id="parcelSizeX" value="24"> 
+  Parcel Size Y
+  <input type="text" name="parcelSizeY" id="parcelSizeY" value="24"> 
+  <br/>
+  PreSelect
+  <input type="text" name="preHighlight" id="preHighlight" value="rd,RD"> 
+  Coding
+  <textarea id="idGrid">RD	RD	RD	RD	RD	RD	RD	RD	RD	RD	RD	RD	RD	RD	RD	RD	RD	RD	RD	RD	RD	RD	RD	RD
+    RD	RD	RD	RD	RD	RD	RD	RD	RD	RD	RD	RD	RD	RD	RD	RD	RD	RD	RD	RD	RD	RD	RD	RD
+    RD	RD	A	A	A	rd	MK	MK	MK	rd	T	T	T	rd	B	B	B	B	rd	D	D	D	RD	RD
+    RD	RD	A	A	A	rd	MK	MK	MK	rd	T	T	T	rd	B	B	B	B	rd	D	D	D	RD	RD
+    RD	RD	A	A	A	rd	MK	MK	MK	rd	T	T	T	rd	B	B	B	B	rd	D	D	D	RD	RD
+    RD	RD	rd	rd	rd	rd	rd	rd	rd	rd	T	T	T	rd	B	B	B	B	rd	D	D	D	RD	RD
+    RD	RD	E	E	E	rd	rd	rd	rd	rd	rd	rd	rd	rd	rd	rd	rd	rd	rd	rd	rd	rd	RD	RD
+    RD	RD	E	E	E	rd	M	M	M	M	M	M	M	M	M	M	M	M	rd	DC	DC	DC	RD	RD
+    RD	RD	E	E	E	rd	M	M	M	M	M	M	M	M	M	M	M	M	rd	DC	DC	DC	RD	RD
+    RD	RD	SA	SA	SA	rd	M	M	M	M	M	M	M	M	M	M	M	M	rd	DC	DC	DC	RD	RD
+    RD	RD	SA	SA	SA	rd	M	M	M	M	M	M	M	M	M	M	M	M	rd	DW	DW	DW	RD	RD
+    RD	RD	SA	SA	SA	rd	M	M	M	M	M	M	M	M	M	M	M	M	rd	DW	DW	DW	RD	RD
+    RD	RD	O	O	O	rd	M	M	M	M	M	M	M	M	M	M	M	M	rd	DW	DW	DW	RD	RD
+    RD	RD	O	O	O	rd	M	M	M	M	M	M	M	M	M	M	M	M	rd	RR	RR	RR	RD	RD
+    RD	RD	O	O	O	rd	M	M	M	M	M	M	M	M	M	M	M	M	rd	RR	RR	RR	RD	RD
+    RD	RD	rd	rd	rd	rd	rd	rd	rd	rd	rd	rd	rd	rd	rd	rd	rd	rd	rd	RR	RR	RR	RD	RD
+    RD	RD	G	G	G	G	G	G	rd	rd	bk	bk	bk	bk	rd	rd	rd	rd	rd	rd	rd	rd	RD	RD
+    RD	RD	G	G	G	G	G	G	rd	rd	bk	bk	bk	bk	rd	rd	H	H	H	H	H	rd	RD	RD
+    RD	RD	G	G	G	G	G	G	rd	rd	bk	bk	bk	bk	rd	rd	H	H	H	H	H	rd	RD	RD
+    RD	RD	G	G	G	G	G	G	rd	rd	Q	Q	Q	Q	rd	rd	H	H	H	H	H	rd	RD	RD
+    RD	RD	G	G	G	G	G	G	rd	rd	Q	Q	Q	Q	rd	rd	H	H	H	H	H	rd	RD	RD
+    RD	RD	G	G	G	G	G	G	rd	rd	Q	Q	Q	Q	rd	rd	rd	rd	rd	rd	rd	rd	RD	RD
+    RD	RD	RD	RD	RD	RD	RD	RD	RD	RD	RD	RD	RD	RD	RD	RD	RD	RD	RD	RD	RD	RD	RD	RD
+    RD	RD	RD	RD	RD	RD	RD	RD	RD	RD	RD	RD	RD	RD	RD	RD	RD	RD	RD	RD	RD	RD	RD	RD
+  </textarea>
+
+  <input type="button" value="Make Grid" onClick="makeGrid()"> 
+  <input type="button" value="Export Grid" onClick="exportGrid()"> 
+</form>
+
+<textarea id="exportGrid"></textarea>
+
+</body>
+</html>
