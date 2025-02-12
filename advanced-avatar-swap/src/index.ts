@@ -27,9 +27,7 @@ export function main() {
   const modelEntityTransform = Transform.get(modelEntity)
 
   if (modelEntityTransform.parent) {
-    AvatarAttach.create(modelEntityTransform.parent, {
-      anchorPointId: AvatarAnchorPointType.AAPT_POSITION
-    })
+    Transform.getOrCreateMutable(modelEntityTransform.parent).parent = engine.PlayerEntity
   }
 
   // Set avatar modifier area to swap player avatar
