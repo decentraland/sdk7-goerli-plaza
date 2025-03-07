@@ -8,9 +8,7 @@
   },
   "customizations": {
     "vscode": {
-      "extensions": [
-        "DecentralandFoundation.decentraland-sdk7"
-      ]
+      "extensions": []
     }
   }
 }
