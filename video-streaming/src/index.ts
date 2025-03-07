@@ -16,35 +16,12 @@ export function main() {
 
   // fetch screens from editor
   const screen = engine.getEntityOrNullByName("Video Player")
-  const screen2 = engine.getEntityOrNullByName("screen2")
-
-  if (screen && screen2) {
-
-    // grab video from smart item
-    const videoTexture = Material.Texture.Video({ videoPlayerEntity: screen })
-
-    // apply same video to second screen
-    Material.setBasicMaterial(screen2, {
-      texture: videoTexture
-    })
-
-    pointerEventsSystem.onPointerDown(
-      {
-        entity: screen2,
-        opts: {
-          button: InputAction.IA_POINTER,
-          hoverText: 'Play/pause'
-        }
-      },
-      () => {
-        const videoPlayer = VideoPlayer.getMutable(screen)
-        videoPlayer.playing = !videoPlayer.playing
-      }
-    )
+ 
+  if (screen) {
   }
 
   // UI with GitHub link
-  setupUi()
+  // setupUi()
 }
 
 
