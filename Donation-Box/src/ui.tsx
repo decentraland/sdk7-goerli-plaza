@@ -10,7 +10,7 @@ import {
 
 import { Color4, Vector3, Quaternion } from '@dcl/sdk/math'
 import ReactEcs, { Button, Input, Label, ReactEcsRenderer, UiEntity } from '@dcl/sdk/react-ecs'
-
+import { openExternalUrl } from "~system/RestrictedActions"
 import * as crypto from 'dcl-crypto-toolkit'
 
 // set your wallet address here 
@@ -91,11 +91,7 @@ function toggleDonationUIVisibility() {
 
 // UI setup 
 
-export function setupUi() {
-  ReactEcsRenderer.setUiRenderer(uiComponent)
-}
-
-const uiComponent = () => (
+const donationUi = () => (
 
   <UiEntity
     uiTransform={{
@@ -104,8 +100,8 @@ const uiComponent = () => (
       justifyContent: 'center',
       positionType: 'absolute',
       width: '35%', // Use percentage to make it responsive
-      height: '32%', // Use percentage to make it responsive
-      position: { left: '40%', top: '40%' }, // Adjust to center the UI
+      height: 'auto', // Use percentage to make it responsive
+      position: { left: '32.5%', top: '30%' }, // Adjust to center the UI
       display: isDonationUIVisible ? 'flex' : 'none'
     }}
     uiBackground={{ color: Color4.Gray() }}
@@ -114,7 +110,7 @@ const uiComponent = () => (
       value="Are you sure?\nYou are about to donate:"
       fontSize={24}
       color={Color4.Black()}
-      uiTransform={{ width: '100%', height: 60, alignContent: 'center', margin: '40px 40px 10px 0' }}
+      uiTransform={{ width: '100%', height: 60, alignContent: 'center', margin: '20px 20px 20px 20px' }}
     />
     <UiEntity
       uiTransform={{
@@ -135,9 +131,9 @@ const uiComponent = () => (
       />
       <Label
         value="MANA"
-        fontSize={24}
+        fontSize={26}
         color={Color4.Red()}
-        uiTransform={{ width: '15%', height: 30, margin: '4px 10px 4px 10px' }}
+        uiTransform={{ height: 30, margin: '4px 10px 4px 10px' }}
       />
     </UiEntity>
 
@@ -145,7 +141,7 @@ const uiComponent = () => (
       value="Do you want to proceed?"
       fontSize={24}
       color={Color4.Black()}
-      uiTransform={{ width: '100%', height: 60, alignContent: 'center', margin: '10px 10px 10px 0' }}
+      uiTransform={{ width: '100%', height: 60, alignContent: 'center', margin: '5px 5px 5px 5px' }}
     />
 
     <UiEntity
@@ -161,7 +157,7 @@ const uiComponent = () => (
         value="PROCEED"
         variant="primary"
         fontSize={22}
-        uiTransform={{ width: '35%', height: 50, margin: '4px' }}
+        uiTransform={{ width: '35%', height: 50, margin: '15px' }}
 
         // Implement the donation functionality
 
@@ -210,7 +206,7 @@ const uiComponent = () => (
         value="CANCEL"
         variant="secondary"
         fontSize={22}
-        uiTransform={{ width: '35%', height: 50, margin: '10px' }}
+        uiTransform={{ width: '35%', height: 50, margin: '15px' }}
         onMouseDown={() => {
           console.log('Cancel the donation')
           // hide the UI 
@@ -220,3 +216,109 @@ const uiComponent = () => (
     </UiEntity>
   </UiEntity>
 )
+
+
+
+const projectPath = "donation-box"
+const description = "Click the box to send MANA to the owner's address. The donation box will play a little animation when a donation is made."
+
+
+const uiComponent = () => (
+  [
+    GitHubLinkUi(),
+    descriptionUI(),
+    donationUi()
+    // Other UI elements
+  ]
+)
+
+export function setupUi() {
+  ReactEcsRenderer.setUiRenderer(uiComponent)
+}
+
+
+function GitHubLinkUi() {
+
+  const fullPath = "https://github.com/decentraland/sdk7-goerli-plaza/tree/main/" + projectPath
+
+  return <UiEntity
+    uiTransform={{
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      positionType: 'absolute',
+      position: { right: "8%", bottom: '3%' }
+    }}
+  >
+    <UiEntity
+      uiTransform={{
+        width: '100',
+        height: '100',
+      }}
+      uiBackground={{
+        textureMode: 'stretch',
+        texture: {
+          src: "images/gh.png"
+        }
+      }}
+
+      onMouseDown={() => {
+        console.log("OPENING LINK")
+        openExternalUrl({ url: fullPath })
+      }}
+    />
+    <Label
+      value="View code"
+      color={Color4.Black()}
+      fontSize={18}
+      textAlign="middle-center"
+    />
+  </UiEntity>
+}
+
+function descriptionUI() {
+
+  return <UiEntity
+    uiTransform={{
+      width: "auto",
+      height: "auto",
+      display: "flex",
+      flexDirection: 'row',
+      alignSelf: 'stretch',
+      positionType: "absolute",
+      flexShrink: 1,
+      maxWidth: 600,
+      maxHeight: 300,
+      minWidth: 200,
+      padding: 4,
+      position: { right: "3%", bottom: '20%' }
+    }}
+    uiBackground={{ color: Color4.fromHexString("#4d544e") }}
+  >
+    <UiEntity
+      uiTransform={{
+        width: "auto",
+        height: "auto",
+        alignSelf: "center",
+        padding: 4,
+        justifyContent: 'flex-start',
+        alignContent: 'flex-start',
+      }}
+      uiBackground={{ color: Color4.fromHexString("#92b096") }}
+    >
+      <Label
+        value={description}
+        fontSize={18}
+        textAlign="middle-center"
+
+        uiTransform={{
+          width: "auto",
+          height: "auto",
+          alignSelf: "center",
+          margin: '16px 16px 8px 16px',
+
+        }}
+      />
+    </UiEntity>
+  </UiEntity >
+}

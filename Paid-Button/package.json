@@ -1,21 +1,21 @@
 {
-  "name": "dcl-project",
+  "name": "Paid-Button",
+  "description": "This scene lets you pay MANA to open a door",
   "version": "1.0.0",
-  "description": "SDK7 Template scene",
-  "scripts": {
-    "start": "sdk-commands start",
-    "deploy": "sdk-commands deploy",
-    "build": "sdk-commands build",
-    "upgrade-sdk": "npm install --save-dev @dcl/sdk@latest",
-    "upgrade-sdk:next": "npm install --save-dev @dcl/sdk@next"
-  },
-  "devDependencies": {
-    "@dcl/asset-packs": "latest",
-    "@dcl/js-runtime": "7.6.2",
-    "@dcl/sdk": "latest"
-  },
   "dependencies": {
     "dcl-crypto-toolkit": "latest",
     "eth-connect": "latest"
+  },
+  "devDependencies": {
+    "@dcl/asset-packs": "latest",
+    "@dcl/js-runtime": "latest",
+    "@dcl/sdk": "latest"
+  },
+  "scripts": {
+    "build": "sdk-commands build",
+    "deploy": "sdk-commands deploy",
+    "start": "sdk-commands start",
+    "upgrade-sdk": "npm install --save-dev @dcl/sdk@latest",
+    "upgrade-sdk:next": "npm install --save-dev @dcl/sdk@next"
   }
 }

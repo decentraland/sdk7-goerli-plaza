@@ -1,6 +1,6 @@
 {
-  "name": "dcl-project",
-  "description": "SDK7 Template scene",
+  "name": "atari-arcade-cabinets",
+  "description": "Atari Arcade Cabinets",
   "version": "1.0.0",
   "devDependencies": {
     "@dcl/asset-packs": "latest",

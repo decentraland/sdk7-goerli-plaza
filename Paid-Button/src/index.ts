@@ -4,12 +4,14 @@ import { Animator, AudioSource, AvatarAttach, GltfContainer, Transform, Visibili
 import { initAssetPacks } from '@dcl/asset-packs/dist/scene-entrypoint'
 
 import { buildScene } from './builder'
-import { Paid_Button,Door } from './uiButton' 
+import { Paid_Button, Door, setupUi } from './uiButton'
 
 export function main() {
   buildScene()     // 3d models 
   Door            // door with animation and sound 
   Paid_Button    // paid button with ui animation and sound
+
+  setupUi()
 }
 
 main()
