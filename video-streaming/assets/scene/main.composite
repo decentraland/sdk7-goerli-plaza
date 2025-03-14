@@ -118,16 +118,16 @@
               "y": 5.75581884603815e-15,
               "z": 9.234334945678711
             },
+            "scale": {
+              "x": 1,
+              "y": 1,
+              "z": 1
+            },
             "rotation": {
               "x": 0,
               "y": 0,
               "z": 0,
               "w": 1
-            },
-            "scale": {
-              "x": 1,
-              "y": 1,
-              "z": 1
             },
             "parent": 0
           }
@@ -174,16 +174,16 @@
             "parent": 515
           }
         },
-        "519": {
+        "517": {
           "json": {
             "position": {
-              "x": 8.000001907348633,
-              "y": -5,
-              "z": 6.619181156158447
+              "x": 2.1386072635650635,
+              "y": 7.022096256250124e-15,
+              "z": 4.367954254150391
             },
             "scale": {
-              "x": 3.8399999141693115,
-              "y": 2.1600000858306885,
+              "x": 1,
+              "y": 1,
               "z": 1
             },
             "rotation": {
@@ -192,15 +192,15 @@
               "z": 0,
               "w": 1
             },
-            "parent": 516
+            "parent": 0
           }
         },
         "521": {
           "json": {
             "position": {
-              "x": 0.05999999865889549,
-              "y": 1.149999976158142,
-              "z": 6
+              "x": 0,
+              "y": 1.1500003337860107,
+              "z": 6.000000953674316
             },
             "scale": {
               "x": 18.6299991607666,
@@ -208,10 +208,10 @@
               "z": 1.590000033378601
             },
             "rotation": {
-              "x": 0.07532680779695511,
+              "x": -0.0753268226981163,
               "y": 0,
               "z": 0,
-              "w": -0.9971588850021362
+              "w": 0.9971588850021362
             },
             "parent": 516
           }
@@ -235,10 +235,42 @@
         "serializationType": "map"
       },
       "data": {
+        "517": {
+          "json": {
+            "networkId": 0,
+            "entityId": 8002
+          }
+        },
         "521": {
           "json": {
             "networkId": 0,
             "entityId": 3334
+          }
+        }
+      }
+    },
+    {
+      "name": "core::Animator",
+      "jsonSchema": {
+        "type": "object",
+        "properties": {},
+        "serializationType": "protocol-buffer",
+        "protocolBuffer": "PBAnimator"
+      },
+      "data": {
+        "514": {
+          "json": {
+            "states": []
+          }
+        },
+        "517": {
+          "json": {
+            "states": []
+          }
+        },
+        "521": {
+          "json": {
+            "states": []
           }
         }
       }
@@ -271,6 +303,13 @@
             "src": "assets/scene/screen.glb",
             "visibleMeshesCollisionMask": 1,
             "invisibleMeshesCollisionMask": 2
+          }
+        },
+        "517": {
+          "json": {
+            "src": "assets/asset-packs/admin_tools/admin_toolkit.glb",
+            "visibleMeshesCollisionMask": 1,
+            "invisibleMeshesCollisionMask": 0
           }
         }
       }
@@ -315,15 +354,6 @@
         "protocolBuffer": "PBMeshCollider"
       },
       "data": {
-        "519": {
-          "json": {
-            "collisionMask": 1,
-            "mesh": {
-              "$case": "plane",
-              "plane": {}
-            }
-          }
-        },
         "521": {
           "json": {
             "collisionMask": 1,
@@ -344,16 +374,6 @@
         "protocolBuffer": "PBMeshRenderer"
       },
       "data": {
-        "519": {
-          "json": {
-            "mesh": {
-              "$case": "plane",
-              "plane": {
-                "uvs": []
-              }
-            }
-          }
-        },
         "521": {
           "json": {
             "mesh": {
@@ -399,9 +419,9 @@
             "value": "sreenDisplay"
           }
         },
-        "519": {
+        "517": {
           "json": {
-            "value": "screen2"
+            "value": "Admin Tools"
           }
         },
         "521": {
@@ -454,6 +474,13 @@
         "serializationType": "map"
       },
       "data": {
+        "517": {
+          "json": {
+            "componentIds": [
+              99929642
+            ]
+          }
+        },
         "521": {
           "json": {
             "componentIds": [
@@ -483,6 +510,22 @@
       }
     },
     {
+      "name": "core::VisibilityComponent",
+      "jsonSchema": {
+        "type": "object",
+        "properties": {},
+        "serializationType": "protocol-buffer",
+        "protocolBuffer": "PBVisibilityComponent"
+      },
+      "data": {
+        "517": {
+          "json": {
+            "visible": false
+          }
+        }
+      }
+    },
+    {
       "name": "inspector::Selection",
       "jsonSchema": {
         "type": "object",
@@ -495,9 +538,9 @@
         "serializationType": "map"
       },
       "data": {
-        "514": {
+        "517": {
           "json": {
-            "gizmo": 3
+            "gizmo": 0
           }
         }
       }
@@ -967,7 +1010,8 @@
                 "children": [
                   513,
                   514,
-                  515
+                  515,
+                  517
                 ]
               },
               {
@@ -997,16 +1041,15 @@
                 "entity": 516,
                 "open": true,
                 "children": [
-                  521,
-                  519
+                  521
                 ]
               },
               {
-                "entity": 519,
+                "entity": 521,
                 "children": []
               },
               {
-                "entity": 521,
+                "entity": 517,
                 "children": []
               }
             ]
@@ -1223,6 +1266,10 @@
               {
                 "type": "heal_player",
                 "jsonSchema": "{\"type\":\"object\",\"properties\":{\"multiplier\":{\"type\":\"integer\",\"serializationType\":\"int32\"}},\"serializationType\":\"map\"}"
+              },
+              {
+                "type": "claim_airdrop",
+                "jsonSchema": "{\"type\":\"object\",\"properties\":{},\"serializationType\":\"map\"}"
               }
             ]
           }
@@ -1668,6 +1715,268 @@
       }
     },
     {
+      "name": "asset-packs::AdminTools",
+      "jsonSchema": {
+        "type": "object",
+        "properties": {
+          "adminPermissions": {
+            "type": "string",
+            "enum": [
+              "PUBLIC",
+              "PRIVATE"
+            ],
+            "default": "PUBLIC",
+            "serializationType": "enum-string",
+            "enumObject": {
+              "PUBLIC": "PUBLIC",
+              "PRIVATE": "PRIVATE"
+            }
+          },
+          "authorizedAdminUsers": {
+            "type": "object",
+            "properties": {
+              "me": {
+                "type": "boolean",
+                "serializationType": "boolean"
+              },
+              "sceneOwners": {
+                "type": "boolean",
+                "serializationType": "boolean"
+              },
+              "allowList": {
+                "type": "boolean",
+                "serializationType": "boolean"
+              },
+              "adminAllowList": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "serializationType": "utf8-string"
+                },
+                "serializationType": "array"
+              }
+            },
+            "serializationType": "map"
+          },
+          "moderationControl": {
+            "type": "object",
+            "properties": {
+              "isEnabled": {
+                "type": "boolean",
+                "serializationType": "boolean"
+              },
+              "kickCoordinates": {
+                "type": "object",
+                "properties": {
+                  "x": {
+                    "type": "number",
+                    "serializationType": "float32"
+                  },
+                  "y": {
+                    "type": "number",
+                    "serializationType": "float32"
+                  },
+                  "z": {
+                    "type": "number",
+                    "serializationType": "float32"
+                  }
+                },
+                "serializationType": "map"
+              },
+              "allowNonOwnersManageAdminAllowList": {
+                "type": "boolean",
+                "serializationType": "boolean"
+              }
+            },
+            "serializationType": "map"
+          },
+          "textAnnouncementControl": {
+            "type": "object",
+            "properties": {
+              "isEnabled": {
+                "type": "boolean",
+                "serializationType": "boolean"
+              },
+              "playSoundOnEachAnnouncement": {
+                "type": "boolean",
+                "serializationType": "boolean"
+              },
+              "showAuthorOnEachAnnouncement": {
+                "type": "boolean",
+                "serializationType": "boolean"
+              }
+            },
+            "serializationType": "map"
+          },
+          "videoControl": {
+            "type": "object",
+            "properties": {
+              "isEnabled": {
+                "type": "boolean",
+                "serializationType": "boolean"
+              },
+              "disableVideoPlayersSound": {
+                "type": "boolean",
+                "serializationType": "boolean"
+              },
+              "showAuthorOnVideoPlayers": {
+                "type": "boolean",
+                "serializationType": "boolean"
+              },
+              "linkAllVideoPlayers": {
+                "type": "boolean",
+                "serializationType": "boolean"
+              },
+              "videoPlayers": {
+                "type": "array",
+                "serializationType": "optional",
+                "optionalJsonSchema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "entity": {
+                        "type": "integer",
+                        "serializationType": "int32"
+                      },
+                      "customName": {
+                        "type": "string",
+                        "serializationType": "utf8-string"
+                      }
+                    },
+                    "serializationType": "map"
+                  },
+                  "serializationType": "array"
+                }
+              }
+            },
+            "serializationType": "map"
+          },
+          "smartItemsControl": {
+            "type": "object",
+            "properties": {
+              "isEnabled": {
+                "type": "boolean",
+                "serializationType": "boolean"
+              },
+              "linkAllSmartItems": {
+                "type": "boolean",
+                "serializationType": "boolean"
+              },
+              "smartItems": {
+                "type": "array",
+                "serializationType": "optional",
+                "optionalJsonSchema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "entity": {
+                        "type": "integer",
+                        "serializationType": "int32"
+                      },
+                      "customName": {
+                        "type": "string",
+                        "serializationType": "utf8-string"
+                      },
+                      "defaultAction": {
+                        "type": "string",
+                        "serializationType": "utf8-string"
+                      }
+                    },
+                    "serializationType": "map"
+                  },
+                  "serializationType": "array"
+                }
+              }
+            },
+            "serializationType": "map"
+          },
+          "rewardsControl": {
+            "type": "object",
+            "properties": {
+              "isEnabled": {
+                "type": "boolean",
+                "serializationType": "boolean"
+              },
+              "rewardItems": {
+                "type": "array",
+                "serializationType": "optional",
+                "optionalJsonSchema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "entity": {
+                        "type": "integer",
+                        "serializationType": "int32"
+                      },
+                      "customName": {
+                        "type": "string",
+                        "serializationType": "utf8-string"
+                      }
+                    },
+                    "serializationType": "map"
+                  },
+                  "serializationType": "array"
+                }
+              }
+            },
+            "serializationType": "map"
+          }
+        },
+        "serializationType": "map"
+      },
+      "data": {
+        "517": {
+          "json": {
+            "adminPermissions": "PUBLIC",
+            "authorizedAdminUsers": {
+              "me": true,
+              "sceneOwners": true,
+              "allowList": true,
+              "adminAllowList": []
+            },
+            "moderationControl": {
+              "isEnabled": true,
+              "kickCoordinates": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              },
+              "allowNonOwnersManageAdminAllowList": false
+            },
+            "textAnnouncementControl": {
+              "isEnabled": true,
+              "playSoundOnEachAnnouncement": true,
+              "showAuthorOnEachAnnouncement": true
+            },
+            "videoControl": {
+              "isEnabled": true,
+              "disableVideoPlayersSound": false,
+              "showAuthorOnVideoPlayers": true,
+              "linkAllVideoPlayers": false,
+              "videoPlayers": [
+                {
+                  "entity": 521,
+                  "customName": "Screen"
+                }
+              ]
+            },
+            "smartItemsControl": {
+              "isEnabled": true,
+              "linkAllSmartItems": false,
+              "smartItems": []
+            },
+            "rewardsControl": {
+              "isEnabled": true,
+              "rewardItems": []
+            }
+          }
+        }
+      }
+    },
+    {
       "name": "inspector::TransformConfig",
       "jsonSchema": {
         "type": "object",
@@ -1696,7 +2005,7 @@
         "516": {
           "json": {}
         },
-        "519": {
+        "517": {
           "json": {}
         },
         "521": {
@@ -1732,6 +2041,7 @@
                     "core::Animator",
                     "core::AudioSource",
                     "core::AudioStream",
+                    "core::AvatarAttach",
                     "core::GltfContainer",
                     "core-schema::Network-Entity",
                     "core::Material",
@@ -1766,7 +2076,12 @@
                     "inspector::Lock",
                     "inspector::Config",
                     "inspector::Ground",
-                    "inspector::Tile"
+                    "inspector::Tile",
+                    "inspector::CustomAsset",
+                    "asset-packs::AdminTools",
+                    "AdminTools",
+                    "asset-packs::Rewards",
+                    "Rewards"
                   ],
                   "default": "asset-packs::Actions",
                   "serializationType": "enum-string",
@@ -1774,6 +2089,7 @@
                     "ANIMATOR": "core::Animator",
                     "AUDIO_SOURCE": "core::AudioSource",
                     "AUDIO_STREAM": "core::AudioStream",
+                    "AVATAR_ATTACH": "core::AvatarAttach",
                     "GLTF_CONTAINER": "core::GltfContainer",
                     "NETWORK_ENTITY": "core-schema::Network-Entity",
                     "MATERIAL": "core::Material",
@@ -1808,7 +2124,12 @@
                     "Lock": "inspector::Lock",
                     "Config": "inspector::Config",
                     "Ground": "inspector::Ground",
-                    "Tile": "inspector::Tile"
+                    "Tile": "inspector::Tile",
+                    "CustomAsset": "inspector::CustomAsset",
+                    "AdminTools": "asset-packs::AdminTools",
+                    "asset-packs::AdminTools": "AdminTools",
+                    "Rewards": "asset-packs::Rewards",
+                    "asset-packs::Rewards": "Rewards"
                   }
                 },
                 "layout": {
@@ -1844,6 +2165,19 @@
         "serializationType": "map"
       },
       "data": {
+        "517": {
+          "json": {
+            "isBasicViewEnabled": true,
+            "componentName": "Admin Tools",
+            "fields": [
+              {
+                "name": "Controls",
+                "type": "asset-packs::AdminTools"
+              }
+            ],
+            "assetId": "0c419cb9-bc21-4c51-977f-41a505a097f0"
+          }
+        },
         "521": {
           "json": {
             "isBasicViewEnabled": true,

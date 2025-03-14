@@ -7,12 +7,6 @@ executeTask(async () => {
   setInPreview(realm.realmInfo?.isPreview ?? false)
 })
 
-//using search service
-//https://github.com/decentraland/decentrally-service
-const SERVICES_DOMAIN =
-  //"http://localhost:5001"
-  'https://decentrally-service.decentraland.net'
-
 export class Config {
   IN_PREVIEW = false // can be used for more debugging of things, not meant to be enabled in prod
   //shows 2d ui debug buttons

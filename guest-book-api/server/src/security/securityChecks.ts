@@ -4,10 +4,6 @@ import * as dcl from 'decentraland-crypto-middleware'
 import { denyListedIPS, TESTS_ENABLED, Metadata, realmWhiteList } from './utils'
 import { checkCoords } from './verifyOnMap'
 
-export function checkOrigin(req: Request) {
-  const validOrigins = ['https://decentraland.org', 'https://decentraland.zone']
-  return validOrigins.includes(req.header('origin')!)
-}
 
 export function checkBannedIPs(req: Request) {
   const ip = req.header('X-Forwarded-For')
@@ -32,14 +28,6 @@ export async function runChecks(req: Request & dcl.DecentralandSignatureData<Met
     return parseInt(item, 10)
   })
 
-  // check that the request comes from a decentraland domain
-  const validOrigin =
-    TESTS_ENABLED && (metadata.realm.hostname === 'localhost' || metadata.realm.serverName === 'LocalPreview')
-      ? true
-      : checkOrigin(req)
-  if (!validOrigin) {
-    throw new Error('INVALID ORIGIN')
-  }
 
   // filter against a denylist of malicious ips
   const validIP = checkBannedIPs(req)

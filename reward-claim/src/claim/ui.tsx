@@ -120,40 +120,21 @@ export function confirmationUI(thumbnail: string, wearableName: string) {
 
   const customPrompt = ui.createComponent(ui.CustomPrompt, {
     style: ui.PromptStyles.DARK,
-    height: 300,
   })
 
 
   const promptTitle = customPrompt.addText({
     value: 'Wearable incoming!',
-    xPosition: 0,
-    yPosition: 135,
     color: Color4.Green(),
     size: 30,
   })
 
   const promptText = customPrompt.addText({
     value: "It will arrive in your backpack in a few minutes.",
-    xPosition: 0,
-    yPosition: 100,
-  })
-
-
-  const promptButtonE = customPrompt.addButton({
-    style: ui.ButtonStyles.E,
-    text: 'Ok',
-    xPosition: 0,
-    yPosition: -120,
-    onMouseDown: () => {
-      console.log('Yeah clicked')
-      customPrompt.hide()
-    },
   })
 
   const promptIcon = customPrompt.addIcon({
     image: thumbnail,
-    xPosition: 0,
-    yPosition: 5,
     height: 125,
     width: 125
   })
@@ -161,9 +142,16 @@ export function confirmationUI(thumbnail: string, wearableName: string) {
 
   const name = customPrompt.addText({
     value: wearableName,
-    xPosition: 0,
-    yPosition: -70,
     size: 20,
+  })
+
+  const promptButtonE = customPrompt.addButton({
+    style: ui.ButtonStyles.E,
+    text: 'Ok',
+    onMouseDown: () => {
+      console.log('Yeah clicked')
+      customPrompt.hide()
+    },
   })
 
   customPrompt.show()
@@ -184,7 +172,6 @@ export function alreadyClaimedUI() {
     useDarkTheme: true,
     textSize: 20,
     width: 450,
-    height: 300,
     startHidden: false,
   })
 }
@@ -202,8 +189,6 @@ export function errorUI(errorString: string) {
     acceptLabel: 'Ok',
     useDarkTheme: true,
     textSize: 20,
-    width: 450,
-    height: 300,
     startHidden: false,
   })
   throw new Error(errorString)
@@ -216,7 +201,6 @@ export function captchaUI(image: string, id: string, campaign: ClaimConfigInstTy
 
   const customPrompt = ui.createComponent(ui.CustomPrompt, {
     style: ui.PromptStyles.DARK,
-    height: 300,
   })
 
 
@@ -228,23 +212,8 @@ export function captchaUI(image: string, id: string, campaign: ClaimConfigInstTy
     size: 30,
   })
 
-
-  const promptButtonE = customPrompt.addButton({
-    style: ui.ButtonStyles.E,
-    text: 'Ok',
-    xPosition: 0,
-    yPosition: -120,
-    onMouseDown: () => {
-      validateCaptcha(captchaText, id, campaign, campaign_key)
-      customPrompt.hide()
-
-    },
-  })
-
   const promptIcon = customPrompt.addIcon({
     image: image,
-    xPosition: 0,
-    yPosition: 5,
     height: 125,
     width: 125
   })
@@ -252,8 +221,16 @@ export function captchaUI(image: string, id: string, campaign: ClaimConfigInstTy
 
   const name = customPrompt.addTextBox({
     onChange: (text) => { captchaText = text },
-    xPosition: 0,
-    yPosition: -70,
+  })
+
+  const promptButtonE = customPrompt.addButton({
+    style: ui.ButtonStyles.E,
+    text: 'Ok',
+    onMouseDown: () => {
+      validateCaptcha(captchaText, id, campaign, campaign_key)
+      customPrompt.hide()
+
+    },
   })
 
   customPrompt.show()
