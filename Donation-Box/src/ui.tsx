@@ -168,22 +168,31 @@ const uiComponent = () => (
         onMouseDown={async () => {
           console.log('Sending Mana!');
 
-              // Play donation animation
-              Animator.playSingleAnimation(donationsBoxModel, 'Donation_Action', false);
+          // Play donation animation
+          Animator.playSingleAnimation(donationsBoxModel, 'Donation_Action', false);
 
-              // Start animation timer
-              donationAnimationTimeElapsed = 0.00001;
+          // Start animation timer
+          donationAnimationTimeElapsed = 0.00001;
 
-              // Hide the UI
-              toggleDonationUIVisibility();
+          // Hide the UI
+          toggleDonationUIVisibility();
 
 
           try {
             const numericAmount = parseFloat(donationAmount); // Convert to number
             if (!isNaN(numericAmount)) {
-              await crypto.mana.send(myWallet, numericAmount, true); // Send the transaction
 
-              console.log(donationAmount, 'Mana');  /// log amount to be sent 
+              try {
+                await crypto.mana.send(myWallet, numericAmount, false)
+                console.log('Mana sent successfully!', donationAmount)
+              } catch (e) {
+                console.log(e)
+              } finally {
+                // This block executes after the transaction is successful
+
+                // Play donation animation
+                Animator.playSingleAnimation(donationsBoxModel, 'Donation_Action', false);
+              }
 
             } else {
               console.error('Invalid donation amount');
@@ -192,7 +201,7 @@ const uiComponent = () => (
             console.error('Transaction failed:', error);
 
           }
-         
+
 
         }}
       />

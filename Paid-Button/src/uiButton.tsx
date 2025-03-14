@@ -234,31 +234,12 @@ const uiComponent = () => (
                   console.log(e)
                 } finally {
                   try {
-                    // const balance = await crypto.mana.balance(testAddressTarget )
                     openDoor(); // Open the door after successful payment
                     console.log("OPENED DOOR")
                   } catch (e) {
                     console.log(e)
                   }
                 }
-
-                // crypto.mana.send(myWallet, numericAmount, true).then(() => {
-
-                //   /// open door 
-                //   openDoor(); // Open the door after successful payment
-                //   console.log("OPENED DOOR")
-
-                //   console.log(paymentAmount, 'Mana'); // Log amount sent
-
-
-                //   // Hide the UI
-
-
-                // }).catch((error: any) => {
-
-                //   // Handles any errors in the transaction
-                //   console.error('Transaction failed:', error);
-                // });
 
               } else {
                 console.error('Invalid amount');
