@@ -18,6 +18,7 @@ This scene shows:
 
 Run over to the area covered in grass to automatically switch avatars. Use your mouse to look around and <kbd>W</kbd> <kbd>A</kbd> <kbd>S</kbd> <kbd>D</kbd> keys on your keyboard to move forward, left, backward and right respectively.
 
+
 ## Try it out
 
 **Previewing the scene**
