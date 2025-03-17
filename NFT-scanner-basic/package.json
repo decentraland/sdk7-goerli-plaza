@@ -1,7 +1,11 @@
 {
-  "name": "atari-arcade-cabinets",
-  "description": "Atari Arcade Cabinets",
+  "name": "nft-scanner-basic",
+  "description": "NFT Scanner Basic",
   "version": "1.0.0",
+  "dependencies": {
+    "dcl-crypto-toolkit": "latest",
+    "eth-connect": "latest"
+  },
   "devDependencies": {
     "@dcl/asset-packs": "latest",
     "@dcl/js-runtime": "latest",
@@ -10,8 +14,6 @@
   "scripts": {
     "build": "sdk-commands build",
     "deploy": "sdk-commands deploy",
-    "format": "prettier --config .prettierrc -c src/**/*.{ts,tsx}",
-    "format:fix": "prettier -w --config .prettierrc -c src/**/*.{ts,tsx}",
     "start": "sdk-commands start",
     "upgrade-sdk": "npm install --save-dev @dcl/sdk@latest",
     "upgrade-sdk:next": "npm install --save-dev @dcl/sdk@next"
