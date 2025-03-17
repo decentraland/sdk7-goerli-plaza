@@ -70,7 +70,7 @@ jobs:
 
       - name: upload to s3
         run: >
-          npx @dcl/cdn-uploader@next \
+          npx @dcl/cdn-uploader@latest \
               --bucket ${{ secrets.SDK_TEAM_S3_BUCKET }} \
               --local-folder "$(pwd)/ipfs" \
               --bucket-folder 'ipfs'
