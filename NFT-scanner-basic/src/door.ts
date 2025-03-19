@@ -12,7 +12,7 @@ import * as crypto from 'dcl-crypto-toolkit'
 
 // NFT and token iDs to check 
 const NFT_CONTRACT = crypto.contract.mainnet.Halloween2019Collection;
-const TOKEN_IDS = [1, 2, 3, 4, 5];
+// const TOKEN_IDS = [1, 2, 3, 4, 5];
 
 
 // Door Entity
@@ -95,7 +95,7 @@ async function checkNFTAndControlDoor() {
 
     try {
         await executeTask(async () => {
-            hasNFT = await crypto.nft.checkTokens(NFT_CONTRACT, TOKEN_IDS);
+            hasNFT = await crypto.nft.checkTokens(NFT_CONTRACT);  // optionally add TOKEN_IDS to check for specific NFTs in that collection
         });
     } catch (error) {
         console.log("Error checking NFTs:", error);
@@ -104,10 +104,9 @@ async function checkNFTAndControlDoor() {
         return;
     }
 
-    const doorAnimator = Animator.getMutable(Door);
-
     if (hasNFT) {
         // Open the door if the user has the NFT
+        const doorAnimator = Animator.getMutable(Door);
         const openState = doorAnimator.states.find(state => state.clip === "OpenDoor");
         if (openState) {
             openState.playing = true;
@@ -119,6 +118,7 @@ async function checkNFTAndControlDoor() {
         // Play reject sound and keep the door closed
         toggleUIVisibility();
         playSound(rejectSound);
+        console.log("Checking for NFTs:", NFT_CONTRACT);
     }
 }
 
