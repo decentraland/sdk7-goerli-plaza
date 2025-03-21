@@ -26,15 +26,15 @@ var HAS_SNOWBALL: boolean = false
 
 export function main() {
   utils.addTestCube({ position: Vector3.create(8, 1, 5) }, () => {
-    triggerSceneEmote({ src: 'animations/Pose.glb', loop: true })
+    triggerSceneEmote({ src: 'animations/Pose_emote.glb', loop: true })
   })
 
   utils.addTestCube({ position: Vector3.create(8, 1, 8) }, () => {
-    triggerSceneEmote({ src: 'animations/Crafting_Snowball.glb', loop: false })
+    triggerSceneEmote({ src: 'animations/Crafting_Snowball_emote.glb', loop: false })
   })
 
   utils.addTestCube({ position: Vector3.create(8, 1, 12) }, () => {
-    triggerSceneEmote({ src: 'animations/Snowball_Throw.glb', loop: false })
+    triggerSceneEmote({ src: 'animations/Snowball_Throw_emote.glb', loop: false })
   })
 
   const snowPile = engine.getEntityOrNullByName('snowPile.glb')
@@ -49,7 +49,7 @@ export function main() {
       },
       () => {
         if (HAS_SNOWBALL) return
-        triggerSceneEmote({ src: 'animations/Crafting_Snowball.glb', loop: false })
+        triggerSceneEmote({ src: 'animations/Crafting_Snowball_emote.glb', loop: false })
         utils.timers.setTimeout(() => {
           HAS_SNOWBALL = true
           const snowballParent = engine.addEntity()
@@ -76,7 +76,7 @@ engine.addSystem(() => {
     if (!HAS_SNOWBALL) return
     HAS_SNOWBALL = false
 
-    triggerSceneEmote({ src: 'animations/Snowball_Throw.glb', loop: false })
+    triggerSceneEmote({ src: 'animations/Snowball_Throw_emote.glb', loop: false })
 
     const snowballsInScene = engine.getEntitiesWith(Snow, Transform)
     for (const [entity, snow, transform] of snowballsInScene) {
