@@ -21,9 +21,15 @@ Every time the book is opened, a request is sent to a RESFful API that this serv
 
 **Previewing the scene**
 
-1. Download this full repository from [sdk7-goerli-plaza](https://github.com/decentraland/sdk7-goerli-plaza/tree/main), including this and several other example scenes on SDK7.
+1. Download this repository.
 
-2. Install the [Decentraland Editor](https://docs.decentraland.org/creator/development-guide/sdk7/editor/)
+2. Open the command line and navigate to this scene root directory
+
+3. Run:
+
+```
+npm install
+```
 
 3. Open a Visual Studio Code window on `scene` directory. Not on the root folder of the whole repo, but instead on this sub-folder that belongs to the scene.
 

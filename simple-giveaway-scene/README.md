@@ -19,11 +19,13 @@ Feel free to reuse the models and code from this scene!
 
 1. Download this repository.
 
-2. Install the [Decentraland Editor](https://docs.decentraland.org/creator/development-guide/sdk7/editor/)
+2. Open the command line and navigate to this scene root directory
 
-3. Open a Visual Studio Code window on this scene's root folder. Not on the root folder of the whole repo, but instead on this sub-folder that belongs to the scene.
+3. Run:
 
-4. Open the Decentraland Editor tab, and press **Run Scene**
+```
+npm install
+```
 
 Alternatively, you can use the command line. Inside this scene root directory run:
 
