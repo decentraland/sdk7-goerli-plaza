@@ -24,17 +24,21 @@ Repo needs [dcl-crypto-toolkit](https://github.com/decentraland/dcl-crypto-toolk
 
 1. Download this repository.
 
-2. Install the [Decentraland Editor](https://docs.decentraland.org/creator/development-guide/sdk7/editor/)
+2. Open the command line and navigate to this scene root directory
 
-3. Open a Visual Studio Code window on this scene's root folder. Not on the root folder of the whole repo, but instead on this sub-folder that belongs to the scene.
-
-4. Open the Decentraland Editor tab, and press **Run Scene**
-
-Alternatively, you can use the command line. Inside this scene root directory run:
+3. Run:
 
 ```
-npm run start
+npm install
 ```
+
+4. Run:
+
+```
+npm run start -- --explorer-alpha
+```
+
+To avoid transferring real MANA or other currencies, you can use the Ethereum Sepolia test network and transfer fake testnet MANA instead. See [Using the Ethereum Test Network](https://docs.decentraland.org/creator/development-guide/sdk7/scene-blockchain-operations/#using-the-ethereum-test-network).
 
 ## What's new on SDK 7
 
