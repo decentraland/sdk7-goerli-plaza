@@ -8,7 +8,6 @@ import { buildScene } from './builder'
 import { setupUi } from './ui'
 
 function main(){
-
   buildScene()
   setupUi()
 }
