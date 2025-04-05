@@ -220,6 +220,9 @@
       "path": "clap-meter"
     },
     {
+      "path": "box2d-ball"
+    },
+    {
       "path": "cannon-example-scene"
     },
     {
