@@ -1,19 +1,10 @@
 {
   "folders": [
     {
-      "path": "Zombie-shooter"
-    },
-    {
       "path": "zombie-attack"
     },
     {
       "path": "zenquencer"
-    },
-    {
-      "path": "Weather-Simulation"
-    },
-    {
-      "path": "Wearables-scanner"
     },
     {
       "path": "video-streaming"
@@ -23,9 +14,6 @@
     },
     {
       "path": "uv-map"
-    },
-    {
-      "path": "UiCanvasInformation"
     },
     {
       "path": "ui-spritesheet"
@@ -43,49 +31,13 @@
       "path": "testing-gallery"
     },
     {
-      "path": "Testing-3d-models"
-    },
-    {
-      "path": "Template"
-    },
-    {
       "path": "switchable-platforms"
-    },
-    {
-      "path": "Swimming-Shark"
-    },
-    {
-      "path": "Splat-Attack"
-    },
-    {
-      "path": "Smoke"
-    },
-    {
-      "path": "Smart_Items_Pirate_Island"
     },
     {
       "path": "sliding-door"
     },
     {
-      "path": "Simple-NPC"
-    },
-    {
-      "path": "Simple-NFT"
-    },
-    {
       "path": "simple-giveaway-scene"
-    },
-    {
-      "path": "Show-Manager-Example"
-    },
-    {
-      "path": "Shooting-Range-Advanced"
-    },
-    {
-      "path": "Shooting-range"
-    },
-    {
-      "path": "Shark-animation"
     },
     {
       "path": "rotating-platforms"
@@ -97,40 +49,19 @@
       "path": "reward-claim"
     },
     {
-      "path": "Random-noise-movement"
-    },
-    {
       "path": "push-box-puzzle"
-    },
-    {
-      "path": "Puffer"
     },
     {
       "path": "power-cube"
     },
     {
-      "path": "Portal-Puzzle"
-    },
-    {
-      "path": "Pixel-Canvas-API"
-    },
-    {
       "path": "piano-floor"
     },
     {
-      "path": "Party-Time"
-    },
-    {
-      "path": "Paid-Button"
+      "path": "photo-mural"
     },
     {
       "path": "open-door"
-    },
-    {
-      "path": "NFT-scanner-basic"
-    },
-    {
-      "path": "NFT-Museum"
     },
     {
       "path": "moving-platforms"
@@ -151,25 +82,13 @@
       "path": "lazy-loading"
     },
     {
-      "path": "Laser-ray-Casting"
-    },
-    {
       "path": "land-flipper"
-    },
-    {
-      "path": "Jukebox"
     },
     {
       "path": "item-pickup"
     },
     {
       "path": "inflatable-punch-bag"
-    },
-    {
-      "path": "Hypno-wheels"
-    },
-    {
-      "path": "Hummingbirds"
     },
     {
       "path": "guest-book-api"
@@ -181,34 +100,16 @@
       "path": "grab-object-advance"
     },
     {
-      "path": "Gnark"
-    },
-    {
-      "path": "Events-API-Board"
-    },
-    {
       "path": "enemy-spawner"
     },
     {
-      "path": "Editor-actions"
-    },
-    {
       "path": "droid-scene"
-    },
-    {
-      "path": "Donation-Box"
-    },
-    {
-      "path": "Dance-floor"
     },
     {
       "path": "cube-wave-32x32"
     },
     {
       "path": "cube-wave-16x16"
-    },
-    {
-      "path": "Cube"
     },
     {
       "path": "coin-pickup"
@@ -226,28 +127,16 @@
       "path": "cannon-car-example-scene"
     },
     {
-      "path": "BouncerUI"
-    },
-    {
       "path": "boids"
     },
     {
       "path": "block-portable-experiences"
     },
     {
-      "path": "Block-Fountain"
-    },
-    {
-      "path": "Block-dog"
-    },
-    {
       "path": "bird-field"
     },
     {
       "path": "beer-dispenser"
-    },
-    {
-      "path": "BasicInteractions"
     },
     {
       "path": "avatar-swap"
@@ -263,6 +152,120 @@
     },
     {
       "path": "advanced-avatar-swap"
+    },
+    {
+      "path": "Zombie-shooter"
+    },
+    {
+      "path": "Weather-Simulation"
+    },
+    {
+      "path": "Wearables-scanner"
+    },
+    {
+      "path": "UiCanvasInformation"
+    },
+    {
+      "path": "Testing-3d-models"
+    },
+    {
+      "path": "Template"
+    },
+    {
+      "path": "Swimming-Shark"
+    },
+    {
+      "path": "Splat-Attack"
+    },
+    {
+      "path": "Smoke"
+    },
+    {
+      "path": "Smart_Items_Pirate_Island"
+    },
+    {
+      "path": "Simple-NPC"
+    },
+    {
+      "path": "Simple-NFT"
+    },
+    {
+      "path": "Show-Manager-Example"
+    },
+    {
+      "path": "Shooting-range"
+    },
+    {
+      "path": "Shooting-Range-Advanced"
+    },
+    {
+      "path": "Shark-animation"
+    },
+    {
+      "path": "Random-noise-movement"
+    },
+    {
+      "path": "Puffer"
+    },
+    {
+      "path": "Portal-Puzzle"
+    },
+    {
+      "path": "Pixel-Canvas-API"
+    },
+    {
+      "path": "Party-Time"
+    },
+    {
+      "path": "Paid-Button"
+    },
+    {
+      "path": "NFT-scanner-basic"
+    },
+    {
+      "path": "NFT-Museum"
+    },
+    {
+      "path": "Laser-ray-Casting"
+    },
+    {
+      "path": "Jukebox"
+    },
+    {
+      "path": "Hypno-wheels"
+    },
+    {
+      "path": "Hummingbirds"
+    },
+    {
+      "path": "Gnark"
+    },
+    {
+      "path": "Events-API-Board"
+    },
+    {
+      "path": "Editor-actions"
+    },
+    {
+      "path": "Donation-Box"
+    },
+    {
+      "path": "Dance-floor"
+    },
+    {
+      "path": "Cube"
+    },
+    {
+      "path": "BouncerUI"
+    },
+    {
+      "path": "Block-dog"
+    },
+    {
+      "path": "Block-Fountain"
+    },
+    {
+      "path": "BasicInteractions"
     }
   ]
 }
