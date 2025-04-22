@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "devDependencies": {
     "@dcl/asset-packs": "latest",
-    "@dcl/js-runtime": "7.7.0",
+    "@dcl/js-runtime": "latest",
     "@dcl/sdk": "latest"
   },
   "engines": {
