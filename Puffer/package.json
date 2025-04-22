@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "dependencies": {
     "@dcl-sdk/utils": "latest",
-    "@dcl/js-runtime": "latest",
+    "@dcl/js-runtime": "7.7.0",
     "@dcl/sdk": "latest"
   },
   "engines": {

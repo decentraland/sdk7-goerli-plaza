@@ -3,7 +3,7 @@
   "description": "A beer dispenser that uses P2P messaging so that you can pour beer for yourself and friends.",
   "version": "1.0.0",
   "dependencies": {
-    "@dcl/js-runtime": "latest",
+    "@dcl/js-runtime": "7.7.0",
     "@dcl/sdk": "latest"
   },
   "scripts": {

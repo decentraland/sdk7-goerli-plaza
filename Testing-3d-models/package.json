@@ -3,7 +3,7 @@
   "description": "3D model tests",
   "version": "1.0.0",
   "devDependencies": {
-    "@dcl/js-runtime": "latest",
+    "@dcl/js-runtime": "7.7.0",
     "@dcl/sdk": "latest"
   },
   "scripts": {
