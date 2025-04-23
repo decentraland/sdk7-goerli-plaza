@@ -1,0 +1,53 @@
+{
+  "ecs7": true,
+  "runtimeVersion": "7",
+  "display": {
+    "title": "clap-to-claim",
+    "description": "Test",
+    "navmapThumbnail": "images/scene-thumbnail.png",
+    "favicon": "favicon_asset"
+  },
+  "owner": "",
+  "contact": {
+    "name": "",
+    "email": ""
+  },
+  "main": "bin/game.js",
+  "tags": [],
+  "spawnPoints": [
+    {
+      "name": "spawn1",
+      "default": true,
+      "position": {
+        "x": [
+          3,
+          6
+        ],
+        "y": [
+          0,
+          0
+        ],
+        "z": [
+          3,
+          6
+        ]
+      },
+      "cameraTarget": {
+        "x": 8,
+        "y": 1,
+        "z": 8
+      }
+    }
+  ],
+  "featureToggles": {
+    "voiceChat": "enabled",
+    "portableExperiences": "enabled"
+  },
+  "scene": {
+    "base": "0,0",
+    "parcels": [
+      "0,0"
+    ]
+  },
+  "name": "Zombie-shooter"
+}

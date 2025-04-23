@@ -1,0 +1,1 @@
+export const CONFIG_CLAIM_TESTING_ENABLED = true

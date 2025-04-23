@@ -1,0 +1,17 @@
+{
+  "name": "zombie-shooter",
+  "description": "ECS7 ",
+  "version": "1.0.0",
+  "dependencies": {
+    "@dcl/js-runtime": "7.8.5",
+    "@dcl/sdk": "latest",
+    "@dcl-sdk/utils": "^1.2.8"
+  },
+  "devDependencies": {
+    "@dcl/asset-packs": "latest"
+  },
+  "scripts": {
+    "build": "sdk-commands build --skip-install",
+    "start": "sdk-commands start"
+  }
+}
