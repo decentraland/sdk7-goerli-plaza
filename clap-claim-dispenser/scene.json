@@ -1,0 +1,53 @@
+{
+  "ecs7": true,
+  "runtimeVersion": "7",
+  "display": {
+    "title": "Clap Dispenser",
+    "description": "Claim dispenser with clap emote, from MVFW 2025",
+    "navmapThumbnail": "images/scene-thumbnail.png",
+    "favicon": "favicon_asset"
+  },
+  "owner": "",
+  "contact": {
+    "name": "Decentraland Foundation",
+    "email": ""
+  },
+  "main": "bin/index.js",
+  "tags": [],
+  "scene": {
+    "parcels": [
+      "78,2"
+    ],
+    "base": "78,2"
+  },
+  "spawnPoints": [
+    {
+      "name": "spawn1",
+      "default": true,
+      "position": {
+        "x": [
+          12.5,
+          19
+        ],
+        "y": [
+          0,
+          0
+        ],
+        "z": [
+          1,
+          10
+        ]
+      },
+      "cameraTarget": {
+        "x": 35,
+        "y": 3,
+        "z": 24
+      }
+    }
+  ],
+  "featureToggles": {
+    "voiceChat": "enabled",
+    "portableExperiences": "enabled"
+  },
+  "name": "clap-claim-dispenser"
+}
