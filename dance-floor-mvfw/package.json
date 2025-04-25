@@ -1,20 +1,15 @@
 {
   "name": "dcl-dance-floor",
-  "version": "1.0.0",
   "description": "SDK7 Dance Floor",
-  "scripts": {
-    "start": "sdk-commands start",
-    "build:ci": "sdk-commands build",
-    "deploy:prod": "sdk-commands deploy -t linker-server.decentraland.org --skip-validations true",
-    "deploy:testing": "sdk-commands deploy -t linker-server.decentraland.today --skip-validations true",
-    "deploy:world": "sdk-commands deploy --target-content https://worlds-content-server.decentraland.org",
-    "deploy": "sdk-commands deploy",
-    "build": "sdk-commands build",
-    "upgrade-sdk": "npm install --save-dev @dcl/sdk@latest",
-    "upgrade-sdk:next": "npm install --save-dev @dcl/sdk@next"
+  "version": "1.0.0",
+  "bundleDependencies": [
+    "@dcl/ecs-scene-utils"
+  ],
+  "dependencies": {
+    "@dcl/ecs-scene-utils": "latest"
   },
   "devDependencies": {
-    "@dcl/js-runtime": "7.8.5",
+    "@dcl/js-runtime": "latest",
     "@dcl/sdk": "latest"
   },
   "engines": {
@@ -27,10 +22,15 @@
     "printWidth": 120,
     "trailingComma": "none"
   },
-  "dependencies": {
-    "@dcl/ecs-scene-utils": "^1.7.5"
-  },
-  "bundleDependencies": [
-    "@dcl/ecs-scene-utils"
-  ]
+  "scripts": {
+    "build": "sdk-commands build",
+    "build:ci": "sdk-commands build",
+    "deploy": "sdk-commands deploy",
+    "deploy:prod": "sdk-commands deploy -t linker-server.decentraland.org --skip-validations true",
+    "deploy:testing": "sdk-commands deploy -t linker-server.decentraland.today --skip-validations true",
+    "deploy:world": "sdk-commands deploy --target-content https://worlds-content-server.decentraland.org",
+    "start": "sdk-commands start",
+    "upgrade-sdk": "npm install --save-dev @dcl/sdk@latest",
+    "upgrade-sdk:next": "npm install --save-dev @dcl/sdk@next"
+  }
 }
