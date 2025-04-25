@@ -2,7 +2,7 @@
   "ecs7": true,
   "runtimeVersion": "7",
   "display": {
-    "title": "Clap Dispenser",
+    "title": "clap-claim-dispenser",
     "description": "Claim dispenser with clap emote, from MVFW 2025",
     "navmapThumbnail": "images/scene-thumbnail.png",
     "favicon": "favicon_asset"

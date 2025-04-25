@@ -121,6 +121,9 @@
       "path": "clap-meter"
     },
     {
+      "path": "clap-claim-dispenser"
+    },
+    {
       "path": "cannon-example-scene"
     },
     {
