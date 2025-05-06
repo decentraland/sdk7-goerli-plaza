@@ -177,14 +177,30 @@
         "517": {
           "json": {
             "position": {
-              "x": 2.1386072635650635,
-              "y": 7.022096256250124e-15,
-              "z": 4.367954254150391
+              "x": 0,
+              "y": 1.1500003337860107,
+              "z": 6.000000953674316
+            },
+            "rotation": {
+              "x": -0.07532680779695511,
+              "y": 0,
+              "z": 0,
+              "w": 0.9971588850021362
             },
             "scale": {
-              "x": 1,
-              "y": 1,
-              "z": 1
+              "x": 18.6299991607666,
+              "y": 10.480000495910645,
+              "z": 1.5900001525878906
+            },
+            "parent": 516
+          }
+        },
+        "519": {
+          "json": {
+            "position": {
+              "x": 2.510308027267456,
+              "y": -2.969002310782118e-15,
+              "z": 2.3897387981414795
             },
             "rotation": {
               "x": 0,
@@ -192,28 +208,12 @@
               "z": 0,
               "w": 1
             },
-            "parent": 0
-          }
-        },
-        "521": {
-          "json": {
-            "position": {
-              "x": 0,
-              "y": 1.1500003337860107,
-              "z": 6.000000953674316
-            },
             "scale": {
-              "x": 18.6299991607666,
-              "y": 10.479999542236328,
-              "z": 1.590000033378601
+              "x": 1,
+              "y": 1,
+              "z": 1
             },
-            "rotation": {
-              "x": -0.0753268226981163,
-              "y": 0,
-              "z": 0,
-              "w": 0.9971588850021362
-            },
-            "parent": 516
+            "parent": 0
           }
         }
       }
@@ -238,13 +238,13 @@
         "517": {
           "json": {
             "networkId": 0,
-            "entityId": 8002
+            "entityId": 8003
           }
         },
-        "521": {
+        "519": {
           "json": {
             "networkId": 0,
-            "entityId": 3334
+            "entityId": 8004
           }
         }
       }
@@ -258,6 +258,16 @@
         "protocolBuffer": "PBAnimator"
       },
       "data": {
+        "0": {
+          "json": {
+            "states": []
+          }
+        },
+        "513": {
+          "json": {
+            "states": []
+          }
+        },
         "514": {
           "json": {
             "states": []
@@ -268,7 +278,7 @@
             "states": []
           }
         },
-        "521": {
+        "519": {
           "json": {
             "states": []
           }
@@ -305,7 +315,7 @@
             "invisibleMeshesCollisionMask": 2
           }
         },
-        "517": {
+        "519": {
           "json": {
             "src": "assets/asset-packs/admin_tools/admin_toolkit.glb",
             "visibleMeshesCollisionMask": 1,
@@ -323,7 +333,7 @@
         "protocolBuffer": "PBMaterial"
       },
       "data": {
-        "521": {
+        "517": {
           "json": {
             "material": {
               "$case": "pbr",
@@ -332,7 +342,7 @@
                   "tex": {
                     "$case": "videoTexture",
                     "videoTexture": {
-                      "videoPlayerEntity": 521
+                      "videoPlayerEntity": 0
                     }
                   }
                 },
@@ -354,7 +364,7 @@
         "protocolBuffer": "PBMeshCollider"
       },
       "data": {
-        "521": {
+        "517": {
           "json": {
             "collisionMask": 1,
             "mesh": {
@@ -374,7 +384,7 @@
         "protocolBuffer": "PBMeshRenderer"
       },
       "data": {
-        "521": {
+        "517": {
           "json": {
             "mesh": {
               "$case": "plane",
@@ -421,38 +431,12 @@
         },
         "517": {
           "json": {
-            "value": "Admin Tools"
+            "value": "Video Screen"
           }
         },
-        "521": {
+        "519": {
           "json": {
-            "value": "Video Player"
-          }
-        }
-      }
-    },
-    {
-      "name": "core::PointerEvents",
-      "jsonSchema": {
-        "type": "object",
-        "properties": {},
-        "serializationType": "protocol-buffer",
-        "protocolBuffer": "PBPointerEvents"
-      },
-      "data": {
-        "521": {
-          "json": {
-            "pointerEvents": [
-              {
-                "eventType": 1,
-                "eventInfo": {
-                  "button": 1,
-                  "hoverText": "Play Video",
-                  "maxDistance": 10,
-                  "showFeedback": true
-                }
-              }
-            ]
+            "value": "Admin Tools"
           }
         }
       }
@@ -477,14 +461,14 @@
         "517": {
           "json": {
             "componentIds": [
-              99929642
+              1043
             ]
           }
         },
-        "521": {
+        "519": {
           "json": {
             "componentIds": [
-              1043
+              99929642
             ]
           }
         }
@@ -499,12 +483,10 @@
         "protocolBuffer": "PBVideoPlayer"
       },
       "data": {
-        "521": {
+        "517": {
           "json": {
             "src": "https://player.vimeo.com/external/552481870.m3u8?s=c312c8533f97e808fccc92b0510b085c8122a875",
-            "playing": true,
-            "volume": 1,
-            "loop": true
+            "playing": true
           }
         }
       }
@@ -518,7 +500,7 @@
         "protocolBuffer": "PBVisibilityComponent"
       },
       "data": {
-        "517": {
+        "519": {
           "json": {
             "visible": false
           }
@@ -538,9 +520,9 @@
         "serializationType": "map"
       },
       "data": {
-        "517": {
+        "519": {
           "json": {
-            "gizmo": 0
+            "gizmo": 3
           }
         }
       }
@@ -896,9 +878,12 @@
             "thumbnail": "assets/scene/screenshot_2024-09-13_at_51113 pm.png",
             "categories": [],
             "author": "SDK",
-            "email": "",
             "tags": [],
             "layout": {
+              "base": {
+                "x": 78,
+                "y": -3
+              },
               "parcels": [
                 {
                   "x": 78,
@@ -916,14 +901,8 @@
                   "x": 79,
                   "y": -2
                 }
-              ],
-              "base": {
-                "x": 78,
-                "y": -3
-              }
+              ]
             },
-            "silenceVoiceChat": false,
-            "disablePortableExperiences": false,
             "spawnPoints": [
               {
                 "name": "spawn1",
@@ -1011,7 +990,7 @@
                   513,
                   514,
                   515,
-                  517
+                  519
                 ]
               },
               {
@@ -1041,15 +1020,15 @@
                 "entity": 516,
                 "open": true,
                 "children": [
-                  521
+                  517
                 ]
               },
               {
-                "entity": 521,
+                "entity": 517,
                 "children": []
               },
               {
-                "entity": 517,
+                "entity": 519,
                 "children": []
               }
             ]
@@ -1277,94 +1256,6 @@
       }
     },
     {
-      "name": "asset-packs::Actions",
-      "jsonSchema": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "serializationType": "int32"
-          },
-          "value": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "name": {
-                  "type": "string",
-                  "serializationType": "utf8-string"
-                },
-                "type": {
-                  "type": "string",
-                  "serializationType": "utf8-string"
-                },
-                "jsonPayload": {
-                  "type": "string",
-                  "serializationType": "utf8-string"
-                },
-                "allowedInBasicView": {
-                  "type": "boolean",
-                  "serializationType": "optional",
-                  "optionalJsonSchema": {
-                    "type": "boolean",
-                    "serializationType": "boolean"
-                  }
-                },
-                "basicViewId": {
-                  "type": "string",
-                  "serializationType": "optional",
-                  "optionalJsonSchema": {
-                    "type": "string",
-                    "serializationType": "utf8-string"
-                  }
-                }
-              },
-              "serializationType": "map"
-            },
-            "serializationType": "array"
-          }
-        },
-        "serializationType": "map"
-      },
-      "data": {
-        "521": {
-          "json": {
-            "id": 1,
-            "value": [
-              {
-                "name": "Play",
-                "type": "set_state",
-                "jsonPayload": "{ \"state\": \"Playing\" }",
-                "allowedInBasicView": true
-              },
-              {
-                "name": "Stop",
-                "type": "set_state",
-                "jsonPayload": "{ \"state\": \"Stopped\" }",
-                "allowedInBasicView": true
-              },
-              {
-                "name": "Play Video Stream",
-                "type": "play_video_stream",
-                "jsonPayload": "{ \"src\": \"https://player.vimeo.com/external/552481870.m3u8?s=c312c8533f97e808fccc92b0510b085c8122a875\", \"loop\": \"false\", \"volume\": 1, \"dclCast\": false }"
-              },
-              {
-                "name": "Stop Video Stream",
-                "type": "stop_video_stream",
-                "jsonPayload": "{}"
-              },
-              {
-                "name": "Plays or Stop",
-                "type": "set_state",
-                "jsonPayload": "{ \"state\": \"Toggle\" }",
-                "allowedInBasicView": true
-              }
-            ]
-          }
-        }
-      }
-    },
-    {
       "name": "asset-packs::Counter",
       "jsonSchema": {
         "type": "object",
@@ -1384,332 +1275,48 @@
         "0": {
           "json": {
             "id": 0,
-            "value": 2
+            "value": 3
           }
         }
       }
     },
     {
-      "name": "asset-packs::Triggers",
+      "name": "asset-packs::VideoScreen",
       "jsonSchema": {
         "type": "object",
         "properties": {
-          "value": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "type": {
-                  "type": "string",
-                  "enum": [
-                    "on_click",
-                    "on_input_action",
-                    "on_state_change",
-                    "on_spawn",
-                    "on_tween_end",
-                    "on_counter_change",
-                    "on_player_enters_area",
-                    "on_player_leaves_area",
-                    "on_delay",
-                    "on_loop",
-                    "on_clone",
-                    "on_click_image",
-                    "on_damage",
-                    "on_global_click",
-                    "on_global_primary",
-                    "on_global_secondary",
-                    "on_tick",
-                    "on_heal_player",
-                    "on_player_spawn"
-                  ],
-                  "default": "on_input_action",
-                  "serializationType": "enum-string",
-                  "enumObject": {
-                    "ON_CLICK": "on_click",
-                    "ON_INPUT_ACTION": "on_input_action",
-                    "ON_STATE_CHANGE": "on_state_change",
-                    "ON_SPAWN": "on_spawn",
-                    "ON_TWEEN_END": "on_tween_end",
-                    "ON_COUNTER_CHANGE": "on_counter_change",
-                    "ON_PLAYER_ENTERS_AREA": "on_player_enters_area",
-                    "ON_PLAYER_LEAVES_AREA": "on_player_leaves_area",
-                    "ON_DELAY": "on_delay",
-                    "ON_LOOP": "on_loop",
-                    "ON_CLONE": "on_clone",
-                    "ON_CLICK_IMAGE": "on_click_image",
-                    "ON_DAMAGE": "on_damage",
-                    "ON_GLOBAL_CLICK": "on_global_click",
-                    "ON_GLOBAL_PRIMARY": "on_global_primary",
-                    "ON_GLOBAL_SECONDARY": "on_global_secondary",
-                    "ON_TICK": "on_tick",
-                    "ON_HEAL_PLAYER": "on_heal_player",
-                    "ON_PLAYER_SPAWN": "on_player_spawn"
-                  }
-                },
-                "conditions": {
-                  "type": "array",
-                  "serializationType": "optional",
-                  "optionalJsonSchema": {
-                    "type": "array",
-                    "items": {
-                      "type": "object",
-                      "properties": {
-                        "id": {
-                          "type": "integer",
-                          "serializationType": "optional",
-                          "optionalJsonSchema": {
-                            "type": "integer",
-                            "serializationType": "int32"
-                          }
-                        },
-                        "type": {
-                          "type": "string",
-                          "enum": [
-                            "when_state_is",
-                            "when_state_is_not",
-                            "when_counter_equals",
-                            "when_counter_is_greater_than",
-                            "when_counter_is_less_than",
-                            "when_distance_to_player_less_than",
-                            "when_distance_to_player_greater_than",
-                            "when_previous_state_is",
-                            "when_previous_state_is_not"
-                          ],
-                          "default": "when_state_is",
-                          "serializationType": "enum-string",
-                          "enumObject": {
-                            "WHEN_STATE_IS": "when_state_is",
-                            "WHEN_STATE_IS_NOT": "when_state_is_not",
-                            "WHEN_COUNTER_EQUALS": "when_counter_equals",
-                            "WHEN_COUNTER_IS_GREATER_THAN": "when_counter_is_greater_than",
-                            "WHEN_COUNTER_IS_LESS_THAN": "when_counter_is_less_than",
-                            "WHEN_DISTANCE_TO_PLAYER_LESS_THAN": "when_distance_to_player_less_than",
-                            "WHEN_DISTANCE_TO_PLAYER_GREATER_THAN": "when_distance_to_player_greater_than",
-                            "WHEN_PREVIOUS_STATE_IS": "when_previous_state_is",
-                            "WHEN_PREVIOUS_STATE_IS_NOT": "when_previous_state_is_not"
-                          }
-                        },
-                        "value": {
-                          "type": "string",
-                          "serializationType": "utf8-string"
-                        }
-                      },
-                      "serializationType": "map"
-                    },
-                    "serializationType": "array"
-                  }
-                },
-                "operation": {
-                  "type": "string",
-                  "serializationType": "optional",
-                  "optionalJsonSchema": {
-                    "type": "string",
-                    "enum": [
-                      "and",
-                      "or"
-                    ],
-                    "default": "and",
-                    "serializationType": "enum-string",
-                    "enumObject": {
-                      "AND": "and",
-                      "OR": "or"
-                    }
-                  }
-                },
-                "actions": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "id": {
-                        "type": "integer",
-                        "serializationType": "optional",
-                        "optionalJsonSchema": {
-                          "type": "integer",
-                          "serializationType": "int32"
-                        }
-                      },
-                      "name": {
-                        "type": "string",
-                        "serializationType": "optional",
-                        "optionalJsonSchema": {
-                          "type": "string",
-                          "serializationType": "utf8-string"
-                        }
-                      }
-                    },
-                    "serializationType": "map"
-                  },
-                  "serializationType": "array"
-                },
-                "basicViewId": {
-                  "type": "string",
-                  "serializationType": "optional",
-                  "optionalJsonSchema": {
-                    "type": "string",
-                    "serializationType": "utf8-string"
-                  }
-                }
-              },
-              "serializationType": "map"
-            },
-            "serializationType": "array"
-          }
-        },
-        "serializationType": "map"
-      },
-      "data": {
-        "521": {
-          "json": {
-            "value": [
-              {
-                "type": "on_input_action",
-                "conditions": [],
-                "actions": [
-                  {
-                    "id": 1,
-                    "name": "Plays or Stop"
-                  }
-                ],
-                "basicViewId": "trigger-when-clicked"
-              },
-              {
-                "type": "on_state_change",
-                "conditions": [
-                  {
-                    "id": 2,
-                    "type": "when_state_is",
-                    "value": "Playing"
-                  }
-                ],
-                "actions": [
-                  {
-                    "id": 1,
-                    "name": "Play Video Stream"
-                  }
-                ],
-                "basicViewId": "trigger-when-turned-on"
-              },
-              {
-                "type": "on_state_change",
-                "conditions": [
-                  {
-                    "id": 2,
-                    "type": "when_state_is",
-                    "value": "Stopped"
-                  }
-                ],
-                "actions": [
-                  {
-                    "id": 1,
-                    "name": "Stop Video Stream"
-                  }
-                ],
-                "basicViewId": "trigger-when-turned-off"
-              },
-              {
-                "type": "on_state_change",
-                "conditions": [
-                  {
-                    "id": 2,
-                    "type": "when_state_is",
-                    "value": "Toggle"
-                  },
-                  {
-                    "id": 2,
-                    "type": "when_previous_state_is",
-                    "value": "Playing"
-                  }
-                ],
-                "operation": "and",
-                "actions": [
-                  {
-                    "id": 1,
-                    "name": "Stop"
-                  }
-                ]
-              },
-              {
-                "type": "on_state_change",
-                "conditions": [
-                  {
-                    "id": 2,
-                    "type": "when_state_is",
-                    "value": "Toggle"
-                  },
-                  {
-                    "id": 2,
-                    "type": "when_previous_state_is",
-                    "value": "Stopped"
-                  }
-                ],
-                "operation": "and",
-                "actions": [
-                  {
-                    "id": 1,
-                    "name": "Play"
-                  }
-                ]
-              }
-            ]
-          }
-        }
-      }
-    },
-    {
-      "name": "asset-packs::States",
-      "jsonSchema": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "number",
-            "serializationType": "float32"
-          },
-          "value": {
-            "type": "array",
-            "items": {
-              "type": "string",
-              "serializationType": "utf8-string"
-            },
-            "serializationType": "array"
-          },
-          "defaultValue": {
+          "thumbnail": {
             "type": "string",
-            "serializationType": "optional",
-            "optionalJsonSchema": {
-              "type": "string",
-              "serializationType": "utf8-string"
-            }
+            "serializationType": "utf8-string"
           },
-          "currentValue": {
-            "type": "string",
-            "serializationType": "optional",
-            "optionalJsonSchema": {
-              "type": "string",
-              "serializationType": "utf8-string"
-            }
-          },
-          "previousValue": {
-            "type": "string",
-            "serializationType": "optional",
-            "optionalJsonSchema": {
-              "type": "string",
-              "serializationType": "utf8-string"
-            }
-          }
-        },
-        "serializationType": "map"
-      },
-      "data": {
-        "521": {
-          "json": {
-            "id": 2,
-            "value": [
-              "Playing",
-              "Stopped",
-              "Toggle"
+          "defaultMediaSource": {
+            "type": "integer",
+            "enum": [
+              0,
+              1
             ],
-            "defaultValue": "Stopped"
+            "default": 0,
+            "serializationType": "enum-int",
+            "enumObject": {
+              "0": "VideoURL",
+              "1": "LiveStream",
+              "VideoURL": 0,
+              "LiveStream": 1
+            }
+          },
+          "defaultURL": {
+            "type": "string",
+            "serializationType": "utf8-string"
+          }
+        },
+        "serializationType": "map"
+      },
+      "data": {
+        "517": {
+          "json": {
+            "thumbnail": "https://boedo.casla",
+            "defaultMediaSource": 0,
+            "defaultURL": "https://player.vimeo.com/external/552481870.m3u8?s=c312c8533f97e808fccc92b0510b085c8122a875"
           }
         }
       }
@@ -1928,7 +1535,7 @@
         "serializationType": "map"
       },
       "data": {
-        "517": {
+        "519": {
           "json": {
             "adminPermissions": "PUBLIC",
             "authorizedAdminUsers": {
@@ -1958,7 +1565,7 @@
               "linkAllVideoPlayers": false,
               "videoPlayers": [
                 {
-                  "entity": 521,
+                  "entity": 517,
                   "customName": "Screen"
                 }
               ]
@@ -2008,7 +1615,7 @@
         "517": {
           "json": {}
         },
-        "521": {
+        "519": {
           "json": {}
         }
       }
@@ -2081,7 +1688,9 @@
                     "asset-packs::AdminTools",
                     "AdminTools",
                     "asset-packs::Rewards",
-                    "Rewards"
+                    "Rewards",
+                    "asset-packs::VideoScreen",
+                    "VideoScreen"
                   ],
                   "default": "asset-packs::Actions",
                   "serializationType": "enum-string",
@@ -2129,7 +1738,9 @@
                     "AdminTools": "asset-packs::AdminTools",
                     "asset-packs::AdminTools": "AdminTools",
                     "Rewards": "asset-packs::Rewards",
-                    "asset-packs::Rewards": "Rewards"
+                    "asset-packs::Rewards": "Rewards",
+                    "VideoScreen": "asset-packs::VideoScreen",
+                    "asset-packs::VideoScreen": "VideoScreen"
                   }
                 },
                 "layout": {
@@ -2168,6 +1779,19 @@
         "517": {
           "json": {
             "isBasicViewEnabled": true,
+            "componentName": "Video Screen",
+            "fields": [
+              {
+                "name": "Config",
+                "type": "asset-packs::VideoScreen"
+              }
+            ],
+            "assetId": "dc5ec17b-aa1a-4bd0-bace-7d615d9bdc71"
+          }
+        },
+        "519": {
+          "json": {
+            "isBasicViewEnabled": true,
             "componentName": "Admin Tools",
             "fields": [
               {
@@ -2176,38 +1800,6 @@
               }
             ],
             "assetId": "0c419cb9-bc21-4c51-977f-41a505a097f0"
-          }
-        },
-        "521": {
-          "json": {
-            "isBasicViewEnabled": true,
-            "componentName": "Video Player",
-            "fields": [
-              {
-                "name": "Hover Text",
-                "type": "core::PointerEvents"
-              },
-              {
-                "name": "Video Player",
-                "type": "core::VideoPlayer"
-              },
-              {
-                "name": "When Clicked",
-                "type": "asset-packs::Triggers",
-                "basicViewId": "trigger-when-clicked"
-              },
-              {
-                "name": "When Turned On",
-                "type": "asset-packs::Triggers",
-                "basicViewId": "trigger-when-turned-on"
-              },
-              {
-                "name": "When Turned Off",
-                "type": "asset-packs::Triggers",
-                "basicViewId": "trigger-when-turned-off"
-              }
-            ],
-            "assetId": "dc5ec17b-aa1a-4bd0-bace-7d615d9bdc70"
           }
         }
       }
