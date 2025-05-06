@@ -1,0 +1,113 @@
+{
+  "version": 1,
+  "components": [
+    {
+      "name": "core::VideoPlayer",
+      "data": {
+        "0": {
+          "json": {
+            "src": "https://player.vimeo.com/external/552481870.m3u8?s=c312c8533f97e808fccc92b0510b085c8122a875",
+            "playing": true
+          }
+        }
+      }
+    },
+    {
+      "name": "core::MeshRenderer",
+      "data": {
+        "0": {
+          "json": {
+            "mesh": {
+              "$case": "plane",
+              "plane": {
+                "uvs": []
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "core::MeshCollider",
+      "data": {
+        "0": {
+          "json": {
+            "collisionMask": 1,
+            "mesh": {
+              "$case": "plane",
+              "plane": {
+                "uvs": []
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "core::Material",
+      "data": {
+        "0": {
+          "json": {
+            "material": {
+              "$case": "pbr",
+              "pbr": {
+                "texture": {
+                  "tex": {
+                    "$case": "videoTexture",
+                    "videoTexture": {
+                      "videoPlayerEntity": 0
+                    }
+                  }
+                },
+                "roughness": 1,
+                "specularIntensity": 0,
+                "metallic": 0
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "core-schema::Sync-Components",
+      "data": {
+        "0": {
+          "json": {
+            "value": [
+              "core::VideoPlayer"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "asset-packs::VideoScreen",
+      "data": {
+        "0": {
+          "json": {
+            "thumbnail": "https://boedo.casla",
+            "defaultMediaSource": 0,
+            "defaultURL": "https://player.vimeo.com/external/552481870.m3u8?s=c312c8533f97e808fccc92b0510b085c8122a875"
+          }
+        }
+      }
+    },
+    {
+      "name": "inspector::Config",
+      "data": {
+        "0": {
+          "json": {
+            "isBasicViewEnabled": true,
+            "componentName": "Video Screen",
+            "fields": [
+              {
+                "name": "Config",
+                "type": "asset-packs::VideoScreen"
+              }
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

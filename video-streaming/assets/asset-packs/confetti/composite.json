@@ -1,0 +1,191 @@
+{
+  "version": 1,
+  "components": [
+    {
+      "name": "core::Transform",
+      "data": {
+        "513": {
+          "json": {
+            "position": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "rotation": {
+              "x": 0,
+              "y": 0,
+              "z": 0,
+              "w": 1
+            },
+            "scale": {
+              "x": 1,
+              "y": 1,
+              "z": 1
+            },
+            "parent": 0
+          }
+        }
+      }
+    },
+    {
+      "name": "core::Animator",
+      "data": {
+        "0": {
+          "json": {
+            "states": []
+          }
+        },
+        "513": {
+          "json": {
+            "states": [
+              {
+                "clip": "Animation",
+                "playing": false,
+                "weight": 1,
+                "speed": 1,
+                "loop": true,
+                "shouldReset": false
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "core::GltfContainer",
+      "data": {
+        "0": {
+          "json": {
+            "src": "{assetPath}/confettiarrow.glb",
+            "visibleMeshesCollisionMask": 0,
+            "invisibleMeshesCollisionMask": 0
+          }
+        },
+        "513": {
+          "json": {
+            "src": "{assetPath}/confetti.glb",
+            "visibleMeshesCollisionMask": 0,
+            "invisibleMeshesCollisionMask": 0
+          }
+        }
+      }
+    },
+    {
+      "name": "core-schema::Name",
+      "data": {
+        "0": {
+          "json": {
+            "value": "confetti"
+          }
+        },
+        "513": {
+          "json": {
+            "value": "confetti"
+          }
+        }
+      }
+    },
+    {
+      "name": "core-schema::Sync-Components",
+      "data": {
+        "513": {
+          "json": {
+            "componentIds": [
+              "core::Animator",
+              "core::VisibilityComponent",
+              "core::AudioSource"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "core::VisibilityComponent",
+      "data": {
+        "0": {
+          "json": {
+            "visible": false
+          }
+        },
+        "513": {
+          "json": {
+            "visible": false
+          }
+        }
+      }
+    },
+    {
+      "name": "asset-packs::Actions",
+      "data": {
+        "513": {
+          "json": {
+            "id": "{self}",
+            "value": [
+              {
+                "name": "Play animation",
+                "type": "play_animation",
+                "jsonPayload": "{\"animation\":\"Animation\"}"
+              },
+              {
+                "name": "Reset",
+                "type": "stop_animation",
+                "jsonPayload": "{}"
+              },
+              {
+                "name": "Play sound",
+                "type": "play_sound",
+                "jsonPayload": "{\"src\":\"{assetPath}/fireworkexplode.mp3\"}"
+              },
+              {
+                "name": "Show",
+                "type": "set_visibility",
+                "jsonPayload": "{\"visible\":true,\"collider\":0}"
+              },
+              {
+                "name": "Hide",
+                "type": "set_visibility",
+                "jsonPayload": "{\"visible\":false,\"collider\":0}",
+                "allowedInBasicView": true
+              },
+              {
+                "name": "Explode",
+                "type": "batch",
+                "jsonPayload": "{\"actions\":[\"Play animation\",\"Play sound\",\"Show\",\"Delay Hide\"]}",
+                "allowedInBasicView": true
+              },
+              {
+                "name": "Delay Hide",
+                "type": "start_delay",
+                "jsonPayload": "{\"actions\":[\"Hide\"],\"timeout\":10}"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "inspector::Config",
+      "data": {
+        "0": {
+          "json": {
+            "isBasicViewEnabled": true,
+            "componentName": "Confetti",
+            "fields": []
+          }
+        }
+      }
+    },
+    {
+      "name": "inspector::Config",
+      "data": {
+        "513": {
+          "json": {
+            "isBasicViewEnabled": true,
+            "componentName": "Confetti",
+            "fields": []
+          }
+        }
+      }
+    }
+  ]
+}

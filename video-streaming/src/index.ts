@@ -11,12 +11,14 @@ import {
 } from '@dcl/sdk/ecs'
 import { } from '@dcl/sdk/math'
 import { setupUi } from './ui'
+import { EntityNames } from '../assets/scene/entity-names'
+import { getTriggerEvents, getActionEvents } from '@dcl/asset-packs/dist/events'
 
 export function main() {
 
   // fetch screens from editor
-  const screen = engine.getEntityOrNullByName("Video Player")
- 
+  const screen = engine.getEntityOrNullByName(EntityNames.Video_Screen)
+
   if (screen) {
   }
 
