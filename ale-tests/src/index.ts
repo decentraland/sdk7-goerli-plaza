@@ -1,8 +1,9 @@
-import { executeTask } from "@dcl/sdk/ecs"
-import { getRealm } from '~system/Runtime'
+import { executeTask } from '@dcl/sdk/ecs'
+import { getRealm, PBRealmInfo } from '~system/Runtime'
 
 
 executeTask(async () => {
-  const realm = await getRealm({})
-  console.log('You are in the realm: ' + JSON.stringify(realm) + ' baseUrl:' + realm?.baseUrl)
+  let realm = await getRealm({})
+  let realmInfo = realm.realmInfo as (PBRealmInfo & { domain: string }) | undefined
+  console.log('You are in the realm: ' + JSON.stringify(realmInfo) + ' baseUrl:' + realmInfo?.baseUrl)
 })
