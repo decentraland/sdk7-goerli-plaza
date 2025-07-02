@@ -22,7 +22,7 @@ const partyEnd = new Date('2023-11-01T02:00:00+03:00') // GMT+3
 async function addStartNowButton() {
   const realm = await getRealm({})
   const realmBaseUrl = (realm.realmInfo?.baseUrl ?? 'https://peer.decentraland.org').toLocaleLowerCase()
-  const possibleTestEnvironments = ['goerli-plaza', 'localhost', '192.', '127.']
+  const possibleTestEnvironments = ['goerli-plaza', 'localhost', '192.', '127.', 'sdk-team-cdn']
 
   // Only possible test environments can force start the party
   if (!possibleTestEnvironments.some((value) => realmBaseUrl.includes(value))) {
