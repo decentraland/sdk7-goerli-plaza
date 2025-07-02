@@ -3,6 +3,6 @@ import { getRealm } from '~system/Runtime'
 
 
 executeTask(async () => {
-  const { realmInfo } = await getRealm({})
-  console.log('You are in the realm: ' + JSON.stringify(realmInfo) + ' baseUrl:' + realmInfo.realmInfo?.baseUrl)
+  const realm = await getRealm({})
+  console.log('You are in the realm: ' + JSON.stringify(realm) + ' baseUrl:' + realm?.baseUrl)
 })
