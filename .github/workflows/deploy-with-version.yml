@@ -79,6 +79,7 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.SDK_TEAM_AWS_SECRET }}
 
       - name: Asset Bundle converter queue AllPlataforms
+        if: github.event_name != 'pull_request'
         run: >
           npx @dcl/opscli queue-ab-conversion-about \
             --token ${{ secrets.AB_TOKEN }} \
