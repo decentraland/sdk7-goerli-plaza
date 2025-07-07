@@ -174,23 +174,23 @@
             "parent": 515
           }
         },
-        "517": {
+        "518": {
           "json": {
             "position": {
               "x": 0,
-              "y": 1.1500003337860107,
-              "z": 6.000000953674316
+              "y": 1.149999976158142,
+              "z": 6
             },
             "rotation": {
-              "x": -0.07532680779695511,
+              "x": 0.07532680779695511,
               "y": 0,
               "z": 0,
-              "w": 0.9971588850021362
+              "w": -0.9971588850021362
             },
             "scale": {
               "x": 18.6299991607666,
-              "y": 10.480000495910645,
-              "z": 1.5900001525878906
+              "y": 10.479999542236328,
+              "z": 1.590000033378601
             },
             "parent": 516
           }
@@ -202,16 +202,16 @@
               "y": -2.969002310782118e-15,
               "z": 2.3897387981414795
             },
+            "scale": {
+              "x": 1,
+              "y": 1,
+              "z": 1
+            },
             "rotation": {
               "x": 0,
               "y": 0,
               "z": 0,
               "w": 1
-            },
-            "scale": {
-              "x": 1,
-              "y": 1,
-              "z": 1
             },
             "parent": 0
           }
@@ -235,10 +235,10 @@
         "serializationType": "map"
       },
       "data": {
-        "517": {
+        "518": {
           "json": {
             "networkId": 0,
-            "entityId": 8003
+            "entityId": 8005
           }
         },
         "519": {
@@ -273,7 +273,12 @@
             "states": []
           }
         },
-        "517": {
+        "516": {
+          "json": {
+            "states": []
+          }
+        },
+        "518": {
           "json": {
             "states": []
           }
@@ -333,22 +338,29 @@
         "protocolBuffer": "PBMaterial"
       },
       "data": {
-        "517": {
+        "518": {
           "json": {
             "material": {
-              "$case": "pbr",
-              "pbr": {
+              "$case": "unlit",
+              "unlit": {
                 "texture": {
                   "tex": {
                     "$case": "videoTexture",
                     "videoTexture": {
-                      "videoPlayerEntity": 0
+                      "videoPlayerEntity": 0,
+                      "wrapMode": 0,
+                      "filterMode": 0
                     }
                   }
                 },
-                "metallic": 0,
-                "roughness": 1,
-                "specularIntensity": 0
+                "alphaTest": 0.5,
+                "castShadows": true,
+                "diffuseColor": {
+                  "r": 1,
+                  "g": 1,
+                  "b": 1,
+                  "a": 1
+                }
               }
             }
           }
@@ -364,7 +376,7 @@
         "protocolBuffer": "PBMeshCollider"
       },
       "data": {
-        "517": {
+        "518": {
           "json": {
             "collisionMask": 1,
             "mesh": {
@@ -384,7 +396,7 @@
         "protocolBuffer": "PBMeshRenderer"
       },
       "data": {
-        "517": {
+        "518": {
           "json": {
             "mesh": {
               "$case": "plane",
@@ -429,7 +441,7 @@
             "value": "sreenDisplay"
           }
         },
-        "517": {
+        "518": {
           "json": {
             "value": "Video Screen"
           }
@@ -458,7 +470,7 @@
         "serializationType": "map"
       },
       "data": {
-        "517": {
+        "518": {
           "json": {
             "componentIds": [
               1043
@@ -483,10 +495,12 @@
         "protocolBuffer": "PBVideoPlayer"
       },
       "data": {
-        "517": {
+        "518": {
           "json": {
             "src": "https://player.vimeo.com/external/552481870.m3u8?s=c312c8533f97e808fccc92b0510b085c8122a875",
-            "playing": true
+            "playing": true,
+            "volume": 1,
+            "loop": true
           }
         }
       }
@@ -1020,15 +1034,15 @@
                 "entity": 516,
                 "open": true,
                 "children": [
-                  517
+                  518
                 ]
               },
               {
-                "entity": 517,
+                "entity": 519,
                 "children": []
               },
               {
-                "entity": 519,
+                "entity": 518,
                 "children": []
               }
             ]
@@ -1096,7 +1110,7 @@
               },
               {
                 "type": "play_sound",
-                "jsonSchema": "{\"type\":\"object\",\"properties\":{\"src\":{\"type\":\"string\",\"serializationType\":\"utf8-string\"},\"loop\":{\"type\":\"boolean\",\"serializationType\":\"optional\",\"optionalJsonSchema\":{\"type\":\"boolean\",\"serializationType\":\"boolean\"}},\"volume\":{\"type\":\"number\",\"serializationType\":\"optional\",\"optionalJsonSchema\":{\"type\":\"number\",\"serializationType\":\"float32\"}}},\"serializationType\":\"map\"}"
+                "jsonSchema": "{\"type\":\"object\",\"properties\":{\"src\":{\"type\":\"string\",\"serializationType\":\"utf8-string\"},\"loop\":{\"type\":\"boolean\",\"serializationType\":\"optional\",\"optionalJsonSchema\":{\"type\":\"boolean\",\"serializationType\":\"boolean\"}},\"volume\":{\"type\":\"number\",\"serializationType\":\"optional\",\"optionalJsonSchema\":{\"type\":\"number\",\"serializationType\":\"float32\"}},\"global\":{\"type\":\"boolean\",\"serializationType\":\"optional\",\"optionalJsonSchema\":{\"type\":\"boolean\",\"serializationType\":\"boolean\"}}},\"serializationType\":\"map\"}"
               },
               {
                 "type": "stop_sound",
@@ -1312,7 +1326,7 @@
         "serializationType": "map"
       },
       "data": {
-        "517": {
+        "518": {
           "json": {
             "thumbnail": "https://boedo.casla",
             "defaultMediaSource": 0,
@@ -1565,7 +1579,7 @@
               "linkAllVideoPlayers": false,
               "videoPlayers": [
                 {
-                  "entity": 517,
+                  "entity": 518,
                   "customName": "Screen"
                 }
               ]
@@ -1612,7 +1626,7 @@
         "516": {
           "json": {}
         },
-        "517": {
+        "518": {
           "json": {}
         },
         "519": {
@@ -1776,7 +1790,7 @@
         "serializationType": "map"
       },
       "data": {
-        "517": {
+        "518": {
           "json": {
             "isBasicViewEnabled": true,
             "componentName": "Video Screen",
