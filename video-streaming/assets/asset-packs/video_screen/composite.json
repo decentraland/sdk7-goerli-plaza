@@ -49,8 +49,8 @@
         "0": {
           "json": {
             "material": {
-              "$case": "unlit",
-              "unlit": {
+              "$case": "pbr",
+              "pbr": {
                 "texture": {
                   "tex": {
                     "$case": "videoTexture",
@@ -58,7 +58,10 @@
                       "videoPlayerEntity": 0
                     }
                   }
-                }
+                },
+                "roughness": 1,
+                "specularIntensity": 0,
+                "metallic": 0
               }
             }
           }
