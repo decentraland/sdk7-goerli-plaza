@@ -38,7 +38,6 @@ Jump over to the wall keeping the snow from getting on you side to automatically
 npm install
 ```
 
-
 ## Acknowledgements
 
 Model and animations from https://www.mixamo.com/
