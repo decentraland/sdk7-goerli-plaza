@@ -16,7 +16,7 @@
 //   const robots = engine.addEntity()
 
 //   Transform.create(robots, { position: Vector3.create(12, 0, 2) })
-//   GltfContainer.create(robots, { src: 'models/Robots.glb' })
+//   GltfContainer.create(robots, { src: 'assets/scene/Models/Robots.glb' })
 
 //   // // Robot feedback cube 1
 //   const r1 = createMesh(Vector3.create(13, 1, 1.5), 'Click robot 1', 0.5, false)

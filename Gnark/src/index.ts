@@ -15,7 +15,7 @@ export function main() {
   })
 
   GltfContainer.create(temple, {
-    src: 'models/Temple.glb'
+    src: 'assets/scene/Models/Temple.glb'
   })
 
   createGnark(0)

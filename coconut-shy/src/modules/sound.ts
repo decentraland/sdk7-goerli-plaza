@@ -5,7 +5,7 @@ const pickUp = engine.addEntity()
 
 //Create audio source component
 AudioSource.create(pickUp, {
-  audioClipUrl: 'sounds/pickUp.mp3',
+  audioClipUrl: 'assets/scene/Audio/pickUp.mp3',
   loop: false,
   playing: false,
   volume: 1
@@ -27,7 +27,7 @@ const throwSound = engine.addEntity()
 
 //Create audio source component
 AudioSource.create(throwSound, {
-  audioClipUrl: 'sounds/throw.mp3',
+  audioClipUrl: 'assets/scene/Audio/throw.mp3',
   loop: false,
   playing: false,
   volume: 1
@@ -46,7 +46,7 @@ const hit01 = engine.addEntity()
 
 //Create audio source component
 AudioSource.create(hit01, {
-  audioClipUrl: 'sounds/hit01.mp3',
+  audioClipUrl: 'assets/scene/Audio/hit01.mp3',
   loop: false,
   playing: false,
   volume: 1
@@ -57,7 +57,7 @@ const hit02 = engine.addEntity()
 
 //Create audio source component
 AudioSource.create(hit02, {
-  audioClipUrl: 'sounds/hit02.mp3',
+  audioClipUrl: 'assets/scene/Audio/hit02.mp3',
   loop: false,
   playing: false,
   volume: 1
@@ -68,7 +68,7 @@ const hit03 = engine.addEntity()
 
 //Create audio source component
 AudioSource.create(hit03, {
-  audioClipUrl: 'sounds/hit03.mp3',
+  audioClipUrl: 'assets/scene/Audio/hit03.mp3',
   loop: false,
   playing: false,
   volume: 1

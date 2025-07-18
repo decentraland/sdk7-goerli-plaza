@@ -8,9 +8,9 @@ const MAX_TIME_OFFSET = 6
 const POSITION_Z = 30
 
 const spaceships = {
-  redSpaceship: 'models/redSpaceship.glb',
-  greenSpaceship: 'models/greenSpaceship.glb',
-  blueSpaceship: 'models/blueSpaceship.glb'
+  redSpaceship: 'assets/scene/Models/redSpaceship.glb',
+  greenSpaceship: 'assets/scene/Models/greenSpaceship.glb',
+  blueSpaceship: 'assets/scene/Models/blueSpaceship.glb'
 }
 
 // Randomise the spawn time

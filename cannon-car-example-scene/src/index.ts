@@ -23,7 +23,7 @@ export function main() {
   // Create base scene
   const baseScene: Entity = engine.addEntity()
   GltfContainer.create(baseScene, {
-    src: 'models/baseScene.glb'
+    src: 'assets/scene/Models/baseScene.glb'
   })
   Transform.create(baseScene, { scale: Vector3.create(2.5, 0.05, 2.5) })
 
@@ -83,7 +83,7 @@ export function main() {
   // Car entities
   const chassis: Entity = engine.addEntity()
   GltfContainer.create(chassis, {
-    src: 'models/carBody.glb'
+    src: 'assets/scene/Models/carBody.glb'
   })
   Transform.create(chassis)
 
@@ -99,11 +99,11 @@ export function main() {
     const wheel: Entity = engine.addEntity()
     if (i % 2 == 0) {
       GltfContainer.create(wheel, {
-        src: 'models/carWheelRight.glb'
+        src: 'assets/scene/Models/carWheelRight.glb'
       })
     } else {
       GltfContainer.create(wheel, {
-        src: 'models/carWheelLeft.glb'
+        src: 'assets/scene/Models/carWheelLeft.glb'
       })
     }
 

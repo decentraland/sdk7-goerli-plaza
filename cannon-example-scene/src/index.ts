@@ -18,17 +18,17 @@ export function main() {
   // Create base scene
   const baseScene: Entity = engine.addEntity()
   GltfContainer.create(baseScene, {
-    src: 'models/baseScene.glb'
+    src: 'assets/scene/Models/baseScene.glb'
   })
   Transform.create(baseScene)
 
   // Ball shapes
   const ballShapes: string[] = [
-    'models/redBall.glb',
-    'models/greenBall.glb',
-    'models/blueBall.glb',
-    'models/pinkBall.glb',
-    'models/yellowBall.glb'
+    'assets/scene/Models/redBall.glb',
+    'assets/scene/Models/greenBall.glb',
+    'assets/scene/Models/blueBall.glb',
+    'assets/scene/Models/pinkBall.glb',
+    'assets/scene/Models/yellowBall.glb'
   ]
 
   const balls: Ball[] = [] // Store balls

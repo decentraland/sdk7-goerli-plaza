@@ -6,7 +6,7 @@ export function createArissaCharacter(): Entity {
   const entity = engine.addEntity()
 
   GltfContainer.create(entity, {
-    src: 'models/arissa.glb'
+    src: 'assets/scene/Models/arissa.glb'
   })
   Transform.create(entity, {
     position: Vector3.create(0, 1, 0),

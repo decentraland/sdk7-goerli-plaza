@@ -12,7 +12,7 @@ export function createShark() {
     scale: { x: 0.5, y: 0.5, z: 0.5 }
   })
   GltfContainer.create(shark, {
-    src: 'models/shark.glb'
+    src: 'assets/scene/Models/shark.glb'
   })
   Animator.create(shark, {
     states: [

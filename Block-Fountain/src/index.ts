@@ -1,4 +1,4 @@
-import { engine, GltfContainer, Transform } from '@dcl/sdk/ecs'
+import { engine, GltfContainer, Transform, Animator, AudioSource } from '@dcl/sdk/ecs'
 import { Vector3 } from '@dcl/sdk/math'
 import { MessageBus } from '@dcl/sdk/message-bus'
 import { Ring } from './ring'
@@ -12,132 +12,86 @@ export function main() {
   const sceneMessageBus = new MessageBus()
   const rings: Ring[] = []
 
-  // Create the base entity for the fountain
-  const base = engine.addEntity()
-  GltfContainer.create(base, {
-    src: 'models/fountain/Base.glb'
-  })
-  Transform.create(base, {
-    position: Vector3.create(24, 0, 24)
-  })
+  // Get the base entity from the composite file
+  const base = engine.getEntityOrNullByName('FountainBase')
+  if (!base) {
+    console.error('FountainBase entity not found in composite file')
+    return
+  }
 
-  // Create and initialize rings
-  const ring1 = new Ring(
-    Vector3.create(0, -0.55, 0),
-    Vector3.create(0, 0, 0),
-    Vector3.create(1, 1, 1),
-    'models/fountain/FirstRing.glb',
-    '1stRing_Action_01',
-    '1stRing_Action_02',
-    '1stRing_Action_03',
-    base
-  )
+  // Get ring entities from the composite file and create Ring instances
+  const ring1Entity = engine.getEntityOrNullByName('FirstRing')
+  if (ring1Entity) {
+    const ring1 = new Ring(ring1Entity, '1stRing_Action_01', '1stRing_Action_02', '1stRing_Action_03')
+    rings.push(ring1)
+  }
 
-  rings.push(ring1)
+  const ring2Entity = engine.getEntityOrNullByName('SecondRing')
+  if (ring2Entity) {
+    const ring2 = new Ring(ring2Entity, '2ndRing_Action_01', '2ndRing_Action_02', '2ndRing_Action_03')
+    rings.push(ring2)
+  }
 
-  const ring2 = new Ring(
-    Vector3.create(0, -0.6, 0),
-    Vector3.create(0, 0, 0),
-    Vector3.create(1, 1, 1),
-    'models/fountain/SecondRing.glb',
-    '2ndRing_Action_01',
-    '2ndRing_Action_02',
-    '2ndRing_Action_03',
-    base
-  )
+  const ring3Entity = engine.getEntityOrNullByName('ThirdRing')
+  if (ring3Entity) {
+    const ring3 = new Ring(ring3Entity, '3rdRing_Action_01', '3rdRing_Action_02', '3rdRing_Action_03')
+    rings.push(ring3)
+  }
 
-  rings.push(ring2)
+  const ring4Entity = engine.getEntityOrNullByName('FourthRing')
+  if (ring4Entity) {
+    const ring4 = new Ring(ring4Entity, '4thRing_Action_01', '4thRing_Action_02', '4thRing_Action_03')
+    rings.push(ring4)
+  }
 
-  const ring3 = new Ring(
-    Vector3.create(0, -0.8, 0),
-    Vector3.create(0, 0, 0),
-    Vector3.create(1, 1, 1),
-    'models/fountain/ThirdRing.glb',
-    '3rdRing_Action_01',
-    '3rdRing_Action_02',
-    '3rdRing_Action_03',
-    base
-  )
+  // Get console entities from the composite file and create Console instances
+  const cyanConsoleEntity = engine.getEntityOrNullByName('CyanConsole')
+  if (cyanConsoleEntity) {
+    const cyanConsole = new Console(
+      cyanConsoleEntity,
+      3,
+      'CyanButtonA',
+      'CyanButtonB',
+      'CyanButtonC',
+      sceneMessageBus
+    )
+  }
 
-  rings.push(ring3)
+  const redConsoleEntity = engine.getEntityOrNullByName('RedConsole')
+  if (redConsoleEntity) {
+    const redConsole = new Console(
+      redConsoleEntity,
+      2,
+      'RedButtonA',
+      'RedButtonB',
+      'RedButtonC',
+      sceneMessageBus
+    )
+  }
 
-  const ring4 = new Ring(
-    Vector3.create(0, -0.8, 0),
-    Vector3.create(0, 0, 0),
-    Vector3.create(1, 1, 1),
-    'models/fountain/FourthRing.glb',
-    '4thRing_Action_01',
-    '4thRing_Action_02',
-    '4thRing_Action_03',
-    base
-  )
+  const violetConsoleEntity = engine.getEntityOrNullByName('VioletConsole')
+  if (violetConsoleEntity) {
+    const violetConsole = new Console(
+      violetConsoleEntity,
+      1,
+      'VioletButtonA',
+      'VioletButtonB',
+      'VioletButtonC',
+      sceneMessageBus
+    )
+  }
 
-  rings.push(ring4)
-
-  // Create the consoles with interactive buttons
-  const cyanConsole = new Console(
-    Vector3.create(-23, 0, 0),
-    Vector3.create(0, 0, 0),
-    Vector3.create(1, 1, 1),
-    base,
-    'models/buttons/Cyan/Base/BaseCyan.glb',
-    3,
-    'models/buttons/Cyan/Buttons/ButtonA_Cyan.glb',
-    'ButtonA_Action',
-    'models/buttons/Cyan/Buttons/ButtonB_Cyan.glb',
-    'ButtonB_Action',
-    'models/buttons/Cyan/Buttons/ButtonC_Cyan.glb',
-    'ButtonC_Action',
-    sceneMessageBus
-  )
-
-  const redConsole = new Console(
-    Vector3.create(0, 0, 23),
-    Vector3.create(0, 90, 0),
-    Vector3.create(1, 1, 1),
-    base,
-    'models/buttons/Red/Base/BaseRed.glb',
-    2,
-    'models/buttons/Red/Buttons/ButtonA_Red.glb',
-    'ButtonA_Action',
-    'models/buttons/Red/Buttons/ButtonB_Red.glb',
-    'ButtonB_Action',
-    'models/buttons/Red/Buttons/ButtonC_Red.glb',
-    'ButtonC_Action',
-    sceneMessageBus
-  )
-
-  const violetConsole = new Console(
-    Vector3.create(23, 0, 0),
-    Vector3.create(0, 180, 0),
-    Vector3.create(1, 1, 1),
-    base,
-    'models/buttons/Violet/Base/BaseViolet.glb',
-    1,
-    'models/buttons/Violet/Buttons/ButtonA_Violet.glb',
-    'ButtonA_Action',
-    'models/buttons/Violet/Buttons/ButtonB_Violet.glb',
-    'ButtonB_Action',
-    'models/buttons/Violet/Buttons/ButtonC_Violet.glb',
-    'ButtonC_Action',
-    sceneMessageBus
-  )
-
-  const yellowConsole = new Console(
-    Vector3.create(0, 0, -23),
-    Vector3.create(0, 270, 0),
-    Vector3.create(1, 1, 1),
-    base,
-    'models/buttons/Yellow/Base/BaseYellow.glb',
-    0,
-    'models/buttons/Yellow/Buttons/ButtonA_Yellow.glb',
-    'ButtonA_Action',
-    'models/buttons/Yellow/Buttons/ButtonB_Yellow.glb',
-    'ButtonB_Action',
-    'models/buttons/Yellow/Buttons/ButtonC_Yellow.glb',
-    'ButtonC_Action',
-    sceneMessageBus
-  )
+  const yellowConsoleEntity = engine.getEntityOrNullByName('YellowConsole')
+  if (yellowConsoleEntity) {
+    const yellowConsole = new Console(
+      yellowConsoleEntity,
+      0,
+      'YellowButtonA',
+      'YellowButtonB',
+      'YellowButtonC',
+      sceneMessageBus
+    )
+  }
 
   // Handle fountain animation events
   sceneMessageBus.on('fountainAnim', (e) => {

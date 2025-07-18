@@ -24,16 +24,16 @@ export function addChest() {
 
   // Create AudioSource component
   AudioSource.create(denySound, {
-    audioClipUrl: 'sounds/navigationBackward.mp3',
+    audioClipUrl: 'assets/scene/Audio/navigationBackward.mp3',
     playing: false
   })
 
   AudioSource.create(openClip, {
-    audioClipUrl: 'sounds/open.mp3',
+    audioClipUrl: 'assets/scene/Audio/open.mp3',
     playing: false
   })
   AudioSource.create(closeClip, {
-    audioClipUrl: 'sounds/close.mp3',
+    audioClipUrl: 'assets/scene/Audio/close.mp3',
     playing: false
   })
   // Define a simple function
@@ -52,7 +52,7 @@ export function addChest() {
     rotation: Quaternion.create(0, 0, 0, 1)
   })
   GltfContainer.create(chest, {
-    src: 'models/Chest_Pirates.glb'
+    src: 'assets/scene/Models/Chest_Pirates.glb'
   })
   Animator.create(chest, {
     states: [

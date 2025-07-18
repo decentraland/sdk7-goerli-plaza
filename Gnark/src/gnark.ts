@@ -30,7 +30,7 @@ export function createGnark(startingSegment: number = 1): Entity {
   })
 
   GltfContainer.create(gnark, {
-    src: 'models/gnark.glb'
+    src: 'assets/scene/Models/gnark.glb'
   })
 
   Animator.create(gnark, {

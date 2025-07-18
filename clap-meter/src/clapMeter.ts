@@ -24,7 +24,7 @@ export class ClapMeter {
   constructor(position: Vector3, rotation: Vector3, scale: Vector3, parent?: Entity) {
     // Add 3D model to clap meter board
     GltfContainer.create(clapMeterBoard, {
-      src: 'models/clapMeterBoard.glb'
+      src: 'assets/scene/Models/clapMeterBoard.glb'
     })
 
     // Calculate rotation in Euler degrees
@@ -40,7 +40,7 @@ export class ClapMeter {
 
     // Add 3D model to clap meter needle
     GltfContainer.create(clapMeterNeedle, {
-      src: 'models/clapMeterNeedle.glb'
+      src: 'assets/scene/Models/clapMeterNeedle.glb'
     })
 
     // Set needle rotation to start angle
