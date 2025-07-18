@@ -15,7 +15,7 @@ export function main() {
 
   // })
   GltfContainer.create(base, {
-    src: 'models/baseLight.glb'
+    src: 'assets/scene/Models/baseLight.glb'
   })
 
   const platform1 = engine.addEntity()
@@ -24,7 +24,7 @@ export function main() {
     scale: Vector3.create(2, 1, 2)
   })
   GltfContainer.create(platform1, {
-    src: 'models/platform.glb'
+    src: 'assets/scene/Models/platform.glb'
   })
 
   const platform2 = engine.addEntity()
@@ -33,6 +33,6 @@ export function main() {
     scale: Vector3.create(2, 1, 2)
   })
   GltfContainer.create(platform2, {
-    src: 'models/platform.glb'
+    src: 'assets/scene/Models/platform.glb'
   })
 }

@@ -8,7 +8,7 @@ export function buildScene() {
   
     // Entity: FloorBaseGrass
   const FloorBaseGrass = engine.addEntity()
-  GltfContainer.create(FloorBaseGrass, { src: 'models/FloorBaseGrass_01/FloorBaseGrass_01.glb' })
+  GltfContainer.create(FloorBaseGrass, { src: 'assets/scene/Models/FloorBaseGrass_01/FloorBaseGrass_01.glb' })
   MeshCollider.setBox(FloorBaseGrass)
   MeshRenderer.create(FloorBaseGrass)
 
@@ -21,7 +21,7 @@ export function buildScene() {
 
   // Entity: Small Star Mosaic Tile
   const smallStarMosaicTile = engine.addEntity()
-  GltfContainer.create(smallStarMosaicTile, { src: 'models/Floor_Tiles_2M_01/Floor_Tiles_2M_01.glb' })
+  GltfContainer.create(smallStarMosaicTile, { src: 'assets/scene/Models/Floor_Tiles_2M_01/Floor_Tiles_2M_01.glb' })
   MeshRenderer.create(smallStarMosaicTile)
   MeshCollider.setBox(smallStarMosaicTile)
 
@@ -34,7 +34,7 @@ export function buildScene() {
 
   // Entity: Exodus Base
   const exodusBase = engine.addEntity()
-  GltfContainer.create(exodusBase, { src: 'models/HTC_Base/HTC_Base.glb' })
+  GltfContainer.create(exodusBase, { src: 'assets/scene/Models/HTC_Base/HTC_Base.glb' })
   MeshRenderer.create(exodusBase)
   MeshCollider.setBox(smallStarMosaicTile)
 
@@ -47,7 +47,7 @@ export function buildScene() {
 
   // Entity: Big Mossy Rock
   const bigMossyRock = engine.addEntity()
-  GltfContainer.create(bigMossyRock, { src: 'models/RockLargeMoss_01/RockLargeMoss_01.glb'})
+  GltfContainer.create(bigMossyRock, { src: 'assets/scene/Models/RockLargeMoss_01/RockLargeMoss_01.glb'})
   MeshRenderer.create(bigMossyRock)
   MeshCollider.setBox(bigMossyRock)
 
@@ -59,7 +59,7 @@ export function buildScene() {
 
  // Red Bicycle
   const redBicycle = engine.addEntity()
-  GltfContainer.create(redBicycle, { src: 'models/Bicycle_01/Bicycle_01.glb' })
+  GltfContainer.create(redBicycle, { src: 'assets/scene/Models/Bicycle_01/Bicycle_01.glb' })
   MeshRenderer.create(redBicycle)
   Transform.create(redBicycle, {
     position: Vector3.create(7.925111770629883, 3.541813373565674, 6.748531818389893),
@@ -69,7 +69,7 @@ export function buildScene() {
 
   // Black Tricorn Hat
   const blackTricornHat = engine.addEntity()
-  GltfContainer.create(blackTricornHat, { src: 'models/PirateHat_02/PirateHat_02.glb' })
+  GltfContainer.create(blackTricornHat, { src: 'assets/scene/Models/PirateHat_02/PirateHat_02.glb' })
   MeshRenderer.create(blackTricornHat)
   Transform.create(blackTricornHat, {
     position: Vector3.create(6.9359636306762695, 4.237381458282471, 7.16286563873291),
@@ -79,7 +79,7 @@ export function buildScene() {
 
   // Hard Hat
   const hardHat = engine.addEntity()
-  GltfContainer.create(hardHat, { src: 'models/ConstructionHat_01/ConstructionHat_01.glb' })
+  GltfContainer.create(hardHat, { src: 'assets/scene/Models/ConstructionHat_01/ConstructionHat_01.glb' })
   MeshRenderer.create(hardHat)
   Transform.create(hardHat, {
     position: Vector3.create(7.09410285949707, 4.228394508361816, 6.328909397125244),
@@ -89,7 +89,7 @@ export function buildScene() {
 
   // Pineapple
   const pineapple = engine.addEntity()
-  GltfContainer.create(pineapple, { src: 'models/FoodPineapple_01/FoodPineapple_01.glb' })
+  GltfContainer.create(pineapple, { src: 'assets/scene/Models/FoodPineapple_01/FoodPineapple_01.glb' })
   MeshRenderer.create(pineapple)
   Transform.create(pineapple, {
     position: Vector3.create(8.227413177490234, 4.179879188537598, 6.675386905670166),
@@ -99,7 +99,7 @@ export function buildScene() {
 
   // Treehouse
   const treehouse = engine.addEntity()
-  GltfContainer.create(treehouse, { src: 'models/TreeHouse_01/TreeHouse_01.glb' })
+  GltfContainer.create(treehouse, { src: 'assets/scene/Models/TreeHouse_01/TreeHouse_01.glb' })
   MeshRenderer.create(treehouse)
   Transform.create(treehouse, {
     position: Vector3.create(7.653783798217773, 4.356611251831055, 6.759873390197754),
@@ -109,7 +109,7 @@ export function buildScene() {
   
   // Fire Hydrant
   const fireHydrant = engine.addEntity()
-  GltfContainer.create(fireHydrant, { src: 'models/FireHydrant_01/FireHydrant_01.glb' })
+  GltfContainer.create(fireHydrant, { src: 'assets/scene/Models/FireHydrant_01/FireHydrant_01.glb' })
   MeshRenderer.create(fireHydrant)
   Transform.create(fireHydrant, {
     position: Vector3.create(7.476778030395508, 3.913282871246338, 7.0745978355407715),
@@ -118,7 +118,7 @@ export function buildScene() {
   })
 // Construction Cone
   const constructionCone = engine.addEntity()
-  GltfContainer.create(constructionCone, { src: 'models/ConstructionCone_01/ConstructionCone_01.glb' })
+  GltfContainer.create(constructionCone, { src: 'assets/scene/Models/ConstructionCone_01/ConstructionCone_01.glb' })
   MeshRenderer.create(constructionCone)
   Transform.create(constructionCone, {
     position: Vector3.create(8.642478942871094, 3.720047950744629, 6.743607044219971),
@@ -128,7 +128,7 @@ export function buildScene() {
 
   // Street Mailbox
   const streetMailbox = engine.addEntity()
-  GltfContainer.create(streetMailbox, { src: 'models/MailPost_01/MailPost_01.glb' })
+  GltfContainer.create(streetMailbox, { src: 'assets/scene/Models/MailPost_01/MailPost_01.glb' })
   MeshRenderer.create(streetMailbox)
   Transform.create(streetMailbox, {
     position: Vector3.create(8.055581092834473, 4.899134159088135, 6.7307820320129395),
@@ -138,7 +138,7 @@ export function buildScene() {
 
   // Soccer Ball
   const soccerBall = engine.addEntity()
-  GltfContainer.create(soccerBall, { src: 'models/PlaygroundBall_01/PlaygroundBall_01.glb' })
+  GltfContainer.create(soccerBall, { src: 'assets/scene/Models/PlaygroundBall_01/PlaygroundBall_01.glb' })
   MeshRenderer.create(soccerBall)
   Transform.create(soccerBall, {
     position: Vector3.create(7.697266578674316, 6.081168174743652, 6.973837852478027),
@@ -148,7 +148,7 @@ export function buildScene() {
 
   // Construction Ladder
   const constructionLadder = engine.addEntity()
-  GltfContainer.create(constructionLadder, { src: 'models/ConstructionLadder_01/ConstructionLadder_01.glb' })
+  GltfContainer.create(constructionLadder, { src: 'assets/scene/Models/ConstructionLadder_01/ConstructionLadder_01.glb' })
   MeshRenderer.create(constructionLadder)
   Transform.create(constructionLadder, {
     position: Vector3.create(8.168024063110352, 4.95, 6.8478217124938965),
@@ -158,7 +158,7 @@ export function buildScene() {
 
   // Classroom Chair
   const classroomChair = engine.addEntity()
-  GltfContainer.create(classroomChair, { src: 'models/Chair_02/Chair_02.glb' })
+  GltfContainer.create(classroomChair, { src: 'assets/scene/Models/Chair_02/Chair_02.glb' })
   MeshRenderer.create(classroomChair)
   Transform.create(classroomChair, {
     position: Vector3.create(7.639830112457275, 5.38, 6.700704097747803),
@@ -168,7 +168,7 @@ export function buildScene() {
 
   // Red Fish
   const redFish = engine.addEntity()
-  GltfContainer.create(redFish, { src: 'models/Fish_02/Fish_02.glb' })
+  GltfContainer.create(redFish, { src: 'assets/scene/Models/Fish_02/Fish_02.glb' })
   MeshRenderer.create(redFish)
   Transform.create(redFish, {
     position: Vector3.create(8.362448692321777, 3.6637864112854004, 7.084746360778809),
@@ -178,7 +178,7 @@ export function buildScene() {
 
   // Anvil
   const anvil = engine.addEntity()
-  GltfContainer.create(anvil, { src: 'models/Anvil_01/Anvil_01.glb' })
+  GltfContainer.create(anvil, { src: 'assets/scene/Models/Anvil_01/Anvil_01.glb' })
   MeshRenderer.create(anvil)
   Transform.create(anvil, {
     position: Vector3.create(7.7743635177612305, 6.421475887298584, 6.972078323364258),
@@ -187,7 +187,7 @@ export function buildScene() {
   })
 
   // Small Star Mosaic Tiles (2 to 12)
-  const mosaicTileModels = 'models/Floor_Tiles_2M_01/Floor_Tiles_2M_01.glb'
+  const mosaicTileModels = 'assets/scene/Models/Floor_Tiles_2M_01/Floor_Tiles_2M_01.glb'
   const mosaicTilePositions = [
     { x: 8.600052833557129, y: 0, z: 11.026769638061523 },
     { x: 6.600052833557129, y: 0, z: 11.026769638061523 },
@@ -214,7 +214,7 @@ export function buildScene() {
   
   // Square Signpost
   const squareSignpost = engine.addEntity()
-  GltfContainer.create(squareSignpost, { src: 'models/Signpost_Square.glb' }) // Update the model path if necessary
+  GltfContainer.create(squareSignpost, { src: 'assets/scene/Models/Signpost_Square.glb' }) // Update the model path if necessary
   MeshRenderer.create(squareSignpost)
   Transform.create(squareSignpost, {
     position: Vector3.create(5, 0, 12),
@@ -239,7 +239,7 @@ export function buildScene() {
 
   // Bush
   const bush = engine.addEntity()
-  GltfContainer.create(bush, { src: 'models/Bush_02/Bush_02.glb' })
+  GltfContainer.create(bush, { src: 'assets/scene/Models/Bush_02/Bush_02.glb' })
   MeshRenderer.create(bush)
   Transform.create(bush, {
     position: Vector3.create(11.5, 0, 13.5),
@@ -249,7 +249,7 @@ export function buildScene() {
   
   // Square Wood Table
   const squareWoodTable = engine.addEntity()
-  GltfContainer.create(squareWoodTable, { src: 'models/Table_03/Table_03.glb' })
+  GltfContainer.create(squareWoodTable, { src: 'assets/scene/Models/Table_03/Table_03.glb' })
   MeshRenderer.create(squareWoodTable)
   Transform.create(squareWoodTable, {
     position: Vector3.create(6.5, 0, 12),

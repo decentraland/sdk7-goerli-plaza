@@ -113,49 +113,49 @@ export function setColor(cell:Entity, color:string){
 
     switch (color){
         case 'orange':{
-            //GltfContainer.createOrReplace(cell, {src:'models/cell_orange.glb'  })
+            //GltfContainer.createOrReplace(cell, {src:'assets/scene/Models/cell_orange.glb'  })
             resetSize(cell)
             VisibilityComponent.getMutable(cell).visible = true
             break;
         }
         case 'blue':{
-            //GltfContainer.createOrReplace(cell, {src:'models/cell_blue.glb'  })
+            //GltfContainer.createOrReplace(cell, {src:'assets/scene/Models/cell_blue.glb'  })
             resetSize(cell)
             VisibilityComponent.getMutable(cell).visible = true
             break;
         }
         case 'yellow':{
-            //GltfContainer.createOrReplace(cell, {src:'models/cell_yellow.glb'  })
+            //GltfContainer.createOrReplace(cell, {src:'assets/scene/Models/cell_yellow.glb'  })
             resetSize(cell)
             VisibilityComponent.getMutable(cell).visible = true
             break;
         }
         case 'purple':{
-           // GltfContainer.createOrReplace(cell, {src:'models/cell_purple.glb'  })
+           // GltfContainer.createOrReplace(cell, {src:'assets/scene/Models/cell_purple.glb'  })
             resetSize(cell)
             VisibilityComponent.getMutable(cell).visible = true
             break;
         }
         case 'red':{
-           // GltfContainer.createOrReplace(cell, {src:'models/cell_red.glb'  })
+           // GltfContainer.createOrReplace(cell, {src:'assets/scene/Models/cell_red.glb'  })
             resetSize(cell)
             VisibilityComponent.getMutable(cell).visible = true
             break;
         }
         case 'green':{
-           // GltfContainer.createOrReplace(cell, {src:'models/cell_green.glb'  })
+           // GltfContainer.createOrReplace(cell, {src:'assets/scene/Models/cell_green.glb'  })
             resetSize(cell)
             VisibilityComponent.getMutable(cell).visible = true
             break;
         }
         case 'magenta':{
-           // GltfContainer.createOrReplace(cell, {src:'models/cell_magenta.glb'  })
+           // GltfContainer.createOrReplace(cell, {src:'assets/scene/Models/cell_magenta.glb'  })
             resetSize(cell)
             VisibilityComponent.getMutable(cell).visible = true
             break;
         }
         case 'default':{
-            //GltfContainer.createOrReplace(cell, {src:'models/cell_default.glb'  })
+            //GltfContainer.createOrReplace(cell, {src:'assets/scene/Models/cell_default.glb'  })
            // GltfContainer.deleteFrom(cell)
             VisibilityComponent.getMutable(cell).visible = false
             resetSize(cell)
@@ -163,19 +163,19 @@ export function setColor(cell:Entity, color:string){
             break;
         }
         case 'white':{
-           // GltfContainer.createOrReplace(cell, {src:'models/cell_white.glb'  })
+           // GltfContainer.createOrReplace(cell, {src:'assets/scene/Models/cell_white.glb'  })
             VisibilityComponent.getMutable(cell).visible = true
            
             break;
         }
         case 'black':{
-            //GltfContainer.createOrReplace(cell, {src:'models/cell_marked.glb'  })
+            //GltfContainer.createOrReplace(cell, {src:'assets/scene/Models/cell_marked.glb'  })
             VisibilityComponent.getMutable(cell).visible = true
             resetSize(cell)
             break;
         }
         default:{
-            //GltfContainer.createOrReplace(cell, {src:'models/cell_marked.glb'  })
+            //GltfContainer.createOrReplace(cell, {src:'assets/scene/Models/cell_marked.glb'  })
             resetSize(cell)
             VisibilityComponent.getMutable(cell).visible = true
             break;
@@ -217,7 +217,7 @@ export function setWhiteClear(cell:Entity){
 //     cellInfo.highlighted = true          
 //     setColor(cell, color)
    
-//     //GltfContainer.createOrReplace(cell, {src:'models/cell_marked.glb'  })   
+//     //GltfContainer.createOrReplace(cell, {src:'assets/scene/Models/cell_marked.glb'  })   
 //     //spawnClickAnimation(cell, true, sound)
         
         
@@ -245,7 +245,7 @@ export function createGridCell(_id:number, transform:TransformTypeWithOptionals,
     let cellSize = 1/12 
     let gapSize = cellSize * 0.1
     let stepSize = cellSize
-    //GltfContainer.createOrReplace(cell,{src: 'models/cell_default.glb'})     
+    //GltfContainer.createOrReplace(cell,{src: 'assets/scene/Models/cell_default.glb'})     
     MeshRenderer.setPlane(cell,[
         1- idX * stepSize, 1 - idY * stepSize,
         1 - (idX + 1) * stepSize, 1 - idY * stepSize,       
@@ -322,7 +322,7 @@ export function createGridCell(_id:number, transform:TransformTypeWithOptionals,
     //  }
 
 
-     //GltfContainer.createOrReplace(cell,{src: 'models/cell_default.glb', invisibleMeshesCollisionMask:ColliderLayer.CL_PHYSICS | ColliderLayer.CL_POINTER})  
+     //GltfContainer.createOrReplace(cell,{src: 'assets/scene/Models/cell_default.glb', invisibleMeshesCollisionMask:ColliderLayer.CL_PHYSICS | ColliderLayer.CL_POINTER})  
 
      //MeshRenderer.setPlane(cell)
      Material.setPbrMaterial(cell, {

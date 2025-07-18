@@ -18,7 +18,7 @@ export function main() {
   // Setup scene
   const base = engine.addEntity()
   GltfContainer.create(base, {
-    src: 'models/baseDarkWithCollider.glb'
+    src: 'assets/scene/Models/baseDarkWithCollider.glb'
   })
 
   const clapMeter = new ClapMeter(

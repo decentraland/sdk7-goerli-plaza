@@ -79,14 +79,14 @@ export function createGrid(transform:TransformTypeWithOptionals, _sideLengthX:nu
         position: Vector3.create(0, 0.15, 0),
         parent: grid
     })
-    GltfContainer.create(gridMesh, {src: "models/grid_dance_floor_mask6.glb" })
+    GltfContainer.create(gridMesh, {src: "assets/scene/Models/grid_dance_floor_mask6.glb" })
 
     let gridBase = engine.addEntity()
     Transform.create(gridBase, {
         position: Vector3.create(0, 0.0, 0),
         parent: grid
     })
-    GltfContainer.create(gridBase, {src: "models/grid_dance_base2.glb"})
+    GltfContainer.create(gridBase, {src: "assets/scene/Models/grid_dance_base2.glb"})
 
     //collider cylinder
     let collider = engine.addEntity()

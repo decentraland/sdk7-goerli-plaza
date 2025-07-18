@@ -417,47 +417,47 @@
         },
         "517": {
           "json": {
-            "src": "assets/models/ElfGrumpy.glb"
+            "src": "assets/scene/Models/ElfGrumpy.glb"
           }
         },
         "518": {
           "json": {
-            "src": "assets/models/SnowRock_01.glb"
+            "src": "assets/scene/Models/SnowRock_01.glb"
           }
         },
         "519": {
           "json": {
-            "src": "assets/models/SnowRock_03.glb"
+            "src": "assets/scene/Models/SnowRock_03.glb"
           }
         },
         "520": {
           "json": {
-            "src": "assets/models/SnowRock_04.glb"
+            "src": "assets/scene/Models/SnowRock_04.glb"
           }
         },
         "521": {
           "json": {
-            "src": "assets/models/SnowTree_01.glb"
+            "src": "assets/scene/Models/SnowTree_01.glb"
           }
         },
         "522": {
           "json": {
-            "src": "assets/models/SnowTree_02.glb"
+            "src": "assets/scene/Models/SnowTree_02.glb"
           }
         },
         "523": {
           "json": {
-            "src": "assets/models/SnowTree_03.glb"
+            "src": "assets/scene/Models/SnowTree_03.glb"
           }
         },
         "524": {
           "json": {
-            "src": "assets/models/SnowTree_03.glb"
+            "src": "assets/scene/Models/SnowTree_03.glb"
           }
         },
         "525": {
           "json": {
-            "src": "assets/models/snowPile.glb"
+            "src": "assets/scene/Models/snowPile.glb"
           }
         },
         "526": {

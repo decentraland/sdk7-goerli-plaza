@@ -12,7 +12,7 @@ export function createArcade(position: Vector3, rotation: Quaternion, game: Game
   Transform.create(cabinet, { parent: arcade })
   Transform.create(arcade, { position, rotation })
 
-  GltfContainer.create(knob, { src: 'models/knob.glb' })
+  GltfContainer.create(knob, { src: 'assets/scene/Models/knob.glb' })
   Transform.create(knob, {
     parent: cabinet,
     position: Vector3.create(0, 1.383, -0.397),
