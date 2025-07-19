@@ -9,7 +9,7 @@ import { radioUI } from "./UI/radio.ui"
 
 const projectPath = "NFT-Museum"
 const description = "A template scene where you can display your NFTs. In includes an elevator, radio, and videos."
-
+const Max_Chars = 45
 
 
 const uiComponent = () => (
@@ -68,7 +68,7 @@ function GitHubLinkUi() {
 
 function descriptionUI() {
 
-
+  const multiLineDescription = breakLines(description, Max_Chars)
 
   return <UiEntity
     uiTransform={{
@@ -99,7 +99,7 @@ function descriptionUI() {
       uiBackground={{ color: Color4.fromHexString("#92b096") }}
     >
       <Label
-        value={description}
+        value={multiLineDescription}
         fontSize={18}
         textAlign="middle-center"
 
@@ -113,4 +113,46 @@ function descriptionUI() {
       />
     </UiEntity>
   </UiEntity >
+}
+
+
+function breakLines(text: string, linelength: number) {
+  const lineBreak = '\n'
+  var counter = 0
+  var line = ''
+  var returnText = ''
+  var bMatchFound = false
+  const lineLen = linelength ? linelength : 50
+
+
+  if (!text) return ''
+  if (text.length < lineLen + 1) { return text }
+
+  while (counter < text.length) {
+    line = text.substring(counter, counter + lineLen);
+    bMatchFound = false
+    if (line.length == lineLen) {
+      for (var i = line.length; i > -1; i--) {
+        if (line.substring(i, i + 1) == ' ') {
+          counter += line.substring(0, i).length
+          line = line.substring(0, i) + lineBreak
+          returnText += line
+          bMatchFound = true
+          break
+        }
+      }
+
+      if (!bMatchFound) {
+        counter += line.length
+        line = line + lineBreak
+        returnText += line
+      }
+    }
+    else {
+      returnText += line
+      break // We're breaking out of the the while(), not the for()
+    }
+  }
+
+  return returnText
 }
