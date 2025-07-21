@@ -39,7 +39,7 @@ export class ReflectedRay {
 // Ray
 const rayEmitter = engine.addEntity()
 GltfContainer.create(rayEmitter, {
-  src: 'models/rayEmitter.glb'
+  src: 'assets/scene/Models/rayEmitter.glb'
 })
 Transform.create(rayEmitter, {
   position: Vector3.create(2.5, 0, 2.5)
@@ -47,14 +47,14 @@ Transform.create(rayEmitter, {
 
 const rayTarget = engine.addEntity()
 GltfContainer.create(rayTarget, {
-  src: 'models/rayTarget.glb'
+  src: 'assets/scene/Models/rayTarget.glb'
 })
 Transform.create(rayTarget, {
   position: Vector3.create(2.5, 0, 31.5)
 })
 
 const origin = Vector3.create(2.5, 4.5, 2.5)
-const sourceRay = new ReflectedRay('models/rayOffsetY.glb', origin, true)
+const sourceRay = new ReflectedRay('assets/scene/Models/rayOffsetY.glb', origin, true)
 
 // Ray emitter
 export function redrawRays(): void {
@@ -103,7 +103,7 @@ export function redrawRays(): void {
 
 // Recursive function for reflecting a ray every time it hits a mirror
 function reflectRay(hitPoint: Vector3, reflectedVector: Vector3) {
-  const reflectedRay = new ReflectedRay('models/rayOffsetY.glb', hitPoint)
+  const reflectedRay = new ReflectedRay('assets/scene/Models/rayOffsetY.glb', hitPoint)
   if (reflectedRay.reflectedRayEntity === undefined || reflectedRay.reflectedRayEntity === null) return
 
   const reflectedRayTransform = Transform.getMutable(reflectedRay.reflectedRayEntity)

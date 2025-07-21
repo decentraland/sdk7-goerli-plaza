@@ -7,7 +7,7 @@ import * as utils from '@dcl-sdk/utils'
 import { confirmationUI } from '../UI/reward.ui'
 
 // Lazy Loading: room: 3
-const dispenserModel = 'models/dispenser.glb'
+const dispenserModel = 'assets/scene/Models/dispenser.glb'
 const dispenserPosition = Vector3.create(14.55, 19.53, 16)
 const dispenserScale = Vector3.create(0.8, 0.8, 0.8)
 const dispenserHoverText = 'Claim Reward'

@@ -23,7 +23,7 @@ export function createScene() {
     parent: scene1
   })
   GltfContainer.create(shopBlack, {
-    src: 'models/Shop_Black.glb'
+    src: 'assets/scene/Models/Shop_Black.glb'
   })
 
   const shopBlack2 = engine.addEntity()
@@ -34,7 +34,7 @@ export function createScene() {
     parent: scene1
   })
   GltfContainer.create(shopBlack2, {
-    src: 'models/Shop_Black.glb'
+    src: 'assets/scene/Models/Shop_Black.glb'
   })
 
   const shopBlack3 = engine.addEntity()
@@ -45,7 +45,7 @@ export function createScene() {
     parent: scene1
   })
   GltfContainer.create(shopBlack3, {
-    src: 'models/Shop_Black.glb'
+    src: 'assets/scene/Models/Shop_Black.glb'
   })
 
   const shopBlack4 = engine.addEntity()
@@ -56,7 +56,7 @@ export function createScene() {
     parent: scene1
   })
   GltfContainer.create(shopBlack4, {
-    src: 'models/Shop_Black.glb'
+    src: 'assets/scene/Models/Shop_Black.glb'
   })
 
   const shopBlack5 = engine.addEntity()
@@ -67,7 +67,7 @@ export function createScene() {
     parent: scene1
   })
   GltfContainer.create(shopBlack5, {
-    src: 'models/Shop_Black.glb'
+    src: 'assets/scene/Models/Shop_Black.glb'
   })
 
   const shopBlack6 = engine.addEntity()
@@ -78,7 +78,7 @@ export function createScene() {
     parent: scene1
   })
   GltfContainer.create(shopBlack6, {
-    src: 'models/Shop_Black.glb'
+    src: 'assets/scene/Models/Shop_Black.glb'
   })
 
   createSubScene(shopBlack, 6)

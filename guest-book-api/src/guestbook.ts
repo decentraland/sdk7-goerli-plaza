@@ -14,7 +14,7 @@ export class GuestBook {
 
     const guestBook = engine.addEntity()
     GltfContainer.create(guestBook, {
-      src: 'models/guestbook/guestbook.glb'
+      src: 'assets/scene/Models/guestbook/guestbook.glb'
     })
     Transform.create(guestBook, transform)
 
@@ -27,7 +27,7 @@ export class GuestBook {
 
     const guestBookBase = engine.addEntity()
     GltfContainer.create(guestBookBase, {
-      src: 'models/guestbook/guestbook_base.glb'
+      src: 'assets/scene/Models/guestbook/guestbook_base.glb'
     })
     Transform.create(guestBookBase, {
       parent: guestBook

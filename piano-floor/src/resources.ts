@@ -1,6 +1,6 @@
 export default {
   models: {
-    baseSceneModel: 'models/baseScene.glb'
+    baseSceneModel: 'assets/scene/Models/baseScene.glb'
   },
   sounds: {
     whiteKeys: {

@@ -17,7 +17,7 @@ const NFT_CONTRACT = crypto.contract.mainnet.Halloween2019Collection;
 
 // Door Entity
 export const Door = engine.addEntity()
-GltfContainer.create(Door, { src: 'models/door.glb' })
+GltfContainer.create(Door, { src: 'assets/scene/Models/door.glb' })
 MeshRenderer.create(Door)
 MeshCollider.create(Door)
 Transform.create(Door, {

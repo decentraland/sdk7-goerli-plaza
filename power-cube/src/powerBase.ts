@@ -14,16 +14,16 @@ import * as utils from '@dcl-sdk/utils'
 
 // Power glows
 const powerBlueGlowEntity = engine.addEntity()
-GltfContainer.create(powerBlueGlowEntity, { src: 'models/powerBlueGlow.glb' })
+GltfContainer.create(powerBlueGlowEntity, { src: 'assets/scene/Models/powerBlueGlow.glb' })
 Transform.create(powerBlueGlowEntity)
 
 const powerRedGlowEntity = engine.addEntity()
-GltfContainer.create(powerRedGlowEntity, { src: 'models/powerRedGlow.glb' })
+GltfContainer.create(powerRedGlowEntity, { src: 'assets/scene/Models/powerRedGlow.glb' })
 Transform.create(powerRedGlowEntity)
 
 // Forcefield
 const forcefieldEntity = engine.addEntity()
-GltfContainer.create(forcefieldEntity, { src: 'models/forcefield.glb' })
+GltfContainer.create(forcefieldEntity, { src: 'assets/scene/Models/forcefield.glb' })
 Transform.create(forcefieldEntity)
 
 // Sounds

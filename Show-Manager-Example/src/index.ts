@@ -22,7 +22,7 @@ export function main() {
     scale: Vector3.One()
   })
   GltfContainer.create(ground, {
-    src: 'models/FloorBaseGrass_01/FloorBaseGrass_01.glb'
+    src: 'assets/scene/Models/FloorBaseGrass_01/FloorBaseGrass_01.glb'
   })
 
   // Static Structure
@@ -34,7 +34,7 @@ export function main() {
     scale: Vector3.One()
   })
   GltfContainer.create(structure, {
-    src: 'models/staticStructure.glb'
+    src: 'assets/scene/Models/staticStructure.glb'
   })
 
   VideoScreens.Initialise()

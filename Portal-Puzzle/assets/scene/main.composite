@@ -187,22 +187,22 @@
       "data": {
         "513": {
           "json": {
-            "src": "assets/models/baseLight.glb"
+            "src": "assets/assets/scene/Models/baseLight.glb"
           }
         },
         "514": {
           "json": {
-            "src": "assets/models/walls.glb"
+            "src": "assets/assets/scene/Models/walls.glb"
           }
         },
         "515": {
           "json": {
-            "src": "assets/models/portalGun.glb"
+            "src": "assets/assets/scene/Models/portalGun.glb"
           }
         },
         "516": {
           "json": {
-            "src": "assets/models/card.glb"
+            "src": "assets/assets/scene/Models/card.glb"
           }
         }
       }

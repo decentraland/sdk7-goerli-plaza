@@ -7,7 +7,7 @@ import { setupUi } from './ui'
 export function main() {
   // // 3d model of robot
   const robot = engine.addEntity()
-  GltfContainer.create(robot, { src: 'models/robotTalking.glb' })
+  GltfContainer.create(robot, { src: 'assets/scene/Models/robotTalking.glb' })
   Transform.create(robot, { position: Vector3.create(8, 1.5, 8) })
 
   const robotFace = engine.addEntity()

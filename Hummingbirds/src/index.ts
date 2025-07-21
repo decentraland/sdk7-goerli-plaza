@@ -18,7 +18,7 @@ export function main() {
     scale: { x: 1.6, y: 1.6, z: 1.6 }
   })
   GltfContainer.create(ground, {
-    src: 'models/Ground.gltf'
+    src: 'assets/scene/Models/Ground.gltf'
   })
 
   const tree = engine.addEntity()
@@ -27,7 +27,7 @@ export function main() {
     scale: { x: 1.6, y: 1.6, z: 1.6 }
   })
   GltfContainer.create(tree, {
-    src: 'models/Tree.gltf',
+    src: 'assets/scene/Models/Tree.gltf',
     visibleMeshesCollisionMask: ColliderLayer.CL_POINTER,
     invisibleMeshesCollisionMask: undefined
   })

@@ -462,7 +462,7 @@
         },
         "526": {
           "json": {
-            "src": "assets/builder/indicator_arrow/models/Arrow.glb"
+            "src": "assets/builder/indicator_arrow/assets/scene/Models/Arrow.glb"
           }
         }
       }

@@ -45,8 +45,8 @@ export function randomCrateSpawn(campaign: ClaimConfigInstType, campaign_key: st
   let finalZ = Math.random() * zDiff + stageDropArea.SW.z
 
   SpawnCrate(
-    'models/crate_jungle.glb',
-    'models/parachute_jungle.glb',
+    'assets/scene/Models/crate_jungle.glb',
+    'assets/scene/Models/parachute_jungle.glb',
     Vector3.create(finalX, DROP_HEIGHT, finalZ),
     campaign,
     campaign_key

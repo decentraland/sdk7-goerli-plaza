@@ -7,7 +7,7 @@ import { Vector3 } from '@dcl/sdk/math'
 /*
 const artNumbers = engine.addEntity()
 Transform.create(artNumbers, { position: sceneCentrePosition })
-GltfContainer.create(artNumbers, { src: 'models/artNumbers.glb' })
+GltfContainer.create(artNumbers, { src: 'assets/scene/Models/artNumbers.glb' })
 */
 
 interface Artwork {

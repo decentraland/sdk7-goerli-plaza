@@ -400,12 +400,12 @@
         },
         "523": {
           "json": {
-            "src": "assets/models/scanner/Wearable-Reader.glb"
+            "src": "assets/assets/scene/Models/scanner/Wearable-Reader.glb"
           }
         },
         "524": {
           "json": {
-            "src": "assets/models/Door_Fantasy.glb"
+            "src": "assets/assets/scene/Models/Door_Fantasy.glb"
           }
         },
         "525": {

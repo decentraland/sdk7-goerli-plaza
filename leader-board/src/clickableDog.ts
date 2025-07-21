@@ -34,7 +34,7 @@ export class ClickableDog {
 
     this.dogStatue = engine.addEntity()
     GltfContainer.create(this.dogStatue, {
-      src: 'models/PillarDog_01/PillarDog_01.glb'
+      src: 'assets/scene/Models/PillarDog_01/PillarDog_01.glb'
     })
     Transform.create(this.dogStatue, transform)
 

@@ -12,7 +12,7 @@ import {
   export function buildScene() {
   
     // Brick wall model source and positions with rotation and scale
-    const brickWallModel = 'models/Module_Stone_Curve_01/Module_Stone_Curve_01.glb'
+    const brickWallModel = 'assets/scene/Models/Module_Stone_Curve_01/Module_Stone_Curve_01.glb'
     const brickWallParams = [
       { position: { x: 14.232542037963867, y: 0, z: 10.096558570861816 }, rotation: { x: 4.440892627896218e-16, y: 0.7071068286895752, z: -8.429369557916289e-8, w: -0.7071068286895752 }, scale: { x: 1.0000152587890625, y: 1, z: 1.0000152587890625 } },
       { position: { x: 2.5367984771728516, y: 0, z: 10.069063186645508 }, rotation: { x: 1.693082319850249e-14, y: 0.9999898672103882, z: -1.1920805320642103e-7, w: -0.004503994714468718 }, scale: { x: 1.0000159740447998, y: 1, z: 1.0000159740447998 } },
@@ -35,7 +35,7 @@ import {
 
      // Brickwall threshold / doorway     
     const stoneBrickThreshold = engine.addEntity()
-    GltfContainer.create(stoneBrickThreshold, { src: 'models/Module_Stone_Straight_Door_01/Module_Stone_Straight_Door_01.glb' })
+    GltfContainer.create(stoneBrickThreshold, { src: 'assets/scene/Models/Module_Stone_Straight_Door_01/Module_Stone_Straight_Door_01.glb' })
     MeshRenderer.create(stoneBrickThreshold)
     Transform.create(stoneBrickThreshold, {
       position: Vector3.create(10.5, 0, 9.413106918334961),
@@ -45,7 +45,7 @@ import {
   
     // Tower Roof
     const towerRoof = engine.addEntity()
-    GltfContainer.create(towerRoof, { src: 'models/Roof_01/Roof_01.glb' })
+    GltfContainer.create(towerRoof, { src: 'assets/scene/Models/Roof_01/Roof_01.glb' })
     MeshRenderer.create(towerRoof)
     Transform.create(towerRoof, {
         position: Vector3.create(8.370111465454102, 3.3169188499450684, 5.924097061157227),
@@ -55,7 +55,7 @@ import {
 
     // Button Base model 
     const Button_Base = engine.addEntity()
-    GltfContainer.create(Button_Base, { src: 'models/PaidButton/Base.glb' }) 
+    GltfContainer.create(Button_Base, { src: 'assets/scene/Models/PaidButton/Base.glb' }) 
     MeshRenderer.create(Button_Base)
     Transform.create(Button_Base, {
         position: Vector3.create(7, 0, 11),
@@ -66,7 +66,7 @@ import {
 
     // Floor Fantasy Rocks
     const floorFantasyRocks = engine.addEntity()
-    GltfContainer.create(floorFantasyRocks, { src: 'models/FloorFantasyRocks_03/FloorFantasyRocks_03.glb' })
+    GltfContainer.create(floorFantasyRocks, { src: 'assets/scene/Models/FloorFantasyRocks_03/FloorFantasyRocks_03.glb' })
     MeshRenderer.create(floorFantasyRocks)
     Transform.create(floorFantasyRocks, {
         position: Vector3.create(8, 0, 8),
@@ -76,7 +76,7 @@ import {
 
     // Signpost Golden
     const signpostGolden = engine.addEntity()
-    GltfContainer.create(signpostGolden, { src: 'models/signpost/Signpost_Golden.glb' }) 
+    GltfContainer.create(signpostGolden, { src: 'assets/scene/Models/signpost/Signpost_Golden.glb' }) 
     MeshRenderer.create(signpostGolden)
     Transform.create(signpostGolden, {
         position: Vector3.create(6.374037265777588, 0, 3.6893038749694824),

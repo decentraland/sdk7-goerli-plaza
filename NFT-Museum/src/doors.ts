@@ -4,9 +4,9 @@ import * as utils from '@dcl-sdk/utils'
 import { Entity } from '@dcl/sdk/ecs'
 
 // Audio for the sliding doors depends on audio.ts
-export const doorLmodel = 'models/slidingDoor1.glb'
-export const doorRmodel = 'models/slidingDoor2.glb'
-export const singleDoor = 'models/slidingDoor-big.glb'
+export const doorLmodel = 'assets/scene/Models/slidingDoor1.glb'
+export const doorRmodel = 'assets/scene/Models/slidingDoor2.glb'
+export const singleDoor = 'assets/scene/Models/slidingDoor-big.glb'
 export const closeDoorOffset = 0
 export const openDoorOffset = 1
 

@@ -1,14 +1,14 @@
 export default {
   zenquencer: {
     models: {
-      base: 'models/baseSceneTwoByOne.glb',
-      pool: 'models/pool.glb',
-      tube: 'models/tube.glb',
-      linearBtn: 'models/linear.glb',
-      randomBtn: 'models/random.glb',
-      musicDrop: 'models/music-drop.glb',
-      speedBtn: 'models/speedButton.glb',
-      stone: 'models/stone.glb'
+      base: 'assets/scene/Models/baseSceneTwoByOne.glb',
+      pool: 'assets/scene/Models/pool.glb',
+      tube: 'assets/scene/Models/tube.glb',
+      linearBtn: 'assets/scene/Models/linear.glb',
+      randomBtn: 'assets/scene/Models/random.glb',
+      musicDrop: 'assets/scene/Models/music-drop.glb',
+      speedBtn: 'assets/scene/Models/speedButton.glb',
+      stone: 'assets/scene/Models/stone.glb'
     },
     kalimbaNotes: {
       f3: 'sounds/kalimba/f3.mp3',

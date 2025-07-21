@@ -13,14 +13,14 @@ export function createPortal(color: PortalColor, pos: TransformType) {
   const portal = engine.addEntity()
   Transform.create(portal, pos)
   GltfContainer.create(portal, {
-    src: color == PortalColor.Blue ? 'assets/models/portalBlue.glb' : 'assets/models/portalOrange.glb'
+    src: color == PortalColor.Blue ? 'assets/scene/Models/portalBlue.glb' : 'assets/scene/Models/portalOrange.glb'
   })
   Animator.create(portal, {
     states: [{ clip: 'Expand', loop: false, shouldReset: true, playing: true }]
   })
   Portal.create(portal, { color: activePortal })
 
-  AudioSource.createOrReplace(portal, { audioClipUrl: 'sounds/portalSuccess.mp3', playing: true, loop: false })
+  AudioSource.createOrReplace(portal, { audioClipUrl: 'assets/scene/Audio/portalSuccess.mp3', playing: true, loop: false })
 
   //trigger
   utils.triggers.addTrigger(
@@ -65,7 +65,7 @@ export function teleport(portalEntity: Entity) {
       }, DELAY_TIME)
 
       AudioSource.createOrReplace(destinationEntity, {
-        audioClipUrl: 'sounds/teleport.mp3',
+        audioClipUrl: 'assets/scene/Audio/teleport.mp3',
         playing: true,
         loop: false
       })

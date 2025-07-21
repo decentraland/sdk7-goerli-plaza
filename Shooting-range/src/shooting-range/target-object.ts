@@ -12,7 +12,7 @@ export module TargetObject {
   const isDebugging: boolean = false
 
   /** shooting model location */
-  const MODEL_TARGET_OBJECT = 'models/shooting-range/shooting-target.glb'
+  const MODEL_TARGET_OBJECT = 'assets/scene/Models/shooting-range/shooting-target.glb'
 
   /** represents all possible target types */
   export enum TARGET_TYPE {

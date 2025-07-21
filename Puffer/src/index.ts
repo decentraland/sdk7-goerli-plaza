@@ -22,7 +22,7 @@ export function main() {
     position: Vector3.create(8, 0, 8)
   })
   GltfContainer.create(ground, {
-    src: 'models/FloorBaseDirt_01.glb'
+    src: 'assets/scene/Models/FloorBaseDirt_01.glb'
   })
 
   // Reference scale values
@@ -38,7 +38,7 @@ export function main() {
   })
 
   GltfContainer.create(puffer, {
-    src: 'models/puffer.glb'
+    src: 'assets/scene/Models/puffer.glb'
   })
 
   AudioSource.create(puffer)

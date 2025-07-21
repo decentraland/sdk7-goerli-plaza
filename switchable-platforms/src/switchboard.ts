@@ -27,15 +27,15 @@ export function createSwitchBoard(model: string, startPos: Vector3, endPos: Vect
   Transform.create(entity, { position: startPos })
 
   const buttonA = engine.addEntity()
-  GltfContainer.create(buttonA, { src: 'models/buttonA.glb' })
+  GltfContainer.create(buttonA, { src: 'assets/scene/Models/buttonA.glb' })
   Transform.create(buttonA, { parent: entity })
 
   const buttonB = engine.addEntity()
-  GltfContainer.create(buttonB, { src: 'models/buttonB.glb' })
+  GltfContainer.create(buttonB, { src: 'assets/scene/Models/buttonB.glb' })
   Transform.create(buttonB, { parent: entity })
 
   const gear = engine.addEntity()
-  GltfContainer.create(gear, { src: 'models/gears.glb' })
+  GltfContainer.create(gear, { src: 'assets/scene/Models/gears.glb' })
   Transform.create(gear, { parent: entity })
 
   // Height of button when held down

@@ -19,7 +19,7 @@ export function main() {
   })
 
   GltfContainer.create(seaBed, {
-    src: 'models/Underwater.gltf'
+    src: 'assets/scene/Models/Underwater.gltf'
   })
 
   const shark = engine.addEntity()
@@ -29,7 +29,7 @@ export function main() {
   })
 
   GltfContainer.create(shark, {
-    src: 'models/shark.glb',
+    src: 'assets/scene/Models/shark.glb',
     visibleMeshesCollisionMask: ColliderLayer.CL_POINTER,
     invisibleMeshesCollisionMask: undefined
   })

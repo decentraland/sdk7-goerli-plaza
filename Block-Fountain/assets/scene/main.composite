@@ -947,107 +947,107 @@
       "data": {
         "512": {
           "json": {
-            "src": "assets/scene/models/fountain/Base.glb"
+            "src": "assets/scene/assets/scene/Models/fountain/Base.glb"
           }
         },
         "513": {
           "json": {
-            "src": "assets/scene/models/fountain/FirstRing.glb"
+            "src": "assets/scene/assets/scene/Models/fountain/FirstRing.glb"
           }
         },
         "514": {
           "json": {
-            "src": "assets/scene/models/fountain/SecondRing.glb"
+            "src": "assets/scene/assets/scene/Models/fountain/SecondRing.glb"
           }
         },
         "515": {
           "json": {
-            "src": "assets/scene/models/fountain/ThirdRing.glb"
+            "src": "assets/scene/assets/scene/Models/fountain/ThirdRing.glb"
           }
         },
         "516": {
           "json": {
-            "src": "assets/scene/models/fountain/FourthRing.glb"
+            "src": "assets/scene/assets/scene/Models/fountain/FourthRing.glb"
           }
         },
         "517": {
           "json": {
-            "src": "assets/scene/models/buttons/Cyan/Base/BaseCyan.glb"
+            "src": "assets/scene/assets/scene/Models/buttons/Cyan/Base/BaseCyan.glb"
           }
         },
         "518": {
           "json": {
-            "src": "assets/scene/models/buttons/Red/Base/BaseRed.glb"
+            "src": "assets/scene/assets/scene/Models/buttons/Red/Base/BaseRed.glb"
           }
         },
         "519": {
           "json": {
-            "src": "assets/scene/models/buttons/Violet/Base/BaseViolet.glb"
+            "src": "assets/scene/assets/scene/Models/buttons/Violet/Base/BaseViolet.glb"
           }
         },
         "520": {
           "json": {
-            "src": "assets/scene/models/buttons/Yellow/Base/BaseYellow.glb"
+            "src": "assets/scene/assets/scene/Models/buttons/Yellow/Base/BaseYellow.glb"
           }
         },
         "521": {
           "json": {
-            "src": "assets/scene/models/buttons/Cyan/Buttons/ButtonA_Cyan.glb"
+            "src": "assets/scene/assets/scene/Models/buttons/Cyan/Buttons/ButtonA_Cyan.glb"
           }
         },
         "522": {
           "json": {
-            "src": "assets/scene/models/buttons/Cyan/Buttons/ButtonB_Cyan.glb"
+            "src": "assets/scene/assets/scene/Models/buttons/Cyan/Buttons/ButtonB_Cyan.glb"
           }
         },
         "523": {
           "json": {
-            "src": "assets/scene/models/buttons/Cyan/Buttons/ButtonC_Cyan.glb"
+            "src": "assets/scene/assets/scene/Models/buttons/Cyan/Buttons/ButtonC_Cyan.glb"
           }
         },
         "524": {
           "json": {
-            "src": "assets/scene/models/buttons/Red/Buttons/ButtonA_Red.glb"
+            "src": "assets/scene/assets/scene/Models/buttons/Red/Buttons/ButtonA_Red.glb"
           }
         },
         "525": {
           "json": {
-            "src": "assets/scene/models/buttons/Red/Buttons/ButtonB_Red.glb"
+            "src": "assets/scene/assets/scene/Models/buttons/Red/Buttons/ButtonB_Red.glb"
           }
         },
         "526": {
           "json": {
-            "src": "assets/scene/models/buttons/Red/Buttons/ButtonC_Red.glb"
+            "src": "assets/scene/assets/scene/Models/buttons/Red/Buttons/ButtonC_Red.glb"
           }
         },
         "527": {
           "json": {
-            "src": "assets/scene/models/buttons/Violet/Buttons/ButtonA_Violet.glb"
+            "src": "assets/scene/assets/scene/Models/buttons/Violet/Buttons/ButtonA_Violet.glb"
           }
         },
         "528": {
           "json": {
-            "src": "assets/scene/models/buttons/Violet/Buttons/ButtonB_Violet.glb"
+            "src": "assets/scene/assets/scene/Models/buttons/Violet/Buttons/ButtonB_Violet.glb"
           }
         },
         "529": {
           "json": {
-            "src": "assets/scene/models/buttons/Violet/Buttons/ButtonC_Violet.glb"
+            "src": "assets/scene/assets/scene/Models/buttons/Violet/Buttons/ButtonC_Violet.glb"
           }
         },
         "530": {
           "json": {
-            "src": "assets/scene/models/buttons/Yellow/Buttons/ButtonA_Yellow.glb"
+            "src": "assets/scene/assets/scene/Models/buttons/Yellow/Buttons/ButtonA_Yellow.glb"
           }
         },
         "531": {
           "json": {
-            "src": "assets/scene/models/buttons/Yellow/Buttons/ButtonB_Yellow.glb"
+            "src": "assets/scene/assets/scene/Models/buttons/Yellow/Buttons/ButtonB_Yellow.glb"
           }
         },
         "532": {
           "json": {
-            "src": "assets/scene/models/buttons/Yellow/Buttons/ButtonC_Yellow.glb"
+            "src": "assets/scene/assets/scene/Models/buttons/Yellow/Buttons/ButtonC_Yellow.glb"
           }
         }
       }

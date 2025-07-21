@@ -27,10 +27,10 @@ export class Button {
     const animator = Animator.get(this.buttonEntity)
     if (animator && animator.states.length > 0) {
       const animationName = animator.states[0].clip
-      this.buttonClickComponent = new ButtonClickComponent(animationName, 'assets/scene/sounds/click.mp3')
+      this.buttonClickComponent = new ButtonClickComponent(animationName, 'assets/scene/assets/scene/Audio/click.mp3')
     } else {
       // Fallback to default animation name
-      this.buttonClickComponent = new ButtonClickComponent('ButtonA_Action', 'assets/scene/sounds/click.mp3')
+      this.buttonClickComponent = new ButtonClickComponent('ButtonA_Action', 'assets/scene/assets/scene/Audio/click.mp3')
     }
   }
 
@@ -86,7 +86,7 @@ export class Switch {
 
     // Create audio source for switch
     this.audioSource = AudioSource.create(this.switchEntity, {
-      audioClipUrl: 'assets/scene/sounds/click.mp3',
+      audioClipUrl: 'assets/scene/assets/scene/Audio/click.mp3',
       loop: false,
       playing: false
     })

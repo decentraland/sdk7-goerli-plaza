@@ -9,10 +9,10 @@ export const MAX_DISTANCE = 5
 export function main() {
   // Base
   const base: Entity = engine.addEntity()
-  GltfContainer.create(base, { src: 'models/base.glb' })
+  GltfContainer.create(base, { src: 'assets/scene/Models/base.glb' })
 
   const room: Entity = engine.addEntity()
-  GltfContainer.create(room, { src: 'models/room.glb' })
+  GltfContainer.create(room, { src: 'assets/scene/Models/room.glb' })
 
   // Preload the sounds
   new Sound()

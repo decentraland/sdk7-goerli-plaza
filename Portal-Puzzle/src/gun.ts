@@ -28,14 +28,14 @@ export function spawnGun(gun: Entity) {
   const orangeGlow = engine.addEntity()
 
   GlowColor.create(blueGlow, { color: PortalColor.Blue })
-  GltfContainer.create(blueGlow, { src: 'assets/models/portalGunBlueGlow.glb' })
+  GltfContainer.create(blueGlow, { src: 'assets/scene/Models/portalGunBlueGlow.glb' })
   Transform.create(blueGlow, {
     parent: gun,
     scale: Vector3.One()
   })
 
   GlowColor.create(orangeGlow, { color: PortalColor.Orange })
-  GltfContainer.create(orangeGlow, { src: 'assets/models/portalGunOrangeGlow.glb' })
+  GltfContainer.create(orangeGlow, { src: 'assets/scene/Models/portalGunOrangeGlow.glb' })
   Transform.create(orangeGlow, {
     parent: gun,
     scale: Vector3.Zero()
@@ -46,7 +46,7 @@ export function pickUpGun(gun: Entity) {
   HOLDING_GUN = true
 
   utils.perpetualMotions.stopRotation(gun)
-  AudioSource.createOrReplace(gun, { audioClipUrl: 'sounds/gunPickup.mp3', playing: true, loop: false })
+  AudioSource.createOrReplace(gun, { audioClipUrl: 'assets/scene/Audio/gunPickup.mp3', playing: true, loop: false })
 
   const gunParent = engine.addEntity()
   const gunTranform = Transform.getMutable(gun)
