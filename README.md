@@ -27,8 +27,12 @@ To keep consistent code styles, there is an automated CI step. If the build fail
 
 ## Testing main branch
 
-In a Decentraland explorer execute:
+In a Decentraland Explorer execute:
 
 ```
-/changerealm https://sdk-team-cdn.decentraland.org/ipfs/goerli-plaza-main-latest
+/goto https://sdk-team-cdn.decentraland.org/ipfs/goerli-plaza-main-latest
+```
+You can use command, to jump into specific location in that realm
+```
+/goto-local 72,-10
 ```
