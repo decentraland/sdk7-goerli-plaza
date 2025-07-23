@@ -25,12 +25,12 @@ import { OnlyInScene, isInScene, onlyInSceneSystem } from './onlyRenderInScene'
 import { setupUi } from './ui'
 
 // Sounds
-const firstNoteSound = new Sound('sounds/firstNote.mp3', false)
-const secondNoteSound = new Sound('sounds/secondNote.mp3', false)
-const thirdNoteSound = new Sound('sounds/thirdNote.mp3', false)
-const forthNoteSound = new Sound('sounds/forthNote.mp3', false)
-const lightningOrbSound = new Sound('sounds/lightningOrb.mp3', false)
-const victorySound = new Sound('sounds/complete.mp3', false)
+const firstNoteSound = new Sound('assets/scene/Audio/firstNote.mp3', false)
+const secondNoteSound = new Sound('assets/scene/Audio/secondNote.mp3', false)
+const thirdNoteSound = new Sound('assets/scene/Audio/thirdNote.mp3', false)
+const forthNoteSound = new Sound('assets/scene/Audio/forthNote.mp3', false)
+const lightningOrbSound = new Sound('assets/scene/Audio/lightningOrb.mp3', false)
+const victorySound = new Sound('assets/scene/Audio/complete.mp3', false)
 
 export function main() {
   engine.addSystem(onlyInSceneSystem)

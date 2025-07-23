@@ -13,7 +13,7 @@ export function createPortal(color: PortalColor, pos: TransformType) {
   const portal = engine.addEntity()
   Transform.create(portal, pos)
   GltfContainer.create(portal, {
-    src: color == PortalColor.Blue ? 'assets/scene/Models/portalBlue.glb' : 'assets/scene/Models/portalOrange.glb'
+    src: color == PortalColor.Blue ? 'assets/models/portalBlue.glb' : 'assets/models/portalOrange.glb'
   })
   Animator.create(portal, {
     states: [{ clip: 'Expand', loop: false, shouldReset: true, playing: true }]

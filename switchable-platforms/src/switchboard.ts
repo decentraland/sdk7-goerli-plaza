@@ -19,7 +19,7 @@ import * as utils from '@dcl-sdk/utils'
  */
 const switchSound = engine.addEntity()
 Transform.create(switchSound)
-AudioSource.create(switchSound, { audioClipUrl: 'sounds/switch.mp3' })
+AudioSource.create(switchSound, { audioClipUrl: 'assets/scene/Audio/switch.mp3' })
 
 export function createSwitchBoard(model: string, startPos: Vector3, endPos: Vector3): Entity {
   const entity = engine.addEntity()

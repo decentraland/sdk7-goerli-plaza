@@ -27,8 +27,8 @@ GltfContainer.create(forcefieldEntity, { src: 'assets/scene/Models/forcefield.gl
 Transform.create(forcefieldEntity)
 
 // Sounds
-const powerUp = createSound('sounds/powerUp.mp3')
-const powerDown = createSound('sounds/powerDown.mp3')
+const powerUp = createSound('assets/scene/Audio/powerUp.mp3')
+const powerDown = createSound('assets/scene/Audio/powerDown.mp3')
 
 export function createPowerBase(position: Vector3, gltfSrc: string) {
   const entity = engine.addEntity()
@@ -55,7 +55,7 @@ export function createPowerBase(position: Vector3, gltfSrc: string) {
       try {
         engine.addSystem(particleSystem)
       } catch (err) {}
-      AudioSource.playSound(powerUp, 'sounds/powerUp.mp3')
+      AudioSource.playSound(powerUp, 'assets/scene/Audio/powerUp.mp3')
 
       for (const [entity] of engine.getEntitiesWith(Particle)) {
         VisibilityComponent.deleteFrom(entity)
@@ -72,7 +72,7 @@ export function createPowerBase(position: Vector3, gltfSrc: string) {
       Transform.getMutable(forcefieldEntity).scale = Vector3.Zero()
 
       engine.removeSystem(particleSystem)
-      AudioSource.playSound(powerDown, 'sounds/powerDown.mp3')
+      AudioSource.playSound(powerDown, 'assets/scene/Audio/powerDown.mp3')
     }
   }
 

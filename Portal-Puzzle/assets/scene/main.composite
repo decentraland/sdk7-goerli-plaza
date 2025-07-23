@@ -187,22 +187,22 @@
       "data": {
         "513": {
           "json": {
-            "src": "assets/assets/scene/Models/baseLight.glb"
+            "src": "assets/models/baseLight.glb"
           }
         },
         "514": {
           "json": {
-            "src": "assets/assets/scene/Models/walls.glb"
+            "src": "assets/models/walls.glb"
           }
         },
         "515": {
           "json": {
-            "src": "assets/assets/scene/Models/portalGun.glb"
+            "src": "assets/models/portalGun.glb"
           }
         },
         "516": {
           "json": {
-            "src": "assets/assets/scene/Models/card.glb"
+            "src": "assets/models/card.glb"
           }
         }
       }
@@ -222,22 +222,22 @@
       "data": {
         "513": {
           "json": {
-            "value": "baseLight.glb"
+            "value": "assets/models/baseLight.glb"
           }
         },
         "514": {
           "json": {
-            "value": "walls.glb"
+            "value": "assets/models/walls.glb"
           }
         },
         "515": {
           "json": {
-            "value": "portalGun.glb"
+            "value": "assets/models/portalGun.glb"
           }
         },
         "516": {
           "json": {
-            "value": "card.glb"
+            "value": "assets/models/card.glb"
           }
         }
       }

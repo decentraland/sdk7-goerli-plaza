@@ -20,7 +20,7 @@ export function createTile(x: number, y: number, z: number, id: number) {
 
   Material.setPbrMaterial(entity, { albedoColor: Color4.White() })
 
-  AudioSource.create(entity, { playing: false, volume: 0.3, loop: false, audioClipUrl: 'assets/assets/scene/Audio/coinPickup.mp3' })
+  AudioSource.create(entity, { playing: false, volume: 0.3, loop: false, audioClipUrl: 'assets/scene/Audio/coinPickup.mp3' })
 
   syncEntity(entity, [Material.componentId, AudioSource.componentId], id)
 

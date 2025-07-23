@@ -7,7 +7,7 @@ import * as utils from '@dcl-sdk/utils'
  * Sound is a separated from the card entity so that you can
  * still hear it even when the card is removed from the engine.
  */
-const cardPickupSound = createSound('sounds/cardPickup.mp3')
+const cardPickupSound = createSound('assets/scene/Audio/cardPickup.mp3')
 
 export function createCard(position: Vector3, gltfSrc: string) {
   const entity = engine.addEntity()

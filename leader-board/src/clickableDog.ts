@@ -40,7 +40,7 @@ export class ClickableDog {
 
     this.soundPlayer = engine.addEntity()
     AudioSource.create(this.soundPlayer, {
-      audioClipUrl: 'sounds/bell.mp3'
+      audioClipUrl: 'assets/scene/Audio/bell.mp3'
     })
 
     pointerEventsSystem.onPointerDown(
@@ -71,7 +71,7 @@ export class ClickableDog {
 
   processClick() {
     this.clickCounter.increase()
-    AudioSource.playSound(this.soundPlayer, 'sounds/click.mp3')
+    AudioSource.playSound(this.soundPlayer, 'assets/scene/Audio/click.mp3')
   }
 
   endGame() {
@@ -81,7 +81,7 @@ export class ClickableDog {
     const hoverFeedback = PointerEvents.getMutable(this.dogStatue)
     hoverFeedback.pointerEvents[0].eventInfo!.hoverText = 'Time up!'
 
-    AudioSource.playSound(this.soundPlayer, 'sounds/bell.mp3')
+    AudioSource.playSound(this.soundPlayer, 'assets/scene/Audio/bell.mp3')
   }
 
   restartGame() {

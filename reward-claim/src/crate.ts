@@ -79,7 +79,7 @@ export function SpawnCrate(
   //})
 
   AudioSource.create(crate, {
-    audioClipUrl: 'sounds/star-idle.mp3',
+    audioClipUrl: 'assets/scene/Audio/star-idle.mp3',
     loop: true,
     playing: true
   })
@@ -96,7 +96,7 @@ export function SpawnCrate(
   })
 
   AudioSource.create(parachute, {
-    audioClipUrl: 'sounds/star-spawn.mp3',
+    audioClipUrl: 'assets/scene/Audio/star-spawn.mp3',
     loop: false,
     playing: true
   })
@@ -129,7 +129,7 @@ export function VanishCrate(crate: Entity) {
   })
 
   utils.timers.setTimeout(() => {
-    utils.playSound('sounds/star-collect.mp3', false, Transform.get(crate).position)
+    utils.playSound('assets/scene/Audio/star-collect.mp3', false, Transform.get(crate).position)
     engine.removeEntityWithChildren(crate)
   }, 1000)
 

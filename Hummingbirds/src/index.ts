@@ -33,7 +33,7 @@ export function main() {
   })
 
   AudioSource.create(tree, {
-    audioClipUrl: 'sounds/pickUp.mp3'
+    audioClipUrl: 'assets/scene/Audio/pickUp.mp3'
   })
 
   Animator.create(tree, {
@@ -57,7 +57,7 @@ export function main() {
     function () {
       createHummingBird()
       Animator.playSingleAnimation(tree, 'Tree_Action', true)
-      AudioSource.playSound(tree, 'sounds/pickUp.mp3')
+      AudioSource.playSound(tree, 'assets/scene/Audio/pickUp.mp3')
     }
   )
 

@@ -16,8 +16,8 @@ export class setUpScenes {
     this.sign = engine.addEntity()
     this.signText = engine.addEntity()
     this.triggerBox = engine.addEntity()
-    GltfContainer.create(this.FloorBaseDirt, { src: 'assets/scene/assets/scene/Models/FloorBaseDirt_01.glb' })
-    GltfContainer.create(this.sign, { src: 'assets/scene/assets/scene/Models/SignPost_wood.glb' })
+    GltfContainer.create(this.FloorBaseDirt, { src: 'assets/scene/models/FloorBaseDirt_01.glb' })
+    GltfContainer.create(this.sign, { src: 'assets/scene/models/SignPost_wood.glb' })
     Transform.createOrReplace(this.FloorBaseDirt, {
       position: Vector3.create(8, 0, 8),
       scale: Vector3.create(1, 1, 1),

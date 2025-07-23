@@ -104,7 +104,7 @@ async function processResponse(response: any, campaign_key: string) {
   confirmationUI(json.data[0].image, json.data[0].token)
 
   // test
-  //openUI('images/scene-thumbnail.png', 'Wearable Name')
+  //openUI('assets/scene/Images/scene-thumbnail.png', 'Wearable Name')
 }
 
 export async function validateCaptcha(

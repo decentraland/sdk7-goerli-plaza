@@ -2,7 +2,7 @@ import { Entity, GltfContainer, RaycastQueryType, Transform, engine, raycastSyst
 import { Quaternion, Vector3 } from '@dcl/sdk/math'
 import { Sound } from './sound'
 
-const victorySound = new Sound('sounds/complete.mp3', false)
+const victorySound = new Sound('assets/scene/Audio/complete.mp3', false)
 
 export class ReflectedRay {
   public static instances: ReflectedRay[] = []

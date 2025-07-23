@@ -12,5 +12,5 @@ export const SmokeSource = engine.defineComponent('SmokeSource', {
 })
 
 export const smokeTexture = Material.Texture.Common({
-  src: 'assets/textures/smoke-puff.png'
+  src: 'assets/scene/Images/smoke-puff.png'
 })

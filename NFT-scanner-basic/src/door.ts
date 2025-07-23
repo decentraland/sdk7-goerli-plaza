@@ -67,10 +67,10 @@ export function addAudio(entity: Entity, audioClipUrl: string) {
     })
 }
 
-addAudio(acceptSound, 'sounds/accept.mp3')
-addAudio(rejectSound, 'sounds/access_denied.mp3')
-addAudio(insideSound, 'sounds/jazz.mp3')
-addAudio(outsideSound, 'sounds/jazzMuffled.mp3')
+addAudio(acceptSound, 'assets/scene/Audio/accept.mp3')
+addAudio(rejectSound, 'assets/scene/Audio/access_denied.mp3')
+addAudio(insideSound, 'assets/scene/Audio/jazz.mp3')
+addAudio(outsideSound, 'assets/scene/Audio/jazzMuffled.mp3')
 
 
 export function playSound(entity: Entity, loop: boolean = false) {

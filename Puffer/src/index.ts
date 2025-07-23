@@ -99,7 +99,7 @@ export function main() {
         easingFunction: EasingFunction.EF_EASEINQUAD
       })
 
-      AudioSource.playSound(fish, 'sounds/deflate.wav', true)
+      AudioSource.playSound(fish, 'assets/scene/Audio/deflate.wav', true)
       const sound = AudioSource.getMutable(fish)
       sound.pitch = 0.5 + Math.random()
     }, 2000)

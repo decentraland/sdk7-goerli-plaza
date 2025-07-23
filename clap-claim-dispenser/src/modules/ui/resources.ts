@@ -35,8 +35,8 @@ function getUVs(row: number, startBlock: number, width: number): number[] {
 // const scoreboardBackgroundLight = 'assets/scene/Models/ui/scoreboard_bg.glb'
 // const scoreboardBackgroundDark = 'assets/scene/Models/ui/scoreboard_bg_dark.glb'
 
-//const scoreBoardBackgroudDefault = 'images/scoreboard_bg.png'
-const scoreBoardBackgroudDefault = 'images/scoreboard_bg.png'
+//const scoreBoardBackgroudDefault = 'assets/scene/Images/scoreboard_bg.png'
+const scoreBoardBackgroudDefault = 'assets/scene/Images/scoreboard_bg.png'
 
 //BUTTONS
 const squareBase = 'assets/scene/Models/ui/button_base_square.glb'
@@ -105,7 +105,7 @@ const RECT_BLACK: ButtonShapeData = {
 }
 
 //UI atlas
-export const uiAtlas = 'images/AtlasGames.png'
+export const uiAtlas = 'assets/scene/Images/AtlasGames.png'
 
 //square icons
 const checkmark: IconData = { uvs: getUVs(0, 0, 1), blockWidth: 1 }

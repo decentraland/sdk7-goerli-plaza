@@ -28,14 +28,14 @@ export function spawnGun(gun: Entity) {
   const orangeGlow = engine.addEntity()
 
   GlowColor.create(blueGlow, { color: PortalColor.Blue })
-  GltfContainer.create(blueGlow, { src: 'assets/scene/Models/portalGunBlueGlow.glb' })
+  GltfContainer.create(blueGlow, { src: 'assets/models/portalGunBlueGlow.glb' })
   Transform.create(blueGlow, {
     parent: gun,
     scale: Vector3.One()
   })
 
   GlowColor.create(orangeGlow, { color: PortalColor.Orange })
-  GltfContainer.create(orangeGlow, { src: 'assets/scene/Models/portalGunOrangeGlow.glb' })
+  GltfContainer.create(orangeGlow, { src: 'assets/models/portalGunOrangeGlow.glb' })
   Transform.create(orangeGlow, {
     parent: gun,
     scale: Vector3.Zero()

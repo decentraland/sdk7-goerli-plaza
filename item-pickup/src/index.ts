@@ -47,11 +47,11 @@ export function main() {
   }
 
   // instantiate pickable items
-  instantiatePickableItem('assets/scene/Models/medikit.glb', Vector3.create(4, 0.75, 6), 'sounds/medikitPickup.mp3', 3, medkitAction)
+  instantiatePickableItem('assets/scene/Models/medikit.glb', Vector3.create(4, 0.75, 6), 'assets/scene/Audio/medikitPickup.mp3', 3, medkitAction)
 
-  instantiatePickableItem('assets/scene/Models/armor.glb', Vector3.create(12, 0.75, 6), 'sounds/armorPickup.mp3', 5, armorAction)
+  instantiatePickableItem('assets/scene/Models/armor.glb', Vector3.create(12, 0.75, 6), 'assets/scene/Audio/armorPickup.mp3', 5, armorAction)
 
-  instantiatePickableItem('assets/scene/Models/ammo.glb', Vector3.create(8, 0.75, 10), 'sounds/ammoPickup.mp3', 8, ammoAction)
+  instantiatePickableItem('assets/scene/Models/ammo.glb', Vector3.create(8, 0.75, 10), 'assets/scene/Audio/ammoPickup.mp3', 8, ammoAction)
 
   engine.addSystem(respawnSystem)
 }

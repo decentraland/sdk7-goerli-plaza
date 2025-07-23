@@ -22,22 +22,22 @@ export class gameController {
     //Create as many airdrops you want
     this.airdrop_1 = new airdropWearable(
       this,
-      'assets/scene/assets/scene/Models/crate_eth.glb',
-      'assets/scene/assets/scene/Models/parachute_jungle.glb',
+      'assets/scene/models/crate_eth.glb',
+      'assets/scene/models/parachute_jungle.glb',
       this.camp,
       this.camp.campaignKeys.KEY_1
     )
     this.airdrop_2 = new airdropWearable(
       this,
-      'assets/scene/assets/scene/Models/crate_eth.glb',
-      'assets/scene/assets/scene/Models/parachute_jelly.glb',
+      'assets/scene/models/crate_eth.glb',
+      'assets/scene/models/parachute_jelly.glb',
       this.camp,
       this.camp.campaignKeys.KEY_2
     ) //Replace Key from Nico E
     this.airdrop_3 = new airdropWearable(
       this,
-      'assets/scene/assets/scene/Models/crate_eth.glb',
-      'assets/scene/assets/scene/Models/parachute_meta.glb',
+      'assets/scene/models/crate_eth.glb',
+      'assets/scene/models/parachute_meta.glb',
       this.camp,
       this.camp.campaignKeys.KEY_3
     ) //Replace Key from Nico E

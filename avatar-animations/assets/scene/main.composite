@@ -462,7 +462,7 @@
         },
         "526": {
           "json": {
-            "src": "assets/builder/indicator_arrow/assets/scene/Models/Arrow.glb"
+            "src": "assets/builder/indicator_arrow/models/Arrow.glb"
           }
         }
       }
@@ -502,47 +502,47 @@
         },
         "517": {
           "json": {
-            "value": "ElfGrumpy.glb"
+            "value": "assets/scene/Models/ElfGrumpy.glb"
           }
         },
         "518": {
           "json": {
-            "value": "SnowRock_01.glb"
+            "value": "assets/scene/Models/SnowRock_01.glb"
           }
         },
         "519": {
           "json": {
-            "value": "SnowRock_03.glb"
+            "value": "assets/scene/Models/SnowRock_03.glb"
           }
         },
         "520": {
           "json": {
-            "value": "SnowRock_04.glb"
+            "value": "assets/scene/Models/SnowRock_04.glb"
           }
         },
         "521": {
           "json": {
-            "value": "SnowTree_01.glb"
+            "value": "assets/scene/Models/SnowTree_01.glb"
           }
         },
         "522": {
           "json": {
-            "value": "SnowTree_02.glb"
+            "value": "assets/scene/Models/SnowTree_02.glb"
           }
         },
         "523": {
           "json": {
-            "value": "SnowTree_03.glb"
+            "value": "assets/scene/Models/SnowTree_03.glb"
           }
         },
         "524": {
           "json": {
-            "value": "SnowTree_03.glb"
+            "value": "assets/scene/Models/SnowTree_03.glb"
           }
         },
         "525": {
           "json": {
-            "value": "snowPile.glb"
+            "value": "assets/scene/Models/snowPile.glb"
           }
         },
         "526": {

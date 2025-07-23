@@ -26,7 +26,7 @@ import { onlyInSceneSystem } from './onlyRenderInScene'
 import { setupUi } from './ui'
 
 export function main() {
-  const card = engine.getEntityOrNullByName('card.glb')
+  const card = engine.getEntityOrNullByName('assets/models/card.glb')
   if (card) {
     utils.perpetualMotions.startRotation(card, Quaternion.fromEulerDegrees(0, 15, 0))
 
@@ -37,7 +37,7 @@ export function main() {
     })
   }
 
-  const gun = engine.getEntityOrNullByName('portalGun.glb')
+  const gun = engine.getEntityOrNullByName('assets/models/portalGun.glb')
   if (gun) {
     spawnGun(gun)
   }

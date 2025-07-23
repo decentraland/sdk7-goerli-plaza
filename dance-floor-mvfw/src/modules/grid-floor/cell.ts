@@ -260,10 +260,10 @@ export function createGridCell(_id:number, transform:TransformTypeWithOptionals,
     ])
     Material.setPbrMaterial(cell, {
        texture: Material.Texture.Common({
-           src: "images/dance_color3.png"
+           src: "assets/scene/Images/dance_color3.png"
          }),
          emissiveTexture: Material.Texture.Common({
-            src: "images/dance_color3.png"
+            src: "assets/scene/Images/dance_color3.png"
           }),
           emissiveIntensity:8,
           emissiveColor: Color4.White()
@@ -327,10 +327,10 @@ export function createGridCell(_id:number, transform:TransformTypeWithOptionals,
      //MeshRenderer.setPlane(cell)
      Material.setPbrMaterial(cell, {
         texture: Material.Texture.Common({
-            src: "images/dance_color3.png"
+            src: "assets/scene/Images/dance_color3.png"
           }),
           emissiveTexture: Material.Texture.Common({
-             src: "images/dance_color3.png"
+             src: "assets/scene/Images/dance_color3.png"
            }),
            emissiveIntensity:8,
            emissiveColor: Color4.White()
