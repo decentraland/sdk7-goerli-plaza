@@ -149,7 +149,7 @@ jobs:
       #     fi
 
       - name: export-static (branch)
-        if: ${{ steps.filter_workspace.outputs.has_scenes == 'true' }}
+        # if: ${{ steps.filter_workspace.outputs.has_scenes == 'true' }}
         run: >
           npm run export-static -- \
             --realmName ${{steps.get-branch-realm-name.outputs.result}} \
@@ -158,7 +158,7 @@ jobs:
             --destination "$(pwd)/ipfs"
 
       - name: Print local about file
-        if: ${{ steps.filter_workspace.outputs.has_scenes == 'true' }}
+        # if: ${{ steps.filter_workspace.outputs.has_scenes == 'true' }}
         run: |
           set -e
           FILE="ipfs/${{ steps.get-branch-realm-name.outputs.result }}/about"
@@ -170,7 +170,7 @@ jobs:
           fi
 
       - name: Print remote about file from CDN
-        if: ${{ steps.filter_workspace.outputs.has_scenes == 'true' }}
+        # if: ${{ steps.filter_workspace.outputs.has_scenes == 'true' }}
         run: |
           set -e
           URL="https://sdk-team-cdn.decentraland.org/ipfs/goerli-plaza-main-latest/about"
