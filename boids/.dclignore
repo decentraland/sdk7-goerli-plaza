@@ -16,3 +16,6 @@ README.md
 *.fbx
 *.zip
 *.rar
+cursor.config
+cursorignore
+.github

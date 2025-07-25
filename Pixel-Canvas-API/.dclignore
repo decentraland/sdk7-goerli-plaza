@@ -19,3 +19,7 @@ README.md
 *.rar
 src
 server
+
+cursor.config
+cursorignore
+.github

@@ -18,3 +18,7 @@ README.md
 *.zip
 *.rar
 src
+
+cursor.config
+cursorignore
+.github

@@ -1,1 +1,4 @@
 server
+cursor.config
+cursorignore
+.github

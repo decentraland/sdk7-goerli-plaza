@@ -19,3 +19,7 @@ README.md
 *.rar
 .vscode
 src
+
+cursor.config
+cursorignore
+.github

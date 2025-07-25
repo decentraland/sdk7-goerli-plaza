@@ -11,3 +11,6 @@ node_modules
 *.tsx
 Dockerfile
 dist
+cursor.config
+cursorignore
+.github
