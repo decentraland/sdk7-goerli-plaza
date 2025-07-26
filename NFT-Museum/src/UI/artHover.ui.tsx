@@ -1,7 +1,7 @@
 import { UiCanvasInformation, engine } from "@dcl/ecs";
 import ReactEcs, { UiEntity, Label } from "@dcl/react-ecs";
 import { currentArtworkId, findArtworkById, hoverVisible, toggleHover } from "../Art/artHover";
-import { wordWrap, tieredModalTextWrapScale, tieredFontScale } from "../helperFunctions";
+import { wordWrap, tieredModalTextWrapScale, breakLines, tieredFontScale } from "../helperFunctions";
 import { backgroundUI, highlightColor, mainColor, mainFont } from "./ui";
 
 
@@ -19,7 +19,7 @@ export function artDetailsUI() {
     if (artwork && artwork.visible) {
       const { title, description } = artwork;
       const artTitleWrap = wordWrap(title, Max_Chars * tieredModalTextWrapScale, Max_Lines)
-      const artDescriptionWrap = description
+      const artDescriptionWrap = breakLines(description, Max_Chars)
       const canvasHeight = UiCanvasInformation.get(engine.RootEntity).height;
 
 
@@ -28,7 +28,6 @@ export function artDetailsUI() {
           uiTransform={{
             height: `${canvasHeight * 0.18}`,
             width: `${canvasHeight * 0.18}`,
-
             positionType: 'absolute',
             position: `23% 0 0 92%`,
             flexDirection: 'column',

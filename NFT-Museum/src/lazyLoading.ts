@@ -109,20 +109,20 @@ export function createLazyArea(position: Vector3, scale: Vector3, parentPos: Ent
     () => {
       console.log('LEFT')
       for (const nft of createdNfts) {
-        engine.removeEntityWithChildren(nft)
+        engine.removeEntity(nft)
       }
       for (const videoArt of createdVideos) {
         VideoPlayer.deleteFrom(videoArt)
-        engine.removeEntityWithChildren(videoArt)
+        engine.removeEntity(videoArt)
       }
       for (const kinetic of createdKineticArt) {
-        engine.removeEntityWithChildren(kinetic)
+        engine.removeEntity(kinetic)
       }
       for (const image of createdImages) {
-        engine.removeEntityWithChildren(image)
+        engine.removeEntity(image)
       }
       if (reward) {
-        engine.removeEntityWithChildren(rewardEntity)
+        engine.removeEntity(rewardEntity)
       }
 
       createdNfts = []
