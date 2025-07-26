@@ -108,7 +108,7 @@ export function createDefaultTexts() {
       position: sceneCentrePosition
     })
     GltfContainer.create(defaultTexts, {
-      src: 'models/museumText.glb'
+      src: 'assets/scene/Models/museumText.glb'
     })
   }
 }

@@ -23,7 +23,7 @@ export function main() {
     rotation: Quaternion.create(0, 0, 0, 1)
   })
   GltfContainer.create(bermudaGrass, {
-    src: 'models/FloorBaseGrass_01/FloorBaseGrass_01.glb'
+    src: 'assets/scene/Models/FloorBaseGrass_01/FloorBaseGrass_01.glb'
   })
 
   const shopEmissive = engine.addEntity()
@@ -33,6 +33,6 @@ export function main() {
     rotation: Quaternion.create(0, 0, 0, 1)
   })
   GltfContainer.create(shopEmissive, {
-    src: 'models/Shop_Emissive.glb'
+    src: 'assets/scene/Models/Shop_Emissive.glb'
   })
 }

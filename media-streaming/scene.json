@@ -4,7 +4,7 @@
   "display": {
     "title": "media-streaming",
     "description": "Time API scene with SDK7",
-    "navmapThumbnail": "images/screenshot.png",
+    "navmapThumbnail": "assets/scene/Images/screenshot.png",
     "favicon": "favicon_asset"
   },
   "owner": "",

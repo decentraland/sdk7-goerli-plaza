@@ -15,7 +15,7 @@ import * as utils from '@dcl-sdk/utils'
 import { redrawRays } from './reflectedRay'
 
 // Sounds
-const mirrorMoveSound = new Sound('sounds/mirrorMove.mp3', false)
+const mirrorMoveSound = new Sound('assets/scene/Audio/mirrorMove.mp3', false)
 
 export interface MirrorConfig {
   selectorModelPath: string

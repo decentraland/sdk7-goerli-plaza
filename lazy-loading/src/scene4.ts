@@ -18,7 +18,7 @@ export function createScene4() {
     parent: scene4
   })
   GltfContainer.create(plat, {
-    src: 'models/Platform_Pirates_Alt.glb'
+    src: 'assets/scene/Models/Platform_Pirates_Alt.glb'
   })
   const toggleEntText = engine.addEntity()
   TextShape.create(toggleEntText, { text: 'Return to Ground \n to Change Scene', fontSize: 0.5 })

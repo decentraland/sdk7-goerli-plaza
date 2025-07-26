@@ -20,7 +20,7 @@ export function createPortal(color: PortalColor, pos: TransformType) {
   })
   Portal.create(portal, { color: activePortal })
 
-  AudioSource.createOrReplace(portal, { audioClipUrl: 'sounds/portalSuccess.mp3', playing: true, loop: false })
+  AudioSource.createOrReplace(portal, { audioClipUrl: 'assets/scene/Audio/portalSuccess.mp3', playing: true, loop: false })
 
   //trigger
   utils.triggers.addTrigger(
@@ -65,7 +65,7 @@ export function teleport(portalEntity: Entity) {
       }, DELAY_TIME)
 
       AudioSource.createOrReplace(destinationEntity, {
-        audioClipUrl: 'sounds/teleport.mp3',
+        audioClipUrl: 'assets/scene/Audio/teleport.mp3',
         playing: true,
         loop: false
       })

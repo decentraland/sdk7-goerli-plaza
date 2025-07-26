@@ -18,11 +18,11 @@ const xHoverText = 'X'
 const instagramHoverText = 'Instagram'
 
 // Socials GLB Models:
-const discordShape = 'models/social_media/discord.glb'
-const homepageShape = 'models/social_media/homepage.glb'
-const telegramShape = 'models/social_media/telegram.glb'
-const xShape = 'models/social_media/x.glb'
-const instagramShape = 'models/social_media/x.glb'
+const discordShape = 'assets/scene/Models/social_media/discord.glb'
+const homepageShape = 'assets/scene/Models/social_media/homepage.glb'
+const telegramShape = 'assets/scene/Models/social_media/telegram.glb'
+const xShape = 'assets/scene/Models/social_media/x.glb'
+const instagramShape = 'assets/scene/Models/social_media/x.glb'
 
 const defaultScale = Vector3.create(0.8, 0.8, 0.8) // model size
 

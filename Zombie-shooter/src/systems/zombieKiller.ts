@@ -13,7 +13,7 @@ export function zombieKiller(dt: number) {
   const result = inputSystem.getInputCommand(InputAction.IA_POINTER, PointerEventType.PET_DOWN)
   if (result) {
     // && coolDown <= 0) {
-    playSound(engine.CameraEntity, 'sounds/explosion.mp3', true)
+    playSound(engine.CameraEntity, 'assets/scene/Audio/explosion.mp3', true)
     // coolDown = _COOLDOWN
 
     for (const [zombieEntity] of engine.getEntitiesWith(ZombieComponent)) {

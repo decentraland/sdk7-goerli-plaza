@@ -18,7 +18,7 @@ export function initDispensers() {
 
     createDispenserWithWearable(
         Vector3.create(8, 0, 8),Quaternion.fromEulerDegrees(0, 0, 0),
-        "models/jacket25_wearable.glb",
+        "assets/scene/Models/jacket25_wearable.glb",
         ClaimConfig.campaign.Jacket
     );
 
@@ -31,7 +31,7 @@ function createDispenserWithWearable(position: Vector3, rotation: Quaternion, we
         rotation: rotation,
         scale: Vector3.create(1.5, 1.5, 1.5),
     });
-    GltfContainer.create(dispenser, { src: "models/dispenser.glb" });
+    GltfContainer.create(dispenser, { src: "assets/scene/Models/dispenser.glb" });
 
     const wearable = engine.addEntity();
     Transform.create(wearable, {
@@ -91,7 +91,7 @@ function createDispenserWithWearable(position: Vector3, rotation: Quaternion, we
     //MeshRenderer.setPlane(wearableClaimAreaPlatform)
     //Material.setPbrMaterial(wearableClaimAreaPlatform, {
     //    texture: Material.Texture.Common({
-    //        src: 'models/Clap Here.png',
+    //        src: 'assets/scene/Models/Clap Here.png',
     //    }),
     //    transparencyMode: MaterialTransparencyMode.MTM_ALPHA_BLEND
     //})

@@ -10,21 +10,21 @@ export class Sound {
     Sound.statueMoveAudioEntity = engine.addEntity()
     Transform.create(Sound.statueMoveAudioEntity)
     AudioSource.create(Sound.statueMoveAudioEntity, {
-      audioClipUrl: 'sounds/statueMove.mp3',
+      audioClipUrl: 'assets/scene/Audio/statueMove.mp3',
       playing: false
     })
 
     Sound.powerUpAudioEntity = engine.addEntity()
     Transform.create(Sound.powerUpAudioEntity)
     AudioSource.create(Sound.powerUpAudioEntity, {
-      audioClipUrl: 'sounds/powerup.mp3',
+      audioClipUrl: 'assets/scene/Audio/powerup.mp3',
       playing: false
     })
 
     Sound.completeAudioEntity = engine.addEntity()
     Transform.create(Sound.completeAudioEntity)
     AudioSource.create(Sound.completeAudioEntity, {
-      audioClipUrl: 'sounds/complete.mp3',
+      audioClipUrl: 'assets/scene/Audio/complete.mp3',
       playing: false
     })
   }

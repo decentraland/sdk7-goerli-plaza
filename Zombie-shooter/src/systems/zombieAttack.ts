@@ -27,7 +27,7 @@ export function attackSystem(dt: number) {
           }
         }
 
-        playSound(entity, 'sounds/attack.mp3', true)
+        playSound(entity, 'assets/scene/Audio/attack.mp3', true)
       }
     }
   }

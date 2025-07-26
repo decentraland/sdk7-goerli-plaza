@@ -38,7 +38,7 @@ export class PuzzleBuilder {
     }
 
     // Create triggers for resetting the game
-    GltfContainer.create(PuzzleBuilder.exitGlow, { src: 'models/exitGlow.glb' })
+    GltfContainer.create(PuzzleBuilder.exitGlow, { src: 'assets/scene/Models/exitGlow.glb' })
 
     Transform.create(PuzzleBuilder.resetFrontTrigger)
     Transform.create(PuzzleBuilder.resetBackTrigger)

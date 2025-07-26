@@ -56,7 +56,7 @@ const donationAnimationDuration = 2.5; // Duration in seconds
 // Box model and animator
 
 const donationsBoxModel = engine.addEntity();
-GltfContainer.create(donationsBoxModel, { src: "models/DonationsBox.glb" });
+GltfContainer.create(donationsBoxModel, { src: "assets/scene/Models/DonationsBox.glb" });
 MeshRenderer.create(donationsBoxModel);
 Transform.create(donationsBoxModel, {
   position: Vector3.create(6.5, 1, 12),
@@ -321,7 +321,7 @@ function GitHubLinkUi() {
         uiBackground={{
           textureMode: "stretch",
           texture: {
-            src: "images/gh.png",
+            src: "assets/scene/Images/gh.png",
           },
         }}
         onMouseDown={() => {

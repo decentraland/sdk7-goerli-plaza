@@ -4,7 +4,7 @@
   "display": {
     "title": "lazy-loading",
     "description": "Load certain entities only when near, to save resources",
-    "navmapThumbnail": "images/scene-thumbnail.png",
+    "navmapThumbnail": "assets/scene/Images/scene-thumbnail.png",
     "favicon": "favicon_asset"
   },
   "owner": "DOGMAN",

@@ -222,22 +222,22 @@
       "data": {
         "513": {
           "json": {
-            "value": "baseLight.glb"
+            "value": "assets/models/baseLight.glb"
           }
         },
         "514": {
           "json": {
-            "value": "walls.glb"
+            "value": "assets/models/walls.glb"
           }
         },
         "515": {
           "json": {
-            "value": "portalGun.glb"
+            "value": "assets/models/portalGun.glb"
           }
         },
         "516": {
           "json": {
-            "value": "card.glb"
+            "value": "assets/models/card.glb"
           }
         }
       }

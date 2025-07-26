@@ -18,9 +18,9 @@ import IBoidVisibleEntity from './IBoidVisibleEntity.js'
 //objsSphere.withCollisions = false
 
 export const fishShapes: string[] = [
-  'models/Fish_01/Fish_01.glb',
-  'models/Fish_03/Fish_03.glb',
-  'models/Fish_04/Fish_04.glb'
+  'assets/scene/Models/Fish_01/Fish_01.glb',
+  'assets/scene/Models/Fish_03/Fish_03.glb',
+  'assets/scene/Models/Fish_04/Fish_04.glb'
 ]
 
 //for(const p in fishShapes){

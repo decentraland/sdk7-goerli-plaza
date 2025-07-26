@@ -4,7 +4,7 @@
   "display": {
     "title": "Block-Fountain",
     "description": "Block Fountain synced multiplayer (P2P) SDK7 scene",
-    "navmapThumbnail": "images/scene-thumbnail.png",
+    "navmapThumbnail": "assets/scene/images/scene-thumbnail.png",
     "favicon": "favicon_asset"
   },
   "owner": "",
@@ -58,6 +58,13 @@
     }
   ],
   "requiredPermissions": [],
-  "featureToggles": {},
-  "name": "Block-Fountain"
+  "featureToggles": {
+    "voiceChat": "enabled",
+    "portableExperiences": "enabled"
+  },
+  "name": "Block-Fountain",
+  "source": {
+    "origin": "creator-hub",
+    "projectId": "827fcee2-32e9-419f-ac7a-858cd543bb25"
+  }
 }

@@ -22,8 +22,8 @@ export const PowerCube = engine.defineComponent('PowerCube', {
 })
 
 // Sounds
-const cubePickUpSound = createSound('sounds/cubePickup.mp3')
-const cubePutDownSound = createSound('sounds/cubePutDown.mp3')
+const cubePickUpSound = createSound('assets/scene/Audio/cubePickup.mp3')
+const cubePutDownSound = createSound('assets/scene/Audio/cubePutDown.mp3')
 
 // Configuration
 const Z_OFFSET = 1.5

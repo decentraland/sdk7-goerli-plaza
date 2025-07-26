@@ -33,22 +33,22 @@ function getUVs(row: number, startBlock: number, width: number): number[] {
 }
 
 //BUTTONS
-const squareBase = 'models/ui/button_base_square.glb'
+const squareBase = 'assets/scene/Models/ui/button_base_square.glb'
 
 const SQUARE_RED: ButtonShapeData = {
-  shape: 'models/ui/button_square_red.glb',
+  shape: 'assets/scene/Models/ui/button_square_red.glb',
   base: squareBase,
   isRect: false
 }
 
 const SQUARE_BLACK: ButtonShapeData = {
-  shape: 'models/ui/button_square_black.glb',
+  shape: 'assets/scene/Models/ui/button_square_black.glb',
   base: squareBase,
   isRect: false
 }
 
 //UI atlas
-export const uiAtlas = 'images/AtlasGames.png'
+export const uiAtlas = 'assets/scene/Images/AtlasGames.png'
 
 //square icons
 const checkmark: IconData = { uvs: getUVs(0, 0, 1), blockWidth: 1 }

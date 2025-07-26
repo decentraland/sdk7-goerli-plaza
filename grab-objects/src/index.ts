@@ -30,7 +30,7 @@ export function main() {
 
   // Base
   const base = engine.addEntity()
-  GltfContainer.create(base, { src: `models/baseLight.glb` })
+  GltfContainer.create(base, { src: `assets/scene/Models/baseLight.glb` })
 
   const crate1 = createCreate(Vector3.create(8, GROUND_HEIGHT, 8))
 
@@ -50,7 +50,7 @@ export function playSound(audio: string) {
 export function createCreate(Position: Vector3): Entity {
   const crate = engine.addEntity()
   Transform.create(crate, { position: Position })
-  GltfContainer.create(crate, { src: `models/crate.glb` })
+  GltfContainer.create(crate, { src: `assets/scene/Models/crate.glb` })
 
   PointerEvents.create(crate, {
     pointerEvents: [
@@ -71,7 +71,7 @@ export function createCreate(Position: Vector3): Entity {
 
 const toggleGrabbed = () => {
   state.grabbed = !state.grabbed
-  const sound = state.grabbed ? `sounds/put-down.mp3` : `sounds/pick-up.mp3`
+  const sound = state.grabbed ? `assets/scene/Audio/put-down.mp3` : `assets/scene/Audio/pick-up.mp3`
   playSound(sound)
 
   return state.grabbed

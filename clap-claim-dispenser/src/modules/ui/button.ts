@@ -181,7 +181,7 @@ export class MenuButton {
   onClick() {
     if (!this.isPressed && this.enabled) {
       this.callback()
-      this.playSound('mini-game-assets/sounds/button_click.mp3')
+      this.playSound('mini-game-assets/scene/Audio/button_click.mp3')
       // this.disable()
       this.isPressed = true
       //flash the emissive of the icon
@@ -211,7 +211,7 @@ export class MenuButton {
         mode: Tween.Mode.Move({ start: Vector3.create(0, -0.03, 0), end: Vector3.Zero() })
       })
     } else {
-      this.playSound('mini-game-assets/sounds/wrong.mp3')
+      this.playSound('mini-game-assets/scene/Audio/wrong.mp3')
     }
   }
 

@@ -15,14 +15,14 @@ import { audioType, toggleAudio } from '../audio'
 import { artPositions } from './artData'
 
 // Paths to 3D models and animation names
-const kineticArtCircles = 'models/3d-art/kineticArt-threeCircles.glb'
+const kineticArtCircles = 'assets/scene/Models/3d-art/kineticArt-threeCircles.glb'
 const kineticArtCirclesClip = 'play2'
 
-const kineticArtCircuit = 'models/3d-art/kineticArt-circuit.glb'
+const kineticArtCircuit = 'assets/scene/Models/3d-art/kineticArt-circuit.glb'
 const kineticArtCircuitClip = 'play3'
 
-const truck = 'models/3d-art/truck.glb'
-const cone = 'models/3d-art/cone.glb'
+const truck = 'assets/scene/Models/3d-art/truck.glb'
+const cone = 'assets/scene/Models/3d-art/cone.glb'
 
 export const kineticArtCollection: KineticData[] = [
   {

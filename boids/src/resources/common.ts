@@ -1,6 +1,6 @@
 /*
 const INVISIBLE_MATERIAL = new BasicMaterial()
-const INVISIBLE_MATERIAL_texture = new Texture('images/transparent-texture.png')
+const INVISIBLE_MATERIAL_texture = new Texture('assets/scene/Images/transparent-texture.png')
 INVISIBLE_MATERIAL.texture = INVISIBLE_MATERIAL_texture
 INVISIBLE_MATERIAL.alphaTest = 1
 */

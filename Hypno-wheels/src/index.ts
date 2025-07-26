@@ -17,7 +17,7 @@ import { setupUi } from './ui'
 export function main() {
   // Environment
   const stage = engine.addEntity()
-  GltfContainer.create(stage, { src: 'models/Theatre.glb' })
+  GltfContainer.create(stage, { src: 'assets/scene/Models/Theatre.glb' })
   Transform.create(stage, {
     position: Vector3.create(8, 0, 8),
     scale: Vector3.create(0.9, 1, 0.9),
@@ -45,7 +45,7 @@ function createWheel(position: Vector3, speed: number, direction: Vector3) {
   })
 
   Material.setBasicMaterial(wheel, {
-    texture: Material.Texture.Common({ src: 'materials/hypno-wheel.png' })
+    texture: Material.Texture.Common({ src: 'assets/scene/Images/hypno-wheel.png' })
   })
 
   pointerEventsSystem.onPointerDown(

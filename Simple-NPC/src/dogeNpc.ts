@@ -28,7 +28,7 @@ export function createDogeNpc() {
     },
     {
       type: NPCType.CUSTOM,
-      model: 'models/dogeNPC_anim4.glb', //'models/robots/marsha.glb',//'models/Placeholder_NPC_02.glb',
+      model: 'assets/scene/Models/dogeNPC_anim4.glb', //'assets/scene/Models/marsha.glb',//'assets/scene/Models/Placeholder_NPC_02.glb',
       onActivate: () => {
         console.log('doge.NPC activated!')
         talk(doge, dogeDialog)

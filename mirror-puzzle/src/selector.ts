@@ -22,11 +22,11 @@ export class Selector {
   constructor() {
     // Selector
     this.selectorHand = engine.addEntity()
-    GltfContainer.create(this.selectorHand, { src: 'models/selectorHand.glb' })
+    GltfContainer.create(this.selectorHand, { src: 'assets/scene/Models/selectorHand.glb' })
     Transform.create(this.selectorHand, { scale: Vector3.Zero() })
 
     this.selectorGlow = engine.addEntity()
-    GltfContainer.create(this.selectorGlow, { src: 'models/selectorGlow.glb' })
+    GltfContainer.create(this.selectorGlow, { src: 'assets/scene/Models/selectorGlow.glb' })
     Transform.create(this.selectorGlow, { scale: Vector3.Zero() })
 
     let self = this

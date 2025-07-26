@@ -60,7 +60,7 @@ export function playSound(entity: Entity) {
 
 // Door
 export const Door = engine.addEntity();
-GltfContainer.create(Door, { src: "models/Door_Fantasy.glb" });
+GltfContainer.create(Door, { src: "assets/scene/Models/Door_Fantasy.glb" });
 MeshRenderer.create(Door);
 Transform.create(Door, {
   position: Vector3.create(9.275432586669922, 0, 9.929542541503906),
@@ -104,7 +104,7 @@ export function toggleUIVisibility() {
 
 //  UI toggle and Button model
 export const Paid_Button = engine.addEntity();
-GltfContainer.create(Paid_Button, { src: "models/PaidButton/MANA_Button.glb" });
+GltfContainer.create(Paid_Button, { src: "assets/scene/Models/PaidButton/MANA_Button.glb" });
 MeshRenderer.create(Paid_Button);
 Transform.create(Paid_Button, {
   position: Vector3.create(7, 0, 11),
@@ -406,7 +406,7 @@ function GitHubLinkUi() {
         uiBackground={{
           textureMode: "stretch",
           texture: {
-            src: "images/gh.png",
+            src: "assets/scene/Images/gh.png",
           },
         }}
         onMouseDown={() => {

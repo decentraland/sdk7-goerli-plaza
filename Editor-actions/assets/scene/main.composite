@@ -3462,7 +3462,7 @@
           "json": {
             "name": "Editor-actions",
             "description": "",
-            "thumbnail": "scene-thumbnail.png",
+            "thumbnail": "assets/scene/Images/assets/scene/Images/scene-thumbnail.png",
             "ageRating": "T",
             "categories": [],
             "author": "0xe2b6024873d218b2e83b462d3658d8d7c3f55a18",

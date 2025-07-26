@@ -23,13 +23,13 @@ type WeatherObject = {
 // Object to store model variations
 const src = {
   house: {
-    dry: 'models/house_dry.gltf',
-    wet: 'models/house_wet.gltf',
-    snow: 'models/house_snow.gltf'
+    dry: 'assets/scene/Models/house_dry.gltf',
+    wet: 'assets/scene/Models/house_wet.gltf',
+    snow: 'assets/scene/Models/house_snow.gltf'
   },
   cloud: {
-    light: 'models/clouds.gltf',
-    dark: 'models/dark-cloud.gltf'
+    light: 'assets/scene/Models/clouds.gltf',
+    dark: 'assets/scene/Models/dark-cloud.gltf'
   }
 }
 

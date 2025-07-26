@@ -5,7 +5,7 @@ const shotSilencer = engine.addEntity()
 
 //Create audio source component
 AudioSource.create(shotSilencer, {
-  audioClipUrl: 'sounds/shotSilencer.mp3',
+  audioClipUrl: 'assets/scene/Audio/shotSilencer.mp3',
   loop: false,
   playing: false,
   volume: 1
@@ -27,7 +27,7 @@ const shotTin = engine.addEntity()
 
 //Create audio source component
 AudioSource.create(shotTin, {
-  audioClipUrl: 'sounds/shotTin.mp3',
+  audioClipUrl: 'assets/scene/Audio/shotTin.mp3',
   loop: false,
   playing: false,
   volume: 1
@@ -46,7 +46,7 @@ const shotWood = engine.addEntity()
 
 //Create audio source component
 AudioSource.create(shotWood, {
-  audioClipUrl: 'sounds/shotWood.mp3',
+  audioClipUrl: 'assets/scene/Audio/shotWood.mp3',
   loop: false,
   playing: false,
   volume: 1
@@ -65,7 +65,7 @@ const can01 = engine.addEntity()
 
 //Create audio source component
 AudioSource.create(can01, {
-  audioClipUrl: 'sounds/can01.mp3',
+  audioClipUrl: 'assets/scene/Audio/can01.mp3',
   loop: false,
   playing: false,
   volume: 1
@@ -76,7 +76,7 @@ const can02 = engine.addEntity()
 
 //Create audio source component
 AudioSource.create(can02, {
-  audioClipUrl: 'sounds/can02.mp3',
+  audioClipUrl: 'assets/scene/Audio/can02.mp3',
   loop: false,
   playing: false,
   volume: 1
@@ -87,7 +87,7 @@ const can03 = engine.addEntity()
 
 //Create audio source component
 AudioSource.create(can03, {
-  audioClipUrl: 'sounds/can03.mp3',
+  audioClipUrl: 'assets/scene/Audio/can03.mp3',
   loop: false,
   playing: false,
   volume: 1

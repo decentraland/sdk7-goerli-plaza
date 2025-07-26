@@ -66,7 +66,7 @@ export function createBoxBody(position: Vector3) {
 
   // // Box
   Material.setPbrMaterial(entity, { albedoColor: Color4.Red() })
-  GltfContainer.create(entity, { src: 'models/crate.glb' })
+  GltfContainer.create(entity, { src: 'assets/scene/Models/crate.glb' })
   PointerEvents.create(entity, {
     pointerEvents: [
       {

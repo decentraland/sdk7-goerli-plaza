@@ -17,7 +17,7 @@ export enum RunwayCoord {
 
 //model animation templates
 
-//models/whiteRabbit_Anim.glb - Walk,Heart_With_Hands,Idle,Run,Wave
+//assets/scene/Models/whiteRabbit_Anim.glb - Walk,Heart_With_Hands,Idle,Run,Wave
 
 const catwalckCube = engine.addEntity()
 MeshRenderer.setBox(catwalckCube)

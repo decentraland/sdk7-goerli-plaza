@@ -157,7 +157,7 @@ function GitHubLinkUi() {
       uiBackground={{
         textureMode: 'stretch',
         texture: {
-          src: "images/gh.png"
+          src: "assets/scene/Images/gh.png"
         }
       }}
 

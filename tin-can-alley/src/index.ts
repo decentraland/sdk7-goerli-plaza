@@ -32,16 +32,16 @@ export function main() {
   Transform.create(base)
   // Set the mesh
   GltfContainer.create(base, {
-    src: 'models/baseLight.glb'
+    src: 'assets/scene/Models/baseLight.glb'
   })
 
   const tinCanAlley = engine.addEntity()
   Transform.create(tinCanAlley)
   GltfContainer.create(tinCanAlley, {
-    src: 'models/tinCanAlley.glb'
+    src: 'assets/scene/Models/tinCanAlley.glb'
   })
 
-  const rifle = createRifle('models/rifle.glb', Vector3.create(0.075, -2, 2), Vector3.create(-5, 0, 0))
+  const rifle = createRifle('assets/scene/Models/rifle.glb', Vector3.create(0.075, -2, 2), Vector3.create(-5, 0, 0))
 
   // Setup our world
   const world = new CANNON.World()

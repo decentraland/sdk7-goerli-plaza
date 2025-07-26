@@ -5,7 +5,7 @@ const punch = engine.addEntity()
 
 //Create audio source component
 AudioSource.create(punch, {
-  audioClipUrl: 'sounds/punch.mp3'
+  audioClipUrl: 'assets/scene/Audio/punch.mp3'
 })
 
 // Attach to local player position
@@ -13,5 +13,5 @@ Transform.getOrCreateMutable(punch).parent = engine.PlayerEntity
 
 //Create a function to play punch sound
 export function playpunchSound() {
-  AudioSource.playSound(punch, 'sounds/punch.mp3')
+  AudioSource.playSound(punch, 'assets/scene/Audio/punch.mp3')
 }

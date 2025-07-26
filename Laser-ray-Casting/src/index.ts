@@ -16,7 +16,7 @@ import { setupUi } from './ui'
 
 export function main() {
   const floor = engine.addEntity()
-  GltfContainer.create(floor, { src: 'models/Floor_sciFi_03.glb' })
+  GltfContainer.create(floor, { src: 'assets/scene/Models/Floor_sciFi_03.glb' })
   Transform.create(floor, {
     position: Vector3.create(16, 0, 16),
     scale: Vector3.create(2, 0, 2)
@@ -24,13 +24,13 @@ export function main() {
 
   // laser turret
   const turretBase = engine.addEntity()
-  GltfContainer.create(turretBase, { src: 'models/TurretBase_01.glb' })
+  GltfContainer.create(turretBase, { src: 'assets/scene/Models/TurretBase_01.glb' })
   Transform.create(turretBase, {
     position: Vector3.create(16, 0, 2)
   })
 
   const turretEntity = engine.addEntity()
-  GltfContainer.create(turretEntity, { src: 'models/Turret_01.glb' })
+  GltfContainer.create(turretEntity, { src: 'assets/scene/Models/Turret_01.glb' })
   Transform.create(turretEntity, {
     position: Vector3.create(16, 1, 2),
     rotation: Quaternion.fromEulerDegrees(0, 300, 0)

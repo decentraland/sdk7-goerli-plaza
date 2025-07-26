@@ -24,7 +24,7 @@ export function createDog(position: Vector3): Entity {
   })
 
   GltfContainer.create(dog, {
-    src: 'models/BlockDog.glb',
+    src: 'assets/scene/Models/BlockDog.glb',
     visibleMeshesCollisionMask: ColliderLayer.CL_POINTER,
     invisibleMeshesCollisionMask: undefined
   })

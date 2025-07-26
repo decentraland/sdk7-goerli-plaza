@@ -28,7 +28,7 @@ export function lighningSystem(dt: number) {
         const min = 1
         const random = Math.floor(Math.random() * (max - min + 1)) + min
         GltfContainer.createOrReplace(lightning, {
-          src: 'models/ln' + random + '.gltf'
+          src: 'assets/scene/Models/ln' + random + '.gltf'
         })
 
         lightningTimer = Math.random() * 2

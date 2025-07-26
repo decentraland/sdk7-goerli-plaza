@@ -16,15 +16,15 @@ import * as utils from '@dcl-sdk/utils'
 import { setCurrentFloor, currentFloor } from './elevatorState'
 
 // 3D models
-const arrowsButton = 'models/elevator/arrows.glb'
-const elevatorModel = 'models/elevator/elevator.glb'
-const buttonModels = ['models/elevator/button1.glb', 'models/elevator/button2.glb', 'models/elevator/button3.glb']
+const arrowsButton = 'assets/scene/Models/elevator/arrows.glb'
+const elevatorModel = 'assets/scene/Models/elevator/elevator.glb'
+const buttonModels = ['assets/scene/Models/elevator/button1.glb', 'assets/scene/Models/elevator/button2.glb', 'assets/scene/Models/elevator/button3.glb']
 
 // Sounds
-const callButtonSound = 'sounds/callButton.mp3'
-const buttonSound = 'sounds/button.mp3'
-const elevatorSound = 'sounds/elevatorHum.mp3'
-const elevatorArrivalSound = 'sounds/elevatorPing.mp3'
+const callButtonSound = 'assets/scene/Audio/callButton.mp3'
+const buttonSound = 'assets/scene/Audio/button.mp3'
+const elevatorSound = 'assets/scene/Audio/elevatorHum.mp3'
+const elevatorArrivalSound = 'assets/scene/Audio/elevatorPing.mp3'
 
 // Stops
 const floors = [

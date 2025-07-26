@@ -20,7 +20,7 @@ export function main() {
   Transform.create(base)
   // Set the mesh
   GltfContainer.create(base, {
-    src: 'models/baseDarkWithCollider.glb'
+    src: 'assets/scene/Models/baseDarkWithCollider.glb'
   })
 
   // Punchbag
@@ -30,7 +30,7 @@ export function main() {
     scale: Vector3.create(0.5, 0.5, 0.5)
   })
   GltfContainer.create(punchBag, {
-    src: 'models/dogePunchBag.glb',
+    src: 'assets/scene/Models/dogePunchBag.glb',
     invisibleMeshesCollisionMask: ColliderLayer.CL_PHYSICS,
     visibleMeshesCollisionMask: ColliderLayer.CL_POINTER
   })

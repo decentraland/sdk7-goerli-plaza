@@ -15,7 +15,7 @@ export function main() {
     scale: Vector3.create(2, 1, 2)
   })
   GltfContainer.create(ground, {
-    src: 'models/baseLight.glb'
+    src: 'assets/scene/Models/baseLight.glb'
   })
 
   // Portals
@@ -27,7 +27,7 @@ export function main() {
     position: Vector3.create(16, 6, POSITION_Z)
   })
   GltfContainer.create(greenPortal, {
-    src: 'models/greenPortal.glb'
+    src: 'assets/scene/Models/greenPortal.glb'
   })
   SpawnerComponent.create(greenPortal, {
     enemyShape: ShipShapes.GREEN,
@@ -42,7 +42,7 @@ export function main() {
     position: Vector3.create(27, 6, POSITION_Z)
   })
   GltfContainer.create(bluePortal, {
-    src: 'models/bluePortal.glb'
+    src: 'assets/scene/Models/bluePortal.glb'
   })
   SpawnerComponent.create(bluePortal, {
     enemyShape: ShipShapes.BLUE,
@@ -57,7 +57,7 @@ export function main() {
     position: Vector3.create(6, 6, POSITION_Z)
   })
   GltfContainer.create(redPortal, {
-    src: 'models/redPortal.glb'
+    src: 'assets/scene/Models/redPortal.glb'
   })
   SpawnerComponent.create(redPortal, {
     enemyShape: ShipShapes.RED,

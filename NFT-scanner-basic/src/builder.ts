@@ -13,7 +13,7 @@ import {
 
     // Facade
     const Facade = engine.addEntity()
-    GltfContainer.create(Facade, { src: 'models/facade.glb' })
+    GltfContainer.create(Facade, { src: 'assets/scene/Models/facade.glb' })
     MeshRenderer.create(Facade)
     Transform.create(Facade, {
         position: Vector3.create(8, 0.05, 10),
@@ -21,7 +21,7 @@ import {
 
     // Ground
     const Ground = engine.addEntity()
-    GltfContainer.create(Ground, { src: 'models/baseDarkWithCollider.glb' })
+    GltfContainer.create(Ground, { src: 'assets/scene/Models/baseDarkWithCollider.glb' })
     MeshRenderer.create(Ground)
     Transform.create(Ground, {
 
@@ -29,7 +29,7 @@ import {
 
     // Signpost Golden
     const signpostGolden = engine.addEntity()
-    GltfContainer.create(signpostGolden, { src: 'models/signpost/Signpost_Golden.glb' }) 
+    GltfContainer.create(signpostGolden, { src: 'assets/scene/Models/signpost/Signpost_Golden.glb' }) 
     MeshRenderer.create(signpostGolden)
     Transform.create(signpostGolden, {
         position: Vector3.create(6.374037265777588, 0, 3.6893038749694824),

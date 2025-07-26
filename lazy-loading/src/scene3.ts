@@ -18,7 +18,7 @@ export function createScene3() {
     parent: scene3
   })
   GltfContainer.create(museum, {
-    src: 'models/museum/building.glb'
+    src: 'assets/scene/Models/museum/building.glb'
   })
 
   return scene3

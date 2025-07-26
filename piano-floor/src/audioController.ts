@@ -29,7 +29,7 @@ export const notes = [
 ]
 
 export class AudioController {
-  public static baseSoundUrl = 'sounds/whiteKeys/c4.mp3'
+  public static baseSoundUrl = 'assets/scene/Audio/whiteKeys/c4.mp3'
   public static calculatePitch = (note: string): number => {
     const pitchMap: { [key: string]: number } = {
       c3: 60,
@@ -96,7 +96,7 @@ export class AudioController {
 
   public createAudioEntity(note: string, isBlackKey: boolean): Entity {
     const audioEntity = engine.addEntity()
-    const baseSoundUrl = isBlackKey ? 'sounds/blackKeys/aSharp3.mp3' : 'sounds/whiteKeys/c4.mp3'
+    const baseSoundUrl = isBlackKey ? 'assets/scene/Audio/blackKeys/aSharp3.mp3' : 'assets/scene/Audio/whiteKeys/c4.mp3'
 
     AudioSource.create(audioEntity, {
       audioClipUrl: baseSoundUrl,

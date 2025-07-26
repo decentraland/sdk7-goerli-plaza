@@ -19,7 +19,7 @@ export function createScene2() {
     parent: scene2
   })
   GltfContainer.create(shopBlack, {
-    src: 'models/Shop_Emissive.glb'
+    src: 'assets/scene/Models/Shop_Emissive.glb'
   })
 
   const shopBlack2 = engine.addEntity()
@@ -30,7 +30,7 @@ export function createScene2() {
     parent: scene2
   })
   GltfContainer.create(shopBlack2, {
-    src: 'models/Shop_Emissive.glb'
+    src: 'assets/scene/Models/Shop_Emissive.glb'
   })
 
   const shopBlack3 = engine.addEntity()
@@ -41,7 +41,7 @@ export function createScene2() {
     parent: scene2
   })
   GltfContainer.create(shopBlack3, {
-    src: 'models/Shop_Emissive.glb'
+    src: 'assets/scene/Models/Shop_Emissive.glb'
   })
 
   const shopBlack4 = engine.addEntity()
@@ -52,7 +52,7 @@ export function createScene2() {
     parent: scene2
   })
   GltfContainer.create(shopBlack4, {
-    src: 'models/Shop_Emissive.glb'
+    src: 'assets/scene/Models/Shop_Emissive.glb'
   })
 
   const shopBlack5 = engine.addEntity()
@@ -63,7 +63,7 @@ export function createScene2() {
     parent: scene2
   })
   GltfContainer.create(shopBlack5, {
-    src: 'models/Shop_Emissive.glb'
+    src: 'assets/scene/Models/Shop_Emissive.glb'
   })
 
   const shopBlack6 = engine.addEntity()
@@ -74,7 +74,7 @@ export function createScene2() {
     parent: scene2
   })
   GltfContainer.create(shopBlack6, {
-    src: 'models/Shop_Emissive.glb'
+    src: 'assets/scene/Models/Shop_Emissive.glb'
   })
   createSubScene(shopBlack, 6)
   createSubScene(shopBlack2, 5)

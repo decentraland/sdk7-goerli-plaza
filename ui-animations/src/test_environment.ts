@@ -108,7 +108,7 @@ export function hideAll() {
 export function addEnvironment() {
   let ground = engine.addEntity()
   Transform.create(ground)
-  GltfContainer.create(ground, { src: 'models/ground.glb' })
+  GltfContainer.create(ground, { src: 'assets/scene/Models/ground.glb' })
 
   //MeshCollider.setBox(particleTestObject)
 
@@ -129,7 +129,7 @@ export function addEnvironment() {
         counterBarDemo.increaseNumberBy(2)
       })
     },
-    'models/box.glb'
+    'assets/scene/Models/box.glb'
   )
   createUIBox(
     'Progressbar',
@@ -141,7 +141,7 @@ export function addEnvironment() {
       progressDemo.show()
       progressDemo.incrementProgressBar(0.1)
     },
-    'models/box.glb'
+    'assets/scene/Models/box.glb'
   )
 
   createUIBox(
@@ -154,7 +154,7 @@ export function addEnvironment() {
       counterDemo.show()
       counterDemo.increaseNumberBy(1)
     },
-    'models/box.glb'
+    'assets/scene/Models/box.glb'
   )
 
   createUIBox(
@@ -166,7 +166,7 @@ export function addEnvironment() {
       popupInstructionDemo.show()
       spinRaysDemo.show()
     },
-    'models/box.glb'
+    'assets/scene/Models/box.glb'
   )
   createUIBox(
     'Spinner',
@@ -177,7 +177,7 @@ export function addEnvironment() {
       popupInstructionDemo.show()
       spinnerDemo.show()
     },
-    'models/box.glb'
+    'assets/scene/Models/box.glb'
   )
   createUIBox(
     'Sprite Animation',
@@ -188,7 +188,7 @@ export function addEnvironment() {
       popupInstructionDemo.show()
       animSpriteDemo.show()
     },
-    'models/box.glb'
+    'assets/scene/Models/box.glb'
   )
 
   createUIBox(
@@ -200,7 +200,7 @@ export function addEnvironment() {
       popupInstructionDemo.show()
       cardFlipAnimDemo.show()
     },
-    'models/box.glb'
+    'assets/scene/Models/box.glb'
   )
   createUIBox(
     'Buttons',
@@ -212,7 +212,7 @@ export function addEnvironment() {
       buttonErrorDemo.show()
       buttonSuccessDemo.show()
     },
-    'models/box.glb'
+    'assets/scene/Models/box.glb'
   )
   createUIBox(
     'Pop-up',
@@ -223,6 +223,6 @@ export function addEnvironment() {
       popupInstructionDemo.show()
       popupAnimatorDemo.show()
     },
-    'models/box.glb'
+    'assets/scene/Models/box.glb'
   )
 }

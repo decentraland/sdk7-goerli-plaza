@@ -111,7 +111,7 @@ export class PhotoMural {
             scale: Vector3.create(1, 1, 1)
         })
         GltfContainer.create(billboard, {
-            src: "models/billboard.glb",
+            src: "assets/scene/Models/billboard.glb",
             visibleMeshesCollisionMask: ColliderLayer.CL_POINTER,
             invisibleMeshesCollisionMask: ColliderLayer.CL_PHYSICS,
         })

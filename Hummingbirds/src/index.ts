@@ -18,7 +18,7 @@ export function main() {
     scale: { x: 1.6, y: 1.6, z: 1.6 }
   })
   GltfContainer.create(ground, {
-    src: 'models/Ground.gltf'
+    src: 'assets/scene/Models/Ground.gltf'
   })
 
   const tree = engine.addEntity()
@@ -27,13 +27,13 @@ export function main() {
     scale: { x: 1.6, y: 1.6, z: 1.6 }
   })
   GltfContainer.create(tree, {
-    src: 'models/Tree.gltf',
+    src: 'assets/scene/Models/Tree.gltf',
     visibleMeshesCollisionMask: ColliderLayer.CL_POINTER,
     invisibleMeshesCollisionMask: undefined
   })
 
   AudioSource.create(tree, {
-    audioClipUrl: 'sounds/pickUp.mp3'
+    audioClipUrl: 'assets/scene/Audio/pickUp.mp3'
   })
 
   Animator.create(tree, {
@@ -57,7 +57,7 @@ export function main() {
     function () {
       createHummingBird()
       Animator.playSingleAnimation(tree, 'Tree_Action', true)
-      AudioSource.playSound(tree, 'sounds/pickUp.mp3')
+      AudioSource.playSound(tree, 'assets/scene/Audio/pickUp.mp3')
     }
   )
 

@@ -26,18 +26,18 @@ import { onlyInSceneSystem } from './onlyRenderInScene'
 import { setupUi } from './ui'
 
 export function main() {
-  const card = engine.getEntityOrNullByName('card.glb')
+  const card = engine.getEntityOrNullByName('assets/models/card.glb')
   if (card) {
     utils.perpetualMotions.startRotation(card, Quaternion.fromEulerDegrees(0, 15, 0))
 
     utils.triggers.oneTimeTrigger(card, 1, 1, [{ type: 'box' }], () => {
       const cardTransform = Transform.getMutable(card)
       cardTransform.scale = Vector3.Zero()
-      AudioSource.createOrReplace(card, { audioClipUrl: 'sounds/cardPickup.mp3', playing: true, loop: false })
+      AudioSource.createOrReplace(card, { audioClipUrl: 'assets/scene/Audio/cardPickup.mp3', playing: true, loop: false })
     })
   }
 
-  const gun = engine.getEntityOrNullByName('portalGun.glb')
+  const gun = engine.getEntityOrNullByName('assets/models/portalGun.glb')
   if (gun) {
     spawnGun(gun)
   }

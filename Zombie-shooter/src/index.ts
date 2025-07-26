@@ -51,7 +51,7 @@ export function main() {
         fixWall(wall)
       }
 
-      AudioSource.playSound(lever, 'sounds/pickUp.mp3', true)
+      AudioSource.playSound(lever, 'assets/scene/Audio/pickUp.mp3', true)
     })
   }
 

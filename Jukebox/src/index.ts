@@ -7,7 +7,7 @@ import { setupUi } from './ui'
 export function main() {
   // ground
   const floor = engine.addEntity()
-  GltfContainer.create(floor, { src: 'models/FloorBaseGrass.glb' })
+  GltfContainer.create(floor, { src: 'assets/scene/Models/FloorBaseGrass.glb' })
   Transform.create(floor, {
     position: Vector3.create(8, 0, 8),
     scale: Vector3.create(1.6, 0.1, 1.6)
@@ -20,7 +20,7 @@ export function main() {
 function createJukebox(position: Vector3) {
   // Jukebox
   const jukebox = engine.addEntity()
-  GltfContainer.create(jukebox, { src: 'models/Jukebox.gltf' })
+  GltfContainer.create(jukebox, { src: 'assets/scene/Models/Jukebox.gltf' })
   Transform.create(jukebox, {
     position,
     rotation: Quaternion.fromEulerDegrees(0, 180, 0),

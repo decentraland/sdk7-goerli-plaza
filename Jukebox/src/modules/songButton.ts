@@ -87,7 +87,7 @@ export function createSongButton(parent: Entity, x: number, y: number, song: Son
     parent: buttonWrapper
   })
   GltfContainer.create(button, {
-    src: 'models/Button.glb',
+    src: 'assets/scene/Models/Button.glb',
     visibleMeshesCollisionMask: ColliderLayer.CL_POINTER,
     invisibleMeshesCollisionMask: undefined
   })

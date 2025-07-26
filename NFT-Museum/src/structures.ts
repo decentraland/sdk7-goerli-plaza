@@ -19,7 +19,7 @@ export function createBaseScene() {
     parent: scene
   })
   GltfContainer.create(museum, {
-    src: 'models/museum.glb'
+    src: 'assets/scene/Models/museum.glb'
   })
 
   const museumAnimation = engine.addEntity()
@@ -30,7 +30,7 @@ export function createBaseScene() {
     parent: scene
   })
   GltfContainer.create(museumAnimation, {
-    src: 'models/museumAnimation.glb'
+    src: 'assets/scene/Models/museumAnimation.glb'
   })
   Animator.create(museumAnimation, {
     states: [

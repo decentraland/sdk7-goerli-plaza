@@ -103,5 +103,5 @@ export function readyPlayerOne(parent: Entity, game: Games) {
     parent,
     position: Vector3.create(16, 1, 15)
   })
-  GltfContainer.create(readyPlayerOne, { src: 'models/readyPlayerOne.glb' })
+  GltfContainer.create(readyPlayerOne, { src: 'assets/scene/Models/readyPlayerOne.glb' })
 }

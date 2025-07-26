@@ -4,7 +4,7 @@
   "display": {
     "title": "NFT-scanner-basic",
     "description": "template scene with SDK7",
-    "navmapThumbnail": "images/scene-thumbnail.png",
+    "navmapThumbnail": "assets/scene/Images/scene-thumbnail.png",
     "favicon": "favicon_asset"
   },
   "worldConfiguration": {

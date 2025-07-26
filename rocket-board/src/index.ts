@@ -12,11 +12,11 @@ export function main() {
   Transform.create(base)
   // Set the mesh
   GltfContainer.create(base, {
-    src: 'models/baseLargeCheckered.glb'
+    src: 'assets/scene/Models/baseLargeCheckered.glb'
   })
 
   // Create ring
-  const ring = createRing('models/ring.glb', Vector3.create(40, 12, 40), 2)
+  const ring = createRing('assets/scene/Models/ring.glb', Vector3.create(40, 12, 40), 2)
 
   // Create rocket board
   const rocketBoard = engine.addEntity()
@@ -25,7 +25,7 @@ export function main() {
     scale: Vector3.create(1, 1, 1)
   })
   GltfContainer.create(rocketBoard, {
-    src: 'models/rocketBoard.glb'
+    src: 'assets/scene/Models/rocketBoard.glb'
   })
 
   const rocketFlames = engine.addEntity()
@@ -34,7 +34,7 @@ export function main() {
     parent: rocketBoard
   })
   GltfContainer.create(rocketFlames, {
-    src: 'models/rocketFlames.glb'
+    src: 'assets/scene/Models/rocketFlames.glb'
   })
 
   // Useful vectors

@@ -34,7 +34,7 @@ export module SplatSurface {
   const isDebugging: boolean = false;
 
   /** splat surface model location */
-  const MODEL_SPLAT_SURFACE: string = "models/splat-attack/splat-surface.glb";
+  const MODEL_SPLAT_SURFACE: string = "assets/scene/Models/splat-attack/splat-surface.glb";
   /** */
   var splatVolume: number = 0;
 

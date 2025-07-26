@@ -8,7 +8,7 @@ import { setupUi } from './ui'
 
 export function main() {
   const fire = engine.addEntity()
-  GltfContainer.create(fire, { src: 'models/Fireplace.glb' })
+  GltfContainer.create(fire, { src: 'assets/scene/Models/Fireplace.glb' })
   Transform.create(fire, { position: Vector3.create(8, 0, 8) })
 
   // // Add a smoke source that creates a smoke puff every 0.2 seconds
@@ -18,7 +18,7 @@ export function main() {
   })
 
   const floor = engine.addEntity()
-  GltfContainer.create(floor, { src: 'models/FloorBaseGrass.glb' })
+  GltfContainer.create(floor, { src: 'assets/scene/Models/FloorBaseGrass.glb' })
   Transform.create(floor, {
     position: Vector3.create(8, 0, 8),
     scale: Vector3.create(1.6, 0.1, 1.6)

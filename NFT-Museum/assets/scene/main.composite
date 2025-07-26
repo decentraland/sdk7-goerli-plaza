@@ -316,7 +316,7 @@
           "json": {
             "name": "SDK7 Scene Template",
             "description": "template scene with SDK7",
-            "thumbnail": "images/scene-thumbnail.png",
+            "thumbnail": "assets/scene/Images/scene-thumbnail.png",
             "categories": [],
             "author": "SDK",
             "email": "",

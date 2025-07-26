@@ -7,8 +7,8 @@ export enum TeamModels {
   Santa = 'Santa'
 }
 
-const santaModel = 'models/Santa_FullBody.glb'
-const krampusModel = 'models/Grinch_FullBody.glb'
+const santaModel = 'assets/scene/Models/Santa_FullBody.glb'
+const krampusModel = 'assets/scene/Models/Grinch_FullBody.glb'
 
 export let CURRENT_TEAM: TeamModels = TeamModels.Santa
 

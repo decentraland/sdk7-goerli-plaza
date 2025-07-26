@@ -15,7 +15,7 @@ export class LeaderBoard {
   constructor(transform: TransformTypeWithOptionals, size: number) {
     const smallStoneWall = engine.addEntity()
     GltfContainer.create(smallStoneWall, {
-      src: 'models/FenceStoneTallSmall_01/FenceStoneTallSmall_01.glb'
+      src: 'assets/scene/Models/FenceStoneTallSmall_01/FenceStoneTallSmall_01.glb'
     })
     Transform.create(smallStoneWall, transform)
 

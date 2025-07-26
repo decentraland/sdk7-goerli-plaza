@@ -13,9 +13,9 @@ export module ScoreObject {
 
   /** score model locations */
   const MODEL_SCORE_OBJECTS: string[] = [
-    'models/shooting-range/score-10.glb',
-    'models/shooting-range/score-25.glb',
-    'models/shooting-range/score-50.glb'
+    'assets/scene/Models/shooting-range/score-10.glb',
+    'assets/scene/Models/shooting-range/score-25.glb',
+    'assets/scene/Models/shooting-range/score-50.glb'
   ]
 
   /** defines all possible types of score objects */

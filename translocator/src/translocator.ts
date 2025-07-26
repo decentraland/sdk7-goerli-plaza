@@ -11,7 +11,7 @@ export class Translocator {
   constructor(transform: TransformType) {
     Transform.create(this.entity, transform)
     GltfContainer.create(this.entity, {
-      src: 'models/translocator.glb'
+      src: 'assets/scene/Models/translocator.glb'
     })
 
     // Glow setup
@@ -19,14 +19,14 @@ export class Translocator {
       parent: this.entity
     })
     GltfContainer.create(this.blueGlow, {
-      src: 'models/blueGlow.glb'
+      src: 'assets/scene/Models/blueGlow.glb'
     })
 
     Transform.create(this.orangeGlow, {
       parent: this.entity
     })
     GltfContainer.create(this.orangeGlow, {
-      src: 'models/orangeGlow.glb'
+      src: 'assets/scene/Models/orangeGlow.glb'
     })
 
     OnlyInScene.create(this.entity)
