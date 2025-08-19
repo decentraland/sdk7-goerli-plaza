@@ -8,7 +8,7 @@
   "devDependencies": {
     "@dcl-sdk/utils": "latest",
     "@dcl/asset-packs": "latest",
-    "@dcl/js-runtime": "7.8.21",
+    "@dcl/js-runtime": "latest",
     "@dcl/sdk": "latest",
     "dcl-crypto-toolkit": "latest",
     "dcl-ui-toolkit": "latest"

@@ -8,7 +8,7 @@
     "show-manager": "latest"
   },
   "devDependencies": {
-    "@dcl/js-runtime": "7.8.21",
+    "@dcl/js-runtime": "latest",
     "@dcl/sdk": "latest"
   },
   "scripts": {

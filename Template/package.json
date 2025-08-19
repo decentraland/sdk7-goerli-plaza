@@ -3,7 +3,7 @@
   "description": "SDK7 Template scene",
   "version": "1.0.0",
   "dependencies": {
-    "@dcl/js-runtime": "7.8.21",
+    "@dcl/js-runtime": "latest",
     "@dcl/sdk": "latest"
   },
   "engines": {
