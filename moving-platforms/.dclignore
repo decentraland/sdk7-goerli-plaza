@@ -11,4 +11,11 @@ node_modules
 *.tsx
 Dockerfile
 dist
-screenshots
+README.md
+*.blend
+*.fbx
+*.zip
+*.rar
+cursor.config
+cursorignore
+.github
