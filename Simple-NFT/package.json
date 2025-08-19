@@ -3,7 +3,7 @@
   "description": "Simple NFT",
   "version": "1.0.0",
   "devDependencies": {
-    "@dcl/js-runtime": "latest",
+    "@dcl/js-runtime": "7.8.21",
     "@dcl/sdk": "latest"
   },
   "scripts": {

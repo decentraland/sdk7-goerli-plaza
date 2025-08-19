@@ -14,10 +14,11 @@ export function createCard(position: Vector3, gltfSrc: string) {
 
   Transform.create(entity, { position })
   GltfContainer.create(entity, { src: gltfSrc })
+  AudioSource.create(entity)
 
   utils.triggers.oneTimeTrigger(entity, 1, 1, [{ type: 'box', position: Vector3.create(0, 0, 0) }], () => {
     Transform.getMutable(entity).scale = Vector3.Zero()
-    AudioSource.getMutable(cardPickupSound).playing = true
+    AudioSource.playSound(cardPickupSound, 'assets/scene/Audio/cardPickup.mp3', true)
     engine.removeEntity(entity)
   })
 }

@@ -9,7 +9,7 @@
     "@dcl/ecs-scene-utils": "latest"
   },
   "devDependencies": {
-    "@dcl/js-runtime": "latest",
+    "@dcl/js-runtime": "7.8.21",
     "@dcl/sdk": "latest"
   },
   "engines": {

@@ -13,7 +13,7 @@ var SCANNING: boolean = false
 
 export function main() {
   // fetch door
-  const door = engine.getEntityOrNullByName('assets/models/Door_Fantasy.glb')
+  const door = engine.getEntityOrNullByName('Door_Fantasy.glb')
   if (door) {
     DoorState.create(door)
     Animator.create(door, {
@@ -24,7 +24,7 @@ export function main() {
     })
   }
 
-  const scanner = engine.getEntityOrNullByName('assets/models/scanner/Wearable-Reader.glb')
+  const scanner = engine.getEntityOrNullByName('Wearable-Reader.glb')
   if (scanner && door) {
     Animator.create(scanner, {
       states: [

@@ -37,7 +37,7 @@ export function main() {
     triggerSceneEmote({ src: 'assets/scene/Models/Snowball_Throw_emote.glb', loop: false })
   })
 
-  const snowPile = engine.getEntityOrNullByName('assets/scene/Models/snowPile.glb')
+  const snowPile = engine.getEntityOrNullByName('snowPile.glb')
 
   if (snowPile) {
     GltfContainer.getMutable(snowPile).visibleMeshesCollisionMask = 2
@@ -86,7 +86,7 @@ engine.addSystem(() => {
         Transform.getMutable(entity).parent = undefined
         const start = Transform.get(engine.PlayerEntity).position
         //const direction = Transform.get(engine.PlayerEntity).rotation
-        const elf = engine.getEntityOrNullByName('assets/scene/Models/ElfGrumpy.glb')
+        const elf = engine.getEntityOrNullByName('ElfGrumpy.glb')
 
         if (elf) {
           const end = Vector3.create(Transform.get(elf).position.x, 1, Transform.get(elf).position.z)

@@ -156,7 +156,7 @@ export function confirmationUI(thumbnail: string, wearableName: string) {
 
   customPrompt.show()
 
-  utils.playSound('sounds/star-collect.mp3', false, Transform.get(engine.PlayerEntity).position)
+  utils.playSound('assets/scene/Audio/star-collect.mp3', false, Transform.get(engine.PlayerEntity).position)
 }
 
 
