@@ -6,10 +6,10 @@ import { setupUi } from './ui'
 export function main() {
   // Adding base scene models
   const base = engine.addEntity()
-  GltfContainer.create(base, { src: 'models/baseLight.glb' })
+  GltfContainer.create(base, { src: 'assets/scene/Models/baseLight.glb' })
 
   const platform = engine.addEntity()
-  GltfContainer.create(platform, { src: 'models/platform.glb' })
+  GltfContainer.create(platform, { src: 'assets/scene/Models/platform.glb' })
   Transform.create(platform)
 
   // Contains the positions for each coin
@@ -35,7 +35,7 @@ export function main() {
 
   // Setup the coins
   for (const coinPosition of coinPositions) {
-    createCoin('models/coin.glb', coinPosition, Vector3.create(1.5, 3, 1.5), Vector3.create(0, 1, 0))
+    createCoin('assets/scene/Models/coin.glb', coinPosition, Vector3.create(1.5, 3, 1.5), Vector3.create(0, 1, 0))
   }
 
   // UI with GitHub link

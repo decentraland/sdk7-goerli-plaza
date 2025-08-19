@@ -24,9 +24,9 @@ export enum SpawnerShape {
 
 // Enemy shapes
 export enum ShipShapes {
-  BLUE = 'models/blueSpaceship.glb',
-  RED = 'models/redSpaceship.glb',
-  GREEN = 'models/greenSpaceship.glb'
+  BLUE = 'assets/scene/Models/blueSpaceship.glb',
+  RED = 'assets/scene/Models/redSpaceship.glb',
+  GREEN = 'assets/scene/Models/greenSpaceship.glb'
 }
 
 const SpawnerComponentType = {

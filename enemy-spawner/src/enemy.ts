@@ -60,10 +60,10 @@ export function destroyEnemy(entity: Entity) {
   MoveTransformComponent.deleteFrom(entity)
   EnemyShip.deleteFrom(entity)
   GltfContainer.createOrReplace(entity, {
-    src: 'models/glowingSpaceship.glb'
+    src: 'assets/scene/Models/glowingSpaceship.glb'
   })
   AudioSource.create(entity, {
-    audioClipUrl: 'sounds/explosion.mp3',
+    audioClipUrl: 'assets/scene/Audio/explosion.mp3',
     playing: true,
     volume: 2
   })

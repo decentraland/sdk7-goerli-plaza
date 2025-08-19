@@ -8,7 +8,7 @@ import * as utils from '@dcl-sdk/utils'
  */
 const coinPickupSound = engine.addEntity()
 Transform.create(coinPickupSound)
-AudioSource.create(coinPickupSound, { audioClipUrl: 'sounds/coinPickup.mp3' })
+AudioSource.create(coinPickupSound, { audioClipUrl: 'assets/scene/Audio/coinPickup.mp3' })
 
 export function createCoin(model: string, position: Vector3, size: Vector3, centerOffset: Vector3): Entity {
   const entity = engine.addEntity()
@@ -22,7 +22,7 @@ export function createCoin(model: string, position: Vector3, size: Vector3, cent
     [{ type: 'box' }],
     () => {
       Transform.getMutable(coinPickupSound).position = Transform.get(engine.PlayerEntity).position
-      AudioSource.playSound(coinPickupSound, 'sounds/coinPickup.mp3')
+      AudioSource.playSound(coinPickupSound, 'assets/scene/Audio/coinPickup.mp3')
       engine.removeEntity(entity)
     },
     Color3.Yellow()

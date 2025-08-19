@@ -26,7 +26,7 @@ export function main() {
 
   // Base
   const base = engine.addEntity()
-  GltfContainer.create(base, { src: 'models/baseLight.glb' })
+  GltfContainer.create(base, { src: 'assets/scene/Models/baseLight.glb' })
   Transform.create(base, { scale: Vector3.create(2, 1, 1) })
 
   // Create Arcades

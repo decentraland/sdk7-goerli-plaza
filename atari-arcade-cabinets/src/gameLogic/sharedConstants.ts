@@ -10,13 +10,13 @@ export enum Games {
 }
 
 export const CABINETS: Record<Games, string> = {
-  [Games.G_ATARI]: 'models/arcadeCabinetAtari.glb',
-  [Games.G_DECENTRALAND]: 'models/arcadeCabinetDecentraland.glb',
-  [Games.G_ETHEREUM]: 'models/arcadeCabinetEthereum.glb',
-  [Games.G_BITCOIN]: 'models/arcadeCabinetBitcoin.glb'
+  [Games.G_ATARI]: 'assets/scene/Models/arcadeCabinetAtari.glb',
+  [Games.G_DECENTRALAND]: 'assets/scene/Models/arcadeCabinetDecentraland.glb',
+  [Games.G_ETHEREUM]: 'assets/scene/Models/arcadeCabinetEthereum.glb',
+  [Games.G_BITCOIN]: 'assets/scene/Models/arcadeCabinetBitcoin.glb'
 }
 
 export enum Sounds {
-  S_HIT = 'sounds/hit.mp3',
-  S_MISS = 'sounds/miss.mp3'
+  S_HIT = 'assets/scene/Audio/hit.mp3',
+  S_MISS = 'assets/scene/Audio/miss.mp3'
 }

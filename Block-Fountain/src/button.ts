@@ -19,64 +19,19 @@ export class Button {
   private buttonClickComponent: ButtonClickComponent
   public buttonEntity: Entity
 
-  constructor(
-    model: string,
-    position: Vector3,
-    rotation: Vector3,
-    scale: Vector3,
-    audioClipUrl: string,
-    animationName: string,
-    parent?: Entity
-  ) {
-    // Create new button entity
-    const button = engine.addEntity()
+  constructor(entity: Entity) {
+    // Use the provided entity
+    this.buttonEntity = entity
 
-    // Calculate button's rotation in Euler degrees
-    const eulerRotationButton = Quaternion.fromEulerDegrees(rotation.x, rotation.y, rotation.z)
-
-    // Add 3D model to button
-    GltfContainer.create(button, {
-      src: model
-    })
-
-    // Add transform to button
-    Transform.createOrReplace(button, {
-      position: position,
-      rotation: eulerRotationButton,
-      scale: scale
-    })
-
-    // If there's a parent entity, attach the button to it
-    if (parent) {
-      Transform.createOrReplace(button, {
-        position: position,
-        rotation: eulerRotationButton,
-        scale: scale,
-        parent: parent
-      })
+    // Get the animator component to find the animation name
+    const animator = Animator.get(this.buttonEntity)
+    if (animator && animator.states.length > 0) {
+      const animationName = animator.states[0].clip
+      this.buttonClickComponent = new ButtonClickComponent(animationName, 'assets/scene/sounds/click.mp3')
+    } else {
+      // Fallback to default animation name
+      this.buttonClickComponent = new ButtonClickComponent('ButtonA_Action', 'assets/scene/sounds/click.mp3')
     }
-
-    // Add audio source to button
-    AudioSource.create(button, {
-      audioClipUrl: 'sounds/click.mp3',
-      loop: false,
-      playing: false
-    })
-
-    // Add animator to button
-    Animator.create(button, {
-      states: [
-        {
-          clip: animationName,
-          playing: false,
-          loop: false
-        }
-      ]
-    })
-
-    // Initialize the button's properties
-    this.buttonEntity = button
-    this.buttonClickComponent = new ButtonClickComponent(animationName, audioClipUrl)
   }
 
   public press(): void {
@@ -131,7 +86,7 @@ export class Switch {
 
     // Create audio source for switch
     this.audioSource = AudioSource.create(this.switchEntity, {
-      audioClipUrl: 'sounds/click.mp3',
+      audioClipUrl: 'assets/scene/sounds/click.mp3',
       loop: false,
       playing: false
     })

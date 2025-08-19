@@ -18,7 +18,7 @@ export function addPlatforms() {
     rotation: Quaternion.create(0, 0, 0, 1)
   })
   GltfContainer.create(bermudaGrass, {
-    src: 'models/FloorBaseGrass_01.glb'
+    src: 'assets/scene/Models/FloorBaseGrass_01.glb'
   })
 
   const dirtGrass = engine.addEntity()
@@ -29,7 +29,7 @@ export function addPlatforms() {
     rotation: Quaternion.create(0, 0, 0, 1)
   })
   GltfContainer.create(dirtGrass, {
-    src: 'models/dirt_grass.glb'
+    src: 'assets/scene/Models/dirt_grass.glb'
   })
 
   const dirtGrass3 = engine.addEntity()
@@ -40,7 +40,7 @@ export function addPlatforms() {
     rotation: Quaternion.create(0, 0, 0, 1)
   })
   GltfContainer.create(dirtGrass3, {
-    src: 'models/dirt_grass.glb'
+    src: 'assets/scene/Models/dirt_grass.glb'
   })
 
   const dirtGrass4 = engine.addEntity()
@@ -51,7 +51,7 @@ export function addPlatforms() {
     rotation: Quaternion.create(0, 0, 0, 1)
   })
   GltfContainer.create(dirtGrass4, {
-    src: 'models/dirt_grass.glb'
+    src: 'assets/scene/Models/dirt_grass.glb'
   })
 
   const dirtGrass5 = engine.addEntity()
@@ -62,7 +62,7 @@ export function addPlatforms() {
     rotation: Quaternion.create(0, 0, 0, 1)
   })
   GltfContainer.create(dirtGrass5, {
-    src: 'models/dirt_grass.glb'
+    src: 'assets/scene/Models/dirt_grass.glb'
   })
 
   const dirtGrass6 = engine.addEntity()
@@ -73,7 +73,7 @@ export function addPlatforms() {
     rotation: Quaternion.create(0, 0, 0, 1)
   })
   GltfContainer.create(dirtGrass6, {
-    src: 'models/dirt_grass.glb'
+    src: 'assets/scene/Models/dirt_grass.glb'
   })
 
   const dirtGrass7 = engine.addEntity()
@@ -84,7 +84,7 @@ export function addPlatforms() {
     rotation: Quaternion.create(0, 0, 0, 1)
   })
   GltfContainer.create(dirtGrass7, {
-    src: 'models/dirt_grass.glb'
+    src: 'assets/scene/Models/dirt_grass.glb'
   })
 
   const solidYellow = engine.addEntity()
@@ -95,6 +95,6 @@ export function addPlatforms() {
     rotation: Quaternion.create(0, 0, 0, 1)
   })
   GltfContainer.create(solidYellow, {
-    src: 'models/solid_yellow.glb'
+    src: 'assets/scene/Models/solid_yellow.glb'
   })
 }

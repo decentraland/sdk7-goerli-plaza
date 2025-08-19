@@ -40,7 +40,7 @@ export module PlayerShootingArea {
   const isDebugging: boolean = false
 
   //audio paths
-  const AUDIO_SHOT_SFX: string[] = ['audio/shooting-range/shot-hit.mp3', 'audio/shooting-range/shot-missed.mp3']
+  const AUDIO_SHOT_SFX: string[] = ['assets/scene/Audio/shooting-range/shot-hit.mp3', 'assets/scene/Audio/shooting-range/shot-missed.mp3']
 
   //shooting area size
   const SHOOTING_AREA_SCALE = { x: 12, y: 1, z: 4 }

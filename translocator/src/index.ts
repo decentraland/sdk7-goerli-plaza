@@ -22,12 +22,12 @@ export function main() {
   // Create base scene
   const base = engine.addEntity()
   GltfContainer.create(base, {
-    src: 'models/baseLight.glb'
+    src: 'assets/scene/Models/baseLight.glb'
   })
   Transform.create(base, { scale: Vector3.create(3, 1, 3) })
 
   // Teleport effect (not the actual translocator)
-  const teleport = new Teleport('models/teleport.glb')
+  const teleport = new Teleport('assets/scene/Models/teleport.glb')
 
   // Translocator and setting
   const X_OFFSET = 0
@@ -45,9 +45,9 @@ export function main() {
   })
 
   // Sounds
-  const teleportSound = new Sound('sounds/teleport.mp3')
-  const shootSound = new Sound('sounds/shoot.mp3')
-  const recallSound = new Sound('sounds/recall.mp3')
+  const teleportSound = new Sound('assets/scene/Audio/teleport.mp3')
+  const shootSound = new Sound('assets/scene/Audio/shoot.mp3')
+  const recallSound = new Sound('assets/scene/Audio/recall.mp3')
 
   // Setup our CANNON world
   const world = new CANNON.World()

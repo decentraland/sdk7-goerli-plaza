@@ -7,90 +7,79 @@ export class Console {
   private consoleEntity: Entity
 
   constructor(
-    position: Vector3,
-    rotation: Vector3,
-    scale: Vector3,
-    parent: Entity,
-    model: string,
+    entity: Entity,
     targetRing: number,
-    button1Model: string,
-    button1Anim: string,
-    button2Model: string,
-    button2Anim: string,
-    button3Model: string,
-    button3Anim: string,
+    button1Name: string,
+    button2Name: string,
+    button3Name: string,
     messagebus: MessageBus
   ) {
-    // Create a new entity
-    this.consoleEntity = engine.addEntity()
+    // Use the provided entity
+    this.consoleEntity = entity
 
-    // Create a quaternion rotation from Euler angles
-    const eulerRotation = Quaternion.fromEulerDegrees(rotation.x, rotation.y, rotation.z)
+    // Get button entities by name
+    const button1Entity = engine.getEntityOrNullByName(button1Name)
+    const button2Entity = engine.getEntityOrNullByName(button2Name)
+    const button3Entity = engine.getEntityOrNullByName(button3Name)
 
-    // Set the entity's transform and parent
-    Transform.create(this.consoleEntity, {
-      position: position,
-      rotation: eulerRotation,
-      scale: scale,
-      parent: parent
-    })
-
-    // Add a 3D model to the entity
-    GltfContainer.create(this.consoleEntity, {
-      src: model
-    })
-
-    const audioClipUrl = 'sounds/click.mp3'
-
-    // Create three button instances
-    const button1 = new Button(button1Model, position, rotation, scale, audioClipUrl, button1Anim, parent)
-    const button2 = new Button(button2Model, position, rotation, scale, audioClipUrl, button2Anim, parent)
-    const button3 = new Button(button3Model, position, rotation, scale, audioClipUrl, button3Anim, parent)
-
-    // Set up pointer events for each button instance
-    pointerEventsSystem.onPointerDown(
-      {
-        entity: button1.buttonEntity,
-        opts: {
-          button: InputAction.IA_POINTER,
-          hoverText: 'Click'
+    if (button1Entity) {
+      // Set up pointer events for button 1
+      pointerEventsSystem.onPointerDown(
+        {
+          entity: button1Entity,
+          opts: {
+            button: InputAction.IA_POINTER,
+            hoverText: 'Click'
+          }
+        },
+        function () {
+          console.log('clicked entity')
+          // Play button animation and sound
+          const button1 = new Button(button1Entity)
+          button1.press()
+          messagebus.emit('fountainAnim', { ring: targetRing, anim: 1 })
         }
-      },
-      function () {
-        console.log('clicked entity')
-        button1.press()
-        messagebus.emit('fountainAnim', { ring: targetRing, anim: 1 })
-      }
-    )
+      )
+    }
 
-    pointerEventsSystem.onPointerDown(
-      {
-        entity: button2.buttonEntity,
-        opts: {
-          button: InputAction.IA_POINTER,
-          hoverText: 'Click'
+    if (button2Entity) {
+      // Set up pointer events for button 2
+      pointerEventsSystem.onPointerDown(
+        {
+          entity: button2Entity,
+          opts: {
+            button: InputAction.IA_POINTER,
+            hoverText: 'Click'
+          }
+        },
+        function () {
+          console.log('clicked entity')
+          // Play button animation and sound
+          const button2 = new Button(button2Entity)
+          button2.press()
+          messagebus.emit('fountainAnim', { ring: targetRing, anim: 2 })
         }
-      },
-      function () {
-        console.log('clicked entity')
-        button2.press()
-        messagebus.emit('fountainAnim', { ring: targetRing, anim: 2 })
-      }
-    )
+      )
+    }
 
-    pointerEventsSystem.onPointerDown(
-      {
-        entity: button3.buttonEntity,
-        opts: {
-          button: InputAction.IA_POINTER,
-          hoverText: 'Click'
+    if (button3Entity) {
+      // Set up pointer events for button 3
+      pointerEventsSystem.onPointerDown(
+        {
+          entity: button3Entity,
+          opts: {
+            button: InputAction.IA_POINTER,
+            hoverText: 'Click'
+          }
+        },
+        function () {
+          console.log('clicked entity')
+          // Play button animation and sound
+          const button3 = new Button(button3Entity)
+          button3.press()
+          messagebus.emit('fountainAnim', { ring: targetRing, anim: 3 })
         }
-      },
-      function () {
-        console.log('clicked entity')
-        button3.press()
-        messagebus.emit('fountainAnim', { ring: targetRing, anim: 3 })
-      }
-    )
+      )
+    }
   }
 }

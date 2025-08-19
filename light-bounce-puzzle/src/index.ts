@@ -25,12 +25,12 @@ import { OnlyInScene, isInScene, onlyInSceneSystem } from './onlyRenderInScene'
 import { setupUi } from './ui'
 
 // Sounds
-const firstNoteSound = new Sound('sounds/firstNote.mp3', false)
-const secondNoteSound = new Sound('sounds/secondNote.mp3', false)
-const thirdNoteSound = new Sound('sounds/thirdNote.mp3', false)
-const forthNoteSound = new Sound('sounds/forthNote.mp3', false)
-const lightningOrbSound = new Sound('sounds/lightningOrb.mp3', false)
-const victorySound = new Sound('sounds/complete.mp3', false)
+const firstNoteSound = new Sound('assets/scene/Audio/firstNote.mp3', false)
+const secondNoteSound = new Sound('assets/scene/Audio/secondNote.mp3', false)
+const thirdNoteSound = new Sound('assets/scene/Audio/thirdNote.mp3', false)
+const forthNoteSound = new Sound('assets/scene/Audio/forthNote.mp3', false)
+const lightningOrbSound = new Sound('assets/scene/Audio/lightningOrb.mp3', false)
+const victorySound = new Sound('assets/scene/Audio/complete.mp3', false)
 
 export function main() {
   engine.addSystem(onlyInSceneSystem)
@@ -55,7 +55,7 @@ export function main() {
     // Lightning orb
     const lightningOrb = engine.addEntity()
     GltfContainer.create(lightningOrb, {
-      src: 'models/lightningOrb.glb'
+      src: 'assets/scene/Models/lightningOrb.glb'
     })
     Transform.create(lightningOrb, {
       parent: engine.CameraEntity,
@@ -66,7 +66,7 @@ export function main() {
     // Base
     const base = engine.addEntity()
     GltfContainer.create(base, {
-      src: 'models/baseCheckered.glb',
+      src: 'assets/scene/Models/baseCheckered.glb',
       invisibleMeshesCollisionMask: ColliderLayer.CL_NONE
     })
   }, 2000)
@@ -76,32 +76,32 @@ export function main() {
 
   //floatingWindRock
   new FloatingRock({
-    modelPath: 'models/floatingWindRock.glb',
-    glowPath: 'models/floatingWindRockGlow.glb',
+    modelPath: 'assets/scene/Models/floatingWindRock.glb',
+    glowPath: 'assets/scene/Models/floatingWindRockGlow.glb',
     position: Vector3.create(12, 2.5, 8),
     rotation: Quaternion.fromEulerDegrees(0, -90, 0)
   })
 
   //floatingFireRock
   new FloatingRock({
-    modelPath: 'models/floatingFireRock.glb',
-    glowPath: 'models/floatingFireRockGlow.glb',
+    modelPath: 'assets/scene/Models/floatingFireRock.glb',
+    glowPath: 'assets/scene/Models/floatingFireRockGlow.glb',
     position: Vector3.create(8, 3, 12),
     rotation: Quaternion.fromEulerDegrees(0, 180, 0)
   })
 
   //floatingWaterRock
   new FloatingRock({
-    modelPath: 'models/floatingWaterRock.glb',
-    glowPath: 'models/floatingWaterRockGlow.glb',
+    modelPath: 'assets/scene/Models/floatingWaterRock.glb',
+    glowPath: 'assets/scene/Models/floatingWaterRockGlow.glb',
     position: Vector3.create(4, 3.5, 8),
     rotation: Quaternion.fromEulerDegrees(0, 90, 0)
   })
 
   //floatingEarthRock
   new FloatingRock({
-    modelPath: 'models/floatingEarthRock.glb',
-    glowPath: 'models/floatingEarthRockGlow.glb',
+    modelPath: 'assets/scene/Models/floatingEarthRock.glb',
+    glowPath: 'assets/scene/Models/floatingEarthRockGlow.glb',
     position: Vector3.create(8, 4, 4),
     rotation: Quaternion.fromEulerDegrees(0, 0, 0)
   })
@@ -110,7 +110,7 @@ export function main() {
   // Ray
   const ray = engine.addEntity()
   GltfContainer.create(ray, {
-    src: 'models/ray.glb'
+    src: 'assets/scene/Models/ray.glb'
   })
   Transform.create(ray, {
     position: Vector3.create(8, 1.25, 8),
@@ -220,7 +220,7 @@ export function main() {
 // Recursive function for reflecting a ray every time it hits a mirror
 function reflectRay(hitPoint: Vector3, reflectedVector: Vector3, reflectCount: number) {
   // Reflected ray
-  const reflectedRay = new ReflectedRay('models/ray.glb')
+  const reflectedRay = new ReflectedRay('assets/scene/Models/ray.glb')
   if (reflectedRay.reflectedRayEntity === undefined || reflectedRay.reflectedRayEntity === null) return
 
   const reflectedRayTransform = Transform.getMutable(reflectedRay.reflectedRayEntity)

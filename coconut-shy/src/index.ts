@@ -35,13 +35,13 @@ const base = engine.addEntity()
 Transform.create(base)
 // Set the mesh
 GltfContainer.create(base, {
-  src: 'models/baseLight.glb'
+  src: 'assets/scene/Models/baseLight.glb'
 })
 
 const coconutShy = engine.addEntity()
 Transform.create(coconutShy)
 GltfContainer.create(coconutShy, {
-  src: 'models/coconutShy.glb'
+  src: 'assets/scene/Models/coconutShy.glb'
 })
 
 // Setup our world

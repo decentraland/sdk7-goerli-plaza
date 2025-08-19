@@ -12,7 +12,7 @@ export function createCoconut(position: Vector3, cannonMaterial: CANNON.Material
     position: position
   })
   GltfContainer.create(coconut, {
-    src: 'models/coconut.glb',
+    src: 'assets/scene/Models/coconut.glb',
     invisibleMeshesCollisionMask: ColliderLayer.CL_PHYSICS,
     visibleMeshesCollisionMask: ColliderLayer.CL_POINTER
   })

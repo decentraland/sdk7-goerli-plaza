@@ -16,13 +16,13 @@ export class Statue {
     this.symbol = engine.addEntity()
     this.symbolGlow = engine.addEntity()
 
-    GltfContainer.create(this.entity, { src: 'models/statue.glb' })
+    GltfContainer.create(this.entity, { src: 'assets/scene/Models/statue.glb' })
     Transform.create(this.entity, { position: position })
 
-    GltfContainer.create(this.symbol, { src: 'models/symbol.glb' })
+    GltfContainer.create(this.symbol, { src: 'assets/scene/Models/symbol.glb' })
     Transform.create(this.symbol, { parent: this.entity })
 
-    GltfContainer.create(this.symbolGlow, { src: 'models/symbolGlow.glb' })
+    GltfContainer.create(this.symbolGlow, { src: 'assets/scene/Models/symbolGlow.glb' })
     Transform.create(this.symbolGlow, { parent: this.entity, scale: Vector3.create(0, 0, 0) })
 
     PointerEvents.create(this.entity, {

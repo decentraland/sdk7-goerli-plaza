@@ -162,7 +162,7 @@ export class DiscoManager {
             scale: Vector3.create(2, 2, 2)
         })
         GltfContainer.create(this.discoBall, {
-            src: "models/discoBall.glb"
+            src: "assets/scene/Models/discoBall.glb"
         })
 
         Tween.create(this.discoBall, {

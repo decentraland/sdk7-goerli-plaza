@@ -34,7 +34,7 @@ export function main() {
   })
 
   GltfContainer.create(dispenser, {
-    src: 'models/dispenser_DCLMF23.glb',
+    src: 'assets/scene/Models/dispenser_DCLMF23.glb',
     invisibleMeshesCollisionMask: ColliderLayer.CL_POINTER
   })
 
@@ -65,7 +65,7 @@ export function main() {
   })
 
   GltfContainer.create(wearablePlaceholder, {
-    src: 'models/wearable/MANA_Eyewear.glb',
+    src: 'assets/scene/Models/wearable/MANA_Eyewear.glb',
     visibleMeshesCollisionMask: undefined,
     invisibleMeshesCollisionMask: undefined
   })
@@ -86,7 +86,7 @@ export function main() {
 
   let floor = engine.addEntity()
 
-  GltfContainer.create(floor, { src: 'models/baseLight.glb' })
+  GltfContainer.create(floor, { src: 'assets/scene/Models/baseLight.glb' })
 }
 
 export function spinInPlace(entity: Entity, duration: number) {

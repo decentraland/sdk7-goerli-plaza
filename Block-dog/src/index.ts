@@ -15,7 +15,7 @@ export function main() {
   })
 
   GltfContainer.create(garden, {
-    src: 'models/garden.glb'
+    src: 'assets/scene/Models/garden.glb'
   })
 
   const bowl = engine.addEntity()
@@ -25,7 +25,7 @@ export function main() {
   })
 
   GltfContainer.create(bowl, {
-    src: 'models/BlockDogBowl.gltf',
+    src: 'assets/scene/Models/BlockDogBowl.gltf',
     visibleMeshesCollisionMask: ColliderLayer.CL_POINTER,
     invisibleMeshesCollisionMask: undefined
   })

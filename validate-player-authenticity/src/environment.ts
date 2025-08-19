@@ -23,7 +23,7 @@ export class Scene {
 
     const floor = engine.addEntity()
     GltfContainer.create(floor, {
-      src: 'models/FloorFantasyRocks_03.glb'
+      src: 'assets/scene/Models/FloorFantasyRocks_03.glb'
     })
     MeshRenderer.setBox(floor)
     MeshCollider.setBox(floor, ColliderLayer.CL_POINTER)
@@ -34,7 +34,7 @@ export class Scene {
 
     const swampVineTreeLamp = engine.addEntity()
     GltfContainer.create(swampVineTreeLamp, {
-      src: 'models/Tree_Lamp_01.glb'
+      src: 'assets/scene/Models/Tree_Lamp_01.glb'
     })
     Transform.create(swampVineTreeLamp, {
       position: Vector3.create(2.5, 0, 12.5),
@@ -43,7 +43,7 @@ export class Scene {
 
     const curlyMagicBeanSprout = engine.addEntity()
     GltfContainer.create(curlyMagicBeanSprout, {
-      src: 'models/Vegetation_05.glb'
+      src: 'assets/scene/Models/Vegetation_05.glb'
     })
     Transform.create(curlyMagicBeanSprout, {
       position: Vector3.create(2.5, 0, 2),
@@ -52,7 +52,7 @@ export class Scene {
 
     this.theFountainOfBrokenDreams = engine.addEntity()
     GltfContainer.create(this.theFountainOfBrokenDreams, {
-      src: 'models/Fountain_02.glb'
+      src: 'assets/scene/Models/Fountain_02.glb'
     })
     Transform.create(this.theFountainOfBrokenDreams, {
       position: Vector3.create(8, 0, 7.5),
@@ -62,7 +62,7 @@ export class Scene {
 
     this.grimReaperStatue = engine.addEntity()
     GltfContainer.create(this.grimReaperStatue, {
-      src: 'models/Statue_01.glb'
+      src: 'assets/scene/Models/Statue_01.glb'
     })
     Transform.create(this.grimReaperStatue, {
       position: Vector3.create(11.5, 0, 4.5),
@@ -81,7 +81,7 @@ export class Scene {
 
     this.forestMaidenStatue = engine.addEntity()
     GltfContainer.create(this.forestMaidenStatue, {
-      src: 'models/GirlForestStatue_01.glb'
+      src: 'assets/scene/Models/GirlForestStatue_01.glb'
     })
     Transform.create(this.forestMaidenStatue, {
       position: Vector3.create(11.5, 0, 11.5),

@@ -9,7 +9,7 @@ import * as utils from '@dcl-sdk/utils'
  */
 const crownPickupSound = engine.addEntity()
 Transform.create(crownPickupSound)
-AudioSource.create(crownPickupSound, { audioClipUrl: 'sounds/win.mp3' })
+AudioSource.create(crownPickupSound, { audioClipUrl: 'assets/scene/Audio/win.mp3' })
 
 export function createCrown(model: string, transform: TransformType): Entity {
   const entity = engine.addEntity()

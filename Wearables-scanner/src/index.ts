@@ -45,7 +45,7 @@ export function main() {
         SCANNING = true
         Animator.playSingleAnimation(scanner, 'Laser_Action', true)
         AudioSource.createOrReplace(scanner, {
-          audioClipUrl: 'assets/sounds/LaserHum.mp3',
+          audioClipUrl: 'assets/scene/Audio/LaserHum.mp3',
           playing: true,
           loop: false
         })
@@ -56,7 +56,7 @@ export function main() {
           if (accepted) {
             Animator.playSingleAnimation(scanner, 'Allow_Action', true)
             AudioSource.createOrReplace(scanner, {
-              audioClipUrl: 'assets/sounds/accept.mp3',
+              audioClipUrl: 'assets/scene/Audio/accept.mp3',
               playing: true,
               loop: false
             })
@@ -65,7 +65,7 @@ export function main() {
           } else {
             Animator.playSingleAnimation(scanner, 'NotAllow_Action', true)
             AudioSource.createOrReplace(scanner, {
-              audioClipUrl: 'assets/sounds/access_denied.mp3',
+              audioClipUrl: 'assets/scene/Audio/access_denied.mp3',
               playing: true,
               loop: false
             })

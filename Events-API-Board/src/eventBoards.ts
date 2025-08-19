@@ -35,7 +35,7 @@ export async function createEventBoard(currentEvent: number, interval: number, t
   // Board
   const board = engine.addEntity()
   GltfContainer.create(board, {
-    src: 'models/events-UI.glb'
+    src: 'assets/scene/Models/events-UI.glb'
   })
   Transform.create(board, {
     parent: boardBase,

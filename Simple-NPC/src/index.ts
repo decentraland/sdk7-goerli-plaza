@@ -18,7 +18,7 @@ export function main() {
     {
       type: npc.NPCType.CUSTOM,
       model: {
-        src: 'models/marsha.glb'
+        src: 'assets/scene/Models/marsha.glb'
       },
       faceUser: true,
       portrait: { path: 'images/marsha.png' },

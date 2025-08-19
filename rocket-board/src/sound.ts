@@ -5,7 +5,7 @@ const ringPass = engine.addEntity()
 
 //Create audio source component
 AudioSource.create(ringPass, {
-  audioClipUrl: 'sounds/ringPass.mp3',
+  audioClipUrl: 'assets/scene/Audio/ringPass.mp3',
   loop: false,
   playing: false,
   volume: 1
@@ -27,7 +27,7 @@ const rocketBooster = engine.addEntity()
 
 //Create audio source component
 AudioSource.create(rocketBooster, {
-  audioClipUrl: 'sounds/rocketBooster.mp3',
+  audioClipUrl: 'assets/scene/Audio/rocketBooster.mp3',
   loop: true,
   playing: false,
   volume: 1

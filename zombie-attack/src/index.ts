@@ -10,7 +10,7 @@ export function main() {
     scale: Vector3.create(2, 1, 2)
   })
   GltfContainer.create(baseModelEntity, {
-    src: 'models/baseLight.glb'
+    src: 'assets/scene/Models/baseLight.glb'
   })
 
   createZombie(Vector3.create(1 + Math.random() * 30, 0.933, 1 + Math.random() * 30))

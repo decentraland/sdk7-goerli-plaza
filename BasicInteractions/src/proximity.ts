@@ -20,7 +20,7 @@ export function setupProximity() {
 
   // ground
   const floor = engine.addEntity()
-  GltfContainer.create(floor, { src: 'models/FloorBaseGrass.glb' })
+  GltfContainer.create(floor, { src: 'assets/scene/Models/FloorBaseGrass.glb' })
   Transform.create(floor, {
     position: Vector3.create(8, 0, 8),
     scale: Vector3.create(1.6, 0.1, 1.6)

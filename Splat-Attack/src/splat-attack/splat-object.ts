@@ -24,9 +24,9 @@ export module SplatObject {
   const isDebugging: boolean = false
 
   /** splat sound location, played when splat object is placed */
-  const AUDIO_SPLAT_PLACEMENT: string = 'audio/splat-attack/splat.wav'
+  const AUDIO_SPLAT_PLACEMENT: string = 'assets/scene/Audio/splat-attack/splat.wav'
   /** splat model location */
-  const MODEL_SPLAT_OBJECT: string = 'models/splat-attack/splat-object.glb'
+  const MODEL_SPLAT_OBJECT: string = 'assets/scene/Models/splat-attack/splat-object.glb'
 
   /** pool of existing objects */
   var pooledObjects: Entity[] = []

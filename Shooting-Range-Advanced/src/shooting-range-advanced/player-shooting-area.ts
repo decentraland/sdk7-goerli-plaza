@@ -35,9 +35,9 @@ export module PlayerShootingArea {
 
   //audio paths [hit, impact, missed]
   const AUDIO_SHOT_SFX: string[] = [
-    'audio/shooting-range-advanced/shot-hit.mp3',
-    'audio/shooting-range-advanced/shot-impact.mp3',
-    'audio/shooting-range-advanced/shot-missed.mp3'
+    'assets/scene/Audio/shooting-range-advanced/shot-hit.mp3',
+    'assets/scene/Audio/shooting-range-advanced/shot-impact.mp3',
+    'assets/scene/Audio/shooting-range-advanced/shot-missed.mp3'
   ]
 
   //shooting area size

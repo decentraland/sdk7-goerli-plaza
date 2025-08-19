@@ -21,10 +21,6 @@ export const PowerCube = engine.defineComponent('PowerCube', {
   isGrabbed: Schemas.Boolean
 })
 
-// Sounds
-const cubePickUpSound = createSound('sounds/cubePickup.mp3')
-const cubePutDownSound = createSound('sounds/cubePutDown.mp3')
-
 // Configuration
 const Z_OFFSET = 1.5
 const GROUND_HEIGHT = 0.55
@@ -34,6 +30,7 @@ export function createPowerCube(position: Vector3, gltfSrc: string) {
   Transform.create(entity, { position: position })
   GltfContainer.create(entity, { src: gltfSrc })
   PowerCube.create(entity, { isGrabbed: false })
+  AudioSource.create(entity)
 
   pointerEventsSystem.onPointerDown(
     {
@@ -50,7 +47,7 @@ export function createPowerCube(position: Vector3, gltfSrc: string) {
       if (!powerCube.isGrabbed) {
         const transform = Transform.getMutable(entity)
         powerCube.isGrabbed = true
-        AudioSource.getMutable(cubePickUpSound).playing = true
+        AudioSource.playSound(entity, 'assets/scene/Audio/cubePickup.mp3', true)
 
         // Calculates the crate's position relative to the camera
         transform.position = Vector3.Zero()
@@ -95,7 +92,7 @@ export function dropAllCubes() {
     if (!powerCube.isGrabbed) return
 
     powerCube.isGrabbed = false
-    AudioSource.getMutable(cubePutDownSound).playing = true
+    AudioSource.playSound(entity, 'assets/scene/Audio/cubePutDown.mp3', true)
 
     const cameraTransform = Transform.get(engine.PlayerEntity)
     const forwardVector = Vector3.rotate(Vector3.scale(Vector3.Forward(), Z_OFFSET), cameraTransform.rotation)

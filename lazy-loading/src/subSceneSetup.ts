@@ -58,7 +58,7 @@ export function createFullScene() {
     rotation: Quaternion.fromEulerDegrees(0, 270, 0)
   })
   GltfContainer.create(toggleEnt, {
-    src: 'models/KeyboardSciFi_01/KeyboardSciFi_01.glb'
+    src: 'assets/scene/Models/KeyboardSciFi_01/KeyboardSciFi_01.glb'
   })
 
   pointerEventsSystem.onPointerDown(

@@ -7,12 +7,12 @@ import * as utils from '@dcl-sdk/utils'
 import { confirmationUI } from '../UI/reward.ui'
 
 // Lazy Loading: room: 3
-const dispenserModel = 'models/dispenser.glb'
+const dispenserModel = 'assets/scene/Models/dispenser.glb'
 const dispenserPosition = Vector3.create(14.55, 19.53, 16)
 const dispenserScale = Vector3.create(0.8, 0.8, 0.8)
 const dispenserHoverText = 'Claim Reward'
 
-export const rewardImage = 'images/wearable.png'
+export const rewardImage = 'assets/scene/Images/wearable.png'
 export const rewardName = 'Patch Pants'
 
 export let reward = false
@@ -48,7 +48,7 @@ export function createWearableReward() {
         }
       },
       function () {
-        utils.playSound('sounds/star-collect.mp3', false)
+        utils.playSound('assets/scene/Audio/star-collect.mp3', false)
         confirmationUI(rewardImage, rewardName)
         let camp = ClaimConfig.campaign.CAMPAIGN_TEST
         claimToken(camp, camp.campaignKeys.KEY_0)

@@ -81,7 +81,7 @@ export function createPixel(canvas: Entity, posX: number, posY: number, hexColor
 
       // Play sound
       AudioSource.createOrReplace(pixel, {
-        audioClipUrl: 'sounds/click_bright_002.mp3',
+        audioClipUrl: 'assets/scene/Audio/click_bright_002.mp3',
         playing: true
       })
 
@@ -168,7 +168,7 @@ export function createColor(parent: Entity, x: number, y: number, hexColor: stri
 
       // Play sound
       AudioSource.createOrReplace(colorEntity, {
-        audioClipUrl: 'sounds/click_bright_001.mp3',
+        audioClipUrl: 'assets/scene/Audio/click_bright_001.mp3',
         playing: true
       })
     }

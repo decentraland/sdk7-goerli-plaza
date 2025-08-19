@@ -4,8 +4,8 @@ import { Vector3 } from '@dcl/sdk/math'
 import { triggerEmote, triggerSceneEmote } from '~system/RestrictedActions'
 // Example emotes array
 const emotesToTrigger = [
-  'emotes/Throw_emote.glb',
-  'emotes/Pose_emote.glb'
+  'assets/scene/Models/Throw_emote.glb',
+  'assets/scene/Models/Pose_emote.glb'
   // ...more emotes
 ]
 const basicEmotesToTrigger = [

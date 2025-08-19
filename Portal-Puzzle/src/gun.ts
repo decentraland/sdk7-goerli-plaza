@@ -46,7 +46,7 @@ export function pickUpGun(gun: Entity) {
   HOLDING_GUN = true
 
   utils.perpetualMotions.stopRotation(gun)
-  AudioSource.createOrReplace(gun, { audioClipUrl: 'sounds/gunPickup.mp3', playing: true, loop: false })
+  AudioSource.createOrReplace(gun, { audioClipUrl: 'assets/scene/Audio/gunPickup.mp3', playing: true, loop: false })
 
   const gunParent = engine.addEntity()
   const gunTranform = Transform.getMutable(gun)
