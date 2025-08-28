@@ -81,6 +81,8 @@ Since this is an example from the Fashion Week dispensers, the models loaded by 
 
 #### Changing the Dispenser model
 
+**In the `models/` folder, we also have Generic Dispenser.glb, which doesnt't have MVFW banners.**
+
 Let's go to the first few lines of `createDispenserWithWearable` function in `src/modules/dispensers.ts`:
 
 ```
