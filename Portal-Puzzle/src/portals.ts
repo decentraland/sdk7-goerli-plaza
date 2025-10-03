@@ -2,6 +2,7 @@ import { Animator, AudioSource, Entity, GltfContainer, Transform, TransformType,
 import * as utils from '@dcl-sdk/utils'
 import { Vector3 } from '@dcl/sdk/math'
 import { Portal, PortalColor } from './components'
+import { TriggerArea, triggerAreaEventsSystem } from '@dcl/sdk/triggers'
 import { activePortal } from './systems'
 import { movePlayerTo } from '~system/RestrictedActions'
 
@@ -22,24 +23,14 @@ export function createPortal(color: PortalColor, pos: TransformType) {
 
   AudioSource.createOrReplace(portal, { audioClipUrl: 'assets/scene/Audio/portalSuccess.mp3', playing: true, loop: false })
 
-  //trigger
-  utils.triggers.addTrigger(
-    portal,
-    utils.NO_LAYERS,
-    1,
-    [
-      {
-        type: 'box',
-        scale: Vector3.create(1.5, 3, 1.5)
-      }
-    ],
-    () => {
-      if (Portal.get(portal).coolDown) return
-
-      teleport(portal)
-      // teleport
-    }
-  )
+  // Trigger
+  const trigger = engine.addEntity()
+  Transform.create(trigger, { parent: portal, scale: Vector3.create(1.5, 3, 1.5) })
+  TriggerArea.setBox(trigger)
+  triggerAreaEventsSystem.onTriggerEnter(trigger, () => {
+    if (Portal.get(portal).coolDown) return
+    teleport(portal)
+  })
 }
 
 export function teleport(portalEntity: Entity) {

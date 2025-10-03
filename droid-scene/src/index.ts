@@ -20,18 +20,14 @@ let DROID_IS_MOVING: boolean = false
 export function main() {
   const droid = engine.getEntityOrNullByName('Ball Droid')
   if (droid) {
-    utils.triggers.addTrigger(
-      droid,
-      utils.LAYER_1,
-      utils.LAYER_1,
-      [{ type: 'box', scale: Vector3.create(12, 12, 12) }],
-      () => {
-        if (DROID_IS_MOVING) return
-
-        moveDroidToRandomPos(droid)
-        DROID_IS_MOVING = true
-      }
-    )
+    const trigger = engine.addEntity()
+    Transform.create(trigger, { parent: droid, scale: Vector3.create(12, 12, 12) })
+    TriggerArea.setBox(trigger)
+    triggerAreaEventsSystem.onTriggerEnter(trigger, () => {
+      if (DROID_IS_MOVING) return
+      moveDroidToRandomPos(droid)
+      DROID_IS_MOVING = true
+    })
   }
 
   // UI with GitHub link

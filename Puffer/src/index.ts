@@ -12,6 +12,7 @@ import {
   EasingFunction
 } from '@dcl/sdk/ecs'
 import { Color3, Vector3 } from '@dcl/sdk/math'
+import { TriggerArea, triggerAreaEventsSystem } from '@dcl/sdk/triggers'
 import * as utils from '@dcl-sdk/utils'
 import { setupUi } from './ui'
 
@@ -58,16 +59,11 @@ export function main() {
 
   //utils.triggers.enableDebugDraw(true)
 
-  //Trigger on fish
-  utils.triggers.addTrigger(
-    puffer,
-    utils.LAYER_1,
-    utils.LAYER_1,
-    [{ type: 'sphere', position: Vector3.create(0, 0, 0), radius: 2 }],
-    () => inflateFish(puffer),
-    undefined,
-    Color3.Blue()
-  )
+  // Trigger on fish: approximate sphere radius 2 with a 4x4x4 box
+  const trigger = engine.addEntity()
+  Transform.create(trigger, { parent: puffer, scale: Vector3.create(4, 4, 4) })
+  TriggerArea.setBox(trigger)
+  triggerAreaEventsSystem.onTriggerEnter(trigger, () => inflateFish(puffer))
 
   // Flag to avoid re-triggering
   let isInflating = false

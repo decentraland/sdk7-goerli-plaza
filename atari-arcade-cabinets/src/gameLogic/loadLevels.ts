@@ -1,6 +1,6 @@
-import * as utils from '@dcl-sdk/utils'
 import { Entity, Transform, engine } from '@dcl/sdk/ecs'
 import { Color3, Quaternion, Vector3 } from '@dcl/sdk/math'
+import { TriggerArea, triggerAreaEventsSystem } from '@dcl/sdk/triggers'
 import { ArcadeFlag, ArcadeScreenFlag, ArcadeTriggerFlag, HasGameLoaded } from '../components/definitions'
 import { loadPlayer, unloadPlayer } from '../player'
 import { loadAtariBricks } from './atariMethods'
@@ -66,9 +66,11 @@ function setupArcade(arcade: Entity, game: Games): void {
   const arcadeTrigger = engine.addEntity()
   Transform.createOrReplace(arcadeTrigger, {
     parent: arcade,
-    position: Vector3.create(0, 0, -1)
+    position: Vector3.create(0, 0, -1),
+    scale: Vector3.create(2, 2, 2)
   })
   ArcadeTriggerFlag.create(arcadeTrigger, { game })
+  TriggerArea.setBox(arcadeTrigger)
 }
 
 /**
@@ -115,25 +117,20 @@ function loadLevel(
   const arcadeTrigger = getArcadeTrigger(game)
 
   if (arcadeTrigger && bricksParent) {
-    utils.triggers.addTrigger(
-      arcadeTrigger,
-      1,
-      1,
-      [{ type: 'box', scale: Vector3.create(2, 2, 2) }],
-      function () {
-        if (!HasGameLoaded.getOrNull(engine.RootEntity)?.loaded) {
-          if (game === Games.G_ATARI) {
-            loadAtariBricks(game, bricksParent)
-          } else {
-            if (bricks) loadBricks(game, bricks, bricksParent)
-          }
-          loadPlayer(game)
+    triggerAreaEventsSystem.onTriggerEnter(arcadeTrigger, function () {
+      if (!HasGameLoaded.getOrNull(engine.RootEntity)?.loaded) {
+        if (game === Games.G_ATARI) {
+          loadAtariBricks(game, bricksParent)
+        } else {
+          if (bricks) loadBricks(game, bricks, bricksParent)
         }
-      },
-      function () {
-        unloadBricks(game)
-        unloadPlayer()
+        loadPlayer(game)
       }
-    )
+    })
+
+    triggerAreaEventsSystem.onTriggerExit(arcadeTrigger, function () {
+      unloadBricks(game)
+      unloadPlayer()
+    })
   }
 }

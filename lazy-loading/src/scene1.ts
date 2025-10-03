@@ -3,6 +3,7 @@ import { Vector3, Quaternion } from '@dcl/sdk/math'
 import { SubSceneComp } from './components'
 import { nftCollection, createPainting, NFTdata } from './nft'
 import * as utils from '@dcl-sdk/utils'
+import { TriggerArea, triggerAreaEventsSystem } from '@dcl/sdk/triggers'
 import { showScene } from './modules/SceneMgmt/sceneManager'
 import { scene1active, scene2active } from './subSceneSetup'
 
@@ -110,33 +111,28 @@ export function createSubScene(parentPos: Entity, id: number) {
 
   VisibilityComponent.create(box, { visible: false })
 
-  utils.triggers.addTrigger(
-    box,
-    utils.LAYER_2,
-    utils.LAYER_1,
-    [{ type: 'box', scale: Vector3.create(8, 5, 14) }],
-    () => {
-      if (scene1active || scene2active) {
-        console.log(`ACTIVE`)
-        console.log(`ENTERED ` + id)
-        createdPaintings = []
-        for (const nft of nftCollection) {
-          if (nft.room === id) {
-            const painting = createPainting(undefined, nft.id, nft.position, nft.contract, nft.tokenId)
-            createdPaintings.push(painting)
-          }
+  TriggerArea.setBox(box)
+  triggerAreaEventsSystem.onTriggerEnter(box, () => {
+    if (scene1active || scene2active) {
+      console.log(`ACTIVE`)
+      console.log(`ENTERED ` + id)
+      createdPaintings = []
+      for (const nft of nftCollection) {
+        if (nft.room === id) {
+          const painting = createPainting(undefined, nft.id, nft.position, nft.contract, nft.tokenId)
+          createdPaintings.push(painting)
         }
       }
-    },
-    () => {
-      console.log('LEFT')
-      for (const painting of createdPaintings) {
-        engine.removeEntityWithChildren(painting)
-      }
-
-      createdPaintings = [] // Clear the array
     }
-  )
+  })
+  triggerAreaEventsSystem.onTriggerExit(box, () => {
+    console.log('LEFT')
+    for (const painting of createdPaintings) {
+      engine.removeEntityWithChildren(painting)
+    }
+
+    createdPaintings = [] // Clear the array
+  })
 
   return entity
 }

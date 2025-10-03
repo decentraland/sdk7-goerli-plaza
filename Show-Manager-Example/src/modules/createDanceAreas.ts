@@ -2,6 +2,7 @@ import { engine } from '@dcl/sdk/ecs'
 import { Color4, Quaternion, Vector3 } from '@dcl/sdk/math'
 import { triggerEmote } from '~system/RestrictedActions'
 import * as utils from '@dcl-sdk/utils'
+import { TriggerArea, triggerAreaEventsSystem } from '@dcl/sdk/triggers'
 
 export let danceAreas: any = [
   {
@@ -31,19 +32,15 @@ export function createDanceAreas() {
 
     let dsystem = new DanceSystem(danceAreas[i].type)
 
-    utils.triggers.addTrigger(
-      area,
-      utils.NO_LAYERS,
-      utils.LAYER_1,
-      [{ type: 'sphere', radius: 6.5 }],
-      function (otherEntity) {
-        console.log('in dance area')
-        dsystem.active = true
-      },
-      function (otherEntity) {
-        dsystem.active = false
-      }
-    )
+    TriggerArea.setBox(area)
+    Transform.getMutable(area).scale = Vector3.create(13, 13, 13)
+    triggerAreaEventsSystem.onTriggerEnter(area, function () {
+      console.log('in dance area')
+      dsystem.active = true
+    })
+    triggerAreaEventsSystem.onTriggerExit(area, function () {
+      dsystem.active = false
+    })
   }
 }
 

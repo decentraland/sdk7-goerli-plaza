@@ -1,6 +1,7 @@
 import * as utils from '@dcl-sdk/utils'
 import { MessageBus } from '@dcl/sdk/message-bus'
 import { AudioSource, Entity, Material, MeshRenderer, Transform, engine, PBAudioSource } from '@dcl/sdk/ecs'
+import { TriggerArea, triggerAreaEventsSystem } from '@dcl/sdk/triggers'
 import { Color4, Quaternion, Vector3 } from '@dcl/sdk/math'
 import resources from './resources'
 import { AudioController } from './audioController'
@@ -88,29 +89,19 @@ export class WhitePianoKey {
     triggerPosition = Vector3.create(0, -0.9, -1)
     scale = Vector3.create(0.25, 4, 2)
 
-    utils.triggers.addTrigger(
-      this.whiteKeyEntity,
-      WHITE_LAYER,
-      PLAYER_LAYER,
-      [
-        {
-          type: 'box',
-          position: triggerPosition,
-          scale: scale
-        }
-      ],
-      // on camera enter
-      () => {
-        console.log('enter white key trigger: ', sound)
-        AudioSource.playSound(this.whiteKeyEntity, resources.sounds.whiteKeys.c4)
-        sceneMessageBus.emit('noteOn', { note: this.note })
-      },
-      // on camera exit
-      () => {
-        sceneMessageBus.emit('noteOff', { note: this.note })
-      },
-      Color4.Blue() // debug
-    )
+    const whiteTrigger = engine.addEntity()
+    Transform.create(whiteTrigger, { parent: this.whiteKeyEntity, position: triggerPosition, scale: scale })
+    TriggerArea.setBox(whiteTrigger)
+    // on camera enter
+    triggerAreaEventsSystem.onTriggerEnter(whiteTrigger, () => {
+      console.log('enter white key trigger: ', sound)
+      AudioSource.playSound(this.whiteKeyEntity, resources.sounds.whiteKeys.c4)
+      sceneMessageBus.emit('noteOn', { note: this.note })
+    })
+    // on camera exit
+    triggerAreaEventsSystem.onTriggerExit(whiteTrigger, () => {
+      sceneMessageBus.emit('noteOff', { note: this.note })
+    })
   }
 }
 
@@ -186,45 +177,35 @@ export class BlackPianoKey {
     })
     triggerPosition = Vector3.create(0, 0, -1)
     scale = Vector3.create(0.25, 4, 1.5)
-    utils.triggers.addTrigger(
-      this.blackKeyEntity,
-      BLACK_LAYER,
-      PLAYER_LAYER,
-      [
-        {
-          type: 'box',
-          position: triggerPosition,
-          scale: scale
-        }
-      ],
-      // on camera enter
-      () => {
-        console.log('enter black key trigger: ', sound)
-        AudioSource.playSound(this.blackKeyEntity, resources.sounds.blackKeys.aSharp3)
-        sceneMessageBus.emit('noteOn', { note: this.note, isBlackKey: true })
-        Material.setPbrMaterial(this.blackKeyEntity, {
-          albedoColor: this.onColor2,
-          emissiveColor: this.onColor2,
-          emissiveIntensity: 2,
-          specularIntensity: 1,
-          roughness: 0.5,
-          metallic: 0.2
-        })
-      },
-      // on camera exit
-      () => {
-        sceneMessageBus.emit('noteOff', { note: this.note })
-        Material.setPbrMaterial(this.blackKeyEntity, {
-          albedoColor: this.offColor,
-          emissiveColor: this.offColor,
-          emissiveIntensity: 0,
-          specularIntensity: 1,
-          roughness: 0.5,
-          metallic: 0.2
-        })
-      },
-      Color4.Red() // debug
-    )
+    const blackTrigger = engine.addEntity()
+    Transform.create(blackTrigger, { parent: this.blackKeyEntity, position: triggerPosition, scale: scale })
+    TriggerArea.setBox(blackTrigger)
+    // on camera enter
+    triggerAreaEventsSystem.onTriggerEnter(blackTrigger, () => {
+      console.log('enter black key trigger: ', sound)
+      AudioSource.playSound(this.blackKeyEntity, resources.sounds.blackKeys.aSharp3)
+      sceneMessageBus.emit('noteOn', { note: this.note, isBlackKey: true })
+      Material.setPbrMaterial(this.blackKeyEntity, {
+        albedoColor: this.onColor2,
+        emissiveColor: this.onColor2,
+        emissiveIntensity: 2,
+        specularIntensity: 1,
+        roughness: 0.5,
+        metallic: 0.2
+      })
+    })
+    // on camera exit
+    triggerAreaEventsSystem.onTriggerExit(blackTrigger, () => {
+      sceneMessageBus.emit('noteOff', { note: this.note })
+      Material.setPbrMaterial(this.blackKeyEntity, {
+        albedoColor: this.offColor,
+        emissiveColor: this.offColor,
+        emissiveIntensity: 0,
+        specularIntensity: 1,
+        roughness: 0.5,
+        metallic: 0.2
+      })
+    })
   }
 }
 

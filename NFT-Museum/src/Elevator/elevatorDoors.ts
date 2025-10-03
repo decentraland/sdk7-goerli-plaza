@@ -11,6 +11,7 @@ import {
 } from '../doors'
 import { engine, Transform } from '@dcl/sdk/ecs'
 import * as utils from '@dcl-sdk/utils'
+import { TriggerArea, triggerAreaEventsSystem } from '@dcl/sdk/triggers'
 import { currentFloor } from './elevatorState'
 
 // Elevator doors, west ground floor
@@ -96,30 +97,26 @@ export function createElevatorDoors(
     }
   }
 
-  utils.triggers.addTrigger(
-    doorParent,
-    utils.NO_LAYERS,
-    utils.LAYER_1,
-    [{ type: 'box', position: { x: 0, y: 0, z: 0 }, scale: { x: 4, y: 2, z: 4 } }],
-    function (otherEntity) {
-      console.log(`floor index: ${floorIndex}, current floor: ${currentFloor}`)
+  TriggerArea.setBox(doorParent)
+  Transform.getMutable(doorParent).scale = { x: 4, y: 2, z: 4 }
+  triggerAreaEventsSystem.onTriggerEnter(doorParent, function () {
+    console.log(`floor index: ${floorIndex}, current floor: ${currentFloor}`)
 
-      if (Date.now() - lastDoorInteractionTime < cooldownTime) return // Adjust the cooldown time as needed
-      lastDoorInteractionTime = Date.now()
+    if (Date.now() - lastDoorInteractionTime < cooldownTime) return
+    lastDoorInteractionTime = Date.now()
 
-      if (floorIndex !== currentFloor) {
-        console.log('cant open doors')
-        return // Do not open the doors if the elevator is not at the current floor
-      } else {
-        doorsShouldOpen = true
-      }
-      if (doorsShouldOpen && !isOpen) {
-        utils.timers.setTimeout(() => {
-          openDoors(), (doorsShouldOpen = false)
-        }, 300)
-      }
+    if (floorIndex !== currentFloor) {
+      console.log('cant open doors')
+      return
+    } else {
+      doorsShouldOpen = true
     }
-  )
+    if (doorsShouldOpen && !isOpen) {
+      utils.timers.setTimeout(() => {
+        openDoors(), (doorsShouldOpen = false)
+      }, 300)
+    }
+  })
   // utils.triggers.enableDebugDraw(true);
 }
 

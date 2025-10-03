@@ -29,27 +29,24 @@ export function createDanceArea(position: Vector3, scale: Vector3) {
   ///MAKE TRUE FOR DEBUG
   VisibilityComponent.create(myEntity, { visible: false })
 
-  ///REMEMBER TO MAKE THE TRIGGER POSITION AND SCALE = THE TRANSFORM POSITION AND SCALE!!
-  utils.triggers.addTrigger(
-    myEntity,
-    1,
-    1,
-    [{ type: 'box', scale: scale, position: Vector3.create(0, 0, 0) }],
-    function (otherEntity) {
-      if (!isDancing) {
-        isDancing = true
-        currentEmoteIndex = 0
-        triggerNextEmote()
-        console.log('dancing')
-      }
-    },
-    function (otherEntity) {
-      if (isDancing) {
-        isDancing = false
-        console.log('noDance')
-      }
+  // Add Trigger Area
+  TriggerArea.setBox(myEntity)
+
+  triggerAreaEventsSystem.onTriggerEnter(triggerEntity, function (result) {
+    if (!isDancing) {
+      isDancing = true
+      currentEmoteIndex = 0
+      triggerNextEmote()
+      console.log('dancing')
     }
-  )
+  })
+
+  triggerAreaEventsSystem.onTriggerExit(triggerEntity, function (result) {
+    if (isDancing) {
+      isDancing = false
+      console.log('noDance')
+    }
+  })
 }
 
 export function createBasicDanceArea(position: Vector3, scale: Vector3) {
@@ -63,27 +60,23 @@ export function createBasicDanceArea(position: Vector3, scale: Vector3) {
   ///MAKE TRUE FOR DEBUG
   VisibilityComponent.create(myEntity, { visible: false })
 
-  ///REMEMBER TO MAKE THE TRIGGER POSITION AND SCALE = THE TRANSFORM POSITION AND SCALE!!
-  utils.triggers.addTrigger(
-    myEntity,
-    1,
-    1,
-    [{ type: 'box', scale: scale, position: Vector3.create(0, 0, 0) }],
-    function (otherEntity) {
-      if (!isDancing) {
-        isDancing = true
-        currentEmoteIndex = 0
-        triggerBasicNextEmote()
-        console.log('dancing')
-      }
-    },
-    function (otherEntity) {
-      if (isDancing) {
-        isDancing = false
-        console.log('noDance')
-      }
+  TriggerArea.setBox(myEntity)
+
+  triggerAreaEventsSystem.onTriggerEnter(triggerEntity, function (result) {
+    if (!isDancing) {
+      isDancing = true
+      currentEmoteIndex = 0
+      triggerBasicNextEmote()
+      console.log('dancing')
     }
-  )
+  })
+
+  triggerAreaEventsSystem.onTriggerExit(triggerEntity, function (result) {
+    if (isDancing) {
+      isDancing = false
+      console.log('noDance')
+    }
+  })
 }
 
 export async function triggerNextEmote() {

@@ -14,6 +14,7 @@ import {
   inputSystem
 } from '@dcl/sdk/ecs'
 import { Quaternion, Vector3 } from '@dcl/sdk/math'
+import { TriggerArea } from '@dcl/sdk/triggers'
 import * as utils from '@dcl-sdk/utils'
 import { createSound } from './sound'
 
@@ -72,7 +73,9 @@ export function createPowerCube(position: Vector3, gltfSrc: string) {
     }
   )
 
-  utils.triggers.addTrigger(entity, 2, 2, [{ type: 'box', scale: Vector3.create(1, 1, 1) }])
+  const trigger = engine.addEntity()
+  Transform.create(trigger, { parent: entity, scale: Vector3.create(1, 1, 1) })
+  TriggerArea.setBox(trigger)
 
   return entity
 }

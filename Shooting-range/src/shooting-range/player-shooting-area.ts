@@ -5,6 +5,7 @@
 */
 
 import * as utils from '@dcl-sdk/utils'
+import { TriggerArea, triggerAreaEventsSystem } from '@dcl/sdk/triggers'
 import {
   AudioSource,
   AvatarAnchorPointType,
@@ -207,36 +208,30 @@ export module PlayerShootingArea {
       shootingAreaEntity = engine.addEntity()
       Transform.create(shootingAreaEntity, { scale: SHOOTING_AREA_SCALE })
       //  trigger area
-      utils.triggers.addTrigger(
-        shootingAreaEntity,
-        utils.NO_LAYERS,
-        utils.LAYER_1,
-        [{ type: 'box', scale: SHOOTING_AREA_SCALE }],
-        //entry callback
-        function (otherEntity) {
-          console.log(`trigger area entered, object=${otherEntity}!`)
-          inShootingArea = true
-          READY_TO_SHOOT = true
-          //update floor material
-          Material.setPbrMaterial(shootingFloorEntity, {
-            albedoColor: Color4.Yellow(),
-            emissiveColor: Color4.Yellow(),
-            emissiveIntensity: 1
-          })
-        },
-        //exit callback
-        function (otherEntity) {
-          console.log(`trigger area exited, object=${otherEntity}!`)
-          inShootingArea = false
-          READY_TO_SHOOT = false
-          //update floor material
-          Material.setPbrMaterial(shootingFloorEntity, {
-            albedoColor: Color4.Red(),
-            emissiveColor: undefined,
-            emissiveIntensity: 0
-          })
-        }
-      )
+      TriggerArea.setBox(shootingAreaEntity)
+      triggerAreaEventsSystem.onTriggerEnter(shootingAreaEntity, function () {
+        console.log(`trigger area entered`)
+        inShootingArea = true
+        READY_TO_SHOOT = true
+        //update floor material
+        Material.setPbrMaterial(shootingFloorEntity, {
+          albedoColor: Color4.Yellow(),
+          emissiveColor: Color4.Yellow(),
+          emissiveIntensity: 1
+        })
+      })
+      //exit callback
+      triggerAreaEventsSystem.onTriggerExit(shootingAreaEntity, function () {
+        console.log(`trigger area exited`)
+        inShootingArea = false
+        READY_TO_SHOOT = false
+        //update floor material
+        Material.setPbrMaterial(shootingFloorEntity, {
+          albedoColor: Color4.Red(),
+          emissiveColor: undefined,
+          emissiveIntensity: 0
+        })
+      })
 
       if (isDebugging) console.log('Shooting Area: created new shooting area!')
     }

@@ -2,6 +2,7 @@ import { Quaternion, Vector3 } from '@dcl/sdk/math'
 import { engine, GltfContainer, Transform, AudioSource, Entity, VisibilityComponent } from '@dcl/sdk/ecs'
 import { PickableItem } from '../components'
 import * as utils from '@dcl-sdk/utils'
+import { TriggerArea, triggerAreaEventsSystem } from '@dcl/sdk/triggers'
 
 export function instantiatePickableItem(
   modelPath: string,
@@ -34,7 +35,10 @@ export function instantiatePickableItem(
 
   utils.perpetualMotions.startRotation(entity, Quaternion.fromEulerDegrees(0, 1, 0))
 
-  utils.triggers.addTrigger(entity, 1, 1, [{ type: 'box', scale: Vector3.create(1.5, 3, 1.5) }], () => {
+  const trigger = engine.addEntity()
+  Transform.create(trigger, { parent: entity, scale: Vector3.create(1.5, 3, 1.5) })
+  TriggerArea.setBox(trigger)
+  triggerAreaEventsSystem.onTriggerEnter(trigger, () => {
     const visibilityComp = VisibilityComponent.getMutable(entity)
     const pickableItemComp = PickableItem.getMutable(entity)
     if (pickableItemComp.picked) return

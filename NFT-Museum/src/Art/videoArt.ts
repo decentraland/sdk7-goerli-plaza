@@ -11,6 +11,7 @@ import {
 import * as utils from '@dcl-sdk/utils'
 import { openExternalUrl } from '~system/RestrictedActions'
 import { Quaternion, Color3, Color4, Vector3 } from '@dcl/sdk/math'
+import { TriggerArea, triggerAreaEventsSystem } from '@dcl/sdk/triggers'
 import { homepageUrl, linktreeURL } from '../social'
 import { audioConfig, audioType, isPlaying, toggleAudio } from '../audio'
 import { artPositions } from './artData'
@@ -214,54 +215,49 @@ export function createVideoArt(
     isImage = !isImage
   }
 
-  utils.triggers.addTrigger(
-    utils.addTestCube(
-      { position: triggerPosition, scale: triggerScale },
-      undefined,
-      undefined,
-      Color4.create(1, 1, 1, 0),
-      undefined,
-      true
-    ),
-    utils.NO_LAYERS,
-    utils.LAYER_1,
-    [{ type: 'box', scale: triggerScale }],
-
-    (otherEntity) => {
-      console.log('Entered trigger')
-
-      if (!isVideoPlaying) {
-        console.log('Playing video')
-        setMaterial(true)
-        VideoPlayer.createOrReplace(entity, {
-          src: video,
-          playing: true,
-          loop: true,
-          volume: videoVolume
-        })
-
-        if (audio) {
-          toggleAudio(audioType)
-        }
-        isVideoPlaying = true
-      }
-    },
-
-    (onExit) => {
-      console.log('Exited trigger')
-
-      if (isVideoPlaying) {
-        console.log('Stopping video')
-        setMaterial(!isImage)
-        VideoPlayer.deleteFrom(entity)
-
-        if (audio) {
-          toggleAudio(audioType)
-        }
-        isVideoPlaying = false
-      }
-    }
+  const trigger = utils.addTestCube(
+    { position: triggerPosition, scale: triggerScale },
+    undefined,
+    undefined,
+    Color4.create(1, 1, 1, 0),
+    undefined,
+    true
   )
+  TriggerArea.setBox(trigger)
+  triggerAreaEventsSystem.onTriggerEnter(trigger, () => {
+    console.log('Entered trigger')
+
+    if (!isVideoPlaying) {
+      console.log('Playing video')
+      setMaterial(true)
+      VideoPlayer.createOrReplace(entity, {
+        src: video,
+        playing: true,
+        loop: true,
+        volume: videoVolume
+      })
+
+      if (audio) {
+        toggleAudio(audioType)
+      }
+      isVideoPlaying = true
+    }
+  })
+
+  triggerAreaEventsSystem.onTriggerExit(trigger, () => {
+    console.log('Exited trigger')
+
+    if (isVideoPlaying) {
+      console.log('Stopping video')
+      setMaterial(!isImage)
+      VideoPlayer.deleteFrom(entity)
+
+      if (audio) {
+        toggleAudio(audioType)
+      }
+      isVideoPlaying = false
+    }
+  })
 
   return entity
 }
