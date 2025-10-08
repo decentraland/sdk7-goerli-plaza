@@ -2,7 +2,7 @@ import { engine } from '@dcl/sdk/ecs'
 import { Color4, Quaternion, Vector3 } from '@dcl/sdk/math'
 import { triggerEmote } from '~system/RestrictedActions'
 import * as utils from '@dcl-sdk/utils'
-import { TriggerArea, triggerAreaEventsSystem } from '@dcl/sdk/triggers'
+import { TriggerArea, triggerAreaEventsSystem } from '@dcl/sdk/ecs'
 
 export let danceAreas: any = [
   {

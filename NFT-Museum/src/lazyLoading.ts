@@ -1,7 +1,7 @@
 import { Vector3, Quaternion } from '@dcl/sdk/math'
 import { Entity, Transform, VideoPlayer, engine } from '@dcl/sdk/ecs'
 import * as utils from '@dcl-sdk/utils'
-import { TriggerArea, triggerAreaEventsSystem } from '@dcl/sdk/triggers'
+import { TriggerArea, triggerAreaEventsSystem } from '@dcl/sdk/ecs'
 import { createVideoArt, videoCollection } from './Art/videoArt'
 import { createKineticArt, kineticArtCollection } from './Art/kineticArt'
 import { createImageArt, imageArtCollection } from './Art/imageArt'

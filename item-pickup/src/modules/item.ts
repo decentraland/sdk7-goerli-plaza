@@ -2,7 +2,7 @@ import { Quaternion, Vector3 } from '@dcl/sdk/math'
 import { engine, GltfContainer, Transform, AudioSource, Entity, VisibilityComponent } from '@dcl/sdk/ecs'
 import { PickableItem } from '../components'
 import * as utils from '@dcl-sdk/utils'
-import { TriggerArea, triggerAreaEventsSystem } from '@dcl/sdk/triggers'
+import { TriggerArea, triggerAreaEventsSystem } from '@dcl/sdk/ecs'
 
 export function instantiatePickableItem(
   modelPath: string,

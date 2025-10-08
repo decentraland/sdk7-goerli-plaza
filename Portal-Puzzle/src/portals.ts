@@ -2,7 +2,7 @@ import { Animator, AudioSource, Entity, GltfContainer, Transform, TransformType,
 import * as utils from '@dcl-sdk/utils'
 import { Vector3 } from '@dcl/sdk/math'
 import { Portal, PortalColor } from './components'
-import { TriggerArea, triggerAreaEventsSystem } from '@dcl/sdk/triggers'
+import { TriggerArea, triggerAreaEventsSystem } from '@dcl/sdk/ecs'
 import { activePortal } from './systems'
 import { movePlayerTo } from '~system/RestrictedActions'
 

@@ -1,9 +1,8 @@
-import { Entity, GltfContainer, MeshRenderer, Transform, VisibilityComponent, engine } from '@dcl/sdk/ecs'
+import { Entity, GltfContainer, MeshRenderer, Transform, VisibilityComponent, engine, TriggerArea, triggerAreaEventsSystem } from '@dcl/sdk/ecs'
 import { Vector3, Quaternion } from '@dcl/sdk/math'
 import { SubSceneComp } from './components'
 import { nftCollection, createPainting, NFTdata } from './nft'
 import * as utils from '@dcl-sdk/utils'
-import { TriggerArea, triggerAreaEventsSystem } from '@dcl/sdk/triggers'
 import { showScene } from './modules/SceneMgmt/sceneManager'
 import { scene1active, scene2active } from './subSceneSetup'
 

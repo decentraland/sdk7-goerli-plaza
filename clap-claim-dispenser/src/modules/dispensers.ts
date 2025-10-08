@@ -1,7 +1,7 @@
 import { EasingFunction, engine, Entity, GltfContainer, Material, MaterialTransparencyMode, MeshRenderer, Schemas, Transform, Tween, TweenLoop, TweenSequence } from "@dcl/sdk/ecs"
 import { Color3, Color4, Quaternion, Vector3 } from "@dcl/sdk/math"
 import * as utils from "@dcl-sdk/utils"
-import { TriggerArea, triggerAreaEventsSystem } from '@dcl/sdk/triggers'
+import { TriggerArea, triggerAreaEventsSystem } from '@dcl/sdk/ecs'
 import { ClaimConfig, ClaimConfigInstType } from "./claiming/claimConfig"
 import { initClapToClaim } from "./clapToClaim"
 import { hideClapToast, showClapToast } from "./claiming/ui/clapToClaimUi"

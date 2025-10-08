@@ -9,7 +9,7 @@ import {
   InputAction
 } from '@dcl/sdk/ecs'
 import * as utils from '@dcl-sdk/utils'
-import { TriggerArea, triggerAreaEventsSystem } from '@dcl/sdk/triggers'
+import { TriggerArea, triggerAreaEventsSystem } from '@dcl/sdk/ecs'
 import { openExternalUrl } from '~system/RestrictedActions'
 import { linktreeURL } from '../social'
 import { audioType, toggleAudio } from '../audio'

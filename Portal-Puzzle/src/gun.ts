@@ -10,7 +10,7 @@ import {
   engine
 } from '@dcl/sdk/ecs'
 import { Quaternion, Vector3 } from '@dcl/sdk/math'
-import { TriggerArea, triggerAreaEventsSystem } from '@dcl/sdk/triggers'
+import { TriggerArea, triggerAreaEventsSystem } from '@dcl/sdk/ecs'
 import * as utils from '@dcl-sdk/utils'
 import { colorSystem, gunSystem } from './systems'
 import { GlowColor, PortalColor } from './components'

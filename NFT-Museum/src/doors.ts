@@ -1,7 +1,7 @@
 import { ColliderLayer, GltfContainer, Transform, engine } from '@dcl/ecs'
 import { Quaternion, Vector3 } from '@dcl/ecs-math'
 import * as utils from '@dcl-sdk/utils'
-import { TriggerArea, triggerAreaEventsSystem } from '@dcl/sdk/triggers'
+import { TriggerArea, triggerAreaEventsSystem } from '@dcl/sdk/ecs'
 import { Entity } from '@dcl/sdk/ecs'
 
 // Audio for the sliding doors depends on audio.ts

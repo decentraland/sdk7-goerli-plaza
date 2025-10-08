@@ -11,10 +11,9 @@ import {
   AudioSource,
   AvatarAttach,
   AvatarAnchorPointType,
-  inputSystem
+  inputSystem, TriggerArea, triggerAreaEventsSystem
 } from '@dcl/sdk/ecs'
 import { Quaternion, Vector3 } from '@dcl/sdk/math'
-import { TriggerArea } from '@dcl/sdk/triggers'
 import * as utils from '@dcl-sdk/utils'
 import { createSound } from './sound'
 

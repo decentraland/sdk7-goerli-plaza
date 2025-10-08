@@ -5,13 +5,12 @@ import {
   PointerEvents,
   PointerEventType,
   Transform,
-  VisibilityComponent
+  VisibilityComponent, TriggerArea, triggerAreaEventsSystem
 } from '@dcl/sdk/ecs'
 import { Vector3 } from '@dcl/sdk/math'
 import { Particle, particleSystem } from './particles'
 import { createSound } from './sound'
 import * as utils from '@dcl-sdk/utils'
-import { TriggerArea, triggerAreaEventsSystem } from '@dcl/sdk/triggers'
 
 // Power glows
 const powerBlueGlowEntity = engine.addEntity()

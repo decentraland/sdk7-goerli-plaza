@@ -2,7 +2,7 @@ import { EasingFunction, engine, Entity, GltfContainer, Transform, Tween, TweenL
 import { Vector3 } from '@dcl/sdk/math'
 import { createCoin } from './modules/coin'
 import * as utils from '@dcl-sdk/utils'
-import { TriggerArea, triggerAreaEventsSystem } from '@dcl/sdk/triggers'
+import { TriggerArea, triggerAreaEventsSystem } from '@dcl/sdk/ecs'
 import { setupUi } from './ui'
 
 export function main() {

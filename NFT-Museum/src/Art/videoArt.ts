@@ -11,7 +11,7 @@ import {
 import * as utils from '@dcl-sdk/utils'
 import { openExternalUrl } from '~system/RestrictedActions'
 import { Quaternion, Color3, Color4, Vector3 } from '@dcl/sdk/math'
-import { TriggerArea, triggerAreaEventsSystem } from '@dcl/sdk/triggers'
+import { TriggerArea, triggerAreaEventsSystem } from '@dcl/sdk/ecs'
 import { homepageUrl, linktreeURL } from '../social'
 import { audioConfig, audioType, isPlaying, toggleAudio } from '../audio'
 import { artPositions } from './artData'

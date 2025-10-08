@@ -12,7 +12,7 @@ import {
   EasingFunction
 } from '@dcl/sdk/ecs'
 import { Color3, Vector3 } from '@dcl/sdk/math'
-import { TriggerArea, triggerAreaEventsSystem } from '@dcl/sdk/triggers'
+import { TriggerArea, triggerAreaEventsSystem } from '@dcl/sdk/ecs'
 import * as utils from '@dcl-sdk/utils'
 import { setupUi } from './ui'
 

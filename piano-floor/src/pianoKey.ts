@@ -1,7 +1,7 @@
 import * as utils from '@dcl-sdk/utils'
 import { MessageBus } from '@dcl/sdk/message-bus'
 import { AudioSource, Entity, Material, MeshRenderer, Transform, engine, PBAudioSource } from '@dcl/sdk/ecs'
-import { TriggerArea, triggerAreaEventsSystem } from '@dcl/sdk/triggers'
+import { TriggerArea, triggerAreaEventsSystem } from '@dcl/sdk/ecs'
 import { Color4, Quaternion, Vector3 } from '@dcl/sdk/math'
 import resources from './resources'
 import { AudioController } from './audioController'

@@ -1,8 +1,7 @@
 //import * as utils from '@dcl/ecs-scene-utils'
-import { AudioSource, engine, Entity, GltfContainer, Transform, TransformType } from '@dcl/sdk/ecs'
+import { AudioSource, engine, Entity, GltfContainer, Transform, TransformType, TriggerArea, triggerAreaEventsSystem } from '@dcl/sdk/ecs'
 import { Color3, Vector3 } from '@dcl/sdk/math'
 import * as utils from '@dcl-sdk/utils'
-import { TriggerArea, triggerAreaEventsSystem } from '@dcl/sdk/triggers'
 
 /**
  * Sound is a separated from the coin entity so that you can

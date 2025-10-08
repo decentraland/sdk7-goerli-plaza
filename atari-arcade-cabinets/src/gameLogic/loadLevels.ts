@@ -1,6 +1,5 @@
-import { Entity, Transform, engine } from '@dcl/sdk/ecs'
+import { Entity, Transform, engine, TriggerArea, triggerAreaEventsSystem } from '@dcl/sdk/ecs'
 import { Color3, Quaternion, Vector3 } from '@dcl/sdk/math'
-import { TriggerArea, triggerAreaEventsSystem } from '@dcl/sdk/triggers'
 import { ArcadeFlag, ArcadeScreenFlag, ArcadeTriggerFlag, HasGameLoaded } from '../components/definitions'
 import { loadPlayer, unloadPlayer } from '../player'
 import { loadAtariBricks } from './atariMethods'

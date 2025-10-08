@@ -1,7 +1,9 @@
 import * as utils from '@dcl-sdk/utils'
-import { engine, Transform, MeshRenderer, VisibilityComponent } from '@dcl/sdk/ecs'
+import { engine, Transform, MeshRenderer, VisibilityComponent, TriggerArea } from '@dcl/sdk/ecs'
 import { Vector3 } from '@dcl/sdk/math'
 import { triggerEmote, triggerSceneEmote } from '~system/RestrictedActions'
+import { triggerAreaEventsSystem } from '@dcl/sdk/ecs'
+
 // Example emotes array
 const emotesToTrigger = [
   'assets/scene/Models/Throw_emote.glb',
@@ -32,7 +34,7 @@ export function createDanceArea(position: Vector3, scale: Vector3) {
   // Add Trigger Area
   TriggerArea.setBox(myEntity)
 
-  triggerAreaEventsSystem.onTriggerEnter(triggerEntity, function (result) {
+  triggerAreaEventsSystem.onTriggerEnter(myEntity, function (result) {
     if (!isDancing) {
       isDancing = true
       currentEmoteIndex = 0
@@ -41,7 +43,7 @@ export function createDanceArea(position: Vector3, scale: Vector3) {
     }
   })
 
-  triggerAreaEventsSystem.onTriggerExit(triggerEntity, function (result) {
+  triggerAreaEventsSystem.onTriggerExit(myEntity, function (result) {
     if (isDancing) {
       isDancing = false
       console.log('noDance')
@@ -62,7 +64,7 @@ export function createBasicDanceArea(position: Vector3, scale: Vector3) {
 
   TriggerArea.setBox(myEntity)
 
-  triggerAreaEventsSystem.onTriggerEnter(triggerEntity, function (result) {
+  triggerAreaEventsSystem.onTriggerEnter(myEntity, function (result) {
     if (!isDancing) {
       isDancing = true
       currentEmoteIndex = 0
@@ -71,7 +73,7 @@ export function createBasicDanceArea(position: Vector3, scale: Vector3) {
     }
   })
 
-  triggerAreaEventsSystem.onTriggerExit(triggerEntity, function (result) {
+  triggerAreaEventsSystem.onTriggerExit(myEntity, function (result) {
     if (isDancing) {
       isDancing = false
       console.log('noDance')

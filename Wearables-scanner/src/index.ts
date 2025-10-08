@@ -1,7 +1,6 @@
-import { Animator, AudioSource, engine, Transform } from '@dcl/sdk/ecs'
+import { Animator, AudioSource, engine, Transform, TriggerArea, triggerAreaEventsSystem } from '@dcl/sdk/ecs'
 import { Color4, Vector3 } from '@dcl/sdk/math'
 import * as utils from '@dcl-sdk/utils'
-import { TriggerArea, triggerAreaEventsSystem } from '@dcl/sdk/triggers'
 import { getPlayer } from '@dcl/sdk/src/players'
 import { doorSystem } from './systems'
 import { DoorState } from './components'
