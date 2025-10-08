@@ -9,7 +9,9 @@ import {
   MeshRenderer,
   pointerEventsSystem,
   Transform,
-  Tween
+  Tween,
+  TriggerArea,
+  triggerAreaEventsSystem
 } from '@dcl/sdk/ecs'
 import { Color4, Quaternion, Vector3 } from '@dcl/sdk/math'
 import * as utils from '@dcl-sdk/utils'
