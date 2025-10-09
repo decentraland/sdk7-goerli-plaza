@@ -62,7 +62,7 @@ function createDispenserWithWearable(position: Vector3, rotation: Quaternion, we
         scale: Vector3.create(2, 2, 2),
     });
 
-    TriggerArea.setShpere(wearableClaimArea)
+    TriggerArea.setSphere(wearableClaimArea)
     Transform.getMutable(wearableClaimArea).scale = Vector3.create(2, 2, 2)
     triggerAreaEventsSystem.onTriggerEnter(wearableClaimArea, () => {
         DispenserComponent.getMutable(dispenser).isActive = true
