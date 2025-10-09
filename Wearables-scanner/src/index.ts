@@ -1,4 +1,4 @@
-import { Animator, AudioSource, engine } from '@dcl/sdk/ecs'
+import { Animator, AudioSource, engine, Transform, TriggerArea, triggerAreaEventsSystem } from '@dcl/sdk/ecs'
 import { Color4, Vector3 } from '@dcl/sdk/math'
 import * as utils from '@dcl-sdk/utils'
 import { getPlayer } from '@dcl/sdk/src/players'
@@ -35,46 +35,43 @@ export function main() {
     })
     Animator.playSingleAnimation(scanner, 'NotAllow_Action', true)
 
-    utils.triggers.addTrigger(
-      scanner,
-      1,
-      1,
-      [{ type: 'box', scale: Vector3.create(2, 4, 3), position: Vector3.create(0, 0, 1) }],
-      () => {
-        if (SCANNING) return
-        SCANNING = true
-        Animator.playSingleAnimation(scanner, 'Laser_Action', true)
-        AudioSource.createOrReplace(scanner, {
-          audioClipUrl: 'assets/scene/Audio/LaserHum.mp3',
-          playing: true,
-          loop: false
-        })
-        // check wearables
+    const trigger = engine.addEntity()
+    Transform.create(trigger, { parent: scanner, position: Vector3.create(0, 0, 1), scale: Vector3.create(2, 4, 3) })
+    TriggerArea.setBox(trigger)
+    triggerAreaEventsSystem.onTriggerEnter(trigger, () => {
+      if (SCANNING) return
+      SCANNING = true
+      Animator.playSingleAnimation(scanner, 'Laser_Action', true)
+      AudioSource.createOrReplace(scanner, {
+        audioClipUrl: 'assets/scene/Audio/LaserHum.mp3',
+        playing: true,
+        loop: false
+      })
+      // check wearables
 
-        utils.timers.setTimeout(async () => {
-          const accepted = await checkWearables('urn:decentraland:off-chain:base-avatars:thug_life')
-          if (accepted) {
-            Animator.playSingleAnimation(scanner, 'Allow_Action', true)
-            AudioSource.createOrReplace(scanner, {
-              audioClipUrl: 'assets/scene/Audio/accept.mp3',
-              playing: true,
-              loop: false
-            })
-            DoorState.getMutable(door).open = true
-            DoorState.getMutable(door).dirty = true
-          } else {
-            Animator.playSingleAnimation(scanner, 'NotAllow_Action', true)
-            AudioSource.createOrReplace(scanner, {
-              audioClipUrl: 'assets/scene/Audio/access_denied.mp3',
-              playing: true,
-              loop: false
-            })
-          }
+      utils.timers.setTimeout(async () => {
+        const accepted = await checkWearables('urn:decentraland:off-chain:base-avatars:thug_life')
+        if (accepted) {
+          Animator.playSingleAnimation(scanner, 'Allow_Action', true)
+          AudioSource.createOrReplace(scanner, {
+            audioClipUrl: 'assets/scene/Audio/accept.mp3',
+            playing: true,
+            loop: false
+          })
+          DoorState.getMutable(door).open = true
+          DoorState.getMutable(door).dirty = true
+        } else {
+          Animator.playSingleAnimation(scanner, 'NotAllow_Action', true)
+          AudioSource.createOrReplace(scanner, {
+            audioClipUrl: 'assets/scene/Audio/access_denied.mp3',
+            playing: true,
+            loop: false
+          })
+        }
 
-          SCANNING = false
-        }, 4000)
-      }
-    )
+        SCANNING = false
+      }, 4000)
+    })
   }
 
   //utils.triggers.enableDebugDraw(true)

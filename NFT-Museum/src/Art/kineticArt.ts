@@ -9,6 +9,7 @@ import {
   InputAction
 } from '@dcl/sdk/ecs'
 import * as utils from '@dcl-sdk/utils'
+import { TriggerArea, triggerAreaEventsSystem } from '@dcl/sdk/ecs'
 import { openExternalUrl } from '~system/RestrictedActions'
 import { linktreeURL } from '../social'
 import { audioType, toggleAudio } from '../audio'
@@ -154,28 +155,25 @@ export function createKineticArt(
     })
   }
 
-  utils.triggers.addTrigger(
-    entity,
-    utils.NO_LAYERS,
-    utils.LAYER_1,
-    [{ type: 'box', position: triggerPosition, scale: triggerScale }],
-    function (otherEntity) {
-      if (audio) {
-        toggleAudio(audioType)
-      }
-      if (animationClip !== null) {
-        Animator.playSingleAnimation(entity, animationClip, false)
-      }
-    },
-    function (anotherEntity) {
-      if (audio) {
-        toggleAudio(audioType)
-      }
-      if (animationClip !== null) {
-        Animator.stopAllAnimations(entity, false)
-      }
+  const trigger = engine.addEntity()
+  Transform.create(trigger, { parent: entity, position: triggerPosition, scale: triggerScale })
+  TriggerArea.setBox(trigger)
+  triggerAreaEventsSystem.onTriggerEnter(trigger, function () {
+    if (audio) {
+      toggleAudio(audioType)
     }
-  )
+    if (animationClip !== null) {
+      Animator.playSingleAnimation(entity, animationClip, false)
+    }
+  })
+  triggerAreaEventsSystem.onTriggerExit(trigger, function () {
+    if (audio) {
+      toggleAudio(audioType)
+    }
+    if (animationClip !== null) {
+      Animator.stopAllAnimations(entity, false)
+    }
+  })
   //utils.triggers.enableDebugDraw(true)
   return entity
 }

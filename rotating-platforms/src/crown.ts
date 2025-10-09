@@ -1,5 +1,5 @@
 //import * as utils from '@dcl/ecs-scene-utils'
-import { AudioSource, engine, Entity, GltfContainer, Transform, TransformType } from '@dcl/sdk/ecs'
+import { AudioSource, engine, Entity, GltfContainer, Transform, TransformType, TriggerArea, triggerAreaEventsSystem } from '@dcl/sdk/ecs'
 import { Color3, Vector3 } from '@dcl/sdk/math'
 import * as utils from '@dcl-sdk/utils'
 
@@ -23,23 +23,17 @@ export function createCrown(model: string, transform: TransformType): Entity {
   //utils.triggers.setTriggeredByMask(entity,1)
 
   //entity: Entity, layerMask: number, triggeredByMask: number, areas?: Array<TriggerAreaSpec>, onEnterCallback?: OnTriggerEnterCallback, onExitCallback?: OnTriggerExitCallback, debugColor?: Color3
-  utils.triggers.addTrigger(
-    entity,
-    utils.LAYER_1,
-    utils.LAYER_1,
-    [{ position: Vector3.Zero(), scale: size, type: 'box' }],
-    () => {
-      console.log('enter crown')
-      AudioSource.getMutable(crownPickupSound).playing = true
-      const playerPosition = Transform.getOrNull(engine.PlayerEntity)?.position || Vector3.Zero()
-      //console.log("engine.PlayerEntity",Transform.getOrNull(engine.PlayerEntity),playerPosition,AudioSource.get(crownPickupSound).playing)
-      Transform.getMutable(crownPickupSound).position = playerPosition //.position
-      engine.removeEntityWithChildren(entity)
-      utils.triggers.removeTrigger(entity)
-    },
-    () => { },
-    Color3.Yellow()
-  )
+  const trigger = engine.addEntity()
+  Transform.create(trigger, { parent: entity, position: Vector3.Zero(), scale: size })
+  TriggerArea.setBox(trigger)
+  triggerAreaEventsSystem.onTriggerEnter(trigger, () => {
+    console.log('enter crown')
+    AudioSource.getMutable(crownPickupSound).playing = true
+    const playerPosition = Transform.getOrNull(engine.PlayerEntity)?.position || Vector3.Zero()
+    //console.log("engine.PlayerEntity",Transform.getOrNull(engine.PlayerEntity),playerPosition,AudioSource.get(crownPickupSound).playing)
+    Transform.getMutable(crownPickupSound).position = playerPosition //.position
+    engine.removeEntityWithChildren(entity)
+  })
 
   return entity
 }

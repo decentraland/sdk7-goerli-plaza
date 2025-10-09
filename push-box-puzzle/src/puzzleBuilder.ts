@@ -1,7 +1,7 @@
 import { Statue } from './statue'
 import * as utils from '@dcl-sdk/utils'
 import { Sound } from './sound'
-import { engine, Entity, GltfContainer, Transform } from '@dcl/ecs'
+import { engine, Entity, GltfContainer, Transform, TriggerArea, triggerAreaEventsSystem } from '@dcl/ecs'
 import { Vector3 } from '@dcl/sdk/math'
 import { InputAction, inputSystem, PointerEventType } from '@dcl/sdk/ecs'
 import { Selector } from './selector'
@@ -43,27 +43,21 @@ export class PuzzleBuilder {
     Transform.create(PuzzleBuilder.resetFrontTrigger)
     Transform.create(PuzzleBuilder.resetBackTrigger)
 
-    utils.triggers.addTrigger(
-      PuzzleBuilder.resetFrontTrigger,
-      utils.NO_LAYERS,
-      utils.LAYER_1,
-      [{ type: 'box', position: { x: 8, y: 1.75, z: 1.75 }, scale: { x: 16, y: 3.5, z: 3.5 } }],
-      () => {
-        Sound.playStatueMove()
-        PuzzleBuilder.restartGame()
-      }
-    )
+    Transform.getMutable(PuzzleBuilder.resetFrontTrigger).position = { x: 8, y: 1.75, z: 1.75 }
+    Transform.getMutable(PuzzleBuilder.resetFrontTrigger).scale = { x: 16, y: 3.5, z: 3.5 }
+    TriggerArea.setBox(PuzzleBuilder.resetFrontTrigger)
+    triggerAreaEventsSystem.onTriggerEnter(PuzzleBuilder.resetFrontTrigger, () => {
+      Sound.playStatueMove()
+      PuzzleBuilder.restartGame()
+    })
 
-    utils.triggers.addTrigger(
-      PuzzleBuilder.resetBackTrigger,
-      utils.NO_LAYERS,
-      utils.LAYER_1,
-      [{ type: 'box', position: { x: 8, y: 1.75, z: 14.25 }, scale: { x: 16, y: 3.5, z: 3.5 } }],
-      () => {
-        Sound.playStatueMove()
-        PuzzleBuilder.restartGame()
-      }
-    )
+    Transform.getMutable(PuzzleBuilder.resetBackTrigger).position = { x: 8, y: 1.75, z: 14.25 }
+    Transform.getMutable(PuzzleBuilder.resetBackTrigger).scale = { x: 16, y: 3.5, z: 3.5 }
+    TriggerArea.setBox(PuzzleBuilder.resetBackTrigger)
+    triggerAreaEventsSystem.onTriggerEnter(PuzzleBuilder.resetBackTrigger, () => {
+      Sound.playStatueMove()
+      PuzzleBuilder.restartGame()
+    })
 
     // Button down event
     engine.addSystem(() => {

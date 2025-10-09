@@ -1,6 +1,7 @@
 import { EasingFunction, engine, Entity, GltfContainer, Material, MaterialTransparencyMode, MeshRenderer, Schemas, Transform, Tween, TweenLoop, TweenSequence } from "@dcl/sdk/ecs"
 import { Color3, Color4, Quaternion, Vector3 } from "@dcl/sdk/math"
 import * as utils from "@dcl-sdk/utils"
+import { TriggerArea, triggerAreaEventsSystem } from '@dcl/sdk/ecs'
 import { ClaimConfig, ClaimConfigInstType } from "./claiming/claimConfig"
 import { initClapToClaim } from "./clapToClaim"
 import { hideClapToast, showClapToast } from "./claiming/ui/clapToClaimUi"
@@ -17,7 +18,7 @@ export function initDispensers() {
     initClapToClaim()
 
     createDispenserWithWearable(
-        Vector3.create(8, 0, 8),Quaternion.fromEulerDegrees(0, 0, 0),
+        Vector3.create(8, 0, 8), Quaternion.fromEulerDegrees(0, 0, 0),
         "assets/scene/Models/jacket25_wearable.glb",
         ClaimConfig.campaign.Jacket
     );
@@ -61,26 +62,16 @@ function createDispenserWithWearable(position: Vector3, rotation: Quaternion, we
         scale: Vector3.create(2, 2, 2),
     });
 
-    utils.triggers.addTrigger(
-        wearableClaimArea,
-        utils.NO_LAYERS,
-        utils.PLAYER_LAYER_ID,
-        [
-            {
-                type: 'sphere',
-                radius: 1
-            }
-        ],
-        (enterEntity)=>{
-            DispenserComponent.getMutable(dispenser).isActive = true
-            showClapToast()
-        },
-        (exitEntity) => {
-            DispenserComponent.getMutable(dispenser).isActive = false
-            hideClapToast()
-        },
-        Color3.Blue()
-    );
+    TriggerArea.setSphere(wearableClaimArea)
+    Transform.getMutable(wearableClaimArea).scale = Vector3.create(2, 2, 2)
+    triggerAreaEventsSystem.onTriggerEnter(wearableClaimArea, () => {
+        DispenserComponent.getMutable(dispenser).isActive = true
+        showClapToast()
+    })
+    triggerAreaEventsSystem.onTriggerExit(wearableClaimArea, () => {
+        DispenserComponent.getMutable(dispenser).isActive = false
+        hideClapToast()
+    })
 
     //const wearableClaimAreaPlatform = engine.addEntity()
     //Transform.create(wearableClaimAreaPlatform, {

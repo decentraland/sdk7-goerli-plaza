@@ -19,7 +19,9 @@ import {
   Transform,
   engine,
   inputSystem,
-  raycastSystem
+  raycastSystem,
+  TriggerArea,
+  triggerAreaEventsSystem
 } from '@dcl/sdk/ecs'
 import { Color4, Quaternion, Vector3 } from '@dcl/sdk/math'
 import { ShotDecalObject } from './shot-decal-object'
@@ -142,20 +144,20 @@ export module PlayerShootingArea {
             if (isDebugging)
               console.log(
                 'Shooting Area: hit at ' +
-                  '\n\tposition {x=' +
-                  modTransform.pos.x +
-                  ', y=' +
-                  modTransform.pos.y +
-                  ', z=' +
-                  modTransform.pos.z +
-                  '}' +
-                  '\n\trotation {x=' +
-                  modTransform.rot.x +
-                  ', y=' +
-                  modTransform.rot.y +
-                  ', z=' +
-                  modTransform.rot.z +
-                  '}'
+                '\n\tposition {x=' +
+                modTransform.pos.x +
+                ', y=' +
+                modTransform.pos.y +
+                ', z=' +
+                modTransform.pos.z +
+                '}' +
+                '\n\trotation {x=' +
+                modTransform.rot.x +
+                ', y=' +
+                modTransform.rot.y +
+                ', z=' +
+                modTransform.rot.z +
+                '}'
               )
 
             //create decal pieces
@@ -230,34 +232,28 @@ export module PlayerShootingArea {
       shootingAreaEntity = engine.addEntity()
       Transform.create(shootingAreaEntity, { scale: SHOOTING_AREA_SCALE })
       //  trigger area
-      utils.triggers.addTrigger(
-        shootingAreaEntity,
-        utils.NO_LAYERS,
-        utils.LAYER_1,
-        [{ type: 'box', scale: SHOOTING_AREA_SCALE }],
-        //entry callback
-        function (otherEntity) {
-          console.log(`trigger area entered, object=${otherEntity}!`)
-          inShootingArea = true
-          //update floor material
-          Material.setPbrMaterial(shootingFloorEntity, {
-            albedoColor: Color4.Yellow(),
-            emissiveColor: Color4.Yellow(),
-            emissiveIntensity: 1
-          })
-        },
-        //exit callback
-        function (otherEntity) {
-          console.log(`trigger area exited, object=${otherEntity}!`)
-          inShootingArea = false
-          //update floor material
-          Material.setPbrMaterial(shootingFloorEntity, {
-            albedoColor: Color4.Black(),
-            emissiveColor: undefined,
-            emissiveIntensity: 0
-          })
-        }
-      )
+      TriggerArea.setBox(shootingAreaEntity)
+      triggerAreaEventsSystem.onTriggerEnter(shootingAreaEntity, function () {
+        console.log(`trigger area entered`)
+        inShootingArea = true
+        //update floor material
+        Material.setPbrMaterial(shootingFloorEntity, {
+          albedoColor: Color4.Yellow(),
+          emissiveColor: Color4.Yellow(),
+          emissiveIntensity: 1
+        })
+      })
+      //exit callback
+      triggerAreaEventsSystem.onTriggerExit(shootingAreaEntity, function () {
+        console.log(`trigger area exited`)
+        inShootingArea = false
+        //update floor material
+        Material.setPbrMaterial(shootingFloorEntity, {
+          albedoColor: Color4.Black(),
+          emissiveColor: undefined,
+          emissiveIntensity: 0
+        })
+      })
 
       if (isDebugging) console.log('Shooting Area: created new shooting area!')
     }
