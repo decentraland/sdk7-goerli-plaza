@@ -19,7 +19,9 @@ import {
   Transform,
   engine,
   inputSystem,
-  raycastSystem
+  raycastSystem,
+  TriggerArea,
+  triggerAreaEventsSystem
 } from '@dcl/sdk/ecs'
 import { Color4, Quaternion, Vector3 } from '@dcl/sdk/math'
 import { ShotDecalObject } from './shot-decal-object'
