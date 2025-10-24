@@ -3,12 +3,11 @@
   "description": "Claim a wearable by clicking on the dispenser. You must be connected with your wallet to the Sepolia network. After submitting a captcha the wearable will arrive over the next couple of minutes.",
   "version": "1.0.0",
   "dependencies": {
-    "@dcl-sdk/utils": "latest",
-    "dcl-ui-toolkit": "latest"
+    "@dcl-sdk/utils": "latest"
   },
   "devDependencies": {
-    "@dcl/js-runtime": "latest",
-    "@dcl/sdk": "latest"
+    "@dcl/sdk": "7.11.2",
+    "@dcl/js-runtime": "7.11.2"
   },
   "scripts": {
     "build": "sdk-commands build",
