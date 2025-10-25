@@ -5,21 +5,21 @@ This scene contains a scene template with the code and Models necesary to implem
 ## Getting Started
 
 1. Clone or ZIP Download [the whole Repo](https://github.com/decentraland/sdk7-goerli-plaza) ,
-2. Import `clap-claimm-disponser` folder(in the root of the project) as a new Scene in the Creator Hub.
+2. Import `clap-claim-disponser` folder(in the root of the project) as a new Scene in the Creator Hub.
 3. Once the scene is loaded, hit Preview.
-4.  Congratz! You should see the Wereable Dispenser, and be able to do a `CLAP EMOTE` and claim the Wereable by clapping!
+4.  Congratz! You should see the Wearable Dispenser, and be able to do a `CLAP EMOTE` and claim the Wearable by clapping!
 
 ## Customizing the Dispenser
 
 Now that we have our Dispenser set up, we will probably be wanting to change it's position, rotation, glb, et. So let's see how to do some of those things.
 
-### Poiting to your Campaign's Dispenser
+### Pointing to your Campaign's Dispenser
 
 Before starting make sure you completed this steps:
 
 1. Create a campaign, 
 2. Add a collection to it. To add a collection to a campaign, that collection should give Minter access to the Minting address we got in the previous step.  
-3. Create a dispenser poiting to that collection for minting. 
+3. Create a dispenser pointing to that collection for minting. 
 4. You will need to fund the Campaign Address with POL to cover minting GAS fees.
 5. Once you have the funds, Active the Campaign.
 
@@ -27,7 +27,7 @@ Now you should have a **Campaign Address**(the one also used to give Minter acce
 
 We will set our code to point to our new **Campaign Address** and **Dispenser Key**.
 
-Let's go to our `ClaimConfig` constant inn `src/modules/claiming/claimConfig.ts`:
+Let's go to our `ClaimConfig` constant in `src/modules/claiming/claimConfig.ts`:
 
 ```
 export const ClaimConfig = {
@@ -47,14 +47,14 @@ export const ClaimConfig = {
 
 Where:
 
-* `<CAMPAIGN_ID>` is the Minting Address of your campaign. **Replace for yours here**
+* `<CAMPAIGN_ID>` is the Minting Address of your campaign. **Replace with yours here**
 * `<DISPENSER_KEY>` is the Dispenser secret key, replace with yours.
 
-The `startDate` and `endDate` are not mandatory and will not interrupt the mint. This is set when you crate the Dispenser in the Campaign.
+The `startDate` and `endDate` are not mandatory and will not interrupt the mint. This is set when you create the Dispenser in the Campaign.
 
-Now, your scene dispenser will mint from your campaign, use some of the funds you transfered into the campaign to cover the GAS fees, and transfer the wereable to the user claiming!
+Now, your scene dispenser will mint from your campaign, use some of the funds you transfered into the campaign to cover the GAS fees, and transfer the wearable to the user claiming!
 
-### Setting up Dispenser Position, Rotation and Wereable GLB
+### Setting up Dispenser Position, Rotation and Wearable GLB
 
 To edit the position and rotation of the dispenser, go to `initDispensers` function in `src/modules/dispensers.ts` file:
 
@@ -74,11 +74,11 @@ Where:
 
 * `<X_P>`, `<Y_P>`, `<Z_P>`: Sets the dispenser position(x, y, z) in the scene.
 * `<X_R>`, `<Y_R>`, `<Z_R>`: Sets the dispenser rotation(x, y, z) in the scene.
-* `<PATH_TO_WEREABLE_GLB>`: Path to your wereable GLB, that will be displayed in the dispenser.
+* `<PATH_TO_WEREABLE_GLB>`: Path to your wearable GLB, that will be displayed in the dispenser.
 
 ### Dispenser and UI Designs
 
-Since this is an example from the Fashion Week dispensers, the models loaded by default will have those banners. You can create your own dispenser model(with Blender or Meshy AI) and replace the default one. 
+Since this is an example from the Fashion Week dispensers, the models loaded by default will have those banners. You can create your own dispenser model (with Blender or Meshy AI) and replace the default one. 
 
 #### Changing the Dispenser model
 
@@ -101,7 +101,7 @@ Where:
 
 #### Disabling/Changing the UI texture
 
-When claiming a wereable, the texture shown in the UI also is from the MTFW. We can change or delete the texture and have an empty backgroun(if deleted) or a new background(if changed). 
+When claiming a wearable, the texture shown in the UI also is from the MTFW. We can change or delete the texture and have an empty background (if deleted) or a new background (if changed). 
 
 For this, go to the `UiEntity key={"ui-background}"` in `src/modules/ui/dispenserUi.tsx`:
 
@@ -116,15 +116,15 @@ uiBackground={{
 
 If:
 
-* **Deleting the `uiBackground`**: Will have a transparent backgroun
-* ++Changing the `src` model**: Will apply your new png(jpg) as the bakground
+* **Deleting the `uiBackground`**: Will have a transparent background
+* ++Changing the `src` model**: Will apply your new png (jpg) as the background
 
 ## Following Steps
 
 Many things could be achieved, for example:
 
 * Changing the emote that triggers the claim
-* Triggering the laim through other behaviours
+* Triggering the claim through other behaviours
 * Adding more than one dispenser to a scene
 * Changing the dispenser model for a complete new shape
 * Tinker aroud!
