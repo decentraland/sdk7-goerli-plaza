@@ -14,8 +14,8 @@ import {
   Tween
 } from '@dcl/sdk/ecs'
 import { Vector3 } from '@dcl/sdk/math'
-import { claimToken } from './claim/claim'
-import { ClaimConfigInstType } from './claim/claimConfig'
+import { claimToken } from './dispenser/claiming/claim'
+import { ClaimConfigInstType } from './dispenser/claiming/claimConfig'
 
 type dropArea = {
   SW: Vector3
