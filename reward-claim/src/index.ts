@@ -76,7 +76,6 @@ export function main() {
 
   spinInPlace(wearablePlaceholder, 3000)
 
-  
   //Lever Airdrop
   const lever = engine.getEntityOrNullByName('Lever')
 
@@ -96,25 +95,6 @@ export function main() {
 }
 
 export function spinInPlace(entity: Entity, duration: number) {
-  Tween.create(entity, {
-    mode: Tween.Mode.Rotate({
-      start: Quaternion.fromEulerDegrees(0, 0, 0),
-      end: Quaternion.fromEulerDegrees(0, 180, 0)
-    }),
-    duration: duration,
-    easingFunction: EasingFunction.EF_LINEAR
-  })
-  TweenSequence.create(entity, {
-    loop: TweenLoop.TL_RESTART,
-    sequence: [
-      {
-        mode: Tween.Mode.Rotate({
-          start: Quaternion.fromEulerDegrees(0, 180, 0),
-          end: Quaternion.fromEulerDegrees(0, 360, 0)
-        }),
-        duration: duration,
-        easingFunction: EasingFunction.EF_LINEAR
-      }
-    ]
-  })
+  const speed = 180 / (duration / 1000)
+  Tween.setRotateContinuous(entity, Quaternion.fromEulerDegrees(0, 90, 0), speed)
 }
