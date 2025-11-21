@@ -76,7 +76,6 @@ export function main() {
 
   spinInPlace(wearablePlaceholder, 3000)
 
-
   //Lever Airdrop
   const lever = engine.getEntityOrNullByName('Lever')
 
