@@ -95,27 +95,9 @@ export function createSwitchBoard(model: string, startPos: Vector3, endPos: Vect
 }
 
 function movePlatform(platform: Entity, gear: Entity, rotationSpeed: number, targetPos: Vector3, backwards?: boolean) {
-  Tween.createOrReplace(gear, {
-    mode: Tween.Mode.Rotate({
-      start: Quaternion.fromEulerDegrees(0, 0, 0),
-      end: backwards ? Quaternion.fromEulerDegrees(0, 0, 180) : Quaternion.fromEulerDegrees(0, 0, -180)
-    }),
-    duration: rotationSpeed,
-    easingFunction: EasingFunction.EF_LINEAR
-  })
-  TweenSequence.createOrReplace(gear, {
-    loop: TweenLoop.TL_RESTART,
-    sequence: [
-      {
-        mode: Tween.Mode.Rotate({
-          start: backwards ? Quaternion.fromEulerDegrees(0, 0, 180) : Quaternion.fromEulerDegrees(0, 0, -180),
-          end: backwards ? Quaternion.fromEulerDegrees(0, 0, 360) : Quaternion.fromEulerDegrees(0, 0, -360)
-        }),
-        duration: rotationSpeed,
-        easingFunction: EasingFunction.EF_LINEAR
-      }
-    ]
-  })
+  const rotSpeed = 180 / (rotationSpeed / 1000)
+  const direction = backwards ? Quaternion.fromEulerDegrees(90, 0, 0) : Quaternion.fromEulerDegrees(-90, 0, 0)
+  Tween.setRotateContinuous(gear, direction, rotSpeed)
 
   const currentPos = Transform.get(platform).position
   const speed = Math.abs(targetPos.x - currentPos.x) * 0.25 * 1000
@@ -131,7 +113,6 @@ function movePlatform(platform: Entity, gear: Entity, rotationSpeed: number, tar
 
   utils.timers.setTimeout(() => {
     Tween.deleteFrom(gear)
-    TweenSequence.deleteFrom(gear)
     Transform.getMutable(switchSound).position = Transform.get(engine.PlayerEntity).position
     AudioSource.getMutable(switchSound).playing = true
   }, speed)
