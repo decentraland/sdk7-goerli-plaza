@@ -1,16 +1,7 @@
-import {
-  engine,
-  Transform,
-  inputSystem,
-  PointerEvents,
-  InputAction,
-  PointerEventType,
-  Material,
-} from '@dcl/sdk/ecs'
+import { engine, Transform, inputSystem, PointerEvents, InputAction, PointerEventType, Material } from '@dcl/sdk/ecs'
 import { Color4, Quaternion, Vector3 } from '@dcl/sdk/math'
 import { Cube, Spinner } from './components'
 import { getRandomHexColor } from './utils'
-
 
 /**
  * All cubes rotating behavior

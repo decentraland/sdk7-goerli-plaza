@@ -1,7 +1,4 @@
-import {
-  engine,
-  Transform,
-} from '@dcl/sdk/ecs'
+import { engine, Transform } from '@dcl/sdk/ecs'
 import { Color4 } from '@dcl/sdk/math'
 import ReactEcs, { Button, Label, ReactEcsRenderer, UiEntity } from '@dcl/sdk/react-ecs'
 import { Cube } from './components'
@@ -17,7 +14,7 @@ const uiComponent = () => (
       width: 400,
       height: 230,
       margin: '16px 0 8px 270px',
-      padding: 4,
+      padding: 4
     }}
     uiBackground={{ color: Color4.create(0.5, 0.8, 0.1, 0.6) }}
   >
@@ -29,7 +26,7 @@ const uiComponent = () => (
         alignItems: 'center',
         justifyContent: 'space-between'
       }}
-      uiBackground={{ color: Color4.fromHexString("#70ac76ff") }}
+      uiBackground={{ color: Color4.fromHexString('#70ac76ff') }}
     >
       <UiEntity
         uiTransform={{
@@ -40,33 +37,37 @@ const uiComponent = () => (
         uiBackground={{
           textureMode: 'center',
           texture: {
-            src: 'images/scene-thumbnail.png',
-          },
+            src: 'images/scene-thumbnail.png'
+          }
         }}
         uiText={{ value: 'SDK7', fontSize: 18 }}
       />
       <Label
-        onMouseDown={() => {console.log('Player Position clicked !')}}
+        onMouseDown={() => {
+          console.log('Player Position clicked !')
+        }}
         value={`Player: ${getPlayerPosition()}`}
         fontSize={18}
-        uiTransform={{ width: '100%', height: 30 } }
+        uiTransform={{ width: '100%', height: 30 }}
       />
       <Label
-        onMouseDown={() => {console.log('# Cubes clicked !')}}
+        onMouseDown={() => {
+          console.log('# Cubes clicked !')
+        }}
         value={`# Cubes: ${[...engine.getEntitiesWith(Cube)].length}`}
         fontSize={18}
-        uiTransform={{ width: '100%', height: 30 } }
+        uiTransform={{ width: '100%', height: 30 }}
       />
       <Button
         uiTransform={{ width: 100, height: 40, margin: 8 }}
-        value='Spawn cube'
-        variant='primary'
+        value="Spawn cube"
+        variant="primary"
         fontSize={14}
         onMouseDown={() => {
           createCube(1 + Math.random() * 8, Math.random() * 8, 1 + Math.random() * 8, false)
         }}
       />
-     </UiEntity>
+    </UiEntity>
   </UiEntity>
 )
 
@@ -76,4 +77,3 @@ function getPlayerPosition() {
   const { x, y, z } = playerPosition.position
   return `{X: ${x.toFixed(2)}, Y: ${y.toFixed(2)}, z: ${z.toFixed(2)} }`
 }
-

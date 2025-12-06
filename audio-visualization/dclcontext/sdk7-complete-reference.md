@@ -1,6 +1,7 @@
 # Decentraland SDK7 Complete Reference Guide
 
 ## Table of Contents
+
 1. [Installation & Setup](#installation--setup)
 2. [Getting Started](#getting-started)
 3. [Architecture & Core Concepts](#architecture--core-concepts)
@@ -25,25 +26,30 @@
 ## Installation & Setup
 
 ### Creator Hub Installation
+
 The Creator Hub is a standalone application for building Decentraland scenes with drag-and-drop interface.
 
 Download: [https://decentraland.org/download/creator-hub](https://decentraland.org/download/creator-hub)
 
 ### Code Editor Setup
+
 Install Visual Studio Code: [https://code.visualstudio.com/](https://code.visualstudio.com/)
 Alternative: Cursor AI: [https://www.cursor.com/](https://www.cursor.com/)
 
 ### CLI Installation
+
 ```bash
 npm install -g @dcl/sdk-commands
 ```
 
 ### Creating a New Scene
+
 ```bash
 npx @dcl/sdk-commands init
 ```
 
 ### Basic Imports
+
 ```typescript
 import { engine } from '@dcl/sdk/ecs'
 import { Transform, GltfContainer, MeshRenderer, Material } from '@dcl/sdk/ecs'
@@ -58,24 +64,26 @@ import { ReactEcsRenderer } from '@dcl/sdk/react-ecs'
 ### SDK Quick Start
 
 #### Basic Scene Structure
+
 ```typescript
 export function main() {
   // Create entity
   const cube = engine.addEntity()
-  
+
   // Add transform component
   Transform.create(cube, {
     position: Vector3.create(8, 1, 8),
     rotation: Quaternion.Zero(),
     scale: Vector3.create(1, 1, 1)
   })
-  
+
   // Add shape component
   MeshRenderer.setBox(cube)
 }
 ```
 
 #### Adding Materials
+
 ```typescript
 // Create material
 Material.setPbrMaterial(cube, {
@@ -86,6 +94,7 @@ Material.setPbrMaterial(cube, {
 ```
 
 #### Adding Interactivity
+
 ```typescript
 import { pointerEventsSystem, InputAction } from '@dcl/sdk/ecs'
 
@@ -101,6 +110,7 @@ pointerEventsSystem.onPointerDown(
 ```
 
 #### Adding Tweens
+
 ```typescript
 import { Tween, EasingFunction } from '@dcl/sdk/ecs'
 
@@ -117,22 +127,26 @@ Tween.create(cube, {
 ### Development Workflow
 
 #### Preview Scene
+
 ```bash
 npm run start
 ```
 
 Preview options:
+
 - `-- --web3`: Connect to browser wallet
 - `-- --no-debug`: Disable debug panel
 - `-- --explorer-alpha`: Use Decentraland Desktop client
 - `-- --port <number>`: Specific port
 
 #### Build Scene
+
 ```bash
 npm run build
 ```
 
 #### Deploy Scene
+
 ```bash
 npm run deploy
 ```
@@ -144,6 +158,7 @@ npm run deploy
 ### Entity-Component-System (ECS)
 
 #### Entities
+
 Entities are basic units - just IDs that group components together.
 
 ```typescript
@@ -158,6 +173,7 @@ removeEntityWithChildren(engine, myEntity)
 ```
 
 #### Components
+
 Components store data about entities.
 
 ```typescript
@@ -186,6 +202,7 @@ Transform.createOrReplace(myEntity, {
 ```
 
 #### Systems
+
 Systems contain logic that runs every frame.
 
 ```typescript
@@ -193,10 +210,7 @@ function mySystem(dt: number) {
   // dt is delta time since last frame
   for (const [entity] of engine.getEntitiesWith(Transform, MeshRenderer)) {
     const transform = Transform.getMutable(entity)
-    transform.rotation = Quaternion.multiply(
-      transform.rotation,
-      Quaternion.fromAngleAxis(dt * 10, Vector3.Up())
-    )
+    transform.rotation = Quaternion.multiply(transform.rotation, Quaternion.fromAngleAxis(dt * 10, Vector3.Up()))
   }
 }
 
@@ -204,13 +218,14 @@ function mySystem(dt: number) {
 engine.addSystem(mySystem)
 
 // Add system with priority and name
-engine.addSystem(mySystem, 1, "RotationSystem")
+engine.addSystem(mySystem, 1, 'RotationSystem')
 
 // Remove system
-engine.removeSystem("RotationSystem")
+engine.removeSystem('RotationSystem')
 ```
 
 #### Querying Components
+
 ```typescript
 // Query entities with specific components
 for (const [entity, transform, meshRenderer] of engine.getEntitiesWith(Transform, MeshRenderer)) {
@@ -219,6 +234,7 @@ for (const [entity, transform, meshRenderer] of engine.getEntitiesWith(Transform
 ```
 
 #### Custom Components
+
 ```typescript
 // Define custom component schema
 const HealthSchema = {
@@ -264,9 +280,9 @@ enum Color {
 
 // OneOf types for interchangeable data
 const FlexibleSchema = {
-  flexField: Schemas.OneOf({ 
-    vector: Schemas.Vector3, 
-    quaternion: Schemas.Quaternion 
+  flexField: Schemas.OneOf({
+    vector: Schemas.Vector3,
+    quaternion: Schemas.Quaternion
   })
 }
 
@@ -286,6 +302,7 @@ Health.onChange(playerEntity, (healthData) => {
 ```
 
 #### Entity Relationships
+
 ```typescript
 // Parent-child relationships
 const parent = engine.addEntity()
@@ -301,11 +318,13 @@ const door = engine.getEntityOrNullByName('door-1')
 ```
 
 #### Reserved Entities
+
 - `engine.PlayerEntity`: Player's avatar
 - `engine.CameraEntity`: Player's camera
 - `engine.RootEntity`: Scene root
 
 #### Component Change Detection
+
 ```typescript
 Transform.onChange(myEntity, (newTransform) => {
   if (!newTransform) return
@@ -320,22 +339,25 @@ Transform.onChange(myEntity, (newTransform) => {
 ### Entity Positioning
 
 #### Transform Component
+
 ```typescript
 Transform.create(entity, {
-  position: Vector3.create(8, 1, 8),    // World position
+  position: Vector3.create(8, 1, 8), // World position
   rotation: Quaternion.fromEulerDegrees(0, 90, 0), // Rotation
-  scale: Vector3.create(2, 2, 2),       // Scale
-  parent: parentEntity                   // Optional parent
+  scale: Vector3.create(2, 2, 2), // Scale
+  parent: parentEntity // Optional parent
 })
 ```
 
 #### Position
+
 - Measured in meters
 - Scene coordinates: (0,0,0) is South-West corner at ground level
 - Single parcel: 16m x 16m
 - Scene center: (8, 0, 8) for single parcel
 
 #### Rotation
+
 ```typescript
 // Using Euler angles (degrees)
 const rotation = Quaternion.fromEulerDegrees(0, 90, 0)
@@ -348,21 +370,23 @@ const eulerAngles = Quaternion.toEuler(rotation)
 ```
 
 #### Billboard Component
+
 ```typescript
 // Always face the player
 Billboard.create(entity, {
-  billboardMode: BillboardMode.BM_Y  // Only rotate on Y axis
+  billboardMode: BillboardMode.BM_Y // Only rotate on Y axis
 })
 
 // Billboard modes
-BillboardMode.BM_ALL    // Rotate on all axes
-BillboardMode.BM_NONE   // No rotation
-BillboardMode.BM_X      // Fixed X axis
-BillboardMode.BM_Y      // Fixed Y axis (most common)
-BillboardMode.BM_Z      // Fixed Z axis
+BillboardMode.BM_ALL // Rotate on all axes
+BillboardMode.BM_NONE // No rotation
+BillboardMode.BM_X // Fixed X axis
+BillboardMode.BM_Y // Fixed Y axis (most common)
+BillboardMode.BM_Z // Fixed Z axis
 ```
 
 #### Face Target
+
 ```typescript
 function lookAt(entity: Entity, target: Vector3) {
   const transform = Transform.getMutable(entity)
@@ -373,6 +397,7 @@ function lookAt(entity: Entity, target: Vector3) {
 ```
 
 #### Avatar Attachment
+
 ```typescript
 // Attach to player
 AvatarAttach.create(entity, {
@@ -397,6 +422,7 @@ AvatarAnchorPointType.AAPT_NAME_TAG
 ### Shape Components
 
 #### Primitive Shapes
+
 ```typescript
 // Box
 MeshRenderer.setBox(entity)
@@ -415,6 +441,7 @@ MeshRenderer.setCylinder(entity, 0, 1)
 ```
 
 #### 3D Models
+
 ```typescript
 GltfContainer.create(entity, {
   src: 'models/house.glb'
@@ -428,6 +455,7 @@ if (loadingState?.currentState === LoadingState.FINISHED) {
 ```
 
 #### Visibility
+
 ```typescript
 // Make invisible
 VisibilityComponent.create(entity, { visible: false })
@@ -438,22 +466,28 @@ visibility.visible = !visibility.visible
 ```
 
 #### UV Mapping
+
 ```typescript
 // Custom UV coordinates for plane
 MeshRenderer.setPlane(entity, [
-  0, 0.75,    // Bottom-left
-  0.25, 0.75, // Bottom-right
-  0.25, 1,    // Top-right
-  0, 1        // Top-left
+  0,
+  0.75, // Bottom-left
+  0.25,
+  0.75, // Bottom-right
+  0.25,
+  1, // Top-right
+  0,
+  1 // Top-left
 ])
 ```
 
 ### Materials
 
 #### PBR Materials
+
 ```typescript
 Material.setPbrMaterial(entity, {
-  albedoColor: Color4.create(1, 0, 0, 1),  // Red
+  albedoColor: Color4.create(1, 0, 0, 1), // Red
   metallic: 0.8,
   roughness: 0.2,
   emissiveColor: Color4.create(0, 1, 0, 1), // Green glow
@@ -462,6 +496,7 @@ Material.setPbrMaterial(entity, {
 ```
 
 #### Basic Materials (Unlit)
+
 ```typescript
 Material.setBasicMaterial(entity, {
   diffuseColor: Color4.Red()
@@ -469,6 +504,7 @@ Material.setBasicMaterial(entity, {
 ```
 
 #### Textures
+
 ```typescript
 Material.setPbrMaterial(entity, {
   texture: Material.Texture.Common({
@@ -480,6 +516,7 @@ Material.setPbrMaterial(entity, {
 ```
 
 #### Multi-layer Textures
+
 ```typescript
 Material.setPbrMaterial(entity, {
   texture: Material.Texture.Common({ src: 'assets/diffuse.png' }),
@@ -489,6 +526,7 @@ Material.setPbrMaterial(entity, {
 ```
 
 #### Avatar Portraits
+
 ```typescript
 Material.setPbrMaterial(entity, {
   texture: Material.Texture.Avatar({
@@ -498,19 +536,17 @@ Material.setPbrMaterial(entity, {
 ```
 
 #### Texture Animation
+
 ```typescript
 // Animate texture offset
-Tween.setTextureMove(entity,
-  Vector2.create(0, 0),
-  Vector2.create(1, 0),
-  2000
-)
+Tween.setTextureMove(entity, Vector2.create(0, 0), Vector2.create(1, 0), 2000)
 
 // Loop texture animation
 TweenSequence.create(entity, { sequence: [], loop: TweenLoop.TL_RESTART })
 ```
 
 #### Transparency
+
 ```typescript
 // Alpha blend transparency
 Material.setPbrMaterial(entity, {
@@ -527,6 +563,7 @@ Material.setPbrMaterial(entity, {
 ```
 
 #### Modify GLTF materials
+
 ```typescript
 import { GltfNodeModifiers, GltfContainer } from '@dcl/sdk/ecs'
 
@@ -551,22 +588,23 @@ GltfNodeModifiers.create(model, {
   ]
 })
 ```
+
 Tip: set `path` to a specific mesh node to target only that part; use `Material.Texture.Common({ src: '...' })` inside `pbr` to swap textures.
 
 ### Move Entities
 
 #### Tween helpers (concise syntax)
+
 ```typescript
 // Move between two points
-Tween.setMove(entity,
-  Vector3.create(4, 1, 4),
-  Vector3.create(8, 1, 8),
-  2000,
-  { faceDirection: false, easingFunction: EasingFunction.EF_LINEAR }
-)
+Tween.setMove(entity, Vector3.create(4, 1, 4), Vector3.create(8, 1, 8), 2000, {
+  faceDirection: false,
+  easingFunction: EasingFunction.EF_LINEAR
+})
 
 // Rotate between two rotations
-Tween.setRotate(entity,
+Tween.setRotate(
+  entity,
   Quaternion.fromEulerDegrees(0, 0, 0),
   Quaternion.fromEulerDegrees(0, 180, 0),
   700,
@@ -574,12 +612,7 @@ Tween.setRotate(entity,
 )
 
 // Scale between sizes
-Tween.setScale(entity,
-  Vector3.create(1, 1, 1),
-  Vector3.create(4, 4, 4),
-  2000,
-  EasingFunction.EF_LINEAR
-)
+Tween.setScale(entity, Vector3.create(1, 1, 1), Vector3.create(4, 4, 4), 2000, EasingFunction.EF_LINEAR)
 
 // Continuous movement (meters/second)
 Tween.setMoveContinuous(entity, Vector3.create(0, 0, 1), 0.7)
@@ -589,6 +622,7 @@ Tween.setRotateContinuous(entity, Quaternion.fromEulerDegrees(0, -1, 0), 700)
 ```
 
 #### Tween System
+
 ```typescript
 // Move between points
 Tween.create(entity, {
@@ -622,6 +656,7 @@ Tween.create(entity, {
 ```
 
 #### Tween Sequences
+
 ```typescript
 // Back and forth movement
 Tween.create(entity, {
@@ -635,7 +670,7 @@ Tween.create(entity, {
 
 TweenSequence.create(entity, {
   sequence: [],
-  loop: TweenLoop.TL_YOYO  // Back and forth
+  loop: TweenLoop.TL_YOYO // Back and forth
 })
 
 // Complex sequence
@@ -663,11 +698,12 @@ TweenSequence.create(entity, {
 ```
 
 #### Tween Control
+
 ```typescript
 // Pause/resume tween
 const tweenData = Tween.getMutable(entity)
-tweenData.playing = false  // Pause
-tweenData.playing = true   // Resume
+tweenData.playing = false // Pause
+tweenData.playing = true // Resume
 
 // Remove tween
 Tween.deleteFrom(entity)
@@ -682,13 +718,14 @@ engine.addSystem(() => {
 ```
 
 #### Manual Movement via Systems
+
 ```typescript
 // Linear interpolation movement
 function moveSystem(dt: number) {
   for (const [entity, moveData] of engine.getEntitiesWith(MoveComponent)) {
     const transform = Transform.getMutable(entity)
     const data = MoveComponent.getMutable(entity)
-    
+
     if (data.fraction < 1) {
       data.fraction += dt * data.speed
       transform.position = Vector3.lerp(data.start, data.end, data.fraction)
@@ -702,6 +739,7 @@ engine.addSystem(moveSystem)
 ### Colliders
 
 #### Mesh Colliders
+
 ```typescript
 // Add collider to primitive
 MeshCollider.setBox(entity)
@@ -714,6 +752,7 @@ MeshCollider.setBox(entity, ColliderLayer.CL_CUSTOM1)
 ```
 
 #### GLTF Model Colliders
+
 ```typescript
 // Use visible geometry as collider
 GltfContainer.create(entity, {
@@ -724,14 +763,15 @@ GltfContainer.create(entity, {
 ```
 
 #### Collision Layers
+
 ```typescript
 // Available collision layers
 ColliderLayer.CL_NONE
-ColliderLayer.CL_POINTER      // Pointer events
-ColliderLayer.CL_PHYSICS      // Player movement blocking
-ColliderLayer.CL_PLAYER       // Player avatar body
-ColliderLayer.CL_CUSTOM1      // Custom layer 1
-ColliderLayer.CL_CUSTOM2      // Custom layer 2
+ColliderLayer.CL_POINTER // Pointer events
+ColliderLayer.CL_PHYSICS // Player movement blocking
+ColliderLayer.CL_PLAYER // Player avatar body
+ColliderLayer.CL_CUSTOM1 // Custom layer 1
+ColliderLayer.CL_CUSTOM2 // Custom layer 2
 // ... up to CL_CUSTOM8
 
 // Combine layers
@@ -776,6 +816,7 @@ MeshCollider.setBox(mover, ColliderLayer.CL_CUSTOM1)
 ```
 
 Result payload (enter/exit/stay callback parameter):
+
 - `triggeredEntity`: area entity id
 - `eventType`: ENTER | EXIT | STAY
 - `trigger.entity`: entering entity id
@@ -784,6 +825,7 @@ Result payload (enter/exit/stay callback parameter):
 ### Sounds
 
 #### Audio Sources
+
 ```typescript
 // Create audio source
 AudioSource.create(entity, {
@@ -801,6 +843,7 @@ audio.volume = 0.5
 ```
 
 #### Audio Streaming
+
 ```typescript
 // Stream audio from URL
 AudioStream.create(entity, {
@@ -813,6 +856,7 @@ AudioStream.create(entity, {
 ### Text
 
 #### Text Shape
+
 ```typescript
 TextShape.create(entity, {
   text: 'Hello World!',
@@ -839,6 +883,7 @@ TextAlignMode.TAM_BOTTOM_RIGHT
 ### Camera
 
 #### Camera Control
+
 ```typescript
 // Get camera mode
 const cameraMode = CameraMode.get(engine.CameraEntity)
@@ -860,6 +905,7 @@ VirtualCamera.create(entity, {
 ### Animations
 
 #### GLTF Animations
+
 ```typescript
 // Play animation
 Animator.create(entity, {
@@ -881,6 +927,7 @@ animator.states[0].playing = false
 ### Lights
 
 #### Dynamic Lights
+
 ```typescript
 import { LightSource } from '@dcl/sdk/ecs'
 
@@ -919,6 +966,7 @@ LightSource.getMutable(spot).shadowMaskTexture = Material.Texture.Common({
 ```
 
 Notes:
+
 - One active light per parcel maximum; overall lights/shadows are auto-culled based on quality and proximity (up to ~3 shadowed lights visible at once).
 - Intensity is in candela; visible distance roughly grows with (sqrt(intensity)).
 
@@ -929,13 +977,14 @@ Notes:
 ### User Data
 
 #### Player Position & Rotation
+
 ```typescript
 function getPlayerData() {
   if (!Transform.has(engine.PlayerEntity)) return
-  
+
   const playerTransform = Transform.get(engine.PlayerEntity)
   const cameraTransform = Transform.get(engine.CameraEntity)
-  
+
   console.log('Player position:', playerTransform.position)
   console.log('Player rotation:', playerTransform.rotation)
   console.log('Camera position:', cameraTransform.position)
@@ -946,6 +995,7 @@ engine.addSystem(getPlayerData)
 ```
 
 #### Get Player Profile
+
 ```typescript
 import { getPlayer } from '@dcl/sdk/src/players'
 
@@ -962,6 +1012,7 @@ function main() {
 ```
 
 #### Get All Players
+
 ```typescript
 for (const [entity, data, transform] of engine.getEntitiesWith(PlayerIdentityData, Transform)) {
   console.log('Player:', data.address, 'Position:', transform.position)
@@ -969,10 +1020,11 @@ for (const [entity, data, transform] of engine.getEntitiesWith(PlayerIdentityDat
 ```
 
 #### Camera Mode
+
 ```typescript
 function checkCameraMode() {
   if (!CameraMode.has(engine.CameraEntity)) return
-  
+
   const cameraMode = CameraMode.get(engine.CameraEntity)
   if (cameraMode.mode === CameraType.CT_FIRST_PERSON) {
     console.log('First person camera')
@@ -985,6 +1037,7 @@ engine.addSystem(checkCameraMode)
 ```
 
 #### Trigger Emotes
+
 ```typescript
 import { triggerEmote, triggerSceneEmote } from '~system/RestrictedActions'
 
@@ -994,10 +1047,13 @@ triggerEmote({ predefinedEmote: 'robot' })
 // Custom emote (file must end with _emote.glb)
 triggerSceneEmote({ src: 'animations/Snowball_Throw_emote.glb', loop: false })
 ```
+
 Notes:
+
 - Plays only while the player is still; walking/jumping interrupts.
 
 #### Cursor State
+
 ```typescript
 // Check if cursor is locked
 const isLocked = PointerLock.get(engine.CameraEntity).isPointerLocked
@@ -1012,13 +1068,14 @@ console.log('World ray direction:', pointerInfo.worldRayDirection)
 ### Button Events
 
 #### Click Events
+
 ```typescript
 // Simple click handler
 pointerEventsSystem.onPointerDown(
   {
     entity: myEntity,
-    opts: { 
-      button: InputAction.IA_POINTER, 
+    opts: {
+      button: InputAction.IA_POINTER,
       hoverText: 'Click me!',
       maxDistance: 10
     }
@@ -1032,8 +1089,8 @@ pointerEventsSystem.onPointerDown(
 pointerEventsSystem.onPointerDown(
   {
     entity: myEntity,
-    opts: { 
-      button: InputAction.IA_PRIMARY,  // E key
+    opts: {
+      button: InputAction.IA_PRIMARY, // E key
       hoverText: 'Press E'
     }
   },
@@ -1043,7 +1100,7 @@ pointerEventsSystem.onPointerDown(
 pointerEventsSystem.onPointerDown(
   {
     entity: myEntity,
-    opts: { 
+    opts: {
       button: InputAction.IA_SECONDARY, // F key
       hoverText: 'Press F'
     }
@@ -1053,36 +1110,34 @@ pointerEventsSystem.onPointerDown(
 ```
 
 #### Available Input Actions
+
 ```typescript
-InputAction.IA_POINTER    // Left mouse button
-InputAction.IA_PRIMARY    // E key
-InputAction.IA_SECONDARY  // F key
-InputAction.IA_ACTION_3   // 1 key
-InputAction.IA_ACTION_4   // 2 key
-InputAction.IA_ACTION_5   // 3 key
-InputAction.IA_ACTION_6   // 4 key
-InputAction.IA_JUMP       // Space key
-InputAction.IA_FORWARD    // W key
-InputAction.IA_BACKWARD   // S key
-InputAction.IA_LEFT       // A key
-InputAction.IA_RIGHT      // D key
-InputAction.IA_WALK       // Shift key
+InputAction.IA_POINTER // Left mouse button
+InputAction.IA_PRIMARY // E key
+InputAction.IA_SECONDARY // F key
+InputAction.IA_ACTION_3 // 1 key
+InputAction.IA_ACTION_4 // 2 key
+InputAction.IA_ACTION_5 // 3 key
+InputAction.IA_ACTION_6 // 4 key
+InputAction.IA_JUMP // Space key
+InputAction.IA_FORWARD // W key
+InputAction.IA_BACKWARD // S key
+InputAction.IA_LEFT // A key
+InputAction.IA_RIGHT // D key
+InputAction.IA_WALK // Shift key
 ```
 
 #### System-based Input Events
+
 ```typescript
 function inputSystem() {
   // Check for specific input on specific entity
-  const clickData = inputSystem.getInputCommand(
-    InputAction.IA_POINTER,
-    PointerEventType.PET_DOWN,
-    myEntity
-  )
-  
+  const clickData = inputSystem.getInputCommand(InputAction.IA_POINTER, PointerEventType.PET_DOWN, myEntity)
+
   if (clickData) {
     console.log('Entity clicked via system:', clickData.hit.entityId)
   }
-  
+
   // Global input check
   if (inputSystem.isTriggered(InputAction.IA_PRIMARY, PointerEventType.PET_DOWN)) {
     console.log('E key pressed globally')
@@ -1093,16 +1148,18 @@ engine.addSystem(inputSystem)
 ```
 
 #### Event Types
+
 ```typescript
-PointerEventType.PET_DOWN         // Button pressed
-PointerEventType.PET_UP           // Button released
-PointerEventType.PET_HOVER_ENTER  // Cursor enters entity
-PointerEventType.PET_HOVER_LEAVE  // Cursor leaves entity
+PointerEventType.PET_DOWN // Button pressed
+PointerEventType.PET_UP // Button released
+PointerEventType.PET_HOVER_ENTER // Cursor enters entity
+PointerEventType.PET_HOVER_LEAVE // Cursor leaves entity
 ```
 
 ### Raycasting
 
 #### Basic Raycasting
+
 ```typescript
 // Raycast from entity in local direction
 raycastSystem.registerLocalDirectionRaycast(
@@ -1167,18 +1224,20 @@ raycastSystem.registerTargetEntityRaycast(
 ```
 
 #### Raycast Options
+
 ```typescript
 const raycastOptions = {
   direction: Vector3.Forward(),
   maxDistance: 16,
-  queryType: RaycastQueryType.RQT_HIT_FIRST,  // or RQT_QUERY_ALL
-  originOffset: Vector3.create(0, 0.5, 0),   // Offset from entity origin
+  queryType: RaycastQueryType.RQT_HIT_FIRST, // or RQT_QUERY_ALL
+  originOffset: Vector3.create(0, 0.5, 0), // Offset from entity origin
   collisionMask: ColliderLayer.CL_PHYSICS | ColliderLayer.CL_CUSTOM1,
-  continuous: false  // Set to true for continuous raycasting
+  continuous: false // Set to true for continuous raycasting
 }
 ```
 
 #### Collision Layers for Raycasting
+
 ```typescript
 // Only check specific layers
 raycastSystem.registerLocalDirectionRaycast(
@@ -1196,22 +1255,21 @@ raycastSystem.registerLocalDirectionRaycast(
 ```
 
 #### Remove Raycast
+
 ```typescript
 // Remove continuous raycast
 raycastSystem.removeRaycasterEntity(myEntity)
 ```
 
 #### Raycast from Player/Camera
+
 ```typescript
 // Raycast from camera forward
 raycastSystem.registerGlobalDirectionRaycast(
   {
     entity: engine.CameraEntity,
     opts: {
-      direction: Vector3.rotate(
-        Vector3.Forward(),
-        Transform.get(engine.CameraEntity).rotation
-      ),
+      direction: Vector3.rotate(Vector3.Forward(), Transform.get(engine.CameraEntity).rotation),
       maxDistance: 16
     }
   },
@@ -1226,6 +1284,7 @@ raycastSystem.registerGlobalDirectionRaycast(
 ### Event Listeners
 
 #### Player Events
+
 ```typescript
 // Player connects/disconnects
 engine.addSystem(() => {
@@ -1251,18 +1310,19 @@ PointerLock.onChange(engine.CameraEntity, (pointerLock) => {
 ### Avatar Modifiers
 
 #### Avatar Modifier Areas
+
 ```typescript
 // Create modifier area
 const modifierArea = engine.addEntity()
 Transform.create(modifierArea, {
   position: Vector3.create(8, 0, 8),
-  scale: Vector3.create(4, 3, 4)  // Area size
+  scale: Vector3.create(4, 3, 4) // Area size
 })
 
 AvatarModifierArea.create(modifierArea, {
   area: { box: Vector3.create(4, 3, 4) },
   modifiers: [AvatarModifierType.AMT_HIDE_AVATARS],
-  excludeIds: ['0x123...abc']  // Optional: exclude specific players
+  excludeIds: ['0x123...abc'] // Optional: exclude specific players
 })
 
 // Available modifiers
@@ -1271,6 +1331,7 @@ AvatarModifierType.AMT_DISABLE_PASSPORTS
 ```
 
 #### Movement Constraints
+
 ```typescript
 // Create movement constraint area
 const constraintArea = engine.addEntity()
@@ -1288,6 +1349,7 @@ AvatarModifierArea.create(constraintArea, {
 ### NPC Avatars
 
 #### Display only wearables
+
 ```typescript
 import { AvatarShape } from '@dcl/sdk/ecs'
 
@@ -1295,9 +1357,7 @@ const mannequin = engine.addEntity()
 AvatarShape.create(mannequin, {
   id: 'npc-1',
   name: 'NPC',
-  wearables: [
-    'urn:decentraland:matic:collections-v2:0x90e5cb2d673699be8f28d339c818a0b60144c494:0'
-  ],
+  wearables: ['urn:decentraland:matic:collections-v2:0x90e5cb2d673699be8f28d339c818a0b60144c494:0'],
   show_only_wearables: true
 })
 
@@ -1306,9 +1366,11 @@ Transform.create(mannequin, {
   scale: Vector3.create(1.2, 1.2, 1.2)
 })
 ```
+
 Use this to showcase items (e.g., storefront mannequins).
 
 ### Input Modifiers
+
 ```typescript
 import { InputModifier } from '@dcl/sdk/ecs'
 
@@ -1326,11 +1388,13 @@ InputModifier.createOrReplace(engine.PlayerEntity, {
   })
 })
 ```
+
 Note: Supported in the DCL 2.0 desktop client; only affects the local player inside scene bounds.
 
 ### Move Player
 
 #### Teleport Player
+
 ```typescript
 // Move player to position
 const playerTransform = Transform.getMutable(engine.PlayerEntity)
@@ -1342,12 +1406,13 @@ playerTransform.rotation = Quaternion.fromEulerDegrees(0, 180, 0)
 ```
 
 #### Restrict Player Movement
+
 ```typescript
 // System to keep player in bounds
 function boundarySystem() {
   const playerTransform = Transform.getMutable(engine.PlayerEntity)
   const pos = playerTransform.position
-  
+
   // Keep within scene bounds
   if (pos.x < 0) playerTransform.position.x = 0
   if (pos.x > 16) playerTransform.position.x = 16
@@ -1361,6 +1426,7 @@ engine.addSystem(boundarySystem)
 ### Runtime Data
 
 #### Scene Information
+
 ```typescript
 import { getRealm } from '~system/Runtime'
 
@@ -1372,6 +1438,7 @@ executeTask(async () => {
 ```
 
 #### Environment Data
+
 ```typescript
 // Get current time and other runtime info
 function runtimeSystem() {
@@ -1387,6 +1454,7 @@ engine.addSystem(runtimeSystem)
 ```
 
 #### Scene Metadata (getSceneInformation)
+
 ```typescript
 import { getSceneInformation } from '~system/Runtime'
 
@@ -1401,6 +1469,7 @@ executeTask(async () => {
 ### Skybox Control
 
 #### Fixed time of day (scene.json)
+
 ```json
 "skyboxConfig": {
   "fixedTime": 36000
@@ -1408,6 +1477,7 @@ executeTask(async () => {
 ```
 
 #### Read current world time
+
 ```typescript
 import { getWorldTime } from '~system/Runtime'
 
@@ -1418,6 +1488,7 @@ executeTask(async () => {
 ```
 
 #### Change time dynamically
+
 ```typescript
 import { SkyboxTime, TransitionMode } from '~system/Runtime'
 
@@ -1438,6 +1509,7 @@ SkyboxTime.createOrReplace(engine.RootEntity, {
 ### Basic UI Setup
 
 #### Rendering UI
+
 ```typescript
 // ui.tsx
 import { UiEntity, ReactEcs } from '@dcl/sdk/react-ecs'
@@ -1476,6 +1548,7 @@ export function main() {
 ### UI Transform
 
 #### Positioning
+
 ```typescript
 // Absolute positioning
 uiTransform={{
@@ -1503,6 +1576,7 @@ uiTransform={{
 ```
 
 #### Size and Spacing
+
 ```typescript
 uiTransform={{
   width: 300,          // Fixed width in pixels
@@ -1517,6 +1591,7 @@ uiTransform={{
 ### UI Background
 
 #### Colors and Images
+
 ```typescript
 // Solid color background
 uiBackground={{ color: Color4.create(1, 0, 0, 0.8) }}
@@ -1542,6 +1617,7 @@ uiBackground={{
 ### UI Text
 
 #### Text Properties
+
 ```typescript
 uiText={{
   value: 'Hello World!',
@@ -1563,6 +1639,7 @@ uiText={{
 ### UI Button Events
 
 #### Click Events
+
 ```typescript
 <UiEntity
   uiTransform={{
@@ -1580,6 +1657,7 @@ uiText={{
 ```
 
 #### Hover Effects
+
 ```typescript
 const [isHovered, setIsHovered] = useState(false)
 
@@ -1590,8 +1668,8 @@ const [isHovered, setIsHovered] = useState(false)
     alignItems: 'center',
     justifyContent: 'center'
   }}
-  uiBackground={{ 
-    color: isHovered ? Color4.Green() : Color4.Blue() 
+  uiBackground={{
+    color: isHovered ? Color4.Green() : Color4.Blue()
   }}
   uiText={{ value: 'Hover Me!', fontSize: 18 }}
   onMouseEnter={() => setIsHovered(true)}
@@ -1605,6 +1683,7 @@ const [isHovered, setIsHovered] = useState(false)
 ### Dynamic UI
 
 #### State Management
+
 ```typescript
 import { useState } from 'react'
 
@@ -1627,14 +1706,14 @@ export const DynamicUI = () => {
       {isVisible && (
         <UiEntity
           uiTransform={{ width: '100%', height: 50 }}
-          uiText={{ 
-            value: `Count: ${count}`, 
+          uiText={{
+            value: `Count: ${count}`,
             fontSize: 20,
             textAlign: 'middle-center'
           }}
         />
       )}
-      
+
       <UiEntity
         uiTransform={{
           width: 100,
@@ -1645,7 +1724,7 @@ export const DynamicUI = () => {
         uiText={{ value: '+', fontSize: 24, textAlign: 'middle-center' }}
         onMouseDown={() => setCount(count + 1)}
       />
-      
+
       <UiEntity
         uiTransform={{
           width: 100,
@@ -1662,6 +1741,7 @@ export const DynamicUI = () => {
 ```
 
 #### Game HUD Example
+
 ```typescript
 export const GameHUD = () => {
   const [health, setHealth] = useState(100)
@@ -1693,7 +1773,7 @@ export const GameHUD = () => {
           uiBackground={{ color: Color4.Green() }}
         />
       </UiEntity>
-      
+
       {/* Score */}
       <UiEntity
         uiTransform={{
@@ -1707,7 +1787,7 @@ export const GameHUD = () => {
           textAlign: 'middle-right'
         }}
       />
-      
+
       {/* Ammo */}
       <UiEntity
         uiTransform={{
@@ -1729,6 +1809,7 @@ export const GameHUD = () => {
 ### UI Layout Examples
 
 #### Modal Dialog
+
 ```typescript
 export const ModalDialog = ({ isOpen, onClose }: { isOpen: boolean, onClose: () => void }) => {
   if (!isOpen) return null
@@ -1764,7 +1845,7 @@ export const ModalDialog = ({ isOpen, onClose }: { isOpen: boolean, onClose: () 
             textAlign: 'middle-center'
           }}
         />
-        
+
         <UiEntity
           uiText={{
             value: 'This is the dialog content.',
@@ -1772,7 +1853,7 @@ export const ModalDialog = ({ isOpen, onClose }: { isOpen: boolean, onClose: () 
             textAlign: 'middle-center'
           }}
         />
-        
+
         <UiEntity
           uiTransform={{
             width: 100,
@@ -1791,6 +1872,7 @@ export const ModalDialog = ({ isOpen, onClose }: { isOpen: boolean, onClose: () 
 ```
 
 #### Inventory Grid
+
 ```typescript
 export const InventoryGrid = () => {
   const items = Array.from({ length: 20 }, (_, i) => `Item ${i + 1}`)
@@ -1815,7 +1897,7 @@ export const InventoryGrid = () => {
         }}
         uiText={{ value: 'Inventory', fontSize: 20 }}
       />
-      
+
       <UiEntity
         uiTransform={{
           width: '100%',
@@ -1854,6 +1936,7 @@ export const InventoryGrid = () => {
 ### Wallet Connection
 
 #### Check Player Wallet
+
 ```typescript
 import { getPlayer } from '@dcl/sdk/src/players'
 
@@ -1870,6 +1953,7 @@ function checkWallet() {
 ### NFT Display
 
 #### Display Certified NFT
+
 ```typescript
 import { NftShape } from '@dcl/sdk/ecs'
 
@@ -1909,6 +1993,7 @@ NftFrameType.NFT_NONE
 ### Blockchain Transactions
 
 #### Sign Message
+
 ```typescript
 import { signedFetch } from '@dcl/sdk/signed-fetch'
 
@@ -1922,7 +2007,7 @@ executeTask(async () => {
         amount: 100
       })
     })
-    
+
     const result = await response.json()
     console.log('Transaction result:', result)
   } catch (error) {
@@ -1932,6 +2017,7 @@ executeTask(async () => {
 ```
 
 #### MANA Transactions
+
 ```typescript
 import { manaUser } from '@dcl/sdk/ethereum'
 
@@ -1940,7 +2026,7 @@ executeTask(async () => {
     // Check MANA balance
     const balance = await manaUser.balance()
     console.log('MANA balance:', balance)
-    
+
     // Send MANA
     const result = await manaUser.send('0x123...abc', 100) // 100 MANA
     console.log('MANA sent:', result)
@@ -1953,25 +2039,26 @@ executeTask(async () => {
 ### Smart Contract Interaction
 
 #### Import Contract ABI
+
 ```typescript
 // Store ABI in separate file (e.g., contracts/mana.ts)
 export default [
   {
-    "anonymous": false,
-    "inputs": [
+    anonymous: false,
+    inputs: [
       {
-        "indexed": true,
-        "name": "burner",
-        "type": "address"
+        indexed: true,
+        name: 'burner',
+        type: 'address'
       },
       {
-        "indexed": false,
-        "name": "value",
-        "type": "uint256"
+        indexed: false,
+        name: 'value',
+        type: 'uint256'
       }
     ],
-    "name": "Burn",
-    "type": "event"
+    name: 'Burn',
+    type: 'event'
   }
   // ... rest of ABI
 ]
@@ -1981,6 +2068,7 @@ import { abi } from '../contracts/mana'
 ```
 
 #### Create Contract Instance
+
 ```typescript
 import { RequestManager, ContractFactory } from 'eth-connect'
 import { createEthereumProvider } from '@dcl/sdk/ethereum-provider'
@@ -1990,20 +2078,19 @@ executeTask(async () => {
   try {
     // Create web3 provider interface
     const provider = createEthereumProvider()
-    
+
     // Create request manager for RPC messages
     const requestManager = new RequestManager(provider)
-    
+
     // Create contract factory
     const factory = new ContractFactory(requestManager, abi)
-    
+
     // Instance contract at specific address
-    const contract = await factory.at('0x2a8fd99c19271f4f04b1b7b9c4f7cf264b626edb') as any
-    
+    const contract = (await factory.at('0x2a8fd99c19271f4f04b1b7b9c4f7cf264b626edb')) as any
+
     // Call contract methods
     const result = await contract.balanceOf('0x123...abc')
     console.log('Balance:', result)
-    
   } catch (error) {
     console.log('Contract interaction failed:', error)
   }
@@ -2011,6 +2098,7 @@ executeTask(async () => {
 ```
 
 #### Gas Price Checking
+
 ```typescript
 import { RequestManager } from 'eth-connect'
 import { createEthereumProvider } from '@dcl/sdk/ethereum-provider'
@@ -2018,11 +2106,11 @@ import { createEthereumProvider } from '@dcl/sdk/ethereum-provider'
 executeTask(async () => {
   const provider = createEthereumProvider()
   const requestManager = new RequestManager(provider)
-  
+
   // Check current gas price
   const gasPrice = await requestManager.eth_gasPrice()
   console.log('Current gas price:', gasPrice)
-  
+
   // Get account balance
   const balance = await requestManager.eth_getBalance('0x123...abc', 'latest')
   console.log('Account balance:', balance)
@@ -2030,12 +2118,13 @@ executeTask(async () => {
 ```
 
 #### Contract Method Calls
+
 ```typescript
 executeTask(async () => {
   try {
     const userData = getPlayer()
     if (userData.isGuest) return
-    
+
     // Write operation (requires gas)
     const writeResult = await contract.transfer(
       '0xRecipientAddress',
@@ -2047,11 +2136,10 @@ executeTask(async () => {
       }
     )
     console.log('Transaction hash:', writeResult)
-    
+
     // Read operation (no gas required)
     const balance = await contract.balanceOf(userData.userId)
     console.log('Current balance:', balance)
-    
   } catch (error) {
     console.log('Transaction failed:', error)
   }
@@ -2059,6 +2147,7 @@ executeTask(async () => {
 ```
 
 #### Using Test Networks
+
 ```typescript
 // For Sepolia testnet testing
 // Set Metamask to Sepolia network
@@ -2082,6 +2171,7 @@ const contractAddress = CONTRACT_ADDRESSES[currentNetwork]
 ### Video Playing
 
 #### Basic Video Setup
+
 ```typescript
 // Step 1: Create screen entity
 const screen = engine.addEntity()
@@ -2090,12 +2180,12 @@ Transform.create(screen, { position: Vector3.create(4, 1, 4) })
 
 // Step 2: Create video player
 VideoPlayer.create(screen, {
-  src: 'videos/myVideo.mp4',  // Local file
+  src: 'videos/myVideo.mp4', // Local file
   playing: true,
   loop: false,
   volume: 1.0,
   playbackRate: 1.0,
-  position: 0  // Start time in seconds
+  position: 0 // Start time in seconds
 })
 
 // Step 3: Create video texture
@@ -2108,6 +2198,7 @@ Material.setBasicMaterial(screen, {
 ```
 
 #### External Video Streaming
+
 ```typescript
 // Stream from external URL (must be HTTPS with CORS)
 VideoPlayer.create(screen, {
@@ -2119,6 +2210,7 @@ VideoPlayer.create(screen, {
 ```
 
 #### Live Streaming with Decentraland Cast
+
 ```typescript
 // Use Decentraland's built-in live streaming
 VideoPlayer.create(screen, {
@@ -2130,6 +2222,7 @@ VideoPlayer.create(screen, {
 ```
 
 #### Video Controls & Events
+
 ```typescript
 // Interactive video controls
 pointerEventsSystem.onPointerDown(
@@ -2163,7 +2256,7 @@ videoEventsSystem.registerVideoEventsEntity(screen, (videoEvent) => {
   console.log('Video state:', videoEvent.state)
   console.log('Current time:', videoEvent.currentOffset)
   console.log('Video length:', videoEvent.videoLength)
-  
+
   switch (videoEvent.state) {
     case VideoState.VS_PLAYING:
       console.log('Video started playing')
@@ -2188,6 +2281,7 @@ if (latestEvent) {
 ```
 
 #### Enhanced Video Materials
+
 ```typescript
 // PBR material with enhanced video appearance
 Material.setPbrMaterial(screen, {
@@ -2207,6 +2301,7 @@ Material.setBasicMaterial(screen, {
 ```
 
 #### Multiple Video Screens
+
 ```typescript
 // Share one video across multiple screens
 const screen1 = engine.addEntity()
@@ -2230,6 +2325,7 @@ Material.setBasicMaterial(screen2, { texture: sharedTexture })
 ```
 
 #### Circular Video Screens
+
 ```typescript
 // Create circular video screen with alpha mask
 const videoTexture = Material.Texture.Video({ videoPlayerEntity: screen })
@@ -2245,22 +2341,23 @@ Material.setBasicMaterial(screen, {
 ```
 
 #### Performance Considerations
+
 ```typescript
 // Video performance limits:
 // - Low quality: 1 simultaneous video
-// - Medium quality: 5 simultaneous videos  
+// - Medium quality: 5 simultaneous videos
 // - High quality: 10 simultaneous videos
 
 // Check if video should play based on distance
 function videoPerformanceSystem() {
   const playerPos = Transform.get(engine.PlayerEntity).position
-  
+
   for (const [entity, video] of engine.getEntitiesWith(VideoPlayer)) {
     const screenPos = Transform.get(entity).position
     const distance = Vector3.distance(playerPos, screenPos)
-    
+
     const videoMutable = VideoPlayer.getMutable(entity)
-    
+
     // Only play video when player is close
     if (distance < 10 && !videoMutable.playing) {
       videoMutable.playing = true
@@ -2276,6 +2373,7 @@ engine.addSystem(videoPerformanceSystem)
 ### Audio Streaming
 
 #### Stream Audio
+
 ```typescript
 AudioStream.create(entity, {
   url: 'https://example.com/stream.mp3',
@@ -2296,6 +2394,7 @@ stream.volume = 0.3
 ### Network Connections
 
 #### REST API Calls
+
 ```typescript
 executeTask(async () => {
   try {
@@ -2309,6 +2408,7 @@ executeTask(async () => {
 ```
 
 #### POST Requests
+
 ```typescript
 executeTask(async () => {
   try {
@@ -2322,7 +2422,7 @@ executeTask(async () => {
         score: 1500
       })
     })
-    
+
     const result = await response.json()
     console.log('Submission result:', result)
   } catch (error) {
@@ -2334,6 +2434,7 @@ executeTask(async () => {
 ### Multiplayer Sync
 
 #### Synced Entities
+
 ```typescript
 import { syncEntity } from '@dcl/sdk/network'
 
@@ -2356,7 +2457,7 @@ function createProjectile() {
   const projectile = engine.addEntity()
   Transform.create(projectile, { position: Vector3.create(4, 1, 4) })
   MeshRenderer.setSphere(projectile)
-  
+
   // No explicit ID needed for player-created entities
   syncEntity(projectile, [Transform.componentId])
   return projectile
@@ -2364,6 +2465,7 @@ function createProjectile() {
 ```
 
 #### Parent-Child Relationships in Multiplayer
+
 ```typescript
 import { syncEntity, parentEntity, getParent, getChildren } from '@dcl/sdk/network'
 
@@ -2379,20 +2481,21 @@ syncEntity(child, [Transform.componentId], 2)
 parentEntity(child, parent)
 
 // Helper functions
-const parentRef = getParent(child)  // Returns parent entity
-const childrenArray = Array.from(getChildren(parent))  // Returns [child]
+const parentRef = getParent(child) // Returns parent entity
+const childrenArray = Array.from(getChildren(parent)) // Returns [child]
 
 // Remove parent relationship
-removeParent(child)  // Child becomes child of root entity
+removeParent(child) // Child becomes child of root entity
 ```
 
 #### Check Sync State
+
 ```typescript
 import { isStateSyncronized } from '@dcl/sdk/network'
 
 function gameStateSystem() {
   const isSynced = isStateSyncronized()
-  
+
   if (isSynced) {
     // Player is synchronized, allow interactions
     enableGameControls()
@@ -2407,6 +2510,7 @@ engine.addSystem(gameStateSystem)
 ```
 
 #### Message Bus
+
 ```typescript
 import { MessageBus } from '@dcl/sdk/message-bus'
 
@@ -2430,7 +2534,7 @@ type PlayerAction = {
 
 sceneMessageBus.on('player-action', (data: PlayerAction) => {
   console.log(`Player ${data.playerId} performed ${data.action}`)
-  
+
   // Handle the action for all players
   handlePlayerAction(data)
 })
@@ -2441,9 +2545,9 @@ function createMultiplayerCube() {
   Transform.create(cube, { position: Vector3.create(8, 1, 8) })
   MeshRenderer.setBox(cube)
   Material.setPbrMaterial(cube, { albedoColor: Color4.Blue() })
-  
+
   syncEntity(cube, [Transform.componentId, Material.componentId], 100)
-  
+
   pointerEventsSystem.onPointerDown(
     {
       entity: cube,
@@ -2452,7 +2556,7 @@ function createMultiplayerCube() {
     () => {
       // Send message to all players about color change
       const newColor = Color4.create(Math.random(), Math.random(), Math.random(), 1)
-      
+
       sceneMessageBus.emit('cube-color-change', {
         cubeId: 100,
         color: newColor,
@@ -2474,6 +2578,7 @@ sceneMessageBus.on('cube-color-change', (data: any) => {
 ```
 
 #### Test Multiplayer Locally
+
 ```typescript
 // Open multiple browser windows to test multiplayer:
 // 1. Use Creator Hub Preview button multiple times
@@ -2483,7 +2588,7 @@ sceneMessageBus.on('cube-color-change', (data: any) => {
 function multiplayerTestSystem() {
   const players = Array.from(engine.getEntitiesWith(PlayerIdentityData))
   console.log(`Active players: ${players.length}`)
-  
+
   players.forEach(([entity, playerData]) => {
     const transform = Transform.getOrNull(entity)
     if (transform) {
@@ -2496,6 +2601,7 @@ engine.addSystem(multiplayerTestSystem)
 ```
 
 #### Single Player Mode (Worlds)
+
 ```typescript
 // For Decentraland Worlds, configure scene.json for single player
 /*
@@ -2513,15 +2619,12 @@ function singlePlayerScene() {
   const entity = engine.addEntity()
   Transform.create(entity, { position: Vector3.create(8, 1, 8) })
   MeshRenderer.setBox(entity)
-  
+
   // Direct state changes work fine in single player
-  pointerEventsSystem.onPointerDown(
-    { entity, opts: { button: InputAction.IA_POINTER } },
-    () => {
-      const transform = Transform.getMutable(entity)
-      transform.position.y += 1
-    }
-  )
+  pointerEventsSystem.onPointerDown({ entity, opts: { button: InputAction.IA_POINTER } }, () => {
+    const transform = Transform.getMutable(entity)
+    transform.position.y += 1
+  })
 }
 ```
 
@@ -2532,16 +2635,19 @@ function singlePlayerScene() {
 ### Managing Dependencies
 
 #### Update SDK
+
 ```bash
 npm install @dcl/sdk@latest
 ```
 
 #### Add External Libraries
+
 ```bash
 npm install some-library
 ```
 
 #### Package.json Example
+
 ```json
 {
   "dependencies": {
@@ -2560,6 +2666,7 @@ npm install some-library
 ### Debug in Preview
 
 #### Console Logging
+
 ```typescript
 // Basic logging
 console.log('Debug message:', data)
@@ -2573,6 +2680,7 @@ console.log('Entity transform:', {
 ```
 
 #### Debug UI Overlay
+
 ```typescript
 // Debug info display
 export const DebugUI = () => {
@@ -2614,9 +2722,11 @@ export const DebugUI = () => {
 ```
 
 #### Performance Monitoring
+
 ```typescript
 function performanceSystem(dt: number) {
-  if (dt > 0.033) { // More than 30ms per frame
+  if (dt > 0.033) {
+    // More than 30ms per frame
     console.log('Performance warning: Frame time:', dt * 1000, 'ms')
   }
 }
@@ -2629,6 +2739,7 @@ engine.addSystem(performanceSystem)
 #### Common Issues and Solutions
 
 **Entity not visible:**
+
 ```typescript
 // Check if entity has required components
 if (!MeshRenderer.has(entity)) {
@@ -2640,6 +2751,7 @@ if (!Transform.has(entity)) {
 ```
 
 **Click events not working:**
+
 ```typescript
 // Ensure entity has collider
 if (!MeshCollider.has(entity) && !GltfContainer.has(entity)) {
@@ -2650,11 +2762,12 @@ if (!MeshCollider.has(entity) && !GltfContainer.has(entity)) {
 ```
 
 **Scene bounds checking:**
+
 ```typescript
 function checkBounds(entity: Entity) {
   const transform = Transform.get(entity)
   const pos = transform.position
-  
+
   if (pos.x < 0 || pos.x > 16 || pos.z < 0 || pos.z > 16) {
     console.log('Entity outside scene bounds:', pos)
   }
@@ -2668,13 +2781,14 @@ function checkBounds(entity: Entity) {
 ### Async Functions
 
 #### executeTask
+
 ```typescript
 // Use executeTask for async operations
 executeTask(async () => {
   try {
     const data = await fetch('https://api.example.com/data')
     const result = await data.json()
-    
+
     // Use the result in your scene
     updateSceneWithData(result)
   } catch (error) {
@@ -2684,10 +2798,11 @@ executeTask(async () => {
 ```
 
 #### Timers and Delays
+
 ```typescript
 // Delay execution
 executeTask(async () => {
-  await new Promise(resolve => setTimeout(resolve, 2000)) // Wait 2 seconds
+  await new Promise((resolve) => setTimeout(resolve, 2000)) // Wait 2 seconds
   console.log('Delayed action executed')
 })
 
@@ -2695,7 +2810,7 @@ executeTask(async () => {
 let timerRunning = true
 executeTask(async () => {
   while (timerRunning) {
-    await new Promise(resolve => setTimeout(resolve, 1000)) // Wait 1 second
+    await new Promise((resolve) => setTimeout(resolve, 1000)) // Wait 1 second
     console.log('Timer tick')
   }
 })
@@ -2704,23 +2819,24 @@ executeTask(async () => {
 ### Game Objects Pattern
 
 #### Game Object Class
+
 ```typescript
 class GameObject {
   entity: Entity
-  
+
   constructor(position: Vector3) {
     this.entity = engine.addEntity()
     Transform.create(this.entity, { position })
   }
-  
+
   setPosition(position: Vector3) {
     Transform.getMutable(this.entity).position = position
   }
-  
+
   getPosition(): Vector3 {
     return Transform.get(this.entity).position
   }
-  
+
   destroy() {
     engine.removeEntity(this.entity)
   }
@@ -2728,13 +2844,13 @@ class GameObject {
 
 class Enemy extends GameObject {
   health: number = 100
-  
+
   constructor(position: Vector3) {
     super(position)
     MeshRenderer.setBox(this.entity)
     Material.setPbrMaterial(this.entity, { albedoColor: Color4.Red() })
   }
-  
+
   takeDamage(amount: number) {
     this.health -= amount
     if (this.health <= 0) {
@@ -2751,33 +2867,34 @@ enemy.takeDamage(50)
 ### Component Factories
 
 #### Reusable Component Creation
+
 ```typescript
 function createProjectile(start: Vector3, direction: Vector3, speed: number): Entity {
   const projectile = engine.addEntity()
-  
+
   Transform.create(projectile, {
     position: start,
     scale: Vector3.create(0.1, 0.1, 0.1)
   })
-  
+
   MeshRenderer.setSphere(projectile)
-  Material.setPbrMaterial(projectile, { 
+  Material.setPbrMaterial(projectile, {
     albedoColor: Color4.Yellow(),
     emissiveColor: Color4.Yellow()
   })
-  
+
   // Add movement component
   const MovementSchema = {
     velocity: Schemas.Vector3,
     speed: Schemas.Number
   }
   const Movement = engine.defineComponent('Movement', MovementSchema)
-  
+
   Movement.create(projectile, {
     velocity: Vector3.normalize(direction),
     speed: speed
   })
-  
+
   return projectile
 }
 
@@ -2787,7 +2904,7 @@ function projectileSystem(dt: number) {
     const transform = Transform.getMutable(entity)
     const velocity = Vector3.scale(movement.velocity, movement.speed * dt)
     transform.position = Vector3.add(transform.position, velocity)
-    
+
     // Remove if out of bounds
     if (Vector3.length(transform.position) > 50) {
       engine.removeEntity(entity)
@@ -2801,6 +2918,7 @@ engine.addSystem(projectileSystem)
 ### State Machines
 
 #### Simple State Machine
+
 ```typescript
 enum NPCState {
   IDLE = 'idle',
@@ -2820,7 +2938,7 @@ function npcStateMachineSystem(dt: number) {
   for (const [entity, stateMachine] of engine.getEntitiesWith(NPCStateMachine)) {
     const state = NPCStateMachine.getMutable(entity)
     state.stateTimer += dt
-    
+
     switch (state.currentState) {
       case NPCState.IDLE:
         if (state.stateTimer > 3) {
@@ -2828,7 +2946,7 @@ function npcStateMachineSystem(dt: number) {
           state.stateTimer = 0
         }
         break
-        
+
       case NPCState.WALKING:
         // Move the NPC
         if (state.stateTimer > 5) {
@@ -2850,6 +2968,7 @@ engine.addSystem(npcStateMachineSystem)
 ### Scene Metadata
 
 #### scene.json Configuration
+
 ```json
 {
   "display": {
@@ -2878,20 +2997,16 @@ engine.addSystem(npcStateMachineSystem)
       "cameraTarget": { "x": 8, "y": 1, "z": 12 }
     }
   ],
-  "requiredPermissions": [
-    "ALLOW_TO_MOVE_PLAYER_INSIDE_SCENE",
-    "ALLOW_TO_TRIGGER_AVATAR_EMOTE"
-  ]
+  "requiredPermissions": ["ALLOW_TO_MOVE_PLAYER_INSIDE_SCENE", "ALLOW_TO_TRIGGER_AVATAR_EMOTE"]
 }
 ```
 
 #### Multiple Parcels
+
 ```json
 {
   "scene": {
-    "parcels": [
-      "0,0", "1,0", "0,1", "1,1"
-    ],
+    "parcels": ["0,0", "1,0", "0,1", "1,1"],
     "base": "0,0"
   }
 }
@@ -2900,6 +3015,7 @@ engine.addSystem(npcStateMachineSystem)
 ### Smart Wearables
 
 #### Smart Wearable Setup
+
 ```typescript
 // Smart wearable entry point
 export function main() {
@@ -2910,12 +3026,12 @@ export function main() {
 function initializeWearable() {
   // Attach effects to player
   const effect = engine.addEntity()
-  
+
   Transform.create(effect, {
     parent: engine.PlayerEntity,
     position: Vector3.create(0, 0.5, 0)
   })
-  
+
   MeshRenderer.setSphere(effect)
   Material.setPbrMaterial(effect, {
     albedoColor: Color4.create(1, 1, 0, 0.5),
@@ -2927,11 +3043,12 @@ function initializeWearable() {
 ### Portable Experiences
 
 #### Portable Experience Structure
+
 ```typescript
 // Portable experience that follows player
 export function main() {
   createPortableUI()
-  
+
   // Listen for realm changes
   engine.addSystem(() => {
     // Update portable experience based on current realm
@@ -2961,6 +3078,7 @@ function createPortableUI() {
 ### Deployment Process
 
 #### Build and Deploy
+
 ```bash
 # Build the scene
 npm run build
@@ -2970,12 +3088,14 @@ npm run deploy
 ```
 
 #### Deploy to Test Server
+
 ```bash
 # Deploy to test environment
 npm run deploy -- --target-content https://peer-testing.decentraland.org/content
 ```
 
 #### Deploy to Custom World
+
 ```bash
 # Deploy to specific world
 npm run deploy -- --target worlds-content-server.decentraland.org/world/your-world-name
@@ -2984,18 +3104,21 @@ npm run deploy -- --target worlds-content-server.decentraland.org/world/your-wor
 ### Publishing Requirements
 
 #### LAND Ownership
+
 - Own LAND tokens
 - Have Decentraland NAME
 - Have ENS name
 - Get permissions from LAND owner
 
 #### Content Validation
+
 - Scene must fit within parcel bounds
 - All assets must be under size limits
 - No prohibited content
 - Performance requirements met
 
 #### Metadata Requirements
+
 - Title and description
 - Preview image (scene thumbnail)
 - Author information
@@ -3008,39 +3131,41 @@ npm run deploy -- --target worlds-content-server.decentraland.org/world/your-wor
 ### Performance Guidelines
 
 #### Entity Limits
+
 - Maximum entities per scene: ~10,000
 - Maximum polygons: Varies by parcel count
 - Texture memory: 64MB per parcel
 - Materials: 20 per scene recommended
 
 #### Optimization Techniques
+
 ```typescript
 // Object pooling for projectiles
 class ProjectilePool {
   private pool: Entity[] = []
   private active: Entity[] = []
-  
+
   getProjectile(): Entity {
     if (this.pool.length > 0) {
       const projectile = this.pool.pop()!
       this.active.push(projectile)
       return projectile
     }
-    
+
     return this.createProjectile()
   }
-  
+
   releaseProjectile(projectile: Entity) {
     const index = this.active.indexOf(projectile)
     if (index > -1) {
       this.active.splice(index, 1)
       this.pool.push(projectile)
-      
+
       // Hide the projectile
       Transform.getMutable(projectile).position = Vector3.create(0, -100, 0)
     }
   }
-  
+
   private createProjectile(): Entity {
     const projectile = engine.addEntity()
     MeshRenderer.setSphere(projectile)
@@ -3052,13 +3177,14 @@ class ProjectilePool {
 ```
 
 #### LOD (Level of Detail)
+
 ```typescript
 function lodSystem() {
   const playerPos = Transform.get(engine.PlayerEntity).position
-  
+
   for (const [entity, transform] of engine.getEntitiesWith(Transform, MeshRenderer)) {
     const distance = Vector3.distance(playerPos, transform.position)
-    
+
     if (distance > 30) {
       // Far: hide entity
       VisibilityComponent.createOrReplace(entity, { visible: false })
@@ -3077,6 +3203,7 @@ engine.addSystem(lodSystem)
 ```
 
 #### Texture Optimization
+
 ```typescript
 // Use compressed texture formats
 Material.setPbrMaterial(entity, {
@@ -3098,12 +3225,14 @@ Material.setPbrMaterial(entity2, { texture: sharedTexture })
 ### Scene Limitations
 
 #### Parcel-based Limits
+
 - 1 parcel: 16m x 16m area, ~20m height
 - More parcels = higher height limit
 - Materials: 20 per scene recommended
 - Textures: 512x512 recommended, 1024x1024 max
 
 #### Performance Targets
+
 - 30 FPS minimum
 - <100ms system execution per frame
 - Reasonable memory usage
@@ -3115,17 +3244,18 @@ Material.setPbrMaterial(entity2, { texture: sharedTexture })
 ### UX Guidelines
 
 #### Player Onboarding
+
 ```typescript
 // Welcome sequence
 function createWelcomeSequence() {
   // Show welcome message
   ui.displayAnnouncement('Welcome to the scene!')
-  
+
   // Highlight interactive objects
   for (const [entity] of engine.getEntitiesWith(PointerEvents)) {
     addGlowEffect(entity)
   }
-  
+
   // Remove highlights after delay
   setTimeout(() => {
     for (const [entity] of engine.getEntitiesWith(GlowEffect)) {
@@ -3136,22 +3266,23 @@ function createWelcomeSequence() {
 ```
 
 #### Clear Visual Feedback
+
 ```typescript
 // Hover feedback for interactive objects
 pointerEventsSystem.onPointerDown(
   {
     entity: button,
-    opts: { 
-      button: InputAction.IA_POINTER, 
+    opts: {
+      button: InputAction.IA_POINTER,
       hoverText: 'Click to activate',
       maxDistance: 8,
-      showFeedback: true  // Shows outline when hovered
+      showFeedback: true // Shows outline when hovered
     }
   },
   () => {
     // Provide immediate feedback
     ui.displayAnnouncement('Activated!')
-    
+
     // Visual feedback
     const transform = Transform.getMutable(button)
     Tween.create(button, {
@@ -3167,6 +3298,7 @@ pointerEventsSystem.onPointerDown(
 ```
 
 #### Accessibility Considerations
+
 ```typescript
 // Text legibility
 TextShape.create(entity, {
@@ -3174,7 +3306,7 @@ TextShape.create(entity, {
   fontSize: 24,
   color: Color4.White(),
   outlineColor: Color4.Black(),
-  outlineWidth: 0.1  // Improves readability
+  outlineWidth: 0.1 // Improves readability
 })
 
 // Audio cues
@@ -3185,7 +3317,7 @@ function playAudioCue(sound: string) {
     playing: true,
     volume: 0.8
   })
-  
+
   // Clean up after playing
   setTimeout(() => {
     engine.removeEntity(audioEntity)
@@ -3196,6 +3328,7 @@ function playAudioCue(sound: string) {
 ### Game Design Patterns
 
 #### Quest System
+
 ```typescript
 interface Quest {
   id: string
@@ -3213,27 +3346,27 @@ interface QuestObjective {
 
 class QuestManager {
   private quests: Map<string, Quest> = new Map()
-  
+
   addQuest(quest: Quest) {
     this.quests.set(quest.id, quest)
   }
-  
+
   completeObjective(questId: string, objectiveId: string) {
     const quest = this.quests.get(questId)
     if (!quest) return
-    
-    const objective = quest.objectives.find(o => o.id === objectiveId)
+
+    const objective = quest.objectives.find((o) => o.id === objectiveId)
     if (objective) {
       objective.completed = true
-      
+
       // Check if all objectives completed
-      if (quest.objectives.every(o => o.completed)) {
+      if (quest.objectives.every((o) => o.completed)) {
         quest.completed = true
         this.onQuestCompleted(quest)
       }
     }
   }
-  
+
   private onQuestCompleted(quest: Quest) {
     ui.displayAnnouncement(`Quest completed: ${quest.title}`)
     // Award rewards, etc.
@@ -3242,6 +3375,7 @@ class QuestManager {
 ```
 
 #### Inventory System
+
 ```typescript
 interface InventoryItem {
   id: string
@@ -3253,12 +3387,12 @@ interface InventoryItem {
 class Inventory {
   private items: Map<string, InventoryItem> = new Map()
   private maxSlots: number = 20
-  
+
   addItem(itemId: string, quantity: number = 1): boolean {
     if (this.items.size >= this.maxSlots && !this.items.has(itemId)) {
       return false // Inventory full
     }
-    
+
     const existingItem = this.items.get(itemId)
     if (existingItem) {
       existingItem.quantity += quantity
@@ -3271,26 +3405,26 @@ class Inventory {
         quantity: quantity
       })
     }
-    
+
     this.updateInventoryUI()
     return true
   }
-  
+
   removeItem(itemId: string, quantity: number = 1): boolean {
     const item = this.items.get(itemId)
     if (!item || item.quantity < quantity) {
       return false
     }
-    
+
     item.quantity -= quantity
     if (item.quantity <= 0) {
       this.items.delete(itemId)
     }
-    
+
     this.updateInventoryUI()
     return true
   }
-  
+
   private updateInventoryUI() {
     // Update UI to reflect inventory changes
   }
@@ -3304,6 +3438,7 @@ class Inventory {
 ### Smart Items
 
 #### Creating Smart Items
+
 ```typescript
 // Smart Item definition
 export interface SmartItemProps {
@@ -3314,12 +3449,12 @@ export interface SmartItemProps {
 
 export function SmartButton({ enabled, clickText, onActivate }: SmartItemProps) {
   const entity = engine.addEntity()
-  
+
   MeshRenderer.setBox(entity)
   Material.setPbrMaterial(entity, {
     albedoColor: enabled ? Color4.Green() : Color4.Gray()
   })
-  
+
   if (enabled && onActivate) {
     pointerEventsSystem.onPointerDown(
       {
@@ -3329,12 +3464,13 @@ export function SmartButton({ enabled, clickText, onActivate }: SmartItemProps) 
       onActivate
     )
   }
-  
+
   return entity
 }
 ```
 
 #### Smart Item Actions
+
 ```typescript
 // Available actions that can be triggered
 export enum SmartItemAction {
@@ -3362,13 +3498,13 @@ export function executeAction(entity: Entity, action: SmartItemAction, parameter
         easingFunction: EasingFunction.EF_LINEAR
       })
       break
-      
+
     case SmartItemAction.CHANGE_COLOR:
       Material.setPbrMaterial(entity, {
         albedoColor: parameters.color
       })
       break
-      
+
     case SmartItemAction.PLAY_SOUND:
       AudioSource.createOrReplace(entity, {
         audioClipUrl: parameters.soundUrl,
@@ -3385,6 +3521,7 @@ export function executeAction(entity: Entity, action: SmartItemAction, parameter
 Link your scene code to entities created and configured via the Creator Hub.
 
 #### Reference entities by name
+
 ```typescript
 import { EntityNames } from '../assets/scene/entity-names'
 
@@ -3407,6 +3544,7 @@ export function main() {
 ```
 
 Validate existence at compile-time with a generic:
+
 ```typescript
 import { EntityNames } from '../assets/scene/entity-names'
 
@@ -3418,6 +3556,7 @@ console.log(Transform.get(door).position.x)
 Only reference by name inside `main()`, systems, or functions called after `main()` to ensure entities are instantiated.
 
 #### Iterate named entities and fetch children
+
 ```typescript
 import { Name } from '@dcl/sdk/ecs'
 
@@ -3437,6 +3576,7 @@ function getChildren(parent: Entity): Entity[] {
 ```
 
 #### Fetch entities by tag
+
 ```typescript
 import { engine } from '@dcl/sdk/ecs'
 
@@ -3449,6 +3589,7 @@ export function main() {
 ```
 
 Add or remove tags from code:
+
 ```typescript
 import { Tags } from '@dcl/sdk/ecs'
 
@@ -3457,6 +3598,7 @@ Tags.remove(entity, 'myTag')
 ```
 
 #### Smart item triggers (Creator Hub asset-packs)
+
 ```typescript
 import { getTriggerEvents } from '@dcl/asset-packs/dist/events'
 import { TriggerType } from '@dcl/asset-packs'
@@ -3474,6 +3616,7 @@ export function main() {
 ```
 
 #### Smart item actions (listen and emit)
+
 ```typescript
 import { getTriggerEvents, getActionEvents } from '@dcl/asset-packs/dist/events'
 import { TriggerType } from '@dcl/asset-packs'
@@ -3500,6 +3643,7 @@ export function main() {
 ```
 
 #### Read other smart item components
+
 ```typescript
 import { getComponents } from '@dcl/asset-packs'
 import { getTriggerEvents } from '@dcl/asset-packs/dist/events'
@@ -3524,22 +3668,26 @@ export function main() {
 ## Advanced Topics
 
 ### Custom Shaders (Not Currently Supported)
-*Note: Custom shaders are not currently supported in Decentraland SDK7, but this section provides context for future features.*
+
+_Note: Custom shaders are not currently supported in Decentraland SDK7, but this section provides context for future features._
 
 ### Physics Simulation
-*Note: Advanced physics beyond basic colliders are not currently available in SDK7.*
+
+_Note: Advanced physics beyond basic colliders are not currently available in SDK7._
 
 ### WebAssembly Integration
-*Note: WASM support is limited in the current SDK7 implementation.*
+
+_Note: WASM support is limited in the current SDK7 implementation._
 
 ### Scene Analytics
 
 #### Basic Analytics
+
 ```typescript
 // Track player interactions
 function trackInteraction(action: string, object: string) {
   console.log(`Analytics: ${action} on ${object}`)
-  
+
   // Send to analytics service
   executeTask(async () => {
     try {
@@ -3560,26 +3708,24 @@ function trackInteraction(action: string, object: string) {
 }
 
 // Usage
-pointerEventsSystem.onPointerDown(
-  { entity: button, opts: { button: InputAction.IA_POINTER } },
-  () => {
-    trackInteraction('click', 'main-button')
-  }
-)
+pointerEventsSystem.onPointerDown({ entity: button, opts: { button: InputAction.IA_POINTER } }, () => {
+  trackInteraction('click', 'main-button')
+})
 ```
 
 ### Scene Boundaries and Validation
 
 #### Boundary Checking
+
 ```typescript
 function boundaryCheckSystem() {
   for (const [entity, transform] of engine.getEntitiesWith(Transform)) {
     const pos = transform.position
-    
+
     // Check if entity is outside scene bounds
     if (pos.x < 0 || pos.x > 16 || pos.z < 0 || pos.z > 16 || pos.y > 20) {
       console.log('Entity outside bounds:', entity, pos)
-      
+
       // Optionally move back to bounds
       const mutableTransform = Transform.getMutable(entity)
       mutableTransform.position = Vector3.create(
@@ -3599,6 +3745,7 @@ engine.addSystem(boundaryCheckSystem)
 ## Common Patterns and Best Practices
 
 ### Entity Management
+
 ```typescript
 // Entity factory pattern
 class EntityFactory {
@@ -3609,23 +3756,24 @@ class EntityFactory {
     Material.setPbrMaterial(player, { albedoColor: Color4.Blue() })
     return player
   }
-  
+
   static createPickup(position: Vector3, type: string): Entity {
     const pickup = engine.addEntity()
     Transform.create(pickup, { position })
     MeshRenderer.setSphere(pickup)
-    
+
     // Add pickup component
     const PickupSchema = { type: Schemas.String }
     const Pickup = engine.defineComponent('Pickup', PickupSchema)
     Pickup.create(pickup, { type })
-    
+
     return pickup
   }
 }
 ```
 
 ### Component Composition
+
 ```typescript
 // Composable behavior components
 const HealthSchema = { current: Schemas.Number, max: Schemas.Number }
@@ -3655,6 +3803,7 @@ function createEnemy(position: Vector3) {
 ```
 
 ### Error Handling
+
 ```typescript
 // Safe component access
 function safeGetTransform(entity: Entity): Vector3 | null {
@@ -3681,4 +3830,4 @@ function attemptAction(entity: Entity, action: () => void) {
 }
 ```
 
-This comprehensive reference covers all major aspects of Decentraland SDK7 development, from basic setup to advanced patterns and optimization techniques. Use this as a complete reference for building scenes, implementing interactivity, managing assets, and creating engaging experiences in Decentraland. 
+This comprehensive reference covers all major aspects of Decentraland SDK7 development, from basic setup to advanced patterns and optimization techniques. Use this as a complete reference for building scenes, implementing interactivity, managing assets, and creating engaging experiences in Decentraland.
