@@ -21,8 +21,7 @@ import { createVisualBar, createVisualAmplitude } from './factory'
 const BANDS: number = 8
 
 export function main() {
-  const currentBandsValues: number[] = new Array<number>(BANDS)
-  let currentAmplitude: number = 0
+  const currentAnalysis: AudioAnalysisView = { amplitude: 0, bands: new Array<number>(BANDS) }
 
   const audioEntity = engine.addEntity()
   AudioSource.create(audioEntity, {
@@ -30,13 +29,7 @@ export function main() {
     playing: true,
     loop: true
   })
-  /* TODO helper function
-  AudioAnalysis.create(audioEntity, {
-    mode: PBAudioAnalysisMode.MODE_LOGARITHMIC,
-    amplitude: 0,
-    band
-  });
-  */
+  AudioAnalysis.createAudioAnalysis(audioEntity)
 
   for (let i = 0; i < BANDS; i++) {
     createVisualBar(5, 0, i, i)
@@ -45,21 +38,7 @@ export function main() {
   createVisualAmplitude(0, 0, 0)
 
   // Read
-  engine.addSystem(() => {
-    const audioAnalysis = AudioAnalysis.get(audioEntity)
-
-    // TODO Should be a helper
-    currentAmplitude = audioAnalysis.amplitude
-
-    currentBandsValues[0] = audioAnalysis.band0
-    currentBandsValues[1] = audioAnalysis.band1
-    currentBandsValues[2] = audioAnalysis.band2
-    currentBandsValues[3] = audioAnalysis.band3
-    currentBandsValues[4] = audioAnalysis.band4
-    currentBandsValues[5] = audioAnalysis.band5
-    currentBandsValues[6] = audioAnalysis.band6
-    currentBandsValues[7] = audioAnalysis.band7
-  })
+  engine.addSystem(() => AudioAnalysis.readIntoView(audioEntity, currentAnalysis))
 
   // Bands
   engine.addSystem(() => {
@@ -69,7 +48,7 @@ export function main() {
       const index = VisualBar.get(entity).index
 
       const current = mutableTransform.position
-      current.y = currentBandsValues[index]
+      current.y = currentAnalysis.bands[index]
       mutableTransform.position = current
     }
   })
@@ -80,7 +59,8 @@ export function main() {
     for (const [entity, _spinner, _transform] of entities) {
       const mutableTransform = Transform.getMutable(entity)
 
-      mutableTransform.scale = Vector3.create(currentAmplitude, currentAmplitude, currentAmplitude)
+      const value = currentAnalysis.amplitude
+      mutableTransform.scale = Vector3.create(value, value, value)
     }
   })
 }
