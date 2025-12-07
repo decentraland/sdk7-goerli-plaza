@@ -22,8 +22,7 @@ export function createVisualBar(x: number, y: number, z: number, index: number):
   Transform.create(entity, { position: { x, y, z } })
 
   MeshRenderer.setBox(entity)
-  MeshCollider.setBox(entity)
-  Material.setPbrMaterial(entity, { albedoColor: Color4.Green() })
+  Material.setPbrMaterial(entity, { albedoColor: Color4.Yellow() })
 
   console.log("createVisualAmplitude: finish for " + index)
 
@@ -39,9 +38,8 @@ export function createVisualAmplitude(x: number, y: number, z: number): Entity {
 
   Transform.create(entity, { position: { x, y, z } })
 
-  MeshRenderer.setBox(entity)
-  MeshCollider.setBox(entity)
-  Material.setPbrMaterial(entity, { albedoColor: Color4.Yellow() })
+  MeshRenderer.setSphere(entity)
+  Material.setPbrMaterial(entity, { albedoColor: Color4.Purple() })
 
   console.log("createVisualAmplitude: finish")
 

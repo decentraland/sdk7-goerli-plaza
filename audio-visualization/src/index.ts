@@ -14,8 +14,11 @@ import { createVisualBar, createVisualAmplitude } from './factory'
 
 const BANDS: number = 8
 
-const BARS_HEIGHT: number = 8;
-const AMPLITUDE_SCALE : number = 4;
+const BARS_HEIGHT: number = 12;
+
+
+const AMPLITUDE_VISUAL_BASE : number = 1;
+const AMPLITUDE_VISUAL_SCALE : number = 10;
 
 export function main() {
   console.log("Init")
@@ -30,11 +33,12 @@ export function main() {
   AudioAnalysis.createAudioAnalysis(audioEntity)
   Transform.create(audioEntity)
 
+  const half = BANDS / 2
   for (let i = 0; i < BANDS; i++) {
-    createVisualBar(5, 0, i, i)
+    createVisualBar(0, 0, i + half, i)
   }
 
-  createVisualAmplitude(0, 5, 0)
+  createVisualAmplitude(5, 1, 5)
 
   // Read
   engine.addSystem(() => {
@@ -44,23 +48,23 @@ export function main() {
   // Bands
   engine.addSystem(() => {
     const entities = engine.getEntitiesWith(VisualBar, Transform)
-    for (const [entity, _spinner, _transform] of entities) {
+    for (const [entity, _, _transform] of entities) {
       const mutableTransform = Transform.getMutable(entity)
       const index = VisualBar.get(entity).index
 
-      const current = mutableTransform.position
+      const current = Vector3.One();
       current.y = currentAnalysis.bands[index] * BARS_HEIGHT;
-      mutableTransform.position = current
+      mutableTransform.scale = current
     }
   })
 
   // Amplitude
   engine.addSystem(() => {
     const entities = engine.getEntitiesWith(VisualAmplitude, Transform)
-    for (const [entity, _spinner, _transform] of entities) {
+    for (const [entity, _, _transform] of entities) {
       const mutableTransform = Transform.getMutable(entity)
 
-      const value = currentAnalysis.amplitude * AMPLITUDE_SCALE;
+      const value = AMPLITUDE_VISUAL_BASE + (currentAnalysis.amplitude * AMPLITUDE_VISUAL_SCALE);
       mutableTransform.scale = Vector3.create(value, value, value)
     }
   })
