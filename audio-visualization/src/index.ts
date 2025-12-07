@@ -1,5 +1,3 @@
-// We define the empty imports so the auto-complete feature works as expected.
-import {} from '@dcl/sdk/math'
 import {
   PBAudioAnalysisMode,
   AudioAnalysis,
@@ -9,20 +7,22 @@ import {
   GltfContainer,
   Material,
   MeshRenderer,
-  Transform
+  Transform,
+  inputSystem,
+  PointerEvents,
+  InputAction,
+  PointerEventType
 } from '@dcl/sdk/ecs'
+import { Color4, Quaternion, Vector3 } from '@dcl/sdk/math'
 
 import { VisualAmplitude, VisualBar } from './components'
 import { createVisualBar, createVisualAmplitude } from './factory'
-
-import { inputSystem, PointerEvents, InputAction, PointerEventType } from '@dcl/sdk/ecs'
-import { Color4, Quaternion, Vector3 } from '@dcl/sdk/math'
 
 const BANDS: number = 8
 
 export function main() {
   const currentBandsValues: number[] = new Array<number>(BANDS)
-  const currentAmplitude: number = 0
+  let currentAmplitude: number = 0
 
   const audioEntity = engine.addEntity()
   AudioSource.create(audioEntity, {
@@ -45,9 +45,20 @@ export function main() {
   createVisualAmplitude(0, 0, 0)
 
   // Read
-
   engine.addSystem(() => {
-    // TODO
+    const audioAnalysis = AudioAnalysis.get(audioEntity)
+
+    // TODO Should be a helper
+    currentAmplitude = audioAnalysis.amplitude
+
+    currentBandsValues[0] = audioAnalysis.band0
+    currentBandsValues[1] = audioAnalysis.band1
+    currentBandsValues[2] = audioAnalysis.band2
+    currentBandsValues[3] = audioAnalysis.band3
+    currentBandsValues[4] = audioAnalysis.band4
+    currentBandsValues[5] = audioAnalysis.band5
+    currentBandsValues[6] = audioAnalysis.band6
+    currentBandsValues[7] = audioAnalysis.band7
   })
 
   // Bands
