@@ -4,16 +4,10 @@ import {
   AudioSource,
   engine,
   Entity,
-  GltfContainer,
-  Material,
-  MeshRenderer,
   Transform,
-  inputSystem,
-  PointerEvents,
-  InputAction,
-  PointerEventType
+  AudioAnalysisView
 } from '@dcl/sdk/ecs'
-import { Color4, Quaternion, Vector3 } from '@dcl/sdk/math'
+import { Color4, Vector3 } from '@dcl/sdk/math'
 
 import { VisualAmplitude, VisualBar } from './components'
 import { createVisualBar, createVisualAmplitude } from './factory'
@@ -29,7 +23,7 @@ export function main() {
     playing: true,
     loop: true
   })
-  AudioAnalysis.createAudioAnalysis(audioEntity)
+  AudioAnalysis.createAudioAnalysis(audioEntity, undefined, undefined, undefined)
 
   for (let i = 0; i < BANDS; i++) {
     createVisualBar(5, 0, i, i)

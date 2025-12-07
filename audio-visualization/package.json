@@ -14,7 +14,7 @@
   "devDependencies": {
     "@dcl/asset-packs": "latest",
     "@dcl/js-runtime": "7.14.0",
-    "@dcl/sdk": "https://sdk-team-cdn.decentraland.org/@dcl/js-sdk-toolchain/branch/feat/audio-analysis/dcl-sdk-7.14.1-19970649001.commit-6f4c2bf.tgz",
+    "@dcl/sdk": "https://sdk-team-cdn.decentraland.org/@dcl/js-sdk-toolchain/branch/feat/audio-analysis/dcl-sdk-7.14.1-19997468954.commit-bf26f77.tgz",
     "@eslint/js": "^9.39.1",
     "eslint": "^9.39.1",
     "typescript": "^5.9.3",
