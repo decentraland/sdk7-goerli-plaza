@@ -9,26 +9,21 @@ import {
   InputAction,
   Material
 } from '@dcl/sdk/ecs'
-import { Cube, Spinner } from './components'
+import { VisualAmplitude, VisualBar } from './components'
 import { Color4 } from '@dcl/sdk/math'
-import { getRandomHexColor } from './utils'
 
-// Cube factory
-export function createCube(x: number, y: number, z: number, spawner = true): Entity {
+export function createVisualBar(x: number, y: number, z: number, index: number): Entity {
   const entity = engine.addEntity()
 
-  // Used to track the cubes
-  Cube.create(entity)
+  // Used to react to audio bands
+  VisualBar.create(entity, { index })
 
   Transform.create(entity, { position: { x, y, z } })
 
   // set how the cube looks and collides
   MeshRenderer.setBox(entity)
   MeshCollider.setBox(entity)
-  Material.setPbrMaterial(entity, { albedoColor: Color4.fromHexString(getRandomHexColor()) })
-
-  // Make the cube spin, with the circularSystem
-  Spinner.create(entity, { speed: 100 * Math.random() })
+  Material.setPbrMaterial(entity, { albedoColor: Color4.Green() })
 
   // Create PointerEvent with the hover feedback.
   // We are going to check the onClick event on the changeColorSystem.
@@ -37,6 +32,22 @@ export function createCube(x: number, y: number, z: number, spawner = true): Ent
       { eventType: PointerEventType.PET_DOWN, eventInfo: { button: InputAction.IA_POINTER, hoverText: 'Change Color' } }
     ]
   })
+
+  return entity
+}
+
+export function createVisualAmplitude(x: number, y: number, z: number): Entity {
+  const entity = engine.addEntity()
+
+  // Used to react to audio amplitude
+  VisualAmplitude.create(entity)
+
+  Transform.create(entity, { position: { x, y, z } })
+
+  // set how the cube looks and collides
+  MeshRenderer.setSphere(entity)
+  MeshCollider.setSphere(entity)
+  Material.setPbrMaterial(entity, { albedoColor: Color4.Yellow() })
 
   return entity
 }
