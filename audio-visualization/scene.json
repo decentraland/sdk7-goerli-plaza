@@ -2,7 +2,7 @@
   "ecs7": true,
   "runtimeVersion": "7",
   "display": {
-    "title": "Audio Analysis Demo",
+    "title": "audio-visualization",
     "description": "SDK7 Audio Analysis Demo Scene",
     "navmapThumbnail": "images/scene-thumbnail.png",
     "favicon": "favicon_asset"
@@ -53,5 +53,6 @@
   "source": {
     "origin": "creator-hub",
     "projectId": "0f902fcc-81b1-4d2a-9172-17438eafe3f2"
-  }
+  },
+  "name": "audio-visualization"
 }
