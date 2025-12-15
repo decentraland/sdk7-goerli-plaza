@@ -1,9 +1,8 @@
 import { Sound } from './sound'
-import { engine, Entity, GltfContainer, Transform } from '@dcl/ecs'
+import { engine, Entity, GltfContainer, Transform, EasingFunction, InputAction, PointerEvents, PointerEventType, Tween } from '@dcl/sdk/ecs'
 import { Vector3 } from '@dcl/sdk/math'
 import * as utils from '@dcl-sdk/utils'
 import { PuzzleBuilder } from './puzzleBuilder'
-import { EasingFunction, InputAction, PointerEvents, PointerEventType, Tween } from '@dcl/sdk/ecs'
 
 export class Statue {
   public entity: Entity

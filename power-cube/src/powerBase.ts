@@ -1,5 +1,6 @@
 import {
   AudioSource,
+  ColliderLayer,
   engine,
   GltfContainer,
   PointerEvents,
@@ -78,7 +79,7 @@ export function createPowerBase(position: Vector3, gltfSrc: string) {
 
   const trigger = engine.addEntity()
   Transform.create(trigger, { parent: entity, position: Vector3.create(0, 0.75, 0), scale: Vector3.create(4, 4, 4) })
-  TriggerArea.setBox(trigger)
+  TriggerArea.setBox(trigger, [ColliderLayer.CL_PHYSICS])
   triggerAreaEventsSystem.onTriggerEnter(trigger, () => {
     togglePower(true)
   })

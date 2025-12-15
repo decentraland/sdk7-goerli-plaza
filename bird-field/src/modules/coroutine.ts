@@ -2,7 +2,7 @@
  * This module provides a createTestRuntime function that returns an object with a test function that can be used to define tests.
  */
 
-import { IEngine } from '@dcl/ecs'
+import { IEngine } from '@dcl/sdk/ecs'
 
 export type TestHelpers = {}
 

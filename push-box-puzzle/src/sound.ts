@@ -1,5 +1,4 @@
-import { engine, Entity, AudioSource } from '@dcl/ecs'
-import { Transform } from '@dcl/sdk/ecs'
+import { engine, Entity, AudioSource, Transform } from '@dcl/sdk/ecs'
 
 export class Sound {
   static statueMoveAudioEntity: Entity

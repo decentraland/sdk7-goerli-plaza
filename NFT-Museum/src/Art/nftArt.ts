@@ -1,6 +1,5 @@
-import { NftFrameType, NftShape, Transform, engine } from '@dcl/ecs'
-import { Color3, Quaternion, Vector3 } from '@dcl/ecs-math'
-import { MeshCollider, Entity } from '@dcl/sdk/ecs'
+import { NftFrameType, NftShape, Transform, engine, MeshCollider, Entity } from '@dcl/sdk/ecs'
+import { Color3, Quaternion, Vector3 } from '@dcl/sdk/math'
 import { openNftDialog } from '~system/RestrictedActions'
 import { classicFrame } from './nftFrames'
 import { artPositions } from './artData'

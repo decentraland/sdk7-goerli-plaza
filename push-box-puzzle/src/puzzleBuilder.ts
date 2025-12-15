@@ -1,9 +1,8 @@
 import { Statue } from './statue'
 import * as utils from '@dcl-sdk/utils'
 import { Sound } from './sound'
-import { engine, Entity, GltfContainer, Transform, TriggerArea, triggerAreaEventsSystem } from '@dcl/ecs'
+import { engine, Entity, GltfContainer, Transform, TriggerArea, triggerAreaEventsSystem, InputAction, inputSystem, PointerEventType } from '@dcl/sdk/ecs'
 import { Vector3 } from '@dcl/sdk/math'
-import { InputAction, inputSystem, PointerEventType } from '@dcl/sdk/ecs'
 import { Selector } from './selector'
 
 export class PuzzleBuilder {
