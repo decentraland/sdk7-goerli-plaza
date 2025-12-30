@@ -17,6 +17,7 @@ import {
 } from '@dcl/sdk/ecs'
 import { Color3, Vector3 } from '@dcl/sdk/math'
 import * as utils from '@dcl-sdk/utils'
+import { TriggerArea, triggerAreaEventsSystem } from '@dcl/sdk/ecs'
 import { playringPassSound } from './sound'
 
 // Config
@@ -42,32 +43,18 @@ export function createRing(model: string, startPos: Vector3.Mutable, time: numbe
 
   endPos = Vector3.create(startPos.x, startPos.y + Y_OFFSET, startPos.z)
 
-  utils.triggers.addTrigger(
-    ring,
-    utils.LAYER_1,
-    utils.LAYER_1,
-    [
-      {
-        type: 'box',
-        scale: Vector3.create(10, 8.5, 1),
-        position: Vector3.create(0, 1.2, 0)
-      }
-    ],
-    // On trigger enter
-    () => {},
-    // On trigger exit
-    () => {
-      startPos = Vector3.create(
-        Math.random() * SCENE_SIZE + EDGE_OFFSET,
-        Math.random() * MAX_HEIGHT + GROUND_OFFSET,
-        Math.random() * SCENE_SIZE + EDGE_OFFSET
-      )
-      endPos = Vector3.create(startPos.x, startPos.y + GROUND_OFFSET, startPos.z)
-      playringPassSound()
-    }
-    // Debug color
-    //Color3.Magenta()
-  )
+  const trigger = engine.addEntity()
+  Transform.create(trigger, { parent: ring, position: Vector3.create(0, 1.2, 0), scale: Vector3.create(10, 8.5, 1) })
+  TriggerArea.setBox(trigger)
+  triggerAreaEventsSystem.onTriggerExit(trigger, () => {
+    startPos = Vector3.create(
+      Math.random() * SCENE_SIZE + EDGE_OFFSET,
+      Math.random() * MAX_HEIGHT + GROUND_OFFSET,
+      Math.random() * SCENE_SIZE + EDGE_OFFSET
+    )
+    endPos = Vector3.create(startPos.x, startPos.y + GROUND_OFFSET, startPos.z)
+    playringPassSound()
+  })
   // Enable debug draw
   //utils.triggers.enableDebugDraw(true)
 

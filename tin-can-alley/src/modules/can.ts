@@ -14,7 +14,7 @@ export function createCan(position: Vector3, cannonMaterial: CANNON.Material, ca
     position: position
   })
   GltfContainer.create(can, {
-    src: 'models/can.glb',
+    src: 'assets/scene/Models/can.glb',
     invisibleMeshesCollisionMask: ColliderLayer.CL_PHYSICS,
     visibleMeshesCollisionMask: ColliderLayer.CL_POINTER
   })

@@ -15,7 +15,7 @@ export function main() {
     scale: { x: 0.8, y: 0.8, z: 0.8 }
   })
   GltfContainer.create(seaBed, {
-    src: 'models/Underwater.gltf'
+    src: 'assets/scene/Models/Underwater.gltf'
   })
 
   const seaBed2 = engine.addEntity()
@@ -25,7 +25,7 @@ export function main() {
     scale: { x: 0.8, y: 0.8, z: 0.8 }
   })
   GltfContainer.create(seaBed2, {
-    src: 'models/Underwater.gltf'
+    src: 'assets/scene/Models/Underwater.gltf'
   })
 
   initBoidController()

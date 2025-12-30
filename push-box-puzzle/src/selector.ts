@@ -1,4 +1,4 @@
-import { engine, Entity, GltfContainer, Transform, raycastSystem, RaycastQueryType } from '@dcl/ecs'
+import { engine, Entity, GltfContainer, Transform, raycastSystem, RaycastQueryType } from '@dcl/sdk/ecs'
 import { Quaternion, Vector3 } from '@dcl/sdk/math'
 import { PuzzleBuilder } from './puzzleBuilder'
 import { MAX_DISTANCE } from '.'
@@ -12,10 +12,10 @@ export class Selector {
 
   constructor() {
     // Selector
-    GltfContainer.create(this.selectorHand, { src: 'models/selectorHand.glb' })
+    GltfContainer.create(this.selectorHand, { src: 'assets/scene/Models/selectorHand.glb' })
     Transform.create(this.selectorHand, { scale: Vector3.create(0, 0, 0) })
 
-    GltfContainer.create(this.selectorGlow, { src: 'models/selectorGlow.glb' })
+    GltfContainer.create(this.selectorGlow, { src: 'assets/scene/Models/selectorGlow.glb' })
     Transform.create(this.selectorGlow, { scale: Vector3.create(0, 0, 0) })
 
     let self = this

@@ -26,7 +26,7 @@ export function zombieSpawnSystem(dt: number) {
       controller.spawnCountDown = controller.spawnInterval
       console.log('SPAWNING NEW ZOMBIE')
       spawnZombie()
-      playSound(entity, 'sounds/pickUp.mp3', true)
+      playSound(entity, 'assets/scene/Audio/pickUp.mp3', true)
     }
   }
 }

@@ -23,7 +23,7 @@ export function pixelHoverSystem() {
 
       // Play sound
       AudioSource.createOrReplace(entity, {
-        audioClipUrl: 'sounds/click_2.mp3',
+        audioClipUrl: 'assets/scene/Audio/click_2.mp3',
         playing: true
       })
     }
@@ -57,7 +57,7 @@ export function colorPickerHoverSystem() {
 
       // Play sound
       AudioSource.createOrReplace(entity, {
-        audioClipUrl: 'sounds/click_1.mp3',
+        audioClipUrl: 'assets/scene/Audio/click_1.mp3',
         playing: true
       })
     }
@@ -116,7 +116,7 @@ export function loadingIndicatorSystem() {
         engine.removeEntity(entity)
         // Play sound
         AudioSource.createOrReplace(entity, {
-          audioClipUrl: 'sounds/pop_2.mp3',
+          audioClipUrl: 'assets/scene/Audio/pop_2.mp3',
           playing: true
         })
       } else {

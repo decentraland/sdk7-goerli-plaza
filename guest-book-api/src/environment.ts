@@ -9,7 +9,7 @@ export function buildScene() {
 
   const floor = engine.addEntity()
   GltfContainer.create(floor, {
-    src: 'models/FloorBaseGrass_01/FloorBaseGrass_01.glb'
+    src: 'assets/scene/Models/FloorBaseGrass_01/FloorBaseGrass_01.glb'
   })
   Transform.create(floor, {
     position: Vector3.create(8, 0, 8),
@@ -18,7 +18,7 @@ export function buildScene() {
 
   const narrowCrater = engine.addEntity()
   GltfContainer.create(narrowCrater, {
-    src: 'models/Crater_02/Crater_02.glb'
+    src: 'assets/scene/Models/Crater_02/Crater_02.glb'
   })
   Transform.create(narrowCrater, {
     position: Vector3.create(10.355362892150879, 0, 8),
@@ -27,7 +27,7 @@ export function buildScene() {
 
   const ancientMediumStonePath = engine.addEntity()
   GltfContainer.create(ancientMediumStonePath, {
-    src: 'models/RockFloor_Module_2M/RockFloor_Module_2M.glb'
+    src: 'assets/scene/Models/RockFloor_Module_2M/RockFloor_Module_2M.glb'
   })
   Transform.create(ancientMediumStonePath, {
     position: Vector3.create(7.01444149017334, 0, 9.5),
@@ -36,7 +36,7 @@ export function buildScene() {
 
   const ancientMediumStonePath2 = engine.addEntity()
   GltfContainer.create(ancientMediumStonePath2, {
-    src: 'models/RockFloor_Module_2M/RockFloor_Module_2M.glb'
+    src: 'assets/scene/Models/RockFloor_Module_2M/RockFloor_Module_2M.glb'
   })
   Transform.create(ancientMediumStonePath2, {
     position: Vector3.create(5.01444149017334, 0, 9.5),
@@ -45,7 +45,7 @@ export function buildScene() {
 
   const ancientMediumStonePath3 = engine.addEntity()
   GltfContainer.create(ancientMediumStonePath3, {
-    src: 'models/RockFloor_Module_2M/RockFloor_Module_2M.glb'
+    src: 'assets/scene/Models/RockFloor_Module_2M/RockFloor_Module_2M.glb'
   })
   Transform.create(ancientMediumStonePath3, {
     position: Vector3.create(5.01444149017334, 0, 11.5),
@@ -54,7 +54,7 @@ export function buildScene() {
 
   const ancientMediumStonePath4 = engine.addEntity()
   GltfContainer.create(ancientMediumStonePath4, {
-    src: 'models/RockFloor_Module_2M/RockFloor_Module_2M.glb'
+    src: 'assets/scene/Models/RockFloor_Module_2M/RockFloor_Module_2M.glb'
   })
   Transform.create(ancientMediumStonePath4, {
     position: Vector3.create(5.01444149017334, 0, 13.5),
@@ -63,7 +63,7 @@ export function buildScene() {
 
   const ancientMediumStonePath5 = engine.addEntity()
   GltfContainer.create(ancientMediumStonePath5, {
-    src: 'models/RockFloor_Module_2M/RockFloor_Module_2M.glb'
+    src: 'assets/scene/Models/RockFloor_Module_2M/RockFloor_Module_2M.glb'
   })
   Transform.create(ancientMediumStonePath5, {
     position: Vector3.create(5.01444149017334, 0, 15.5),
@@ -72,7 +72,7 @@ export function buildScene() {
 
   const bush = engine.addEntity()
   GltfContainer.create(bush, {
-    src: 'models/Bush_02/Bush_02.glb'
+    src: 'assets/scene/Models/Bush_02/Bush_02.glb'
   })
   Transform.create(bush, {
     position: Vector3.create(12.5, 0, 13.5),
@@ -81,7 +81,7 @@ export function buildScene() {
 
   const evergreenShrub = engine.addEntity()
   GltfContainer.create(evergreenShrub, {
-    src: 'models/Bush_03/Bush_03.glb'
+    src: 'assets/scene/Models/Bush_03/Bush_03.glb'
   })
   Transform.create(evergreenShrub, {
     position: Vector3.create(4.5, 0, 1.5),
@@ -90,7 +90,7 @@ export function buildScene() {
 
   const sunflowerHead = engine.addEntity()
   GltfContainer.create(sunflowerHead, {
-    src: 'models/Flower_01/Flower_01.glb'
+    src: 'assets/scene/Models/Flower_01/Flower_01.glb'
   })
   Transform.create(sunflowerHead, {
     position: Vector3.create(6.5, 0, 15),
@@ -99,7 +99,7 @@ export function buildScene() {
 
   const greenPoplars = engine.addEntity()
   GltfContainer.create(greenPoplars, {
-    src: 'models/TreeFir_02/TreeFir_02.glb'
+    src: 'assets/scene/Models/TreeFir_02/TreeFir_02.glb'
   })
   Transform.create(greenPoplars, {
     position: Vector3.create(13.5, 0, 2),
@@ -108,7 +108,7 @@ export function buildScene() {
 
   const rusticMerchantFishStand = engine.addEntity()
   GltfContainer.create(rusticMerchantFishStand, {
-    src: 'models/SellingGoods_02/SellingGoods_02.glb'
+    src: 'assets/scene/Models/SellingGoods_02/SellingGoods_02.glb'
   })
   Transform.create(rusticMerchantFishStand, {
     position: Vector3.create(6.51444149017334, 0, 13),
@@ -119,7 +119,7 @@ export function buildScene() {
 
   const rusticMerchantFishStand2 = engine.addEntity()
   GltfContainer.create(rusticMerchantFishStand2, {
-    src: 'models/SellingGoods_02/SellingGoods_02.glb'
+    src: 'assets/scene/Models/SellingGoods_02/SellingGoods_02.glb'
   })
   Transform.create(rusticMerchantFishStand2, {
     position: Vector3.create(2.2349023818969727, 0, 6),
@@ -128,7 +128,7 @@ export function buildScene() {
 
   const rusticCoveredMerchantStand = engine.addEntity()
   GltfContainer.create(rusticCoveredMerchantStand, {
-    src: 'models/SellingGoods_03/SellingGoods_03.glb'
+    src: 'assets/scene/Models/SellingGoods_03/SellingGoods_03.glb'
   })
   Transform.create(rusticCoveredMerchantStand, {
     position: Vector3.create(6.51444149017334, 0, 11),
@@ -139,7 +139,7 @@ export function buildScene() {
 
   const rusticCoveredMerchantStand2 = engine.addEntity()
   GltfContainer.create(rusticCoveredMerchantStand2, {
-    src: 'models/SellingGoods_03/SellingGoods_03.glb'
+    src: 'assets/scene/Models/SellingGoods_03/SellingGoods_03.glb'
   })
   Transform.create(rusticCoveredMerchantStand2, {
     position: Vector3.create(5.234902381896973, 0, 6),
@@ -148,7 +148,7 @@ export function buildScene() {
 
   const rusticCoveredMerchantStand3 = engine.addEntity()
   GltfContainer.create(rusticCoveredMerchantStand3, {
-    src: 'models/SellingGoods_03/SellingGoods_03.glb'
+    src: 'assets/scene/Models/SellingGoods_03/SellingGoods_03.glb'
   })
   Transform.create(rusticCoveredMerchantStand3, {
     position: Vector3.create(2, 0, 12.5),
@@ -159,7 +159,7 @@ export function buildScene() {
 
   const rusticMerchantStand = engine.addEntity()
   GltfContainer.create(rusticMerchantStand, {
-    src: 'models/SellingGoods_01/SellingGoods_01.glb'
+    src: 'assets/scene/Models/SellingGoods_01/SellingGoods_01.glb'
   })
   Transform.create(rusticMerchantStand, {
     position: Vector3.create(1.7751564979553223, 0, 9.83009147644043),
@@ -169,7 +169,7 @@ export function buildScene() {
 
   const cafeStreetSign = engine.addEntity()
   GltfContainer.create(cafeStreetSign, {
-    src: 'models/Sign_02/Sign_02.glb'
+    src: 'assets/scene/Models/Sign_02/Sign_02.glb'
   })
   Transform.create(cafeStreetSign, {
     position: Vector3.create(10, 0, 3.5),
@@ -180,7 +180,7 @@ export function buildScene() {
 
   const redBicycle = engine.addEntity()
   GltfContainer.create(redBicycle, {
-    src: 'models/Bicycle_01/Bicycle_01.glb'
+    src: 'assets/scene/Models/Bicycle_01/Bicycle_01.glb'
   })
   Transform.create(redBicycle, {
     position: Vector3.create(2.5, 0, 3.5),
@@ -196,7 +196,7 @@ export function buildScene() {
 
   const signpost = engine.addEntity()
   GltfContainer.create(signpost, {
-    src: 'models/Signpost.glb'
+    src: 'assets/scene/Models/Signpost.glb'
   })
   Transform.create(signpost, {
     position: Vector3.create(11, 0, 11),
@@ -220,7 +220,7 @@ export function buildScene() {
 
   const signpost2 = engine.addEntity()
   GltfContainer.create(signpost2, {
-    src: 'models/Signpost.glb'
+    src: 'assets/scene/Models/Signpost.glb'
   })
   Transform.create(signpost2, {
     position: Vector3.create(6.01444149017334, 0, 15),
@@ -246,7 +246,7 @@ export function buildScene() {
 
   const signpostRoot = engine.addEntity()
   GltfContainer.create(signpostRoot, {
-    src: 'models/Signpost_Root.glb'
+    src: 'assets/scene/Models/Signpost_Root.glb'
   })
   Transform.create(signpostRoot, {
     position: Vector3.create(10.355362892150879, 0, 5),
@@ -271,7 +271,7 @@ export function buildScene() {
 
   const signpostRoot2 = engine.addEntity()
   GltfContainer.create(signpostRoot2, {
-    src: 'models/Signpost_Root.glb'
+    src: 'assets/scene/Models/Signpost_Root.glb'
   })
   Transform.create(signpostRoot2, {
     position: Vector3.create(12.355362892150879, 0, 6),
@@ -297,7 +297,7 @@ export function buildScene() {
 
   const signpostWood = engine.addEntity()
   GltfContainer.create(signpostWood, {
-    src: 'models/SignPost_wood.glb'
+    src: 'assets/scene/Models/SignPost_wood.glb'
   })
   Transform.create(signpostWood, {
     position: Vector3.create(10.855362892150879, 0, 9.5),
@@ -323,7 +323,7 @@ export function buildScene() {
 
   const signpostGolden = engine.addEntity()
   GltfContainer.create(signpostGolden, {
-    src: 'models/Signpost_Golden.glb'
+    src: 'assets/scene/Models/Signpost_Golden.glb'
   })
   Transform.create(signpostGolden, {
     position: Vector3.create(13, 0, 10.5),
@@ -349,7 +349,7 @@ export function buildScene() {
 
   const roundSignpost = engine.addEntity()
   GltfContainer.create(roundSignpost, {
-    src: 'models/SignPost_Circle.glb'
+    src: 'assets/scene/Models/SignPost_Circle.glb'
   })
   Transform.create(roundSignpost, {
     position: Vector3.create(4, 0, 3.5),

@@ -33,7 +33,7 @@ export function createZombie(xPos: number): Entity {
   })
 
   GltfContainer.create(zombie, {
-    src: 'models/zombie.glb'
+    src: 'assets/scene/Models/zombie.glb'
   })
 
   MoveTransformComponent.create(zombie, {

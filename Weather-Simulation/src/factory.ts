@@ -19,7 +19,7 @@ export function createHouse(): Entity {
     position: { x: 8, y: 0, z: 8 }
   })
   GltfContainer.create(house, {
-    src: 'models/house_dry.gltf'
+    src: 'assets/scene/Models/house_dry.gltf'
   })
   return house
 }

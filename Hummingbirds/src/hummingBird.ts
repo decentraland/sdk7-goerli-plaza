@@ -20,7 +20,7 @@ export function createHummingBird() {
     scale: { x: 0.2, y: 0.2, z: 0.2 }
   })
   GltfContainer.create(bird, {
-    src: 'models/hummingbird.glb'
+    src: 'assets/scene/Models/hummingbird.glb'
   })
   Animator.create(bird, {
     states: [

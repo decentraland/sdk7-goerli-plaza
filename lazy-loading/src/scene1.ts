@@ -1,4 +1,4 @@
-import { Entity, GltfContainer, MeshRenderer, Transform, VisibilityComponent, engine } from '@dcl/sdk/ecs'
+import { Entity, GltfContainer, MeshRenderer, Transform, VisibilityComponent, engine, TriggerArea, triggerAreaEventsSystem } from '@dcl/sdk/ecs'
 import { Vector3, Quaternion } from '@dcl/sdk/math'
 import { SubSceneComp } from './components'
 import { nftCollection, createPainting, NFTdata } from './nft'
@@ -23,7 +23,7 @@ export function createScene() {
     parent: scene1
   })
   GltfContainer.create(shopBlack, {
-    src: 'models/Shop_Black.glb'
+    src: 'assets/scene/Models/Shop_Black.glb'
   })
 
   const shopBlack2 = engine.addEntity()
@@ -34,7 +34,7 @@ export function createScene() {
     parent: scene1
   })
   GltfContainer.create(shopBlack2, {
-    src: 'models/Shop_Black.glb'
+    src: 'assets/scene/Models/Shop_Black.glb'
   })
 
   const shopBlack3 = engine.addEntity()
@@ -45,7 +45,7 @@ export function createScene() {
     parent: scene1
   })
   GltfContainer.create(shopBlack3, {
-    src: 'models/Shop_Black.glb'
+    src: 'assets/scene/Models/Shop_Black.glb'
   })
 
   const shopBlack4 = engine.addEntity()
@@ -56,7 +56,7 @@ export function createScene() {
     parent: scene1
   })
   GltfContainer.create(shopBlack4, {
-    src: 'models/Shop_Black.glb'
+    src: 'assets/scene/Models/Shop_Black.glb'
   })
 
   const shopBlack5 = engine.addEntity()
@@ -67,7 +67,7 @@ export function createScene() {
     parent: scene1
   })
   GltfContainer.create(shopBlack5, {
-    src: 'models/Shop_Black.glb'
+    src: 'assets/scene/Models/Shop_Black.glb'
   })
 
   const shopBlack6 = engine.addEntity()
@@ -78,7 +78,7 @@ export function createScene() {
     parent: scene1
   })
   GltfContainer.create(shopBlack6, {
-    src: 'models/Shop_Black.glb'
+    src: 'assets/scene/Models/Shop_Black.glb'
   })
 
   createSubScene(shopBlack, 6)
@@ -110,33 +110,28 @@ export function createSubScene(parentPos: Entity, id: number) {
 
   VisibilityComponent.create(box, { visible: false })
 
-  utils.triggers.addTrigger(
-    box,
-    utils.LAYER_2,
-    utils.LAYER_1,
-    [{ type: 'box', scale: Vector3.create(8, 5, 14) }],
-    () => {
-      if (scene1active || scene2active) {
-        console.log(`ACTIVE`)
-        console.log(`ENTERED ` + id)
-        createdPaintings = []
-        for (const nft of nftCollection) {
-          if (nft.room === id) {
-            const painting = createPainting(undefined, nft.id, nft.position, nft.contract, nft.tokenId)
-            createdPaintings.push(painting)
-          }
+  TriggerArea.setBox(box)
+  triggerAreaEventsSystem.onTriggerEnter(box, () => {
+    if (scene1active || scene2active) {
+      console.log(`ACTIVE`)
+      console.log(`ENTERED ` + id)
+      createdPaintings = []
+      for (const nft of nftCollection) {
+        if (nft.room === id) {
+          const painting = createPainting(undefined, nft.id, nft.position, nft.contract, nft.tokenId)
+          createdPaintings.push(painting)
         }
       }
-    },
-    () => {
-      console.log('LEFT')
-      for (const painting of createdPaintings) {
-        engine.removeEntityWithChildren(painting)
-      }
-
-      createdPaintings = [] // Clear the array
     }
-  )
+  })
+  triggerAreaEventsSystem.onTriggerExit(box, () => {
+    console.log('LEFT')
+    for (const painting of createdPaintings) {
+      engine.removeEntityWithChildren(painting)
+    }
+
+    createdPaintings = [] // Clear the array
+  })
 
   return entity
 }

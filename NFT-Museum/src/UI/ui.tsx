@@ -8,10 +8,10 @@ import { Color4 } from '@dcl/sdk/math';
 
 
 
-export const pauseIcon = 'images/pauseIcon.png';
-export const playIcon = 'images/playIcon.png';
-export const backgroundUI = 'images/audio-bg.png'
-export const linkIcon = 'images/link.png'
+export const pauseIcon = 'assets/scene/Images/pauseIcon.png';
+export const playIcon = 'assets/scene/Images/playIcon.png';
+export const backgroundUI = 'assets/scene/Images/audio-bg.png'
+export const linkIcon = 'assets/scene/Images/link.png'
 export const mainFont = 'sans-serif'
 export const audioFontSize = 15;
 export const highlightColor = Color4.Red()

@@ -39,7 +39,7 @@ export const TargetStyleData: TargetStyleDataObject[] = [
   {
     staticPieces: [
       {
-        path: 'models/shooting-range-advanced/target-static-red.glb',
+        path: 'assets/scene/Models/shooting-range-advanced/target-static-red.glb',
         position: { x: 0, y: 0, z: 0 }
       }
     ],
@@ -49,7 +49,7 @@ export const TargetStyleData: TargetStyleDataObject[] = [
   {
     staticPieces: [
       {
-        path: 'models/shooting-range-advanced/target-static-green.glb',
+        path: 'assets/scene/Models/shooting-range-advanced/target-static-green.glb',
         position: { x: 0, y: 0, z: 0 }
       }
     ],
@@ -59,7 +59,7 @@ export const TargetStyleData: TargetStyleDataObject[] = [
   {
     staticPieces: [
       {
-        path: 'models/shooting-range-advanced/target-static-blue.glb',
+        path: 'assets/scene/Models/shooting-range-advanced/target-static-blue.glb',
         position: { x: 0, y: 0, z: 0 }
       }
     ],
@@ -70,13 +70,13 @@ export const TargetStyleData: TargetStyleDataObject[] = [
   {
     staticPieces: [
       {
-        path: 'models/shooting-range-advanced/target-rotating-stand-red.glb',
+        path: 'assets/scene/Models/shooting-range-advanced/target-rotating-stand-red.glb',
         position: { x: 0, y: 0, z: 0 }
       }
     ],
     rotatingPieces: [
       {
-        path: 'models/shooting-range-advanced/target-rotating-billet-red.glb',
+        path: 'assets/scene/Models/shooting-range-advanced/target-rotating-billet-red.glb',
         position: { x: 0, y: 1.88, z: 0 },
         rotationSpeed: { x: 10, y: 0, z: 0 }
       }
@@ -86,13 +86,13 @@ export const TargetStyleData: TargetStyleDataObject[] = [
   {
     staticPieces: [
       {
-        path: 'models/shooting-range-advanced/target-rotating-stand-green.glb',
+        path: 'assets/scene/Models/shooting-range-advanced/target-rotating-stand-green.glb',
         position: { x: 0, y: 0, z: 0 }
       }
     ],
     rotatingPieces: [
       {
-        path: 'models/shooting-range-advanced/target-rotating-billet-green.glb',
+        path: 'assets/scene/Models/shooting-range-advanced/target-rotating-billet-green.glb',
         position: { x: 0, y: 2.8, z: 0 },
         rotationSpeed: { x: 0, y: 10, z: 0 }
       }
@@ -102,13 +102,13 @@ export const TargetStyleData: TargetStyleDataObject[] = [
   {
     staticPieces: [
       {
-        path: 'models/shooting-range-advanced/target-rotating-stand-blue.glb',
+        path: 'assets/scene/Models/shooting-range-advanced/target-rotating-stand-blue.glb',
         position: { x: 0, y: 0, z: 0 }
       }
     ],
     rotatingPieces: [
       {
-        path: 'models/shooting-range-advanced/target-rotating-billet-blue.glb',
+        path: 'assets/scene/Models/shooting-range-advanced/target-rotating-billet-blue.glb',
         position: { x: 0, y: 2.25, z: -1 },
         rotationSpeed: { x: 0, y: 0, z: 10 }
       }

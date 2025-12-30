@@ -26,7 +26,7 @@ export function main() {
   // Add Trevor NPC dancing
   const trevorNPCEntity = engine.addEntity()
   GltfContainer.create(trevorNPCEntity, {
-    src: 'models/Trevor.glb'
+    src: 'assets/scene/Models/Trevor.glb'
   })
   Animator.create(trevorNPCEntity, {
     states: [
@@ -45,7 +45,7 @@ export function main() {
 
   // Add audio
   AudioSource.create(trevorNPCEntity, {
-    audioClipUrl: 'sounds/Vexento.mp3',
+    audioClipUrl: 'assets/scene/Audio/Vexento.mp3',
     playing: true,
     loop: true
   })

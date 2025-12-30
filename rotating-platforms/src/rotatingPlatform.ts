@@ -1,17 +1,12 @@
-//import * as utils from '@dcl/ecs-scene-utils'
 import {
-  EasingFunction,
   engine,
   Entity,
   GltfContainer,
   Transform,
   TransformType,
-  Tween,
-  TweenLoop,
-  TweenSequence
+  Tween
 } from '@dcl/sdk/ecs'
 import { Quaternion } from '@dcl/sdk/math'
-import * as utils from '@dcl-sdk/utils'
 
 export enum Direction {
   X = 'x',
@@ -32,58 +27,31 @@ export function createRotatingPlatform(
   GltfContainer.create(entity, { src: model })
   Transform.create(entity, transform)
 
-  let startRotation = Quaternion.fromEulerDegrees(0, 0, 0)
-  let midRotation = Quaternion.fromEulerDegrees(0, 0, 0)
-  let endRotation = Quaternion.fromEulerDegrees(0, 0, 0)
+  const speed = 180 / (duration / 1000)
+  let directionQuat = Quaternion.Identity()
 
   switch (direction) {
     case Direction.X:
-      midRotation = Quaternion.fromEulerDegrees(180, 0, 0)
-      endRotation = Quaternion.fromEulerDegrees(360, 0, 0)
+      directionQuat = Quaternion.fromEulerDegrees(0, 0, 90)
       break
     case Direction.invX:
-      midRotation = Quaternion.fromEulerDegrees(-180, 0, 0)
-      endRotation = Quaternion.fromEulerDegrees(-360, 0, 0)
+      directionQuat = Quaternion.fromEulerDegrees(0, 0, -90)
       break
     case Direction.Y:
-      midRotation = Quaternion.fromEulerDegrees(0, 180, 0)
-      endRotation = Quaternion.fromEulerDegrees(0, 360, 0)
+      directionQuat = Quaternion.fromEulerDegrees(0, 90, 0)
       break
     case Direction.invY:
-      midRotation = Quaternion.fromEulerDegrees(0, -180, 0)
-      endRotation = Quaternion.fromEulerDegrees(0, -360, 0)
+      directionQuat = Quaternion.fromEulerDegrees(0, -90, 0)
       break
     case Direction.Z:
-      midRotation = Quaternion.fromEulerDegrees(0, 0, 180)
-      endRotation = Quaternion.fromEulerDegrees(0, 0, 360)
+      directionQuat = Quaternion.fromEulerDegrees(90, 0, 0)
       break
     case Direction.invZ:
-      midRotation = Quaternion.fromEulerDegrees(0, 0, -180)
-      endRotation = Quaternion.fromEulerDegrees(0, 0, -360)
+      directionQuat = Quaternion.fromEulerDegrees(-90, 0, 0)
       break
   }
 
-  Tween.create(entity, {
-    mode: Tween.Mode.Rotate({
-      start: startRotation,
-      end: midRotation
-    }),
-    duration: duration,
-    easingFunction: EasingFunction.EF_LINEAR
-  })
-  TweenSequence.create(entity, {
-    loop: TweenLoop.TL_RESTART,
-    sequence: [
-      {
-        mode: Tween.Mode.Rotate({
-          start: midRotation,
-          end: endRotation
-        }),
-        duration: duration,
-        easingFunction: EasingFunction.EF_LINEAR
-      }
-    ]
-  })
+  Tween.setRotateContinuous(entity, directionQuat, speed)
 
   return entity
 }

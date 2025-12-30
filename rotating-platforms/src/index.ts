@@ -10,21 +10,21 @@ export function main() {
   //create rotating systems
 
   // Stage 1 (Roundabouts)
-  const roundaboutAShape = 'models/roundaboutA.glb'
+  const roundaboutAShape = 'assets/scene/Models/roundaboutA.glb'
 
   // Stage 2 (Wheels)
-  const wheelAShape = 'models/wheelA.glb'
+  const wheelAShape = 'assets/scene/Models/wheelA.glb'
 
   // Adding base scene models
   const base = engine.addEntity()
-  GltfContainer.create(base, { src: 'models/baseLight.glb' })
+  GltfContainer.create(base, { src: 'assets/scene/Models/baseLight.glb' })
   Transform.create(base, {
     scale: Vector3.create(2, 1, 2),
     position: Vector3.create(0, 0, 0)
   })
 
   const platform = engine.addEntity()
-  GltfContainer.create(platform, { src: 'models/staticPlatforms.glb' })
+  GltfContainer.create(platform, { src: 'assets/scene/Models/staticPlatforms.glb' })
   Transform.create(platform, {
     position: Vector3.create(0, 0, 0)
   })
@@ -38,7 +38,7 @@ export function main() {
       duration: 1500
     },
     {
-      model: 'models/roundaboutB.glb',
+      model: 'assets/scene/Models/roundaboutB.glb',
       transformArgs: { position: Vector3.create(5.5, 3, 17.25) },
       direction: Direction.invY,
       duration: 1500
@@ -50,7 +50,7 @@ export function main() {
       duration: 1500
     },
     {
-      model: 'models/bridgeA.glb',
+      model: 'assets/scene/Models/bridgeA.glb',
       transformArgs: { position: Vector3.create(10.5, 6.5, 29.5) },
       direction: Direction.invZ,
       duration: 4000
@@ -63,7 +63,7 @@ export function main() {
       duration: 8000
     },
     {
-      model: 'models/wheelB.glb',
+      model: 'assets/scene/Models/wheelB.glb',
       transformArgs: { position: Vector3.create(15.5, 5.5, 16.325) },
       direction: Direction.invZ,
       duration: 8000
@@ -78,25 +78,25 @@ export function main() {
 
     // Stage 3 (Barriers)
     {
-      model: 'models/bridgeB.glb',
+      model: 'assets/scene/Models/bridgeB.glb',
       transformArgs: { position: Vector3.create(21, 8.25, 2.5) },
       direction: Direction.X,
       duration: 4000
     },
     {
-      model: 'models/barrierA.glb',
+      model: 'assets/scene/Models/barrierA.glb',
       transformArgs: { position: Vector3.create(27, 9.7, 7.5) },
       direction: Direction.Y,
       duration: 2000
     },
     {
-      model: 'models/barrierB.glb',
+      model: 'assets/scene/Models/barrierB.glb',
       transformArgs: { position: Vector3.create(23.5, 10.7, 15) },
       direction: Direction.invY,
       duration: 2000
     },
     {
-      model: 'models/barrierC.glb',
+      model: 'assets/scene/Models/barrierC.glb',
       //FIXME why is this not bombinb syntax??, its not being passed the entity arg
       transformArgs: { position: Vector3.create(27, 11.7, 22.5) },
       direction: Direction.Y,
@@ -105,7 +105,7 @@ export function main() {
   ]
 
   // Crown
-  createCrown('models/crown.glb', {
+  createCrown('assets/scene/Models/crown.glb', {
     //NOTE: for tesing moving crown to ground
     position: Vector3.create(27, 13.75, 28.5),
     rotation: Quaternion.Identity(),

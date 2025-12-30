@@ -9,7 +9,7 @@ export function buildScene() {
 
   const floor = engine.addEntity()
   GltfContainer.create(floor, {
-    src: 'models/FloorBaseGrass_01/FloorBaseGrass_01.glb'
+    src: 'assets/scene/Models/FloorBaseGrass_01/FloorBaseGrass_01.glb'
   })
   Transform.create(floor, {
     position: Vector3.create(8, 0, 8),
@@ -18,7 +18,7 @@ export function buildScene() {
 
   const classicBench = engine.addEntity()
   GltfContainer.create(classicBench, {
-    src: 'models/Bench_01/Bench_01.glb'
+    src: 'assets/scene/Models/Bench_01/Bench_01.glb'
   })
   Transform.create(classicBench, {
     position: Vector3.create(12.5, 0, 11.5),
@@ -28,7 +28,7 @@ export function buildScene() {
 
   const bluePinkMysticalMushroomTree = engine.addEntity()
   GltfContainer.create(bluePinkMysticalMushroomTree, {
-    src: 'models/Tree_02/Tree_02.glb'
+    src: 'assets/scene/Models/Tree_02/Tree_02.glb'
   })
   Transform.create(bluePinkMysticalMushroomTree, {
     position: Vector3.create(12.5, 0, 3.5),
@@ -37,7 +37,7 @@ export function buildScene() {
 
   const ancientMediumStonePath = engine.addEntity()
   GltfContainer.create(ancientMediumStonePath, {
-    src: 'models/RockFloor_Module_2M/RockFloor_Module_2M.glb'
+    src: 'assets/scene/Models/RockFloor_Module_2M/RockFloor_Module_2M.glb'
   })
   Transform.create(ancientMediumStonePath, {
     position: Vector3.create(9, 0, 9),
@@ -46,7 +46,7 @@ export function buildScene() {
 
   const ancientMediumStonePath2 = engine.addEntity()
   GltfContainer.create(ancientMediumStonePath2, {
-    src: 'models/RockFloor_Module_2M/RockFloor_Module_2M.glb'
+    src: 'assets/scene/Models/RockFloor_Module_2M/RockFloor_Module_2M.glb'
   })
   Transform.create(ancientMediumStonePath2, {
     position: Vector3.create(6, 0, 9),
@@ -55,7 +55,7 @@ export function buildScene() {
 
   const ancientMediumStonePath3 = engine.addEntity()
   GltfContainer.create(ancientMediumStonePath3, {
-    src: 'models/RockFloor_Module_2M/RockFloor_Module_2M.glb'
+    src: 'assets/scene/Models/RockFloor_Module_2M/RockFloor_Module_2M.glb'
   })
   Transform.create(ancientMediumStonePath3, {
     position: Vector3.create(4, 0, 9),
@@ -64,7 +64,7 @@ export function buildScene() {
 
   const shrub = engine.addEntity()
   GltfContainer.create(shrub, {
-    src: 'models/Bush_01/Bush_01.glb'
+    src: 'assets/scene/Models/Bush_01/Bush_01.glb'
   })
   Transform.create(shrub, {
     position: Vector3.create(4.5, 0, 3),
@@ -73,7 +73,7 @@ export function buildScene() {
 
   const shrub2 = engine.addEntity()
   GltfContainer.create(shrub2, {
-    src: 'models/Bush_01/Bush_01.glb'
+    src: 'assets/scene/Models/Bush_01/Bush_01.glb'
   })
   Transform.create(shrub2, {
     position: Vector3.create(3.5, 0, 15),
@@ -82,7 +82,7 @@ export function buildScene() {
 
   const balsamFlower = engine.addEntity()
   GltfContainer.create(balsamFlower, {
-    src: 'models/Plant_02/Plant_02.glb'
+    src: 'assets/scene/Models/Plant_02/Plant_02.glb'
   })
   Transform.create(balsamFlower, {
     position: Vector3.create(11.5, 0, 2.5),
@@ -91,7 +91,7 @@ export function buildScene() {
 
   const sunflowerHead = engine.addEntity()
   GltfContainer.create(sunflowerHead, {
-    src: 'models/Flower_01/Flower_01.glb'
+    src: 'assets/scene/Models/Flower_01/Flower_01.glb'
   })
   Transform.create(sunflowerHead, {
     position: Vector3.create(1.5, 0, 14),
@@ -100,7 +100,7 @@ export function buildScene() {
 
   const ballDroid = engine.addEntity()
   GltfContainer.create(ballDroid, {
-    src: 'models/Droid_01/Droid_01.glb'
+    src: 'assets/scene/Models/Droid_01/Droid_01.glb'
   })
   Transform.create(ballDroid, {
     position: Vector3.create(3.5, 2.4617645740509033, 10.160882949829102),
@@ -111,7 +111,7 @@ export function buildScene() {
 
   const signpostRoot = engine.addEntity()
   GltfContainer.create(signpostRoot, {
-    src: 'models/Signpost_Root.glb'
+    src: 'assets/scene/Models/Signpost_Root.glb'
   })
   Transform.create(signpostRoot, {
     position: Vector3.create(10, 0, 13),
@@ -142,7 +142,7 @@ export function buildScene() {
 
   const signpostTree = engine.addEntity()
   GltfContainer.create(signpostTree, {
-    src: 'models/Sign_Arrow.glb'
+    src: 'assets/scene/Models/Sign_Arrow.glb'
   })
   Transform.create(signpostTree, {
     position: Vector3.create(5.163928985595703, 0.5730905532836914, 12.90584945678711),
@@ -175,7 +175,7 @@ export function buildScene() {
 
   const signpostTree2 = engine.addEntity()
   GltfContainer.create(signpostTree2, {
-    src: 'models/Sign_Square.glb'
+    src: 'assets/scene/Models/Sign_Square.glb'
   })
   Transform.create(signpostTree2, {
     position: Vector3.create(7.5, 2.9045917987823486, 14.463543891906738),
@@ -208,7 +208,7 @@ export function buildScene() {
 
   const indicatorArrow = engine.addEntity()
   GltfContainer.create(indicatorArrow, {
-    src: 'models/Arrow.glb'
+    src: 'assets/scene/Models/Arrow.glb'
   })
   Transform.create(indicatorArrow, {
     position: Vector3.create(7, 2.9388692378997803, 13),

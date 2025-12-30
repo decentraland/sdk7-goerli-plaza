@@ -1,11 +1,12 @@
 import {
   AudioSource,
+  ColliderLayer,
   engine,
   GltfContainer,
   PointerEvents,
   PointerEventType,
   Transform,
-  VisibilityComponent
+  VisibilityComponent, TriggerArea, triggerAreaEventsSystem
 } from '@dcl/sdk/ecs'
 import { Vector3 } from '@dcl/sdk/math'
 import { Particle, particleSystem } from './particles'
@@ -14,21 +15,21 @@ import * as utils from '@dcl-sdk/utils'
 
 // Power glows
 const powerBlueGlowEntity = engine.addEntity()
-GltfContainer.create(powerBlueGlowEntity, { src: 'models/powerBlueGlow.glb' })
+GltfContainer.create(powerBlueGlowEntity, { src: 'assets/scene/Models/powerBlueGlow.glb' })
 Transform.create(powerBlueGlowEntity)
 
 const powerRedGlowEntity = engine.addEntity()
-GltfContainer.create(powerRedGlowEntity, { src: 'models/powerRedGlow.glb' })
+GltfContainer.create(powerRedGlowEntity, { src: 'assets/scene/Models/powerRedGlow.glb' })
 Transform.create(powerRedGlowEntity)
 
 // Forcefield
 const forcefieldEntity = engine.addEntity()
-GltfContainer.create(forcefieldEntity, { src: 'models/forcefield.glb' })
+GltfContainer.create(forcefieldEntity, { src: 'assets/scene/Models/forcefield.glb' })
 Transform.create(forcefieldEntity)
 
 // Sounds
-const powerUp = createSound('sounds/powerUp.mp3')
-const powerDown = createSound('sounds/powerDown.mp3')
+const powerUp = createSound('assets/scene/Audio/powerUp.mp3')
+const powerDown = createSound('assets/scene/Audio/powerDown.mp3')
 
 export function createPowerBase(position: Vector3, gltfSrc: string) {
   const entity = engine.addEntity()
@@ -54,8 +55,8 @@ export function createPowerBase(position: Vector3, gltfSrc: string) {
 
       try {
         engine.addSystem(particleSystem)
-      } catch (err) {}
-      AudioSource.playSound(powerUp, 'sounds/powerUp.mp3')
+      } catch (err) { }
+      AudioSource.playSound(powerUp, 'assets/scene/Audio/powerUp.mp3')
 
       for (const [entity] of engine.getEntitiesWith(Particle)) {
         VisibilityComponent.deleteFrom(entity)
@@ -72,32 +73,19 @@ export function createPowerBase(position: Vector3, gltfSrc: string) {
       Transform.getMutable(forcefieldEntity).scale = Vector3.Zero()
 
       engine.removeSystem(particleSystem)
-      AudioSource.playSound(powerDown, 'sounds/powerDown.mp3')
+      AudioSource.playSound(powerDown, 'assets/scene/Audio/powerDown.mp3')
     }
   }
 
-  utils.triggers.addTrigger(
-    entity,
-    2,
-    2,
-    [
-      {
-        type: 'box',
-        scale: Vector3.create(4, 4, 4),
-        position: Vector3.create(0, 0.75, 0)
-      }
-    ],
-    (entity) => {
-      console.log('on enter', { entity })
-      //if (args.length > 0)
-      togglePower(true)
-    },
-    (entity) => {
-      console.log('on exit', { entity })
-      //if (args.length === 0)
-      togglePower(false)
-    }
-  )
+  const trigger = engine.addEntity()
+  Transform.create(trigger, { parent: entity, position: Vector3.create(0, 0.75, 0), scale: Vector3.create(4, 4, 4) })
+  TriggerArea.setBox(trigger, [ColliderLayer.CL_PHYSICS])
+  triggerAreaEventsSystem.onTriggerEnter(trigger, () => {
+    togglePower(true)
+  })
+  triggerAreaEventsSystem.onTriggerExit(trigger, () => {
+    togglePower(false)
+  })
 }
 
 // Power base where the power cube sits

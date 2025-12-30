@@ -39,7 +39,7 @@ export function createBall(position: Vector3, cannonMaterial: CANNON.Material, c
     position: position
   })
   GltfContainer.create(ball, {
-    src: 'models/ball.glb',
+    src: 'assets/scene/Models/ball.glb',
     invisibleMeshesCollisionMask: ColliderLayer.CL_PHYSICS,
     visibleMeshesCollisionMask: ColliderLayer.CL_POINTER
   })
@@ -47,7 +47,7 @@ export function createBall(position: Vector3, cannonMaterial: CANNON.Material, c
   // Setup glow
 
   GltfContainer.create(glowEntity, {
-    src: 'models/ballGlow.glb',
+    src: 'assets/scene/Models/ballGlow.glb',
     invisibleMeshesCollisionMask: 0,
     visibleMeshesCollisionMask: 0
   })

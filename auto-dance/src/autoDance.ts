@@ -1,11 +1,13 @@
 import * as utils from '@dcl-sdk/utils'
-import { engine, Transform, MeshRenderer, VisibilityComponent } from '@dcl/sdk/ecs'
+import { engine, Transform, MeshRenderer, VisibilityComponent, TriggerArea } from '@dcl/sdk/ecs'
 import { Vector3 } from '@dcl/sdk/math'
 import { triggerEmote, triggerSceneEmote } from '~system/RestrictedActions'
+import { triggerAreaEventsSystem } from '@dcl/sdk/ecs'
+
 // Example emotes array
 const emotesToTrigger = [
-  'emotes/Throw_emote.glb',
-  'emotes/Pose_emote.glb'
+  'assets/scene/Models/Throw_emote.glb',
+  'assets/scene/Models/Pose_emote.glb'
   // ...more emotes
 ]
 const basicEmotesToTrigger = [
@@ -29,27 +31,24 @@ export function createDanceArea(position: Vector3, scale: Vector3) {
   ///MAKE TRUE FOR DEBUG
   VisibilityComponent.create(myEntity, { visible: false })
 
-  ///REMEMBER TO MAKE THE TRIGGER POSITION AND SCALE = THE TRANSFORM POSITION AND SCALE!!
-  utils.triggers.addTrigger(
-    myEntity,
-    1,
-    1,
-    [{ type: 'box', scale: scale, position: Vector3.create(0, 0, 0) }],
-    function (otherEntity) {
-      if (!isDancing) {
-        isDancing = true
-        currentEmoteIndex = 0
-        triggerNextEmote()
-        console.log('dancing')
-      }
-    },
-    function (otherEntity) {
-      if (isDancing) {
-        isDancing = false
-        console.log('noDance')
-      }
+  // Add Trigger Area
+  TriggerArea.setBox(myEntity)
+
+  triggerAreaEventsSystem.onTriggerEnter(myEntity, function (result) {
+    if (!isDancing) {
+      isDancing = true
+      currentEmoteIndex = 0
+      triggerNextEmote()
+      console.log('dancing')
     }
-  )
+  })
+
+  triggerAreaEventsSystem.onTriggerExit(myEntity, function (result) {
+    if (isDancing) {
+      isDancing = false
+      console.log('noDance')
+    }
+  })
 }
 
 export function createBasicDanceArea(position: Vector3, scale: Vector3) {
@@ -63,27 +62,23 @@ export function createBasicDanceArea(position: Vector3, scale: Vector3) {
   ///MAKE TRUE FOR DEBUG
   VisibilityComponent.create(myEntity, { visible: false })
 
-  ///REMEMBER TO MAKE THE TRIGGER POSITION AND SCALE = THE TRANSFORM POSITION AND SCALE!!
-  utils.triggers.addTrigger(
-    myEntity,
-    1,
-    1,
-    [{ type: 'box', scale: scale, position: Vector3.create(0, 0, 0) }],
-    function (otherEntity) {
-      if (!isDancing) {
-        isDancing = true
-        currentEmoteIndex = 0
-        triggerBasicNextEmote()
-        console.log('dancing')
-      }
-    },
-    function (otherEntity) {
-      if (isDancing) {
-        isDancing = false
-        console.log('noDance')
-      }
+  TriggerArea.setBox(myEntity)
+
+  triggerAreaEventsSystem.onTriggerEnter(myEntity, function (result) {
+    if (!isDancing) {
+      isDancing = true
+      currentEmoteIndex = 0
+      triggerBasicNextEmote()
+      console.log('dancing')
     }
-  )
+  })
+
+  triggerAreaEventsSystem.onTriggerExit(myEntity, function (result) {
+    if (isDancing) {
+      isDancing = false
+      console.log('noDance')
+    }
+  })
 }
 
 export async function triggerNextEmote() {

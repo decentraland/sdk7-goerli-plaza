@@ -9,14 +9,14 @@ export function main() {
   // Base
   const base = engine.addEntity()
   GltfContainer.create(base, {
-    src: 'models/baseCheckered.glb',
+    src: 'assets/scene/Models/baseCheckered.glb',
     invisibleMeshesCollisionMask: ColliderLayer.CL_NONE
   })
 
   // Boundaries
   const boundaries = engine.addEntity()
   GltfContainer.create(boundaries, {
-    src: 'models/boundaries.glb'
+    src: 'assets/scene/Models/boundaries.glb'
   })
 
   // Mirrors
@@ -24,28 +24,28 @@ export function main() {
 
   // mirrorA
   new Mirror({
-    selectorModelPath: 'models/mirrorSelector.glb',
-    mirrorModelPath: 'models/mirrorScaledColliders.glb',
+    selectorModelPath: 'assets/scene/Models/mirrorSelector.glb',
+    mirrorModelPath: 'assets/scene/Models/mirrorScaledColliders.glb',
     position: Vector3.create(2.5, 0, 7.5)
   })
 
   // mirrorB
   new Mirror({
-    selectorModelPath: 'models/mirrorSelector.glb',
-    mirrorModelPath: 'models/mirrorScaledColliders.glb',
+    selectorModelPath: 'assets/scene/Models/mirrorSelector.glb',
+    mirrorModelPath: 'assets/scene/Models/mirrorScaledColliders.glb',
     position: Vector3.create(8.5, 0, 11.5)
   })
   // mirrorC
   new Mirror({
-    selectorModelPath: 'models/mirrorSelector.glb',
-    mirrorModelPath: 'models/mirrorScaledColliders.glb',
+    selectorModelPath: 'assets/scene/Models/mirrorSelector.glb',
+    mirrorModelPath: 'assets/scene/Models/mirrorScaledColliders.glb',
     position: Vector3.create(8.5, 0, 20.5)
   })
 
   // mirrorD
   new Mirror({
-    selectorModelPath: 'models/mirrorSelector.glb',
-    mirrorModelPath: 'models/mirrorScaledColliders.glb',
+    selectorModelPath: 'assets/scene/Models/mirrorSelector.glb',
+    mirrorModelPath: 'assets/scene/Models/mirrorScaledColliders.glb',
     position: Vector3.create(2.5, 0, 24.5)
   })
   //#endregion

@@ -32,80 +32,80 @@ function getUVs(row: number, startBlock: number, width: number): number[] {
   ]
 }
 // SCOREBOARD
-// const scoreboardBackgroundLight = 'models/ui/scoreboard_bg.glb'
-// const scoreboardBackgroundDark = 'models/ui/scoreboard_bg_dark.glb'
+// const scoreboardBackgroundLight = 'assets/scene/Models/ui/scoreboard_bg.glb'
+// const scoreboardBackgroundDark = 'assets/scene/Models/ui/scoreboard_bg_dark.glb'
 
-//const scoreBoardBackgroudDefault = 'images/scoreboard_bg.png'
-const scoreBoardBackgroudDefault = 'images/scoreboard_bg.png'
+//const scoreBoardBackgroudDefault = 'assets/scene/Images/scoreboard_bg.png'
+const scoreBoardBackgroudDefault = 'assets/scene/Images/scoreboard_bg.png'
 
 //BUTTONS
-const squareBase = 'models/ui/button_base_square.glb'
-const rectBase = 'models/ui/button_base_rectangle.glb'
+const squareBase = 'assets/scene/Models/ui/button_base_square.glb'
+const rectBase = 'assets/scene/Models/ui/button_base_rectangle.glb'
 
 const SQUARE_GREEN: ButtonShapeData = {
-  shape: 'models/ui/button_square_green.glb',
+  shape: 'assets/scene/Models/ui/button_square_green.glb',
   base: squareBase,
   isRect: false
 }
 const SQUARE_RED: ButtonShapeData = {
-  shape: 'models/ui/button_square_red.glb',
+  shape: 'assets/scene/Models/ui/button_square_red.glb',
   base: squareBase,
   isRect: false
 }
 const SQUARE_YELLOW: ButtonShapeData = {
-  shape: 'models/ui/button_square_yellow.glb',
+  shape: 'assets/scene/Models/ui/button_square_yellow.glb',
   base: squareBase,
   isRect: false
 }
 const SQUARE_PURPLE: ButtonShapeData = {
-  shape: 'models/ui/button_square_purple.glb',
+  shape: 'assets/scene/Models/ui/button_square_purple.glb',
   base: squareBase,
   isRect: false
 }
 const SQUARE_WHITE: ButtonShapeData = {
-  shape: 'models/ui/button_square_white.glb',
+  shape: 'assets/scene/Models/ui/button_square_white.glb',
   base: squareBase,
   isRect: false
 }
 const SQUARE_BLACK: ButtonShapeData = {
-  shape: 'models/ui/button_square_black.glb',
+  shape: 'assets/scene/Models/ui/button_square_black.glb',
   base: squareBase,
   isRect: false
 }
 
 const RECT_GREEN: ButtonShapeData = {
-  shape: 'models/ui/button_rectangle_green.glb',
+  shape: 'assets/scene/Models/ui/button_rectangle_green.glb',
   base: rectBase,
   isRect: true
 }
 const RECT_RED: ButtonShapeData = {
-  shape: 'models/ui/button_rectangle_red.glb',
+  shape: 'assets/scene/Models/ui/button_rectangle_red.glb',
   base: rectBase,
   isRect: true
 }
 const RECT_YELLOW: ButtonShapeData = {
-  shape: 'models/ui/button_rectangle_yellow.glb',
+  shape: 'assets/scene/Models/ui/button_rectangle_yellow.glb',
   base: rectBase,
   isRect: true
 }
 const RECT_PURPLE: ButtonShapeData = {
-  shape: 'models/ui/button_rectangle_purple.glb',
+  shape: 'assets/scene/Models/ui/button_rectangle_purple.glb',
   base: rectBase,
   isRect: true
 }
 const RECT_WHITE: ButtonShapeData = {
-  shape: 'models/ui/button_rectangle_white.glb',
+  shape: 'assets/scene/Models/ui/button_rectangle_white.glb',
   base: rectBase,
   isRect: true
 }
 const RECT_BLACK: ButtonShapeData = {
-  shape: 'models/ui/button_rectangle_black.glb',
+  shape: 'assets/scene/Models/ui/button_rectangle_black.glb',
   base: rectBase,
   isRect: true
 }
 
 //UI atlas
-export const uiAtlas = 'images/AtlasGames.png'
+export const uiAtlas = 'assets/scene/Images/AtlasGames.png'
 
 //square icons
 const checkmark: IconData = { uvs: getUVs(0, 0, 1), blockWidth: 1 }

@@ -1,4 +1,4 @@
-import { Vector3 } from '@dcl/ecs-math'
+import { Vector3 } from '@dcl/sdk/math'
 import { Transform, engine } from '@dcl/sdk/ecs'
 import { BallFlag, IsBallAlive } from '../components/definitions'
 import { BALL_SPEED, OUT_OF_BOUNDS } from '../gameConfig'
