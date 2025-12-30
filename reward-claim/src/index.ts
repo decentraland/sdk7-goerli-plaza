@@ -14,27 +14,31 @@ import {
 } from '@dcl/sdk/ecs'
 import { CONFIG } from './config'
 import { Quaternion, Vector3 } from '@dcl/sdk/math'
-import { claimToken } from './claim/claim'
-import { ClaimConfig } from './claim/claimConfig'
-import { setupUi } from './claim/ui'
+import { claimToken } from './dispenser/claiming/claim'
+import { ClaimConfig } from './dispenser/claiming/claimConfig'
+import { setupUi } from './ui'
 import { randomCrateSpawn } from './crate'
 import { getActionEvents } from '@dcl/asset-packs/dist/events'
+import { initDispenserUi } from './dispenser/claiming/ui/dispenserUi'
+import { setupDispenser } from './dispenser/setup'
 
 export function main() {
   CONFIG.init()
 
   setupUi()
+  initDispenserUi()
 
-  // UI test - comment this line out
-  //openUI('images/scene-thumbnail.png', 'Wearable Name')
+  //DCL dispenser
+  setupDispenser()
 
+  //Eyewear Dispenser
   let dispenser = engine.addEntity()
   Transform.create(dispenser, {
     position: Vector3.create(8, 0, 8)
   })
 
   GltfContainer.create(dispenser, {
-    src: 'models/dispenser_DCLMF23.glb',
+    src: 'models/dispenser/dispenser_DCLMF23.glb',
     invisibleMeshesCollisionMask: ColliderLayer.CL_POINTER
   })
 
@@ -51,7 +55,7 @@ export function main() {
     function () {
       let camp = ClaimConfig.campaign.CAMPAIGN_TEST
 
-      claimToken(camp, camp.campaignKeys.KEY_0)
+      claimToken(camp, camp.campaignKeys.key)
       Animator.playSingleAnimation(dispenser, 'Animation')
     }
   )
@@ -65,20 +69,21 @@ export function main() {
   })
 
   GltfContainer.create(wearablePlaceholder, {
-    src: 'models/wearable/MANA_Eyewear.glb',
+    src: 'assets/scene/Models/wearable/MANA_Eyewear.glb',
     visibleMeshesCollisionMask: undefined,
     invisibleMeshesCollisionMask: undefined
   })
 
   spinInPlace(wearablePlaceholder, 3000)
 
+  //Lever Airdrop
   const lever = engine.getEntityOrNullByName('Lever')
 
   if (lever) {
     const lever_actions = getActionEvents(lever)
     lever_actions.on('Activate', () => {
       let camp = ClaimConfig.campaign.CAMPAIGN_TEST
-      randomCrateSpawn(camp, camp.campaignKeys.KEY_0)
+      randomCrateSpawn(camp, camp.campaignKeys.key)
     })
   }
 
@@ -86,29 +91,10 @@ export function main() {
 
   let floor = engine.addEntity()
 
-  GltfContainer.create(floor, { src: 'models/baseLight.glb' })
+  GltfContainer.create(floor, { src: 'assets/scene/Models/baseLight.glb' })
 }
 
 export function spinInPlace(entity: Entity, duration: number) {
-  Tween.create(entity, {
-    mode: Tween.Mode.Rotate({
-      start: Quaternion.fromEulerDegrees(0, 0, 0),
-      end: Quaternion.fromEulerDegrees(0, 180, 0)
-    }),
-    duration: duration,
-    easingFunction: EasingFunction.EF_LINEAR
-  })
-  TweenSequence.create(entity, {
-    loop: TweenLoop.TL_RESTART,
-    sequence: [
-      {
-        mode: Tween.Mode.Rotate({
-          start: Quaternion.fromEulerDegrees(0, 180, 0),
-          end: Quaternion.fromEulerDegrees(0, 360, 0)
-        }),
-        duration: duration,
-        easingFunction: EasingFunction.EF_LINEAR
-      }
-    ]
-  })
+  const speed = 180 / (duration / 1000)
+  Tween.setRotateContinuous(entity, Quaternion.fromEulerDegrees(0, 90, 0), speed)
 }

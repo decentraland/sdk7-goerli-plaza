@@ -65,14 +65,14 @@ export function main() {
     position: Vector3.create(8, 0, 8)
   })
   GltfContainer.create(ground, {
-    src: 'models/ground.glb'
+    src: 'assets/scene/Models/ground.glb'
   })
 
   /// --- Spawn grass blades ---
 
-  const grassModel = 'models/grass.glb'
-  const grass2Model = 'models/grass2.glb'
-  const grass3Model = 'models/grass3.glb'
+  const grassModel = 'assets/scene/Models/grass.glb'
+  const grass2Model = 'assets/scene/Models/grass2.glb'
+  const grass3Model = 'assets/scene/Models/grass3.glb'
 
   for (let x = 1.4; x < 15.35; x++) {
     for (let y = 1.4; y < 15.35; y++) {

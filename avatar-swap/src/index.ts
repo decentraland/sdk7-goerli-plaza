@@ -11,7 +11,7 @@ export function main() {
   // Instantiate ground model
   const groundEntity = engine.addEntity()
   GltfContainer.create(groundEntity, {
-    src: 'models/baseGrass.glb'
+    src: 'assets/scene/Models/baseGrass.glb'
   })
 
   // Instantiate 'Arissa' character animated model

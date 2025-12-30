@@ -64,7 +64,7 @@ export function pickingGlassSystem() {
       // engine.removeEntity(entity)
       if (drop) {
         PickedUp.deleteFrom(entity)
-        playSound('sounds/putDown.mp3', false, pickedUpChild)
+        playSound('assets/scene/Audio/putDown.mp3', false, pickedUpChild)
       }
     }
 
@@ -74,7 +74,7 @@ export function pickingGlassSystem() {
     if (glass.filled && tryToDrinkCommand) {
       BeerGlass.getMutable(pickedUpChild).filled = false
       Animator.playSingleAnimation(pickedUpChild, 'Blank')
-      playSound('sounds/swallow.mp3', false, pickedUpChild)
+      playSound('assets/scene/Audio/swallow.mp3', false, pickedUpChild)
     }
     return
   }
@@ -100,7 +100,7 @@ export function pickingGlassSystem() {
 
       parentEntity(entity, parentBeer)
 
-      playSound('sounds/pickUp.mp3', false, entity)
+      playSound('assets/scene/Audio/pickUp.mp3', false, entity)
     }
   }
 }

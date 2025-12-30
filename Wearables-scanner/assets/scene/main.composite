@@ -400,12 +400,12 @@
         },
         "523": {
           "json": {
-            "src": "assets/models/scanner/Wearable-Reader.glb"
+            "src": "assets/models/scanner/assets/models/scanner/Wearable-Reader.glb"
           }
         },
         "524": {
           "json": {
-            "src": "assets/models/Door_Fantasy.glb"
+            "src": "assets/models/assets/models/Door_Fantasy.glb"
           }
         },
         "525": {
@@ -475,12 +475,12 @@
         },
         "523": {
           "json": {
-            "value": "Wearable-Reader.glb"
+            "value": "assets/models/scanner/Wearable-Reader.glb"
           }
         },
         "524": {
           "json": {
-            "value": "Door_Fantasy.glb"
+            "value": "assets/models/Door_Fantasy.glb"
           }
         },
         "525": {

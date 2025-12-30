@@ -12,7 +12,7 @@ export module ShotDecalObject {
   const isDebugging: boolean = false
 
   /** decal model location */
-  const MODEL_DECAL_OBJECT = 'models/shooting-range/shot-decal.glb'
+  const MODEL_DECAL_OBJECT = 'assets/scene/Models/shooting-range/shot-decal.glb'
 
   /** pool of existing objects */
   var pooledObjects: Entity[] = []

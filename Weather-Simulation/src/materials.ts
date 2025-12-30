@@ -3,7 +3,7 @@ import { Material, MaterialTransparencyMode, PBMaterial_PbrMaterial } from '@dcl
 // Defining the raindrop material
 export const raindropMaterial = {
   texture: Material.Texture.Common({
-    src: 'materials/drop.png'
+    src: 'assets/scene/Images/drop.png'
   }),
   transparencyMode: MaterialTransparencyMode.MTM_ALPHA_BLEND,
   roughness: 0.5
@@ -16,7 +16,7 @@ export const flakeMaterial: PBMaterial_PbrMaterial[] = []
 for (let i = 1; i < 5; i++) {
   const material = {
     texture: Material.Texture.Common({
-      src: 'materials/flake' + i + '.png'
+      src: 'assets/scene/Images/flake' + i + '.png'
     }),
     transparencyMode: MaterialTransparencyMode.MTM_ALPHA_BLEND,
     roughness: 0.5

@@ -18,7 +18,7 @@ import {
 import { Zombie } from '../definitions'
 import { isInScene } from './onlyRenderInScene'
 
-const ZOMBIE_MODEL_PATH = 'models/zombie.glb'
+const ZOMBIE_MODEL_PATH = 'assets/scene/Models/zombie.glb'
 const ATTACK_DISTANCE = 3
 const MOVEMENT_SPEED = 1
 const ROTATION_SPEED = 1

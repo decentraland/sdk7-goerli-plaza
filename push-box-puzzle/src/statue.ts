@@ -1,9 +1,8 @@
 import { Sound } from './sound'
-import { engine, Entity, GltfContainer, Transform } from '@dcl/ecs'
+import { engine, Entity, GltfContainer, Transform, EasingFunction, InputAction, PointerEvents, PointerEventType, Tween } from '@dcl/sdk/ecs'
 import { Vector3 } from '@dcl/sdk/math'
 import * as utils from '@dcl-sdk/utils'
 import { PuzzleBuilder } from './puzzleBuilder'
-import { EasingFunction, InputAction, PointerEvents, PointerEventType, Tween } from '@dcl/sdk/ecs'
 
 export class Statue {
   public entity: Entity
@@ -16,13 +15,13 @@ export class Statue {
     this.symbol = engine.addEntity()
     this.symbolGlow = engine.addEntity()
 
-    GltfContainer.create(this.entity, { src: 'models/statue.glb' })
+    GltfContainer.create(this.entity, { src: 'assets/scene/Models/statue.glb' })
     Transform.create(this.entity, { position: position })
 
-    GltfContainer.create(this.symbol, { src: 'models/symbol.glb' })
+    GltfContainer.create(this.symbol, { src: 'assets/scene/Models/symbol.glb' })
     Transform.create(this.symbol, { parent: this.entity })
 
-    GltfContainer.create(this.symbolGlow, { src: 'models/symbolGlow.glb' })
+    GltfContainer.create(this.symbolGlow, { src: 'assets/scene/Models/symbolGlow.glb' })
     Transform.create(this.symbolGlow, { parent: this.entity, scale: Vector3.create(0, 0, 0) })
 
     PointerEvents.create(this.entity, {

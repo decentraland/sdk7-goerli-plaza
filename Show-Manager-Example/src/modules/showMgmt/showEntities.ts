@@ -6,7 +6,7 @@ import { SHOW_MGR } from './showSetup'
 export function createShowEntities() {
   //START ADDING syncable objects
   // DJ Table
-  const djTable = new showMgmt.ShowEntityModel('models/djTable.glb', {
+  const djTable = new showMgmt.ShowEntityModel('assets/scene/Models/djTable.glb', {
     idleAnim: 'deckTableOff',
     transform: {
       position: Vector3.create(8, 0.7, 4),
@@ -16,7 +16,7 @@ export function createShowEntities() {
   })
 
   // Speakers
-  const speakerR = new showMgmt.ShowEntityModel('models/speakers.glb', {
+  const speakerR = new showMgmt.ShowEntityModel('assets/scene/Models/speakers.glb', {
     startInvisible: false,
     idleAnim: 'L0',
     transform: {
@@ -26,7 +26,7 @@ export function createShowEntities() {
     }
   })
 
-  const speakerL = new showMgmt.ShowEntityModel('models/speakers.glb', {
+  const speakerL = new showMgmt.ShowEntityModel('assets/scene/Models/speakers.glb', {
     startInvisible: false,
     idleAnim: 'L0',
     transform: {
@@ -37,7 +37,7 @@ export function createShowEntities() {
   })
 
   // parLights
-  const parLight = new showMgmt.ShowEntityModel('models/parLight.glb', {
+  const parLight = new showMgmt.ShowEntityModel('assets/scene/Models/parLight.glb', {
     startInvisible: false,
     idleAnim: 'L0',
     transform: {
@@ -48,7 +48,7 @@ export function createShowEntities() {
   })
 
   // Dot Lights
-  const dotLight01 = new showMgmt.ShowEntityModel('models/dotLight.glb', {
+  const dotLight01 = new showMgmt.ShowEntityModel('assets/scene/Models/dotLight.glb', {
     idleAnim: 'off',
     startInvisible: false,
     transform: {
@@ -57,7 +57,7 @@ export function createShowEntities() {
       scale: Vector3.One()
     }
   })
-  const dotLight02 = new showMgmt.ShowEntityModel('models/dotLight.glb', {
+  const dotLight02 = new showMgmt.ShowEntityModel('assets/scene/Models/dotLight.glb', {
     idleAnim: 'off',
     startInvisible: false,
     transform: {
@@ -66,7 +66,7 @@ export function createShowEntities() {
       scale: Vector3.One()
     }
   })
-  const dotLight03 = new showMgmt.ShowEntityModel('models/dotLight.glb', {
+  const dotLight03 = new showMgmt.ShowEntityModel('assets/scene/Models/dotLight.glb', {
     idleAnim: 'off',
     startInvisible: false,
     transform: {
@@ -75,7 +75,7 @@ export function createShowEntities() {
       scale: Vector3.One()
     }
   })
-  const dotLight04 = new showMgmt.ShowEntityModel('models/dotLight.glb', {
+  const dotLight04 = new showMgmt.ShowEntityModel('assets/scene/Models/dotLight.glb', {
     idleAnim: 'off',
     startInvisible: false,
     transform: {
@@ -84,7 +84,7 @@ export function createShowEntities() {
       scale: Vector3.One()
     }
   })
-  const dotLight05 = new showMgmt.ShowEntityModel('models/dotLight.glb', {
+  const dotLight05 = new showMgmt.ShowEntityModel('assets/scene/Models/dotLight.glb', {
     idleAnim: 'off',
     startInvisible: false,
     transform: {
@@ -93,7 +93,7 @@ export function createShowEntities() {
       scale: Vector3.One()
     }
   })
-  const dotLight06 = new showMgmt.ShowEntityModel('models/dotLight.glb', {
+  const dotLight06 = new showMgmt.ShowEntityModel('assets/scene/Models/dotLight.glb', {
     idleAnim: 'off',
     startInvisible: false,
     transform: {
@@ -102,7 +102,7 @@ export function createShowEntities() {
       scale: Vector3.One()
     }
   })
-  const dotLight07 = new showMgmt.ShowEntityModel('models/dotLight.glb', {
+  const dotLight07 = new showMgmt.ShowEntityModel('assets/scene/Models/dotLight.glb', {
     idleAnim: 'off',
     startInvisible: false,
     transform: {
@@ -111,7 +111,7 @@ export function createShowEntities() {
       scale: Vector3.One()
     }
   })
-  const dotLight08 = new showMgmt.ShowEntityModel('models/dotLight.glb', {
+  const dotLight08 = new showMgmt.ShowEntityModel('assets/scene/Models/dotLight.glb', {
     idleAnim: 'off',
     startInvisible: false,
     transform: {
@@ -120,7 +120,7 @@ export function createShowEntities() {
       scale: Vector3.One()
     }
   })
-  const dotLight09 = new showMgmt.ShowEntityModel('models/dotLight.glb', {
+  const dotLight09 = new showMgmt.ShowEntityModel('assets/scene/Models/dotLight.glb', {
     idleAnim: 'off',
     startInvisible: false,
     transform: {
@@ -129,7 +129,7 @@ export function createShowEntities() {
       scale: Vector3.One()
     }
   })
-  const dotLight10 = new showMgmt.ShowEntityModel('models/dotLight.glb', {
+  const dotLight10 = new showMgmt.ShowEntityModel('assets/scene/Models/dotLight.glb', {
     idleAnim: 'off',
     startInvisible: false,
     transform: {
@@ -138,7 +138,7 @@ export function createShowEntities() {
       scale: Vector3.One()
     }
   })
-  const dotLight11 = new showMgmt.ShowEntityModel('models/dotLight.glb', {
+  const dotLight11 = new showMgmt.ShowEntityModel('assets/scene/Models/dotLight.glb', {
     idleAnim: 'off',
     startInvisible: false,
     transform: {
@@ -147,7 +147,7 @@ export function createShowEntities() {
       scale: Vector3.One()
     }
   })
-  const dotLight12 = new showMgmt.ShowEntityModel('models/dotLight.glb', {
+  const dotLight12 = new showMgmt.ShowEntityModel('assets/scene/Models/dotLight.glb', {
     idleAnim: 'off',
     startInvisible: false,
     transform: {
@@ -156,7 +156,7 @@ export function createShowEntities() {
       scale: Vector3.One()
     }
   })
-  const dotLight13 = new showMgmt.ShowEntityModel('models/dotLight.glb', {
+  const dotLight13 = new showMgmt.ShowEntityModel('assets/scene/Models/dotLight.glb', {
     idleAnim: 'off',
     startInvisible: false,
     transform: {
@@ -186,7 +186,7 @@ export function createShowEntities() {
 
   const whiterabbit1 = new RunwayAvatar(
     'model-whiterabbit-1',
-    'models/whiteRabbit_Anim.glb',
+    'assets/scene/Models/whiteRabbit_Anim.glb',
     true,
     RunwayCoord.SOUTH,
     startPositions[RunwayCoord.SOUTH].position,
@@ -197,7 +197,7 @@ export function createShowEntities() {
 
   const whiterabbit2 = new RunwayAvatar(
     'model-whiterabbit-2',
-    'models/whiteRabbit_Anim.glb',
+    'assets/scene/Models/whiteRabbit_Anim.glb',
     true,
     RunwayCoord.NORTH,
     startPositions[RunwayCoord.NORTH].position,

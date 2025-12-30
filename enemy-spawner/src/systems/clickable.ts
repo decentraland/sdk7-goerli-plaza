@@ -16,7 +16,7 @@ import { destroyEnemy } from '../enemy'
 export function clickedSystem() {
   if (inputSystem.getInputCommand(InputAction.IA_POINTER, PointerEventType.PET_DOWN)) {
     AudioSource.createOrReplace(soundPlayer, {
-      audioClipUrl: 'sounds/blaster.mp3',
+      audioClipUrl: 'assets/scene/Audio/blaster.mp3',
       playing: true,
       loop: false,
       volume: 0.5,

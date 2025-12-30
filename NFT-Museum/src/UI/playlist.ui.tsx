@@ -7,8 +7,8 @@ import { audioType, currentSong, isPlaying, openPlaylistLink, prevSong, skipSong
 
 
 const playlistSmallFont = 8
-const previousSongIcon = 'images/prev.png'
-const nextSongIcon = 'images/next.png'
+const previousSongIcon = 'assets/scene/Images/prev.png'
+const nextSongIcon = 'assets/scene/Images/next.png'
 
 
 export function playlistUI() {
@@ -48,7 +48,7 @@ export function playlistUI() {
                         bottom: -0.0,
                         left: -0.0,
                         right: -0.0,
-                      },
+                    },
                 }}
             >
 
@@ -67,9 +67,9 @@ export function playlistUI() {
                     color={highlightColor}
                     font={mainFont}
                 />
-                
-                    {/* Label with song artist */}
-                    <Label
+
+                {/* Label with song artist */}
+                <Label
                     key={'playlist-song-artist'}
                     uiTransform={{
                         width: `${canvasHeight * 0.07}`,
@@ -121,8 +121,8 @@ export function playlistUI() {
                         onMouseDown={() => toggleAudio('playlist')}
                     />
 
-                      {/* Previous song button */}
-                      <Button
+                    {/* Previous song button */}
+                    <Button
                         key={'playlist-previous-song'}
                         uiTransform={{
                             width: `${canvasHeight * 0.015}`,
@@ -139,12 +139,12 @@ export function playlistUI() {
                             textureSlices: {
                                 left: 1, // Flip horizontally not working with wrapMode 'mirror'
                                 right: 0,
-                                top: 0, 
+                                top: 0,
                                 bottom: 0,
                             },
                             texture: {
                                 src: previousSongIcon,
-                                wrapMode: 'repeat', 
+                                wrapMode: 'repeat',
                             },
                         }}
                         onMouseDown={prevSong}
@@ -178,9 +178,9 @@ export function playlistUI() {
                         }}
                         onMouseDown={skipSong}
                     />
-                    
-                     {/* Social link button */}
-                     <Button
+
+                    {/* Social link button */}
+                    <Button
                         key={'playlist-social-link'}
                         uiTransform={{
                             width: `${canvasHeight * 0.015}`,

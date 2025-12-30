@@ -4,7 +4,7 @@
   "display": {
     "title": "NFT-Museum",
     "description": "NFT Museum template scene with SDK7",
-    "navmapThumbnail": "images/scene-thumbnail.png",
+    "navmapThumbnail": "assets/scene/Images/scene-thumbnail.png",
     "favicon": "favicon_asset"
   },
   "owner": "",

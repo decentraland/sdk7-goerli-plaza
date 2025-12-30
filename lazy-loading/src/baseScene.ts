@@ -17,7 +17,7 @@ export function createBaseScene() {
     parent: scene
   })
   GltfContainer.create(entity, {
-    src: 'models/FloorBaseDirt_01.glb'
+    src: 'assets/scene/Models/FloorBaseDirt_01.glb'
   })
 
   const entity2 = engine.addEntity()
@@ -28,7 +28,7 @@ export function createBaseScene() {
     parent: scene
   })
   GltfContainer.create(entity2, {
-    src: 'models/FloorBaseDirt_01.glb'
+    src: 'assets/scene/Models/FloorBaseDirt_01.glb'
   })
   const entity3 = engine.addEntity()
   Transform.create(entity3, {
@@ -38,7 +38,7 @@ export function createBaseScene() {
     parent: scene
   })
   GltfContainer.create(entity3, {
-    src: 'models/FloorBaseDirt_01.glb'
+    src: 'assets/scene/Models/FloorBaseDirt_01.glb'
   })
   const entity4 = engine.addEntity()
   Transform.create(entity4, {
@@ -48,7 +48,7 @@ export function createBaseScene() {
     parent: scene
   })
   GltfContainer.create(entity4, {
-    src: 'models/FloorBaseDirt_01.glb'
+    src: 'assets/scene/Models/FloorBaseDirt_01.glb'
   })
 
   const rockTile = engine.addEntity()
@@ -59,7 +59,7 @@ export function createBaseScene() {
     parent: scene
   })
   GltfContainer.create(rockTile, {
-    src: 'models/FloorBlock_04.glb'
+    src: 'assets/scene/Models/FloorBlock_04.glb'
   })
 
   const rockTile2 = engine.addEntity()
@@ -70,7 +70,7 @@ export function createBaseScene() {
     parent: scene
   })
   GltfContainer.create(rockTile2, {
-    src: 'models/FloorBlock_04.glb'
+    src: 'assets/scene/Models/FloorBlock_04.glb'
   })
 
   const rockTile3 = engine.addEntity()
@@ -81,7 +81,7 @@ export function createBaseScene() {
     parent: scene
   })
   GltfContainer.create(rockTile3, {
-    src: 'models/FloorBlock_04.glb'
+    src: 'assets/scene/Models/FloorBlock_04.glb'
   })
 
   const rockTile4 = engine.addEntity()
@@ -92,7 +92,7 @@ export function createBaseScene() {
     parent: scene
   })
   GltfContainer.create(rockTile4, {
-    src: 'models/FloorBlock_04.glb'
+    src: 'assets/scene/Models/FloorBlock_04.glb'
   })
   const rockTile5 = engine.addEntity()
   Transform.create(rockTile5, {
@@ -102,7 +102,7 @@ export function createBaseScene() {
     parent: scene
   })
   GltfContainer.create(rockTile5, {
-    src: 'models/FloorBlock_04.glb'
+    src: 'assets/scene/Models/FloorBlock_04.glb'
   })
 
   const rockTile6 = engine.addEntity()
@@ -113,7 +113,7 @@ export function createBaseScene() {
     parent: scene
   })
   GltfContainer.create(rockTile6, {
-    src: 'models/FloorBlock_04.glb'
+    src: 'assets/scene/Models/FloorBlock_04.glb'
   })
 
   const rockTile7 = engine.addEntity()
@@ -124,7 +124,7 @@ export function createBaseScene() {
     parent: scene
   })
   GltfContainer.create(rockTile7, {
-    src: 'models/FloorBlock_04.glb'
+    src: 'assets/scene/Models/FloorBlock_04.glb'
   })
 
   const rockTile8 = engine.addEntity()
@@ -135,7 +135,7 @@ export function createBaseScene() {
     parent: scene
   })
   GltfContainer.create(rockTile8, {
-    src: 'models/FloorBlock_04.glb'
+    src: 'assets/scene/Models/FloorBlock_04.glb'
   })
 
   const rockTile9 = engine.addEntity()
@@ -146,7 +146,7 @@ export function createBaseScene() {
     parent: scene
   })
   GltfContainer.create(rockTile9, {
-    src: 'models/FloorBlock_04.glb'
+    src: 'assets/scene/Models/FloorBlock_04.glb'
   })
   const rockTile10 = engine.addEntity()
   Transform.create(rockTile10, {
@@ -156,7 +156,7 @@ export function createBaseScene() {
     parent: scene
   })
   GltfContainer.create(rockTile10, {
-    src: 'models/FloorBlock_04.glb'
+    src: 'assets/scene/Models/FloorBlock_04.glb'
   })
   const rockTile11 = engine.addEntity()
   Transform.create(rockTile11, {
@@ -166,7 +166,7 @@ export function createBaseScene() {
     parent: scene
   })
   GltfContainer.create(rockTile11, {
-    src: 'models/FloorBlock_04.glb'
+    src: 'assets/scene/Models/FloorBlock_04.glb'
   })
 
   const rockTile12 = engine.addEntity()
@@ -177,7 +177,7 @@ export function createBaseScene() {
     parent: scene
   })
   GltfContainer.create(rockTile12, {
-    src: 'models/FloorBlock_04.glb'
+    src: 'assets/scene/Models/FloorBlock_04.glb'
   })
   const rockTile13 = engine.addEntity()
   Transform.create(rockTile13, {
@@ -187,7 +187,7 @@ export function createBaseScene() {
     parent: scene
   })
   GltfContainer.create(rockTile13, {
-    src: 'models/FloorBlock_04.glb'
+    src: 'assets/scene/Models/FloorBlock_04.glb'
   })
   const rockTile14 = engine.addEntity()
   Transform.create(rockTile14, {
@@ -197,7 +197,7 @@ export function createBaseScene() {
     parent: scene
   })
   GltfContainer.create(rockTile14, {
-    src: 'models/FloorBlock_04.glb'
+    src: 'assets/scene/Models/FloorBlock_04.glb'
   })
   const rockTile15 = engine.addEntity()
   Transform.create(rockTile15, {
@@ -207,7 +207,7 @@ export function createBaseScene() {
     parent: scene
   })
   GltfContainer.create(rockTile15, {
-    src: 'models/FloorBlock_04.glb'
+    src: 'assets/scene/Models/FloorBlock_04.glb'
   })
 
   const rockTile16 = engine.addEntity()
@@ -218,7 +218,7 @@ export function createBaseScene() {
     parent: scene
   })
   GltfContainer.create(rockTile16, {
-    src: 'models/FloorBlock_04.glb'
+    src: 'assets/scene/Models/FloorBlock_04.glb'
   })
 
   return scene

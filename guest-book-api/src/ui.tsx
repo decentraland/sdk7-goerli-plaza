@@ -25,11 +25,11 @@ const uiComponent = () => (
     uiBackground={{
       textureMode: 'stretch',
       texture: {
-        src: 'images/UI_Guestbook_Background.png',
+        src: 'assets/scene/Images/UI_Guestbook_Background.png',
       }
     }}
   >
-    
+
     <Button
       uiTransform={{
         width: 76 * scaleMultiplier,
@@ -41,7 +41,7 @@ const uiComponent = () => (
       uiBackground={{
         textureMode: 'stretch',
         texture: {
-          src: 'images/UI_Guestbook_Arrow_Left.png',
+          src: 'assets/scene/Images/UI_Guestbook_Arrow_Left.png',
         },
       }}
       value=''
@@ -51,7 +51,7 @@ const uiComponent = () => (
         displaySignature(getSignaturePage(currentPage), currentPage > 0, true)
       }}
     />
-    
+
     <Button
       uiTransform={{
         width: 76 * scaleMultiplier,
@@ -63,7 +63,7 @@ const uiComponent = () => (
       uiBackground={{
         textureMode: 'stretch',
         texture: {
-          src: 'images/UI_Guestbook_Arrow_Right.png',
+          src: 'assets/scene/Images/UI_Guestbook_Arrow_Right.png',
         },
       }}
       value=''
@@ -84,7 +84,7 @@ const uiComponent = () => (
       uiBackground={{
         textureMode: 'stretch',
         texture: {
-          src: 'images/UI_Guestbook_SignButton.png',
+          src: 'assets/scene/Images/UI_Guestbook_SignButton.png',
         },
       }}
       value=''
@@ -100,8 +100,8 @@ const uiComponent = () => (
         position: { top: '15%' }
       }}
       value='I was also blown away by the crater!'
-      color={ Color4.Black() }
-      fontSize={ 50 * scaleMultiplier }
+      color={Color4.Black()}
+      fontSize={50 * scaleMultiplier}
     />
 
     <Label
@@ -110,11 +110,11 @@ const uiComponent = () => (
         positionType: 'absolute',
         position: { top: '51%' }
       }}
-      value={ currentSignatures }
-      color={ Color4.Gray() }
-      fontSize={ 50 * scaleMultiplier }
+      value={currentSignatures}
+      color={Color4.Gray()}
+      fontSize={50 * scaleMultiplier}
     />
-    
+
     <Button
       uiTransform={{
         width: 76 * scaleMultiplier,
@@ -123,7 +123,7 @@ const uiComponent = () => (
         position: { top: '2%', right: '2%' }
       }}
       value='X'
-      fontSize={ 20 }
+      fontSize={20}
       variant='primary'
       onMouseDown={() => {
         closeUi()

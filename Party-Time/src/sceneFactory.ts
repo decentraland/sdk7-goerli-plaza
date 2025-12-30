@@ -19,7 +19,7 @@ export function buildScene() {
   // Grass
   const grass = engine.addEntity()
   GltfContainer.create(grass, {
-    src: 'models/FloorBaseGrass_01/FloorBaseGrass_01.glb'
+    src: 'assets/scene/Models/FloorBaseGrass_01/FloorBaseGrass_01.glb'
   })
   Transform.create(grass, {
     parent: _scene,
@@ -29,7 +29,7 @@ export function buildScene() {
   // Bench
   const bench = engine.addEntity()
   GltfContainer.create(bench, {
-    src: 'models/Bench_01/Bench_01.glb'
+    src: 'assets/scene/Models/Bench_01/Bench_01.glb'
   })
   Transform.create(bench, {
     parent: _scene,
@@ -40,7 +40,7 @@ export function buildScene() {
   // Mystical Mushroom Tree
   const mysticalMushroomTree = engine.addEntity()
   GltfContainer.create(mysticalMushroomTree, {
-    src: 'models/Tree_02/Tree_02.glb'
+    src: 'assets/scene/Models/Tree_02/Tree_02.glb'
   })
   Transform.create(mysticalMushroomTree, {
     parent: _scene,
@@ -50,7 +50,7 @@ export function buildScene() {
   // Barbecue
   const barbacue = engine.addEntity()
   GltfContainer.create(barbacue, {
-    src: 'models/Barbacue_01/Barbacue_01.glb'
+    src: 'assets/scene/Models/Barbacue_01/Barbacue_01.glb'
   })
   Transform.create(barbacue, {
     parent: _scene,
@@ -60,7 +60,7 @@ export function buildScene() {
   // Stone Path
   const stonePath = engine.addEntity()
   GltfContainer.create(stonePath, {
-    src: 'models/RockFloor_Module_2M/RockFloor_Module_2M.glb'
+    src: 'assets/scene/Models/RockFloor_Module_2M/RockFloor_Module_2M.glb'
   })
   Transform.create(stonePath, {
     parent: _scene,
@@ -70,7 +70,7 @@ export function buildScene() {
   // Stone Path 2
   const stonePath2 = engine.addEntity()
   GltfContainer.create(stonePath2, {
-    src: 'models/RockFloor_Module_2M/RockFloor_Module_2M.glb'
+    src: 'assets/scene/Models/RockFloor_Module_2M/RockFloor_Module_2M.glb'
   })
   Transform.create(stonePath2, {
     parent: _scene,
@@ -80,7 +80,7 @@ export function buildScene() {
   // Stone Path 3
   const stonePath3 = engine.addEntity()
   GltfContainer.create(stonePath3, {
-    src: 'models/RockFloor_Module_2M/RockFloor_Module_2M.glb'
+    src: 'assets/scene/Models/RockFloor_Module_2M/RockFloor_Module_2M.glb'
   })
   Transform.create(stonePath3, {
     parent: _scene,
@@ -90,7 +90,7 @@ export function buildScene() {
   // Shrub
   const shrub = engine.addEntity()
   GltfContainer.create(shrub, {
-    src: 'models/Bush_01/Bush_01.glb'
+    src: 'assets/scene/Models/Bush_01/Bush_01.glb'
   })
   Transform.create(shrub, {
     parent: _scene,
@@ -100,7 +100,7 @@ export function buildScene() {
   // Shrub 2
   const shrub2 = engine.addEntity()
   GltfContainer.create(shrub2, {
-    src: 'models/Bush_01/Bush_01.glb'
+    src: 'assets/scene/Models/Bush_01/Bush_01.glb'
   })
   Transform.create(shrub2, {
     parent: _scene,
@@ -110,7 +110,7 @@ export function buildScene() {
   // Balsam Flower
   const balsamFlower = engine.addEntity()
   GltfContainer.create(balsamFlower, {
-    src: 'models/Plant_02/Plant_02.glb'
+    src: 'assets/scene/Models/Plant_02/Plant_02.glb'
   })
   Transform.create(balsamFlower, {
     parent: _scene,
@@ -120,7 +120,7 @@ export function buildScene() {
   // Sunflower
   const sunFlower = engine.addEntity()
   GltfContainer.create(sunFlower, {
-    src: 'models/Flower_01/Flower_01.glb'
+    src: 'assets/scene/Models/Flower_01/Flower_01.glb'
   })
   Transform.create(sunFlower, {
     parent: _scene,
@@ -129,7 +129,7 @@ export function buildScene() {
   // Fountain
   const fountain = engine.addEntity()
   GltfContainer.create(fountain, {
-    src: 'models/Fountain_03/Fountain_03.glb'
+    src: 'assets/scene/Models/Fountain_03/Fountain_03.glb'
   })
   Transform.create(fountain, {
     parent: _scene,
@@ -139,7 +139,7 @@ export function buildScene() {
   // Signpost
   const signpost = engine.addEntity()
   GltfContainer.create(signpost, {
-    src: 'models/Signpost.glb'
+    src: 'assets/scene/Models/Signpost.glb'
   })
   Transform.create(signpost, {
     parent: _scene,

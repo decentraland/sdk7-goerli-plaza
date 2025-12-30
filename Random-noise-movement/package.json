@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "dependencies": {
     "@dcl/js-runtime": "latest",
-    "@dcl/noise-utils": "^1.0.12-20221201202440.commit-51d8250",
+    "@dcl/noise-utils": "latest",
     "@dcl/sdk": "latest"
   },
   "devDependencies": {},

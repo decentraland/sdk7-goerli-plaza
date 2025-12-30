@@ -10,6 +10,7 @@ import {
   engine
 } from '@dcl/sdk/ecs'
 import { Quaternion, Vector3 } from '@dcl/sdk/math'
+import { TriggerArea, triggerAreaEventsSystem } from '@dcl/sdk/ecs'
 import * as utils from '@dcl-sdk/utils'
 import { colorSystem, gunSystem } from './systems'
 import { GlowColor, PortalColor } from './components'
@@ -20,8 +21,12 @@ export let HOLDING_GUN = false
 export function spawnGun(gun: Entity) {
   utils.perpetualMotions.startRotation(gun, Quaternion.fromEulerDegrees(0, 15, 0))
 
-  utils.triggers.addTrigger(gun, 1, 1, [{ type: 'box' }], () => {
+  const trigger = engine.addEntity()
+  Transform.create(trigger, { parent: gun })
+  TriggerArea.setBox(trigger)
+  triggerAreaEventsSystem.onTriggerEnter(trigger, () => {
     pickUpGun(gun)
+    engine.removeEntity(trigger)
   })
 
   const blueGlow = engine.addEntity()
@@ -46,11 +51,11 @@ export function pickUpGun(gun: Entity) {
   HOLDING_GUN = true
 
   utils.perpetualMotions.stopRotation(gun)
-  AudioSource.createOrReplace(gun, { audioClipUrl: 'sounds/gunPickup.mp3', playing: true, loop: false })
+  AudioSource.createOrReplace(gun, { audioClipUrl: 'assets/scene/Audio/gunPickup.mp3', playing: true, loop: false })
 
   const gunParent = engine.addEntity()
   const gunTranform = Transform.getMutable(gun)
-  ;(gunTranform.parent = engine.CameraEntity), (gunTranform.position = Vector3.create(0.45, -0.625, 0.9))
+    ; (gunTranform.parent = engine.CameraEntity), (gunTranform.position = Vector3.create(0.45, -0.625, 0.9))
   gunTranform.rotation = Quaternion.fromEulerDegrees(0, 0, 0)
   utils.triggers.removeTrigger(gun)
 

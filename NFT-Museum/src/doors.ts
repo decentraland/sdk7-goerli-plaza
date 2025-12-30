@@ -1,17 +1,16 @@
-import { ColliderLayer, GltfContainer, Transform, engine } from '@dcl/ecs'
-import { Quaternion, Vector3 } from '@dcl/ecs-math'
+import { ColliderLayer, GltfContainer, Transform, engine, TriggerArea, triggerAreaEventsSystem, Entity } from '@dcl/sdk/ecs'
+import { Quaternion, Vector3 } from '@dcl/sdk/math'
 import * as utils from '@dcl-sdk/utils'
-import { Entity } from '@dcl/sdk/ecs'
 
 // Audio for the sliding doors depends on audio.ts
-export const doorLmodel = 'models/slidingDoor1.glb'
-export const doorRmodel = 'models/slidingDoor2.glb'
-export const singleDoor = 'models/slidingDoor-big.glb'
+export const doorLmodel = 'assets/scene/Models/slidingDoor1.glb'
+export const doorRmodel = 'assets/scene/Models/slidingDoor2.glb'
+export const singleDoor = 'assets/scene/Models/slidingDoor-big.glb'
 export const closeDoorOffset = 0
 export const openDoorOffset = 1
 
-export const fastDoorSound = 'sounds/slidingDoors_fast.mp3'
-const doorSound = 'sounds/slidingDoors.mp3'
+export const fastDoorSound = 'assets/scene/Audio/slidingDoors_fast.mp3'
+const doorSound = 'assets/scene/Audio/slidingDoors.mp3'
 
 // south west gallery door, ground floor
 const doorPos1 = Vector3.create(13.95, 2, 10.2)
@@ -93,17 +92,14 @@ export function createSlidingDoors(
     }
   }
 
-  utils.triggers.addTrigger(
-    doorParent,
-    utils.NO_LAYERS,
-    utils.LAYER_1,
-    [{ type: 'box', position: { x: 0, y: 0.25, z: 0 }, scale: { x: 5, y: 3.5, z: 5 } }],
-    function (otherEntity) {
-      if (Date.now() - lastDoorInteractionTime < cooldownTime) return // Adjust the cooldown time as needed
-      lastDoorInteractionTime = Date.now()
-      openDoors()
-    }
-  )
+  TriggerArea.setBox(doorParent)
+  Transform.getMutable(doorParent).scale = { x: 5, y: 3.5, z: 5 }
+  Transform.getMutable(doorParent).position = { x: position.x, y: position.y, z: position.z }
+  triggerAreaEventsSystem.onTriggerEnter(doorParent, function () {
+    if (Date.now() - lastDoorInteractionTime < cooldownTime) return
+    lastDoorInteractionTime = Date.now()
+    openDoors()
+  })
 }
 
 // Single sliding door (big one)
@@ -159,22 +155,15 @@ export function createSlidingDoor(
     }
   }
 
-  utils.triggers.addTrigger(
-    doorParent,
-    utils.NO_LAYERS,
-    utils.LAYER_1,
-    [{ type: 'box', position: { x: 0, y: 0, z: 0 }, scale: { x: 13, y: 3.5, z: 5 } }],
-
-    function (otherEntity) {
-      if (Date.now() - lastDoorInteractionTime < cooldownTime) return // Adjust the cooldown time as needed
-      lastDoorInteractionTime = Date.now()
-      console.log('trigger doors')
-
-      if (!isOpenSingle) {
-        openDoor()
-      }
+  TriggerArea.setBox(doorParent)
+  Transform.getMutable(doorParent).scale = { x: 13, y: 3.5, z: 5 }
+  triggerAreaEventsSystem.onTriggerEnter(doorParent, function () {
+    if (Date.now() - lastDoorInteractionTime < cooldownTime) return
+    lastDoorInteractionTime = Date.now()
+    if (!isOpenSingle) {
+      openDoor()
     }
-  )
+  })
 }
 
 export function createDoorEntity(model: string, offsetX: number, parent: Entity) {
