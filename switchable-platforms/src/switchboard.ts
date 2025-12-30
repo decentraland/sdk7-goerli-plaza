@@ -8,7 +8,9 @@ import {
   Transform,
   Tween,
   TweenLoop,
-  TweenSequence
+  TweenSequence,
+  TriggerArea,
+  triggerAreaEventsSystem
 } from '@dcl/sdk/ecs'
 import { Color3, Quaternion, Vector3 } from '@dcl/sdk/math'
 import * as utils from '@dcl-sdk/utils'
@@ -67,61 +69,35 @@ export function createSwitchBoard(model: string, startPos: Vector3, endPos: Vect
   })
 
   // trigger areas on top of each button
-  utils.triggers.addTrigger(
-    buttonA,
-    utils.LAYER_2,
-    utils.LAYER_1,
-    [{ type: 'box', scale: Vector3.create(2.5, 2.5, 2.5), position: Vector3.create(1.5, 2, 0) }],
-    () => {
-      utils.toggles.set(buttonA, utils.ToggleState.On)
-      movePlatform(entity, gear, 1800, endPos)
-    },
-    () => {
-      utils.toggles.set(buttonA, utils.ToggleState.Off)
-    },
-    Color3.Yellow()
-  )
+  const triggerA = engine.addEntity()
+  Transform.create(triggerA, { parent: buttonA, position: Vector3.create(1.5, 2, 0), scale: Vector3.create(2.5, 2.5, 2.5) })
+  TriggerArea.setBox(triggerA)
+  triggerAreaEventsSystem.onTriggerEnter(triggerA, () => {
+    utils.toggles.set(buttonA, utils.ToggleState.On)
+    movePlatform(entity, gear, 1800, endPos)
+  })
+  triggerAreaEventsSystem.onTriggerExit(triggerA, () => {
+    utils.toggles.set(buttonA, utils.ToggleState.Off)
+  })
 
-  utils.triggers.addTrigger(
-    buttonB,
-    utils.LAYER_2,
-    utils.LAYER_1,
-    [{ type: 'box', scale: Vector3.create(2.5, 2.5, 2.5), position: Vector3.create(-1.5, 2, 0) }],
-    () => {
-      utils.toggles.set(buttonB, utils.ToggleState.On)
-      movePlatform(entity, gear, 1800, startPos, true)
-    },
-    () => {
-      utils.toggles.set(buttonB, utils.ToggleState.Off)
-    },
-    Color3.Yellow()
-  )
+  const triggerB = engine.addEntity()
+  Transform.create(triggerB, { parent: buttonB, position: Vector3.create(-1.5, 2, 0), scale: Vector3.create(2.5, 2.5, 2.5) })
+  TriggerArea.setBox(triggerB)
+  triggerAreaEventsSystem.onTriggerEnter(triggerB, () => {
+    utils.toggles.set(buttonB, utils.ToggleState.On)
+    movePlatform(entity, gear, 1800, startPos, true)
+  })
+  triggerAreaEventsSystem.onTriggerExit(triggerB, () => {
+    utils.toggles.set(buttonB, utils.ToggleState.Off)
+  })
 
   return entity
 }
 
 function movePlatform(platform: Entity, gear: Entity, rotationSpeed: number, targetPos: Vector3, backwards?: boolean) {
-  Tween.createOrReplace(gear, {
-    mode: Tween.Mode.Rotate({
-      start: Quaternion.fromEulerDegrees(0, 0, 0),
-      end: backwards ? Quaternion.fromEulerDegrees(0, 0, 180) : Quaternion.fromEulerDegrees(0, 0, -180)
-    }),
-    duration: rotationSpeed,
-    easingFunction: EasingFunction.EF_LINEAR
-  })
-  TweenSequence.createOrReplace(gear, {
-    loop: TweenLoop.TL_RESTART,
-    sequence: [
-      {
-        mode: Tween.Mode.Rotate({
-          start: backwards ? Quaternion.fromEulerDegrees(0, 0, 180) : Quaternion.fromEulerDegrees(0, 0, -180),
-          end: backwards ? Quaternion.fromEulerDegrees(0, 0, 360) : Quaternion.fromEulerDegrees(0, 0, -360)
-        }),
-        duration: rotationSpeed,
-        easingFunction: EasingFunction.EF_LINEAR
-      }
-    ]
-  })
+  const rotSpeed = 180 / (rotationSpeed / 1000)
+  const direction = backwards ? Quaternion.fromEulerDegrees(90, 0, 0) : Quaternion.fromEulerDegrees(-90, 0, 0)
+  Tween.setRotateContinuous(gear, direction, rotSpeed)
 
   const currentPos = Transform.get(platform).position
   const speed = Math.abs(targetPos.x - currentPos.x) * 0.25 * 1000
@@ -137,7 +113,6 @@ function movePlatform(platform: Entity, gear: Entity, rotationSpeed: number, tar
 
   utils.timers.setTimeout(() => {
     Tween.deleteFrom(gear)
-    TweenSequence.deleteFrom(gear)
     Transform.getMutable(switchSound).position = Transform.get(engine.PlayerEntity).position
     AudioSource.getMutable(switchSound).playing = true
   }, speed)

@@ -1,11 +1,12 @@
 import {
   AudioSource,
+  ColliderLayer,
   engine,
   GltfContainer,
   PointerEvents,
   PointerEventType,
   Transform,
-  VisibilityComponent
+  VisibilityComponent, TriggerArea, triggerAreaEventsSystem
 } from '@dcl/sdk/ecs'
 import { Vector3 } from '@dcl/sdk/math'
 import { Particle, particleSystem } from './particles'
@@ -54,7 +55,7 @@ export function createPowerBase(position: Vector3, gltfSrc: string) {
 
       try {
         engine.addSystem(particleSystem)
-      } catch (err) {}
+      } catch (err) { }
       AudioSource.playSound(powerUp, 'assets/scene/Audio/powerUp.mp3')
 
       for (const [entity] of engine.getEntitiesWith(Particle)) {
@@ -76,28 +77,15 @@ export function createPowerBase(position: Vector3, gltfSrc: string) {
     }
   }
 
-  utils.triggers.addTrigger(
-    entity,
-    2,
-    2,
-    [
-      {
-        type: 'box',
-        scale: Vector3.create(4, 4, 4),
-        position: Vector3.create(0, 0.75, 0)
-      }
-    ],
-    (entity) => {
-      console.log('on enter', { entity })
-      //if (args.length > 0)
-      togglePower(true)
-    },
-    (entity) => {
-      console.log('on exit', { entity })
-      //if (args.length === 0)
-      togglePower(false)
-    }
-  )
+  const trigger = engine.addEntity()
+  Transform.create(trigger, { parent: entity, position: Vector3.create(0, 0.75, 0), scale: Vector3.create(4, 4, 4) })
+  TriggerArea.setBox(trigger, [ColliderLayer.CL_PHYSICS])
+  triggerAreaEventsSystem.onTriggerEnter(trigger, () => {
+    togglePower(true)
+  })
+  triggerAreaEventsSystem.onTriggerExit(trigger, () => {
+    togglePower(false)
+  })
 }
 
 // Power base where the power cube sits

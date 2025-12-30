@@ -2,15 +2,10 @@
   "name": "dcl-dance-floor",
   "description": "SDK7 Dance Floor",
   "version": "1.0.0",
-  "bundleDependencies": [
-    "@dcl/ecs-scene-utils"
-  ],
-  "dependencies": {
-    "@dcl/ecs-scene-utils": "latest"
-  },
   "devDependencies": {
     "@dcl/js-runtime": "latest",
-    "@dcl/sdk": "latest"
+    "@dcl/sdk": "latest",
+    "@dcl-sdk/utils": "latest"
   },
   "engines": {
     "node": ">=16.0.0",

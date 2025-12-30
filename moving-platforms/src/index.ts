@@ -2,6 +2,7 @@ import { EasingFunction, engine, Entity, GltfContainer, Transform, Tween, TweenL
 import { Vector3 } from '@dcl/sdk/math'
 import { createCoin } from './modules/coin'
 import * as utils from '@dcl-sdk/utils'
+import { TriggerArea, triggerAreaEventsSystem } from '@dcl/sdk/ecs'
 import { setupUi } from './ui'
 
 export function main() {
@@ -65,38 +66,35 @@ export function main() {
     position: Vector3.create(14, 4, 12)
   })
 
-  utils.triggers.addTrigger(
-    platform3,
-    utils.LAYER_1,
-    utils.LAYER_1,
-    [{ type: 'box', scale: Vector3.create(1, 2, 1) }],
-    () => {
-      console.log('JUMPED ON')
+  const trigger3 = engine.addEntity()
+  Transform.create(trigger3, { parent: platform3, scale: Vector3.create(1, 2, 1) })
+  TriggerArea.setBox(trigger3)
+  triggerAreaEventsSystem.onTriggerEnter(trigger3, () => {
+    console.log('JUMPED ON')
 
-      Tween.createOrReplace(platform3, {
-        mode: Tween.Mode.Move({
-          start: Vector3.create(14, 4, 12),
-          end: Vector3.create(14, 4, 4)
-        }),
-        duration: 2000,
-        easingFunction: EasingFunction.EF_LINEAR,
-        currentTime: 0 // in case it was already moving
-      })
+    Tween.createOrReplace(platform3, {
+      mode: Tween.Mode.Move({
+        start: Vector3.create(14, 4, 12),
+        end: Vector3.create(14, 4, 4)
+      }),
+      duration: 2000,
+      easingFunction: EasingFunction.EF_LINEAR,
+      currentTime: 0 // in case it was already moving
+    })
 
-      TweenSequence.createOrReplace(platform3, {
-        sequence: [
-          {
-            mode: Tween.Mode.Move({
-              start: Vector3.create(14, 4, 4),
-              end: Vector3.create(14, 4, 12)
-            }),
-            duration: 2000,
-            easingFunction: EasingFunction.EF_LINEAR
-          }
-        ]
-      }) // non looping
-    }
-  )
+    TweenSequence.createOrReplace(platform3, {
+      sequence: [
+        {
+          mode: Tween.Mode.Move({
+            start: Vector3.create(14, 4, 4),
+            end: Vector3.create(14, 4, 12)
+          }),
+          duration: 2000,
+          easingFunction: EasingFunction.EF_LINEAR
+        }
+      ]
+    }) // non looping
+  })
 
   //utils.triggers.enableDebugDraw(true)
 

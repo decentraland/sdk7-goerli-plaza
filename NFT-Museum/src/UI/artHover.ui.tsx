@@ -1,4 +1,4 @@
-import { UiCanvasInformation, engine } from "@dcl/ecs";
+import { UiCanvasInformation, engine } from "@dcl/sdk/ecs";
 import ReactEcs, { UiEntity, Label } from "@dcl/react-ecs";
 import { currentArtworkId, findArtworkById, hoverVisible, toggleHover } from "../Art/artHover";
 import { wordWrap, tieredModalTextWrapScale, tieredFontScale } from "../helperFunctions";

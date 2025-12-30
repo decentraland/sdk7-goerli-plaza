@@ -1,4 +1,4 @@
-import { engine, Entity, GltfContainer, Transform, raycastSystem, RaycastQueryType } from '@dcl/ecs'
+import { engine, Entity, GltfContainer, Transform, raycastSystem, RaycastQueryType } from '@dcl/sdk/ecs'
 import { Quaternion, Vector3 } from '@dcl/sdk/math'
 import { PuzzleBuilder } from './puzzleBuilder'
 import { MAX_DISTANCE } from '.'

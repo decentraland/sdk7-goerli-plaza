@@ -1,4 +1,4 @@
-import { engine, Entity, GltfContainer, Transform, inputSystem, InputAction } from '@dcl/ecs'
+import { engine, Entity, GltfContainer, Transform, inputSystem, InputAction } from '@dcl/sdk/ecs'
 import { Sound } from './sound'
 import { PuzzleBuilder } from './puzzleBuilder'
 import { Selector } from './selector'

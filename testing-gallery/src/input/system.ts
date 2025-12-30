@@ -1,12 +1,12 @@
-import * as components from '@dcl/ecs/dist/components'
 import {
   DeepReadonly,
   DeepReadonlyObject,
+  engine,
   Entity,
-  IEngine,
   InputAction,
   PBPointerEventsResult,
-  PointerEventType
+  PointerEventType,
+  PointerEventsResult
 } from '@dcl/sdk/ecs'
 
 const InputCommands: InputAction[] = [
@@ -30,8 +30,7 @@ const InputStateUpdateSystemPriority = 1 << 20
 /**
  * @internal
  */
-export function createInputSystem(engine: IEngine) {
-  const PointerEventsResult = components.PointerEventsResult(engine)
+export function createInputSystem() {
   const globalState = {
     previousFrameMaxTimestamp: 0,
     currentFrameMaxTimestamp: 0,

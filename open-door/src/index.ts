@@ -7,12 +7,13 @@ import {
   MeshRenderer,
   MeshCollider,
   Material,
-  Schemas
-} from '@dcl/ecs'
-import { Quaternion, Vector3, Color4 } from '@dcl/ecs-math'
+  Schemas,
+  EasingFunction,
+  Tween
+} from '@dcl/sdk/ecs'
+import { Quaternion, Vector3, Color4 } from '@dcl/sdk/math'
 import * as utils from '@dcl-sdk/utils'
 import { setupUi } from './ui'
-import { EasingFunction, Tween } from '@dcl/sdk/ecs'
 
 const openPos: Quaternion = Quaternion.create(0, 1, 0)
 const closedPos: Quaternion = Quaternion.create(0, 0, 0)
