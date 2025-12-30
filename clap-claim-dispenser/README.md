@@ -9,11 +9,13 @@ This scene contains a scene template with the code and Models necesary to implem
 3. Once the scene is loaded, hit Preview.
 4.  Congratz! You should see the Wearable Dispenser, and be able to do a `CLAP EMOTE` and claim the Wearable by clapping!
 
+
 ## Customizing the Dispenser
 
 Now that we have our Dispenser set up, we will probably be wanting to change it's position, rotation, glb, et. So let's see how to do some of those things.
 
 ### Pointing to your Campaign's Dispenser
+
 
 Before starting make sure you completed this steps:
 
@@ -61,7 +63,6 @@ To edit the position and rotation of the dispenser, go to `initDispensers` funct
 ```
 export function initDispensers() {
     initClapToClaim()
-
     createDispenserWithWearable(
         Vector3.create(<X_P>, <Y_P> , <Z_P>),Quaternion.fromEulerDegrees(<X_R>, <Y_R>, <Z_R>),
         "models/<PATH_TO_WEREABLE_GLB>",
@@ -82,6 +83,8 @@ Since this is an example from the Fashion Week dispensers, the models loaded by 
 
 #### Changing the Dispenser model
 
+**In the `models/` folder, we also have Generic Dispenser.glb, which doesnt't have MVFW banners.**
+
 Let's go to the first few lines of `createDispenserWithWearable` function in `src/modules/dispensers.ts`:
 
 ```
@@ -100,6 +103,7 @@ Where:
 * `<PATH_TO_DISPENSER_GLB>` should be replaced with the path to the glb replacement.
 
 #### Disabling/Changing the UI texture
+
 
 When claiming a wearable, the texture shown in the UI also is from the MTFW. We can change or delete the texture and have an empty background (if deleted) or a new background (if changed). 
 
