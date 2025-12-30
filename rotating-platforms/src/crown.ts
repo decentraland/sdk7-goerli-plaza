@@ -1,4 +1,3 @@
-//import * as utils from '@dcl/ecs-scene-utils'
 import { AudioSource, engine, Entity, GltfContainer, Transform, TransformType, TriggerArea, triggerAreaEventsSystem } from '@dcl/sdk/ecs'
 import { Color3, Vector3 } from '@dcl/sdk/math'
 import * as utils from '@dcl-sdk/utils'
