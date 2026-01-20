@@ -6,8 +6,9 @@
  */
 export enum EntityNames {
   Admin_Tools = "Admin Tools",
+  Fixed_View_Camera = "Fixed View Camera",
   Video_Screen = "Video Screen",
-  baseDarkWithCollider_glb = "baseDarkWithCollider.glb",
+  assets_scene_baseDarkWithCollider_glb = "assets/scene/baseDarkWithCollider.glb",
   screenBody = "screenBody",
   seats = "seats",
   sreenDisplay = "sreenDisplay",
