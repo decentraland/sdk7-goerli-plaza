@@ -121,6 +121,7 @@
     "validate-player-authenticity",
     "video-streaming",
     "zenquencer",
-    "zombie-attack"
+    "zombie-attack",
+    "osc-relay"
   ]
 }
