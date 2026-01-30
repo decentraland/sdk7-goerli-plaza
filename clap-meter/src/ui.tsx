@@ -23,7 +23,7 @@ export function setupUi() {
     GitHubLinkUi(),
     descriptionUI()
     // Other UI elements
-  ])
+  ], { virtualWidth: 1920, virtualHeight: 1080 })
 
 }
 

@@ -24,7 +24,7 @@ ReactEcsRenderer.setUiRenderer(() => (<UiEntity
   }}
 >
   {SplatSurface.GetUIRender()}
-</UiEntity>));
+</UiEntity>), { virtualWidth: 1920, virtualHeight: 1080 });
 
 /** manages the state of the splat surface, acting as the interaction point for players to place 
  *  splats & calculate the entire area covered by splat objects.

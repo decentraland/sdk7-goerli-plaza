@@ -3,7 +3,7 @@ import { ReactEcsRenderer } from '@dcl/sdk/react-ecs'
 import * as ui from 'dcl-ui-toolkit'
 import * as utils from '@dcl-sdk/utils'
 
-ReactEcsRenderer.setUiRenderer(ui.render)
+ReactEcsRenderer.setUiRenderer(ui.render, { virtualWidth: 1920, virtualHeight: 1080 })
 const announcement = ui.createComponent(ui.Announcement, {
   value: 'This scene does not allow smart wearables.\nTake them off, then step out and back in.',
   startHidden: true,

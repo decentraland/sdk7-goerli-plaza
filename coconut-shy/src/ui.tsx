@@ -15,7 +15,7 @@ export function setupUi() {
     GitHubLinkUi(),
     descriptionUI()
 
-  ])
+  ], { virtualWidth: 1920, virtualHeight: 1080 })
 
   executeTask(async function () {
     uiBar

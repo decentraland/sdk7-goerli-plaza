@@ -8,7 +8,7 @@ import { Cube } from './components'
 import { createCube } from './factory'
 
 export function setupUi() {
-  ReactEcsRenderer.setUiRenderer(uiComponent)
+  ReactEcsRenderer.setUiRenderer(uiComponent, { virtualWidth: 1920, virtualHeight: 1080 })
 }
 
 const uiComponent = () => (
