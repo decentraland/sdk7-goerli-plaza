@@ -5,7 +5,7 @@ import { createShowDebugUi } from './modules/claiming/ui/showDebugUi'
 
 export function setupUi() {
     initDispenserUi()
-    ReactEcsRenderer.setUiRenderer(uiComponent)
+    ReactEcsRenderer.setUiRenderer(uiComponent, { virtualWidth: 1920, virtualHeight: 1080 })
 }
 const uiComponent = () => [
     createDispenserUi(),

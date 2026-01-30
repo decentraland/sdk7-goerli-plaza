@@ -11,7 +11,7 @@ export function setupUi() {
   ReactEcsRenderer.setUiRenderer(() => [
     GitHubLinkUi(),
     descriptionUI()
-  ])
+  ], { virtualWidth: 1920, virtualHeight: 1080 })
 
 }
 

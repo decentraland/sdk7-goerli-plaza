@@ -3,6 +3,11 @@
     "allowJs": true,
     "strict": true
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx"],
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "assets/**/*.ts",
+    "assets/**/*.tsx"
+  ],
   "extends": "@dcl/sdk/types/tsconfig.ecs7.json"
 }

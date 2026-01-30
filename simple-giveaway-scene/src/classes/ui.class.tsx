@@ -55,7 +55,7 @@ export class UI {
         this.cornerUi(),
       ]
     )
-    ReactEcsRenderer.setUiRenderer(uiComponent)
+    ReactEcsRenderer.setUiRenderer(uiComponent, { virtualWidth: 1920, virtualHeight: 1080 })
 
   }
   mainUi() {

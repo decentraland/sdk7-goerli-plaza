@@ -5,7 +5,7 @@ import { DiscoManager } from './modules/grid-floor/discoManager'
 export function setupUI() {
     ReactEcsRenderer.setUiRenderer(() => [         
         createDebugUI(),          
-    ])
+    ], { virtualWidth: 1920, virtualHeight: 1080 })
 }
 
 function createDebugUI() {

@@ -25,7 +25,7 @@ export class ClickableDog {
   soundPlayer: Entity
 
   constructor(transform: TransformTypeWithOptionals, endGameCallback: (count: number) => void) {
-    ReactEcsRenderer.setUiRenderer(ui.render)
+    ReactEcsRenderer.setUiRenderer(ui.render, { virtualWidth: 1920, virtualHeight: 1080 })
 
     this.clickCounter = ui.createComponent(ui.UICounter, {
       value: 0,

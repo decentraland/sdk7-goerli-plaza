@@ -19,7 +19,7 @@ const uiComponent = () => (
 
 
 export function setupUi() {
-  // ReactEcsRenderer.setUiRenderer(uiComponent)
+  // ReactEcsRenderer.setUiRenderer(uiComponent, { virtualWidth: 1920, virtualHeight: 1080 })
 }
 
 export function GitHubLinkUi() {
@@ -58,7 +58,7 @@ export function GitHubLinkUi() {
       textAlign="middle-center"
     />
   </UiEntity>
-  ReactEcsRenderer.setUiRenderer(uiComponent)
+  ReactEcsRenderer.setUiRenderer(uiComponent, { virtualWidth: 1920, virtualHeight: 1080 })
 }
 
 export function descriptionUI() {

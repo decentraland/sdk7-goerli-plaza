@@ -16,7 +16,7 @@ const SceneOwnedUi = () => [
 ]
 
 export function setupUi() {
-  ReactEcsRenderer.setUiRenderer(SceneOwnedUi)
+  ReactEcsRenderer.setUiRenderer(SceneOwnedUi, { virtualWidth: 1920, virtualHeight: 1080 })
 }
 
 

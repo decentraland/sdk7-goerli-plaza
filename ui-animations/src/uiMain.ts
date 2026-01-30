@@ -13,7 +13,7 @@ import { exampleLabelsUI } from './exampleLabeling'
 import { blackFadeUI, complexParticleUI } from './test_ui_complex'
 
 export function setupUi() {
-  ReactEcsRenderer.setUiRenderer(uiComponent)
+  ReactEcsRenderer.setUiRenderer(uiComponent, { virtualWidth: 1920, virtualHeight: 1080 })
 
   // add these  systems only for testing the functionality of the examples
   engine.addSystem(ProgressBarTestSystem)
