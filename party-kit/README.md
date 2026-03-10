@@ -1,0 +1,1 @@
+# sdk-empty-scene-template
