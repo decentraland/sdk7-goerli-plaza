@@ -5,7 +5,7 @@ import { IntermissionSubs } from './subtitle-files/IntermissionSubs'
 export let FAKING_LOCALLY: boolean = false
 // Video to display as background while no show is playing
 export const DEFAULT_VIDEO =
-  'https://player.vimeo.com/external/637531989.m3u8?s=0a75c635933b3588464fcbee094839bf08f9c252'
+  'https://vz-8a0704eb-552.b-cdn.net/99f3d58d-57cc-414a-ab25-abb8f3a1ca28/playlist.m3u8'
 
 // Video schedule
 
