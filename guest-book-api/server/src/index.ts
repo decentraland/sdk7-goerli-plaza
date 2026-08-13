@@ -1,5 +1,6 @@
 import { Request, Response } from 'express'
-import * as dcl from 'decentraland-crypto-middleware'
+import { DecentralandSignatureData } from '@dcl/crypto-middleware'
+import { express as signedFetch } from './security/signedFetch'
 import { runChecks } from './security/securityChecks'
 import { VALID_SIGNATURE_TOLERANCE_INTERVAL_MS, Metadata, VALID_PARCEL } from './security/utils'
 import * as sqlite3 from 'sqlite3'
@@ -26,10 +27,10 @@ const dbPromise = open({
   await db.exec('CREATE TABLE IF NOT EXISTS Signatures (id TEXT, name TEXT)')
 })()
 
-app.get('/check-validity', async (req: Request & dcl.DecentralandSignatureData<Metadata>, res: Response) => {
+app.get('/check-validity', async (req: Request & DecentralandSignatureData<Metadata>, res: Response) => {
   try {
     req.baseUrl = SERVER_BASE_URL
-    return dcl.express({ expiration: VALID_SIGNATURE_TOLERANCE_INTERVAL_MS })(req, res, async () => {
+    return signedFetch({ expiration: VALID_SIGNATURE_TOLERANCE_INTERVAL_MS })(req, res, async () => {
       try {
         await runChecks(req, VALID_PARCEL)
         return res.status(200).send({ valid: true, msg: 'Valid request' })
@@ -42,10 +43,10 @@ app.get('/check-validity', async (req: Request & dcl.DecentralandSignatureData<M
   }
 })
 
-app.get('/get-signatures', async (req: Request & dcl.DecentralandSignatureData<Metadata>, res: Response) => {
+app.get('/get-signatures', async (req: Request & DecentralandSignatureData<Metadata>, res: Response) => {
   try {
     req.baseUrl = SERVER_BASE_URL
-    return dcl.express({ expiration: VALID_SIGNATURE_TOLERANCE_INTERVAL_MS })(req, res, async () => {
+    return signedFetch({ expiration: VALID_SIGNATURE_TOLERANCE_INTERVAL_MS })(req, res, async () => {
       try {
         await runChecks(req, VALID_PARCEL)
 
@@ -71,10 +72,10 @@ app.get('/get-signatures', async (req: Request & dcl.DecentralandSignatureData<M
   }
 })
 
-app.post('/add-signature', async (req: Request & dcl.DecentralandSignatureData<Metadata>, res: Response) => {
+app.post('/add-signature', async (req: Request & DecentralandSignatureData<Metadata>, res: Response) => {
   try {
     req.baseUrl = SERVER_BASE_URL
-    return dcl.express({ expiration: VALID_SIGNATURE_TOLERANCE_INTERVAL_MS })(req, res, async () => {
+    return signedFetch({ expiration: VALID_SIGNATURE_TOLERANCE_INTERVAL_MS })(req, res, async () => {
       try {
         await runChecks(req, VALID_PARCEL)
 

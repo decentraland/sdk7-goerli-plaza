@@ -14,8 +14,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@dcl/crypto-middleware": "5.1.0",
     "cors": "latest",
-    "decentraland-crypto-middleware": "latest",
     "dotenv": "^16.4.5",
     "express": "latest",
     "isomorphic-fetch": "latest"
