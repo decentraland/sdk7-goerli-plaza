@@ -1,7 +1,8 @@
 import express, { NextFunction, Request, Response } from 'express'
 import cors from 'cors'
-import dcl, { express as dclExpress } from 'decentraland-crypto-middleware'
+import { DecentralandSignatureData } from '@dcl/crypto-middleware'
 
+import { express as dclExpress } from './security/signedFetch'
 import { runChecks } from './security/securityChecks'
 import { VALID_SIGNATURE_TOLERANCE_INTERVAL_MS, Metadata, VALID_PARCEL } from './utils'
 
@@ -24,7 +25,7 @@ app.get(
   '/check-validity',
   setBaseUrl,
   dclExpress({ expiration: VALID_SIGNATURE_TOLERANCE_INTERVAL_MS }),
-  async (req: Request & dcl.DecentralandSignatureData<Metadata>, res: Response) => {
+  async (req: Request & DecentralandSignatureData<Metadata>, res: Response) => {
     try {
       await runChecks(req, VALID_PARCEL)
       return res.status(200).send({ valid: true, msg: 'Valid request' })

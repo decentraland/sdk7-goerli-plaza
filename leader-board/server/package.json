@@ -11,15 +11,16 @@
   },
   "main": "dist/index.js",
   "dependencies": {
+    "@dcl/crypto-middleware": "5.1.0",
     "@types/sqlite3": "^3.1.11",
     "cors": "latest",
-    "decentraland-crypto-middleware": "latest",
     "dotenv": "^16.4.5",
     "express": "latest",
     "sqlite": "^5.1.1",
     "sqlite3": "^5.1.7"
   },
   "devDependencies": {
+    "@types/express": "latest",
     "@types/koa": "latest",
     "@types/passport-strategy": "latest",
     "@well-known-components/interfaces": "latest",
