@@ -1,0 +1,11 @@
+{
+    "name": "osc.js-web-app",
+    "version": "1.0.1",
+    "main": "socket-synth.js",
+    "ignore": [],
+    "dependencies": {
+        "colyseus.js": "^0.14.12",
+        "flocking": "2.0.1",
+        "osc": "2.4.0"
+    }
+}
