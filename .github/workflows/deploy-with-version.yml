@@ -24,12 +24,18 @@ on:
         required: true
       AB_TOKEN:
         required: true
+  push:
+    branches:
+      - 'chore/improve-scenes-deploy'
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          fetch-tags: false
 
       - uses: actions/setup-node@v4
         with:
@@ -60,7 +66,90 @@ jobs:
       - name: build
         run: npm run build
 
+      # - name: filter changed scenes
+      #   id: filter_workspace
+      #   run: |
+      #     set -e
+
+      #     if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+      #       # Manual run: process all scenes!
+      #       echo "workflow_dispatch event detected, processing all scenes"
+      #       SCENE_COUNT=$(jq '.folders | length' dcl-workspace.json)
+      #       echo "Scene count: $SCENE_COUNT"
+      #       if [ "$SCENE_COUNT" -gt 0 ]; then
+      #         echo "has_scenes=true" >> $GITHUB_OUTPUT
+      #       else
+      #         echo "has_scenes=false" >> $GITHUB_OUTPUT
+      #       fi
+      #       exit 0
+      #     fi
+
+      #     # Helper function to get base ref for diff
+      #     get_base_ref_for_diff() {
+      #       if [ "${{ github.event_name }}" = "pull_request" ]; then
+      #         echo "origin/${{ github.base_ref }}"
+      #       else
+      #         # On push to main, diff with previous commit
+      #         # GITHUB_SHA = new commit, GITHUB_REF = refs/heads/main
+      #         # git rev-parse <commit>^ = previous commit
+      #         echo "$(git rev-parse ${{ github.sha }}^)"
+      #       fi
+      #     }
+
+      #     # Get diff base
+      #     DIFF_BASE=$(get_base_ref_for_diff)
+      #     echo "Diff base: $DIFF_BASE"
+
+      #     # Fetch base branch or ensure previous commit exists
+      #     if [ "${{ github.event_name }}" = "pull_request" ]; then
+      #       git fetch origin ${{ github.base_ref }}:${{ github.base_ref }}
+      #     else
+      #       git fetch origin main --depth=2
+      #     fi
+
+      #     # Get list of changed files
+      #     if [ "${{ github.event_name }}" = "pull_request" ]; then
+      #       CHANGED_FILES=$(git diff --name-only "$DIFF_BASE"...HEAD)
+      #     else
+      #       CHANGED_FILES=$(git diff --name-only "$DIFF_BASE" ${{ github.sha }})
+      #     fi
+      #     echo "$CHANGED_FILES" > changed_files.txt
+      #     echo "--- Changed files:"
+      #     cat changed_files.txt
+      #     echo
+
+      #     echo "--- List all scenes from dcl-workspace.json"
+      #     jq -r '.folders[].path' dcl-workspace.json
+      #     echo
+
+      #     echo "--- Filter to only scenes with changed files"
+      #     SCENES=$(jq -r '.folders[].path' dcl-workspace.json)
+      #     NEW_JSON='{"folders":[]}'
+      #     for SCENE in $SCENES; do
+      #       if grep -q "^$SCENE/" changed_files.txt; then
+      #         NEW_JSON=$(echo "$NEW_JSON" | jq --arg p "$SCENE" '.folders += [{"path": $p}]')
+      #         echo "Keeping scene: $SCENE"
+      #       else
+      #         echo "Excluding scene: $SCENE (no changed files)"
+      #       fi
+      #     done
+      #     echo "$NEW_JSON" > dcl-workspace.json
+      #     echo
+
+      #     echo "--- Final filtered scenes:"
+      #     jq -r '.folders[].path' dcl-workspace.json
+
+      #     # Count scenes and set as output
+      #     SCENE_COUNT=$(jq '.folders | length' dcl-workspace.json)
+      #     echo "Changed scenes count: $SCENE_COUNT"
+      #     if [ "$SCENE_COUNT" -gt 0 ]; then
+      #       echo "has_scenes=true" >> $GITHUB_OUTPUT
+      #     else
+      #       echo "has_scenes=false" >> $GITHUB_OUTPUT
+      #     fi
+
       - name: export-static (branch)
+        # if: ${{ steps.filter_workspace.outputs.has_scenes == 'true' }}
         run: >
           npm run export-static -- \
             --realmName ${{steps.get-branch-realm-name.outputs.result}} \
@@ -68,45 +157,66 @@ jobs:
             --baseUrl '${{ secrets.SDK_TEAM_S3_BASE_URL }}/ipfs' \
             --destination "$(pwd)/ipfs"
 
-      - name: upload to s3
-        run: >
-          npx @dcl/cdn-uploader@next \
-              --bucket ${{ secrets.SDK_TEAM_S3_BUCKET }} \
-              --local-folder "$(pwd)/ipfs" \
-              --bucket-folder 'ipfs'
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.SDK_TEAM_AWS_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.SDK_TEAM_AWS_SECRET }}
+      - name: Print local about file
+        # if: ${{ steps.filter_workspace.outputs.has_scenes == 'true' }}
+        run: |
+          set -e
+          FILE="ipfs/${{ steps.get-branch-realm-name.outputs.result }}/about"
+          echo "Contents of $FILE:"
+          if [ -f "$FILE" ]; then
+            cat "$FILE"
+          else
+            echo "File not found: $FILE"
+          fi
 
-      - name: Asset Bundle converter queue AllPlataforms
-        if: github.event_name != 'pull_request'
-        run: >
-          npx @dcl/opscli queue-ab-conversion-about \
-            --token ${{ secrets.AB_TOKEN }} \
-            --prioritize \
-            --about-url ${{ secrets.SDK_TEAM_S3_BASE_URL }}/ipfs/${{steps.get-branch-realm-name.outputs.result}}/about
+      - name: Print remote about file from CDN
+        # if: ${{ steps.filter_workspace.outputs.has_scenes == 'true' }}
+        run: |
+          set -e
+          URL="https://sdk-team-cdn.decentraland.org/ipfs/goerli-plaza-main-latest/about"
+          echo "Contents of $URL:"
+          curl -fLs "$URL" || echo "Remote about file not found or not accessible"
 
-      - name: Find Comment
-        uses: peter-evans/find-comment@v1
-        if: github.event_name == 'pull_request'
-        id: fc
-        with:
-          issue-number: ${{ github.event.pull_request.number }}
-          comment-author: 'github-actions[bot]'
-          body-includes: Test this pull request
+      # - name: upload to s3
+      #   if: ${{ github.event_name != 'pull_request' && steps.filter_workspace.outputs.has_scenes == 'true' }}
+      #   run: >
+      #     npx @dcl/cdn-uploader@next \
+      #         --bucket ${{ secrets.SDK_TEAM_S3_BUCKET }} \
+      #         --local-folder "$(pwd)/ipfs" \
+      #         --bucket-folder 'ipfs'
+      #   env:
+      #     AWS_ACCESS_KEY_ID: ${{ secrets.SDK_TEAM_AWS_ID }}
+      #     AWS_SECRET_ACCESS_KEY: ${{ secrets.SDK_TEAM_AWS_SECRET }}
 
-      - name: Create or update comment
-        uses: peter-evans/create-or-update-comment@v1
-        if: github.event_name == 'pull_request'
-        with:
-          comment-id: ${{ steps.fc.outputs.comment-id }}
-          issue-number: ${{ github.event.pull_request.number }}
-          body: |
-            ## Test this pull request
-            - [Test in-world](https://play.decentraland.zone/?realm=${{ secrets.SDK_TEAM_S3_BASE_URL }}/ipfs/${{steps.get-branch-realm-name.outputs.result}})
-            - Or use this chat command to switch the realm
-              ```bash
-              /goto ${{ secrets.SDK_TEAM_S3_BASE_URL }}/ipfs/${{steps.get-branch-realm-name.outputs.result}}
-              ```
-            This PR has been published using the `@dcl/sdk` version `${{ inputs.dcl-sdk-package }}`
-          edit-mode: replace
+      # - name: Asset Bundle converter queue AllPlataforms
+      #   if: ${{ github.event_name != 'pull_request' && steps.filter_workspace.outputs.has_scenes == 'true' }}
+      #   run: >
+      #     npx @dcl/opscli queue-ab-conversion-about \
+      #       --token ${{ secrets.AB_TOKEN }} \
+      #       --prioritize \
+      #       --about-url ${{ secrets.SDK_TEAM_S3_BASE_URL }}/ipfs/${{steps.get-branch-realm-name.outputs.result}}/about
+
+      # - name: Find Comment
+      #   uses: peter-evans/find-comment@v1
+      #   if: github.event_name == 'pull_request'
+      #   id: fc
+      #   with:
+      #     issue-number: ${{ github.event.pull_request.number }}
+      #     comment-author: 'github-actions[bot]'
+      #     body-includes: Test this pull request
+
+      # - name: Create or update comment
+      #   uses: peter-evans/create-or-update-comment@v1
+      #   if: github.event_name == 'pull_request'
+      #   with:
+      #     comment-id: ${{ steps.fc.outputs.comment-id }}
+      #     issue-number: ${{ github.event.pull_request.number }}
+      #     body: |
+      #       ## Test this pull request
+      #       - [Test in-world](https://play.decentraland.zone/?realm=${{ secrets.SDK_TEAM_S3_BASE_URL }}/ipfs/${{steps.get-branch-realm-name.outputs.result}})
+      #       - Or use this chat command to switch the realm
+      #         ```bash
+      #         /goto ${{ secrets.SDK_TEAM_S3_BASE_URL }}/ipfs/${{steps.get-branch-realm-name.outputs.result}}
+      #         ```
+      #       This PR has been published using the `@dcl/sdk` version `${{ inputs.dcl-sdk-package }}`
+      #     edit-mode: replace
