@@ -11,7 +11,7 @@ on:
         type: string
       ab-extra-params:
         type: string
-        default: "--platform mac"
+        default: "--platform abgen"
     secrets:
       SDK_TEAM_S3_BUCKET:
         required: true
